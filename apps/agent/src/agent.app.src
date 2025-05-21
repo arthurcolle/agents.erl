@@ -17,7 +17,8 @@
         stdlib,
         inets,
         ssl,
-        jsx
+        jsx,
+        openai
     ]},
     {mod, {agent, []}},
     {env, [

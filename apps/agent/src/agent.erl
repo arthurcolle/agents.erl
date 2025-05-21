@@ -34,11 +34,19 @@
     tool_executor/5
 ]).
 
--define(DEFAULT_MODEL, <<"gpt-4.1">>).
+-define(DEFAULT_MODEL, <<"gpt-4.1-mini">>).
 -define(DEFAULT_TIMEOUT, 60000).
 
 %% Application callback
 start(_StartType, _StartArgs) ->
+    % Ensure openai application is started
+    case application:start(openai) of
+        ok -> ok;
+        {error, {already_started, _}} -> ok;
+        {error, Reason} -> {error, {failed_to_start_openai, Reason}}
+    end,
+    
+    % Start the agent supervisor
     start_link().
 
 stop(_State) ->
@@ -124,16 +132,6 @@ init([]) ->
     
     % Define child specifications
     ChildSpecs = [
-        % OpenAI API supervisor
-        #{
-            id => openai_sup,
-            start => {openai_sup, start_link, [#{}]},
-            restart => permanent,
-            shutdown => 5000,
-            type => supervisor,
-            modules => [openai_sup]
-        },
-        
         % Tools registry
         #{
             id => agent_tools,

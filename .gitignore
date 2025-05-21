@@ -1,39 +1,46 @@
- # Erlang/OTP build artifacts
- /_build/
- /rel/
+# Erlang/OTP build artifacts
+/_build/
+/rel/
 
- # Crash dumps and logs
- erl_crash.dump
- *.dump
- *.log
+# Crash dumps and logs
+erl_crash.dump
+*.dump
+*.log
 
- # Compiler artifacts
- *.beam
+# Compiler artifacts
+*.beam
+ebin/*.beam
 
- # Dependency directories
- /deps/
+# Dependency directories
+/deps/
 
- # Release artifacts
- *.ez
- *.tar.gz
- *.tgz
- *.zip
+# Release artifacts
+*.ez
+*.tar.gz
+*.tgz
+*.zip
 
- # Test coverage
- cover/
- cover_data/
- *.coverdata
+# Test artifacts
+.eunit/
+test/*.beam
+logs/
+_checkouts/
 
- # Erlang cookie
- .erlang.cookie
+# Test coverage
+cover/
+cover_data/
+*.coverdata
 
- # Editor temporary files
- .DS_Store
- Thumbs.db
- *.swp
- *~
+# Erlang cookie
+.erlang.cookie
 
- # IDE directories
- .idea/
- .vscode/
- *.iml
+# Editor temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# IDE directories
+.idea/
+.vscode/
+*.iml
