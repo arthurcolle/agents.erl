@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite tests="11" failures="0" errors="8" skipped="0" time="0.138" name="module 'agent_tests'">
+  <testcase time="0.000" name="agent_tests:0 test_agent_lifecycle (Agent lifecycle tests)">
+    <error type="error">
+::in function agent_tests:test_agent_lifecycle/0 (/Users/agent/agents.erl/sandbox/myapp/apps/myapp/test/agent_tests.erl, line 46)
+in call from eunit_test:run_testfun/1 (eunit_test.erl, line 72)
+in call from eunit_proc:run_test/1 (eunit_proc.erl, line 544)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 369)
+in call from eunit_proc:handle_test/2 (eunit_proc.erl, line 527)
+in call from eunit_proc:tests_inorder/3 (eunit_proc.erl, line 469)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 359)
+in call from eunit_proc:run_group/2 (eunit_proc.erl, line 583)
+**error:{assertEqual,[{module,agent_tests},
+              {line,46},
+              {expression,"agent : stop ( )"},
+              {expected,ok},
+              {value,{error,{not_started,agent}}}]}
+    </error>
+    <system-out>
+    </system-out>
+  </testcase>
+  <testcase time="0.000" name="agent_tests:0 test_tool_definition (Tool definition tests)">
+    <error type="error">
+::in function agent_tests:test_tool_definition/0 (/Users/agent/agents.erl/sandbox/myapp/apps/myapp/test/agent_tests.erl, line 74)
+in call from eunit_test:run_testfun/1 (eunit_test.erl, line 72)
+in call from eunit_proc:run_test/1 (eunit_proc.erl, line 544)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 369)
+in call from eunit_proc:handle_test/2 (eunit_proc.erl, line 527)
+in call from eunit_proc:tests_inorder/3 (eunit_proc.erl, line 469)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 359)
+in call from eunit_proc:run_group/2 (eunit_proc.erl, line 583)
+**error:{assertEqual,[{module,agent_tests},
+              {line,74},
+              {expression,"agent : define_tool ( ToolName , Schema )"},
+              {expected,ok},
+              {value,{error,missing_required_fields}}]}
+    </error>
+    <system-out>
+    </system-out>
+  </testcase>
+  <testcase time="0.000" name="agent_tests:0 test_tool_execution (Tool execution tests)">
+    <error type="error">
+::in function test_helpers:create_test_tool/2
+  called as create_test_tool(test_exec_tool,#{response =&gt; #Fun&lt;agent_tests.9.115880275&gt;})
+in call from agent_tests:test_tool_execution/0 (/Users/agent/agents.erl/sandbox/myapp/apps/myapp/test/agent_tests.erl, line 86)
+in call from eunit_test:run_testfun/1 (eunit_test.erl, line 72)
+in call from eunit_proc:run_test/1 (eunit_proc.erl, line 544)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 369)
+in call from eunit_proc:handle_test/2 (eunit_proc.erl, line 527)
+in call from eunit_proc:tests_inorder/3 (eunit_proc.erl, line 469)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 359)
+**error:undef
+    </error>
+    <system-out>
+    </system-out>
+  </testcase>
+  <testcase time="0.000" name="agent_tests:0 test_agent_execution (Agent execution tests)">
+    <error type="error">
+::in function test_helpers:with_mock_openai/1
+  called as with_mock_openai(#Fun&lt;agent_tests.11.115880275&gt;)
+in call from eunit_test:run_testfun/1 (eunit_test.erl, line 72)
+in call from eunit_proc:run_test/1 (eunit_proc.erl, line 544)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 369)
+in call from eunit_proc:handle_test/2 (eunit_proc.erl, line 527)
+in call from eunit_proc:tests_inorder/3 (eunit_proc.erl, line 469)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 359)
+in call from eunit_proc:run_group/2 (eunit_proc.erl, line 583)
+**error:undef
+    </error>
+    <system-out>
+    </system-out>
+  </testcase>
+  <testcase time="0.000" name="agent_tests:0 test_error_handling (Error handling tests)">
+    <error type="error">
+::in function test_helpers:create_test_tool/2
+  called as create_test_tool(error_test_tool,#{response =&gt; #Fun&lt;agent_tests.12.115880275&gt;})
+in call from agent_tests:test_error_handling/0 (/Users/agent/agents.erl/sandbox/myapp/apps/myapp/test/agent_tests.erl, line 160)
+in call from eunit_test:run_testfun/1 (eunit_test.erl, line 72)
+in call from eunit_proc:run_test/1 (eunit_proc.erl, line 544)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 369)
+in call from eunit_proc:handle_test/2 (eunit_proc.erl, line 527)
+in call from eunit_proc:tests_inorder/3 (eunit_proc.erl, line 469)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 359)
+**error:undef
+    </error>
+    <system-out>
+    </system-out>
+  </testcase>
+  <testcase time="0.000" name="agent_tests:0 test_timeouts (Timeout tests)">
+    <error type="error">
+::in function test_helpers:create_test_tool/2
+  called as create_test_tool(slow_test_tool,#{response =&gt; #Fun&lt;agent_tests.14.115880275&gt;})
+in call from agent_tests:test_timeouts/0 (/Users/agent/agents.erl/sandbox/myapp/apps/myapp/test/agent_tests.erl, line 198)
+in call from eunit_test:run_testfun/1 (eunit_test.erl, line 72)
+in call from eunit_proc:run_test/1 (eunit_proc.erl, line 544)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 369)
+in call from eunit_proc:handle_test/2 (eunit_proc.erl, line 527)
+in call from eunit_proc:tests_inorder/3 (eunit_proc.erl, line 469)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 359)
+**error:undef
+    </error>
+    <system-out>
+    </system-out>
+  </testcase>
+  <testcase time="0.000" name="agent_tests:0 test_concurrent_agents (Concurrent agent tests)">
+    <error type="error">
+::in function test_helpers:with_mock_openai/1
+  called as with_mock_openai(#Fun&lt;agent_tests.16.115880275&gt;)
+in call from eunit_test:run_testfun/1 (eunit_test.erl, line 72)
+in call from eunit_proc:run_test/1 (eunit_proc.erl, line 544)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 369)
+in call from eunit_proc:handle_test/2 (eunit_proc.erl, line 527)
+in call from eunit_proc:tests_inorder/3 (eunit_proc.erl, line 469)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 359)
+in call from eunit_proc:run_group/2 (eunit_proc.erl, line 583)
+**error:undef
+    </error>
+    <system-out>
+    </system-out>
+  </testcase>
+  <testcase time="0.103" name="agent_tests:0 supervisor_restart_test">
+    <system-out>
+    </system-out>
+  </testcase>
+  <testcase time="0.000" name="agent_tests:0 api_endpoint_listing_test">
+    <system-out>
+    </system-out>
+  </testcase>
+  <testcase time="0.000" name="agent_tests:0 ensure_api_client_test">
+    <system-out>
+    </system-out>
+  </testcase>
+  <testcase time="0.000" name="agent_tests:0 complex_tool_schema_test">
+    <error type="error">
+::in function agent_tests:complex_tool_schema_test/0 (/Users/agent/agents.erl/sandbox/myapp/apps/myapp/test/agent_tests.erl, line 379)
+in call from eunit_test:'-mf_wrapper/2-fun-0-'/2 (eunit_test.erl, line 274)
+in call from eunit_test:run_testfun/1 (eunit_test.erl, line 72)
+in call from eunit_proc:run_test/1 (eunit_proc.erl, line 544)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 369)
+in call from eunit_proc:handle_test/2 (eunit_proc.erl, line 527)
+in call from eunit_proc:tests_inorder/3 (eunit_proc.erl, line 469)
+in call from eunit_proc:with_timeout/3 (eunit_proc.erl, line 359)
+**error:{assertEqual,[{module,agent_tests},
+              {line,379},
+              {expression,"agent : define_tool ( complex_tool , ComplexSchema )"},
+              {expected,ok},
+              {value,{error,missing_required_fields}}]}
+    </error>
+    <system-out>
+    </system-out>
+  </testcase>
+</testsuite>

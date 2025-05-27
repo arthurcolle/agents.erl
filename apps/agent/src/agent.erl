@@ -43,7 +43,7 @@ start(_StartType, _StartArgs) ->
     case application:start(openai) of
         ok -> ok;
         {error, {already_started, _}} -> ok;
-        {error, Reason} -> {error, {failed_to_start_openai, Reason}}
+        {error, _Reason} -> ok
     end,
     
     % Start the agent supervisor
@@ -73,7 +73,7 @@ run_agent(Prompt, ToolNames) ->
 %% Run an agent with a prompt, available tools, and options
 run_agent(Prompt, ToolNames, Options) ->
     % Set defaults
-    Model = maps:get(model, Options, ?DEFAULT_MODEL),
+    _Model = maps:get(model, Options, ?DEFAULT_MODEL),
     Timeout = maps:get(timeout, Options, ?DEFAULT_TIMEOUT),
     
     % Create a unique reference for this agent session
@@ -262,7 +262,7 @@ execute_tool_calls(ToolCalls, SessionId) ->
             Arguments = try jsx:decode(ArgumentsJson, [return_maps]) catch _:_ -> #{} end,
             
             % Execute the tool in a separate process
-            ExecutorPid = spawn_link(?MODULE, tool_executor, [self(), SessionId, ToolId, ToolName, Arguments]),
+            _ExecutorPid = spawn_link(?MODULE, tool_executor, [self(), SessionId, ToolId, ToolName, Arguments]),
             
             % Wait for the result
             receive
@@ -282,7 +282,7 @@ tool_executor(Parent, SessionId, ToolId, ToolName, Arguments) ->
     Parent ! {tool_result, SessionId, ToolId, Result}.
 
 %% Create follow-up messages with tool results
-create_tool_result_messages(ToolCalls, ToolResults) ->
+create_tool_result_messages(_ToolCalls, ToolResults) ->
     % Create a message for each tool call with its result
     lists:map(
         fun({ToolId, Result}) ->
@@ -301,7 +301,7 @@ create_tool_result_messages(ToolCalls, ToolResults) ->
     ).
 
 %% Handle follow-up request
-handle_follow_up(Model, AllMessages, Options) ->
+handle_follow_up(Model, AllMessages, _Options) ->
     % Make a follow-up request to OpenAI
     case openai_chat:create_chat_completion(Model, AllMessages, #{}) of
         {ok, Response} ->

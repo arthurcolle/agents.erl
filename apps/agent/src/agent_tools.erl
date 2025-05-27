@@ -74,7 +74,7 @@ init(Options) ->
     
     % Initialize with default executors for predefined tools
     DefaultExecutors = maps:map(
-        fun(Name, _) -> 
+        fun(_Name, _) -> 
             fun predefined_executor/2
         end,
         PredefinedTools

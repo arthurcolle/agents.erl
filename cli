@@ -1,24 +1,82 @@
 #!/usr/bin/env escript
-%%! -pa . -pa _build/default/lib/agent/ebin -pa _build/default/lib/openai/ebin -pa _build/default/lib/jsx/ebin
-%% -*- erlang -*-
-%%
+
 %% A simple escript-based CLI for interacting with the Erlang Agent for OpenAI API.
 %%
 %% Usage:
-%%   cli run --prompt "Your prompt here" --tools "tool1,tool2" [--model "gpt-4"] [--system "System message"] [--timeout 120000]
+%%   cli hello                  - Run hello world example
+%%   cli chat "Your message"    - Simple chat with GPT
+%%   cli run [options]          - Run advanced agent with tools
 
 main(Args) ->
-    Options = parse_args(Args, #{}),
-    case maps:get(cmd, Options, undefined) of
-        run -> run_agent(Options);
-        undefined -> usage("Command not specified");
-        Other -> usage(io_lib:format("Unknown command: ~p", [Other]))
-    end.
+    % Add code paths for our applications
+    ScriptDir = filename:dirname(escript:script_name()),
+    code:add_paths([
+        filename:join([ScriptDir, "_build", "default", "lib", "jsx", "ebin"]),
+        filename:join([ScriptDir, "_build", "default", "lib", "openai", "ebin"]),
+        filename:join([ScriptDir, "_build", "default", "lib", "agent", "ebin"])
+    ]),
+    
+    % Delegate to the actual main function
+    do_main(Args).
 
+do_main(["hello"]) ->
+    %% No need to ensure application is started for simple hello
+    hello_world:run();
+
+do_main(["hello", Message]) ->
+    %% No need to ensure application is started for simple hello
+    hello_world:run(list_to_binary(Message));
+
+do_main(["chat", Message]) ->
+    % Make sure applications are started
+    application:ensure_all_started(jsx),
+    application:ensure_all_started(inets),
+    application:ensure_all_started(ssl),
+    
+    % Start OpenAI app which will start the chat client
+    case application:ensure_all_started(openai) of
+        {ok, _} -> ok;
+        Error -> 
+            io:format("Failed to start openai app: ~p~n", [Error]),
+            halt(1)
+    end,
+    
+    % Send the chat message
+    case simple_agent:chat(list_to_binary(Message)) of
+        {error, Reason} ->
+            io:format("Error: ~p~n", [Reason]);
+        Response ->
+            io:format("~n~s~n", [Response])
+    end;
+
+do_main(["run" | Rest]) ->
+    % Parse args and run the full agent
+    Options = parse_args(Rest, #{}),
+    run_agent(Options);
+
+do_main(_) ->
+    % Show usage info
+    Print = fun(Line) -> io:format("~s~n", [Line]) end,
+    Print("Erlang Agent CLI"),
+    Print(""),
+    Print("Usage:"),
+    Print("  ./cli hello                  - Run hello world example"),
+    Print("  ./cli hello \"Your message\"   - Run hello world with custom message"),
+    Print("  ./cli chat \"Your message\"    - Simple chat with AI"),
+    Print("  ./cli run [options]          - Run agent with tools"),
+    Print(""),
+    Print("Advanced options for 'run' command:"),
+    Print("  --prompt \"Your prompt\"       - The prompt to send to the agent (required)"),
+    Print("  --tools \"tool1,tool2\"        - Comma-separated list of tools to enable"),
+    Print("  --model \"gpt-4\"              - AI model to use"),
+    Print("  --system \"System message\"    - Custom system message"),
+    Print("  --timeout 120000             - Timeout in milliseconds"),
+    Print(""),
+    halt(1).
+
+% Original CLI functionality preserved below
 parse_args([], Acc) ->
     Acc;
-parse_args(["run" | Rest], Acc) ->
-    parse_args(Rest, maps:put(cmd, run, Acc));
 parse_args(["--prompt", Prompt | Rest], Acc) ->
     parse_args(Rest, maps:put(prompt, Prompt, Acc));
 parse_args(["--tools", Tools | Rest], Acc) ->
@@ -70,8 +128,6 @@ get_required(Options, Key) ->
     end.
 
 usage(Msg) ->
-    Print = fun(Line) -> io:format("~s~n", [Line]) end,
-    Print("Error: " ++ Msg),
-    Print(""),
-    Print("Usage: cli run --prompt \"Your prompt\" --tools \"tool1,tool2\" [--model \"gpt-4\"] [--system \"System msg\"] [--timeout 120000]"),
+    io:format("Error: ~s~n", [Msg]),
+    io:format("Run without arguments for usage information.~n"),
     halt(1).

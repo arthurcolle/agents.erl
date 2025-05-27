@@ -225,7 +225,7 @@ validate_by_type(?TYPE_RESPONSE, Message) ->
         {_, false} -> {error, missing_correlation_id}
     end;
 
-validate_by_type(?TYPE_BROADCAST, Message) ->
+validate_by_type(?TYPE_BROADCAST, _Message) ->
     % Broadcasts only need the common fields
     ok;
 

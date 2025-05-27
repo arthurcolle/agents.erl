@@ -5,9 +5,11 @@
                            openai_generator_sup,openai_clients_sup,
                            openai_generator,openai_rate_limiter,
                            openai_config]},
-              {applications,[kernel,stdlib,inets,ssl,jsx]},
+              {applications,[kernel,stdlib,inets,ssl,jsx,openai]},
               {mod,{agent,[]}},
               {env,[{auto_start_groups,[chat,completions,embeddings]},
                     {output_dir,"/tmp/openai-erlang"},
                     {default_model,<<"gpt-4.1">>}]},
-              {modules,[agent,agent_registry,agent_tools]}]}.
+              {modules,[agent,agent_discovery,agent_messenger,agent_protocol,
+                        agent_registry,agent_tools,hello_world,simple_agent,
+                        uuid]}]}.

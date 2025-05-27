@@ -8,7 +8,8 @@
               {mod,{openai_app,[]}},
               {env,[{auto_start_groups,[chat,completions,embeddings]},
                     {output_dir,"/tmp/openai-erlang"}]},
-              {modules,[openai_api_structure,openai_app,
+              {modules,[openai_api_structure,openai_app,openai_chat,
                         openai_client_template,openai_clients_sup,
-                        openai_config,openai_generator,openai_generator_sup,
+                        openai_completions,openai_config,openai_embeddings,
+                        openai_generator,openai_generator_sup,
                         openai_rate_limiter,openai_sup]}]}.

@@ -75,9 +75,9 @@ unregister_handler(AgentId) ->
 
 %% gen_server callbacks
 
-init(Options) ->
+init(_Options) ->
     % Setup any initialization from options
-    MaxHistorySize = maps:get(max_history_size, Options, 100),
+    % _MaxHistorySize = maps:get(max_history_size, _Options, 100),
     {ok, #state{handlers = #{}, message_history = []}}.
 
 handle_call({register_handler, AgentId, Handler}, _From, State) ->
@@ -150,16 +150,16 @@ code_change(_OldVsn, State, _Extra) ->
 %% Internal Functions
 
 %% Deliver a message to a handler (function or process)
-deliver_message(Handler, Message, From, Options) when is_function(Handler) ->
+deliver_message(Handler, Message, _From, Options) when is_function(Handler) ->
     try
         Response = Handler(Message, Options),
         {ok, Response}
     catch
-        E:R:S ->
+        E:R:_S ->
             {error, {handler_error, E, R}}
     end;
 
-deliver_message(Handler, Message, From, Options) when is_pid(Handler) ->
+deliver_message(Handler, Message, _From, Options) when is_pid(Handler) ->
     try
         % Generate a unique reference for this request
         Ref = make_ref(),
@@ -174,7 +174,7 @@ deliver_message(Handler, Message, From, Options) when is_pid(Handler) ->
             {error, timeout}
         end
     catch
-        E:R:S ->
+        E:R:_S ->
             {error, {delivery_error, E, R}}
     end;
 

@@ -15,7 +15,14 @@ start(_StartType, _StartArgs) ->
     ConfigMap = maps:from_list(EnvConfig),
     
     % Start the supervisor tree
-    openai_sup:start_link(ConfigMap).
+    case openai_sup:start_link(ConfigMap) of
+        {ok, Pid} ->
+            % Start the chat client
+            openai_clients_sup:start_client(chat, ConfigMap),
+            {ok, Pid};
+        Error ->
+            Error
+    end.
 
 stop(_State) ->
     ok.

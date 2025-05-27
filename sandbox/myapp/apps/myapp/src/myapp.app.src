@@ -1,0 +1,25 @@
+{application, myapp, [
+    {description, "An OTP application"},
+    {vsn, "0.1.0"},
+    {registered, []},
+    {mod, {myapp_app, []}},
+    {applications, [
+        kernel,
+        stdlib,
+        jsx
+    ]},
+    {env, []},
+    {modules, [
+        agent,
+        agent_discovery,
+        agent_messenger,
+        agent_protocol,
+        agent_registry,
+        agent_tools,
+        hello_world,
+        simple_agent,
+        uuid
+    ]},
+    {licenses, ["Apache-2.0"]},
+    {links, []}
+ ]}.

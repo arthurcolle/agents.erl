@@ -93,7 +93,7 @@ generate_exports(Endpoints) ->
         fun(EndpointName, EndpointSpec, Acc) ->
             % Calculate arity based on required and optional params
             ReqParams = maps:get(required_params, EndpointSpec, []),
-            OptParams = maps:get(optional_params, EndpointSpec, []),
+            _OptParams = maps:get(optional_params, EndpointSpec, []),
             Arity = length(ReqParams) + 1, % +1 for options map
             
             % Create export line
@@ -146,7 +146,7 @@ generate_functions(Endpoints) ->
     ]).
 
 %% Generate a single function implementation
-generate_function(EndpointName, Method, Path, Description, ReqParams, OptParams) ->
+generate_function(EndpointName, Method, Path, Description, ReqParams, _OptParams) ->
     % Generate function arguments
     ArgNames = [atom_to_list(Param) || Param <- ReqParams],
     Args = string:join(ArgNames ++ ["Options"], ", "),
