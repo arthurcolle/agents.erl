@@ -1,4 +1,4 @@
-# Advanced Multi-Agent System with Quantum Coordination
+# Advanced, Distributed, Function Calling Language + Cognitive Agents in Erlang
 
 **The most sophisticated Erlang distributed agent framework featuring quantum-inspired coordination, self-optimization, emergent intelligence, and comprehensive OpenAI integration.**
 
