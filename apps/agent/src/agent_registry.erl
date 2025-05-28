@@ -10,6 +10,7 @@
     unregister_agent/1,
     list_agents/0,
     get_agent/1,
+    find_agent/1,
     send_to_agent/2
 ]).
 
@@ -50,6 +51,10 @@ list_agents() ->
 %% Get a specific agent
 get_agent(SessionId) ->
     gen_server:call(?SERVER, {get_agent, SessionId}).
+
+%% Find a specific agent (alias for get_agent for compatibility)
+find_agent(SessionId) ->
+    get_agent(SessionId).
 
 %% Send a message to a specific agent
 send_to_agent(SessionId, Message) ->

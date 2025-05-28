@@ -24,6 +24,10 @@
     stop/0,
     stop_agent/1,
     get_info/1,
+    chat/2,
+    stream_chat/2,
+    subscribe/2,
+    process_task/2,
     run_agent/2,
     run_agent/3,
     define_tool/2,
@@ -107,15 +111,28 @@ run_agent(Prompt, ToolNames) ->
 
 %% Run an agent with a prompt, available tools, and options
 run_agent(Prompt, ToolNames, Options) ->
+    run_agent_with_context(Prompt, #{}, ToolNames, Options).
+
+%% Run an agent with a prompt, context data, tools, and options
+run_agent_with_context(Prompt, Context, ToolNames) ->
+    run_agent_with_context(Prompt, Context, ToolNames, #{}).
+
+run_agent_with_context(Prompt, Context, ToolNames, Options) when is_map(Context) ->
     % Set defaults
     _Model = maps:get(model, Options, ?DEFAULT_MODEL),
     Timeout = maps:get(timeout, Options, ?DEFAULT_TIMEOUT),
+    
+    % Merge context into the prompt if provided
+    FinalPrompt = case maps:size(Context) of
+        0 -> Prompt;
+        _ -> <<Prompt/binary, "\n\nContext: ", (jsx:encode(Context))/binary>>
+    end,
     
     % Create a unique reference for this agent session
     SessionId = make_ref(),
     
     % Spawn a dedicated process for this agent session
-    AgentPid = spawn_link(?MODULE, agent_process, [self(), SessionId, Prompt, ToolNames, Options]),
+    AgentPid = spawn_link(?MODULE, agent_process, [self(), SessionId, FinalPrompt, ToolNames, Options]),
     
     % Register the agent process
     register_agent(SessionId, AgentPid),
@@ -380,3 +397,86 @@ register_agent(SessionId, Pid) ->
 %% Unregister an agent process
 unregister_agent(SessionId) ->
     agent_registry:unregister_agent(SessionId).
+
+%% Chat with an agent
+chat(Pid, Message) when is_pid(Pid) ->
+    case catch agent_instance:execute(Pid, #{
+        action => <<"chat">>,
+        message => ensure_binary(Message)
+    }) of
+        {ok, Response} ->
+            case Response of
+                #{message := Msg} -> binary_to_list(Msg);
+                Msg when is_binary(Msg) -> binary_to_list(Msg);
+                _ -> io_lib:format("~p", [Response])
+            end;
+        {error, Reason} ->
+            io_lib:format("Error: ~p", [Reason]);
+        Error ->
+            io_lib:format("Unexpected error: ~p", [Error])
+    end.
+
+%% Stream chat with an agent
+stream_chat(Pid, Message) when is_pid(Pid) ->
+    case catch agent_instance:execute(Pid, #{
+        action => <<"chat">>,
+        message => ensure_binary(Message)
+    }) of
+        {ok, Response} ->
+            % For now, just send the response in chunks
+            % In a real streaming implementation, this would be more sophisticated
+            case Response of
+                #{message := Msg} ->
+                    Chunks = split_into_chunks(binary_to_list(Msg), 50),
+                    lists:foreach(fun(Chunk) ->
+                        % Send stream tokens to any subscribers
+                        self() ! {stream_token, Chunk},
+                        timer:sleep(100)  % Simulate streaming delay
+                    end, Chunks),
+                    self() ! {stream_complete, Response},
+                    ok;
+                _ ->
+                    self() ! {stream_complete, Response},
+                    ok
+            end;
+        Error ->
+            self() ! {stream_error, Error},
+            {error, Error}
+    end.
+
+%% Subscribe to agent events
+subscribe(Pid, SubscriberPid) when is_pid(Pid), is_pid(SubscriberPid) ->
+    % For now, just acknowledge the subscription
+    % In a real implementation, this would register the subscriber
+    ok.
+
+%% Process a task with an agent
+process_task(Pid, Task) when is_pid(Pid) ->
+    case catch agent_instance:execute(Pid, #{
+        action => <<"process">>,
+        task => ensure_binary(Task)
+    }) of
+        {ok, Response} ->
+            Response;
+        {error, Reason} ->
+            {error, Reason};
+        Error ->
+            {error, Error}
+    end.
+
+%% Helper functions
+ensure_binary(Value) when is_binary(Value) -> Value;
+ensure_binary(Value) when is_list(Value) -> list_to_binary(Value);
+ensure_binary(Value) when is_atom(Value) -> atom_to_binary(Value, utf8);
+ensure_binary(Value) -> list_to_binary(io_lib:format("~p", [Value])).
+
+split_into_chunks(Text, ChunkSize) ->
+    split_into_chunks(Text, ChunkSize, []).
+
+split_into_chunks([], _ChunkSize, Acc) ->
+    lists:reverse(Acc);
+split_into_chunks(Text, ChunkSize, Acc) when length(Text) =< ChunkSize ->
+    lists:reverse([Text | Acc]);
+split_into_chunks(Text, ChunkSize, Acc) ->
+    {Chunk, Rest} = lists:split(ChunkSize, Text),
+    split_into_chunks(Rest, ChunkSize, [Chunk | Acc]).

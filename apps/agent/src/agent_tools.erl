@@ -253,6 +253,29 @@ predefined_tools() ->
                 },
                 <<"required">> => [<<"method">>, <<"url">>]
             }
+        },
+        
+        knowledge_base_retrieval => #{
+            <<"name">> => <<"knowledge_base_retrieval">>,
+            <<"description">> => <<"Search and retrieve information from domain-specific knowledge bases">>,
+            <<"parameters">> => #{
+                <<"type">> => <<"object">>,
+                <<"properties">> => #{
+                    <<"domain">> => #{
+                        <<"type">> => <<"string">>,
+                        <<"description">> => <<"The knowledge domain to search (e.g., psychology, medicine, education)">>
+                    },
+                    <<"query">> => #{
+                        <<"type">> => <<"string">>,
+                        <<"description">> => <<"The search query or topic to find information about">>
+                    },
+                    <<"max_results">> => #{
+                        <<"type">> => <<"integer">>,
+                        <<"description">> => <<"Maximum number of results to return (default: 5)">>
+                    }
+                },
+                <<"required">> => [<<"domain">>, <<"query">>]
+            }
         }
     }.
 
@@ -282,6 +305,13 @@ predefined_executor(ToolName, Arguments) ->
             Headers = maps:get(<<"headers">>, Arguments, #{}),
             Body = maps:get(<<"body">>, Arguments, <<"">>),
             http_request(Method, Url, Headers, Body);
+        
+        knowledge_base_retrieval ->
+            % Search knowledge base
+            Domain = maps:get(<<"domain">>, Arguments, <<"">>),
+            Query = maps:get(<<"query">>, Arguments, <<"">>),
+            MaxResults = maps:get(<<"max_results">>, Arguments, 5),
+            knowledge_base_search(Domain, Query, MaxResults);
         
         _ ->
             {error, {unknown_predefined_tool, ToolName}}
@@ -383,4 +413,32 @@ collect_port_output(Port, Output) ->
                 0 -> list_to_binary(lists:reverse(Output));
                 _ -> {error, {command_failed, Status, list_to_binary(lists:reverse(Output))}}
             end
+    end.
+
+%% Search knowledge base
+knowledge_base_search(Domain, Query, MaxResults) ->
+    % Convert binary to string if needed
+    DomainStr = case is_binary(Domain) of
+        true -> binary_to_list(Domain);
+        false -> Domain
+    end,
+    
+    QueryStr = case is_binary(Query) of
+        true -> binary_to_list(Query);
+        false -> Query
+    end,
+    
+    % Use the knowledge base retrieval module
+    case knowledge_base_retrieval:search_knowledge_base(DomainStr, QueryStr, fun(Result) -> Result end) of
+        {ok, Results} ->
+            % Limit results if specified
+            LimitedResults = lists:sublist(Results, MaxResults),
+            #{
+                <<"domain">> => Domain,
+                <<"query">> => Query,
+                <<"results">> => LimitedResults,
+                <<"total_found">> => length(Results)
+            };
+        {error, Reason} ->
+            {error, {knowledge_base_error, Reason}}
     end.

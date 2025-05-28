@@ -4,6 +4,7 @@
 
 -export([
     uuid4/0,
+    generate/0,
     to_string/1
 ]).
 
@@ -20,6 +21,11 @@ uuid4() ->
     D1 = (D band 16#3fff) bor 16#8000,
     
     <<A:32, B:16, C1:16, D1:16, E:48>>.
+
+%% Alias for uuid4
+-spec generate() -> uuid().
+generate() ->
+    uuid4().
 
 %% Convert a UUID to a string representation
 -spec to_string(UUID) -> string() when
