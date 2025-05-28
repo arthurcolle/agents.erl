@@ -147,7 +147,7 @@ delete_agent(AgentId, Req0, State) ->
     {ok, Req, State}.
 
 create_agent_by_type(simple, Name, Tools) ->
-    AgentId = list_to_binary(uuid:to_string(uuid:uuid4())),
+    AgentId = generate_uuid(),
     Config = #{
         id => AgentId,
         name => ensure_binary(Name),
@@ -176,7 +176,7 @@ create_agent_by_type(simple, Name, Tools) ->
     end;
 
 create_agent_by_type(ai, Name, Tools) ->
-    AgentId = list_to_binary(uuid:to_string(uuid:uuid4())),
+    AgentId = generate_uuid(),
     ToolList = lists:map(fun(T) -> 
         case T of
             B when is_binary(B) -> binary_to_atom(B, utf8);
@@ -222,7 +222,7 @@ create_agent_by_type(ai, Name, Tools) ->
 
 create_agent_by_type(template, Name, TemplateId) when is_binary(TemplateId) ->
     % Create agent from template
-    AgentId = list_to_binary(uuid:to_string(uuid:uuid4())),
+    AgentId = generate_uuid(),
     case agent_templates:create_from_template(TemplateId, #{agent_id => AgentId}) of
         {ok, Pid} ->
             agent_registry:register_agent(AgentId, Pid, #{
@@ -278,6 +278,12 @@ create_agent_by_type(_, _, _) ->
     {error, <<"Unknown agent type">>}.
 
 %% Helper functions
+generate_uuid() ->
+    <<A:32, B:16, C:16, D:16, E:48>> = crypto:strong_rand_bytes(16),
+    ID = io_lib:format("~8.16.0b-~4.16.0b-~4.16.0b-~4.16.0b-~12.16.0b", 
+                       [A, B, C, D, E]),
+    list_to_binary(ID).
+
 normalize_agent_id(Id) when is_binary(Id) -> Id;
 normalize_agent_id(Id) when is_list(Id) -> list_to_binary(Id);
 normalize_agent_id(Id) when is_atom(Id) -> atom_to_binary(Id, utf8);

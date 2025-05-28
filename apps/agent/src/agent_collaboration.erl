@@ -209,7 +209,7 @@ code_change(_OldVsn, State, _Extra) ->
 %% Internal functions
 
 generate_collaboration_id() ->
-    list_to_binary(uuid:to_string(uuid:uuid4())).
+    list_to_binary(uuid:uuid_to_string(uuid:get_v4())).
 
 notify_agents(AgentIds, Message) ->
     lists:foreach(fun(AgentId) ->

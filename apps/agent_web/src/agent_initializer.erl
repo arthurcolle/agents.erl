@@ -1,6 +1,13 @@
 -module(agent_initializer).
 -export([init_default_agents/0]).
 
+%% Internal function to generate UUID
+generate_uuid() ->
+    <<A:32, B:16, C:16, D:16, E:48>> = crypto:strong_rand_bytes(16),
+    ID = io_lib:format("~8.16.0b-~4.16.0b-~4.16.0b-~4.16.0b-~12.16.0b", 
+                       [A, B, C, D, E]),
+    list_to_binary(ID).
+
 init_default_agents() ->
     io:format("Initializing default agents...~n"),
     
@@ -32,7 +39,7 @@ init_default_agents() ->
             false ->
                 case agent_templates:create_from_template(Template, #{name => Name}) of
             {ok, Pid} ->
-                AgentId = list_to_binary(uuid:to_string(uuid:uuid4())),
+                AgentId = generate_uuid(),
                 agent_registry:register_agent(AgentId, Pid, #{
                     type => template,
                     name => Name,

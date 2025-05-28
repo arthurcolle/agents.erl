@@ -151,7 +151,11 @@ code_change(_OldVsn, State, _Extra) ->
 %% Internal functions
 
 generate_id() ->
-    list_to_binary(uuid:to_string(uuid:uuid4())).
+    %% Generate a simple UUID-like identifier using crypto:strong_rand_bytes
+    <<A:32, B:16, C:16, D:16, E:48>> = crypto:strong_rand_bytes(16),
+    ID = io_lib:format("~8.16.0b-~4.16.0b-~4.16.0b-~4.16.0b-~12.16.0b", 
+                       [A, B, C, D, E]),
+    list_to_binary(ID).
 
 process_chat(Message, #state{type = ai} = State) ->
     Messages = build_messages(Message, State),

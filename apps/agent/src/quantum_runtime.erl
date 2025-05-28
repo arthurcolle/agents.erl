@@ -549,7 +549,7 @@ setup_ets_tables() ->
     ets:new(?CLUSTER_REGISTRY, [named_table, public, set, {read_concurrency, true}]).
 
 generate_cluster_id() ->
-    list_to_binary(uuid:to_string(uuid:uuid4())).
+    list_to_binary(uuid:uuid_to_string(uuid:get_v4())).
 
 detect_numa_topology() ->
     %% Detect NUMA topology (simplified for demo)
