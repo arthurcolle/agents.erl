@@ -14,11 +14,12 @@ websocket_init(_State) ->
 websocket_handle({text, Msg}, State) ->
     case jsx:decode(Msg, [return_maps]) of
         #{<<"type">> := <<"create_stream">>, <<"agent_id">> := AgentId} ->
-            case agent_registry:find_agent(binary_to_list(AgentId)) of
+            NormalizedId = normalize_agent_id(AgentId),
+            case agent_registry:find_agent(NormalizedId) of
                 {ok, Pid} ->
                     agent:subscribe(Pid, self()),
                     {reply, {text, jsx:encode(#{status => <<"subscribed">>})}, State#{agent_pid => Pid}};
-                {error, not_found} ->
+                {error, agent_not_found} ->
                     {reply, {text, jsx:encode(#{error => <<"Agent not found">>})}, State}
             end;
             
@@ -27,8 +28,17 @@ websocket_handle({text, Msg}, State) ->
                 undefined ->
                     {reply, {text, jsx:encode(#{error => <<"No agent connected">>})}, State};
                 Pid ->
+                    MessageStr = case Message of
+                        B when is_binary(B) -> binary_to_list(B);
+                        L when is_list(L) -> L;
+                        _ -> io_lib:format("~p", [Message])
+                    end,
                     spawn(fun() ->
-                        agent:stream_chat(Pid, binary_to_list(Message))
+                        case catch agent:stream_chat(Pid, MessageStr) of
+                            ok -> ok;
+                            Error -> 
+                                self() ! {stream_error, Error}
+                        end
                     end),
                     {ok, State}
             end;
@@ -53,12 +63,29 @@ websocket_handle({text, Msg}, State) ->
             {reply, {text, jsx:encode(#{type => <<"system_metrics">>, data => Metrics})}, State};
             
         #{<<"type">> := <<"get_agent_metrics">>, <<"agent_id">> := AgentId} ->
-            case get_agent_metrics(binary_to_list(AgentId)) of
+            NormalizedId = normalize_agent_id(AgentId),
+            case get_agent_metrics(NormalizedId) of
                 {ok, Metrics} ->
                     {reply, {text, jsx:encode(#{type => <<"agent_metrics">>, data => Metrics})}, State};
                 {error, Reason} ->
                     {reply, {text, jsx:encode(#{error => Reason})}, State}
             end;
+            
+        #{<<"type">> := <<"client_log">>, <<"level">> := Level, <<"message">> := Message, <<"timestamp">> := Timestamp} = MsgData ->
+            % Log client-side events to server
+            UserAgent = maps:get(<<"user_agent">>, MsgData, <<"Unknown">>),
+            error_logger:info_msg("CLIENT LOG [~s] [~s] ~s (User-Agent: ~s)~n", 
+                                [Timestamp, Level, Message, UserAgent]),
+            {ok, State};
+            
+        #{<<"type">> := <<"button_click">>, <<"data">> := ClickData} ->
+            % Log button clicks to server
+            Button = maps:get(<<"button">>, ClickData, <<"unknown">>),
+            Context = maps:get(<<"context">>, ClickData, #{}),
+            Timestamp = maps:get(<<"timestamp">>, ClickData, <<"unknown">>),
+            error_logger:info_msg("BUTTON CLICK [~s] ~s ~s~n", 
+                                [Timestamp, Button, jsx:encode(Context)]),
+            {ok, State};
             
         _ ->
             {reply, {text, jsx:encode(#{error => <<"Unknown message type">>})}, State}
@@ -68,44 +95,57 @@ websocket_handle(_Data, State) ->
     {ok, State}.
 
 websocket_info({agent_event, Event}, State) ->
+    SafeEvent = ensure_json_safe(Event),
     Response = jsx:encode(#{
         type => <<"agent_event">>,
-        event => Event
+        event => SafeEvent
     }),
     {reply, {text, Response}, State};
 
 websocket_info({stream_token, Token}, State) ->
+    SafeToken = ensure_json_safe(Token),
     Response = jsx:encode(#{
         type => <<"stream_token">>,
-        token => Token
+        token => SafeToken
     }),
     {reply, {text, Response}, State};
 
 websocket_info({stream_complete, Result}, State) ->
+    SafeResult = ensure_json_safe(Result),
     Response = jsx:encode(#{
         type => <<"stream_complete">>,
-        result => Result
+        result => SafeResult
     }),
     {reply, {text, Response}, State};
 
 websocket_info({example_update, Update}, State) ->
+    SafeUpdate = ensure_json_safe(Update),
     Response = jsx:encode(#{
         type => <<"example_update">>,
-        data => Update
+        data => SafeUpdate
     }),
     {reply, {text, Response}, State};
 
 websocket_info({monitoring_update, Update}, State) ->
+    SafeUpdate = ensure_json_safe(Update),
     Response = jsx:encode(#{
         type => <<"monitoring_update">>,
-        data => Update
+        data => SafeUpdate
     }),
     {reply, {text, Response}, State};
 
 websocket_info({agent_collaboration, Message}, State) ->
+    SafeMessage = ensure_json_safe(Message),
     Response = jsx:encode(#{
         type => <<"agent_collaboration">>,
-        message => Message
+        message => SafeMessage
+    }),
+    {reply, {text, Response}, State};
+
+websocket_info({stream_error, Error}, State) ->
+    Response = jsx:encode(#{
+        type => <<"stream_error">>,
+        error => ensure_json_safe(Error)
     }),
     {reply, {text, Response}, State};
 
@@ -150,7 +190,7 @@ monitoring_loop(WsPid) ->
             WsPid ! {monitoring_update, #{
                 agents => Updates,
                 system => SystemMetrics,
-                timestamp => erlang:timestamp()
+                timestamp => os:system_time(millisecond)
             }},
             
             monitoring_loop(WsPid)
@@ -187,12 +227,66 @@ get_system_metrics() ->
 get_agent_metrics(AgentId) ->
     case agent_registry:find_agent(AgentId) of
         {ok, Pid} ->
-            case gen_server:call(Pid, get_state, 5000) of
+            case catch gen_server:call(Pid, get_state, 5000) of
                 State when is_map(State) ->
                     {ok, State};
                 _ ->
-                    {error, <<"Failed to get agent state">>}
+                    % If get_state fails, provide basic metrics
+                    BasicMetrics = #{
+                        id => AgentId,
+                        pid => list_to_binary(pid_to_list(Pid)),
+                        status => <<"active">>,
+                        uptime => erlang:system_time(millisecond)
+                    },
+                    {ok, BasicMetrics}
             end;
-        {error, not_found} ->
+        {error, agent_not_found} ->
             {error, <<"Agent not found">>}
     end.
+
+%% Helper functions
+normalize_agent_id(Id) when is_binary(Id) -> Id;
+normalize_agent_id(Id) when is_list(Id) -> list_to_binary(Id);
+normalize_agent_id(Id) when is_atom(Id) -> atom_to_binary(Id, utf8);
+normalize_agent_id(Id) -> list_to_binary(io_lib:format("~p", [Id])).
+
+%% JSON safety function to handle invalid data types
+ensure_json_safe(Data) when is_binary(Data) -> Data;
+ensure_json_safe(Data) when is_number(Data) -> Data;
+ensure_json_safe(Data) when is_boolean(Data) -> Data;
+ensure_json_safe(Data) when is_atom(Data) ->
+    case Data of
+        null -> null;
+        undefined -> null;
+        true -> true;
+        false -> false;
+        _ -> atom_to_binary(Data, utf8)
+    end;
+ensure_json_safe(Data) when is_pid(Data) ->
+    list_to_binary(pid_to_list(Data));
+ensure_json_safe(Data) when is_reference(Data) ->
+    list_to_binary(ref_to_list(Data));
+ensure_json_safe(Data) when is_port(Data) ->
+    list_to_binary(port_to_list(Data));
+ensure_json_safe(Data) when is_function(Data) ->
+    <<"#Fun">>;
+ensure_json_safe(Data) when is_tuple(Data) ->
+    ensure_json_safe(tuple_to_list(Data));
+ensure_json_safe(Data) when is_list(Data) ->
+    try
+        lists:map(fun ensure_json_safe/1, Data)
+    catch
+        _:_ -> <<"#List">>
+    end;
+ensure_json_safe(Data) when is_map(Data) ->
+    try
+        maps:fold(fun(K, V, Acc) ->
+            SafeK = ensure_json_safe(K),
+            SafeV = ensure_json_safe(V),
+            Acc#{SafeK => SafeV}
+        end, #{}, Data)
+    catch
+        _:_ -> #{error => <<"invalid_map">>}
+    end;
+ensure_json_safe(_Data) ->
+    <<"#Unknown">>.

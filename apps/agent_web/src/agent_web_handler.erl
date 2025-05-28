@@ -3,17 +3,8 @@
 -export([init/2]).
 
 init(Req0, Opts) ->
-    Html = <<"<!DOCTYPE html>
-<html>
-<head>
-    <title>Agent System Web Interface</title>
-    <link rel=\"stylesheet\" href=\"/static/css/style.css\">
-</head>
-<body>
-    <div id=\"app\"></div>
-    <script src=\"/static/js/app.js\"></script>
-</body>
-</html>">>,
+    %% Serve the built index.html file
+    {ok, Html} = file:read_file("apps/agent_web/priv/static/dist/index.html"),
     
     Req = cowboy_req:reply(200, #{
         <<"content-type">> => <<"text/html">>

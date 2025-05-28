@@ -8,14 +8,15 @@ init(Req0 = #{method := <<"POST">>}, State) ->
     
     case jsx:decode(Body, [return_maps]) of
         #{<<"action">> := Action, <<"params">> := Params} ->
-            case agent_registry:find_agent(binary_to_list(AgentId)) of
+            NormalizedId = normalize_agent_id(AgentId),
+            case agent_registry:find_agent(NormalizedId) of
                 {ok, Pid} ->
                     Result = execute_action(Pid, Action, Params),
                     Response = jsx:encode(#{result => Result}),
                     Req = cowboy_req:reply(200, #{
                         <<"content-type">> => <<"application/json">>
                     }, Response, Req1);
-                {error, not_found} ->
+                {error, agent_not_found} ->
                     Req = cowboy_req:reply(404, #{
                         <<"content-type">> => <<"application/json">>
                     }, jsx:encode(#{error => <<"Agent not found">>}), Req1)
@@ -32,12 +33,41 @@ init(Req0, State) ->
     {ok, Req, State}.
 
 execute_action(Pid, <<"chat">>, #{<<"message">> := Message}) ->
-    Response = agent:chat(Pid, binary_to_list(Message)),
-    list_to_binary(Response);
+    % Ensure message is in correct format
+    MessageStr = case Message of
+        B when is_binary(B) -> binary_to_list(B);
+        L when is_list(L) -> L;
+        _ -> io_lib:format("~p", [Message])
+    end,
+    case catch agent:chat(Pid, MessageStr) of
+        Response when is_list(Response) -> list_to_binary(Response);
+        Response when is_binary(Response) -> Response;
+        Response -> list_to_binary(io_lib:format("~p", [Response]))
+    end;
+
+execute_action(Pid, <<"stream_chat">>, #{<<"message">> := Message}) ->
+    % For streaming chat, use the same logic but indicate streaming
+    MessageStr = case Message of
+        B when is_binary(B) -> binary_to_list(B);
+        L when is_list(L) -> L;
+        _ -> io_lib:format("~p", [Message])
+    end,
+    case catch agent:stream_chat(Pid, MessageStr) of
+        ok -> #{status => <<"streaming">>};
+        Response -> list_to_binary(io_lib:format("~p", [Response]))
+    end;
 
 execute_action(Pid, <<"process">>, #{<<"task">> := Task}) ->
-    Result = agent:process_task(Pid, Task),
-    Result;
+    case catch agent:process_task(Pid, Task) of
+        Result when is_map(Result) -> Result;
+        Result -> #{result => Result}
+    end;
 
-execute_action(_Pid, _Action, _Params) ->
-    #{error => <<"Unknown action">>}.
+execute_action(_Pid, Action, _Params) ->
+    #{error => <<"Unknown action: ", Action/binary>>}.
+
+%% Helper functions
+normalize_agent_id(Id) when is_binary(Id) -> Id;
+normalize_agent_id(Id) when is_list(Id) -> list_to_binary(Id);
+normalize_agent_id(Id) when is_atom(Id) -> atom_to_binary(Id, utf8);
+normalize_agent_id(Id) -> list_to_binary(io_lib:format("~p", [Id])).

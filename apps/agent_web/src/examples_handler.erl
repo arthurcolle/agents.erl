@@ -67,26 +67,141 @@ list_examples(_) ->
     [].
 
 run_example(<<"distributed">>, <<"cluster">>) ->
-    case advanced_distributed_agents:distributed_cluster_example() of
-        ok -> #{status => <<"success">>, message => <<"Cluster deployed">>};
-        Error -> #{status => <<"error">>, message => list_to_binary(io_lib:format("~p", [Error]))}
+    try
+        Result = advanced_distributed_agents:distributed_cluster_example(),
+        case Result of
+            #{status := success} -> Result;
+            #{status := error} -> Result;
+            _ -> #{status => <<"success">>, result => Result}
+        end
+    catch
+        Error:Reason:Stacktrace ->
+            #{status => <<"error">>, 
+              error => list_to_binary(io_lib:format("~p", [Error])),
+              reason => list_to_binary(io_lib:format("~p", [Reason])),
+              stacktrace => list_to_binary(io_lib:format("~p", [Stacktrace]))}
     end;
 
 run_example(<<"distributed">>, <<"research_team">>) ->
-    Result = advanced_distributed_agents:collaborative_research_example(),
-    #{status => <<"success">>, data => Result};
+    try
+        Result = advanced_distributed_agents:collaborative_research_example(),
+        #{status => <<"success">>, data => Result}
+    catch
+        Error:Reason ->
+            #{status => <<"error">>, 
+              error => list_to_binary(io_lib:format("~p", [Error])),
+              reason => list_to_binary(io_lib:format("~p", [Reason]))}
+    end;
 
 run_example(<<"streaming">>, <<"pipeline">>) ->
-    Result = advanced_streaming_async:streaming_pipeline_example(),
-    #{status => <<"success">>, data => Result};
+    try
+        Result = advanced_streaming_async:streaming_pipeline_example(),
+        #{status => <<"success">>, data => Result}
+    catch
+        Error:Reason ->
+            #{status => <<"error">>, 
+              error => list_to_binary(io_lib:format("~p", [Error])),
+              reason => list_to_binary(io_lib:format("~p", [Reason]))}
+    end;
 
 run_example(<<"streaming">>, <<"realtime_chat">>) ->
-    Result = advanced_streaming_async:realtime_chat_example(),
-    #{status => <<"success">>, data => Result};
+    try
+        Result = advanced_streaming_async:realtime_chat_example(),
+        #{status => <<"success">>, data => Result}
+    catch
+        Error:Reason ->
+            #{status => <<"error">>, 
+              error => list_to_binary(io_lib:format("~p", [Error])),
+              reason => list_to_binary(io_lib:format("~p", [Reason]))}
+    end;
 
 run_example(<<"composition">>, <<"code_analysis">>) ->
-    Result = advanced_tool_composition:code_analysis_pipeline(),
-    #{status => <<"success">>, data => Result};
+    try
+        Result = advanced_tool_composition:code_analysis_pipeline(),
+        #{status => <<"success">>, data => Result}
+    catch
+        Error:Reason ->
+            #{status => <<"error">>, 
+              error => list_to_binary(io_lib:format("~p", [Error])),
+              reason => list_to_binary(io_lib:format("~p", [Reason]))}
+    end;
+
+run_example(<<"streaming">>, <<"batch_processor">>) ->
+    try
+        Result = advanced_streaming_async:async_batch_processor([1,2,3,4,5], fun(X) -> X * 2 end, #{}),
+        #{status => <<"success">>, data => Result}
+    catch
+        Error:Reason ->
+            #{status => <<"error">>, 
+              error => list_to_binary(io_lib:format("~p", [Error])),
+              reason => list_to_binary(io_lib:format("~p", [Reason]))}
+    end;
+
+run_example(<<"streaming">>, <<"event_system">>) ->
+    try
+        Result = advanced_streaming_async:event_driven_agent_system(<<"test_system">>, #{}),
+        #{status => <<"success">>, data => Result}
+    catch
+        Error:Reason ->
+            #{status => <<"error">>, 
+              error => list_to_binary(io_lib:format("~p", [Error])),
+              reason => list_to_binary(io_lib:format("~p", [Reason]))}
+    end;
+
+run_example(<<"distributed">>, <<"data_pipeline">>) ->
+    try
+        Result = advanced_distributed_agents:distributed_data_processing(<<"sample_data">>, [node()], #{}),
+        #{status => <<"success">>, data => Result}
+    catch
+        Error:Reason ->
+            #{status => <<"error">>, 
+              error => list_to_binary(io_lib:format("~p", [Error])),
+              reason => list_to_binary(io_lib:format("~p", [Reason]))}
+    end;
+
+run_example(<<"distributed">>, <<"swarm">>) ->
+    try
+        Result = advanced_distributed_agents:agent_swarm_computation(<<"optimization problem">>, 5, #{}),
+        #{status => <<"success">>, data => Result}
+    catch
+        Error:Reason ->
+            #{status => <<"error">>, 
+              error => list_to_binary(io_lib:format("~p", [Error])),
+              reason => list_to_binary(io_lib:format("~p", [Reason]))}
+    end;
+
+run_example(<<"composition">>, <<"debugging">>) ->
+    try
+        Result = advanced_tool_composition:autonomous_debugging_session(<<"Sample error">>, <<"/tmp/code">>, #{}),
+        #{status => <<"success">>, data => Result}
+    catch
+        Error:Reason ->
+            #{status => <<"error">>, 
+              error => list_to_binary(io_lib:format("~p", [Error])),
+              reason => list_to_binary(io_lib:format("~p", [Reason]))}
+    end;
+
+run_example(<<"composition">>, <<"security_audit">>) ->
+    try
+        Result = advanced_tool_composition:security_audit_chain(<<"localhost">>, #{}),
+        #{status => <<"success">>, data => Result}
+    catch
+        Error:Reason ->
+            #{status => <<"error">>, 
+              error => list_to_binary(io_lib:format("~p", [Error])),
+              reason => list_to_binary(io_lib:format("~p", [Reason]))}
+    end;
+
+run_example(<<"composition">>, <<"infrastructure">>) ->
+    try
+        Result = advanced_tool_composition:infrastructure_automation(<<"sample_config">>, #{}),
+        #{status => <<"success">>, data => Result}
+    catch
+        Error:Reason ->
+            #{status => <<"error">>, 
+              error => list_to_binary(io_lib:format("~p", [Error])),
+              reason => list_to_binary(io_lib:format("~p", [Reason]))}
+    end;
 
 run_example(_, _) ->
     #{status => <<"error">>, message => <<"Unknown example">>}.

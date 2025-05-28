@@ -32,7 +32,7 @@ init_default_agents() ->
             false ->
                 case agent_templates:create_from_template(Template, #{name => Name}) of
             {ok, Pid} ->
-                AgentId = uuid:to_string(uuid:uuid4()),
+                AgentId = list_to_binary(uuid:to_string(uuid:uuid4())),
                 agent_registry:register_agent(AgentId, Pid, #{
                     type => template,
                     name => Name,

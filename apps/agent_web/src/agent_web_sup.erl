@@ -25,7 +25,10 @@ init([]) ->
             {"/api/templates", agent_templates_handler, []},
             {"/api/examples/:type", examples_handler, []},
             {"/api/monitoring/[...]", agent_monitoring_handler, []},
+            {"/api/knowledge/[...]", knowledge_base_handler, []},
             {"/ws", agent_ws_handler, []},
+            {"/vite.svg", cowboy_static, {priv_file, agent_web, "static/dist/vite.svg"}},
+            {"/assets/[...]", cowboy_static, {priv_dir, agent_web, "static/dist/assets"}},
             {"/static/[...]", cowboy_static, {priv_dir, agent_web, "static"}}
         ]}
     ]),
