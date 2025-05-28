@@ -1,0 +1,14 @@
+{
+  "kb_id": "8d87265c-7009-4b37-8637-fe6c0fd88099",
+  "name": "insurance",
+  "content": "Insurance is a means of protection from financial loss in which, in exchange for a fee, a party agrees to compensate another party in the event of a certain loss, damage, or injury. It is a form of risk management, primarily used to protect against the risk of a contingent or uncertain loss. An entity which provides insurance is known as an insurer, insurance company, insurance carrier, or underwriter. A person or entity who buys insurance is known as a policyholder, while a person or entity covered under the policy is called an insured. The insurance transaction involves the policyholder assuming a guaranteed, known, and relatively small loss in the form of a payment to the insurer (a premium) in exchange for the insurer's promise to compensate the insured in the event of a covered loss. The loss may or may not be financial, but it must be reducible to financial terms. Furthermore, it usually involves something in which the insured has an insurable interest established by ownership, possession, or pre-existing relationship.",
+  "url": "https://en.wikipedia.org/wiki/Insurance",
+  "embedding": null,
+  "db_path": "kb_databases/insurance_b4628fe4.db",
+  "last_updated": 1743796485.387286,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

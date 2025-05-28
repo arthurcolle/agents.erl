@@ -1,0 +1,14 @@
+{
+  "kb_id": "372f5bd1-18c9-43c2-ba7a-c5d47a16ac4d",
+  "name": "Computational astrophysics",
+  "content": "Computational astrophysics refers to the methods and computing tools developed and used in astrophysics research. Like computational chemistry or computational physics, it is both a specific branch of theoretical astrophysics and an interdisciplinary field relying on computer science, mathematics, and wider physics. Computational astrophysics is most often studied through an applied mathematics or astrophysics programme at PhD level. Well-established areas of astrophysics employing computational methods include magnetohydrodynamics, astrophysical radiative transfer, stellar and galactic dynamics, and astrophysical fluid dynamics. A recently developed field with interesting results is numerical relativity. Many astrophysicists use computers in their work, and a growing number of astrophysics departments now have research groups specially devoted to computational astrophysics. Important research initiatives include the US Department of Energy (DoE) SciDAC collaboration for astrophysics[1] and the now defunct European AstroSim collaboration.[2] A notable active project is the international Virgo Consortium, which focuses on cosmology.",
+  "url": "https://en.wikipedia.org/wiki/Computational_astrophysics",
+  "embedding": null,
+  "db_path": "kb_databases/computational_astrophysics_8b4e0447.db",
+  "last_updated": 1743796485.5366242,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

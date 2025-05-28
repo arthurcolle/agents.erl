@@ -1,0 +1,14 @@
+{
+  "kb_id": "89ea41e4-5b83-4861-8990-0001d987b4e6",
+  "name": "Cryogenics",
+  "content": "In physics, cryogenics is the production and behaviour of materials at very low temperatures. The 13th International Institute of Refrigeration's (IIR) International Congress of Refrigeration (held in Washington DC in 1971) endorsed a universal definition of \"cryogenics\" and \"cryogenic\" by accepting a threshold of 120 K (\u2212153 \u00b0C) to distinguish these terms from conventional refrigeration.[1][2][3][4] This is a logical dividing line, since the normal boiling points of the so-called permanent gases (such as helium, hydrogen, neon, nitrogen, oxygen, and normal air) lie below 120 K, while the Freon refrigerants, hydrocarbons, and other common refrigerants have boiling points above 120 K.[5][6] Discovery of superconducting materials with critical temperatures significantly above the boiling point of nitrogen has provided new interest in reliable, low-cost methods of producing high-temperature cryogenic refrigeration. The term \"high temperature cryogenic\" describes temperatures ranging from above the boiling point of liquid nitrogen, \u2212195.79 \u00b0C (77.36 K; \u2212320.42 \u00b0F), up to \u221250 \u00b0C (223 K; \u221258 \u00b0F).[7] The discovery of superconductive properties is first attributed to Heike Kamerlingh Onnes on July 10, 1908. The discovery came after the ability to reach a temperature of 2 K. These first superconductive properties were observed in mercury at a temperature of 4.2 K.[8]",
+  "url": "https://en.wikipedia.org/wiki/Cryogenics",
+  "embedding": null,
+  "db_path": "kb_databases/cryogenics_cffb54b0.db",
+  "last_updated": 1743796485.1895192,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

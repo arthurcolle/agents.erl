@@ -1,0 +1,14 @@
+{
+  "kb_id": "20408865-1e03-42c3-8f9c-28a450ae4051",
+  "name": "Object database",
+  "content": "An object database or object-oriented database is a database management system in which information is represented in the form of objects as used in object-oriented programming. Object databases are different from relational databases which are table-oriented. A third type, object\u2013relational databases, is a hybrid of both approaches. Object databases have been considered since the early 1980s.[2] Object-oriented database management systems (OODBMSs) also called ODBMS (Object Database Management System) combine database capabilities with object-oriented programming language capabilities. OODBMSs allow object-oriented programmers to develop the product, store them as objects, and replicate or modify existing objects to make new objects within the OODBMS. Because the database is integrated with the programming language, the programmer can maintain consistency within one environment, in that both the OODBMS and the programming language will use the same model of representation. Relational DBMS projects, by way of contrast, maintain a clearer division between the database model and the application.",
+  "url": "https://en.wikipedia.org/wiki/Object_database",
+  "embedding": null,
+  "db_path": "kb_databases/object_database_0beb6cfd.db",
+  "last_updated": 1743796484.855227,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

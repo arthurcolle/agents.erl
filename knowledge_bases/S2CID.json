@@ -1,0 +1,14 @@
+{
+  "kb_id": "b36fb6cd-9226-4048-8b27-67a7ff0f98b9",
+  "name": "S2CID",
+  "content": "Semantic Scholar is a research tool for scientific literature. It is developed at the Allen Institute for AI and was publicly released in November 2015.[2] Semantic Scholar uses modern techniques in natural language processing to support the research process, for example by providing automatically generated summaries of scholarly papers.[3] The Semantic Scholar team is actively researching the use of artificial intelligence in natural language processing, machine learning, human\u2013computer interaction, and information retrieval.[4] Semantic Scholar began as a database for the topics of computer science, geoscience, and neuroscience.[5] In 2017, the system began including biomedical literature in its corpus.[5] As of September 2022[update], it includes over 200 million publications from all fields of science.[6] Semantic Scholar provides a one-sentence summary of scientific literature. One of its aims was to address the challenge of reading numerous titles and lengthy abstracts on mobile devices.[7] It also seeks to ensure that the three million scientific papers published yearly reach readers, since it is estimated that only half of this literature is ever read.[8]",
+  "url": "https://en.wikipedia.org/wiki/S2CID_(identifier)",
+  "embedding": null,
+  "db_path": "kb_databases/s2cid_a7ff516b.db",
+  "last_updated": 1743796484.958434,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "dd9be938-b0b6-4979-bc17-50104db73c3d",
+  "name": "Quantum information",
+  "content": "Quantum information is the information of the state of a quantum system. It is the basic entity of study in quantum information theory,[1][2][3] and can be manipulated using quantum information processing techniques. Quantum information refers to both the technical definition in terms of Von Neumann entropy and the general computational term. It is an interdisciplinary field that involves quantum mechanics, computer science, information theory, philosophy and cryptography among other fields.[4][5][6] Its study is also relevant to disciplines such as cognitive science, psychology and neuroscience.[7][8][9][10] Its main focus is in extracting information from matter at the microscopic scale. Observation in science is one of the most important ways of acquiring information and measurement is required in order to quantify the observation, making this crucial to the scientific method. In quantum mechanics, due to the uncertainty principle, non-commuting observables cannot be precisely measured simultaneously, as an eigenstate in one basis is not an eigenstate in the other basis. According to the eigenstate\u2013eigenvalue link, an observable is well-defined (definite) when the state of the system is an eigenstate of the observable.[11] Since any two non-commuting observables are not simultaneously well-defined, a quantum state can never contain definitive information about both non-commuting observables.[8]",
+  "url": "https://en.wikipedia.org/wiki/Quantum_information",
+  "embedding": null,
+  "db_path": "kb_databases/quantum_information_62474dd9.db",
+  "last_updated": 1743796485.546156,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

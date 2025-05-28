@@ -1,0 +1,14 @@
+{
+  "kb_id": "fa1ea111-06b3-49a7-bc39-6822b3574767",
+  "name": "Structural equation model",
+  "content": "Structural equation modeling (SEM) is a diverse set of methods used by scientists for both observational and experimental research. SEM is used mostly in the social and behavioral science fields, but it is also used in epidemiology,[2] business,[3] and other fields. A common definition of SEM is, \"...a class of methodologies that seeks to represent hypotheses about the means, variances, and covariances of observed data in terms of a smaller number of 'structural' parameters defined by a hypothesized underlying conceptual or theoretical model,\".[4] SEM involves a model representing how various aspects of some phenomenon are thought to causally connect to one another. Structural equation models often contain postulated causal connections among some latent variables (variables thought to exist but which can't be directly observed). Additional causal connections link those latent variables to observed variables whose values appear in a data set. The causal connections are represented using equations but the postulated structuring can also be presented using diagrams containing arrows as in Figures 1 and 2. The causal structures imply that specific patterns should appear among the values of the observed variables. This makes it possible to use the connections between the observed variables' values to estimate the magnitudes of the postulated effects, and to test whether or not the observed data are consistent with the requirements of the hypothesized causal structures.[5]",
+  "url": "https://en.wikipedia.org/wiki/Structural_equation_model",
+  "embedding": null,
+  "db_path": "kb_databases/structural_equation_model_3fd9febf.db",
+  "last_updated": 1743796485.551965,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

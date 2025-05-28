@@ -1,0 +1,14 @@
+{
+  "kb_id": "c2fe94c3-ab39-4f02-9721-dd1fe9119988",
+  "name": "Radio astronomy",
+  "content": "Radio astronomy is a subfield of astronomy that studies celestial objects at radio frequencies. The first detection of radio waves from an astronomical object was in 1933, when Karl Jansky at Bell Telephone Laboratories reported radiation coming from the Milky Way. Subsequent observations have identified a number of different sources of radio emission. These include stars and galaxies, as well as entirely new classes of objects, such as radio galaxies, quasars, pulsars, and masers. The discovery of the cosmic microwave background radiation, regarded as evidence for the Big Bang theory, was made through radio astronomy. Radio astronomy is conducted using large radio antennas referred to as radio telescopes, that are either used singularly, or with multiple linked telescopes utilizing the techniques of radio interferometry and aperture synthesis. The use of interferometry allows radio astronomy to achieve high angular resolution, as the resolving power of an interferometer is set by the distance between its components, rather than the size of its components.",
+  "url": "https://en.wikipedia.org/wiki/Radio_astronomy",
+  "embedding": null,
+  "db_path": "kb_databases/radio_astronomy_d1a28bf8.db",
+  "last_updated": 1743796485.434381,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

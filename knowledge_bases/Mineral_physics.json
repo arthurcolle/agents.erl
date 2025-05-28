@@ -1,0 +1,14 @@
+{
+  "kb_id": "342abdf6-d281-4331-bc42-950950f8a1a7",
+  "name": "Mineral physics",
+  "content": "Mineral physics is the science of materials that compose the interior of planets, particularly the Earth. It overlaps with petrophysics, which focuses on whole-rock properties. It provides information that allows interpretation of surface measurements of seismic waves, gravity anomalies, geomagnetic fields and electromagnetic fields in terms of properties in the deep interior of the Earth. This information can be used to provide insights into plate tectonics, mantle convection, the geodynamo and related phenomena. Laboratory work in mineral physics require high pressure measurements. The most common tool is a diamond anvil cell, which uses diamonds to put a small sample under pressure that can approach the conditions in the Earth's interior. Many of the pioneering studies in mineral physics involved explosions or projectiles that subject a sample to a shock. For a brief time interval, the sample is under pressure as the shock wave passes through. Pressures as high as any in the Earth have been achieved by this method. However, the method has some disadvantages. The pressure is very non-uniform and is not adiabatic, so the pressure wave heats the sample up in passing. The conditions of the experiment must be interpreted in terms of a set of pressure-density curves called Hugoniot curves.[1]",
+  "url": "https://en.wikipedia.org/wiki/Mineral_physics",
+  "embedding": null,
+  "db_path": "kb_databases/mineral_physics_cbf00c32.db",
+  "last_updated": 1743796485.293216,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "8dd6ae53-d42f-4010-a606-78684d801957",
+  "name": "Psychophysics",
+  "content": "Psychophysics quantitatively investigates the relationship between physical stimuli and the sensations and perceptions they produce. Psychophysics has been described as \"the scientific study of the relation between stimulus and sensation\"[1] or, more completely, as \"the analysis of perceptual processes by studying the effect on a subject's experience or behaviour of systematically varying the properties of a stimulus along one or more physical dimensions\".[2] Psychophysics also refers to a general class of methods that can be applied to study a perceptual system. Modern applications rely heavily on threshold measurement,[3] ideal observer analysis, and signal detection theory.[4] Psychophysics has widespread and important practical applications. For instance, in the realm of digital signal processing, insights from psychophysics have guided the development of models and methods for lossy compression. These models help explain why humans typically perceive minimal loss of signal quality when audio and video signals are compressed using lossy techniques.",
+  "url": "https://en.wikipedia.org/wiki/Psychophysics",
+  "embedding": null,
+  "db_path": "kb_databases/psychophysics_94886f5c.db",
+  "last_updated": 1743796485.521732,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

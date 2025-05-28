@@ -1,0 +1,14 @@
+{
+  "kb_id": "73404c5e-4bba-43f0-8048-093a6707ecd7",
+  "name": "Cryptanalysis",
+  "content": "Cryptanalysis (from the Greek krypt\u00f3s, \"hidden\", and anal\u00fdein, \"to analyze\") refers to the process of analyzing information systems in order to understand hidden aspects of the systems.[1] Cryptanalysis is used to breach cryptographic security systems and gain access to the contents of encrypted messages, even if the cryptographic key is unknown. In addition to mathematical analysis of cryptographic algorithms, cryptanalysis includes the study of side-channel attacks that do not target weaknesses in the cryptographic algorithms themselves, but instead exploit weaknesses in their implementation. Even though the goal has been the same, the methods and techniques of cryptanalysis have changed drastically through the history of cryptography, adapting to increasing cryptographic complexity, ranging from the pen-and-paper methods of the past, through machines like the British Bombes and Colossus computers at Bletchley Park in World War II, to the mathematically advanced computerized schemes of the present. Methods for breaking modern cryptosystems often involve solving carefully constructed problems in pure mathematics, the best-known being integer factorization.",
+  "url": "https://en.wikipedia.org/wiki/Cryptanalysis",
+  "embedding": null,
+  "db_path": "kb_databases/cryptanalysis_0ec86c38.db",
+  "last_updated": 1743796484.7976909,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

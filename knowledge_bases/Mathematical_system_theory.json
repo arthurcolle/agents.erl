@@ -1,0 +1,14 @@
+{
+  "kb_id": "e061d985-d4c7-456e-8bc5-55552b01bd1a",
+  "name": "Mathematical system theory",
+  "content": "Dynamical systems theory is an area of mathematics used to describe the behavior of complex dynamical systems, usually by employing differential equations or difference equations. When differential equations are employed, the theory is called continuous dynamical systems. From a physical point of view, continuous dynamical systems is a generalization of classical mechanics, a generalization where the equations of motion are postulated directly and are not constrained to be Euler\u2013Lagrange equations of a least action principle. When difference equations are employed, the theory is called discrete dynamical systems. When the time variable runs over a set that is discrete over some intervals and continuous over other intervals or is any arbitrary time-set such as a Cantor set, one gets dynamic equations on time scales. Some situations may also be modeled by mixed operators, such as differential-difference equations. This theory deals with the long-term qualitative behavior of dynamical systems, and studies the nature of, and when possible the solutions of, the equations of motion of systems that are often primarily mechanical or otherwise physical in nature, such as planetary orbits and the behaviour of electronic circuits, as well as systems that arise in biology, economics, and elsewhere. Much of modern research is focused on the study of chaotic systems and bizarre systems.",
+  "url": "https://en.wikipedia.org/wiki/Mathematical_system_theory",
+  "embedding": null,
+  "db_path": "kb_databases/mathematical_system_theory_c2d8b0c6.db",
+  "last_updated": 1743796485.249968,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

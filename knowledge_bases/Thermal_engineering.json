@@ -1,0 +1,14 @@
+{
+  "kb_id": "c9871396-51d9-4b39-abe3-4c9af7a1589f",
+  "name": "Thermal engineering",
+  "content": "Thermal engineering is a specialized sub-discipline of mechanical engineering that deals with the movement of heat energy and transfer. The energy can be transferred between two mediums or transformed into other forms of energy. A thermal engineer will have knowledge of thermodynamics and the process of converting generated energy from thermal sources into chemical, mechanical, or electrical energy. Many process plants use a wide variety of machines that utilize components that use heat transfer in some way. Many plants use heat exchangers in their operations. A thermal engineer must allow the proper amount of energy to be transferred for the correct use. Too much and the components could fail, too little and the system will not function at all. Thermal engineers must have an understanding of economics and the components that they will be servicing or interacting with. Some components that a thermal engineer could work with include heat exchangers, heat sinks, bi-metals strips, and radiators. Some systems that require a thermal engineer include boilers, heat pumps, water pumps, and engines.",
+  "url": "https://en.wikipedia.org/wiki/Thermal_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/thermal_engineering_e97074bc.db",
+  "last_updated": 1743796484.8054059,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

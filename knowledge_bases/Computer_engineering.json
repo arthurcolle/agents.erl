@@ -1,0 +1,14 @@
+{
+  "kb_id": "f9a8240b-ae7f-462d-91a9-ff412e0813df",
+  "name": "Computer engineering",
+  "content": "This is an accepted version of this page Computer engineering (CE or CoE or CpE) is a branch of engineering specialized in developing computer hardware and software.[1][2] It integrates several fields of electrical engineering, electronics engineering and computer science. Computer engineering is referred to as electrical and computer engineering or computer science and engineering at some universities. Computer engineers require training in hardware-software integration, software design, and software engineering. It can encompass areas such as electromagnetism, artificial intelligence (AI), robotics, computer networks, computer architecture and operating systems. Computer engineers are involved in many hardware and software aspects of computing, from the design of individual microcontrollers, microprocessors, personal computers, and supercomputers, to circuit design. This field of engineering not only focuses on how computer systems themselves work, but also on how to integrate them into the larger picture.[3] Robotics are one of the applications of computer engineering.",
+  "url": "https://en.wikipedia.org/wiki/Computer_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/computer_engineering_04e7738b.db",
+  "last_updated": 1743796485.51812,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

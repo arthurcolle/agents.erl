@@ -1,0 +1,14 @@
+{
+  "kb_id": "58707da2-fdca-49b6-af57-645b6418aff7",
+  "name": "Doxastic logic",
+  "content": "Doxastic logic is a type of logic concerned with reasoning about beliefs. The term doxastic derives from the Ancient Greek \u03b4\u03cc\u03be\u03b1 (doxa, \"opinion, belief\"), from which the English term doxa (\"popular opinion or belief\") is also borrowed. Typically, a doxastic logic uses the notation B c x {\\displaystyle {\\mathcal {B}}_{c}x} to mean \"reasoner c {\\displaystyle c} believes that x {\\displaystyle x} is true\", and the set B c : { b 1 , \u2026 , b n } {\\displaystyle \\mathbb {B} _{c}:\\left\\{b_{1},\\ldots ,b_{n}\\right\\}} denotes the set of beliefs of c {\\displaystyle c} . In doxastic logic, belief is treated as a modal operator. There is complete parallelism between a person who believes propositions and a formal system that derives propositions. Using doxastic logic, one can express the epistemic counterpart of G\u00f6del's incompleteness theorem of metalogic, as well as L\u00f6b's theorem, and other metalogical results in terms of belief.[1] To demonstrate the properties of sets of beliefs, Raymond Smullyan defines the following types of reasoners:",
+  "url": "https://en.wikipedia.org/wiki/Doxastic_logic",
+  "embedding": null,
+  "db_path": "kb_databases/doxastic_logic_0f42dbfc.db",
+  "last_updated": 1743796485.0019379,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

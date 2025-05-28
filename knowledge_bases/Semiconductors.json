@@ -1,0 +1,14 @@
+{
+  "kb_id": "d3d862aa-25e1-4b9f-b1bd-7e346e43a562",
+  "name": "Semiconductors",
+  "content": "A semiconductor is a material that is between the conductor and insulator in ability to conduct electrical current.[1] In many cases their conducting properties may be altered in useful ways by introducing impurities (\"doping\") into the crystal structure. When two differently doped regions exist in the same crystal, a semiconductor junction is created. The behavior of charge carriers, which include electrons, ions, and electron holes, at these junctions is the basis of diodes, transistors, and most modern electronics. Some examples of semiconductors are silicon, germanium, gallium arsenide, and elements near the so-called \"metalloid staircase\" on the periodic table. After silicon, gallium arsenide is the second-most common semiconductor and is used in laser diodes, solar cells, microwave-frequency integrated circuits, and others. Silicon is a critical element for fabricating most electronic circuits. Semiconductor devices can display a range of different useful properties, such as passing current more easily in one direction than the other, showing variable resistance, and having sensitivity to light or heat. Because the electrical properties of a semiconductor material can be modified by doping and by the application of electrical fields or light, devices made from semiconductors can be used for amplification, switching, and energy conversion. The term semiconductor is also used to describe materials used in high capacity, medium- to high-voltage cables as part of their insulation, and these materials are often plastic XLPE (Cross-linked polyethylene) with carbon black.[2]",
+  "url": "https://en.wikipedia.org/wiki/Semiconductors",
+  "embedding": null,
+  "db_path": "kb_databases/semiconductors_b54e7405.db",
+  "last_updated": 1743796484.762335,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

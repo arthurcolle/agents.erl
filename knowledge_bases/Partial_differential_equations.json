@@ -1,0 +1,14 @@
+{
+  "kb_id": "b2a92874-77cf-4e67-ba71-e297b200468d",
+  "name": "Partial differential equations",
+  "content": "In mathematics, a partial differential equation (PDE) is an equation which involves a multivariable function and one or more of its partial derivatives. The function is often thought of as an \"unknown\" that solves the equation, similar to how x is thought of as an unknown number solving, e.g., an algebraic equation like x2 \u2212 3x + 2 = 0. However, it is usually impossible to write down explicit formulae for solutions of partial differential equations. There is correspondingly a vast amount of modern mathematical and scientific research on methods to numerically approximate solutions of certain partial differential equations using computers. Partial differential equations also occupy a large sector of pure mathematical research, in which the usual questions are, broadly speaking, on the identification of general qualitative features of solutions of various partial differential equations, such as existence, uniqueness, regularity and stability.[1] Among the many open questions are the existence and smoothness of solutions to the Navier\u2013Stokes equations, named as one of the Millennium Prize Problems in 2000.",
+  "url": "https://en.wikipedia.org/wiki/Partial_differential_equations",
+  "embedding": null,
+  "db_path": "kb_databases/partial_differential_equations_83f9ff4e.db",
+  "last_updated": 1743796485.5248692,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

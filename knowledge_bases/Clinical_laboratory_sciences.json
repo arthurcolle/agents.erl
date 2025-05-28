@@ -1,0 +1,14 @@
+{
+  "kb_id": "b3d2bdeb-2c65-4244-955f-a96ea7580bba",
+  "name": "Clinical laboratory sciences",
+  "content": "Health technology is defined by the World Health Organization as the \"application of organized knowledge and skills in the form of devices, medicines, vaccines, procedures, and systems developed to solve a health problem and improve quality of lives\".[1] This includes pharmaceuticals, devices, procedures, and organizational systems used in the healthcare industry,[2] as well as computer-supported information systems. In the United States, these technologies involve standardized physical objects, as well as traditional and designed social means and methods to treat or care for patients.[3] During the pre-digital era, patients suffered from inefficient and faulty clinical systems, processes, and conditions.[4] Many medical errors happened in the past due to undeveloped health technologies.[citation needed] Some examples of these medical errors included adverse drug events and alarm fatigue. When many alarms are repeatedly triggered or activated, especially for unimportant events, workers may become desensitized to the alarms. Healthcare professionals who have alarm fatigue may ignore an alarm believing it to be insignificant, which could lead to death and dangerous situations. With technological development, an intelligent program of integration and physiologic sense-making was developed and helped reduce the number of false alarms.[4]",
+  "url": "https://en.wikipedia.org/wiki/Clinical_laboratory_sciences",
+  "embedding": null,
+  "db_path": "kb_databases/clinical_laboratory_sciences_40fe28a3.db",
+  "last_updated": 1743796485.18536,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

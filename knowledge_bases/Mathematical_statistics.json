@@ -1,0 +1,14 @@
+{
+  "kb_id": "0226029b-13c6-4b81-97aa-4f6c86082e76",
+  "name": "Mathematical statistics",
+  "content": "Mathematical statistics is the application of probability theory and other mathematical concepts to statistics, as opposed to techniques for collecting statistical data.[1] Specific mathematical techniques that are commonly used in statistics include mathematical analysis, linear algebra, stochastic analysis, differential equations, and measure theory.[2][3] Statistical data collection is concerned with the planning of studies, especially with the design of randomized experiments and with the planning of surveys using random sampling. The initial analysis of the data often follows the study protocol specified prior to the study being conducted. The data from a study can also be analyzed to consider secondary hypotheses inspired by the initial results, or to suggest new studies. A secondary analysis of the data from a planned study uses tools from data analysis, and the process of doing this is mathematical statistics. Data analysis is divided into: While the tools of data analysis work best on data from randomized studies, they are also applied to other kinds of data. For example, from natural experiments and observational studies, in which case the inference is dependent on the model chosen by the statistician, and so subjective.[4][5]",
+  "url": "https://en.wikipedia.org/wiki/Mathematical_statistics",
+  "embedding": null,
+  "db_path": "kb_databases/mathematical_statistics_ef5b0839.db",
+  "last_updated": 1743796485.1553228,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

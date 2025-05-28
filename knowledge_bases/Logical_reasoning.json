@@ -1,0 +1,14 @@
+{
+  "kb_id": "7ea71ff0-39a1-4666-8ebd-bc7c4166f763",
+  "name": "Logical reasoning",
+  "content": "Sound Unsound Unsound Cogent Uncogent Uncogent Logical reasoning is a mental activity that aims to arrive at a conclusion in a rigorous way. It happens in the form of inferences or arguments by starting from a set of premises and reasoning to a conclusion supported by these premises. The premises and the conclusion are propositions, i.e. true or false claims about what is the case. Together, they form an argument. Logical reasoning is norm-governed in the sense that it aims to formulate correct arguments that any rational person would find convincing. The main discipline studying logical reasoning is logic. Distinct types of logical reasoning differ from each other concerning the norms they employ and the certainty of the conclusion they arrive at. Deductive reasoning offers the strongest support: the premises ensure the conclusion, meaning that it is impossible for the conclusion to be false if all the premises are true. Such an argument is called a valid argument, for example: all men are mortal; Socrates is a man; therefore, Socrates is mortal. For valid arguments, it is not important whether the premises are actually true but only that, if they were true, the conclusion could not be false. Valid arguments follow a rule of inference, such as modus ponens or modus tollens. Deductive reasoning plays a central role in formal logic and mathematics.",
+  "url": "https://en.wikipedia.org/wiki/Logical_reasoning",
+  "embedding": null,
+  "db_path": "kb_databases/logical_reasoning_f7469339.db",
+  "last_updated": 1743796484.998915,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

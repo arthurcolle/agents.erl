@@ -1,0 +1,14 @@
+{
+  "kb_id": "67ffeb91-7618-4b9f-a142-3af91e7a7327",
+  "name": "Human spaceflight",
+  "content": "Human spaceflight (also referred to as manned spaceflight or crewed spaceflight) is spaceflight with a crew or passengers aboard a spacecraft, often with the spacecraft being operated directly by the onboard human crew. Spacecraft can also be remotely operated from ground stations on Earth, or autonomously, without any direct human involvement. People trained for spaceflight are called astronauts (American or other), cosmonauts (Russian), or taikonauts (Chinese); and non-professionals are referred to as spaceflight participants or spacefarers.[1] The first human in space was Soviet cosmonaut Yuri Gagarin, who launched as part of the Soviet Union's Vostok program on 12 April 1961 at the beginning of the Space Race. On 5 May 1961, Alan Shepard became the first American in space, as part of Project Mercury. Humans traveled to the Moon nine times between 1968 and 1972 as part of the United States' Apollo program, and have had a continuous presence in space for 24 years and 109 days on the International Space Station (ISS).[2] On 15 October 2003, the first Chinese taikonaut, Yang Liwei, went to space as part of Shenzhou 5, the first Chinese human spaceflight. As of March 2024, humans have not traveled beyond low Earth orbit since the Apollo 17 lunar mission in December 1972.",
+  "url": "https://en.wikipedia.org/wiki/Human_spaceflight",
+  "embedding": null,
+  "db_path": "kb_databases/human_spaceflight_87d367a8.db",
+  "last_updated": 1743796485.387744,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "d6cbe083-bdb5-4e29-b8f8-4bd0199aa80c",
+  "name": "Theoretical astronomy",
+  "content": "Theoretical astronomy is the use of analytical and computational models based on principles from physics and chemistry to describe and explain astronomical objects and astronomical phenomena. Theorists in astronomy endeavor to create theoretical models and from the results predict observational consequences of those models. The observation of a phenomenon predicted by a model allows astronomers to select between several alternate or conflicting models as the one best able to describe the phenomena. Ptolemy's Almagest, although a brilliant treatise on theoretical astronomy combined with a practical handbook for computation, nevertheless includes compromises to reconcile discordant observations with a geocentric model. Modern theoretical astronomy is usually assumed to have begun with the work of Johannes Kepler (1571\u20131630), particularly with Kepler's laws. The history of the descriptive and theoretical aspects of the Solar System mostly spans from the late sixteenth century to the end of the nineteenth century.",
+  "url": "https://en.wikipedia.org/wiki/Theoretical_astronomy",
+  "embedding": null,
+  "db_path": "kb_databases/theoretical_astronomy_a7b93e2b.db",
+  "last_updated": 1743796485.409153,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

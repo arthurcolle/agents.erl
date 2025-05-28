@@ -1,0 +1,14 @@
+{
+  "kb_id": "2262baa4-12d3-4d7d-b841-1edd26e8806f",
+  "name": "Purchasing",
+  "content": "Purchasing is the procurement process a business or organization uses to acquire goods or services to accomplish its goals. Although there are several organizations that attempt to set standards in the purchasing process, processes can vary greatly between organizations. Purchasing is part of the wider procurement process, which typically also includes expediting, supplier quality, transportation, and logistics. Purchasing managers/directors, procurement managers/directors, or staff based in an organization's Purchasing Office,[1] guide the organization's acquisition procedures and standards and operational purchasing activities. Most organizations use a three-way check as the foundation of their purchasing programs.[citation needed] This involves three departments in the organization completing separate parts of the acquisition process. The three departments do not all report to the same senior manager, to prevent unethical practices and lend credibility to the process. These departments can be purchasing, receiving and accounts payable; or engineering, purchasing and accounts payable; or a plant manager, purchasing and accounts payable. Combinations can vary significantly, but a purchasing department and accounts payable are usually two of the three departments involved. Organizations typically have simpler procedures in place for low value purchasing, for example the UK's Ministry of Defence has a separate internal policy for low value purchasing valued below \u00a310,000.[2] When the receiving department is not involved, it is typically called a two-way check or two-way purchase order. In this situation, the purchasing department issues the purchase order receipt not required. When an invoice arrives against the order, the accounts payable department will then go directly to the requestor of the purchase order to verify that the goods or services were received. This is typically what is done for goods and services that will bypass the receiving department. A few examples are software delivered electronically, NRE work (non-reoccurring engineering services), consulting hours, etc.",
+  "url": "https://en.wikipedia.org/wiki/Purchasing",
+  "embedding": null,
+  "db_path": "kb_databases/purchasing_5f95f5c4.db",
+  "last_updated": 1743796485.52464,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

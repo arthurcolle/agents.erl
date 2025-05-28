@@ -1,0 +1,14 @@
+{
+  "kb_id": "22b19fba-8710-4054-8e7f-de8eb90652a0",
+  "name": "Spacecraft design",
+  "content": "Spacecraft design is a process where systems engineering principles are systemically applied in order to construct complex vehicles for missions involving travel, operation or exploration in outer space. This design process produces the detailed design specifications, schematics, and plans for the spacecraft system, including comprehensive documentation outlining the spacecraft's architecture, subsystems, components, interfaces, and operational requirements, and potentially some prototype models or simulations, all of which taken together serve as the blueprint for manufacturing, assembly, integration, and testing of the spacecraft to ensure that it meets mission objectives and performance criteria. Spacecraft design is conducted in several phases. Initially, a conceptual design is made to determine the feasibility and desirability of a new spacecraft system, showing that a credible design exists to carry out the mission. The conceptual design review ensures that the design meets the mission statement without any technical flaws while being internally consistent. Next, a preliminary design is carried out, where the focus is on functional performance, requirements definition, and interface definition at both subsystem and system levels. The preliminary design review evaluates the adequacy of the preliminary design. In the following phase, detailed design is drawn and coded for the system as a whole and all the subsystems, and a critical design review is performed where it is evaluated whether the design is sufficiently detailed to fabricate, integrate, and test the system.[1][2]",
+  "url": "https://en.wikipedia.org/wiki/Spacecraft_design",
+  "embedding": null,
+  "db_path": "kb_databases/spacecraft_design_565be4fb.db",
+  "last_updated": 1743796485.3996658,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

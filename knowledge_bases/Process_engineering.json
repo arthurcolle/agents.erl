@@ -1,0 +1,14 @@
+{
+  "kb_id": "c72dc5f5-6d70-4820-9f42-1d5969dfe0e8",
+  "name": "Process engineering",
+  "content": "Process engineering is the understanding and application of the fundamental principles and laws of nature that allow humans to transform raw material and energy into products that are useful to society, at an industrial level.[1] By taking advantage of the driving forces of nature such as pressure, temperature and concentration gradients, as well as the law of conservation of mass, process engineers can develop methods to synthesize and purify large quantities of desired chemical products.[1] Process engineering focuses on the design, operation, control, optimization and intensification of chemical, physical, and biological processes. Their work involves analyzing the chemical makeup of various ingredients and determining how they might react with one another. A process engineer can specialize in a number of areas, including the following: Process engineering involves the utilization of multiple tools and methods. Depending on the exact nature of the system, processes need to be simulated and modeled using mathematics and computer science. Processes where phase change and phase equilibria are relevant require analysis using the principles and laws of thermodynamics to quantify changes in energy and efficiency. In contrast, processes that focus on the flow of material and energy as they approach equilibria are best analyzed using the disciplines of fluid mechanics and transport phenomena. Disciplines within the field of mechanics need to be applied in the presence of fluids or porous and dispersed media. Materials engineering principles also need to be applied, when relevant.[1]",
+  "url": "https://en.wikipedia.org/wiki/Process_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/process_engineering_39b590cc.db",
+  "last_updated": 1743796485.4799528,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

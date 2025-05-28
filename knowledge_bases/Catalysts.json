@@ -1,0 +1,14 @@
+{
+  "kb_id": "b11ce7f7-324f-4c64-815f-26b9f69a2a38",
+  "name": "Catalysts",
+  "content": "Catalysis (/k\u0259\u02c8t\u00e6l\u0259s\u026as/) is the increase in rate of a chemical reaction due to an added substance known as a catalyst[1][2] (/\u02c8k\u00e6t\u0259l\u026ast/). Catalysts are not consumed by the reaction and remain unchanged after it.[3] If the reaction is rapid and the catalyst recycles quickly, very small amounts of catalyst often suffice;[4] mixing, surface area, and temperature are important factors in reaction rate. Catalysts generally react with one or more reactants to form intermediates that subsequently give the final reaction product, in the process of regenerating the catalyst. The rate increase occurs because the catalyst allows the reaction to occur by an alternative mechanism which may be much faster than the non-catalyzed mechanism. However the non-catalyzed mechanism does remain possible, so that the total rate (catalyzed plus non-catalyzed) can only increase in the presence of the catalyst and never decrease.[5] Catalysis may be classified as either homogeneous, whose components are dispersed in the same phase (usually gaseous or liquid) as the reactant, or heterogeneous, whose components are not in the same phase. Enzymes and other biocatalysts are often considered as a third category.",
+  "url": "https://en.wikipedia.org/wiki/Catalysts",
+  "embedding": null,
+  "db_path": "kb_databases/catalysts_e28c8c82.db",
+  "last_updated": 1743796485.051467,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

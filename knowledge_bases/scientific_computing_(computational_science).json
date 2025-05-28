@@ -1,0 +1,14 @@
+{
+  "kb_id": "6983eb94-96aa-441f-9d57-5c70dbfb88e4",
+  "name": "Scientific computing (Computational science)",
+  "content": "Computational science, also known as scientific computing, technical computing or scientific computation (SC), is a division of science, and more specifically the Computer Sciences, which uses advanced computing capabilities to understand and solve complex physical problems. While this typically extends into visual computation, this field of study typically includes: In practical use, it is typically the application of computer simulation and other forms of computation from numerical analysis and theoretical computer science to solve problems in various scientific disciplines. The field is different from theory and laboratory experiments, which are the traditional forms of science and engineering. The scientific computing approach is to gain understanding through the analysis of mathematical models implemented on computers. Scientists and engineers develop computer programs and application software that model systems being studied and run these programs with various sets of input parameters. The essence of computational science is the application of numerical algorithms[1] and computational mathematics. In some cases, these models require massive amounts of calculations (usually floating-point) and are often executed on supercomputers or distributed computing platforms.[verification needed]",
+  "url": "https://en.wikipedia.org/wiki/Scientific_computing",
+  "embedding": null,
+  "db_path": "kb_databases/scientific_computing_(computational_science)_0df68855.db",
+  "last_updated": 1743796485.553016,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

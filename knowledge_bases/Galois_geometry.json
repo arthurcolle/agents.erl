@@ -1,0 +1,14 @@
+{
+  "kb_id": "1ede3bc4-4975-43ea-babf-5ab4da7079d9",
+  "name": "Galois geometry",
+  "content": "Galois geometry (named after the 19th-century French mathematician \u00c9variste Galois) is the branch of finite geometry that is concerned with algebraic and analytic geometry over a finite field (or Galois field).[1] More narrowly, a Galois geometry may be defined as a projective space over a finite field.[2] Objects of study include affine and projective spaces over finite fields and various structures that are contained in them. In particular, arcs, ovals, hyperovals, unitals, blocking sets, ovoids, caps, spreads and all finite analogues of structures found in non-finite geometries. Vector spaces defined over finite fields play a significant role, especially in construction methods. Although the generic notation of projective geometry is sometimes used, it is more common to denote projective spaces over finite fields by PG(n, q), where n is the \"geometric\" dimension (see below), and q is the order of the finite field (or Galois field) GF(q), which must be an integer that is a prime or prime power.",
+  "url": "https://en.wikipedia.org/wiki/Galois_geometry",
+  "embedding": null,
+  "db_path": "kb_databases/galois_geometry_6d70788c.db",
+  "last_updated": 1743796485.536235,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "6dca1394-e7b3-40be-ba33-102a17075446",
+  "name": "Neuroscience in space",
+  "content": "Space neuroscience or astroneuroscience is the scientific study of the central nervous system (CNS) functions during spaceflight. Living systems can integrate the inputs from the senses to navigate in their environment and to coordinate posture, locomotion, and eye movements. Gravity has a fundamental role in controlling these functions. In weightlessness during spaceflight, integrating the sensory inputs and coordinating motor responses is harder to do because gravity is no longer sensed during free-fall. For example, the otolith organs of the vestibular system no longer signal head tilt relative to gravity when standing. However, they can still sense head translation during body motion. Ambiguities and changes in how the gravitational input is processed can lead to potential errors in perception, which affects spatial orientation and mental representation. Dysfunctions of the vestibular system are common during and immediately after spaceflight, such as space motion sickness in orbit and balance disorders after return to Earth.[1]",
+  "url": "https://en.wikipedia.org/wiki/Neuroscience_in_space",
+  "embedding": null,
+  "db_path": "kb_databases/neuroscience_in_space_9bf206a6.db",
+  "last_updated": 1743796485.370753,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

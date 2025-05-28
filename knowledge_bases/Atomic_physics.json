@@ -1,0 +1,14 @@
+{
+  "kb_id": "92f8ab70-0825-4e45-9122-ec49d353e125",
+  "name": "Atomic physics",
+  "content": "Atomic physics is the field of physics that studies atoms as an isolated system of electrons and an atomic nucleus. Atomic physics typically refers to the study of atomic structure and the interaction between atoms.[1] It is primarily concerned with the way in which electrons are arranged around the nucleus and the processes by which these arrangements change. This comprises ions, neutral atoms and, unless otherwise stated, it can be assumed that the term atom includes ions. The term atomic physics can be associated with nuclear power and nuclear weapons, due to the synonymous use of atomic and nuclear in standard English. Physicists distinguish between atomic physics\u2014which deals with the atom as a system consisting of a nucleus and electrons\u2014and nuclear physics, which studies nuclear reactions and special properties of atomic nuclei. As with many scientific fields, strict delineation can be highly contrived and atomic physics is often considered in the wider context of atomic, molecular, and optical physics. Physics research groups are usually so classified.",
+  "url": "https://en.wikipedia.org/wiki/Atomic_physics",
+  "embedding": null,
+  "db_path": "kb_databases/atomic_physics_41b07340.db",
+  "last_updated": 1743796485.183718,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

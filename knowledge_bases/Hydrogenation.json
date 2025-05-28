@@ -1,0 +1,14 @@
+{
+  "kb_id": "20d55533-b94d-42a7-a346-e19470c05b6d",
+  "name": "Hydrogenation",
+  "content": "Hydrogenation is a chemical reaction between molecular hydrogen (H2) and another compound or element, usually in the presence of a catalyst such as nickel, palladium or platinum. The process is commonly employed to reduce or saturate organic compounds. Hydrogenation typically constitutes the addition of pairs of hydrogen atoms to a molecule, often an alkene. Catalysts are required for the reaction to be usable; non-catalytic hydrogenation takes place only at very high temperatures. Hydrogenation reduces double and triple bonds in hydrocarbons.[1] Hydrogenation has three components, the unsaturated substrate, the hydrogen (or hydrogen source) and, invariably, a catalyst. The reduction reaction is carried out at different temperatures and pressures depending upon the substrate and the activity of the catalyst. The same catalysts and conditions that are used for hydrogenation reactions can also lead to isomerization of the alkenes from cis to trans. This process is of great interest because hydrogenation technology generates most of the trans fat in foods. A reaction where bonds are broken while hydrogen is added is called hydrogenolysis, a reaction that may occur to carbon-carbon and carbon-heteroatom (oxygen, nitrogen or halogen) bonds. Some hydrogenations of polar bonds are accompanied by hydrogenolysis.",
+  "url": "https://en.wikipedia.org/wiki/Hydrogenation",
+  "embedding": null,
+  "db_path": "kb_databases/hydrogenation_a217cd51.db",
+  "last_updated": 1743796485.570474,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

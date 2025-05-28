@@ -1,0 +1,14 @@
+{
+  "kb_id": "ddc09d54-4028-4413-8528-3cf0a57d813d",
+  "name": "Military exercises",
+  "content": "A military exercise, training exercise, maneuver (manoeuvre), or war game is the employment of military resources in training for military operations. Military exercises are conducted to explore the effects of warfare or test tactics and strategies without actual combat. They also ensure the combat readiness of garrisoned or deployable forces prior to deployment from a home base. While both war games and military exercises aim to simulate real conditions and scenarios for the purpose of preparing and analyzing those scenarios, the distinction between a war game and a military exercise is determined, primarily, by the involvement of actual military forces within the simulation, or lack thereof. Military exercises focus on the simulation of real, full-scale military operations in controlled hostile conditions in attempts to reproduce war time decisions and activities for training purposes or to analyze the outcome of possible war time decisions. War games, however, can be much smaller than full-scale military operations, do not typically include the use of functional military equipment, and decisions and actions are carried out by artificial players to simulate possible decisions and actions within an artificial scenario which usually represents a model of a real-world scenario. Additionally, mathematical modeling is used in the simulation of war games to provide a quantifiable method of deduction. However, it is rare that a war game is depended upon for quantitative results, and the use of war games is more often found in situations where qualitative factors of the simulated scenario are needed to be determined.[1]",
+  "url": "https://en.wikipedia.org/wiki/Military_exercises",
+  "embedding": null,
+  "db_path": "kb_databases/military_exercises_5993745e.db",
+  "last_updated": 1743796485.4044921,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

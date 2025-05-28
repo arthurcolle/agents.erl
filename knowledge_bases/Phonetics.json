@@ -1,0 +1,14 @@
+{
+  "kb_id": "fd3ed158-1d12-4e24-bb3b-fcfafb87675d",
+  "name": "Phonetics",
+  "content": "Phonetics is a branch of linguistics that studies how humans produce and perceive sounds or, in the case of sign languages, the equivalent aspects of sign.[1] Linguists who specialize in studying the physical properties of speech are phoneticians. The field of phonetics is traditionally divided into three sub-disciplines on questions involved such as how humans plan and execute movements to produce speech (articulatory phonetics), how various movements affect the properties of the resulting sound (acoustic phonetics) or how humans convert sound waves to linguistic information (auditory phonetics). Traditionally, the minimal linguistic unit of phonetics is the phone\u2014a speech sound in a language which differs from the phonological unit of phoneme; the phoneme is an abstract categorization of phones and it is also defined as the smallest unit that discerns meaning between sounds in any given language.[2] Phonetics deals with two aspects of human speech: production (the ways humans make sounds) and perception (the way speech is understood). The communicative modality of a language describes the method by which a language produces and perceives languages. Languages with oral-aural modalities such as English produce speech orally and perceive speech aurally (using the ears). Sign languages, such as Australian Sign Language (Auslan) and American Sign Language (ASL), have a manual-visual modality, producing speech manually (using the hands) and perceiving speech visually. ASL and some other sign languages have in addition a manual-manual dialect for use in tactile signing by deafblind speakers where signs are produced with the hands and perceived with the hands as well.",
+  "url": "https://en.wikipedia.org/wiki/Phonetics",
+  "embedding": null,
+  "db_path": "kb_databases/phonetics_6d87bc06.db",
+  "last_updated": 1743796485.210898,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

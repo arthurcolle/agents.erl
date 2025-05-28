@@ -1,0 +1,14 @@
+{
+  "kb_id": "265624de-cb41-490c-a91b-520c6b3f21df",
+  "name": "Relativistic dynamics",
+  "content": "For classical dynamics at relativistic speeds, see relativistic mechanics. Relativistic dynamics refers to a combination of relativistic and quantum concepts to describe the relationships between the motion and properties of a relativistic system and the forces acting on the system. What distinguishes relativistic dynamics from other physical theories is the use of an invariant scalar evolution parameter to monitor the historical evolution of space-time events. In a scale-invariant theory, the strength of particle interactions does not depend on the energy of the particles involved.[1] Twentieth century experiments showed that the physical description of microscopic and submicroscopic objects moving at or near the speed of light raised questions about such fundamental concepts as space, time, mass, and energy. The theoretical description of the physical phenomena required the integration of concepts from relativity and quantum theory. Vladimir Fock[2] was the first to propose an evolution parameter theory for describing relativistic quantum phenomena, but the evolution parameter theory introduced by Ernst Stueckelberg[3][4] is more closely aligned with recent work.[5][6] Evolution parameter theories were used by Feynman,[7] Schwinger[8][9] and others to formulate quantum field theory in the late 1940s and early 1950s. Silvan S. Schweber[10] wrote a nice historical exposition of Feynman's investigation of such a theory. A resurgence of interest in evolution parameter theories began in the 1970s with the work of Horwitz and Piron,[11] and Fanchi and Collins.[12]",
+  "url": "https://en.wikipedia.org/wiki/Relativistic_dynamics",
+  "embedding": null,
+  "db_path": "kb_databases/relativistic_dynamics_49a26f40.db",
+  "last_updated": 1743796485.216078,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

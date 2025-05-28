@@ -1,0 +1,14 @@
+{
+  "kb_id": "599c0bd8-6aaf-49f4-a941-338e84d8a414",
+  "name": "Finite geometry",
+  "content": "A finite geometry is any geometric system that has only a finite number of points. The familiar Euclidean geometry is not finite, because a Euclidean line contains infinitely many points. A geometry based on the graphics displayed on a computer screen, where the pixels are considered to be the points, would be a finite geometry. While there are many systems that could be called finite geometries, attention is mostly paid to the finite projective and affine spaces because of their regularity and simplicity. Other significant types of finite geometry are finite M\u00f6bius or inversive planes and Laguerre planes, which are examples of a general type called Benz planes, and their higher-dimensional analogs such as higher finite inversive geometries. Finite geometries may be constructed via linear algebra, starting from vector spaces over a finite field; the affine and projective planes so constructed are called Galois geometries. Finite geometries can also be defined purely axiomatically. Most common finite geometries are Galois geometries, since any finite projective space of dimension three or greater is isomorphic to a projective space over a finite field (that is, the projectivization of a vector space over a finite field). However, dimension two has affine and projective planes that are not isomorphic to Galois geometries, namely the non-Desarguesian planes. Similar results hold for other kinds of finite geometries.",
+  "url": "https://en.wikipedia.org/wiki/Finite_geometry",
+  "embedding": null,
+  "db_path": "kb_databases/finite_geometry_3ce0e5d1.db",
+  "last_updated": 1743796485.5270221,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

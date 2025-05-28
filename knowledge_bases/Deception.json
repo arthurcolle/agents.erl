@@ -1,0 +1,14 @@
+{
+  "kb_id": "4fe211e9-a033-4504-9d08-8f4242cac698",
+  "name": "Deception",
+  "content": "Military deception (MILDEC) is an attempt by a military unit to gain an advantage during warfare by misleading adversary decision makers into taking action or inaction that creates favorable conditions for the deceiving force.[1][2] This is usually achieved by creating or amplifying an artificial fog of war via psychological operations, information warfare, visual deception, or other methods.[3] As a form of disinformation, it overlaps with psychological warfare.[4] Military deception is also closely connected to operations security (OPSEC) in that OPSEC attempts to conceal from the adversary critical information about an organization's capabilities, activities, limitations, and intentions, or provide a plausible alternate explanation for the details the adversary can observe, while deception reveals false information in an effort to mislead the adversary.[5] Deception in warfare dates back to early history.[6] The Art of War, an ancient Chinese military treatise, emphasizes the importance of deception as a way for outnumbered forces to defeat larger adversaries.[7] Examples of deception in warfare can be found in ancient Egypt,[8] Greece,[9] and Rome,[10] the Medieval Age,[11] the Renaissance,[12] and the European Colonial Era.[13] Deception was employed during World War I and came into even greater prominence during World War II.[14] In modern times, the militaries of several nations have evolved deception tactics, techniques and procedures into fully fledged doctrine.[15][16][17]",
+  "url": "https://en.wikipedia.org/wiki/Military_deception",
+  "embedding": null,
+  "db_path": "kb_databases/deception_f5bb3e01.db",
+  "last_updated": 1743796485.414212,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

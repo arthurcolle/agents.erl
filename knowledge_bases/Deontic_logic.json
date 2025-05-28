@@ -1,0 +1,14 @@
+{
+  "kb_id": "04a81b92-f9d7-4ada-959f-7659b631b462",
+  "name": "Deontic logic",
+  "content": "Deontic logic is the field of philosophical logic that is concerned with obligation, permission, and related concepts. Alternatively, a deontic logic is a formal system that attempts to capture the essential logical features of these concepts. It can be used to formalize imperative logic, or directive modality in natural languages. Typically, a deontic logic uses OA to mean it is obligatory that A (or it ought to be (the case) that A), and PA to mean it is permitted (or permissible) that A, which is defined as P A \u2261 \u00ac O \u00ac A {\\displaystyle PA\\equiv \\neg O\\neg A} . In natural language, the statement \"You may go to the zoo OR the park\" should be understood as P z \u2227 P p {\\displaystyle Pz\\land Pp} instead of P z \u2228 P p {\\displaystyle Pz\\lor Pp} , as both options are permitted by the statement. When there are multiple agents involved in the domain of discourse, the deontic modal operator can be specified to each agent to express their individual obligations and permissions. For example, by using a subscript O i {\\displaystyle O_{i}} for agent a i {\\displaystyle a_{i}} , O i A {\\displaystyle O_{i}A} means that \"It is an obligation for agent a i {\\displaystyle a_{i}} (to bring it about/make it happen) that A {\\displaystyle A} \". Note that A {\\displaystyle A} could be stated as an action by another agent; One example is \"It is an obligation for Adam that Bob doesn't crash the car\", which would be represented as O A d a m B {\\displaystyle O_{Adam}B} , where B=\"Bob doesn't crash the car\".",
+  "url": "https://en.wikipedia.org/wiki/Deontic_logic",
+  "embedding": null,
+  "db_path": "kb_databases/deontic_logic_24e35fe8.db",
+  "last_updated": 1743796485.0008981,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

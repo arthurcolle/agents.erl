@@ -1,0 +1,14 @@
+{
+  "kb_id": "e29a1328-b8a5-4d30-81aa-a4f02dd2d5fb",
+  "name": "Space environment",
+  "content": "Space environment is a branch of astronautics, aerospace engineering and space physics that seeks to understand and address conditions existing in space that affect the design and operation of spacecraft. A related subject, space weather, deals with dynamic processes in the solar-terrestrial system that can give rise to effects on spacecraft, but that can also affect the atmosphere, ionosphere and geomagnetic field, giving rise to several other kinds of effects on human technologies. Effects on spacecraft can arise from radiation, space debris and meteoroid impact, upper atmospheric drag and spacecraft electrostatic charging. Various mitigation strategies have been adopted. Radiation in space usually comes from three main sources: For long-duration missions, the high doses of radiation can damage electronic components and solar cells. A major concern is also radiation-induced \"single-event effects\" such as single event upset. Crewed missions usually avoid the radiation belts and the International Space Station is at an altitude well below the most severe regions of the radiation belts. During solar energetic events (solar flares and coronal mass ejections) particles can be accelerated to very high energies and can reach the Earth in times as short as 30 minutes (but usually take some hours). These particles are mainly protons and heavier ions that can cause radiation damage, disruption to logic circuits, and even hazards to astronauts. Crewed missions to return to the Moon or to travel to Mars will have to deal with the major problems presented by solar particle events to radiation safety, in addition to the important contribution to doses from the low-level background cosmic rays. In near-Earth orbits, the Earth's geomagnetic field screens spacecraft from a large part of these hazards - a process called geomagnetic shielding.",
+  "url": "https://en.wikipedia.org/wiki/Space_environment",
+  "embedding": null,
+  "db_path": "kb_databases/space_environment_3c58f3e5.db",
+  "last_updated": 1743796485.363277,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

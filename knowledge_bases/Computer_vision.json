@@ -1,0 +1,14 @@
+{
+  "kb_id": "9bb87c7e-17a5-4c29-91fc-fa124508d3f7",
+  "name": "Computer vision",
+  "content": "Computer vision tasks include methods for acquiring, processing, analyzing, and understanding digital images, and extraction of high-dimensional data from the real world in order to produce numerical or symbolic information, e.g. in the form of decisions.[1][2][3][4] \"Understanding\" in this context signifies the transformation of visual images (the input to the retina) into descriptions of the world that make sense to thought processes and can elicit appropriate action. This image understanding can be seen as the disentangling of symbolic information from image data using models constructed with the aid of geometry, physics, statistics, and learning theory. The scientific discipline of computer vision is concerned with the theory behind artificial systems that extract information from images. Image data can take many forms, such as video sequences, views from multiple cameras, multi-dimensional data from a 3D scanner, 3D point clouds from LiDaR sensors, or medical scanning devices. The technological discipline of computer vision seeks to apply its theories and models to the construction of computer vision systems.",
+  "url": "https://en.wikipedia.org/wiki/Computer_vision",
+  "embedding": null,
+  "db_path": "kb_databases/computer_vision_5c7ec438.db",
+  "last_updated": 1743796484.889219,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

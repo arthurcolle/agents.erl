@@ -1,0 +1,14 @@
+{
+  "kb_id": "4cb985f9-2bc8-4415-9e1b-d91df1178182",
+  "name": "Civil procedure",
+  "content": "Civil procedure is the body of law that sets out the rules and regulations along with some standards that courts follow when adjudicating civil lawsuits (as opposed to procedures in criminal law matters). These rules govern how a lawsuit or case may be commenced; what kind of service of process (if any) is required; the types of pleadings or statements of case, motions or applications, and orders allowed in civil cases; the timing and manner of depositions and discovery or disclosure; the conduct of trials; the process for judgment; the process for post-trial procedures; various available remedies; and how the courts and clerks must function. In most cases, criminal prosecutions are pursued by the state in order to punish offenders, although some systems, such as in English and French law, allow citizens to bring a private prosecution. Conversely, civil actions are initiated by private individuals, companies or organizations, for their own benefit. Government agencies may also be a party to civil actions. Civil and criminal cases are usually heard in different courts.",
+  "url": "https://en.wikipedia.org/wiki/Civil_procedure",
+  "embedding": null,
+  "db_path": "kb_databases/civil_procedure_6dce8339.db",
+  "last_updated": 1743796485.048739,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

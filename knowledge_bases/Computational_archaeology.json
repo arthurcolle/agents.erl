@@ -1,0 +1,14 @@
+{
+  "kb_id": "cd85fea9-547d-4718-bc25-8aaaf80b378e",
+  "name": "Computational archaeology",
+  "content": "Computational archaeology is a subfield of digital archeology that focuses on the analysis and interpretation of archaeological data using advanced computational techniques. There are differences between the terms \"Computational Archaeology\" and \"Computer in Archaeology\", though they are related to each other. This field employs data modeling, statistical analysis, and computer simulations to understand and reconstruct past human behaviors and societal developments. By leveraging Geographic Information Systems (GIS), predictive modeling, and various simulation tools, computational archaeology enhances the ability to process complex archaeological datasets, providing deeper insights into historical contexts and cultural heritage. Computational archaeology may include the use of geographical information systems (GIS), especially when applied to spatial analyses such as viewshed analysis and least-cost path analysis as these approaches are sufficiently computationally complex that they are extremely difficult if not impossible to implement without the processing power of a computer. Likewise, some forms of statistical and mathematical modelling,[1] and the computer simulation of human behaviour and behavioural evolution using software tools such as Swarm or Repast would also be impossible to calculate without computational aid. The application of a variety of other forms of complex and bespoke software to solve archaeological problems, such as human perception and movement within built environments using software such as University College London's Space Syntax program, also falls under the term 'computational archaeology'.",
+  "url": "https://en.wikipedia.org/wiki/Computational_archaeology",
+  "embedding": null,
+  "db_path": "kb_databases/computational_archaeology_4ba68ad0.db",
+  "last_updated": 1743796484.961538,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

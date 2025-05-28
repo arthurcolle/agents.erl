@@ -1,0 +1,14 @@
+{
+  "kb_id": "ff642e42-8db4-47af-9487-0d5b3ef29998",
+  "name": "Emergency management",
+  "content": "Emergency management (also disaster management) is a science and a system charged with creating the framework within which communities reduce vulnerability to hazards and cope with disasters.[1] Emergency management, despite its name, does not actually focus on the management of emergencies; emergencies can be understood as minor events with limited impacts and are managed through the day-to-day functions of a community. Instead, emergency management focuses on the management of disasters, which are events that produce more impacts than a community can handle on its own.[2] The management of disasters tends to require some combination of activity from individuals and households, organizations, local, and/or higher levels of government. Although many different terminologies exist globally, the activities of emergency management can be generally categorized into preparedness, response, mitigation, and recovery, although other terms such as disaster risk reduction and prevention are also common. The outcome of emergency management is to prevent disasters and where this is not possible, to reduce their harmful impacts.",
+  "url": "https://en.wikipedia.org/wiki/Emergency_management",
+  "embedding": null,
+  "db_path": "kb_databases/emergency_management_c4075263.db",
+  "last_updated": 1743796485.5158432,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

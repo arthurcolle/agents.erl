@@ -1,0 +1,14 @@
+{
+  "kb_id": "5e8883d8-cc72-4cdf-bba4-03e9c1484047",
+  "name": "Fracture mechanics",
+  "content": "Fracture mechanics is the field of mechanics concerned with the study of the propagation of cracks in materials. It uses methods of analytical solid mechanics to calculate the driving force on a crack and those of experimental solid mechanics to characterize the material's resistance to fracture. Theoretically, the stress ahead of a sharp crack tip becomes infinite and cannot be used to describe the state around a crack. Fracture mechanics is used to characterise the loads on a crack, typically using a single parameter to describe the complete loading state at the crack tip. A number of different parameters have been developed. When the plastic zone at the tip of the crack is small relative to the crack length the stress state at the crack tip is the result of elastic forces within the material and is termed linear elastic fracture mechanics (LEFM) and can be characterised using the stress intensity factor K {\\displaystyle K} . Although the load on a crack can be arbitrary, in 1957 G. Irwin found any state could be reduced to a combination of three independent stress intensity factors:",
+  "url": "https://en.wikipedia.org/wiki/Fracture_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/fracture_mechanics_f8f335a3.db",
+  "last_updated": 1743796485.547501,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

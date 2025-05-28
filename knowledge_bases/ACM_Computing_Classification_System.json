@@ -1,0 +1,14 @@
+{
+  "kb_id": "f9c1311a-6c6d-48a8-841a-538a14e0c1fe",
+  "name": "ACM Computing Classification System",
+  "content": "The ACM Computing Classification System (CCS) is a subject classification system for computing devised by the Association for Computing Machinery (ACM). The system is comparable to the Mathematics Subject Classification (MSC) in scope, aims, and structure, being used by the various ACM journals to organize subjects by area. The system has gone through seven revisions, the first version being published in 1964, and revised versions appearing in 1982, 1983, 1987, 1991, 1998, and the now current version in 2012. It is hierarchically structured in four levels. For example, one branch of the hierarchy contains: This computer science article is a stub. You can help Wikipedia by expanding it.",
+  "url": "https://en.wikipedia.org/wiki/ACM_Computing_Classification_System",
+  "embedding": null,
+  "db_path": "kb_databases/acm_computing_classification_system_c40bd3d2.db",
+  "last_updated": 1743796484.7371562,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "941ea81d-2327-4128-824b-5ea2fe1966ae",
+  "name": "Emergency services",
+  "content": "Emergency services and rescue services[1] are organizations that ensure public safety, security, and health by addressing and resolving different emergencies. Some of these agencies exist solely for addressing certain types of emergencies, while others deal with ad hoc emergencies as part of their normal responsibilities. Many of these agencies engage in community awareness and prevention programs to help the public avoid, detect, and report emergencies effectively. Emergency services are often considered first responders, and typically have dedicated emergency vehicles. Emergency services have one or more dedicated emergency telephone numbers reserved for critical emergency calls. In many countries, one number is used for all of the emergency services (e.g. 911 in many parts of the Americas, 999 in the United Kingdom, 112 in continental Europe, 000 in Australia). In some countries, each emergency service has its own emergency number (e.g. 110 for police, 118 for coast guard, 119 for fire and medical in Japan; 110 for police, 119 for fire, 120 for medical in China). Calls made to emergency services to report emergencies are called calls for service.",
+  "url": "https://en.wikipedia.org/wiki/Emergency_services",
+  "embedding": null,
+  "db_path": "kb_databases/emergency_services_4eb12275.db",
+  "last_updated": 1743796484.770208,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

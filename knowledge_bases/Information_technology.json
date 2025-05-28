@@ -1,0 +1,14 @@
+{
+  "kb_id": "e1680be8-be68-4da0-ae35-984079b96530",
+  "name": "Information technology",
+  "content": "Information technology (IT) is a set of related fields within information and communications technology (ICT), that encompass computer systems, software, programming languages, data and information processing, and storage.[1] Information technology is an application of computer science and computer engineering. The term is commonly used as a synonym for computers and computer networks, but it also encompasses other information distribution technologies such as television and telephones. Several products or services within an economy are associated with information technology, including computer hardware, software, electronics, semiconductors, internet, telecom equipment, and e-commerce.[2][a] An information technology system (IT system) is generally an information system, a communications system, or, more specifically speaking, a computer system \u2014 including all hardware, software, and peripheral equipment \u2014 operated by a limited group of IT users, and an IT project usually refers to the commissioning and implementation of an IT system.[4] IT systems play a vital role in facilitating efficient data management, enhancing communication networks, and supporting organizational processes across various industries. Successful IT projects require meticulous planning and ongoing maintenance to ensure optimal functionality and alignment with organizational objectives.[5]",
+  "url": "https://en.wikipedia.org/wiki/Information_technology",
+  "embedding": null,
+  "db_path": "kb_databases/information_technology_3dd7c49f.db",
+  "last_updated": 1743796485.508323,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

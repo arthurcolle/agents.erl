@@ -1,0 +1,14 @@
+{
+  "kb_id": "27cd8b81-b5c1-42b8-bdef-7adfa4974fe1",
+  "name": "Energy economics",
+  "content": "Empirical methods Prescriptive and policy Energy economics is a broad scientific subject area which includes topics related to supply and use of energy in societies.[1] Considering the cost of energy services and associated value gives economic meaning to the efficiency at which energy can be produced.[2] Energy services can be defined as functions that generate and provide energy to the \u201cdesired end services or states\u201d.[3] The efficiency of energy services is dependent on the engineered technology used to produce and supply energy. The goal is to minimise energy input required (e.g. kWh, mJ, see Units of Energy) to produce the energy service, such as lighting (lumens), heating (temperature) and fuel (natural gas). The main sectors considered in energy economics are transportation and building, although it is relevant to a broad scale of human activities, including households and businesses at a microeconomic level and resource management and environmental impacts at a macroeconomic level.",
+  "url": "https://en.wikipedia.org/wiki/Energy_economics",
+  "embedding": null,
+  "db_path": "kb_databases/energy_economics_0319cd71.db",
+  "last_updated": 1743796484.9506822,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

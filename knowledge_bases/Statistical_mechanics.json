@@ -1,0 +1,14 @@
+{
+  "kb_id": "4066fbc5-bfd8-470c-acfc-537258504043",
+  "name": "Statistical mechanics",
+  "content": "In physics, statistical mechanics is a mathematical framework that applies statistical methods and probability theory to large assemblies of microscopic entities. Sometimes called statistical physics or statistical thermodynamics, its applications include many problems in the fields of physics, biology,[1] chemistry, neuroscience,[2] computer science,[3][4] information theory[5] and sociology.[6] Its main purpose is to clarify the properties of matter in aggregate, in terms of physical laws governing atomic motion.[7][8] Statistical mechanics arose out of the development of classical thermodynamics, a field for which it was successful in explaining macroscopic physical properties\u2014such as temperature, pressure, and heat capacity\u2014in terms of microscopic parameters that fluctuate about average values and are characterized by probability distributions.[citation needed] While classical thermodynamics is primarily concerned with thermodynamic equilibrium, statistical mechanics has been applied in non-equilibrium statistical mechanics to the issues of microscopically modeling the speed of irreversible processes that are driven by imbalances. Examples of such processes include chemical reactions and flows of particles and heat. The fluctuation\u2013dissipation theorem is the basic knowledge obtained from applying non-equilibrium statistical mechanics to study the simplest non-equilibrium situation of a steady state current flow in a system of many particles.[citation needed]",
+  "url": "https://en.wikipedia.org/wiki/Statistical_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/statistical_mechanics_e6882306.db",
+  "last_updated": 1743796485.289907,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

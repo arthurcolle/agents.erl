@@ -1,0 +1,14 @@
+{
+  "kb_id": "ea90ac39-8be7-412a-b7bc-b709b30d1715",
+  "name": "Ordinary differential equations",
+  "content": "In mathematics, an ordinary differential equation (ODE) is a differential equation (DE) dependent on only a single independent variable. As with any other DE, its unknown(s) consists of one (or more) function(s) and involves the derivatives of those functions.[1] The term \"ordinary\" is used in contrast with partial differential equations (PDEs) which may be with respect to more than one independent variable,[2] and, less commonly, in contrast with stochastic differential equations (SDEs) where the progression is random.[3] A linear differential equation is a differential equation that is defined by a linear polynomial in the unknown function and its derivatives, that is an equation of the form where a 0 ( x ) , \u2026 , a n ( x ) {\\displaystyle a_{0}(x),\\ldots ,a_{n}(x)} and b ( x ) {\\displaystyle b(x)} are arbitrary differentiable functions that do not need to be linear, and y \u2032 , \u2026 , y ( n ) {\\displaystyle y',\\ldots ,y^{(n)}} are the successive derivatives of the unknown function y {\\displaystyle y} of the variable x {\\displaystyle x} .[4]",
+  "url": "https://en.wikipedia.org/wiki/Ordinary_differential_equations",
+  "embedding": null,
+  "db_path": "kb_databases/ordinary_differential_equations_caba3d26.db",
+  "last_updated": 1743796485.065074,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "ba21a57e-02d2-42b7-8e5a-e30293c561d7",
+  "name": "Earthquake engineering",
+  "content": "Earthquake engineering is an interdisciplinary branch of engineering that designs and analyzes structures, such as buildings and bridges, with earthquakes in mind. Its overall goal is to make such structures more resistant to earthquakes. An earthquake (or seismic) engineer aims to construct structures that will not be damaged in minor shaking and will avoid serious damage or collapse in a major earthquake. A properly engineered structure does not necessarily have to be extremely strong or expensive. It has to be properly designed to withstand the seismic effects while sustaining an acceptable level of damage. Earthquake engineering is a scientific field concerned with protecting society, the natural environment, and the man-made environment from earthquakes by limiting the seismic risk to socio-economically acceptable levels.[1] Traditionally, it has been narrowly defined as the study of the behavior of structures and geo-structures subject to seismic loading; it is considered as a subset of structural engineering, geotechnical engineering, mechanical engineering, chemical engineering, applied physics, etc. However, the tremendous costs experienced in recent earthquakes have led to an expansion of its scope to encompass disciplines from the wider field of civil engineering, mechanical engineering, nuclear engineering, and from the social sciences, especially sociology, political science, economics, and finance.[2]",
+  "url": "https://en.wikipedia.org/wiki/Earthquake_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/earthquake_engineering_fd35f25b.db",
+  "last_updated": 1743796485.4896472,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

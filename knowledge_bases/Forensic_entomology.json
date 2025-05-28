@@ -1,0 +1,14 @@
+{
+  "kb_id": "10e791cb-63fd-46d8-937e-03fa4f440984",
+  "name": "Forensic entomology",
+  "content": "Forensic entomology is a branch of applied entomology that uses insects found on corpses or elsewhere around crime scenes in the interest of forensic science. This includes studying the types of insects commonly found on cadavers, their life cycles, their presence in different environments, and how insect assemblages change with decomposition.[1] Insect succession patterns are identified based on the time a species spends in each developmental stage and the number of generations produced since the insect's introduction to a food source.[2] By analyzing insect development alongside environmental data such as temperature, humidity, and vapor density, forensic entomologists can estimate the time since death, as flying insects are attracted to a body immediately after death. This field also provides clues about body movement after death and antemortem trauma.[3][4] The primary goal is to determine the postmortem interval (PMI) to aid in death investigations. Forensic entomology is also used in cases of neglect and abuse as toxicology to detect drugs and food contamination incidents. Insect assemblages can help approximate a body's primary location, as some insects are unique to specific areas.[5] Therefore, forensic entomology is divided into three subfields: urban, stored-product and medico-legal/medico-criminal entomology.",
+  "url": "https://en.wikipedia.org/wiki/Forensic_entomology",
+  "embedding": null,
+  "db_path": "kb_databases/forensic_entomology_98cf4dad.db",
+  "last_updated": 1743796485.5170848,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

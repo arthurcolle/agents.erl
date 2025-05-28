@@ -1,0 +1,14 @@
+{
+  "kb_id": "2f24afc0-2d3b-496c-a3cf-4e0890607a75",
+  "name": "Galaxy formation and evolution",
+  "content": "In cosmology, the study of galaxy formation and evolution is concerned with the processes that formed a heterogeneous universe from a homogeneous beginning, the formation of the first galaxies, the way galaxies change over time, and the processes that have generated the variety of structures observed in nearby galaxies. Galaxy formation is hypothesized to occur from structure formation theories, as a result of tiny quantum fluctuations in the aftermath of the Big Bang. The simplest model in general agreement with observed phenomena is the Lambda-CDM model\u2014that is, clustering and merging allows galaxies to accumulate mass, determining both their shape and structure. Hydrodynamics simulation, which simulates both baryons and dark matter, is widely used to study galaxy formation and evolution. Because of the inability to conduct experiments in outer space, the only way to \u201ctest\u201d theories and models of galaxy evolution is to compare them with observations. Explanations for how galaxies formed and evolved must be able to predict the observed properties and types of galaxies.",
+  "url": "https://en.wikipedia.org/wiki/Galaxy_formation_and_evolution",
+  "embedding": null,
+  "db_path": "kb_databases/galaxy_formation_and_evolution_58bc88a7.db",
+  "last_updated": 1743796485.5187032,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "f5e6ad8e-2fbc-482b-8482-ff41f10734e5",
+  "name": "Relational database",
+  "content": "A relational database (RDB[1]) is a database based on the relational model of data, as proposed by E. F. Codd in 1970.[2] A Relational Database Management System (RDBMS) is a type of database management system that stores data in a structured format using rows and columns. Many relational database systems are equipped with the option of using SQL (Structured Query Language) for querying and updating the database.[3] The concept of relational database was defined by E. F. Codd at IBM in 1970. Codd introduced the term relational in his research paper \"A Relational Model of Data for Large Shared Data Banks\".[2] In this paper and later papers, he defined what he meant by relation. One well-known definition of what constitutes a relational database system is composed of Codd's 12 rules. However, no commercial implementations of the relational model conform to all of Codd's rules,[4] so the term has gradually come to describe a broader class of database systems, which at a minimum: In 1974, IBM began developing System R, a research project to develop a prototype RDBMS.[5][6] The first system sold as an RDBMS was Multics Relational Data Store (June 1976).[7][8][citation needed] Oracle was released in 1979 by Relational Software, now Oracle Corporation.[9] Ingres and IBM BS12 followed. Other examples of an RDBMS include IBM Db2, SAP Sybase ASE, and Informix. In 1984, the first RDBMS for Macintosh began being developed, code-named Silver Surfer, and was released in 1987 as 4th Dimension and known today as 4D.[10]",
+  "url": "https://en.wikipedia.org/wiki/Relational_database",
+  "embedding": null,
+  "db_path": "kb_databases/relational_database_6c29802d.db",
+  "last_updated": 1743796484.851995,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

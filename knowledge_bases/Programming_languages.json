@@ -1,0 +1,14 @@
+{
+  "kb_id": "ed1f15e6-5680-4bb3-8c2f-bbd8df1d249a",
+  "name": "Programming languages",
+  "content": "This is an accepted version of this page A programming language is a system of notation for writing computer programs.[1] Programming languages are described in terms of their syntax (form) and semantics (meaning), usually defined by a formal language. Languages usually provide features such as a type system, variables, and mechanisms for error handling. An implementation of a programming language is required in order to execute programs, namely an interpreter or a compiler. An interpreter directly executes the source code, while a compiler produces an executable program. Computer architecture has strongly influenced the design of programming languages, with the most common type (imperative languages\u2014which implement operations in a specified order) developed to perform well on the popular von Neumann architecture. While early programming languages were closely tied to the hardware, over time they have developed more abstraction to hide implementation details for greater simplicity. Thousands of programming languages\u2014often classified as imperative, functional, logic, or object-oriented\u2014have been developed for a wide variety of uses. Many aspects of programming language design involve tradeoffs\u2014for example, exception handling simplifies error handling, but at a performance cost. Programming language theory is the subfield of computer science that studies the design, implementation, analysis, characterization, and classification of programming languages.",
+  "url": "https://en.wikipedia.org/wiki/Programming_languages",
+  "embedding": null,
+  "db_path": "kb_databases/programming_languages_f3797f5e.db",
+  "last_updated": 1743796485.538743,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

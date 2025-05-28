@@ -1,0 +1,14 @@
+{
+  "kb_id": "ad87f8ce-869c-41b3-8986-bb0a8895bcdb",
+  "name": "Biochemical engineering",
+  "content": "Biochemical engineering, also known as bioprocess engineering, is a field of study with roots stemming from chemical engineering and biological engineering. It mainly deals with the design, construction, and advancement of unit processes that involve biological organisms (such as fermentation) or organic molecules (often enzymes) and has various applications in areas of interest such as biofuels, food, pharmaceuticals, biotechnology, and water treatment processes.[1][2] The role of a biochemical engineer is to take findings developed by biologists and chemists in a laboratory and translate that to a large-scale manufacturing process. For hundreds of years, humans have made use of the chemical reactions of biological organisms in order to create goods. In the mid-1800s, Louis Pasteur was one of the first people to look into the role of these organisms when he researched fermentation. His work also contributed to the use of pasteurization, which is still used to this day. By the early 1900s, the use of microorganisms had expanded, and was used to make industrial products. Up to this point, biochemical engineering hadn't developed as a field yet. It wasn't until 1928 when Alexander Fleming discovered penicillin that the field of biochemical engineering was established. After this discovery, samples were gathered from around the world in order to continue research into the characteristics of microbes from places such as soils, gardens, forests, rivers, and streams. Today, biochemical engineers can be found working in a variety of industries, from food to pharmaceuticals. This is due to the increasing need for efficiency and production which requires knowledge of how biological systems and chemical reactions interact with each other and how they can be used to meet these needs.",
+  "url": "https://en.wikipedia.org/wiki/Biochemical_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/biochemical_engineering_95cd86a9.db",
+  "last_updated": 1743796485.4659688,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

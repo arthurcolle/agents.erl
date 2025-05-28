@@ -1,0 +1,14 @@
+{
+  "kb_id": "6dfd90f6-2f95-4f58-84bc-223814b71cdf",
+  "name": "Spacecraft propulsion",
+  "content": "Spacecraft propulsion is any method used to accelerate spacecraft and artificial satellites. In-space propulsion exclusively deals with propulsion systems used in the vacuum of space and should not be confused with space launch or atmospheric entry. Several methods of pragmatic spacecraft propulsion have been developed, each having its own drawbacks and advantages. Most satellites have simple reliable chemical thrusters (often monopropellant rockets) or resistojet rockets for orbital station-keeping, while a few use momentum wheels for attitude control. Russian and antecedent Soviet bloc satellites have used electric propulsion for decades,[1] and newer Western geo-orbiting spacecraft are starting to use them for north\u2013south station-keeping and orbit raising. Interplanetary vehicles mostly use chemical rockets as well, although a few have used electric propulsion such as ion thrusters and Hall-effect thrusters. Various technologies need to support everything from small satellites and robotic deep space exploration to space stations and human missions to Mars.",
+  "url": "https://en.wikipedia.org/wiki/Spacecraft_propulsion",
+  "embedding": null,
+  "db_path": "kb_databases/spacecraft_propulsion_072692c9.db",
+  "last_updated": 1743796485.401809,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

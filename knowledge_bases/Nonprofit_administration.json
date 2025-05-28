@@ -1,0 +1,14 @@
+{
+  "kb_id": "b903d14e-9d09-44f3-bbd6-51ff0298a973",
+  "name": "Nonprofit administration",
+  "content": "A nonprofit organization (NPO), also known as a nonbusiness entity,[1] nonprofit institution,[2] or simply a nonprofit,[a] is a non-governmental (private) legal entity organized and operated for a collective, public or social benefit, as opposed to an entity that operates as a business aiming to generate a profit for its owners. A nonprofit organization is subject to the non-distribution constraint: any revenues that exceed expenses must be committed to the organization's purpose, not taken by private parties. Depending on the local laws, charities are regularly organized as non-profits. A host of organizations may be nonprofit, including some political organizations, schools, hospitals, business associations, churches, foundations, social clubs, and consumer cooperatives. Nonprofit entities may seek approval from governments to be tax-exempt, and some may also qualify to receive tax-deductible contributions, but an entity may incorporate as a nonprofit entity without having tax-exempt status.",
+  "url": "https://en.wikipedia.org/wiki/Nonprofit_organization",
+  "embedding": null,
+  "db_path": "kb_databases/nonprofit_administration_229a0c4c.db",
+  "last_updated": 1743796485.5045419,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

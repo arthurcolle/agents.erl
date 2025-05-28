@@ -1,0 +1,14 @@
+{
+  "kb_id": "5beb8138-57ec-44df-a079-b46b7834bf57",
+  "name": "Alternative medicine",
+  "content": "Alternative medicine is any practice that aims to achieve the healing effects of medicine despite lacking biological plausibility, testability, repeatability or evidence of effectiveness. Unlike modern medicine, which employs the scientific method to test plausible therapies by way of responsible and ethical clinical trials, producing repeatable evidence of either effect or of no effect, alternative therapies reside outside of mainstream medicine[n 1][n 2] and do not originate from using the scientific method, but instead rely on testimonials, anecdotes, religion, tradition, superstition, belief in supernatural \"energies\", pseudoscience, errors in reasoning, propaganda, fraud, or other unscientific sources. Frequently used terms for relevant practices are New Age medicine, pseudo-medicine, unorthodox medicine, holistic medicine, fringe medicine, and unconventional medicine, with little distinction from quackery. Some alternative practices are based on theories that contradict the established science of how the human body works; others appeal to the supernatural or superstitious to explain their effect or lack thereof. In others, the practice has plausibility but lacks a positive risk\u2013benefit outcome probability. Research into alternative therapies often fails to follow proper research protocols (such as placebo-controlled trials, blind experiments and calculation of prior probability), providing invalid results. History has shown that if a method is proven to work, it eventually ceases to be alternative and becomes mainstream medicine.",
+  "url": "https://en.wikipedia.org/wiki/Alternative_medicine",
+  "embedding": null,
+  "db_path": "kb_databases/alternative_medicine_bfaa7621.db",
+  "last_updated": 1743796485.534297,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

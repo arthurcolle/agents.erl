@@ -1,0 +1,14 @@
+{
+  "kb_id": "ae9f9fbf-3597-44b5-8476-5c616ad01323",
+  "name": "Electronics",
+  "content": "Electronics is a scientific and engineering discipline that studies and applies the principles of physics to design, create, and operate devices that manipulate electrons and other electrically charged particles. It is a subfield of physics[1][2] and electrical engineering which uses active devices such as transistors, diodes, and integrated circuits to control and amplify the flow of electric current and to convert it from one form to another, such as from alternating current (AC) to direct current (DC) or from analog signals to digital signals. Electronic devices have hugely influenced the development of many aspects of modern society, such as telecommunications, entertainment, education, health care, industry, and security. The main driving force behind the advancement of electronics is the semiconductor industry, which in response to global demand continually produces ever-more sophisticated electronic devices and circuits. The semiconductor industry is one of the largest and most profitable sectors in the global economy, with annual revenues exceeding $481 billion in 2018. The electronics industry also encompasses other sectors that rely on electronic devices and systems, such as e-commerce, which generated over $29 trillion in online sales in 2017.",
+  "url": "https://en.wikipedia.org/wiki/Electronics",
+  "embedding": null,
+  "db_path": "kb_databases/electronics_ee3c6e8e.db",
+  "last_updated": 1743796485.502777,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

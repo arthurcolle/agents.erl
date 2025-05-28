@@ -1,0 +1,14 @@
+{
+  "kb_id": "a145c201-2974-4803-9737-abd2a6662aa6",
+  "name": "Animation",
+  "content": "Animation is a filmmaking technique whereby still images are manipulated to create moving images. In traditional animation, images are drawn or painted by hand on transparent celluloid sheets to be photographed and exhibited on film. Animation has been recognized as an artistic medium, specifically within the entertainment industry. Many animations are either traditional animations or computer animations made with computer-generated imagery (CGI). Stop motion animation, in particular claymation, has continued to exist alongside these other forms. Animation is contrasted with live action, although the two do not exist in isolation. Many moviemakers have produced films that are a hybrid of the two. As CGI increasingly approximates photographic imagery, filmmakers can easily composite 3D animations into their film rather than using practical effects for showy visual effects (VFX). Computer animation can be very detailed 3D animation, while 2D computer animation (which may have the look of traditional animation) can be used for stylistic reasons, low bandwidth, or faster real-time renderings. Other common animation methods apply a stop motion technique to two- and three-dimensional objects like paper cutouts, puppets, or clay figures.",
+  "url": "https://en.wikipedia.org/wiki/Animation",
+  "embedding": null,
+  "db_path": "kb_databases/animation_d6b6b668.db",
+  "last_updated": 1743796484.826638,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

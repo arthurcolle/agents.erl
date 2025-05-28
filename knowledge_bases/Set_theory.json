@@ -1,0 +1,14 @@
+{
+  "kb_id": "616b12ce-68c8-4932-91ad-e04889e87da4",
+  "name": "Set theory",
+  "content": "Set theory is the branch of mathematical logic that studies sets, which can be informally described as collections of objects. Although objects of any kind can be collected into a set, set theory \u2013 as a branch of mathematics \u2013 is mostly concerned with those that are relevant to mathematics as a whole. The modern study of set theory was initiated by the German mathematicians Richard Dedekind and Georg Cantor in the 1870s. In particular, Georg Cantor is commonly considered the founder of set theory. The non-formalized systems investigated during this early stage go under the name of naive set theory. After the discovery of paradoxes within naive set theory (such as Russell's paradox, Cantor's paradox and the Burali-Forti paradox), various axiomatic systems were proposed in the early twentieth century, of which Zermelo\u2013Fraenkel set theory (with or without the axiom of choice) is still the best-known and most studied. Set theory is commonly employed as a foundational system for the whole of mathematics, particularly in the form of Zermelo\u2013Fraenkel set theory with the axiom of choice. Besides its foundational role, set theory also provides the framework to develop a mathematical theory of infinity, and has various applications in computer science (such as in the theory of relational algebra), philosophy, formal semantics, and evolutionary dynamics. Its foundational appeal, together with its paradoxes, and its implications for the concept of infinity and its multiple applications have made set theory an area of major interest for logicians and philosophers of mathematics. Contemporary research into set theory covers a vast array of topics, ranging from the structure of the real number line to the study of the consistency of large cardinals.",
+  "url": "https://en.wikipedia.org/wiki/Set_theory",
+  "embedding": null,
+  "db_path": "kb_databases/set_theory_cf9d701c.db",
+  "last_updated": 1743796484.9858181,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

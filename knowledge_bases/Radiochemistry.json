@@ -1,0 +1,14 @@
+{
+  "kb_id": "9b2ae77f-3359-47d7-aa32-01e249509a5e",
+  "name": "Radiochemistry",
+  "content": "Radiochemistry is the chemistry of radioactive materials, where radioactive isotopes of elements are used to study the properties and chemical reactions of non-radioactive isotopes (often within radiochemistry the absence of radioactivity leads to a substance being described as being inactive as the isotopes are stable). Much of radiochemistry deals with the use of radioactivity to study ordinary chemical reactions. This is very different from radiation chemistry where the radiation levels are kept too low to influence the chemistry. Radiochemistry includes the study of both natural and man-made radioisotopes. All radioisotopes are unstable isotopes of elements\u2014 that undergo nuclear decay and emit some form of radiation. The radiation emitted can be of several types including alpha, beta, gamma radiation, proton, and neutron emission along with neutrino and antiparticle emission decay pathways. 1. \u03b1 (alpha) radiation\u2014the emission of an alpha particle (which contains 2 protons and 2 neutrons) from an atomic nucleus. When this occurs, the atom's atomic mass will decrease by 4 units and the atomic number will decrease by 2.",
+  "url": "https://en.wikipedia.org/wiki/Radiochemistry",
+  "embedding": null,
+  "db_path": "kb_databases/radiochemistry_c55a9da5.db",
+  "last_updated": 1743796485.1117692,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

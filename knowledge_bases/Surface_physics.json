@@ -1,0 +1,14 @@
+{
+  "kb_id": "b910bf16-e384-4a8a-8e87-d4607b331ee3",
+  "name": "Surface physics",
+  "content": "Surface science is the study of physical and chemical phenomena that occur at the interface of two phases, including solid\u2013liquid interfaces, solid\u2013gas interfaces, solid\u2013vacuum interfaces, and liquid\u2013gas interfaces. It includes the fields of surface chemistry and surface physics.[1] Some related practical applications are classed as surface engineering. The science encompasses concepts such as heterogeneous catalysis, semiconductor device fabrication, fuel cells, self-assembled monolayers, and adhesives. Surface science is closely related to interface and colloid science.[2] Interfacial chemistry and physics are common subjects for both. The methods are different. In addition, interface and colloid science studies macroscopic phenomena that occur in heterogeneous systems due to peculiarities of interfaces. The field of surface chemistry started with heterogeneous catalysis pioneered by Paul Sabatier on hydrogenation and Fritz Haber on the Haber process.[3] Irving Langmuir was also one of the founders of this field, and the scientific journal on surface science, Langmuir, bears his name. The Langmuir adsorption equation is used to model monolayer adsorption where all surface adsorption sites have the same affinity for the adsorbing species and do not interact with each other. Gerhard Ertl in 1974 described for the first time the adsorption of hydrogen on a palladium surface using a novel technique called LEED.[4] Similar studies with platinum,[5] nickel,[6][7] and iron[8] followed. Most recent developments in surface sciences include the 2007 Nobel prize of Chemistry winner Gerhard Ertl's advancements in surface chemistry, specifically his investigation of the interaction between carbon monoxide molecules and platinum surfaces.",
+  "url": "https://en.wikipedia.org/wiki/Surface_physics",
+  "embedding": null,
+  "db_path": "kb_databases/surface_physics_1e31cdda.db",
+  "last_updated": 1743796485.333867,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

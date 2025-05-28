@@ -1,0 +1,14 @@
+{
+  "kb_id": "c92a842c-9efd-4a47-9d39-95d9b81d6f8c",
+  "name": "Sample Survey",
+  "content": "In statistics, survey sampling describes the process of selecting a sample of elements from a target population to conduct a survey. The term \"survey\" may refer to many different types or techniques of observation. In survey sampling it most often involves a questionnaire used to measure the characteristics and/or attitudes of people. Different ways of contacting members of a sample once they have been selected is the subject of survey data collection. The purpose of sampling is to reduce the cost and/or the amount of work that it would take to survey the entire target population. A survey that measures the entire target population is called a census. A sample refers to a group or section of a population from which information is to be obtained. Survey samples can be broadly divided into two types: probability samples and super samples. Probability-based samples implement a sampling plan with specified probabilities (perhaps adapted probabilities specified by an adaptive procedure). Probability-based sampling allows design-based inference about the target population. The inferences are based on a known objective probability distribution that was specified in the study protocol. Inferences from probability-based surveys may still suffer from many types of bias.",
+  "url": "https://en.wikipedia.org/wiki/Survey_sampling",
+  "embedding": null,
+  "db_path": "kb_databases/sample_survey_b8b8ea9f.db",
+  "last_updated": 1743796485.170521,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

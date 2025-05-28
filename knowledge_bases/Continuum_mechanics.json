@@ -1,0 +1,14 @@
+{
+  "kb_id": "5f3a00f6-8350-4153-8d54-6ec0ed7c3786",
+  "name": "Continuum mechanics",
+  "content": "Continuum mechanics is a branch of mechanics that deals with the deformation of and transmission of forces through materials modeled as a continuous medium (also called a continuum) rather than as discrete particles. Continuum mechanics deals with deformable bodies, as opposed to rigid bodies. A continuum model assumes that the substance of the object completely fills the space it occupies. While ignoring the fact that matter is made of atoms, this provides a sufficiently accurate description of matter on length scales much greater than that of inter-atomic distances. The concept of a continuous medium allows for intuitive analysis of bulk matter by using differential equations that describe the behavior of such matter according to physical laws, such as mass conservation, momentum conservation, and energy conservation. Information about the specific material is expressed in constitutive relationships. Continuum mechanics treats the physical properties of solids and fluids independently of any particular coordinate system in which they are observed. These properties are represented by tensors, which are mathematical objects with the salient property of being independent of coordinate systems. This permits definition of physical properties at any point in the continuum, according to mathematically convenient continuous functions. The theories of elasticity, plasticity and fluid mechanics are based on the concepts of continuum mechanics.",
+  "url": "https://en.wikipedia.org/wiki/Continuum_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/continuum_mechanics_e30137b4.db",
+  "last_updated": 1743796485.541368,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

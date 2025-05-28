@@ -1,0 +1,14 @@
+{
+  "kb_id": "9c570c3d-637b-472d-9e6c-ccee1c675afc",
+  "name": "Exoplanetology",
+  "content": "This page describes exoplanet orbital and physical parameters. Most known extrasolar planet candidates have been discovered using indirect methods and therefore only some of their physical and orbital parameters can be determined. For example, out of the six independent parameters that define an orbit, the radial-velocity method can determine four: semi-major axis, eccentricity, longitude of periastron, and time of periastron. Two parameters remain unknown: inclination and longitude of the ascending node. There are exoplanets that are much closer to their parent star than any planet in the Solar System is to the Sun, and there are also exoplanets that are much further from their star. Mercury, the closest planet to the Sun at 0.4 astronomical units (AU), takes 88 days for an orbit, but the smallest known orbits of exoplanets have orbital periods of only a few hours, see Ultra-short period planet. The Kepler-11 system has five of its planets in smaller orbits than Mercury's. Neptune is 30 AU from the Sun and takes 165 years to orbit it, but there are exoplanets that are thousands of AU from their star and take tens of thousands of years to orbit, e.g. GU Piscium b.[1]",
+  "url": "https://en.wikipedia.org/wiki/Exoplanetology",
+  "embedding": null,
+  "db_path": "kb_databases/exoplanetology_8d8e352a.db",
+  "last_updated": 1743796485.51015,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "b3533578-e3a7-45da-9d54-c1d63c472a17",
+  "name": "Fourier analysis",
+  "content": "In mathematics, Fourier analysis (/\u02c8f\u028arie\u026a, -i\u0259r/)[1] is the study of the way general functions may be represented or approximated by sums of simpler trigonometric functions. Fourier analysis grew from the study of Fourier series, and is named after Joseph Fourier, who showed that representing a function as a sum of trigonometric functions greatly simplifies the study of heat transfer. The subject of Fourier analysis encompasses a vast spectrum of mathematics. In the sciences and engineering, the process of decomposing a function into oscillatory components is often called Fourier analysis, while the operation of rebuilding the function from these pieces is known as Fourier synthesis. For example, determining what component frequencies are present in a musical note would involve computing the Fourier transform of a sampled musical note. One could then re-synthesize the same sound by including the frequency components as revealed in the Fourier analysis. In mathematics, the term Fourier analysis often refers to the study of both operations.",
+  "url": "https://en.wikipedia.org/wiki/Fourier_analysis",
+  "embedding": null,
+  "db_path": "kb_databases/fourier_analysis_66aca6ee.db",
+  "last_updated": 1743796485.5190651,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

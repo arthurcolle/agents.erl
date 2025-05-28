@@ -1,0 +1,14 @@
+{
+  "kb_id": "9b358d47-5f77-47f2-8efc-057c55632834",
+  "name": "Compressible flow",
+  "content": "Compressible flow (or gas dynamics) is the branch of fluid mechanics that deals with flows having significant changes in fluid density. While all flows are compressible, flows are usually treated as being incompressible when the Mach number (the ratio of the speed of the flow to the speed of sound) is smaller than 0.3 (since the density change due to velocity is about 5% in that case).[1] The study of compressible flow is relevant to high-speed aircraft, jet engines, rocket motors, high-speed entry into a planetary atmosphere, gas pipelines, commercial applications such as abrasive blasting, and many other fields. The study of gas dynamics is often associated with the flight of modern high-speed aircraft and atmospheric reentry of space-exploration vehicles; however, its origins lie with simpler machines. At the beginning of the 19th century, investigation into the behaviour of fired bullets led to improvement in the accuracy and capabilities of guns and artillery.[2] As the century progressed, inventors such as Gustaf de Laval advanced the field, while researchers such as Ernst Mach sought to understand the physical phenomena involved through experimentation.",
+  "url": "https://en.wikipedia.org/wiki/Compressible_flow",
+  "embedding": null,
+  "db_path": "kb_databases/compressible_flow_b3ca9395.db",
+  "last_updated": 1743796485.524686,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

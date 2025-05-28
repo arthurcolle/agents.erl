@@ -1,0 +1,14 @@
+{
+  "kb_id": "850da20f-ab1b-4245-b4f5-f98bca1e8880",
+  "name": "Cheminformatics",
+  "content": "Cheminformatics (also known as chemoinformatics) refers to the use of physical chemistry theory with computer and information science techniques\u2014so called \"in silico\" techniques\u2014in application to a range of descriptive and prescriptive problems in the field of chemistry, including in its applications to biology and related molecular fields. Such in silico techniques are used, for example, by pharmaceutical companies and in academic settings to aid and inform the process of drug discovery, for instance in the design of well-defined combinatorial libraries of synthetic compounds, or to assist in structure-based drug design. The methods can also be used in chemical and allied industries, and such fields as environmental science and pharmacology, where chemical processes are involved or studied.[1] Cheminformatics has been an active field in various guises since the 1970s and earlier, with activity in academic departments and commercial pharmaceutical research and development departments.[2][page needed][citation needed] The term chemoinformatics was defined in its application to drug discovery by F.K. Brown in 1998:[3]",
+  "url": "https://en.wikipedia.org/wiki/Cheminformatics",
+  "embedding": null,
+  "db_path": "kb_databases/cheminformatics_1ee9a11c.db",
+  "last_updated": 1743796485.056305,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

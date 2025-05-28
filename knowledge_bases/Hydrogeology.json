@@ -1,0 +1,14 @@
+{
+  "kb_id": "18a4fc8a-0c3e-4c89-9285-ed6650c0df0c",
+  "name": "Hydrogeology",
+  "content": "Hydrogeology (hydro- meaning water, and -geology meaning the study of the Earth) is the area of geology that deals with the distribution and movement of groundwater in the soil and rocks of the Earth's crust (commonly in aquifers). The terms groundwater hydrology, geohydrology, and hydrogeology are often used interchangeably, though hydrogeology is the most commonly used. Hydrogeology is the study of the laws governing the movement of subterranean water, the mechanical, chemical, and thermal interaction of this water with the porous solid, and the transport of energy, chemical constituents, and particulate matter by flow (Domenico and Schwartz, 1998). Groundwater engineering, another name for hydrogeology, is a branch of engineering which is concerned with groundwater movement and design of wells, pumps, and drains.[1] The main concerns in groundwater engineering include groundwater contamination, conservation of supplies, and water quality.[2] Wells are constructed for use in developing nations, as well as for use in developed nations in places which are not connected to a city water system. Wells are designed and maintained to uphold the integrity of the aquifer, and to prevent contaminants from reaching the groundwater. Controversy arises in the use of groundwater when its usage impacts surface water systems, or when human activity threatens the integrity of the local aquifer system.",
+  "url": "https://en.wikipedia.org/wiki/Hydrogeology",
+  "embedding": null,
+  "db_path": "kb_databases/hydrogeology_cfc6f1d5.db",
+  "last_updated": 1743796485.525436,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

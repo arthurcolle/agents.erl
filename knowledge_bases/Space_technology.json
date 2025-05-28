@@ -1,0 +1,14 @@
+{
+  "kb_id": "604ae02e-1728-4ba6-8d37-b7625cf02789",
+  "name": "Space technology",
+  "content": "Space technology is technology for use in outer space. Space technology includes space vehicles such as spacecraft, satellites, space stations and orbital launch vehicles; deep-space communication; in-space propulsion; and a wide variety of other technologies including support infrastructure equipment, and procedures. Many common everyday services for terrestrial use such as weather forecasting, remote sensing, satellite navigation systems, satellite television, and some long-distance communications systems critically rely on space infrastructure. Of the sciences, astronomy and Earth science benefit from space technology.[1] New technologies originating with or accelerated by space-related endeavors are often subsequently exploited in other economic activities. The first country on Earth to put any technology into space was the Soviet Union, formerly known as the \"Union of Soviet Socialist Republics\" (USSR). The USSR sent the Sputnik 1 satellite on October 4, 1957. It weighed about 83 kg (183 lb), and is believed to have orbited around the globe. Analysis of the radio signals was used to gather information about the electron density of the ionosphere, while temperature and pressure data was encoded in the duration of radio beeps.",
+  "url": "https://en.wikipedia.org/wiki/Space_technology",
+  "embedding": null,
+  "db_path": "kb_databases/space_technology_e49bed3d.db",
+  "last_updated": 1743796485.392096,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

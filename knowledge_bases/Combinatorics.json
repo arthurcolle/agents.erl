@@ -1,0 +1,14 @@
+{
+  "kb_id": "5eda2478-17c5-4c31-b351-88ca50a51d20",
+  "name": "Combinatorics",
+  "content": "Combinatorics is an area of mathematics primarily concerned with counting, both as a means and as an end to obtaining results, and certain properties of finite structures. It is closely related to many other areas of mathematics and has many applications ranging from logic to statistical physics and from evolutionary biology to computer science. Combinatorics is well known for the breadth of the problems it tackles. Combinatorial problems arise in many areas of pure mathematics, notably in algebra, probability theory, topology, and geometry,[1] as well as in its many application areas. Many combinatorial questions have historically been considered in isolation, giving an ad hoc solution to a problem arising in some mathematical context. In the later twentieth century, however, powerful and general theoretical methods were developed, making combinatorics into an independent branch of mathematics in its own right.[2] One of the oldest and most accessible parts of combinatorics is graph theory, which by itself has numerous natural connections to other areas. Combinatorics is used frequently in computer science to obtain formulas and estimates in the analysis of algorithms.",
+  "url": "https://en.wikipedia.org/wiki/Combinatorics",
+  "embedding": null,
+  "db_path": "kb_databases/combinatorics_6c2f06ae.db",
+  "last_updated": 1743796485.509226,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "fa169a20-e38c-41a1-b3de-7ab2a6327e7f",
+  "name": "Indexer",
+  "content": "A bibliographic index is a bibliography intended to help find a publication. Citations are usually listed by author and subject in separate sections, or in a single alphabetical sequence under a system of authorized headings collectively known as controlled vocabulary, developed over time by the indexing service.[1] Indexes of this kind are issued in print periodical form (issued in monthly or quarterly paperback supplements, cumulated annually), online, or both. Since the 1970s, they are typically generated as output from bibliographic databases (whereas earlier they were manually compiled using index cards). \"From many points of view an index is synonymous with a catalogue, the principles of analysis used being identical, but whereas an index entry merely locates a subject, a catalogue entry includes descriptive specification of a document concerned with the subject\".[2] The index may help search the literature of, for example, an academic field or discipline (example: Philosopher's Index), to works of a specific literary form (Biography Index) or published in a specific format (Newspaper Abstracts), or to the analyzed contents of a serial publication (New York Times Index).",
+  "url": "https://en.wikipedia.org/wiki/Bibliographic_index",
+  "embedding": null,
+  "db_path": "kb_databases/indexer_84f20020.db",
+  "last_updated": 1743796485.534344,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

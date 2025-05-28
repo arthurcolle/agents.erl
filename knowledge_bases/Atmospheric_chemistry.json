@@ -1,0 +1,14 @@
+{
+  "kb_id": "b86054ec-62e2-4f88-80b8-bcda542dce6b",
+  "name": "Atmospheric chemistry",
+  "content": "Atmospheric chemistry is a branch of atmospheric science that studies the chemistry of the Earth's atmosphere and that of other planets. This multidisciplinary approach of research draws on environmental chemistry, physics, meteorology, computer modeling, oceanography, geology and volcanology, climatology and other disciplines to understand both natural and human-induced changes in atmospheric composition. Key areas of research include the behavior of trace gasses, the formation of pollutants, and the role of aerosols and greenhouse gasses. Through a combination of observations, laboratory experiments, and computer modeling, atmospheric chemists investigate the causes and consequences of atmospheric changes. The composition and chemistry of the Earth's atmosphere is important for several reasons, but primarily because of the interactions between the atmosphere and living organisms. Natural processes such as volcano emissions, lightning and bombardment by solar particles from corona changes the composition of the Earth's atmosphere. It has also been changed by human activity and some of these changes are harmful to human health, crops and ecosystems.",
+  "url": "https://en.wikipedia.org/wiki/Atmospheric_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/atmospheric_chemistry_202fead7.db",
+  "last_updated": 1743796485.520628,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

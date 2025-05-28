@@ -1,0 +1,14 @@
+{
+  "kb_id": "e2d99e4e-336a-495d-87b4-920417fb24f2",
+  "name": "Mathematical optimization",
+  "content": "Mathematical optimization (alternatively spelled optimisation) or mathematical programming is the selection of a best element, with regard to some criteria, from some set of available alternatives.[1][2] It is generally divided into two subfields: discrete optimization and continuous optimization. Optimization problems arise in all quantitative disciplines from computer science and engineering[3] to operations research and economics, and the development of solution methods has been of interest in mathematics for centuries.[4][5] In the more general approach, an optimization problem consists of maximizing or minimizing a real function by systematically choosing input values from within an allowed set and computing the value of the function. The generalization of optimization theory and techniques to other formulations constitutes a large area of applied mathematics.[6] Optimization problems can be divided into two categories, depending on whether the variables are continuous or discrete:",
+  "url": "https://en.wikipedia.org/wiki/Mathematical_optimization",
+  "embedding": null,
+  "db_path": "kb_databases/mathematical_optimization_3f9b5105.db",
+  "last_updated": 1743796485.121365,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

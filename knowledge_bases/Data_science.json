@@ -1,0 +1,14 @@
+{
+  "kb_id": "63aecf78-c170-4d7e-952d-663bdc9a0354",
+  "name": "Data science",
+  "content": "Data science is an interdisciplinary academic field[1] that uses statistics, scientific computing, scientific methods, processing, scientific visualization, algorithms and systems to extract or extrapolate knowledge from potentially noisy, structured, or unstructured data.[2] Data science also integrates domain knowledge from the underlying application domain (e.g., natural sciences, information technology, and medicine).[3] Data science is multifaceted and can be described as a science, a research paradigm, a research method, a discipline, a workflow, and a profession.[4] Data science is \"a concept to unify statistics, data analysis, informatics, and their related methods\" to \"understand and analyze actual phenomena\" with data.[5] It uses techniques and theories drawn from many fields within the context of mathematics, statistics, computer science, information science, and domain knowledge.[6] However, data science is different from computer science and information science. Turing Award winner Jim Gray imagined data science as a \"fourth paradigm\" of science (empirical, theoretical, computational, and now data-driven) and asserted that \"everything about science is changing because of the impact of information technology\" and the data deluge.[7][8]",
+  "url": "https://en.wikipedia.org/wiki/Data_science",
+  "embedding": null,
+  "db_path": "kb_databases/data_science_473a7b10.db",
+  "last_updated": 1743796485.5115058,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

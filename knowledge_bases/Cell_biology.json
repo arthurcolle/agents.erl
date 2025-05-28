@@ -1,0 +1,14 @@
+{
+  "kb_id": "d5b6f02a-d6bf-40a2-b11e-574b6a8ad8d6",
+  "name": "Cell biology",
+  "content": "Cell biology (also cellular biology or cytology) is a branch of biology that studies the structure, function, and behavior of cells.[1][2] All living organisms are made of cells. A cell is the basic unit of life that is responsible for the living and functioning of organisms.[3] Cell biology is the study of the structural and functional units of cells. Cell biology encompasses both prokaryotic and eukaryotic cells and has many subtopics which may include the study of cell metabolism, cell communication, cell cycle, biochemistry, and cell composition. The study of cells is performed using several microscopy techniques, cell culture, and cell fractionation. These have allowed for and are currently being used for discoveries and research pertaining to how cells function, ultimately giving insight into understanding larger organisms. Knowing the components of cells and how cells work is fundamental to all biological sciences while also being essential for research in biomedical fields such as cancer, and other diseases. Research in cell biology is interconnected to other fields such as genetics, molecular genetics, molecular biology, medical microbiology, immunology, and cytochemistry.",
+  "url": "https://en.wikipedia.org/wiki/Cell_biology",
+  "embedding": null,
+  "db_path": "kb_databases/cell_biology_d150d93d.db",
+  "last_updated": 1743796485.514303,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

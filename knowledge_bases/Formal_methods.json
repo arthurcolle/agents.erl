@@ -1,0 +1,14 @@
+{
+  "kb_id": "fe3ebaa0-c789-46e3-9e16-793699a21d82",
+  "name": "Formal methods",
+  "content": "In computer science, formal methods are mathematically rigorous techniques for the specification, development, analysis, and verification of software and hardware systems.[1] The use of formal methods for software and hardware design is motivated by the expectation that, as in other engineering disciplines, performing appropriate mathematical analysis can contribute to the reliability and robustness of a design.[2] Formal methods employ a variety of theoretical computer science fundamentals, including logic calculi, formal languages, automata theory, control theory, program semantics, type systems, and type theory.[3] Formal methods can be applied at various points through the development process. Formal methods may be used to give a formal description of the system to be developed, at whatever level of detail desired. Further formal methods may depend on this specification to synthesize a program or to verify the correctness of a system. Alternatively, specification may be the only stage in which formal methods is used. By writing a specification, ambiguities in the informal requirements can be discovered and resolved. Additionally, engineers can use a formal specification as a reference to guide their development processes.[4]",
+  "url": "https://en.wikipedia.org/wiki/Formal_methods",
+  "embedding": null,
+  "db_path": "kb_databases/formal_methods_63218503.db",
+  "last_updated": 1743796484.819128,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

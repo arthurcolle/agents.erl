@@ -1,0 +1,14 @@
+{
+  "kb_id": "5b13e9d5-b1c2-4f46-bccb-8d114d4c81b9",
+  "name": "p-adic analysis",
+  "content": "In mathematics, p-adic analysis is a branch of number theory that deals with the mathematical analysis of functions of p-adic numbers. The theory of complex-valued numerical functions on the p-adic numbers is part of the theory of locally compact groups. The usual meaning taken for p-adic analysis is the theory of p-adic-valued functions on spaces of interest. Applications of p-adic analysis have mainly been in number theory, where it has a significant role in diophantine geometry and diophantine approximation. Some applications have required the development of p-adic functional analysis and spectral theory. In many ways p-adic analysis is less subtle than classical analysis, since the ultrametric inequality means, for example, that convergence of infinite series of p-adic numbers is much simpler. Topological vector spaces over p-adic fields show distinctive features; for example aspects relating to convexity and the Hahn\u2013Banach theorem are different. Ostrowski's theorem, due to Alexander Ostrowski (1916), states that every non-trivial absolute value on the rational numbers Q is equivalent to either the usual real absolute value or a p-adic absolute value.[1]",
+  "url": "https://en.wikipedia.org/wiki/P-adic_analysis",
+  "embedding": null,
+  "db_path": "kb_databases/p-adic_analysis_13d19ae5.db",
+  "last_updated": 1743796485.0627499,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

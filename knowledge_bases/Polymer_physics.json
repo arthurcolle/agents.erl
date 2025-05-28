@@ -1,0 +1,14 @@
+{
+  "kb_id": "ed10d9ef-44cf-4282-963e-35fb18340bd9",
+  "name": "Polymer physics",
+  "content": "Polymer physics is the field of physics that studies polymers, their fluctuations, mechanical properties, as well as the kinetics of reactions involving degradation of polymers and polymerisation of monomers.[1][2][3][4] While it focuses on the perspective of condensed matter physics, polymer physics was originally a branch of statistical physics. Polymer physics and polymer chemistry are also related to the field of polymer science, which is considered to be the applicative part of polymers. Polymers are large molecules and thus are very complicated for solving using a deterministic method. Yet, statistical approaches can yield results and are often pertinent, since large polymers (i.e., polymers with many monomers) are describable efficiently in the thermodynamic limit of infinitely many monomers (although the actual size is clearly finite). Thermal fluctuations continuously affect the shape of polymers in liquid solutions, and modeling their effect requires the use of principles from statistical mechanics and dynamics. As a corollary, temperature strongly affects the physical behavior of polymers in solution, causing phase transitions, melts, and so on.",
+  "url": "https://en.wikipedia.org/wiki/Polymer_physics",
+  "embedding": null,
+  "db_path": "kb_databases/polymer_physics_54fa1729.db",
+  "last_updated": 1743796485.4992409,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

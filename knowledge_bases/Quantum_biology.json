@@ -1,0 +1,14 @@
+{
+  "kb_id": "e876ec83-bb8d-49be-8c94-544638b11afe",
+  "name": "Quantum biology",
+  "content": "Quantum biology is the study of applications of quantum mechanics and theoretical chemistry to aspects of biology that cannot be accurately described by the classical laws of physics.[1] An understanding of fundamental quantum interactions is important because they determine the properties of the next level of organization in biological systems. Many biological processes involve the conversion of energy into forms that are usable for chemical transformations, and are quantum mechanical in nature. Such processes involve chemical reactions, light absorption, formation of excited electronic states, transfer of excitation energy, and the transfer of electrons and protons (hydrogen ions) in chemical processes, such as photosynthesis, olfaction and cellular respiration.[2] Moreover, quantum biology may use computations to model biological interactions in light of quantum mechanical effects.[3] Quantum biology is concerned with the influence of non-trivial quantum phenomena,[4] which can be explained by reducing the biological process to fundamental physics, although these effects are difficult to study and can be speculative.[5]",
+  "url": "https://en.wikipedia.org/wiki/Quantum_biology",
+  "embedding": null,
+  "db_path": "kb_databases/quantum_biology_541c86bd.db",
+  "last_updated": 1743796484.93859,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

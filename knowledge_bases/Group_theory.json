@@ -1,0 +1,14 @@
+{
+  "kb_id": "aac141e7-6b19-4478-bc82-f9a2dbfcbcf1",
+  "name": "Group theory",
+  "content": "In abstract algebra, group theory studies the algebraic structures known as groups. The concept of a group is central to abstract algebra: other well-known algebraic structures, such as rings, fields, and vector spaces, can all be seen as groups endowed with additional operations and axioms. Groups recur throughout mathematics, and the methods of group theory have influenced many parts of algebra. Linear algebraic groups and Lie groups are two branches of group theory that have experienced advances and have become subject areas in their own right. Various physical systems, such as crystals and the hydrogen atom, and three of the four known fundamental forces in the universe, may be modelled by symmetry groups. Thus group theory and the closely related representation theory have many important applications in physics, chemistry, and materials science. Group theory is also central to public key cryptography. The early history of group theory dates from the 19th century. One of the most important mathematical achievements of the 20th century[1] was the collaborative effort, taking up more than 10,000 journal pages and mostly published between 1960 and 2004, that culminated in a complete classification of finite simple groups.",
+  "url": "https://en.wikipedia.org/wiki/Group_theory",
+  "embedding": null,
+  "db_path": "kb_databases/group_theory_65b4290d.db",
+  "last_updated": 1743796485.516178,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

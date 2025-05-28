@@ -1,0 +1,14 @@
+{
+  "kb_id": "b7ccd9a1-8502-433d-b514-2cf66766804e",
+  "name": "Outline of logic",
+  "content": "Logic is the formal science of using reason and is considered a branch of both philosophy and mathematics and to a lesser extent computer science. Logic investigates and classifies the structure of statements and arguments, both through the study of formal systems of inference and the study of arguments in natural language. The scope of logic can therefore be very large, ranging from core topics such as the study of fallacies and paradoxes, to specialized analyses of reasoning such as probability, correct reasoning, and arguments involving causality. One of the aims of logic is to identify the correct (or valid) and incorrect (or fallacious) inferences. Logicians study the criteria for the evaluation of arguments. Philosophy of logic Informal logic Critical thinking Argumentation theory Logical connective Proposition Rule of inference (list) Metalanguage Propositional logic Predicate logic Mathematical relation Mathematical logic Set theory (list) Metalogic \u2013 The study of the metatheory of logic.",
+  "url": "https://en.wikipedia.org/wiki/Outline_of_logic",
+  "embedding": null,
+  "db_path": "kb_databases/outline_of_logic_ec8ea2d9.db",
+  "last_updated": 1743796485.527494,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

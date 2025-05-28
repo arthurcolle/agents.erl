@@ -1,0 +1,14 @@
+{
+  "kb_id": "0222298b-6239-4c73-8e1c-28856f3fe132",
+  "name": "User experience evaluation",
+  "content": "User experience evaluation (UXE) or user experience assessment (UXA) refers to a collection of methods, skills and tools utilized to uncover how a person perceives a system (product, service, non-commercial item, or a combination of them) before, during and after interacting with it. It is non-trivial to assess user experience since user experience is subjective, context-dependent and dynamic over time.[1] For a UXA study to be successful, the researcher has to select the right dimensions, constructs, and methods and target the research for the specific area of interest such as game, transportation, mobile, etc. There are many different dimensions to consider when choosing the best assessment approach: Laboratory experiments may work well for studying a specific aspect of user experience, but holistic user experience is optimally studied over a longer period of time with real users in a natural environment. In all cases, however, there are certain aspects of user experience that researchers are interested in (measures), and certain procedures and techniques used for collecting the data (methods). There are many measures and some high-level constructs of user experience that can be used as the basis for defining the user experience measures, for example:",
+  "url": "https://en.wikipedia.org/wiki/User_experience_evaluation",
+  "embedding": null,
+  "db_path": "kb_databases/user_experience_evaluation_68d02588.db",
+  "last_updated": 1743796485.539296,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

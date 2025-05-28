@@ -1,0 +1,14 @@
+{
+  "kb_id": "4aad30cf-abc6-4850-905b-100707584102",
+  "name": "Topology",
+  "content": "Topology (from the Greek words \u03c4\u03cc\u03c0\u03bf\u03c2, 'place, location', and \u03bb\u03cc\u03b3\u03bf\u03c2, 'study') is the branch of mathematics concerned with the properties of a geometric object that are preserved under continuous deformations, such as stretching, twisting, crumpling, and bending; that is, without closing holes, opening holes, tearing, gluing, or passing through itself. A topological space is a set endowed with a structure, called a topology, which allows defining continuous deformation of subspaces, and, more generally, all kinds of continuity. Euclidean spaces, and, more generally, metric spaces are examples of topological spaces, as any distance or metric defines a topology. The deformations that are considered in topology are homeomorphisms and homotopies. A property that is invariant under such deformations is a topological property. The following are basic examples of topological properties: the dimension, which allows distinguishing between a line and a surface; compactness, which allows distinguishing between a line and a circle; connectedness, which allows distinguishing a circle from two non-intersecting circles.",
+  "url": "https://en.wikipedia.org/wiki/Topology",
+  "embedding": null,
+  "db_path": "kb_databases/topology_99571eec.db",
+  "last_updated": 1743796485.5378182,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

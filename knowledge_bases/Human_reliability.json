@@ -1,0 +1,14 @@
+{
+  "kb_id": "195af4be-ca3b-43b9-8caf-bc8f2066f282",
+  "name": "Human reliability",
+  "content": "In the field of human factors and ergonomics, human reliability (also known as human performance or HU) is the probability that a human performs a task to a sufficient standard.[1] Reliability of humans can be affected by many factors such as age, physical health, mental state, attitude, emotions, personal propensity for certain mistakes, and cognitive biases. Human reliability is important to the resilience of socio-technical systems, and has implications for fields like manufacturing, medicine and nuclear power. Attempts made to decrease human error and increase reliability in human interaction with technology include user-centered design and error-tolerant design. Human error, human performance, and human reliability are especially important to consider when work is performed in a complex and high-risk environment.[2] Strategies for dealing with performance-shaping factors such as psychological stress, cognitive load, fatigue include heuristics and biases such as confirmation bias, availability heuristic, and frequency bias.",
+  "url": "https://en.wikipedia.org/wiki/Human_reliability",
+  "embedding": null,
+  "db_path": "kb_databases/human_reliability_b522da31.db",
+  "last_updated": 1743796484.846108,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

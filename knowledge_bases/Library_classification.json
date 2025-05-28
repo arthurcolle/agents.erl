@@ -1,0 +1,14 @@
+{
+  "kb_id": "d0f3c90f-5741-468a-8716-c5e100a1ebea",
+  "name": "Library classification",
+  "content": "A library classification is a system used within a library to organize materials, including books, sound and video recordings, electronic materials, etc., both on shelves and in catalogs and indexes. Each item is typically assigned a call number, which identifies the location of the item within the system. Materials can be arranged by many different factors, typically in either a hierarchical tree structure based on the subject or using a faceted classification system, which allows the assignment of multiple classifications to an object, enabling the classifications to be ordered in many ways.[1] Library classification is an important and crucial aspect in library and information science. It is distinct from scientific classification in that it has as its goal to provide a useful ordering of documents rather than a theoretical organization of knowledge.[2] Although it has the practical purpose of creating a physical ordering of documents, it does generally attempt to adhere to accepted scientific knowledge.[3] Library classification helps to accommodate all the newly published literature in an already created order of arrangement in a filial sequence.[4]",
+  "url": "https://en.wikipedia.org/wiki/Library_classification",
+  "embedding": null,
+  "db_path": "kb_databases/library_classification_69202a9f.db",
+  "last_updated": 1743796485.5332758,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

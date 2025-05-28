@@ -1,0 +1,14 @@
+{
+  "kb_id": "57008d0b-5f2d-47be-b694-ad84c212783b",
+  "name": "Infrastructure",
+  "content": "Infrastructure is the set of facilities and systems that serve a country, city, or other area,[1] and encompasses the services and facilities necessary for its economy, households and firms to function.[2] Infrastructure is composed of public and private physical structures such as roads, railways, bridges, airports, public transit systems, tunnels, water supply, sewers, electrical grids, and telecommunications (including Internet connectivity and broadband access). In general, infrastructure has been defined as \"the physical components of interrelated systems providing commodities and services essential to enable, sustain, or enhance societal living conditions\" and maintain the surrounding environment.[3] Especially in light of the massive societal transformations needed to mitigate and adapt to climate change, contemporary infrastructure conversations frequently focus on sustainable development and green infrastructure. Acknowledging this importance, the international community has created policy focused on sustainable infrastructure through the Sustainable Development Goals, especially Sustainable Development Goal 9 \"Industry, Innovation and Infrastructure\".",
+  "url": "https://en.wikipedia.org/wiki/Infrastructure",
+  "embedding": null,
+  "db_path": "kb_databases/infrastructure_cba4f4ce.db",
+  "last_updated": 1743796485.554528,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

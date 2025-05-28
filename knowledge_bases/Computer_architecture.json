@@ -1,0 +1,14 @@
+{
+  "kb_id": "58b38fcf-4081-485b-bdf9-020472ac312a",
+  "name": "Computer architecture",
+  "content": "In computer science and computer engineering, computer architecture is a description of the structure of a computer system made from component parts.[1] It can sometimes be a high-level description that ignores details of the implementation.[2] At a more detailed level, the description may include the instruction set architecture design, microarchitecture design, logic design, and implementation.[3] The first documented computer architecture was in the correspondence between Charles Babbage and Ada Lovelace, describing the analytical engine. While building the computer Z1 in 1936, Konrad Zuse described in two patent applications for his future projects that machine instructions could be stored in the same storage used for data, i.e., the stored-program concept.[4][5] Two other early and important examples are: The term \"architecture\" in computer literature can be traced to the work of Lyle R. Johnson and Frederick P. Brooks, Jr., members of the Machine Organization department in IBM's main research center in 1959. Johnson had the opportunity to write a proprietary research communication about the Stretch, an IBM-developed supercomputer for Los Alamos National Laboratory (at the time known as Los Alamos Scientific Laboratory). To describe the level of detail for discussing the luxuriously embellished computer, he noted that his description of formats, instruction types, hardware parameters, and speed enhancements were at the level of \"system architecture\", a term that seemed more useful than \"machine organization\".[8]",
+  "url": "https://en.wikipedia.org/wiki/Computer_architecture",
+  "embedding": null,
+  "db_path": "kb_databases/computer_architecture_e76f5bce.db",
+  "last_updated": 1743796484.772011,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

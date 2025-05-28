@@ -1,0 +1,14 @@
+{
+  "kb_id": "f99b7993-9f19-46da-b3a7-b94cc34434b5",
+  "name": "Crystallography",
+  "content": "Crystallography is the branch of science devoted to the study of molecular and crystalline structure and properties.[1] The word crystallography is derived from the Ancient Greek word \u03ba\u03c1\u03cd\u03c3\u03c4\u03b1\u03bb\u03bb\u03bf\u03c2 (kr\u00fastallos; \"clear ice, rock-crystal\"), and \u03b3\u03c1\u03ac\u03c6\u03b5\u03b9\u03bd (gr\u00e1phein; \"to write\").[2] In July 2012, the United Nations recognised the importance of the science of crystallography by proclaiming 2014 the International Year of Crystallography.[3] Crystallography is a broad topic, and many of its subareas, such as X-ray crystallography, are themselves important scientific topics. Crystallography ranges from the fundamentals of crystal structure to the mathematics of crystal geometry, including those that are not periodic or quasicrystals. At the atomic scale it can involve the use of X-ray diffraction to produce experimental data that the tools of X-ray crystallography can convert into detailed positions of atoms, and sometimes electron density. At larger scales it includes experimental tools such as orientational imaging to examine the relative orientations at the grain boundary in materials. Crystallography plays a key role in many areas of biology, chemistry, and physics, as well new developments in these fields.",
+  "url": "https://en.wikipedia.org/wiki/Crystallography",
+  "embedding": null,
+  "db_path": "kb_databases/crystallography_c7eb964f.db",
+  "last_updated": 1743796484.773658,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

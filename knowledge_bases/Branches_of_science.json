@@ -1,0 +1,14 @@
+{
+  "kb_id": "e7e42d29-dc56-4d3f-91ac-d670c5422e4c",
+  "name": "Branches of science",
+  "content": "The branches of science, also referred to as sciences, scientific fields or scientific disciplines, are commonly divided into three major groups: Scientific knowledge must be grounded in observable phenomena and must be capable of being verified by other researchers working under the same conditions.[2] Natural, social, and formal science make up the fundamental sciences, which form the basis of interdisciplinarity - and applied sciences such as engineering and medicine. Specialized scientific disciplines that exist in multiple categories may include parts of other scientific disciplines but often possess their own terminologies and expertises.[3] The formal sciences are the branches of science that are concerned with formal systems, such as logic, mathematics, theoretical computer science, information theory, systems theory, decision theory, statistics. Unlike other branches, the formal sciences are not concerned with the validity of theories based on observations in the real world (empirical knowledge), but rather with the properties of formal systems based on definitions and rules. Hence there is disagreement on whether the formal sciences actually constitute as a science. Methods of the formal sciences are, however, essential to the construction and testing of scientific models dealing with observable reality,[4] and major advances in formal sciences have often enabled major advances in the empirical sciences.",
+  "url": "https://en.wikipedia.org/wiki/Branches_of_science",
+  "embedding": null,
+  "db_path": "kb_databases/branches_of_science_808f033d.db",
+  "last_updated": 1743796484.8982232,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

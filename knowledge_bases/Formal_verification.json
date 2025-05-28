@@ -1,0 +1,14 @@
+{
+  "kb_id": "4677c765-f555-4984-949b-9986bec58e2a",
+  "name": "Formal verification",
+  "content": "In the context of hardware and software systems, formal verification is the act of proving or disproving the correctness of a system with respect to a certain formal specification or property, using formal methods of mathematics.[1] Formal verification is a key incentive for formal specification of systems, and is at the core of formal methods. It represents an important dimension of analysis and verification in electronic design automation and is one approach to software verification. The use of formal verification enables the highest Evaluation Assurance Level (EAL7) in the framework of common criteria for computer security certification. Formal verification can be helpful in proving the correctness of systems such as: cryptographic protocols, combinational circuits, digital circuits with internal memory, and software expressed as source code in a programming language. Prominent examples of verified software systems include the CompCert verified C compiler and the seL4 high-assurance operating system kernel.",
+  "url": "https://en.wikipedia.org/wiki/Formal_verification",
+  "embedding": null,
+  "db_path": "kb_databases/formal_verification_19826ecb.db",
+  "last_updated": 1743796485.5345469,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

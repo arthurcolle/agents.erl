@@ -1,0 +1,14 @@
+{
+  "kb_id": "5303f6c1-c5ed-4436-a6ef-4196148a9103",
+  "name": "Non-standard analysis",
+  "content": "The history of calculus is fraught with philosophical debates about the meaning and logical validity of fluxions or infinitesimal numbers. The standard way to resolve these debates is to define the operations of calculus using limits rather than infinitesimals. Nonstandard analysis[1][2][3] instead reformulates the calculus using a logically rigorous notion of infinitesimal numbers. Nonstandard analysis originated in the early 1960s by the mathematician Abraham Robinson.[4][5] He wrote: ... the idea of infinitely small or infinitesimal quantities seems to appeal naturally to our intuition. At any rate, the use of infinitesimals was widespread during the formative stages of the Differential and Integral Calculus. As for the objection ... that the distance between two distinct real numbers cannot be infinitely small, Gottfried Wilhelm Leibniz argued that the theory of infinitesimals implies the introduction of ideal numbers which might be infinitely small or infinitely large compared with the real numbers but which were to possess the same properties as the latter.",
+  "url": "https://en.wikipedia.org/wiki/Non-standard_analysis",
+  "embedding": null,
+  "db_path": "kb_databases/non-standard_analysis_1908ce41.db",
+  "last_updated": 1743796485.542807,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

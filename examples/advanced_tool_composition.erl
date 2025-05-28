@@ -10,7 +10,8 @@
     security_audit_chain/2,
     infrastructure_automation/2,
     knowledge_extraction_pipeline/2,
-    real_time_monitoring_system/2
+    real_time_monitoring_system/2,
+    code_analysis_pipeline/0
 ]).
 
 %% @doc Advanced code analysis pipeline with multiple tool stages
@@ -45,8 +46,8 @@ code_analysis_pipeline(ProjectPath, Options) ->
     }.
 
 %% @doc Autonomous debugging session with intelligent tool selection
--spec autonomous_debugging_session(binary(), binary()) -> {ok, map()} | {error, term()}.
-autonomous_debugging_session(ErrorDescription, CodePath) ->
+-spec autonomous_debugging_session(binary(), binary(), map()) -> {ok, map()} | {error, term()}.
+autonomous_debugging_session(ErrorDescription, CodePath, _Options) ->
     io:format("Starting autonomous debugging session~n"),
     
     % Phase 1: Error analysis and classification
@@ -505,5 +506,15 @@ validate_fixes(Suggestions, CodePath) ->
 apply_best_fix(ValidationResults) ->
     % Apply the best validated fix
     {ok, <<"Fix applied">>}.
+
+%% Example wrapper functions for web interface
+code_analysis_pipeline() ->
+    try
+        Result = #{project => <<"/tmp/sample_project">>, files_analyzed => 25, issues_found => 3, status => completed},
+        #{status => success, result => Result}
+    catch
+        Error:Reason ->
+            #{status => error, error => Error, reason => Reason}
+    end.
 
 % Many more helper implementations would follow...

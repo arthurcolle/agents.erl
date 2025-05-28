@@ -1,0 +1,14 @@
+{
+  "kb_id": "5836a366-ef70-4c4d-8ce4-881eac75c358",
+  "name": "Convex geometry",
+  "content": "In mathematics, convex geometry is the branch of geometry studying convex sets, mainly in Euclidean space. Convex sets occur naturally in many areas: computational geometry, convex analysis, discrete geometry, functional analysis, geometry of numbers, integral geometry, linear programming, probability theory, game theory, etc. According to the Mathematics Subject Classification MSC2010,[1] the mathematical discipline Convex and Discrete Geometry includes three major branches:[2] (though only portions of the latter two are included in convex geometry). General convexity is further subdivided as follows:[3] Convex geometry is a relatively young mathematical discipline. Although the first known contributions to convex geometry date back to antiquity and can be traced in the works of Euclid and Archimedes, it became an independent branch of mathematics at the turn of the 20th century, mainly due to the works of Hermann Brunn and Hermann Minkowski in dimensions two and three. A big part of their results was soon generalized to spaces of higher dimensions, and in 1934 T. Bonnesen and W. Fenchel gave a comprehensive survey of convex geometry in Euclidean space Rn. Further development of convex geometry in the 20th century and its relations to numerous mathematical disciplines are summarized in the Handbook of convex geometry edited by P. M. Gruber and J. M. Wills.",
+  "url": "https://en.wikipedia.org/wiki/Convex_geometry",
+  "embedding": null,
+  "db_path": "kb_databases/convex_geometry_1a43fed5.db",
+  "last_updated": 1743796485.092439,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

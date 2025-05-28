@@ -1,0 +1,14 @@
+{
+  "kb_id": "d3d87598-75c5-45ec-8910-d90ac719ffd1",
+  "name": "Distributed database",
+  "content": "A distributed database is a database in which data is stored across different physical locations.[1] It may be stored in multiple computers located in the same physical location (e.g. a data centre); or maybe dispersed over a network of interconnected computers. Unlike parallel systems, in which the processors are tightly coupled and constitute a single database system, a distributed database system consists of loosely coupled sites that share no physical components. System administrators can distribute collections of data (e.g. in a database) across multiple physical locations. A distributed database can reside on organised network servers or decentralised independent computers on the Internet, on corporate intranets or extranets, or on other organisation networks. Because distributed databases store data across multiple computers, distributed databases may improve performance at end-user worksites by allowing transactions to be processed on many machines, instead of being limited to one.[2]",
+  "url": "https://en.wikipedia.org/wiki/Distributed_database",
+  "embedding": null,
+  "db_path": "kb_databases/distributed_database_801b9f30.db",
+  "last_updated": 1743796485.5601,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

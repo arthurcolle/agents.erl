@@ -1,0 +1,14 @@
+{
+  "kb_id": "3e5250d3-9f69-4041-b11e-d893699d883b",
+  "name": "Pure mathematics",
+  "content": "Pure mathematics is the study of mathematical concepts independently of any application outside mathematics. These concepts may originate in real-world concerns, and the results obtained may later turn out to be useful for practical applications, but pure mathematicians are not primarily motivated by such applications. Instead, the appeal is attributed to the intellectual challenge and aesthetic beauty of working out the logical consequences of basic principles. While pure mathematics has existed as an activity since at least ancient Greece, the concept was elaborated upon around the year 1900,[2] after the introduction of theories with counter-intuitive properties (such as non-Euclidean geometries and Cantor's theory of infinite sets), and the discovery of apparent paradoxes (such as continuous functions that are nowhere differentiable, and Russell's paradox). This introduced the need to renew the concept of mathematical rigor and rewrite all mathematics accordingly, with a systematic use of axiomatic methods. This led many mathematicians to focus on mathematics for its own sake, that is, pure mathematics.",
+  "url": "https://en.wikipedia.org/wiki/Pure_mathematics",
+  "embedding": null,
+  "db_path": "kb_databases/pure_mathematics_8cef3a26.db",
+  "last_updated": 1743796485.013271,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

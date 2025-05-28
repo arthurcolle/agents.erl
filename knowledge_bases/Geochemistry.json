@@ -1,0 +1,14 @@
+{
+  "kb_id": "0ed0a1e4-0493-4e7d-97f7-dbed8559ae09",
+  "name": "Geochemistry",
+  "content": "Geochemistry is the science that uses the tools and principles of chemistry to explain the mechanisms behind major geological systems such as the Earth's crust and its oceans.[1]: 1 The realm of geochemistry extends beyond the Earth, encompassing the entire Solar System,[2] and has made important contributions to the understanding of a number of processes including mantle convection, the formation of planets and the origins of granite and basalt.[1]: 1 It is an integrated field of chemistry and geology. The term geochemistry was first used by the Swiss-German chemist Christian Friedrich Sch\u00f6nbein in 1838: \"a comparative geochemistry ought to be launched, before geognosy can become geology, and before the mystery of the genesis of our planets and their inorganic matter may be revealed.\"[3] However, for the rest of the century the more common term was \"chemical geology\", and there was little contact between geologists and chemists.[3] Geochemistry emerged as a separate discipline after major laboratories were established, starting with the United States Geological Survey (USGS) in 1884, which began systematic surveys of the chemistry of rocks and minerals. The chief USGS chemist, Frank Wigglesworth Clarke, noted that the elements generally decrease in abundance as their atomic weights increase, and summarized the work on elemental abundance in The Data of Geochemistry.[3][4]: 2",
+  "url": "https://en.wikipedia.org/wiki/Geochemistry",
+  "embedding": null,
+  "db_path": "kb_databases/geochemistry_4720e7a5.db",
+  "last_updated": 1743796485.0692182,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

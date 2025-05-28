@@ -1,0 +1,14 @@
+{
+  "kb_id": "75c8ad69-ee45-4ad8-bb34-7727ca4a219d",
+  "name": "Digital physics",
+  "content": "Digital physics is a speculative idea suggesting that the universe can be conceived of as a vast, digital computation device, or as the output of a deterministic or probabilistic computer program.[1] The hypothesis that the universe is a digital computer was proposed by Konrad Zuse in his 1969 book Rechnender Raum[2] (\"Calculating-space\").[3] The term digital physics was coined in 1978 by Edward Fredkin,[4] who later came to prefer the term digital philosophy.[5] Fredkin encouraged the establishment of a digital physics group at what was then MIT's Laboratory for Computer Science, with Tommaso Toffoli and Norman Margolus playing key roles. Digital physics posits that there exists, at least in principle, a program for a universal computer that computes the evolution of the universe. The computer could be, for example, a huge cellular automaton.[1][6] It is deeply connected to the concept of information theory, particularly the idea that the universe's fundamental building blocks might be bits of information rather than traditional particles or fields.",
+  "url": "https://en.wikipedia.org/wiki/Digital_physics",
+  "embedding": null,
+  "db_path": "kb_databases/digital_physics_e375889c.db",
+  "last_updated": 1743796485.1906612,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

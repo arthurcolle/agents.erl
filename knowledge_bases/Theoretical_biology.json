@@ -1,0 +1,14 @@
+{
+  "kb_id": "1844ebf4-e4e1-4445-a801-49eed29d3bf8",
+  "name": "Theoretical biology",
+  "content": "Mathematical and theoretical biology, or biomathematics, is a branch of biology which employs theoretical analysis, mathematical models and abstractions of living organisms to investigate the principles that govern the structure, development and behavior of the systems, as opposed to experimental biology which deals with the conduction of experiments to test scientific theories.[1] The field is sometimes called mathematical biology or biomathematics to stress the mathematical side, or theoretical biology to stress the biological side.[2] Theoretical biology focuses more on the development of theoretical principles for biology while mathematical biology focuses on the use of mathematical tools to study biological systems, even though the two terms are sometimes interchanged.[3][4] Mathematical biology aims at the mathematical representation and modeling of biological processes, using techniques and tools of applied mathematics. It can be useful in both theoretical and practical research. Describing systems in a quantitative manner means their behavior can be better simulated, and hence properties can be predicted that might not be evident to the experimenter. This requires precise mathematical models.",
+  "url": "https://en.wikipedia.org/wiki/Theoretical_biology",
+  "embedding": null,
+  "db_path": "kb_databases/theoretical_biology_2941af34.db",
+  "last_updated": 1743796484.955359,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

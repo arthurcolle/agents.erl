@@ -1,0 +1,14 @@
+{
+  "kb_id": "9769a593-65e2-4374-b391-9c14b69c6551",
+  "name": "Vehicle dynamics",
+  "content": "Vehicle dynamics is the study of vehicle motion, e.g., how a vehicle's forward movement changes in response to driver inputs, propulsion system outputs, ambient conditions, air/surface/water conditions, etc. Vehicle dynamics is a part of engineering primarily based on classical mechanics. It may be applied for motorized vehicles (such as automobiles), bicycles and motorcycles, aircraft, and watercraft. The aspects of a vehicle's design which affect the dynamics can be grouped into drivetrain and braking, suspension and steering, distribution of mass, aerodynamics and tires. Some attributes relate to the geometry of the suspension, steering and chassis. These include: Some attributes or aspects of vehicle dynamics are purely due to mass and its distribution. These include: Some attributes or aspects of vehicle dynamics are purely aerodynamic. These include: Some attributes or aspects of vehicle dynamics can be attributed directly to the tires. These include: Some attributes or aspects of vehicle dynamics are purely dynamic. These include:",
+  "url": "https://en.wikipedia.org/wiki/Vehicle_dynamics",
+  "embedding": null,
+  "db_path": "kb_databases/vehicle_dynamics_d25531f6.db",
+  "last_updated": 1743796485.565707,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

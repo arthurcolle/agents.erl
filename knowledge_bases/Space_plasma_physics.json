@@ -1,0 +1,14 @@
+{
+  "kb_id": "7bdfd00e-76f4-4c38-893b-382d5c40917c",
+  "name": "Space plasma physics",
+  "content": "Space physics, also known as space plasma physics, is the study of naturally occurring plasmas within Earth's upper atmosphere and the rest of the Solar System. It includes the topics of aeronomy, aurorae, planetary ionospheres and magnetospheres, radiation belts, and space weather (collectively known as solar-terrestrial physics[1]). It also encompasses the discipline of heliophysics, which studies the solar physics of the Sun, its solar wind, the coronal heating problem, solar energetic particles, and the heliosphere. Space physics is both a pure science and an applied science, with applications in radio transmission, spacecraft operations (particularly communications and weather satellites), and in meteorology. Important physical processes in space physics include magnetic reconnection, synchrotron radiation, ring currents, Alfv\u00e9n waves and plasma instabilities. It is studied using direct in situ measurements by sounding rockets and spacecraft,[2] indirect remote sensing of electromagnetic radiation produced by the plasmas, and theoretical magnetohydrodynamics.",
+  "url": "https://en.wikipedia.org/wiki/Space_plasma_physics",
+  "embedding": null,
+  "db_path": "kb_databases/space_plasma_physics_39ca73be.db",
+  "last_updated": 1743796485.5306702,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "0fc72201-413e-4310-9f01-0d51c80ce471",
+  "name": "Operations research",
+  "content": "Operations research (British English: operational research) (U.S. Air Force Specialty Code: Operations Analysis), often shortened to the initialism OR, is a branch of applied mathematics that deals with the development and application of analytical methods to improve management and decision-making.[1][2] Although the term management science is sometimes used similarly, the two fields differ in their scope and emphasis. Employing techniques from other mathematical sciences, such as modeling, statistics, and optimization, operations research arrives at optimal or near-optimal solutions to decision-making problems. Because of its emphasis on practical applications, operations research has overlapped with many other disciplines, notably industrial engineering. Operations research is often concerned with determining the extreme values of some real-world objective: the maximum (of profit, performance, or yield) or minimum (of loss, risk, or cost). Originating in military efforts before World War II, its techniques have grown to concern problems in a variety of industries.[3]",
+  "url": "https://en.wikipedia.org/wiki/Operations_research",
+  "embedding": null,
+  "db_path": "kb_databases/operations_research_bdca6741.db",
+  "last_updated": 1743796485.119317,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

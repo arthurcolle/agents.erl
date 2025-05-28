@@ -1,0 +1,14 @@
+{
+  "kb_id": "81cf6c5b-702a-4fb2-9f86-9e68f572ed05",
+  "name": "Computational biology (bioinformatics)",
+  "content": "Computational biology refers to the use of techniques in computer science, data analysis, mathematical modeling and computational simulations to understand biological systems and relationships.[1] An intersection of computer science, biology, and data science, the field also has foundations in applied mathematics, molecular biology, cell biology, chemistry, and genetics.[2] Bioinformatics, the analysis of informatics processes in biological systems, began in the early 1970s. At this time, research in artificial intelligence was using network models of the human brain in order to generate new algorithms. This use of biological data pushed biological researchers to use computers to evaluate and compare large data sets in their own field.[3] By 1982, researchers shared information via punch cards. The amount of data grew exponentially by the end of the 1980s, requiring new computational methods for quickly interpreting relevant information.[3] Perhaps the best-known example of computational biology, the Human Genome Project, officially began in 1990.[4] By 2003, the project had mapped around 85% of the human genome, satisfying its initial goals.[5] Work continued, however, and by 2021 level \" a complete genome\" was reached with only 0.3% remaining bases covered by potential issues.[6][7] The missing Y chromosome was added in January 2022.",
+  "url": "https://en.wikipedia.org/wiki/Computational_biology",
+  "embedding": null,
+  "db_path": "kb_databases/computational_biology_(bioinformatics)_dc204b87.db",
+  "last_updated": 1743796484.937423,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

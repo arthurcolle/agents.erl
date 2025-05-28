@@ -1,0 +1,14 @@
+{
+  "kb_id": "475edac5-67b1-495d-8da3-c093032c5fd5",
+  "name": "Marine chemistry",
+  "content": "Marine chemistry, also known as ocean chemistry or chemical oceanography, is the study of the chemical composition and processes of the world\u2019s oceans, including the interactions between seawater, the atmosphere, the seafloor, and marine organisms.[2] This field encompasses a wide range of topics, such as the cycling of elements like carbon, nitrogen, and phosphorus, the behavior of trace metals, and the study of gases and nutrients in marine environments. Marine chemistry plays a crucial role in understanding global biogeochemical cycles, ocean circulation, and the effects of human activities, such as pollution and climate change, on oceanic systems.[2] It is influenced by plate tectonics and seafloor spreading, turbidity, currents, sediments, pH levels, atmospheric constituents, metamorphic activity, and ecology. The impact of human activity on the chemistry of the Earth's oceans has increased over time, with pollution from industry and various land-use practices significantly affecting the oceans. Moreover, increasing levels of carbon dioxide in the Earth's atmosphere have led to ocean acidification, which has negative effects on marine ecosystems. The international community has agreed that restoring the chemistry of the oceans is a priority, and efforts toward this goal are tracked as part of Sustainable Development Goal 14.",
+  "url": "https://en.wikipedia.org/wiki/Marine_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/marine_chemistry_283a3e9b.db",
+  "last_updated": 1743796485.5374668,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

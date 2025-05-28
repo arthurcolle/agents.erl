@@ -1,0 +1,14 @@
+{
+  "kb_id": "7e56ddaa-f73e-4c35-94a3-05e0469aec50",
+  "name": "Physical organic chemistry",
+  "content": "Physical organic chemistry, a term coined by Louis Hammett in 1940, refers to a discipline of organic chemistry that focuses on the relationship between chemical structures and reactivity, in particular, applying experimental tools of physical chemistry to the study of organic molecules. Specific focal points of study include the rates of organic reactions, the relative chemical stabilities of the starting materials, reactive intermediates, transition states, and products of chemical reactions, and non-covalent aspects of solvation and molecular interactions that influence chemical reactivity. Such studies provide theoretical and practical frameworks to understand how changes in structure in solution or solid-state contexts impact reaction mechanism and rate for each organic reaction of interest. Physical organic chemists use theoretical and experimental approaches work to understand these foundational problems in organic chemistry, including classical and statistical thermodynamic calculations, quantum mechanical theory and computational chemistry, as well as experimental spectroscopy (e.g., NMR), spectrometry (e.g., MS), and crystallography approaches. The field therefore has applications to a wide variety of more specialized fields, including electro- and photochemistry, polymer and supramolecular chemistry, and bioorganic chemistry, enzymology, and chemical biology, as well as to commercial enterprises involving process chemistry, chemical engineering, materials science and nanotechnology, and pharmacology in drug discovery by design.",
+  "url": "https://en.wikipedia.org/wiki/Physical_organic_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/physical_organic_chemistry_a1c5ddc1.db",
+  "last_updated": 1743796485.545295,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

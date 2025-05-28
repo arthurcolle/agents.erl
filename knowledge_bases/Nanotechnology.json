@@ -1,0 +1,14 @@
+{
+  "kb_id": "7ca5d29f-3c6e-48fc-93d6-8dffb9ce5ade",
+  "name": "Nanotechnology",
+  "content": "Nanotechnology is the manipulation of matter with at least one dimension sized from 1 to 100 nanometers (nm). At this scale, commonly known as the nanoscale, surface area and quantum mechanical effects become important in describing properties of matter. This definition of nanotechnology includes all types of research and technologies that deal with these special properties. It is common to see the plural form \"nanotechnologies\" as well as \"nanoscale technologies\" to refer to research and applications whose common trait is scale.[1] An earlier understanding of nanotechnology referred to the particular technological goal of precisely manipulating atoms and molecules for fabricating macroscale products, now referred to as molecular nanotechnology.[2] Nanotechnology defined by scale includes fields of science such as surface science, organic chemistry, molecular biology, semiconductor physics, energy storage,[3][4] engineering,[5] microfabrication,[6] and molecular engineering.[7] The associated research and applications range from extensions of conventional device physics to molecular self-assembly,[8] from developing new materials with dimensions on the nanoscale to direct control of matter on the atomic scale.",
+  "url": "https://en.wikipedia.org/wiki/Nanotechnology",
+  "embedding": null,
+  "db_path": "kb_databases/nanotechnology_3aa01c5e.db",
+  "last_updated": 1743796485.5485618,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

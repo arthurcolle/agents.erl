@@ -1,0 +1,14 @@
+{
+  "kb_id": "85b9c542-67fe-49ea-bf90-8c71a11bebc9",
+  "name": "Numerical analysis",
+  "content": "Numerical analysis is the study of algorithms that use numerical approximation (as opposed to symbolic manipulations) for the problems of mathematical analysis (as distinguished from discrete mathematics). It is the study of numerical methods that attempt to find approximate solutions of problems rather than the exact ones. Numerical analysis finds application in all fields of engineering and the physical sciences, and in the 21st century also the life and social sciences like economics, medicine, business and even the arts. Current growth in computing power has enabled the use of more complex numerical analysis, providing detailed and realistic mathematical models in science and engineering. Examples of numerical analysis include: ordinary differential equations as found in celestial mechanics (predicting the motions of planets, stars and galaxies), numerical linear algebra in data analysis,[2][3][4] and stochastic differential equations and Markov chains for simulating living cells in medicine and biology.",
+  "url": "https://en.wikipedia.org/wiki/Numerical_analysis",
+  "embedding": null,
+  "db_path": "kb_databases/numerical_analysis_a4176116.db",
+  "last_updated": 1743796484.910871,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

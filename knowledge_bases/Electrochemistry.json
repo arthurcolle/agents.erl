@@ -1,0 +1,14 @@
+{
+  "kb_id": "b9693677-f688-4755-aa6e-d304a1ac4fa2",
+  "name": "Electrochemistry",
+  "content": "Electrochemistry is the branch of physical chemistry concerned with the relationship between electrical potential difference and identifiable chemical change. These reactions involve electrons moving via an electronically conducting phase (typically an external electrical circuit, but not necessarily, as in electroless plating) between electrodes separated by an ionically conducting and electronically insulating electrolyte (or ionic species in a solution). When a chemical reaction is driven by an electrical potential difference, as in electrolysis, or if a potential difference results from a chemical reaction as in an electric battery or fuel cell, it is called an electrochemical reaction. Unlike in other chemical reactions, in electrochemical reactions electrons are not transferred directly between atoms, ions, or molecules, but via the aforementioned electronically conducting circuit. This phenomenon is what distinguishes an electrochemical reaction from a conventional chemical reaction.[1]",
+  "url": "https://en.wikipedia.org/wiki/Electrochemistry",
+  "embedding": null,
+  "db_path": "kb_databases/electrochemistry_cf93d16b.db",
+  "last_updated": 1743796485.1041129,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "dd795b1f-25b0-4a79-b4d7-f82774fa49b1",
+  "name": "Photonics",
+  "content": "Photonics is a branch of optics that involves the application of generation, detection, and manipulation of light in the form of photons through emission, transmission, modulation, signal processing, switching, amplification, and sensing.[1][2] Photonics is closely related to quantum electronics, where quantum electronics deals with the theoretical part of it while photonics deal with its engineering applications.[1] Though covering all light's technical applications over the whole spectrum, most photonic applications are in the range of visible and near-infrared light. The term photonics developed as an outgrowth of the first practical semiconductor light emitters invented in the early 1960s and optical fibers developed in the 1970s. The word 'Photonics' is derived from the Greek word \"phos\" meaning light (which has genitive case \"photos\" and in compound words the root \"photo-\" is used); it appeared in the late 1960s to describe a research field whose goal was to use light to perform functions that traditionally fell within the typical domain of electronics, such as telecommunications, information processing, etc.[citation needed]",
+  "url": "https://en.wikipedia.org/wiki/Photonics",
+  "embedding": null,
+  "db_path": "kb_databases/photonics_927d02e9.db",
+  "last_updated": 1743796485.308442,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

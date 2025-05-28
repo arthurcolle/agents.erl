@@ -1,0 +1,14 @@
+{
+  "kb_id": "56ca24d7-50c1-4c3f-b184-f5fa16f2c0bc",
+  "name": "Noncommutative geometry",
+  "content": "Noncommutative geometry (NCG) is a branch of mathematics concerned with a geometric approach to noncommutative algebras, and with the construction of spaces that are locally presented by noncommutative algebras of functions, possibly in some generalized sense. A noncommutative algebra is an associative algebra in which the multiplication is not commutative, that is, for which x y {\\displaystyle xy} does not always equal y x {\\displaystyle yx} ; or more generally an algebraic structure in which one of the principal binary operations is not commutative; one also allows additional structures, e.g. topology or norm, to be possibly carried by the noncommutative algebra of functions. An approach giving deep insight about noncommutative spaces is through operator algebras, that is, algebras of bounded linear operators on a Hilbert space.[1] Perhaps one of the typical examples of a noncommutative space is the \"noncommutative torus\", which played a key role in the early development of this field in 1980s and lead to noncommutative versions of vector bundles, connections, curvature, etc.[2]",
+  "url": "https://en.wikipedia.org/wiki/Noncommutative_geometry",
+  "embedding": null,
+  "db_path": "kb_databases/noncommutative_geometry_136a7c8e.db",
+  "last_updated": 1743796485.100447,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

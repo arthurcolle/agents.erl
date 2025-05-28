@@ -1,0 +1,14 @@
+{
+  "kb_id": "45b3fcb7-6275-4e2f-9c7c-12d59d1abd8f",
+  "name": "Quantum chemistry",
+  "content": "Quantum chemistry, also called molecular quantum mechanics, is a branch of physical chemistry focused on the application of quantum mechanics to chemical systems, particularly towards the quantum-mechanical calculation of electronic contributions to physical and chemical properties of molecules, materials, and solutions at the atomic level.[1] These calculations include systematically applied approximations intended to make calculations computationally feasible while still capturing as much information about important contributions to the computed wave functions as well as to observable properties such as structures, spectra, and thermodynamic properties. Quantum chemistry is also concerned with the computation of quantum effects on molecular dynamics and chemical kinetics. Chemists rely heavily on spectroscopy through which information regarding the quantization of energy on a molecular scale can be obtained. Common methods are infra-red (IR) spectroscopy, nuclear magnetic resonance (NMR) spectroscopy, and scanning probe microscopy. Quantum chemistry may be applied to the prediction and verification of spectroscopic data as well as other experimental data.",
+  "url": "https://en.wikipedia.org/wiki/Quantum_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/quantum_chemistry_b5f62139.db",
+  "last_updated": 1743796485.109838,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

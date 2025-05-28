@@ -1,0 +1,14 @@
+{
+  "kb_id": "a4b225bc-0e37-49ce-8a8b-6e92e9ed83bc",
+  "name": "Photochemistry",
+  "content": "Photochemistry is the branch of chemistry concerned with the chemical effects of light. Generally, this term is used to describe a chemical reaction caused by absorption of ultraviolet (wavelength from 100 to 400 nm), visible (400\u2013750 nm), or infrared radiation (750\u20132500 nm).[1] In nature, photochemistry is of immense importance as it is the basis of photosynthesis, vision, and the formation of vitamin D with sunlight.[2] It is also responsible for the appearance of DNA mutations leading to skin cancers.[3] Photochemical reactions proceed differently than temperature-driven reactions. Photochemical paths access high-energy intermediates that cannot be generated thermally, thereby overcoming large activation barriers in a short period of time, and allowing reactions otherwise inaccessible by thermal processes. Photochemistry can also be destructive, as illustrated by the photodegradation of plastics. Photoexcitation is the first step in a photochemical process where the reactant is elevated to a state of higher energy, an excited state. The first law of photochemistry, known as the Grotthuss\u2013Draper law (for chemists Theodor Grotthuss and John W. Draper), states that light must be absorbed by a chemical substance in order for a photochemical reaction to take place. According to the second law of photochemistry, known as the Stark\u2013Einstein law (for physicists Johannes Stark and Albert Einstein), for each photon of light absorbed by a chemical system, no more than one molecule is activated for a photochemical reaction, as defined by the quantum yield.[4][5]",
+  "url": "https://en.wikipedia.org/wiki/Photochemistry",
+  "embedding": null,
+  "db_path": "kb_databases/photochemistry_61e3f171.db",
+  "last_updated": 1743796485.527744,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

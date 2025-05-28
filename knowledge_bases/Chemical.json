@@ -1,0 +1,14 @@
+{
+  "kb_id": "c396e723-0e98-4408-8aa0-1aa9689ddf32",
+  "name": "Chemical",
+  "content": "Chemical warfare (CW) involves using the toxic properties of chemical substances as weapons.[1][2] This type of warfare is distinct from nuclear warfare, biological warfare and radiological warfare, which together make up CBRN, the military acronym for chemical, biological, radiological, and nuclear (warfare or weapons), all of which are considered \"weapons of mass destruction\" (WMDs), a term that contrasts with conventional weapons.[3] The use of chemical weapons in international armed conflicts is prohibited under international humanitarian law by the 1925 Geneva Protocol and the Hague Conventions of 1899 and 1907.[4][5] The 1993 Chemical Weapons Convention prohibits signatories from acquiring, stockpiling, developing, and using chemical weapons in all circumstances except for very limited purposes (research, medical, pharmaceutical or protective).[6][7] Chemical warfare is different from the use of conventional weapons or nuclear weapons because the destructive effects of chemical weapons are not primarily due to any explosive force. The offensive use of living organisms (such as anthrax) is considered biological warfare rather than chemical warfare;[8] however, the use of nonliving toxic products produced by living organisms (e.g. toxins such as botulinum toxin, ricin, and saxitoxin) is considered chemical warfare under the provisions of the Chemical Weapons Convention (CWC). Under this convention, any toxic chemical, regardless of its origin, is considered a chemical weapon unless it is used for purposes that are not prohibited (an important legal definition known as the General Purpose Criterion).[9][10]",
+  "url": "https://en.wikipedia.org/wiki/Chemical_warfare",
+  "embedding": null,
+  "db_path": "kb_databases/chemical_f5b28c59.db",
+  "last_updated": 1743796485.4588249,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

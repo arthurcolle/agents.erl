@@ -1,0 +1,14 @@
+{
+  "kb_id": "d9270bce-18cb-4ff6-bade-cdd75cab1739",
+  "name": "Fluid mechanics",
+  "content": "Fluid mechanics is the branch of physics concerned with the mechanics of fluids (liquids, gases, and plasmas) and the forces on them.[1]: 3 It has applications in a wide range of disciplines, including mechanical, aerospace, civil, chemical, and biomedical engineering, as well as geophysics, oceanography, meteorology, astrophysics, and biology. It can be divided into fluid statics, the study of various fluids at rest; and fluid dynamics, the study of the effect of forces on fluid motion.[1]: 3 It is a branch of continuum mechanics, a subject which models matter without using the information that it is made out of atoms; that is, it models matter from a macroscopic viewpoint rather than from microscopic. Fluid mechanics, especially fluid dynamics, is an active field of research, typically mathematically complex. Many problems are partly or wholly unsolved and are best addressed by numerical methods, typically using computers. A modern discipline, called computational fluid dynamics (CFD), is devoted to this approach.[2] Particle image velocimetry, an experimental method for visualizing and analyzing fluid flow, also takes advantage of the highly visual nature of fluid flow.",
+  "url": "https://en.wikipedia.org/wiki/Fluid_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/fluid_mechanics_b196fc81.db",
+  "last_updated": 1743796485.572719,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

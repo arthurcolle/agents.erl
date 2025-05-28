@@ -1,0 +1,14 @@
+{
+  "kb_id": "7128e279-6d3d-483e-87ff-a8f721e4d0e0",
+  "name": "Microbiology",
+  "content": "Microbiology (from Ancient Greek \u03bc\u1fd1\u03ba\u03c1\u03bf\u03c2 (m\u012bkros) 'small' \u03b2\u03af\u03bf\u03c2 (b\u00edos) 'life' and -\u03bb\u03bf\u03b3\u03af\u03b1 (-log\u00eda) 'study of') is the scientific study of microorganisms, those being of unicellular (single-celled), multicellular (consisting of complex cells), or acellular (lacking cells).[1][2] Microbiology encompasses numerous sub-disciplines including virology, bacteriology, protistology, mycology, immunology, and parasitology. The organisms that constitute the microbial world are characterized as either prokaryotes or eukaryotes; Eukaryotic microorganisms possess membrane-bound organelles and include fungi and protists, whereas prokaryotic organisms are conventionally classified as lacking membrane-bound organelles and include Bacteria and Archaea.[3][4] Microbiologists traditionally relied on culture, staining, and microscopy for the isolation and identification of microorganisms. However, less than 1% of the microorganisms present in common environments can be cultured in isolation using current means.[5] With the emergence of biotechnology, Microbiologists currently rely on molecular biology tools such as DNA sequence-based identification, for example, the 16S rRNA gene sequence used for bacterial identification.",
+  "url": "https://en.wikipedia.org/wiki/Microbiology",
+  "embedding": null,
+  "db_path": "kb_databases/microbiology_674e103f.db",
+  "last_updated": 1743796485.525735,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

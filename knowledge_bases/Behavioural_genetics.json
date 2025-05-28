@@ -1,0 +1,14 @@
+{
+  "kb_id": "85023601-8d88-4a57-bd8f-0ba848558dcd",
+  "name": "Behavioural genetics",
+  "content": "Behavioural genetics, also referred to as behaviour genetics, is a field of scientific research that uses genetic methods to investigate the nature and origins of individual differences in behaviour. While the name \"behavioural genetics\" connotes a focus on genetic influences, the field broadly investigates the extent to which genetic and environmental factors influence individual differences, and the development of research designs that can remove the confounding of genes and environment. Behavioural genetics was founded as a scientific discipline by Francis Galton in the late 19th century, only to be discredited through association with eugenics movements before and during World War II. In the latter half of the 20th century, the field saw renewed prominence with research on inheritance of behaviour and mental illness in humans (typically using twin and family studies), as well as research on genetically informative model organisms through selective breeding and crosses. In the late 20th and early 21st centuries, technological advances in molecular genetics made it possible to measure and modify the genome directly. This led to major advances in model organism research (e.g., knockout mice) and in human studies (e.g., genome-wide association studies), leading to new scientific discoveries.",
+  "url": "https://en.wikipedia.org/wiki/Behavioural_genetics",
+  "embedding": null,
+  "db_path": "kb_databases/behavioural_genetics_4b8b0eec.db",
+  "last_updated": 1743796484.8394501,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

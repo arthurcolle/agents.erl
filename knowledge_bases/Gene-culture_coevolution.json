@@ -1,0 +1,14 @@
+{
+  "kb_id": "e521d712-afb0-478a-84a1-ed518e55da66",
+  "name": "Gene-culture coevolution",
+  "content": "Dual inheritance theory (DIT), also known as gene\u2013culture coevolution or biocultural evolution,[1] was developed in the 1960s through early 1980s to explain how human behavior is a product of two different and interacting evolutionary processes: genetic evolution and cultural evolution. Genes and culture continually interact in a feedback loop:[2] changes in genes can lead to changes in culture which can then influence genetic selection, and vice versa. One of the theory's central claims is that culture evolves partly through a Darwinian selection process, which dual inheritance theorists often describe by analogy to genetic evolution.[3] 'Culture', in this context, is defined as 'socially learned behavior', and 'social learning' is defined as copying behaviors observed in others or acquiring behaviors through being taught by others. Most of the modelling done in the field relies on the first dynamic (copying), though it can be extended to teaching. Social learning, at its simplest, involves blind copying of behaviors from a model (someone observed behaving), though it is also understood to have many potential biases, including success bias (copying from those who are perceived to be better off), status bias (copying from those with higher status), homophily (copying from those most like ourselves), conformist bias (disproportionately picking up behaviors that more people are performing), etc. Understanding social learning is a system of pattern replication, and understanding that there are different rates of survival for different socially learned cultural variants, this sets up, by definition, an evolutionary structure: cultural evolution.[4]",
+  "url": "https://en.wikipedia.org/wiki/Dual_inheritance_theory",
+  "embedding": null,
+  "db_path": "kb_databases/gene-culture_coevolution_82210d08.db",
+  "last_updated": 1743796484.784699,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

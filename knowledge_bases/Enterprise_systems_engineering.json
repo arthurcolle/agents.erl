@@ -1,0 +1,14 @@
+{
+  "kb_id": "51000343-b37a-4fd3-99cf-d7ab39c37ee6",
+  "name": "Enterprise systems engineering",
+  "content": "Enterprise systems engineering (ESE) is the discipline that applies systems engineering to the design of an enterprise.[1] As a discipline, it includes a body of knowledge, principles, and processes tailored to the design of enterprise systems. An enterprise is a complex, socio-technical system that comprises interdependent resources of people, information, and technology that must interact to fulfill a common mission.[1] Enterprise systems engineering incorporates all the tasks of traditional systems engineering but is further informed by an expansive view of the political, operational, economic, and technological (POET) contexts in which the system(s) under consideration are developed, acquired, modified, maintained, or disposed.[citation needed][2] Enterprise systems engineering may be appropriate when the complexity of the enterprise exceeds the scope of the assumptions upon which textbook systems engineering are based. Traditional systems engineering assumptions include relatively stable and well understood requirements, a system configuration that can be controlled, and a small, easily discernible set of stakeholders.[citation needed]",
+  "url": "https://en.wikipedia.org/wiki/Enterprise_systems_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/enterprise_systems_engineering_35c2e38e.db",
+  "last_updated": 1743796485.531317,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

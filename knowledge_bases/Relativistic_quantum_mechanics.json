@@ -1,0 +1,14 @@
+{
+  "kb_id": "b476cf21-a4be-4358-a149-1eca55045ff2",
+  "name": "Relativistic quantum mechanics",
+  "content": "In physics, relativistic quantum mechanics (RQM) is any Poincar\u00e9 covariant formulation of quantum mechanics (QM). This theory is applicable to massive particles propagating at all velocities up to those comparable to the speed of light c, and can accommodate massless particles. The theory has application in high energy physics,[1] particle physics and accelerator physics,[2] as well as atomic physics, chemistry[3] and condensed matter physics.[4][5] Non-relativistic quantum mechanics refers to the mathematical formulation of quantum mechanics applied in the context of Galilean relativity, more specifically quantizing the equations of classical mechanics by replacing dynamical variables by operators. Relativistic quantum mechanics (RQM) is quantum mechanics applied with special relativity. Although the earlier formulations, like the Schr\u00f6dinger picture and Heisenberg picture were originally formulated in a non-relativistic background, a few of them (e.g. the Dirac or path-integral formalism) also work with special relativity.",
+  "url": "https://en.wikipedia.org/wiki/Relativistic_quantum_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/relativistic_quantum_mechanics_912f8b8d.db",
+  "last_updated": 1743796485.284656,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

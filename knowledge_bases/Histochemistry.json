@@ -1,0 +1,14 @@
+{
+  "kb_id": "946880d6-56f5-4385-84e1-e1b51517368c",
+  "name": "Histochemistry",
+  "content": "Immunohistochemistry is a form of immunostaining. It involves the process of selectively identifying antigens in cells and tissue, by exploiting the principle of antibodies binding specifically to antigens in biological tissues. Albert Hewett Coons, Ernest Berliner, Norman Jones and Hugh J Creech was the first to develop immunofluorescence in 1941. This led to the later development of immunohistochemistry.[2][3] Immunohistochemical staining is widely used in the diagnosis of abnormal cells such as those found in cancerous tumors. In some cancer cells certain tumor antigens are expressed which make it possible to detect. Immunohistochemistry is also widely used in basic research, to understand the distribution and localization of biomarkers and differentially expressed proteins in different parts of a biological tissue.[4] Immunohistochemistry can be performed on tissue that has been fixed and embedded in paraffin, but also cryopreservated (frozen) tissue. Based on the way the tissue is preserved, there are different steps to prepare the tissue for immunohistochemistry, but the general method includes proper fixation, antigen retrieval incubation with primary antibody, then incubation with secondary antibody.[5][6]",
+  "url": "https://en.wikipedia.org/wiki/Histochemistry",
+  "embedding": null,
+  "db_path": "kb_databases/histochemistry_209d5f30.db",
+  "last_updated": 1743796485.510883,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

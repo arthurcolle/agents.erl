@@ -1,0 +1,14 @@
+{
+  "kb_id": "202576a7-82de-4f09-97da-d56e528a23be",
+  "name": "Citation analysis",
+  "content": "Citation analysis is the examination of the frequency, patterns, and graphs of citations in documents. It uses the directed graph of citations \u2014 links from one document to another document \u2014 to reveal properties of the documents. A typical aim would be to identify the most important documents in a collection. A classic example is that of the citations between academic articles and books.[1][2] For another example, judges of law support their judgements by referring back to judgements made in earlier cases (see citation analysis in a legal context). An additional example is provided by patents which contain prior art, citation of earlier patents relevant to the current claim. The digitization of patent data and increasing computing power have led to a community of practice that uses these citation data to measure innovation attributes, trace knowledge flows, and map innovation networks.[3] Documents can be associated with many other features in addition to citations, such as authors, publishers, journals as well as their actual texts. The general analysis of collections of documents is known as bibliometrics and citation analysis is a key part of that field. For example, bibliographic coupling and co-citation are association measures based on citation analysis (shared citations or shared references). The citations in a collection of documents can also be represented in forms such as a citation graph, as pointed out by Derek J. de Solla Price in his 1965 article \"Networks of Scientific Papers\".[4] This means that citation analysis draws on aspects of social network analysis and network science.",
+  "url": "https://en.wikipedia.org/wiki/Citation_analysis",
+  "embedding": null,
+  "db_path": "kb_databases/citation_analysis_e4081573.db",
+  "last_updated": 1743796485.515229,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

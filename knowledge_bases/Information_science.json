@@ -1,0 +1,14 @@
+{
+  "kb_id": "7f41cdf7-7843-4d84-918d-d22a5226eab4",
+  "name": "Information science",
+  "content": "Information science[1] [2][3] is an academic field which is primarily concerned with analysis, collection, classification, manipulation, storage, retrieval, movement, dissemination, and protection of information.[4] Practitioners within and outside the field study the application and the usage of knowledge in organizations in addition to the interaction between people, organizations, and any existing information systems with the aim of creating, replacing, improving, or understanding the information systems. Historically, information science is associated with informatics, computer science, data science, psychology, technology, documentation science, library science, healthcare, and intelligence agencies.[5] However, information science also incorporates aspects of diverse fields such as archival science, cognitive science, commerce, law, linguistics, museology, management, mathematics, philosophy, public policy, and social sciences. Information science focuses on understanding problems from the perspective of the stakeholders involved and then applying information and other technologies as needed. In other words, it tackles systemic problems first rather than individual pieces of technology within that system. In this respect, one can see information science as a response to technological determinism, the belief that technology \"develops by its own laws, that it realizes its own potential, limited only by the material resources available and the creativity of its developers. It must therefore be regarded as an autonomous system controlling and ultimately permeating all other subsystems of society.\"[6]",
+  "url": "https://en.wikipedia.org/wiki/Information_science",
+  "embedding": null,
+  "db_path": "kb_databases/information_science_6d3f6281.db",
+  "last_updated": 1743796484.845255,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

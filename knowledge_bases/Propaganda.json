@@ -1,0 +1,14 @@
+{
+  "kb_id": "92724e34-9af7-48db-bbe9-f05498454ebb",
+  "name": "Propaganda",
+  "content": "Propaganda is communication that is primarily used to influence or persuade an audience to further an agenda, which may not be objective and may be selectively presenting facts to encourage a particular synthesis or perception, or using loaded language to produce an emotional rather than a rational response to the information that is being presented.[1] Propaganda can be found in a wide variety of different contexts.[2] Beginning in the twentieth century, the English term propaganda became associated with a manipulative approach, but historically, propaganda had been a neutral descriptive term of any material that promotes certain opinions or ideologies.[1][3] A wide range of materials and media are used for conveying propaganda messages, which changed as new technologies were invented, including paintings, cartoons, posters, pamphlets, films, radio shows, TV shows, and websites. More recently, the digital age has given rise to new ways of disseminating propaganda, for example, in computational propaganda, bots and algorithms are used to manipulate public opinion, e.g., by creating fake or biased news to spread it on social media or using chat bots to mimic real people in discussions in social networks.",
+  "url": "https://en.wikipedia.org/wiki/Propaganda",
+  "embedding": null,
+  "db_path": "kb_databases/propaganda_76f28c52.db",
+  "last_updated": 1743796485.003767,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

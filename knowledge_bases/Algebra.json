@@ -1,0 +1,14 @@
+{
+  "kb_id": "ec349361-ca54-4f8c-9452-f00191d31b5c",
+  "name": "Algebra",
+  "content": "Algebra is the branch of mathematics that studies certain abstract systems, known as algebraic structures, and the manipulation of expressions within those systems. It is a generalization of arithmetic that introduces variables and algebraic operations other than the standard arithmetic operations, such as addition and multiplication. Elementary algebra is the main form of algebra taught in schools. It examines mathematical statements using variables for unspecified values and seeks to determine for which values the statements are true. To do so, it uses different methods of transforming equations to isolate variables. Linear algebra is a closely related field that investigates linear equations and combinations of them called systems of linear equations. It provides methods to find the values that solve all equations in the system at the same time, and to study the set of these solutions. Abstract algebra studies algebraic structures, which consist of a set of mathematical objects together with one or several operations defined on that set. It is a generalization of elementary and linear algebra since it allows mathematical objects other than numbers and non-arithmetic operations. It distinguishes between different types of algebraic structures, such as groups, rings, and fields, based on the number of operations they use and the laws they follow, called axioms. Universal algebra and category theory provide general frameworks to investigate abstract patterns that characterize different classes of algebraic structures.",
+  "url": "https://en.wikipedia.org/wiki/Algebra",
+  "embedding": null,
+  "db_path": "kb_databases/algebra_8f4e7c5f.db",
+  "last_updated": 1743796485.016858,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "dac5db97-95b9-4762-b806-4ba788de598c",
+  "name": "Purification",
+  "content": "Water purification is the process of removing undesirable chemicals, biological contaminants, suspended solids, and gases from water. The goal is to produce water that is fit for specific purposes. Most water is purified and disinfected for human consumption (drinking water), but water purification may also be carried out for a variety of other purposes, including medical, pharmacological, chemical, and industrial applications. The history of water purification includes a wide variety of methods. The methods used include physical processes such as filtration, sedimentation, and distillation; biological processes such as slow sand filters or biologically active carbon; chemical processes such as flocculation and chlorination; and the use of electromagnetic radiation such as ultraviolet light. Water purification can reduce the concentration of particulate matter including suspended particles, parasites, bacteria, algae, viruses, and fungi as well as reduce the concentration of a range of dissolved and particulate matter.",
+  "url": "https://en.wikipedia.org/wiki/Water_purification",
+  "embedding": null,
+  "db_path": "kb_databases/purification_8758ab48.db",
+  "last_updated": 1743796485.29705,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

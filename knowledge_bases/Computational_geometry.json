@@ -1,0 +1,14 @@
+{
+  "kb_id": "36183411-76ff-4057-ab94-e85f9eecfaf3",
+  "name": "Computational geometry",
+  "content": "Computational geometry is a branch of computer science devoted to the study of algorithms which can be stated in terms of geometry. Some purely geometrical problems arise out of the study of computational geometric algorithms, and such problems are also considered to be part of computational geometry. While modern computational geometry is a recent development, it is one of the oldest fields of computing with a history stretching back to antiquity. Computational complexity is central to computational geometry, with great practical significance if algorithms are used on very large datasets containing tens or hundreds of millions of points. For such sets, the difference between O(n2) and O(n log n) may be the difference between days and seconds of computation. The main impetus for the development of computational geometry as a discipline was progress in computer graphics and computer-aided design and manufacturing (CAD/CAM), but many problems in computational geometry are classical in nature, and may come from mathematical visualization.",
+  "url": "https://en.wikipedia.org/wiki/Computational_geometry",
+  "embedding": null,
+  "db_path": "kb_databases/computational_geometry_fb05d775.db",
+  "last_updated": 1743796485.572603,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

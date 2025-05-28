@@ -1,0 +1,14 @@
+{
+  "kb_id": "25e04d02-b4f3-4314-a937-b0b2ad058e9e",
+  "name": "Physical metallurgy",
+  "content": "Metallurgy is a domain of materials science and engineering that studies the physical and chemical behavior of metallic elements, their inter-metallic compounds, and their mixtures, which are known as alloys. Metallurgy encompasses both the science and the technology of metals, including the production of metals and the engineering of metal components used in products for both consumers and manufacturers. Metallurgy is distinct from the craft of metalworking. Metalworking relies on metallurgy in a similar manner to how medicine relies on medical science for technical advancement. A specialist practitioner of metallurgy is known as a metallurgist. The science of metallurgy is further subdivided into two broad categories: chemical metallurgy and physical metallurgy. Chemical metallurgy is chiefly concerned with the reduction and oxidation of metals, and the chemical performance of metals. Subjects of study in chemical metallurgy include mineral processing, the extraction of metals, thermodynamics, electrochemistry, and chemical degradation (corrosion).[1] In contrast, physical metallurgy focuses on the mechanical properties of metals, the physical properties of metals, and the physical performance of metals. Topics studied in physical metallurgy include crystallography, material characterization, mechanical metallurgy, phase transformations, and failure mechanisms.[2]",
+  "url": "https://en.wikipedia.org/wiki/Metallurgy",
+  "embedding": null,
+  "db_path": "kb_databases/physical_metallurgy_31d1d31d.db",
+  "last_updated": 1743796485.53736,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

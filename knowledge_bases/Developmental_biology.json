@@ -1,0 +1,14 @@
+{
+  "kb_id": "6efb2432-96ae-4bce-96f0-5d9dff37bc72",
+  "name": "Developmental biology",
+  "content": "Developmental biology is the study of the process by which animals and plants grow and develop. Developmental biology also encompasses the biology of regeneration, asexual reproduction, metamorphosis, and the growth and differentiation of stem cells in the adult organism. The main processes involved in the embryonic development of animals are: tissue patterning (via regional specification and patterned cell differentiation); tissue growth; and tissue morphogenesis. The development of plants involves similar processes to that of animals. However, plant cells are mostly immotile so morphogenesis is achieved by differential growth, without cell movements. Also, the inductive signals and the genes involved are different from those that control animal development. Generative biology is the generative science that explores the dynamics guiding the development and evolution of a biological morphological form.[1][2][3] Cell differentiation is the process whereby different functional cell types arise in development. For example, neurons, muscle fibers and hepatocytes (liver cells) are well known types of differentiated cells. Differentiated cells usually produce large amounts of a few proteins that are required for their specific function and this gives them the characteristic appearance that enables them to be recognized under the light microscope. The genes encoding these proteins are highly active. Typically their chromatin structure is very open, allowing access for the transcription enzymes, and specific transcription factors bind to regulatory sequences in the DNA in order to activate gene expression.[4][5] For example, NeuroD is a key transcription factor for neuronal differentiation, myogenin for muscle differentiation, and HNF4 for hepatocyte differentiation. Cell differentiation is usually the final stage of development, preceded by several states of commitment which are not visibly differentiated. A single tissue, formed from a single type of progenitor cell or stem cell, often consists of several differentiated cell types. Control of their formation involves a process of lateral inhibition,[6] based on the properties of the Notch signaling pathway.[7] For example, in the neural plate of the embryo this system operates to generate a population of neuronal precursor cells in which NeuroD is highly expressed.",
+  "url": "https://en.wikipedia.org/wiki/Developmental_biology",
+  "embedding": null,
+  "db_path": "kb_databases/developmental_biology_6519659a.db",
+  "last_updated": 1743796484.820844,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

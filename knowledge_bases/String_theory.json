@@ -1,0 +1,14 @@
+{
+  "kb_id": "60bd2f18-d1dc-4c2b-8a00-98960cb02f6e",
+  "name": "String theory",
+  "content": "In physics, string theory is a theoretical framework in which the point-like particles of particle physics are replaced by one-dimensional objects called strings. String theory describes how these strings propagate through space and interact with each other. On distance scales larger than the string scale, a string acts like a particle, with its mass, charge, and other properties determined by the vibrational state of the string. In string theory, one of the many vibrational states of the string corresponds to the graviton, a quantum mechanical particle that carries the gravitational force. Thus, string theory is a theory of quantum gravity. String theory is a broad and varied subject that attempts to address a number of deep questions of fundamental physics. String theory has contributed a number of advances to mathematical physics, which have been applied to a variety of problems in black hole physics, early universe cosmology, nuclear physics, and condensed matter physics, and it has stimulated a number of major developments in pure mathematics. Because string theory potentially provides a unified description of gravity and particle physics, it is a candidate for a theory of everything, a self-contained mathematical model that describes all fundamental forces and forms of matter. Despite much work on these problems, it is not known to what extent string theory describes the real world or how much freedom the theory allows in the choice of its details.",
+  "url": "https://en.wikipedia.org/wiki/String_theory",
+  "embedding": null,
+  "db_path": "kb_databases/string_theory_057edad7.db",
+  "last_updated": 1743796485.143032,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

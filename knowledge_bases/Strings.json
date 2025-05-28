@@ -1,0 +1,14 @@
+{
+  "kb_id": "85325208-4cc7-4c2d-aee5-82ee3a1658a4",
+  "name": "Strings",
+  "content": "Plucked In musical instrument classification, string instruments, or chordophones, are musical instruments that produce sound from vibrating strings when a performer strums, plucks, strikes or sounds the strings in varying manners. Musicians play some string instruments, like guitars, by plucking the strings with their fingers or a plectrum (pick), and others by hitting the strings with a light wooden hammer or by rubbing the strings with a bow, like violins. In some keyboard instruments, such as the harpsichord, the musician presses a key that plucks the string. Other musical instruments generate sound by striking the string. With bowed instruments, the player pulls a rosined horsehair bow across the strings, causing them to vibrate. With a hurdy-gurdy, the musician cranks a wheel whose rosined edge touches the strings. Bowed instruments include the string section instruments of the orchestra in Western classical music (violin, viola, cello and double bass) and a number of other instruments (e.g., viols and gambas used in early music from the Baroque music era and fiddles used in many types of folk music). All of the bowed string instruments can also be plucked with the fingers, a technique called \"pizzicato\". A wide variety of techniques are used to sound notes on the electric guitar, including plucking with the fingernails or a plectrum, strumming and even \"tapping\" on the fingerboard and using feedback from a loud, distorted guitar amplifier to produce a sustained sound.",
+  "url": "https://en.wikipedia.org/wiki/String_instrument",
+  "embedding": null,
+  "db_path": "kb_databases/strings_89be9433.db",
+  "last_updated": 1743796485.512848,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

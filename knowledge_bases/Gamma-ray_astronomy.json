@@ -1,0 +1,14 @@
+{
+  "kb_id": "913b5d98-bff9-4616-86ea-61a07596534b",
+  "name": "Gamma-ray astronomy",
+  "content": "Gamma-ray astronomy is a subfield of astronomy where scientists observe and study celestial objects and phenomena in outer space which emit cosmic electromagnetic radiation in the form of gamma rays,[nb 1] i.e. photons with the highest energies (above 100 keV) at the very shortest wavelengths. Radiation below 100 keV is classified as X-rays and is the subject of X-ray astronomy. In most cases, gamma rays from solar flares and Earth's atmosphere fall in the MeV range, but it's now known that solar flares can also produce gamma rays in the GeV range, contrary to previous beliefs. Much of the detected gamma radiation stems from collisions between hydrogen gas and cosmic rays within our galaxy. These gamma rays, originating from diverse mechanisms such as electron-positron annihilation, the inverse Compton effect and in some cases gamma decay,[2] occur in regions of extreme temperature, density, and magnetic fields, reflecting violent astrophysical processes like the decay of neutral pions. They provide insights into extreme events like supernovae, hypernovae, and the behavior of matter in environments such as pulsars and blazars. A huge number of gamma ray emitting high-energy systems like black holes, stellar coronas, neutron stars, white dwarf stars, remnants of supernova, clusters of galaxies, including the Crab Nebula and the Vela pulsar (the most powerful source so far), have been identified, alongside an overall diffuse gamma-ray background along the plane of the Milky Way galaxy. Cosmic radiation with the highest energy triggers electron-photon cascades in the atmosphere, while lower-energy gamma rays are only detectable above it. Gamma-ray bursts, like GRB 190114C, are transient phenomena challenging our understanding of high-energy astrophysical processes, ranging from microseconds to several hundred seconds.",
+  "url": "https://en.wikipedia.org/wiki/Gamma-ray_astronomy",
+  "embedding": null,
+  "db_path": "kb_databases/gamma-ray_astronomy_38ea964c.db",
+  "last_updated": 1743796485.446341,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

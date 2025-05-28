@@ -1,0 +1,14 @@
+{
+  "kb_id": "168e9eed-1736-4790-9834-99550586a7bf",
+  "name": "Physical chemistry",
+  "content": "Physical chemistry is the study of macroscopic and microscopic phenomena in chemical systems in terms of the principles, practices, and concepts of physics such as motion, energy, force, time, thermodynamics, quantum chemistry, statistical mechanics, analytical dynamics and chemical equilibria. Physical chemistry, in contrast to chemical physics, is predominantly (but not always) a supra-molecular science, as the majority of the principles on which it was founded relate to the bulk rather than the molecular or atomic structure alone (for example, chemical equilibrium and colloids). Some of the relationships that physical chemistry strives to understand include the effects of: The key concepts of physical chemistry are the ways in which pure physics is applied to chemical problems. One of the key concepts in classical chemistry is that all chemical compounds can be described as groups of atoms bonded together and chemical reactions can be described as the making and breaking of those bonds. Predicting the properties of chemical compounds from a description of atoms and how they bond is one of the major goals of physical chemistry. To describe the atoms and bonds precisely, it is necessary to know both where the nuclei of the atoms are, and how electrons are distributed around them.[2]",
+  "url": "https://en.wikipedia.org/wiki/Physical_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/physical_chemistry_23eba5c2.db",
+  "last_updated": 1743796485.5261052,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

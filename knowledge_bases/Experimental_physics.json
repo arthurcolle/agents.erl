@@ -1,0 +1,14 @@
+{
+  "kb_id": "1343e475-7fdf-49e0-b9c4-03b56d2e0ab1",
+  "name": "Experimental physics",
+  "content": "Experimental physics is the category of disciplines and sub-disciplines in the field of physics that are concerned with the observation of physical phenomena and experiments. Methods vary from discipline to discipline, from simple experiments and observations, such as Galileo's experiments, to more complicated ones, such as the Large Hadron Collider. Experimental physics is a branch of physics that is concerned with data acquisition, data-acquisition methods, and the detailed conceptualization (beyond simple thought experiments) and realization of laboratory experiments. It is often contrasted with theoretical physics, which is more concerned with predicting and explaining the physical behaviour of nature than with acquiring empirical data. Although experimental and theoretical physics are concerned with different aspects of nature, they both share the same goal of understanding it and have a symbiotic relationship. The former provides data about the universe, which can then be analyzed in order to be understood, while the latter provides explanations for the data and thus offers insight into how to better acquire data and set up experiments. Theoretical physics can also offer insight into what data is needed in order to gain a better understanding of the universe, and into what experiments to devise in order to obtain it.",
+  "url": "https://en.wikipedia.org/wiki/Experimental_physics",
+  "embedding": null,
+  "db_path": "kb_databases/experimental_physics_3a7b0adb.db",
+  "last_updated": 1743796485.232542,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

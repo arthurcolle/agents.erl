@@ -1,0 +1,14 @@
+{
+  "kb_id": "85cd9cec-6f4c-4c51-9348-11b7b6a19900",
+  "name": "Cataloging",
+  "content": "In library and information science, cataloging (US) or cataloguing (UK) is the process of creating metadata representing information resources, such as books, sound recordings, moving images, etc. Cataloging provides information such as author's names, titles, and subject terms that describe resources, typically through the creation of bibliographic records.[1] The records serve as surrogates for the stored information resources. Since the 1970s these metadata are in machine-readable form and are indexed by information retrieval tools, such as bibliographic databases or search engines. While typically the cataloging process results in the production of library catalogs, it also produces other types of discovery tools for documents and collections. Bibliographic control provides the philosophical basis of cataloging, defining the rules that sufficiently describe information resources, and enable users to find and select the most appropriate resource. A cataloger is an individual responsible for the processes of description, subject analysis, classification, and authority control of library materials. Catalogers serve as the \"foundation of all library service, as they are the ones who organize information in such a way as to make it easily accessible\".[2]",
+  "url": "https://en.wikipedia.org/wiki/Cataloging",
+  "embedding": null,
+  "db_path": "kb_databases/cataloging_d650c85c.db",
+  "last_updated": 1743796485.088578,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

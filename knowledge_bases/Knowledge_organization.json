@@ -1,0 +1,14 @@
+{
+  "kb_id": "df873400-e35a-4464-a859-8c37b779ab6c",
+  "name": "Knowledge organization",
+  "content": "Knowledge organization (KO), organization of knowledge, organization of information, or information organization is an intellectual discipline concerned with activities such as document description, indexing, and classification that serve to provide systems of representation and order for knowledge and information objects. According to The Organization of Information by Joudrey and Taylor, information organization: examines the activities carried out and tools used by people who work in places that accumulate information resources (e.g., books, maps, documents, datasets, images) for the use of humankind, both immediately and for posterity. It discusses the processes that are in place to make resources findable, whether someone is searching for a single known item or is browsing through hundreds of resources just hoping to discover something useful. Information organization supports a myriad of information-seeking scenarios.[1] Issues related to knowledge sharing can be said to have been an important part of knowledge management for a long time. Knowledge sharing has received a lot of attention in research and business practice both within and outside organizations and its different levels.[2]",
+  "url": "https://en.wikipedia.org/wiki/Knowledge_organization",
+  "embedding": null,
+  "db_path": "kb_databases/knowledge_organization_d43c09fb.db",
+  "last_updated": 1743796484.930024,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

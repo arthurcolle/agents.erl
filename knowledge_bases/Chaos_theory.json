@@ -1,0 +1,14 @@
+{
+  "kb_id": "c1cbfdd0-d120-4790-9998-598674f6c25b",
+  "name": "Chaos theory",
+  "content": "Chaos theory (or chaology[1]) is an interdisciplinary area of scientific study and branch of mathematics. It focuses on underlying patterns and deterministic laws of dynamical systems that are highly sensitive to initial conditions. These were once thought to have completely random states of disorder and irregularities.[2] Chaos theory states that within the apparent randomness of chaotic complex systems, there are underlying patterns, interconnection, constant feedback loops, repetition, self-similarity, fractals and self-organization.[3] The butterfly effect, an underlying principle of chaos, describes how a small change in one state of a deterministic nonlinear system can result in large differences in a later state (meaning there is sensitive dependence on initial conditions).[4] A metaphor for this behavior is that a butterfly flapping its wings in Brazil can cause a tornado in Texas.[5][6]: 181\u2013184 [7] Small differences in initial conditions, such as those due to errors in measurements or due to rounding errors in numerical computation, can yield widely diverging outcomes for such dynamical systems, rendering long-term prediction of their behavior impossible in general.[8] This can happen even though these systems are deterministic, meaning that their future behavior follows a unique evolution[9] and is fully determined by their initial conditions, with no random elements involved.[10] In other words, the deterministic nature of these systems does not make them predictable.[11][12] This behavior is known as deterministic chaos, or simply chaos. The theory was summarized by Edward Lorenz as:[13]",
+  "url": "https://en.wikipedia.org/wiki/Chaos_theory",
+  "embedding": null,
+  "db_path": "kb_databases/chaos_theory_380a9820.db",
+  "last_updated": 1743796485.138745,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

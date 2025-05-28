@@ -1,0 +1,14 @@
+{
+  "kb_id": "78d74ddd-6fb1-4796-aa90-2e41e98de926",
+  "name": "Bootstrap (statistics)",
+  "content": "Bootstrapping is a procedure for estimating the distribution of an estimator by resampling (often with replacement) one's data or a model estimated from the data.[1] Bootstrapping assigns measures of accuracy (bias, variance, confidence intervals, prediction error, etc.) to sample estimates.[2][3] This technique allows estimation of the sampling distribution of almost any statistic using random sampling methods.[1] Bootstrapping estimates the properties of an estimand (such as its variance) by measuring those properties when sampling from an approximating distribution. One standard choice for an approximating distribution is the empirical distribution function of the observed data. In the case where a set of observations can be assumed to be from an independent and identically distributed population, this can be implemented by constructing a number of resamples with replacement, of the observed data set (and of equal size to the observed data set). A key result in Efron's seminal paper that introduced the bootstrap[4] is the favorable performance of bootstrap methods using sampling with replacement compared to prior methods like the jackknife that sample without replacement. However, since its introduction, numerous variants on the bootstrap have been proposed, including methods that sample without replacement or that create bootstrap samples larger or smaller than the original data.",
+  "url": "https://en.wikipedia.org/wiki/Bootstrap_(statistics)",
+  "embedding": null,
+  "db_path": "kb_databases/bootstrap_(statistics)_bf58856f.db",
+  "last_updated": 1743796485.499308,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

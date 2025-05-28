@@ -1,0 +1,14 @@
+{
+  "kb_id": "d0ce29d9-3204-4312-8222-5bea58954a6b",
+  "name": "Steganography",
+  "content": "Steganography (/\u02ccst\u025b\u0261\u0259\u02c8n\u0252\u0261r\u0259fi/ \u24d8 STEG-\u0259-NOG-r\u0259-fee) is the practice of representing information within another message or physical object, in such a manner that the presence of the concealed information would not be evident to an unsuspecting person's examination. In computing/electronic contexts, a computer file, message, image, or video is concealed within another file, message, image, or video. The word steganography comes from Greek steganographia, which combines the words stegan\u00f3s (\u03c3\u03c4\u03b5\u03b3\u03b1\u03bd\u03cc\u03c2), meaning \"covered or concealed\", and -graphia (\u03b3\u03c1\u03b1\u03c6\u03ae) meaning \"writing\".[1] The first recorded use of the term was in 1499 by Johannes Trithemius in his Steganographia, a treatise on cryptography and steganography, disguised as a book on magic. Generally, the hidden messages appear to be (or to be part of) something else: images, articles, shopping lists, or some other cover text. For example, the hidden message may be in invisible ink between the visible lines of a private letter. Some implementations of steganography that lack a formal shared secret are forms of security through obscurity, while key-dependent steganographic schemes try to adhere to Kerckhoffs's principle.[2]",
+  "url": "https://en.wikipedia.org/wiki/Steganography",
+  "embedding": null,
+  "db_path": "kb_databases/steganography_cd0c5202.db",
+  "last_updated": 1743796485.14452,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

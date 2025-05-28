@@ -1,0 +1,14 @@
+{
+  "kb_id": "2374f658-a51d-427b-9834-beca198900ab",
+  "name": "Spintronics",
+  "content": "Spintronics (a portmanteau meaning spin transport electronics[1][2][3]), also known as spin electronics, is the study of the intrinsic spin of the electron and its associated magnetic moment, in addition to its fundamental electronic charge, in solid-state devices.[4] The field of spintronics concerns spin-charge coupling in metallic systems; the analogous effects in insulators fall into the field of multiferroics. Spintronics fundamentally differs from traditional electronics in that, in addition to charge state, electron spins are used as a further degree of freedom, with implications in the efficiency of data storage and transfer. Spintronic systems are most often realised in dilute magnetic semiconductors (DMS) and Heusler alloys and are of particular interest in the field of quantum computing and neuromorphic computing, upon which leads to integrated research requirements around Hyperdimensional Computation. Spintronics emerged from discoveries in the 1980s concerning spin-dependent electron transport phenomena in solid-state devices. This includes the observation of spin-polarized electron injection from a ferromagnetic metal to a normal metal by Johnson and Silsbee (1985)[5] and the discovery of giant magnetoresistance independently by Albert Fert et al.[6] and Peter Gr\u00fcnberg et al. (1988).[7] The origin of spintronics can be traced to the ferromagnet/superconductor tunneling experiments pioneered by Meservey and Tedrow and initial experiments on magnetic tunnel junctions by Julliere in the 1970s.[8] The use of semiconductors for spintronics began with the theoretical proposal of a spin field-effect-transistor by Datta and Das in 1990[9] and of the electric dipole spin resonance by Rashba in 1960.[10]",
+  "url": "https://en.wikipedia.org/wiki/Spintronics",
+  "embedding": null,
+  "db_path": "kb_databases/spintronics_d9f345c5.db",
+  "last_updated": 1743796485.5167701,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

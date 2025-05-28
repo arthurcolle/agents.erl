@@ -1,0 +1,14 @@
+{
+  "kb_id": "26c52851-3bb1-448b-b383-11c810e222ea",
+  "name": "Geodesy",
+  "content": "Geodesy or geodetics[1] is the science of measuring and representing the geometry, gravity, and spatial orientation of the Earth in temporally varying 3D. It is called planetary geodesy when studying other astronomical bodies, such as planets or circumplanetary systems.[2] Geodesy is an earth science and many consider the study of Earth's shape and gravity to be central to that science.[3][4] It is also a discipline of applied mathematics.[5][6] Geodynamical phenomena, including crustal motion, tides, and polar motion, can be studied by designing global and national control networks, applying space geodesy and terrestrial geodetic techniques, and relying on datums and coordinate systems. Geodetic job titles include geodesist and geodetic surveyor.[7] Geodesy began in pre-scientific antiquity, so the very word geodesy comes from the Ancient Greek word \u03b3\u03b5\u03c9\u03b4\u03b1\u03b9\u03c3\u03af\u03b1 or geodaisia (literally, \"division of Earth\").[8] Early ideas about the figure of the Earth held the Earth to be flat and the heavens a physical dome spanning over it.[9] Two early arguments for a spherical Earth were that lunar eclipses appear to an observer as circular shadows and that Polaris appears lower and lower in the sky to a traveler headed South.[10]",
+  "url": "https://en.wikipedia.org/wiki/Geodesy",
+  "embedding": null,
+  "db_path": "kb_databases/geodesy_ce5bbc9f.db",
+  "last_updated": 1743796485.084146,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "2f4fb81b-a502-486b-88da-2f6d80693839",
+  "name": "System dynamics",
+  "content": "System dynamics (SD) is an approach to understanding the nonlinear behaviour of complex systems over time using stocks, flows, internal feedback loops, table functions and time delays.[1] System dynamics is a methodology and mathematical modeling technique to frame, understand, and discuss complex issues and problems. Originally developed in the 1950s to help corporate managers improve their understanding of industrial processes, SD is currently being used throughout the public and private sector for policy analysis and design.[2] Convenient graphical user interface (GUI) system dynamics software developed into user friendly versions by the 1990s and have been applied to diverse systems. SD models solve the problem of simultaneity (mutual causation) by updating all variables in small time increments with positive and negative feedbacks and time delays structuring the interactions and control. The best known SD model is probably the 1972 The Limits to Growth. This model forecast that exponential growth of population and capital, with finite resource sources and sinks and perception delays, would lead to economic collapse during the 21st century under a wide variety of growth scenarios.",
+  "url": "https://en.wikipedia.org/wiki/System_dynamics",
+  "embedding": null,
+  "db_path": "kb_databases/system_dynamics_879f2a57.db",
+  "last_updated": 1743796485.218474,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

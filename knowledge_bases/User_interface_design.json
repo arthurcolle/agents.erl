@@ -1,0 +1,14 @@
+{
+  "kb_id": "56499db0-36fc-4b9a-99ff-9d33a2e25fc1",
+  "name": "User interface design",
+  "content": "User interface (UI) design or user interface engineering is the design of user interfaces for machines and software, such as computers, home appliances, mobile devices, and other electronic devices, with the focus on maximizing usability and the user experience. In computer or software design, user interface (UI) design primarily focuses on information architecture. It is the process of building interfaces that clearly communicate to the user what's important. UI design refers to graphical user interfaces and other forms of interface design. The goal of user interface design is to make the user's interaction as simple and efficient as possible, in terms of accomplishing user goals (user-centered design). User-centered design is typically accomplished through the execution of modern design thinking which involves empathizing with the target audience, defining a problem statement, ideating potential solutions, prototyping wireframes, and testing prototypes in order to refine final interface mockups.",
+  "url": "https://en.wikipedia.org/wiki/User_interface_design",
+  "embedding": null,
+  "db_path": "kb_databases/user_interface_design_e18f9d7f.db",
+  "last_updated": 1743796485.5492558,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

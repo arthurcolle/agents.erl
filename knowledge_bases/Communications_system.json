@@ -1,0 +1,14 @@
+{
+  "kb_id": "bcc6e104-e0d8-420c-acc9-4d6ad70374f3",
+  "name": "Communications system",
+  "content": "A communications system or communication system is a collection of individual telecommunications networks systems, relay stations, tributary stations, and terminal equipment usually capable of interconnection and interoperation to form an integrated whole. The components of a communications system serve a common purpose, are technically compatible, use common procedures, respond to controls, and operate in union. Telecommunications is a method of communication (e.g., for sports broadcasting, mass media, journalism, etc.). Communication is the act of conveying intended meanings from one entity or group to another through the use of mutually understood signs and semiotic rules. An optical communication system is any form of communications system that uses light as the transmission medium. Equipment consists of a transmitter, which encodes a message into an optical signal, a communication channel, which carries the signal to its destination, and a receiver, which reproduces the message from the received optical signal. Fiber-optic communication systems transmit information from one place to another by sending light through an optical fiber. The light forms a carrier signal that is modulated to carry information.",
+  "url": "https://en.wikipedia.org/wiki/Communications_system",
+  "embedding": null,
+  "db_path": "kb_databases/communications_system_8b580060.db",
+  "last_updated": 1743796485.192134,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

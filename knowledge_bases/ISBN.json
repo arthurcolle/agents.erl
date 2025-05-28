@@ -1,0 +1,14 @@
+{
+  "kb_id": "a559c800-3170-42ce-a1c2-02c125da191d",
+  "name": "ISBN",
+  "content": "The International Standard Book Number (ISBN) is a numeric commercial book identifier that is intended to be unique.[a][b] Publishers purchase or receive ISBNs from an affiliate of the International ISBN Agency.[2] A different ISBN is assigned to each separate edition and variation of a publication, but not to a simple reprinting of an existing item. For example, an e-book, a paperback and a hardcover edition of the same book must each have a different ISBN, but an unchanged reprint of the hardcover edition keeps the same ISBN. The ISBN is ten digits long if assigned before 2007, and thirteen digits long if assigned on or after 1 January 2007.[c] The method of assigning an ISBN is nation-specific and varies between countries, often depending on how large the publishing industry is within a country. The first version of the ISBN identification format was devised in 1967, based upon the 9-digit Standard Book Numbering (SBN) created in 1966. The 10-digit ISBN format was developed by the International Organization for Standardization (ISO) and was published in 1970 as international standard ISO 2108 (any 9-digit SBN can be converted to a 10-digit ISBN by prefixing it with a zero).",
+  "url": "https://en.wikipedia.org/wiki/ISBN_(identifier)",
+  "embedding": null,
+  "db_path": "kb_databases/isbn_9609dddf.db",
+  "last_updated": 1743796484.962728,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "d8a50bba-11b3-40f7-bd8c-a963d43943d2",
+  "name": "Chronobiology",
+  "content": "Chronobiology is a field of biology that examines timing processes, including periodic (cyclic) phenomena in living organisms, such as their adaptation to solar- and lunar-related rhythms.[1] These cycles are known as biological rhythms. Chronobiology comes from the ancient Greek \u03c7\u03c1\u03cc\u03bd\u03bf\u03c2 (chr\u00f3nos, meaning \"time\"), and biology, which pertains to the study, or science, of life. The related terms chronomics and chronome have been used in some cases to describe either the molecular mechanisms involved in chronobiological phenomena or the more quantitative aspects of chronobiology, particularly where comparison of cycles between organisms is required. Chronobiological studies include but are not limited to comparative anatomy, physiology, genetics, molecular biology and behavior of organisms related to their biological rhythms.[1] Other aspects include epigenetics, development, reproduction, ecology and evolution. Chronobiology studies variations of the timing and duration of biological activity in living organisms which occur for many essential biological processes. These occur (a) in animals (eating, sleeping, mating, hibernating, migration, cellular regeneration, etc.), (b) in plants (leaf movements, photosynthetic reactions, etc.), and in microbial organisms such as fungi and protozoa. They have even been found in bacteria, especially among the cyanobacteria (aka blue-green algae, see bacterial circadian rhythms). The best studied rhythm in chronobiology is the circadian rhythm, a roughly 24-hour cycle shown by physiological processes in all these organisms. The term circadian comes from the Latin circa, meaning \"around\" and dies, \"day\", meaning \"approximately a day.\" It is regulated by circadian clocks.",
+  "url": "https://en.wikipedia.org/wiki/Chronobiology",
+  "embedding": null,
+  "db_path": "kb_databases/chronobiology_27b91237.db",
+  "last_updated": 1743796484.812135,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

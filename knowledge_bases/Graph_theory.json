@@ -1,0 +1,14 @@
+{
+  "kb_id": "5767c7af-43c0-47dd-9d93-a1234ce3e5e0",
+  "name": "Graph theory",
+  "content": "In mathematics and computer science, graph theory is the study of graphs, which are mathematical structures used to model pairwise relations between objects. A graph in this context is made up of vertices (also called nodes or points) which are connected by edges (also called arcs, links or lines). A distinction is made between undirected graphs, where edges link two vertices symmetrically, and directed graphs, where edges link two vertices asymmetrically. Graphs are one of the principal objects of study in discrete mathematics. Definitions in graph theory vary. The following are some of the more basic ways of defining graphs and related mathematical structures. In one restricted but very common sense of the term,[1][2] a graph is an ordered pair G = ( V , E ) {\\displaystyle G=(V,E)} comprising: To avoid ambiguity, this type of object may be called precisely an undirected simple graph. In the edge { x , y } {\\displaystyle \\{x,y\\}} , the vertices x {\\displaystyle x} and y {\\displaystyle y} are called the endpoints of the edge. The edge is said to join x {\\displaystyle x} and y {\\displaystyle y} and to be incident on x {\\displaystyle x} and on y {\\displaystyle y} . A vertex may exist in a graph and not belong to an edge. Under this definition, multiple edges, in which two or more edges connect the same vertices, are not allowed.",
+  "url": "https://en.wikipedia.org/wiki/Graph_theory",
+  "embedding": null,
+  "db_path": "kb_databases/graph_theory_a8b0d7ec.db",
+  "last_updated": 1743796485.5322611,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "a5b5bdc8-22da-4277-b43d-c8c7ee77b194",
+  "name": "Astrophysics",
+  "content": "Astrophysics is a science that employs the methods and principles of physics and chemistry in the study of astronomical objects and phenomena.[1][2] As one of the founders of the discipline, James Keeler, said, astrophysics \"seeks to ascertain the nature of the heavenly bodies, rather than their positions or motions in space\u2014what they are, rather than where they are\",[3] which is studied in celestial mechanics. Among the subjects studied are the Sun (solar physics), other stars, galaxies, extrasolar planets, the interstellar medium, and the cosmic microwave background.[4][5] Emissions from these objects are examined across all parts of the electromagnetic spectrum, and the properties examined include luminosity, density, temperature, and chemical composition. Because astrophysics is a very broad subject, astrophysicists apply concepts and methods from many disciplines of physics, including classical mechanics, electromagnetism, statistical mechanics, thermodynamics, quantum mechanics, relativity, nuclear and particle physics, and atomic and molecular physics.",
+  "url": "https://en.wikipedia.org/wiki/Astrophysics",
+  "embedding": null,
+  "db_path": "kb_databases/astrophysics_178c788b.db",
+  "last_updated": 1743796485.1772459,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

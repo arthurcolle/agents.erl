@@ -1,0 +1,14 @@
+{
+  "kb_id": "fa4f2862-a669-4b66-9a23-8ef36f86248d",
+  "name": "Solid geometry",
+  "content": "Solid geometry or stereometry is the geometry of three-dimensional Euclidean space (3D space).[1] A solid figure is the region of 3D space bounded by a two-dimensional closed surface; for example, a solid ball consists of a sphere and its interior. Solid geometry deals with the measurements of volumes of various solids, including pyramids, prisms (and other polyhedrons), cubes, cylinders, cones (and truncated cones).[2] The Pythagoreans dealt with the regular solids, but the pyramid, prism, cone and cylinder were not studied until the Platonists. Eudoxus established their measurement, proving the pyramid and cone to have one-third the volume of a prism and cylinder on the same base and of the same height. He was probably also the discoverer of a proof that the volume enclosed by a sphere is proportional to the cube of its radius.[3] Basic topics in solid geometry and stereometry include: Advanced topics include: Whereas a sphere is the surface of a ball, for other solid figures it is sometimes ambiguous whether the term refers to the surface of the figure or the volume enclosed therein, notably for a cylinder.",
+  "url": "https://en.wikipedia.org/wiki/Solid_geometry",
+  "embedding": null,
+  "db_path": "kb_databases/solid_geometry_ed822f5d.db",
+  "last_updated": 1743796485.101569,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

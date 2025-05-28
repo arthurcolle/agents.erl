@@ -1,0 +1,14 @@
+{
+  "kb_id": "83bced06-8bd4-401c-9d3f-ea3f0fbcf4ee",
+  "name": "Petroleum engineering",
+  "content": "Petroleum engineering is a field of engineering concerned with the activities related to the production of hydrocarbons, which can be either crude oil or natural gas.[1] Exploration and production are deemed to fall within the upstream sector of the oil and gas industry. Exploration, by earth scientists, and petroleum engineering are the oil and gas industry's two main subsurface disciplines, which focus on maximizing economic recovery of hydrocarbons from subsurface reservoirs. Petroleum geology and geophysics focus on provision of a static description of the hydrocarbon reservoir rock, while petroleum engineering focuses on estimation of the recoverable volume of this resource using a detailed understanding of the physical behavior of oil, water and gas within porous rock at very high pressure. The combined efforts of geologists and petroleum engineers throughout the life of a hydrocarbon accumulation determine the way in which a reservoir is developed and depleted, and usually they have the highest impact on field economics. Petroleum engineering requires a good knowledge of many other related disciplines, such as geophysics, petroleum geology, formation evaluation (well logging), drilling, economics, reservoir simulation, reservoir engineering, well engineering, artificial lift systems, completions and petroleum production engineering.",
+  "url": "https://en.wikipedia.org/wiki/Petroleum_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/petroleum_engineering_3476cfae.db",
+  "last_updated": 1743796485.5608802,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

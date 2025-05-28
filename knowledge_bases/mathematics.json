@@ -1,0 +1,14 @@
+{
+  "kb_id": "e6afbee3-5db2-4798-8d31-997cc4dcafea",
+  "name": "Mathematics",
+  "content": "Mathematics is a field of study that discovers and organizes methods, theories and theorems that are developed and proved for the needs of empirical sciences and mathematics itself. There are many areas of mathematics, which include number theory (the study of numbers), algebra (the study of formulas and related structures), geometry (the study of shapes and spaces that contain them), analysis (the study of continuous changes), and set theory (presently used as a foundation for all mathematics). Mathematics involves the description and manipulation of abstract objects that consist of either abstractions from nature or\u2014in modern mathematics\u2014purely abstract entities that are stipulated to have certain properties, called axioms. Mathematics uses pure reason to prove properties of objects, a proof consisting of a succession of applications of deductive rules to already established results. These results include previously proved theorems, axioms, and\u2014in case of abstraction from nature\u2014some basic properties that are considered true starting points of the theory under consideration.[1]",
+  "url": "https://en.wikipedia.org/wiki/Mathematics",
+  "embedding": null,
+  "db_path": "kb_databases/mathematics_540b21ec.db",
+  "last_updated": 1743796485.521995,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "16be97de-4695-48ad-80d3-ba8615d0e934",
+  "name": "Classification",
+  "content": "Classification is the activity of assigning objects to some pre-existing classes or categories. This is distinct from the task of establishing the classes themselves (for example through cluster analysis).[1] Examples include diagnostic tests, identifying spam emails and deciding whether to give someone a driving license. As well as 'category', synonyms or near-synonyms for 'class' include 'type', 'species', 'order', 'concept', 'taxon', 'group', 'identification' and 'division'. The meaning of the word 'classification' (and its synonyms) may take on one of several related meanings. It may encompass both classification and the creation of classes, as for example in 'the task of categorizing pages in Wikipedia'; this overall activity is listed under taxonomy. It may refer exclusively to the underlying scheme of classes (which otherwise may be called a taxonomy). Or it may refer to the label given to an object by the classifier. Classification is a part of many different kinds of activities and is studied from many different points of view including medicine, philosophy,[2] law, anthropology, biology, taxonomy, cognition, communications, knowledge organization, psychology, statistics, machine learning, economics and mathematics.",
+  "url": "https://en.wikipedia.org/wiki/Classification",
+  "embedding": null,
+  "db_path": "kb_databases/classification_5c9335b2.db",
+  "last_updated": 1743796485.531809,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

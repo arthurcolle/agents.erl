@@ -1,0 +1,14 @@
+{
+  "kb_id": "75063063-1c5b-4773-921d-53ac27dbfd96",
+  "name": "Space commercialization",
+  "content": "Space economy refers to the set of activities, industries, technologies, services, and resources that generate economic value through the exploration, understanding, management, and utilization of outer space.[1][2] Commercial satellite use began in 1962 with Telstar 1, transmitting TV signals across the Atlantic Ocean. Syncom 3 expanded possibilities in 1964, broadcasting the Olympics. NASA's TIROS satellites advanced meteorological research, while Intelsat I in 1965 showed commercial viability. Later, France's Arianespace and USA's Iridium Communications furthered satellite services. By 2004, global investment in all space sectors was estimated to be US$50.8 billion.[3] As of 2010, 31% of all space launches were commercial.[4] By the year 2035, the space economy is projected to have grown to $1.8 trillion.[5] The commercial spaceflight sector primarily generates revenue by launching satellites into Earth's orbit, facilitated by providers deploying satellites into Low Earth Orbit and Geostationary Earth Orbit. The Federal Aviation Administration (FAA) licenses six U.S. spaceports and oversees commercial rocket launches, with global capacity expanding from sites in Russia, France, and China. Investment in reusable launch vehicles by companies like SpaceX and Blue Origin is driving innovation in this sector. In 2022, 74 FAA-licensed commercial space operations were conducted, and this number is expected to double in the near future.",
+  "url": "https://en.wikipedia.org/wiki/Space_commercialization",
+  "embedding": null,
+  "db_path": "kb_databases/space_commercialization_cebe19e1.db",
+  "last_updated": 1743796485.3560529,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

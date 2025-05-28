@@ -1,0 +1,14 @@
+{
+  "kb_id": "04da9ed7-428e-4ceb-ad60-67e0a58c79da",
+  "name": "epidemiology",
+  "content": "Epidemiology is the study and analysis of the distribution (who, when, and where), patterns and determinants of health and disease conditions in a defined population, and application of this knowledge to prevent diseases. It is a cornerstone of public health, and shapes policy decisions and evidence-based practice by identifying risk factors for disease and targets for preventive healthcare. Epidemiologists help with study design, collection, and statistical analysis of data, amend interpretation and dissemination of results (including peer review and occasional systematic review). Epidemiology has helped develop methodology used in clinical research, public health studies, and, to a lesser extent, basic research in the biological sciences.[1] Major areas of epidemiological study include disease causation, transmission, outbreak investigation, disease surveillance, environmental epidemiology, forensic epidemiology, occupational epidemiology, screening, biomonitoring, and comparisons of treatment effects such as in clinical trials. Epidemiologists rely on other scientific disciplines like biology to better understand disease processes, statistics to make efficient use of the data and draw appropriate conclusions, social sciences to better understand proximate and distal causes, and engineering for exposure assessment.",
+  "url": "https://en.wikipedia.org/wiki/Epidemiology",
+  "embedding": null,
+  "db_path": "kb_databases/epidemiology_5e0d9fac.db",
+  "last_updated": 1743796485.499943,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "7331a86f-a613-487e-80c7-bbecf81b8c7f",
+  "name": "Geometrical optics",
+  "content": "Geometrical optics, or ray optics, is a model of optics that describes light propagation in terms of rays. The ray in geometrical optics is an abstraction useful for approximating the paths along which light propagates under certain circumstances. The simplifying assumptions of geometrical optics include that light rays: Geometrical optics does not account for certain optical effects such as diffraction and interference, which are considered in physical optics. This simplification is useful in practice; it is an excellent approximation when the wavelength is small compared to the size of structures with which the light interacts. The techniques are particularly useful in describing geometrical aspects of imaging, including optical aberrations. A light ray is a line or curve that is perpendicular to the light's wavefronts (and is therefore collinear with the wave vector). A slightly more rigorous definition of a light ray follows from Fermat's principle, which states that the path taken between two points by a ray of light is the path that can be traversed in the least time.[1]",
+  "url": "https://en.wikipedia.org/wiki/Geometrical_optics",
+  "embedding": null,
+  "db_path": "kb_databases/geometrical_optics_7b12bc28.db",
+  "last_updated": 1743796485.5168278,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

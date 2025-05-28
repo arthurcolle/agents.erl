@@ -1,0 +1,14 @@
+{
+  "kb_id": "1b591aa1-3701-4001-90d1-1c5070feb44c",
+  "name": "Surveying",
+  "content": "Surveying or land surveying is the technique, profession, art, and science of determining the terrestrial two-dimensional or three-dimensional positions of points and the distances and angles between them. These points are usually on the surface of the Earth, and they are often used to establish maps and boundaries for ownership, locations, such as the designated positions of structural components for construction or the surface location of subsurface features, or other purposes required by government or civil law, such as property sales.[1] A professional in land surveying is called a land surveyor. Surveyors work with elements of geodesy, geometry, trigonometry, regression analysis, physics, engineering, metrology, programming languages, and the law. They use equipment, such as total stations, robotic total stations, theodolites, GNSS receivers, retroreflectors, 3D scanners, lidar sensors, radios, inclinometer, handheld tablets, optical and digital levels, subsurface locators, drones, GIS, and surveying software.",
+  "url": "https://en.wikipedia.org/wiki/Surveying",
+  "embedding": null,
+  "db_path": "kb_databases/surveying_7c2c2096.db",
+  "last_updated": 1743796484.7415261,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

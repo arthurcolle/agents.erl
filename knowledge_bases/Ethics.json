@@ -1,0 +1,14 @@
+{
+  "kb_id": "ea448b15-c222-4670-950f-e9ad41be4d0e",
+  "name": "Ethics",
+  "content": "Ethics is the philosophical study of moral phenomena. Also called moral philosophy, it investigates normative questions about what people ought to do or which behavior is morally right. Its main branches include normative ethics, applied ethics, and metaethics. Normative ethics aims to find general principles that govern how people should act. Applied ethics examines concrete ethical problems in real-life situations, such as abortion, treatment of animals, and business practices. Metaethics explores the underlying assumptions and concepts of ethics. It asks whether there are objective moral facts, how moral knowledge is possible, and how moral judgments motivate people. Influential normative theories are consequentialism, deontology, and virtue ethics. According to consequentialists, an act is right if it leads to the best consequences. Deontologists focus on acts themselves, saying that they must adhere to duties, like telling the truth and keeping promises. Virtue ethics sees the manifestation of virtues, like courage and compassion, as the fundamental principle of morality.",
+  "url": "https://en.wikipedia.org/wiki/Ethics",
+  "embedding": null,
+  "db_path": "kb_databases/ethics_0f68057d.db",
+  "last_updated": 1743796485.2523699,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

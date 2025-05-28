@@ -1,0 +1,14 @@
+{
+  "kb_id": "cc8dac5b-7615-4e61-94a5-22b4e54d8203",
+  "name": "Universal algebra",
+  "content": "Universal algebra (sometimes called general algebra) is the field of mathematics that studies algebraic structures themselves, not examples (\"models\") of algebraic structures. For instance, rather than take particular groups as the object of study, in universal algebra one takes the class of groups as an object of study. In universal algebra, an algebra (or algebraic structure) is a set A together with a collection of operations on A. An n-ary operation on A is a function that takes n elements of A and returns a single element of A. Thus, a 0-ary operation (or nullary operation) can be represented simply as an element of A, or a constant, often denoted by a letter like a. A 1-ary operation (or unary operation) is simply a function from A to A, often denoted by a symbol placed in front of its argument, like ~x. A 2-ary operation (or binary operation) is often denoted by a symbol placed between its arguments (also called infix notation), like x \u2217 y. Operations of higher or unspecified arity are usually denoted by function symbols, with the arguments placed in parentheses and separated by commas, like f(x,y,z) or f(x1,...,xn). One way of talking about an algebra, then, is by referring to it as an algebra of a certain type \u03a9 {\\displaystyle \\Omega } , where \u03a9 {\\displaystyle \\Omega } is an ordered sequence of natural numbers representing the arity of the operations of the algebra. However, some researchers also allow infinitary operations, such as \u22c0 \u03b1 \u2208 J x \u03b1 {\\displaystyle \\textstyle \\bigwedge _{\\alpha \\in J}x_{\\alpha }} where J is an infinite index set, which is an operation in the algebraic theory of complete lattices.",
+  "url": "https://en.wikipedia.org/wiki/Universal_algebra",
+  "embedding": null,
+  "db_path": "kb_databases/universal_algebra_419aea17.db",
+  "last_updated": 1743796485.03055,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

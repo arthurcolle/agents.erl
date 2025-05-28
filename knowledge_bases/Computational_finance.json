@@ -1,0 +1,14 @@
+{
+  "kb_id": "a8b2ff4a-cd1f-4474-99f5-31effe234e0d",
+  "name": "Computational finance",
+  "content": "Computational finance is a branch of applied computer science that deals with problems of practical interest in finance.[1] Some slightly different definitions are the study of data and algorithms currently used in finance[2] and the mathematics of computer programs that realize financial models or systems.[3] Computational finance emphasizes practical numerical methods rather than mathematical proofs and focuses on techniques that apply directly to economic analyses.[4] It is an interdisciplinary field between mathematical finance and numerical methods.[5] Two major areas are efficient and accurate computation of fair values of financial securities and the modeling of stochastic time series.[6] The birth of computational finance as a discipline can be traced to Harry Markowitz in the early 1950s. Markowitz conceived of the portfolio selection problem as an exercise in mean-variance optimization. This required more computer power than was available at the time, so he worked on useful algorithms for approximate solutions.[7] Mathematical finance began with the same insight, but diverged by making simplifying assumptions to express relations in simple closed forms that did not require sophisticated computer science to evaluate.[8]",
+  "url": "https://en.wikipedia.org/wiki/Computational_finance",
+  "embedding": null,
+  "db_path": "kb_databases/computational_finance_b7842bad.db",
+  "last_updated": 1743796484.967597,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

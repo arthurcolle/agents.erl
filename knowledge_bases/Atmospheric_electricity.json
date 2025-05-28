@@ -1,0 +1,14 @@
+{
+  "kb_id": "197ffacc-c5b6-4a4f-bcc1-ca9198da6801",
+  "name": "Atmospheric electricity",
+  "content": "Atmospheric electricity describes the electrical charges in the Earth's atmosphere (or that of another planet). The movement of charge between the Earth's surface, the atmosphere, and the ionosphere is known as the global atmospheric electrical circuit. Atmospheric electricity is an interdisciplinary topic with a long history, involving concepts from electrostatics, atmospheric physics, meteorology and Earth science.[2] Thunderstorms act as a giant battery in the atmosphere, charging up the electrosphere to about 400,000 volts with respect to the surface.[3] This sets up an electric field throughout the atmosphere, which decreases with increase in altitude. Atmospheric ions created by cosmic rays and natural radioactivity move in the electric field, so a very small current flows through the atmosphere, even away from thunderstorms. Near the surface of the Earth, the magnitude of the field is on average around 100 V/m,[4] oriented such that it drives positive charges down.[5] Atmospheric electricity involves both thunderstorms, which create lightning bolts to rapidly discharge huge amounts of atmospheric charge stored in storm clouds, and the continual electrification of the air due to ionization from cosmic rays and natural radioactivity, which ensure that the atmosphere is never quite neutral.[6]",
+  "url": "https://en.wikipedia.org/wiki/Atmospheric_electricity",
+  "embedding": null,
+  "db_path": "kb_databases/atmospheric_electricity_71145c39.db",
+  "last_updated": 1743796485.180743,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

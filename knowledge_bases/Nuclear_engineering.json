@@ -1,0 +1,14 @@
+{
+  "kb_id": "86c77f42-28f7-434c-8a8a-2f69efd51e29",
+  "name": "Nuclear engineering",
+  "content": "Nuclear engineering is the engineering discipline concerned with designing and applying systems that utilize the energy released by nuclear processes.[1][2] The most prominent application of nuclear engineering is the generation of electricity. Worldwide, some 440 nuclear reactors in 32 countries generate 10 percent of the world's energy through nuclear fission.[3] In the future, it is expected that nuclear fusion will add another nuclear means of generating energy.[4] Both reactions make use of the nuclear binding energy released when atomic nucleons are either separated (fission) or brought together (fusion). The energy available is given by the binding energy curve, and the amount generated is much greater than that generated through chemical reactions. Fission of 1 gram of uranium yields as much energy as burning 3 tons of coal or 600 gallons of fuel oil,[5] without adding carbon dioxide to the atmosphere.[6] Nuclear engineering was born in 1938, with the discovery of nuclear fission.[7] The first artificial nuclear reactor, CP-1, was designed by a team of physicists who were concerned that Nazi Germany might also be seeking to build a bomb based on nuclear fission. (The earliest known nuclear reaction on Earth occurred naturally, 1.7 billion years ago, in Oklo, Gabon, Africa.) The second artificial nuclear reactor, the X-10 Graphite Reactor, was also a part of the Manhattan Project, as were the plutonium-producing reactors of the Hanford Engineer Works.",
+  "url": "https://en.wikipedia.org/wiki/Nuclear_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/nuclear_engineering_4a33b47a.db",
+  "last_updated": 1743796485.479119,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

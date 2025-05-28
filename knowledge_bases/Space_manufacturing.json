@@ -1,0 +1,14 @@
+{
+  "kb_id": "c2edb3bd-d3a2-402e-a9ad-ab54a3fda87d",
+  "name": "Space manufacturing",
+  "content": "Space manufacturing or In-space manufacturing (ISM in short) is the fabrication, assembly or integration of tangible goods beyond Earth's atmosphere (or more generally, outside a planetary atmosphere), involving the transformation of raw or recycled materials into components, products, or infrastructure in space,[3] where the manufacturing process is executed either by humans or automated systems by taking advantage of the unique characteristics of space.[4] Synonyms of Space/In-space manufacturing are In-orbit manufacturing (since most production capabilities are limited to low Earth orbit), Off-Earth manufacturing, Space-based manufacturing, Orbital manufacturing, In-situ manufacturing, In-space fabrication, In-space production, etc.[4] In-space manufacturing is a part of the broader activity of in-space servicing, assembly and manufacturing (ISAM) and is related to in situ resource utilization (ISRU).[4] Three major domains of In-space manufacturing are ISM for space (space-for-space) where products remain in space, ISM for Earth (space-for-Earth) where goods with improved properties produced in outer-space microgravity are transported back to Earth, and ISM for surface where goods are produced on or sent to surfaces of celestial bodies like the Moon, Mars, and asteroids.[4]",
+  "url": "https://en.wikipedia.org/wiki/Space_manufacturing",
+  "embedding": null,
+  "db_path": "kb_databases/space_manufacturing_7143faef.db",
+  "last_updated": 1743796485.360959,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

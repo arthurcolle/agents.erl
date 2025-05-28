@@ -1,0 +1,14 @@
+{
+  "kb_id": "6b952dc7-6585-4fe1-9983-65650c2bcf7f",
+  "name": "Cloud computing",
+  "content": "Cloud computing is \"a paradigm for enabling network access to a scalable and elastic pool of shareable physical or virtual resources with self-service provisioning and administration on-demand,\" according to ISO.[1] In 2011, the National Institute of Standards and Technology (NIST) identified five \"essential characteristics\" for cloud systems.[2] Below are the exact definitions according to NIST:[2] By 2023, the International Organization for Standardization (ISO) had expanded and refined the list.[3] The history of cloud computing extends back to the 1960s, with the initial concepts of time-sharing becoming popularized via remote job entry (RJE). The \"data center\" model, where users submitted jobs to operators to run on mainframes, was predominantly used during this era. This was a time of exploration and experimentation with ways to make large-scale computing power available to more users through time-sharing, optimizing the infrastructure, platform, and applications, and increasing efficiency for end users.[4]",
+  "url": "https://en.wikipedia.org/wiki/Cloud_computing",
+  "embedding": null,
+  "db_path": "kb_databases/cloud_computing_29d8bfd5.db",
+  "last_updated": 1743796485.506469,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

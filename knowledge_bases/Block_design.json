@@ -1,0 +1,14 @@
+{
+  "kb_id": "85438206-d826-4bee-af06-d3bee8ca88ea",
+  "name": "Block design",
+  "content": "In combinatorial mathematics, a block design is an incidence structure consisting of a set together with a family of subsets known as blocks, chosen such that frequency of the elements[clarification needed] satisfies certain conditions making the collection of blocks exhibit symmetry (balance). Block designs have applications in many areas, including experimental design, finite geometry, physical chemistry, software testing, cryptography, and algebraic geometry. Without further specifications the term block design usually refers to a balanced incomplete block design (BIBD), specifically (and also synonymously) a 2-design, which has been the most intensely studied type historically due to its application in the design of experiments.[1][2] Its generalization is known as a t-design. A design is said to be balanced (up to t) if all t-subsets of the original set occur in equally many (i.e., \u03bb) blocks[clarification needed]. When t is unspecified, it can usually be assumed to be 2, which means that each pair of elements is found in the same number of blocks and the design is pairwise balanced. For t=1, each element occurs in the same number of blocks (the replication number, denoted r) and the design is said to be regular. A block design in which all the blocks have the same size (usually denoted k) is called uniform or proper. The designs discussed in this article are all uniform. Block designs that are not necessarily uniform have also been studied; for t=2 they are known in the literature under the general name pairwise balanced designs (PBDs). Any uniform design balanced up to t is also balanced in all lower values of t (though with different \u03bb-values), so for example a pairwise balanced (t=2) design is also regular (t=1). When the balancing requirement fails, a design may still be partially balanced if the t-subsets can be divided into n classes, each with its own (different) \u03bb-value. For t=2 these are known as PBIBD(n) designs, whose classes form an association scheme.",
+  "url": "https://en.wikipedia.org/wiki/Block_design",
+  "embedding": null,
+  "db_path": "kb_databases/block_design_650e3437.db",
+  "last_updated": 1743796485.166218,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

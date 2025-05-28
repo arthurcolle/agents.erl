@@ -1,0 +1,14 @@
+{
+  "kb_id": "03e69d25-45c2-4f7b-9396-f9e45191256d",
+  "name": "Agrochemistry",
+  "content": "Agricultural chemistry is the chemistry, especially organic chemistry and biochemistry, as they relate to agriculture. Agricultural chemistry embraces the structures and chemical reactions relevant in the production, protection, and use of crops and livestock. Its applied science and technology aspects are directed towards increasing yields and improving quality, which comes with multiple advantages and disadvantages.[1] This aspect of agricultural chemistry deals with the role of molecular chemistry in agriculture as well as the negative consequences. Plant biochemistry encompasses the chemical reactions that occur within plants. In principle, knowledge at a molecular level informs technologies for providing food. Particular focus is on the biochemical differences between plants and other organisms as well as the differences within the plant kingdom, such as dicotyledons vs monocotyledons, gymnosperms vs angiosperms, C2- vs C4-fixers, etc. Chemical materials developed to assist in the production of food, feed, and fiber include herbicides, insecticides, fungicides,[2] and other pesticides. Pesticides are chemicals that play an important role in increasing crop yield and mitigating crop losses.[3] These work to keep insects and other animals away from crops to allow them to grow undisturbed, effectively regulating pests and diseases.",
+  "url": "https://en.wikipedia.org/wiki/Agrochemistry",
+  "embedding": null,
+  "db_path": "kb_databases/agrochemistry_bd2c5cda.db",
+  "last_updated": 1743796485.043126,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

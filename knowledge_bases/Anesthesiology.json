@@ -1,0 +1,14 @@
+{
+  "kb_id": "c7123e3b-e245-449c-b73f-b4afe9890013",
+  "name": "Anesthesiology",
+  "content": "Anesthesiology, anaesthesiology or anaesthesia is the medical specialty concerned with the total perioperative care of patients before, during and after surgery.[1] It encompasses anesthesia, intensive care medicine, critical emergency medicine, and pain medicine.[2] A physician specialized in anesthesiology is called an anesthesiologist, anaesthesiologist, or anaesthetist, depending on the country.[3][4][5][6] In some countries, the terms are synonymous, while in other countries, they refer to different positions and anesthetist is only used for non-physicians, such as nurse anesthetists. The core element of the specialty is the prevention and mitigation of pain and distress using various anesthetic agents, as well as the monitoring and maintenance of a patient's vital functions throughout the perioperative period.[7] Since the 19th century, anesthesiology has developed from an experimental area with non-specialist practitioners using novel, untested drugs and techniques into what is now a highly refined, safe and effective field of medicine. In some countries anesthesiologists comprise the largest single cohort of doctors in hospitals,[8][9] and their role can extend far beyond the traditional role of anesthesia care in the operating room, including fields such as providing pre-hospital emergency medicine, running intensive care units, transporting critically ill patients between facilities, management of hospice and palliative care units, and prehabilitation programs to optimize patients for surgery.[7][8]",
+  "url": "https://en.wikipedia.org/wiki/Anesthesiology",
+  "embedding": null,
+  "db_path": "kb_databases/anesthesiology_c6ec7ea2.db",
+  "last_updated": 1743796485.18152,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

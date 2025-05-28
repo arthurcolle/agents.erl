@@ -1,0 +1,14 @@
+{
+  "kb_id": "e29032b4-3c69-4bff-bf46-bbde6e41dcf3",
+  "name": "Celestial mechanics",
+  "content": "Celestial mechanics is the branch of astronomy that deals with the motions of objects in outer space. Historically, celestial mechanics applies principles of physics (classical mechanics) to astronomical objects, such as stars and planets, to produce ephemeris data. Modern analytic celestial mechanics started with Isaac Newton's Principia (1687). The name celestial mechanics is more recent than that. Newton wrote that the field should be called \"rational mechanics\". The term \"dynamics\" came in a little later with Gottfried Leibniz, and over a century after Newton, Pierre-Simon Laplace introduced the term celestial mechanics. Prior to Kepler, there was little connection between exact, quantitative prediction of planetary positions, using geometrical or numerical techniques, and contemporary discussions of the physical causes of the planets' motion. Johannes Kepler as the first to closely integrate the predictive geometrical astronomy, which had been dominant from Ptolemy in the 2nd century to Copernicus, with physical concepts to produce a New Astronomy, Based upon Causes, or Celestial Physics in 1609. His work led to the laws of planetary orbits, which he developed using his physical principles and the planetary observations made by Tycho Brahe. Kepler's elliptical model greatly improved the accuracy of predictions of planetary motion, years before Newton developed his law of gravitation in 1686.",
+  "url": "https://en.wikipedia.org/wiki/Celestial_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/celestial_mechanics_22d42c0d.db",
+  "last_updated": 1743796485.533386,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

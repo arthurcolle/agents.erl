@@ -1,0 +1,14 @@
+{
+  "kb_id": "09e3c7e6-3bac-4321-b6e3-04583868959a",
+  "name": "Statistical theory",
+  "content": "The theory of statistics provides a basis for the whole range of techniques, in both study design and data analysis, that are used within applications of statistics.[1][2] The theory covers approaches to statistical-decision problems and to statistical inference, and the actions and deductions that satisfy the basic principles stated for these different approaches. Within a given approach, statistical theory gives ways of comparing statistical procedures; it can find the best possible procedure within a given context for given statistical problems, or can provide guidance on the choice between alternative procedures.[2][3] Apart from philosophical considerations about how to make statistical inferences and decisions, much of statistical theory consists of mathematical statistics, and is closely linked to probability theory, to utility theory, and to optimization. Statistical theory provides an underlying rationale and provides a consistent basis for the choice of methodology used in applied statistics.",
+  "url": "https://en.wikipedia.org/wiki/Statistical_theory",
+  "embedding": null,
+  "db_path": "kb_databases/statistical_theory_1808d354.db",
+  "last_updated": 1743796485.535518,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

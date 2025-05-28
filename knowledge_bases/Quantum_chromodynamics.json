@@ -1,0 +1,14 @@
+{
+  "kb_id": "cacd4fc8-b721-4c9f-a0e8-08ea6fd9a399",
+  "name": "Quantum chromodynamics",
+  "content": "In theoretical physics, quantum chromodynamics (QCD) is the study of the strong interaction between quarks mediated by gluons. Quarks are fundamental particles that make up composite hadrons such as the proton, neutron and pion. QCD is a type of quantum field theory called a non-abelian gauge theory, with symmetry group SU(3). The QCD analog of electric charge is a property called color. Gluons are the force carriers of the theory, just as photons are for the electromagnetic force in quantum electrodynamics. The theory is an important part of the Standard Model of particle physics. A large body of experimental evidence for QCD has been gathered over the years. QCD exhibits three salient properties: Physicist Murray Gell-Mann coined the word quark in its present sense. It originally comes from the phrase \"Three quarks for Muster Mark\" in Finnegans Wake by James Joyce. On June 27, 1978, Gell-Mann wrote a private letter to the editor of the Oxford English Dictionary, in which he related that he had been influenced by Joyce's words: \"The allusion to three quarks seemed perfect.\" (Originally, only three quarks had been discovered.)[5]",
+  "url": "https://en.wikipedia.org/wiki/Quantum_chromodynamics",
+  "embedding": null,
+  "db_path": "kb_databases/quantum_chromodynamics_acd958e3.db",
+  "last_updated": 1743796485.555868,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

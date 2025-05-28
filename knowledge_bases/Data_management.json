@@ -1,0 +1,14 @@
+{
+  "kb_id": "1c340fcd-df58-408b-b5f9-8410ca055f6b",
+  "name": "Data management",
+  "content": "Data management comprises all disciplines related to handling data as a valuable resource, it is the practice of managing an organization's data so it can be analyzed for decision making.[1] The concept of data management arose in the 1980s as technology moved from sequential processing [2] (first punched cards, then magnetic tape) to random access storage. Since it was now possible to store a discrete fact and quickly access it using random access disk technology, those suggesting that data management was more important than business process management used arguments such as \"a customer's home address is stored in 75 (or some other large number) places in our computer systems.\"[citation needed] However, during this period, random access processing was not competitively fast, so those suggesting \"process management\" was more important than \"data management\" used batch processing time as their primary argument. As application software evolved into real-time, interactive usage, it became obvious that both management processes were important. If the data was not well defined, the data would be mis-used in applications. If the process wasn't well defined, it was impossible to meet user needs.",
+  "url": "https://en.wikipedia.org/wiki/Data_management",
+  "embedding": null,
+  "db_path": "kb_databases/data_management_198010d8.db",
+  "last_updated": 1743796485.565252,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

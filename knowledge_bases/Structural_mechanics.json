@@ -1,0 +1,14 @@
+{
+  "kb_id": "e08a7edd-a9e5-4b86-a065-3357b209aa13",
+  "name": "Structural mechanics",
+  "content": "Structural mechanics or mechanics of structures is the computation of deformations, deflections, and internal forces or stresses (stress equivalents) within structures, either for design or for performance evaluation of existing structures.[1] It is one subset of structural analysis. Structural mechanics analysis needs input data such as structural loads, the structure's geometric representation and support conditions, and the materials' properties. Output quantities may include support reactions, stresses and displacements. Advanced structural mechanics may include the effects of stability and non-linear behaviors. Mechanics of structures is a field of study within applied mechanics that investigates the behavior of structures under mechanical loads, such as bending of a beam, buckling of a column, torsion of a shaft, deflection of a thin shell, and vibration of a bridge. There are three approaches to the analysis: the energy methods, flexibility method or direct stiffness method which later developed into finite element method and the plastic analysis approach.",
+  "url": "https://en.wikipedia.org/wiki/Structural_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/structural_mechanics_f34c08ac.db",
+  "last_updated": 1743796484.740261,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "ebb63f2d-25d8-4b16-b1de-074b7dcac767",
+  "name": "Differential topology",
+  "content": "In mathematics, differential topology is the field dealing with the topological properties and smooth properties[a] of smooth manifolds. In this sense differential topology is distinct from the closely related field of differential geometry, which concerns the geometric properties of smooth manifolds, including notions of size, distance, and rigid shape. By comparison differential topology is concerned with coarser properties, such as the number of holes in a manifold, its homotopy type, or the structure of its diffeomorphism group. Because many of these coarser properties may be captured algebraically, differential topology has strong links to algebraic topology.[1] The central goal of the field of differential topology is the classification of all smooth manifolds up to diffeomorphism. Since dimension is an invariant of smooth manifolds up to diffeomorphism type, this classification is often studied by classifying the (connected) manifolds in each dimension separately: Beginning in dimension 4, the classification becomes much more difficult for two reasons.[5][6] Firstly, every finitely presented group appears as the fundamental group of some 4-manifold, and since the fundamental group is a diffeomorphism invariant, this makes the classification of 4-manifolds at least as difficult as the classification of finitely presented groups. By the word problem for groups, which is equivalent to the halting problem, it is impossible to classify such groups, so a full topological classification is impossible. Secondly, beginning in dimension four it is possible to have smooth manifolds that are homeomorphic, but with distinct, non-diffeomorphic smooth structures. This is true even for the Euclidean space R 4 {\\displaystyle \\mathbb {R} ^{4}} , which admits many exotic R 4 {\\displaystyle \\mathbb {R} ^{4}} structures. This means that the study of differential topology in dimensions 4 and higher must use tools genuinely outside the realm of the regular continuous topology of topological manifolds. One of the central open problems in differential topology is the four-dimensional smooth Poincar\u00e9 conjecture, which asks if every smooth 4-manifold that is homeomorphic to the 4-sphere, is also diffeomorphic to it. That is, does the 4-sphere admit only one smooth structure? This conjecture is true in dimensions 1, 2, and 3, by the above classification results, but is known to be false in dimension 7 due to the Milnor spheres.",
+  "url": "https://en.wikipedia.org/wiki/Differential_topology",
+  "embedding": null,
+  "db_path": "kb_databases/differential_topology_e516ba3a.db",
+  "last_updated": 1743796485.082637,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

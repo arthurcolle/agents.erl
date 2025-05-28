@@ -1,0 +1,14 @@
+{
+  "kb_id": "de6268d6-b7c8-4bef-b11b-f1c9572b6754",
+  "name": "Interlibrary loan",
+  "content": "Inter-library loan (abbreviated ILL, sometimes called document delivery, document supply, inter-lending, inter-library services, inter-loan, or resource sharing) is a service that enables patrons of one library to borrow materials that are held by another library.[1] After receiving a request, the borrowing library identifies potential lending libraries with the desired item. The lending library delivers the item physically or electronically, and the borrowing library receives the item and delivers it to their patron, and if necessary, arranges for its return. Sometimes, fees accompany interlibrary loan services. Libraries can define what materials from their holdings are eligible for interlibrary loan. Many journal or database licenses specify whether a library can or cannot supply journal articles via ILL, with libraries negotiating for ILL eligibility.[2][3] The International Organization for Standardization (ISO) developed ISO standards 10160 and 10161 to standardize terminology and define a set of communication protocols between interlibrary loan systems.[4][5]",
+  "url": "https://en.wikipedia.org/wiki/Interlibrary_loan",
+  "embedding": null,
+  "db_path": "kb_databases/interlibrary_loan_d42fef36.db",
+  "last_updated": 1743796485.534195,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

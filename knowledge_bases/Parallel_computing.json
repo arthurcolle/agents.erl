@@ -1,0 +1,14 @@
+{
+  "kb_id": "f8b823a0-8811-485b-9974-30d5bdf88391",
+  "name": "Parallel computing",
+  "content": "Parallel computing is a type of computation in which many calculations or processes are carried out simultaneously.[1] Large problems can often be divided into smaller ones, which can then be solved at the same time. There are several different forms of parallel computing: bit-level, instruction-level, data, and task parallelism. Parallelism has long been employed in high-performance computing, but has gained broader interest due to the physical constraints preventing frequency scaling.[2] As power consumption (and consequently heat generation) by computers has become a concern in recent years,[3] parallel computing has become the dominant paradigm in computer architecture, mainly in the form of multi-core processors.[4] In computer science, parallelism and concurrency are two different things: a parallel program uses multiple CPU cores, each core performing a task independently. On the other hand, concurrency enables a program to deal with multiple tasks even on a single CPU core; the core switches between tasks (i.e. threads) without necessarily completing each one. A program can have both, neither or a combination of parallelism and concurrency characteristics.[5]",
+  "url": "https://en.wikipedia.org/wiki/Parallel_computing",
+  "embedding": null,
+  "db_path": "kb_databases/parallel_computing_b6198032.db",
+  "last_updated": 1743796484.808104,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

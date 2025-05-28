@@ -1,0 +1,14 @@
+{
+  "kb_id": "2bfdd1e0-e891-4032-b78e-7c1d42f7e3e3",
+  "name": "Petrology",
+  "content": "Petrology (from Ancient Greek \u03c0\u03ad\u03c4\u03c1\u03bf\u03c2 (p\u00e9tros) 'rock' and -\u03bb\u03bf\u03b3\u03af\u03b1 (-log\u00eda) 'study of') is the branch of geology that studies rocks, their mineralogy, composition, texture, structure and the conditions under which they form.[1] Petrology has three subdivisions: igneous, metamorphic, and sedimentary petrology.[2] Igneous and metamorphic petrology are commonly taught together because both make heavy use of chemistry, chemical methods, and phase diagrams. Sedimentary petrology is commonly taught together with stratigraphy because it deals with the processes that form sedimentary rock.[3] Modern sedimentary petrology is making increasing use of chemistry. Lithology was once approximately synonymous with petrography, but in current usage, lithology focuses on macroscopic hand-sample or outcrop-scale description of rocks while petrography is the speciality that deals with microscopic details. In the petroleum industry, lithology, or more specifically mud logging, is the graphic representation of geological formations being drilled through and drawn on a log called a mud log. As the cuttings are circulated out of the borehole, they are sampled, examined (typically under a 10\u00d7 microscope) and tested chemically when needed.",
+  "url": "https://en.wikipedia.org/wiki/Petrology",
+  "embedding": null,
+  "db_path": "kb_databases/petrology_4e94d95f.db",
+  "last_updated": 1743796485.535892,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

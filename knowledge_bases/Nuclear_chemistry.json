@@ -1,0 +1,14 @@
+{
+  "kb_id": "029e48de-5721-4c4a-9dba-5f9bafd389b3",
+  "name": "Nuclear chemistry",
+  "content": "Nuclear chemistry is the sub-field of chemistry dealing with radioactivity, nuclear processes, and transformations in the nuclei of atoms, such as nuclear transmutation and nuclear properties. It is the chemistry of radioactive elements such as the actinides, radium and radon together with the chemistry associated with equipment (such as nuclear reactors) which are designed to perform nuclear processes. This includes the corrosion of surfaces and the behavior under conditions of both normal and abnormal operation (such as during an accident). An important area is the behavior of objects and materials after being placed into a nuclear waste storage or disposal site. It includes the study of the chemical effects resulting from the absorption of radiation within living animals, plants, and other materials. The radiation chemistry controls much of radiation biology as radiation has an effect on living things at the molecular scale. To explain it another way, the radiation alters the biochemicals within an organism, the alteration of the bio-molecules then changes the chemistry which occurs within the organism; this change in chemistry then can lead to a biological outcome. As a result, nuclear chemistry greatly assists the understanding of medical treatments (such as cancer radiotherapy) and has enabled these treatments to improve.",
+  "url": "https://en.wikipedia.org/wiki/Nuclear_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/nuclear_chemistry_707a7c7f.db",
+  "last_updated": 1743796485.0918012,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

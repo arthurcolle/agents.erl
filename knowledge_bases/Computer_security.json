@@ -1,0 +1,14 @@
+{
+  "kb_id": "87537de4-1e8b-4ace-8486-8623940228ee",
+  "name": "Computer security",
+  "content": "Computer security (also cybersecurity, digital security, or information technology (IT) security) is the protection of computer software, systems and networks from threats that can lead to unauthorized information disclosure, theft or damage to hardware, software, or data, as well as from the disruption or misdirection of the services they provide.[1][2] The significance of the field stems from the expanded reliance on computer systems, the Internet,[3] and wireless network standards. Its importance is further amplified by the growth of smart devices, including smartphones, televisions, and the various devices that constitute the Internet of things (IoT). Cybersecurity has emerged as one of the most significant new challenges facing the contemporary world, due to both the complexity of information systems and the societies they support. Security is particularly crucial for systems that govern large-scale systems with far-reaching physical effects, such as power distribution, elections, and finance.[4][5]",
+  "url": "https://en.wikipedia.org/wiki/Computer_security",
+  "embedding": null,
+  "db_path": "kb_databases/computer_security_e18c9b3e.db",
+  "last_updated": 1743796485.528866,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

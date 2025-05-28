@@ -1,0 +1,14 @@
+{
+  "kb_id": "8c125ab8-067e-4d77-9276-a631669e181d",
+  "name": "Public policy by country",
+  "content": "This is a list of articles on public policy topics, arranged by country.",
+  "url": "https://en.wikipedia.org/wiki/List_of_public_policy_topics_by_country",
+  "embedding": null,
+  "db_path": "kb_databases/public_policy_by_country_a38dc011.db",
+  "last_updated": 1743796484.858049,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

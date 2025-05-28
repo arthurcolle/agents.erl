@@ -1,0 +1,14 @@
+{
+  "kb_id": "1507a6e3-b996-466b-a3cb-03c296286c0e",
+  "name": "Computational economics",
+  "content": "Empirical methods Prescriptive and policy Computational economics is an interdisciplinary research discipline that combines methods in computational science and economics to solve complex economic problems.[1] This subject encompasses computational modeling of economic systems. Some of these areas are unique, while others established areas of economics by allowing robust data analytics and solutions of problems that would be arduous to research without computers and associated numerical methods.[2] Computational methods have been applied in various fields of economics research, including but not limiting to: Econometrics: Non-parametric approaches, semi-parametric approaches, and machine learning. Dynamic systems modeling: Optimization, dynamic stochastic general equilibrium modeling, and agent-based modeling.[3] Computational economics developed concurrently with the mathematization of the field. During the early 20th century, pioneers such as Jan Tinbergen and Ragnar Frisch advanced the computerization of economics and the growth of econometrics. As a result of advancements in Econometrics, regression models, hypothesis testing, and other computational statistical methods became widely adopted in economic research. On the theoretical front, complex macroeconomic models, including the real business cycle (RBC) model and dynamic stochastic general equilibrium (DSGE) models have propelled the development and application of numerical solution methods that rely heavily on computation. In the 21st century, the development of computational algorithms created new means for computational methods to interact with economic research. Innovative approaches such as machine learning models and agent-based modeling have been actively explored in different areas of economic research, offering economists an expanded toolkit that frequently differs in character from traditional methods.",
+  "url": "https://en.wikipedia.org/wiki/Computational_economics",
+  "embedding": null,
+  "db_path": "kb_databases/computational_economics_1838a30a.db",
+  "last_updated": 1743796485.551271,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

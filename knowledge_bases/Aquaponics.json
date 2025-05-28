@@ -1,0 +1,14 @@
+{
+  "kb_id": "e822d228-2b9a-4ce9-b158-5f6cda34d45b",
+  "name": "Aquaponics",
+  "content": "Aquaponics is a food production system that couples aquaculture (raising aquatic animals such as fish, crayfish, snails or prawns in tanks) with hydroponics (cultivating plants in water) whereby the nutrient-rich aquaculture water is fed to hydroponically grown plants.[1] Plants are grown in hydroponics systems, with their roots immersed in the nutrient-rich effluent water. This enables them to filter out the ammonia that is toxic to the aquatic animals, or its metabolites. After the water has passed through the hydroponic subsystem, it is cleaned and oxygenated, and can return to the aquaculture vessels.[2] The size, complexity, and types of foods grown in an aquaponic system can vary as much as any system found in either distinct farming discipline.[3] The main fish grown in aquaponics are tilapia, koi, goldfish, carp, catfish, barramundi, and different types of ornamental fish. The main plants produced include lettuce, pak choi, kale, basil, mint, watercress, tomatoes, peppers, cucumbers, beans, peas, squash, broccoli, cauliflower, and cabbage.[4]",
+  "url": "https://en.wikipedia.org/wiki/Aquaponics",
+  "embedding": null,
+  "db_path": "kb_databases/aquaponics_59fda8ba.db",
+  "last_updated": 1743796485.524823,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

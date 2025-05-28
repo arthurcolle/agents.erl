@@ -1,0 +1,14 @@
+{
+  "kb_id": "9927de3c-666f-48f0-b675-46b4af11c22a",
+  "name": "Field theory",
+  "content": "In mathematics, a field is a set on which addition, subtraction, multiplication, and division are defined and behave as the corresponding operations on rational and real numbers. A field is thus a fundamental algebraic structure which is widely used in algebra, number theory, and many other areas of mathematics. The best known fields are the field of rational numbers, the field of real numbers and the field of complex numbers. Many other fields, such as fields of rational functions, algebraic function fields, algebraic number fields, and p-adic fields are commonly used and studied in mathematics, particularly in number theory and algebraic geometry. Most cryptographic protocols rely on finite fields, i.e., fields with finitely many elements. The theory of fields proves that angle trisection and squaring the circle cannot be done with a compass and straightedge. Galois theory, devoted to understanding the symmetries of field extensions, provides an elegant proof of the Abel\u2013Ruffini theorem that general quintic equations cannot be solved in radicals.",
+  "url": "https://en.wikipedia.org/wiki/Field_theory_(mathematics)",
+  "embedding": null,
+  "db_path": "kb_databases/field_theory_d1ba3afd.db",
+  "last_updated": 1743796485.506776,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

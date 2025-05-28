@@ -1,0 +1,14 @@
+{
+  "kb_id": "f9bfca7d-7fbd-498a-be73-e7be900c2ce5",
+  "name": "Bibliometrics",
+  "content": "Bibliometrics is the application of statistical methods to the study of bibliographic data, especially in scientific and library and information science contexts, and is closely associated with scientometrics (the analysis of scientific metrics and indicators) to the point that both fields largely overlap. Bibliometrics studies first appeared in the late 19th century. They have known a significant development after the Second World War in a context of \"periodical crisis\" and new technical opportunities offered by computing tools. In the early 1960s, the Science Citation Index of Eugene Garfield and the citation network analysis of Derek John de Solla Price laid the fundamental basis of a structured research program on bibliometrics. Citation analysis is a commonly used bibliometric method based on constructing the citation graph,[1] a network or graph representation of the citations shared by documents. Many research fields use bibliometric methods to explore the impact of their field, the impact of a set of researchers, the impact of a particular paper, or to identify particularly impactful papers within a specific field of research. Bibliometrics tools have been commonly integrated in descriptive linguistics, the development of thesauri, and evaluation of reader usage. Beyond specialized scientific use, popular web search engines, such as the pagerank algorithm implemented by Google have been largely shaped by bibliometrics methods and concepts.",
+  "url": "https://en.wikipedia.org/wiki/Bibliometrics",
+  "embedding": null,
+  "db_path": "kb_databases/bibliometrics_2e61c1d2.db",
+  "last_updated": 1743796485.084748,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

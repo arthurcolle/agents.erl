@@ -1,0 +1,14 @@
+{
+  "kb_id": "2fb49548-f361-434e-81b7-03972ddb2fad",
+  "name": "Photometry",
+  "content": "In astronomy, photometry, from Greek photo- (\"light\") and -metry (\"measure\"), is a technique used in astronomy that is concerned with measuring the flux or intensity of light radiated by astronomical objects.[1] This light is measured through a telescope using a photometer, often made using electronic devices such as a CCD photometer or a photoelectric photometer that converts light into an electric current by the photoelectric effect. When calibrated against standard stars (or other light sources) of known intensity and colour, photometers can measure the brightness or apparent magnitude of celestial objects. The methods used to perform photometry depend on the wavelength region under study. At its most basic, photometry is conducted by gathering light and passing it through specialized photometric optical bandpass filters, and then capturing and recording the light energy with a photosensitive instrument. Standard sets of passbands (called a photometric system) are defined to allow accurate comparison of observations.[2] A more advanced technique is spectrophotometry that is measured with a spectrophotometer and observes both the amount of radiation and its detailed spectral distribution.[3]",
+  "url": "https://en.wikipedia.org/wiki/Photometry_(astronomy)",
+  "embedding": null,
+  "db_path": "kb_databases/photometry_03a3621d.db",
+  "last_updated": 1743796485.5262852,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

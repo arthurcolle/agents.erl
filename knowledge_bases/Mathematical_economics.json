@@ -1,0 +1,14 @@
+{
+  "kb_id": "df5a773f-2d1e-4abb-811f-d099da40ef85",
+  "name": "Mathematical economics",
+  "content": "Empirical methods Prescriptive and policy Mathematical economics is the application of mathematical methods to represent theories and analyze problems in economics. Often, these applied methods are beyond simple geometry, and may include differential and integral calculus, difference and differential equations, matrix algebra, mathematical programming, or other computational methods.[1][2] Proponents of this approach claim that it allows the formulation of theoretical relationships with rigor, generality, and simplicity.[3] Mathematics allows economists to form meaningful, testable propositions about wide-ranging and complex subjects which could less easily be expressed informally. Further, the language of mathematics allows economists to make specific, positive claims about controversial or contentious subjects that would be impossible without mathematics.[4] Much of economic theory is currently presented in terms of mathematical economic models, a set of stylized and simplified mathematical relationships asserted to clarify assumptions and implications.[5]",
+  "url": "https://en.wikipedia.org/wiki/Mathematical_economics",
+  "embedding": null,
+  "db_path": "kb_databases/mathematical_economics_8cad179d.db",
+  "last_updated": 1743796485.5344481,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "3aec78e6-56d5-446f-8554-ce49b4f63708",
+  "name": "Social choice theory",
+  "content": "Condorcet methods Positional voting Cardinal voting Quota-remainder methods Approval-based committees Fractional social choice Semi-proportional representation By ballot type Pathological response Strategic voting Paradoxes of majority rule Positive results Empirical methods Prescriptive and policy Social choice theory is a branch of welfare economics that extends the theory of rational choice to collective decision-making.[1] Social choice studies the behavior of different mathematical procedures (social welfare functions) used to combine individual preferences into a coherent whole.[2][3][4] It contrasts with political science in that it is a normative field that studies how a society can make good decisions, whereas political science is a descriptive field that observes how societies actually do make decisions. While social choice began as a branch of economics and decision theory, it has since received substantial contributions from mathematics, philosophy, political science, and game theory.",
+  "url": "https://en.wikipedia.org/wiki/Social_choice_theory",
+  "embedding": null,
+  "db_path": "kb_databases/social_choice_theory_91da29c4.db",
+  "last_updated": 1743796485.028857,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

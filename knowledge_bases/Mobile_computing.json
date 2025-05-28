@@ -1,0 +1,14 @@
+{
+  "kb_id": "e9b260db-05ad-456b-8314-4866546cef7e",
+  "name": "Mobile computing",
+  "content": "Mobile computing is human\u2013computer interaction in which a computer is expected to be transported during normal usage and allow for transmission of data, which can include voice and video transmissions. Mobile computing involves mobile communication, mobile hardware, and mobile software. Communication issues include ad hoc networks and infrastructure networks as well as communication properties, protocols, data formats, and concrete technologies. Hardware includes mobile devices or device components. Mobile software deals with the characteristics and requirements of mobile applications. Some of the most common forms of mobile computing devices are as given below: These classes are expected to endure and to complement each other, none replacing another completely. Other types of mobile computers have been introduced since the 1990s, including the: Many commercial and government field forces deploy a rugged portable computer with their fleet of vehicles. This requires the units to be anchored to the vehicle for driver safety, device security, and ergonomics. Rugged computers are rated for severe vibration associated with large service vehicles and off-road driving and the harsh environmental conditions of constant professional use such as in emergency medical services, fire, and public safety.",
+  "url": "https://en.wikipedia.org/wiki/Mobile_computing",
+  "embedding": null,
+  "db_path": "kb_databases/mobile_computing_e00ac258.db",
+  "last_updated": 1743796484.7850082,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "bba22bf5-8112-4f72-9885-f2e9e9e72fb7",
+  "name": "Synthetic chemistry",
+  "content": "Chemical synthesis (chemical combination) is the artificial execution of chemical reactions to obtain one or several products.[1] This occurs by physical and chemical manipulations usually involving one or more reactions. In modern laboratory uses, the process is reproducible and reliable. A chemical synthesis involves one or more compounds (known as reagents or reactants) that will experience a transformation under certain conditions. Various reaction types can be applied to formulate a desired product. This requires mixing the compounds in a reaction vessel, such as a chemical reactor or a simple round-bottom flask. Many reactions require some form of processing (\"work-up\") or purification procedure to isolate the final product.[1] The amount produced by chemical synthesis is known as the reaction yield. Typically, yields are expressed as a mass in grams (in a laboratory setting) or as a percentage of the total theoretical quantity that could be produced based on the limiting reagent.[2] A side reaction is an unwanted chemical reaction that can reduce the desired yield. The word synthesis was used first in a chemical context by the chemist Hermann Kolbe.[3]",
+  "url": "https://en.wikipedia.org/wiki/Synthetic_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/synthetic_chemistry_96cfb56e.db",
+  "last_updated": 1743796485.122389,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

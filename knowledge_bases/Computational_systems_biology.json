@@ -1,0 +1,14 @@
+{
+  "kb_id": "7f5ec823-bf4b-44ee-911e-1d2c4fd391e0",
+  "name": "Computational systems biology",
+  "content": "Modelling biological systems is a significant task of systems biology and mathematical biology.[a] Computational systems biology[b][1] aims to develop and use efficient algorithms, data structures, visualization and communication tools with the goal of computer modelling of biological systems. It involves the use of computer simulations of biological systems, including cellular subsystems (such as the networks of metabolites and enzymes which comprise metabolism, signal transduction pathways and gene regulatory networks), to both analyze and visualize the complex connections of these cellular processes.[2] An unexpected emergent property of a complex system may be a result of the interplay of the cause-and-effect among simpler, integrated parts (see biological organisation). Biological systems manifest many important examples of emergent properties in the complex interplay of components. Traditional study of biological systems requires reductive methods in which quantities of data are gathered by category, such as concentration over time in response to a certain stimulus. Computers are critical to analysis and modelling of these data. The goal is to create accurate real-time models of a system's response to environmental and internal stimuli, such as a model of a cancer cell in order to find weaknesses in its signalling pathways, or modelling of ion channel mutations to see effects on cardiomyocytes and in turn, the function of a beating heart.",
+  "url": "https://en.wikipedia.org/wiki/Computational_systems_biology",
+  "embedding": null,
+  "db_path": "kb_databases/computational_systems_biology_026e7548.db",
+  "last_updated": 1743796485.213196,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

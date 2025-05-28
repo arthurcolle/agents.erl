@@ -1,0 +1,14 @@
+{
+  "kb_id": "04d35ef1-71c6-4a29-a1b6-a6b9009a6021",
+  "name": "Response surface methodology",
+  "content": "In statistics, response surface methodology (RSM) explores the relationships between several explanatory variables and one or more response variables. RSM is an empirical model which employs the use of mathematical and statistical techniques to relate input variables, otherwise known as factors, to the response. RSM became very useful because other methods available, such as the theoretical model, could be very cumbersome to use, time-consuming, inefficient, error-prone, and unreliable. The method was introduced by George E. P. Box and K. B. Wilson in 1951. The main idea of RSM is to use a sequence of designed experiments to obtain an optimal response. Box and Wilson suggest using a second-degree polynomial model to do this. They acknowledge that this model is only an approximation, but they use it because such a model is easy to estimate and apply, even when little is known about the process. Statistical approaches such as RSM can be employed to maximize the production of a special substance by optimization of operational factors. Of late, for formulation optimization, the RSM, using proper design of experiments (DoE), has become extensively used.[1] In contrast to conventional methods, the interaction among process variables can be determined by statistical techniques.[2]",
+  "url": "https://en.wikipedia.org/wiki/Response_surface_methodology",
+  "embedding": null,
+  "db_path": "kb_databases/response_surface_methodology_4fb491ea.db",
+  "last_updated": 1743796485.169186,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

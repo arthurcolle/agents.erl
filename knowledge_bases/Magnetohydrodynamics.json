@@ -1,0 +1,14 @@
+{
+  "kb_id": "03f303e8-7c1d-40a3-81ce-db399df040d2",
+  "name": "Magnetohydrodynamics",
+  "content": "In physics and engineering, magnetohydrodynamics (MHD; also called magneto-fluid dynamics or hydro\u00admagnetics) is a model of electrically conducting fluids that treats all interpenetrating particle species together as a single continuous medium. It is primarily concerned with the low-frequency, large-scale, magnetic behavior in plasmas and liquid metals and has applications in multiple fields including space physics, geophysics, astrophysics, and engineering. The word magneto\u00adhydro\u00addynamics is derived from magneto- meaning magnetic field, hydro- meaning water, and dynamics meaning movement. The field of MHD was initiated by Hannes Alfv\u00e9n, for which he received the Nobel Prize in Physics in 1970. The MHD description of electrically conducting fluids was first developed by Hannes Alfv\u00e9n in a 1942 paper published in Nature titled \"Existence of Electromagnetic\u2013Hydrodynamic Waves\" which outlined his discovery of what are now referred to as Alfv\u00e9n waves.[2][3] Alfv\u00e9n initially referred to these waves as \"electromagnetic\u2013hydrodynamic waves\"; however, in a later paper he noted, \"As the term 'electromagnetic\u2013hydrodynamic waves' is somewhat complicated, it may be convenient to call this phenomenon 'magneto\u2013hydrodynamic' waves.\"[4]",
+  "url": "https://en.wikipedia.org/wiki/Magnetohydrodynamics",
+  "embedding": null,
+  "db_path": "kb_databases/magnetohydrodynamics_63d4ce83.db",
+  "last_updated": 1743796485.471987,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

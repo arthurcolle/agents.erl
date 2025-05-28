@@ -1,0 +1,14 @@
+{
+  "kb_id": "b8bfc21a-f563-4e19-acef-e4d1ca2b20e8",
+  "name": "Planetary science",
+  "content": "Planetary science (or more rarely, planetology) is the scientific study of planets (including Earth), celestial bodies (such as moons, asteroids, comets) and planetary systems (in particular those of the Solar System) and the processes of their formation. It studies objects ranging in size from micrometeoroids to gas giants, with the aim of determining their composition, dynamics, formation, interrelations and history. It is a strongly interdisciplinary field, which originally grew from astronomy and Earth science,[1] and now incorporates many disciplines, including planetary geology, cosmochemistry, atmospheric science, physics, oceanography, hydrology, theoretical planetary science, glaciology, and exoplanetology.[1] Allied disciplines include space physics, when concerned with the effects of the Sun on the bodies of the Solar System, and astrobiology. There are interrelated observational and theoretical branches of planetary science. Observational research can involve combinations of space exploration, predominantly with robotic spacecraft missions using remote sensing, and comparative, experimental work in Earth-based laboratories. The theoretical component involves considerable computer simulation and mathematical modelling.",
+  "url": "https://en.wikipedia.org/wiki/Planetary_science",
+  "embedding": null,
+  "db_path": "kb_databases/planetary_science_9971adbe.db",
+  "last_updated": 1743796485.1513941,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

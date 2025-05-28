@@ -1,0 +1,14 @@
+{
+  "kb_id": "a552e3eb-6930-4c3a-a37d-4c3e610b2cf5",
+  "name": "X-ray astronomy",
+  "content": "X-ray astronomy is an observational branch of astronomy which deals with the study of X-ray observation and detection from astronomical objects. X-radiation is absorbed by the Earth's atmosphere, so instruments to detect X-rays must be taken to high altitude by balloons, sounding rockets, and satellites. X-ray astronomy uses a type of space telescope that can see x-ray radiation which standard optical telescopes, such as the Mauna Kea Observatories, cannot. X-ray emission is expected from astronomical objects that contain extremely hot gases at temperatures from about a million kelvin (K) to hundreds of millions of kelvin (MK). Moreover, the maintenance of the E-layer of ionized gas high in the Earth's thermosphere also suggested a strong extraterrestrial source of X-rays. Although theory predicted that the Sun and the stars would be prominent X-ray sources, there was no way to verify this because Earth's atmosphere blocks most extraterrestrial X-rays. It was not until ways of sending instrument packages to high altitudes were developed that these X-ray sources could be studied.",
+  "url": "https://en.wikipedia.org/wiki/X-ray_astronomy",
+  "embedding": null,
+  "db_path": "kb_databases/x-ray_astronomy_5dcd1bf8.db",
+  "last_updated": 1743796485.445506,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

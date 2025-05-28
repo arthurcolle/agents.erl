@@ -10,7 +10,10 @@
     streaming_code_generator/2,
     async_batch_processor/3,
     event_driven_agent_system/2,
-    streaming_analysis_engine/2
+    streaming_analysis_engine/2,
+    streaming_pipeline_example/0,
+    realtime_chat_example/0,
+    streaming_pipeline_with_callback/1
 ]).
 
 %% @doc Streaming data pipeline with backpressure handling
@@ -747,3 +750,37 @@ update_dashboard_metric(S, M, V) -> S.
 render_dashboard(S) -> ok.
 get_metric_value(S, M) -> 0.
 refresh_dashboard(S) -> ok.
+
+%% Example wrapper functions for web interface
+streaming_pipeline_example() ->
+    try
+        Result = #{pipeline_id => generate_id(), status => streaming, throughput => 1000, processed => 0},
+        #{status => success, result => Result}
+    catch
+        Error:Reason ->
+            #{status => error, error => Error, reason => Reason}
+    end.
+
+realtime_chat_example() ->
+    try
+        Result = #{chat_id => generate_id(), status => active, model => <<"gpt-4">>, messages => 0},
+        #{status => success, result => Result}
+    catch
+        Error:Reason ->
+            #{status => error, error => Error, reason => Reason}
+    end.
+
+streaming_pipeline_with_callback(CallbackFun) ->
+    try
+        % Simulate streaming pipeline with callback
+        Result = <<"Streaming data processed">>,
+        CallbackFun(Result),
+        #{status => success, result => Result}
+    catch
+        Error:Reason ->
+            #{status => error, error => Error, reason => Reason}
+    end.
+
+% Helper function for generating IDs
+generate_id() ->
+    list_to_binary(integer_to_list(erlang:unique_integer([positive]))).

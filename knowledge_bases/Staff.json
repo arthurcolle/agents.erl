@@ -1,0 +1,14 @@
+{
+  "kb_id": "8cb3d96e-1ab4-4168-8fbe-07415e58e1a6",
+  "name": "Staff",
+  "content": "A military staff or general staff (also referred to as army staff, navy staff, or air staff within the individual services) is a group of officers, enlisted, and civilian staff who serve the commander of a division or other large military unit in their command and control role through planning, analysis, and information gathering, as well as by relaying, coordinating, and supervising the execution of their plans and orders, especially in case of multiple simultaneous and rapidly changing complex operations. They are organised into functional groups such as administration, logistics, operations, intelligence, training, etc. They provide multi-directional flow of information between a commanding officer, subordinate military units and other stakeholders.[1][2] A centralised general staff results in tighter top-down control but requires larger staff at headquarters (HQ) and reduces accuracy of orientation of field operations, whereas a decentralised general staff results in enhanced situational focus, personal initiative, speed of localised action, OODA loop, and improved accuracy of orientation.[2]",
+  "url": "https://en.wikipedia.org/wiki/Staff_(military)",
+  "embedding": null,
+  "db_path": "kb_databases/staff_8f7f9363.db",
+  "last_updated": 1743796485.4026859,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

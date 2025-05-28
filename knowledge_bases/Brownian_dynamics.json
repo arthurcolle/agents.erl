@@ -1,0 +1,14 @@
+{
+  "kb_id": "ba8125a7-9d63-4ece-94de-2bc289b2b9bc",
+  "name": "Brownian dynamics",
+  "content": "In physics, Brownian dynamics is a mathematical approach for describing the dynamics of molecular systems in the diffusive regime. It is a simplified version of Langevin dynamics and corresponds to the limit where no average acceleration takes place. This approximation is also known as overdamped Langevin dynamics or as Langevin dynamics without inertia. In Brownian dynamics, the following equation of motion is used to describe the dynamics of a stochastic system with coordinates X = X ( t ) {\\displaystyle X=X(t)} :[1][2][3] where: In Langevin dynamics, the equation of motion using the same notation as above is as follows:[1][2][3] M X \u00a8 = \u2212 \u2207 U ( X ) \u2212 \u03b6 X \u02d9 + 2 \u03b6 k B T R ( t ) {\\displaystyle M{\\ddot {X}}=-\\nabla U(X)-\\zeta {\\dot {X}}+{\\sqrt {2\\zeta k_{\\text{B}}T}}R(t)} where: The above equation may be rewritten as M X \u00a8 \u23df inertial force + \u2207 U ( X ) \u23df potential force + \u03b6 X \u02d9 \u23df viscous force \u2212 2 \u03b6 k B T R ( t ) \u23df random force = 0 {\\displaystyle \\underbrace {M{\\ddot {X}}} _{\\text{inertial force}}+\\underbrace {\\nabla U(X)} _{\\text{potential force}}+\\underbrace {\\zeta {\\dot {X}}} _{\\text{viscous force}}-\\underbrace {{\\sqrt {2\\zeta k_{\\text{B}}T}}R(t)} _{\\text{random force}}=0} In Brownian dynamics, the inertial force term M X \u00a8 ( t ) {\\displaystyle M{\\ddot {X}}(t)} is so much smaller than the other three that it is considered negligible. In this case, the equation is approximately[1]",
+  "url": "https://en.wikipedia.org/wiki/Brownian_dynamics",
+  "embedding": null,
+  "db_path": "kb_databases/brownian_dynamics_02bbde76.db",
+  "last_updated": 1743796485.196865,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "cab218a8-835a-4e94-9e3d-a70fae9f6b65",
+  "name": "Non-Euclidean geometry",
+  "content": "In mathematics, non-Euclidean geometry consists of two geometries based on axioms closely related to those that specify Euclidean geometry. As Euclidean geometry lies at the intersection of metric geometry and affine geometry, non-Euclidean geometry arises by either replacing the parallel postulate with an alternative, or relaxing the metric requirement. In the former case, one obtains hyperbolic geometry and elliptic geometry, the traditional non-Euclidean geometries. When the metric requirement is relaxed, then there are affine planes associated with the planar algebras, which give rise to kinematic geometries that have also been called non-Euclidean geometry. The essential difference between the metric geometries is the nature of parallel lines. Euclid's fifth postulate, the parallel postulate, is equivalent to Playfair's postulate, which states that, within a two-dimensional plane, for any given line l and a point A, which is not on l, there is exactly one line through A that does not intersect l. In hyperbolic geometry, by contrast, there are infinitely many lines through A not intersecting l, while in elliptic geometry, any line through A intersects l.",
+  "url": "https://en.wikipedia.org/wiki/Non-Euclidean_geometry",
+  "embedding": null,
+  "db_path": "kb_databases/non-euclidean_geometry_3527ff33.db",
+  "last_updated": 1743796485.545003,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

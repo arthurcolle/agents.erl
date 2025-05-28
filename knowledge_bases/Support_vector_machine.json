@@ -1,0 +1,14 @@
+{
+  "kb_id": "330416c7-693c-4006-85c3-896ceeeeaf1a",
+  "name": "Support vector machine",
+  "content": "In machine learning, support vector machines (SVMs, also support vector networks[1]) are supervised max-margin models with associated learning algorithms that analyze data for classification and regression analysis. Developed at AT&T Bell Laboratories,[1][2] SVMs are one of the most studied models, being based on statistical learning frameworks of VC theory proposed by Vapnik (1982, 1995) and Chervonenkis (1974). In addition to performing linear classification, SVMs can efficiently perform non-linear classification using the kernel trick, representing the data only through a set of pairwise similarity comparisons between the original data points using a kernel function, which transforms them into coordinates in a higher-dimensional feature space. Thus, SVMs use the kernel trick to implicitly map their inputs into high-dimensional feature spaces, where linear classification can be performed.[3] Being max-margin models, SVMs are resilient to noisy data (e.g., misclassified examples). SVMs can also be used for regression tasks, where the objective becomes \u03f5 {\\displaystyle \\epsilon } -sensitive.",
+  "url": "https://en.wikipedia.org/wiki/Support_vector_machine",
+  "embedding": null,
+  "db_path": "kb_databases/support_vector_machine_17427273.db",
+  "last_updated": 1743796484.88704,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

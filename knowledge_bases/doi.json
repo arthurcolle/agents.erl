@@ -1,0 +1,14 @@
+{
+  "kb_id": "d8f4701c-a354-4e61-9783-e635d87ac7df",
+  "name": "doi",
+  "content": "A digital object identifier (DOI) is a persistent identifier or handle used to uniquely identify various objects, standardized by the International Organization for Standardization (ISO).[2] DOIs are an implementation of the Handle System;[3][4] they also fit within the URI system (Uniform Resource Identifier). They are widely used to identify academic, professional, and government information, such as journal articles, research reports, data sets, and official publications. A DOI aims to resolve to its target, the information object to which the DOI refers. This is achieved by binding the DOI to metadata about the object, such as a URL where the object is located. Thus, by being actionable and interoperable, a DOI differs from ISBNs or ISRCs which are identifiers only. The DOI system uses the indecs Content Model to represent metadata. The DOI for a document remains fixed over the lifetime of the document, whereas its location and other metadata may change. Referring to an online document by its DOI should provide a more stable link than directly using its URL. But if its URL changes, the publisher must update the metadata for the DOI to maintain the link to the URL.[5][6][7] It is the publisher's responsibility to update the DOI database. If they fail to do so, the DOI resolves to a dead link, leaving the DOI useless.[8]",
+  "url": "https://en.wikipedia.org/wiki/Doi_(identifier)",
+  "embedding": null,
+  "db_path": "kb_databases/doi_44cc026e.db",
+  "last_updated": 1743796485.54208,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

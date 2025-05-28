@@ -1,0 +1,14 @@
+{
+  "kb_id": "315d0e25-b39e-4f8b-9d04-4b339c79968d",
+  "name": "Solid state physics",
+  "content": "Solid-state physics is the study of rigid matter, or solids, through methods such as solid-state chemistry, quantum mechanics, crystallography, electromagnetism, and metallurgy. It is the largest branch of condensed matter physics. Solid-state physics studies how the large-scale properties of solid materials result from their atomic-scale properties. Thus, solid-state physics forms a theoretical basis of materials science. Along with solid-state chemistry, it also has direct applications in the technology of transistors and semiconductors. Solid materials are formed from densely packed atoms, which interact intensely. These interactions produce the mechanical (e.g. hardness and elasticity), thermal, electrical, magnetic and optical properties of solids. Depending on the material involved and the conditions in which it was formed, the atoms may be arranged in a regular, geometric pattern (crystalline solids, which include metals and ordinary water ice) or irregularly (an amorphous solid such as common window glass).",
+  "url": "https://en.wikipedia.org/wiki/Solid_state_physics",
+  "embedding": null,
+  "db_path": "kb_databases/solid_state_physics_76fd01b2.db",
+  "last_updated": 1743796485.32656,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

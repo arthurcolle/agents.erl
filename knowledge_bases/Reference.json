@@ -1,0 +1,14 @@
+{
+  "kb_id": "9d568f94-85d2-4aba-b19c-883f98dad9c0",
+  "name": "Reference",
+  "content": "A reference is a relationship between objects in which one object designates, or acts as a means by which to connect to or link to, another object. The first object in this relation is said to refer to the second object. It is called a name for the second object. The next object, the one to which the first object refers, is called the referent of the first object. A name is usually a phrase or expression, or some other symbolic representation. Its referent may be anything \u2013 a material object, a person, an event, an activity, or an abstract concept. References can take on many forms, including: a thought, a sensory perception that is audible (onomatopoeia), visual (text), olfactory, or tactile, emotional state, relationship with other,[1] spacetime coordinates, symbolic or alpha-numeric, a physical object, or an energy projection. In some cases, methods are used that intentionally hide the reference from some observers, as in cryptography.[citation needed] References feature in many spheres of human activity and knowledge, and the term adopts shades of meaning particular to the contexts in which it is used. Some of them are described in the sections below.",
+  "url": "https://en.wikipedia.org/wiki/Reference",
+  "embedding": null,
+  "db_path": "kb_databases/reference_63d50497.db",
+  "last_updated": 1743796485.1636531,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

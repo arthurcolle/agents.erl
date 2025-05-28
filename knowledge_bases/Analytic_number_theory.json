@@ -1,0 +1,14 @@
+{
+  "kb_id": "01ea305c-ac25-4f03-bd94-f2d8a4db8746",
+  "name": "Analytic number theory",
+  "content": "In mathematics, analytic number theory is a branch of number theory that uses methods from mathematical analysis to solve problems about the integers.[1] It is often said to have begun with Peter Gustav Lejeune Dirichlet's 1837 introduction of Dirichlet L-functions to give the first proof of Dirichlet's theorem on arithmetic progressions.[1][2] It is well known for its results on prime numbers (involving the Prime Number Theorem and Riemann zeta function) and additive number theory (such as the Goldbach conjecture and Waring's problem). Analytic number theory can be split up into two major parts, divided more by the type of problems they attempt to solve than fundamental differences in technique.[3] Much of analytic number theory was inspired by the prime number theorem. Let \u03c0(x) be the prime-counting function that gives the number of primes less than or equal to x, for any real number x. For example, \u03c0(10) = 4 because there are four prime numbers (2, 3, 5 and 7) less than or equal to 10. The prime number theorem then states that x / ln(x) is a good approximation to \u03c0(x), in the sense that the limit of the quotient of the two functions \u03c0(x) and x / ln(x) as x approaches infinity is 1:",
+  "url": "https://en.wikipedia.org/wiki/Analytic_number_theory",
+  "embedding": null,
+  "db_path": "kb_databases/analytic_number_theory_82506c5a.db",
+  "last_updated": 1743796485.1056771,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

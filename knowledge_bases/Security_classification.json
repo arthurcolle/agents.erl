@@ -1,0 +1,14 @@
+{
+  "kb_id": "a89add0c-6be4-49a4-90c4-2b8d4d273e9e",
+  "name": "Security classification",
+  "content": "Classified information is material that a government body deems to be sensitive information that must be protected. Access is restricted by law or regulation to particular groups of people with the necessary security clearance with a need to know. Mishandling of the material can incur criminal penalties. A formal security clearance is required to view or handle classified material. The clearance process requires a satisfactory background investigation. Documents and other information must be properly marked \"by the author\" with one of several (hierarchical) levels of sensitivity\u2014e.g. restricted, confidential, secret, and top secret. The choice of level is based on an impact assessment; governments have their own criteria, including how to determine the classification of an information asset and rules on how to protect information classified at each level. This process often includes security clearances for personnel handling the information. Some corporations and non-government organizations also assign levels of protection to their private information, either from a desire to protect trade secrets, or because of laws and regulations governing various matters such as personal privacy, sealed legal proceedings and the timing of financial information releases.",
+  "url": "https://en.wikipedia.org/wiki/Security_classification",
+  "embedding": null,
+  "db_path": "kb_databases/security_classification_58c43c0a.db",
+  "last_updated": 1743796485.102035,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

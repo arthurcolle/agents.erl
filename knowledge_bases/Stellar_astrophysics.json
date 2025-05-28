@@ -1,0 +1,14 @@
+{
+  "kb_id": "4901f7c2-4b9d-4503-bb88-0b6b4e3c8229",
+  "name": "Stellar astrophysics",
+  "content": "A star is a luminous spheroid of plasma held together by self-gravity.[1] The nearest star to Earth is the Sun. Many other stars are visible to the naked eye at night; their immense distances from Earth make them appear as fixed points of light. The most prominent stars have been categorised into constellations and asterisms, and many of the brightest stars have proper names. Astronomers have assembled star catalogues that identify the known stars and provide standardized stellar designations. The observable universe contains an estimated 1022 to 1024 stars. Only about 4,000 of these stars are visible to the naked eye\u2014all within the Milky Way galaxy.[2] A star's life begins with the gravitational collapse of a gaseous nebula of material largely comprising hydrogen, helium, and trace heavier elements. Its total mass mainly determines its evolution and eventual fate. A star shines for most of its active life due to the thermonuclear fusion of hydrogen into helium in its core. This process releases energy that traverses the star's interior and radiates into outer space. At the end of a star's lifetime, fusion ceases and its core becomes a stellar remnant: a white dwarf, a neutron star, or\u2014if it is sufficiently massive\u2014a black hole.",
+  "url": "https://en.wikipedia.org/wiki/Star",
+  "embedding": null,
+  "db_path": "kb_databases/stellar_astrophysics_61cf8516.db",
+  "last_updated": 1743796485.508909,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

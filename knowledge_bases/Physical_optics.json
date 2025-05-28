@@ -1,0 +1,14 @@
+{
+  "kb_id": "7d61772e-cc72-4ad4-9d8e-ff326762a663",
+  "name": "Physical optics",
+  "content": "In physics, physical optics, or wave optics, is the branch of optics that studies interference, diffraction, polarization, and other phenomena for which the ray approximation of geometric optics is not valid. This usage tends not to include effects such as quantum noise in optical communication, which is studied in the sub-branch of coherence theory. Physical optics is also the name of an approximation commonly used in optics, electrical engineering and applied physics. In this context, it is an intermediate method between geometric optics, which ignores wave effects, and full wave electromagnetism, which is a precise theory. The word \"physical\" means that it is more physical than geometric or ray optics and not that it is an exact physical theory.[1]: 11\u201313 This approximation consists of using ray optics to estimate the field on a surface and then integrating that field over the surface to calculate the transmitted or scattered field. This resembles the Born approximation, in that the details of the problem are treated as a perturbation.",
+  "url": "https://en.wikipedia.org/wiki/Physical_optics",
+  "embedding": null,
+  "db_path": "kb_databases/physical_optics_bf569e00.db",
+  "last_updated": 1743796485.300965,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

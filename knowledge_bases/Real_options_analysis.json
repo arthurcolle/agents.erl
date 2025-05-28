@@ -1,0 +1,14 @@
+{
+  "kb_id": "e616fc28-7063-4c59-b3c7-e3505dea5862",
+  "name": "Real options analysis",
+  "content": "Real options valuation, also often termed real options analysis,[1] (ROV or ROA) applies option valuation techniques to capital budgeting decisions.[2] A real option itself, is the right\u2014but not the obligation\u2014to undertake certain business initiatives, such as deferring, abandoning, expanding, staging, or contracting a capital investment project.[3] For example, real options valuation could examine the opportunity to invest in the expansion of a firm's factory and the alternative option to sell the factory.[4] Real options are generally distinguished from conventional financial options in that they are not typically traded as securities, and do not usually involve decisions on an underlying asset that is traded as a financial security.[5] A further distinction is that option holders here, i.e. management, can directly influence the value of the option's underlying project; whereas this is not a consideration regarding the underlying security of a financial option. Moreover, management cannot measure uncertainty in terms of volatility, and must instead rely on their perceptions of uncertainty. Unlike financial options, management must also create or discover real options, and such creation and discovery process comprises an entrepreneurial or business task. Real options are most valuable when uncertainty is high; management has significant flexibility to change the course of the project in a favorable direction and is willing to exercise the options.[6]",
+  "url": "https://en.wikipedia.org/wiki/Real_options_analysis",
+  "embedding": null,
+  "db_path": "kb_databases/real_options_analysis_1822bf04.db",
+  "last_updated": 1743796485.131397,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

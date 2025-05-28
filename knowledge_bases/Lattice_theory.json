@@ -1,0 +1,14 @@
+{
+  "kb_id": "65d9e7a4-947b-4590-bff3-d9abab6e6e35",
+  "name": "Lattice theory",
+  "content": "All definitions tacitly require the homogeneous relation R {\\displaystyle R} be transitive: for all a , b , c , {\\displaystyle a,b,c,} if a R b {\\displaystyle aRb} and b R c {\\displaystyle bRc} then a R c . {\\displaystyle aRc.} A term's definition may require additional properties that are not listed in this table. A lattice is an abstract structure studied in the mathematical subdisciplines of order theory and abstract algebra. It consists of a partially ordered set in which every pair of elements has a unique supremum (also called a least upper bound or join) and a unique infimum (also called a greatest lower bound or meet). An example is given by the power set of a set, partially ordered by inclusion, for which the supremum is the union and the infimum is the intersection. Another example is given by the natural numbers, partially ordered by divisibility, for which the supremum is the least common multiple and the infimum is the greatest common divisor.",
+  "url": "https://en.wikipedia.org/wiki/Lattice_theory",
+  "embedding": null,
+  "db_path": "kb_databases/lattice_theory_1f3be7a4.db",
+  "last_updated": 1743796485.036161,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

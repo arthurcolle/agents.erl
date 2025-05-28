@@ -1,0 +1,14 @@
+{
+  "kb_id": "4898bb38-45c5-4e4e-be66-6bb6a40c4c51",
+  "name": "Proof theory",
+  "content": "Proof theory is a major branch[1] of mathematical logic and theoretical computer science within which proofs are treated as formal mathematical objects, facilitating their analysis by mathematical techniques. Proofs are typically presented as inductively-defined data structures such as lists, boxed lists, or trees, which are constructed according to the axioms and rules of inference of a given logical system. Consequently, proof theory is syntactic in nature, in contrast to model theory, which is semantic in nature. Some of the major areas of proof theory include structural proof theory, ordinal analysis, provability logic, reverse mathematics, proof mining, automated theorem proving, and proof complexity. Much research also focuses on applications in computer science, linguistics, and philosophy. Although the formalisation of logic was much advanced by the work of such figures as Gottlob Frege, Giuseppe Peano, Bertrand Russell, and Richard Dedekind, the story of modern proof theory is often seen as being established by David Hilbert, who initiated what is called Hilbert's program in the Foundations of Mathematics. The central idea of this program was that if we could give finitary proofs of consistency for all the sophisticated formal theories needed by mathematicians, then we could ground these theories by means of a metamathematical argument, which shows that all of their purely universal assertions (more technically their provable \u03a0 1 0 {\\displaystyle \\Pi _{1}^{0}} sentences) are finitarily true; once so grounded we do not care about the non-finitary meaning of their existential theorems, regarding these as pseudo-meaningful stipulations of the existence of ideal entities.",
+  "url": "https://en.wikipedia.org/wiki/Proof_theory",
+  "embedding": null,
+  "db_path": "kb_databases/proof_theory_7810517d.db",
+  "last_updated": 1743796484.986988,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

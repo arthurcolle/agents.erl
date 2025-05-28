@@ -1,0 +1,14 @@
+{
+  "kb_id": "3df27a60-c8be-44b6-b709-3766d9810e7c",
+  "name": "Particle physics",
+  "content": "Particle physics or high-energy physics is the study of fundamental particles and forces that constitute matter and radiation. The field also studies combinations of elementary particles up to the scale of protons and neutrons, while the study of combination of protons and neutrons is called nuclear physics. The fundamental particles in the universe are classified in the Standard Model as fermions (matter particles) and bosons (force-carrying particles). There are three generations of fermions, although ordinary matter is made only from the first fermion generation. The first generation consists of up and down quarks which form protons and neutrons, and electrons and electron neutrinos. The three fundamental interactions known to be mediated by bosons are electromagnetism, the weak interaction, and the strong interaction. Quarks cannot exist on their own but form hadrons. Hadrons that contain an odd number of quarks are called baryons and those that contain an even number are called mesons. Two baryons, the proton and the neutron, make up most of the mass of ordinary matter. Mesons are unstable and the longest-lived last for only a few hundredths of a microsecond. They occur after collisions between particles made of quarks, such as fast-moving protons and neutrons in cosmic rays. Mesons are also produced in cyclotrons or other particle accelerators.",
+  "url": "https://en.wikipedia.org/wiki/Particle_physics",
+  "embedding": null,
+  "db_path": "kb_databases/particle_physics_f17da3f9.db",
+  "last_updated": 1743796485.305421,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

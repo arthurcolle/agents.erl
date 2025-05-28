@@ -1,0 +1,14 @@
+{
+  "kb_id": "6253e75f-ea49-4683-9bb3-b19a1d51d21b",
+  "name": "Stellar nucleosynthesis",
+  "content": "In astrophysics, stellar nucleosynthesis is the creation of chemical elements by nuclear fusion reactions within stars. Stellar nucleosynthesis has occurred since the original creation of hydrogen, helium and lithium during the Big Bang. As a predictive theory, it yields accurate estimates of the observed abundances of the elements. It explains why the observed abundances of elements change over time and why some elements and their isotopes are much more abundant than others. The theory was initially proposed by Fred Hoyle in 1946,[1] who later refined it in 1954.[2] Further advances were made, especially to nucleosynthesis by neutron capture of the elements heavier than iron, by Margaret and Geoffrey Burbidge, William Alfred Fowler and Fred Hoyle in their famous 1957 B2FH paper,[3] which became one of the most heavily cited papers in astrophysics history. Stars evolve because of changes in their composition (the abundance of their constituent elements) over their lifespans, first by burning hydrogen (main sequence star), then helium (horizontal branch star), and progressively burning higher elements. However, this does not by itself significantly alter the abundances of elements in the universe as the elements are contained within the star. Later in its life, a low-mass star will slowly eject its atmosphere via stellar wind, forming a planetary nebula, while a higher\u2013mass star will eject mass via a sudden catastrophic event called a supernova. The term supernova nucleosynthesis is used to describe the creation of elements during the explosion of a massive star or white dwarf.",
+  "url": "https://en.wikipedia.org/wiki/Stellar_nucleosynthesis",
+  "embedding": null,
+  "db_path": "kb_databases/stellar_nucleosynthesis_a3e50422.db",
+  "last_updated": 1743796485.483593,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

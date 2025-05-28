@@ -1,0 +1,14 @@
+{
+  "kb_id": "0aedb220-8a12-44f0-99f1-06f86b7a19cc",
+  "name": "Computer-aided engineering",
+  "content": "Computer-aided engineering (CAE) is the general usage of technology to aid in tasks related to engineering analysis. Any use of technology to solve or assist engineering issues falls under this umbrella. Following alongside the consistent improvement in computer graphics and speed, computer aid assists engineers with once complicated and time consuming tasks with the input of information and a press of a button. It includes finite element method or analysis (FEA), computational fluid dynamics (CFD), multibody dynamics (MBD), durability and optimization. It is included with computer-aided design (CAD) and computer-aided manufacturing (CAM) in a collective term and abbreviation computer-aided technologies (CAx). The term CAE has been used to describe the use of computer technology within engineering in a broader sense than just engineering analysis. It was in this context that the term was coined by Jason Lemon, founder of Structural Dynamics Research Corporation (SDRC) in the late 1970s. However, this definition is better known today by the terms CAx and product lifecycle management (PLM).[1]",
+  "url": "https://en.wikipedia.org/wiki/Computer-aided_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/computer-aided_engineering_f756e058.db",
+  "last_updated": 1743796484.9457622,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

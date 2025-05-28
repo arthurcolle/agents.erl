@@ -1,0 +1,14 @@
+{
+  "kb_id": "70400c53-560a-4308-b052-35536d9369ed",
+  "name": "Program semantics",
+  "content": "In programming language theory, semantics is the rigorous mathematical study of the meaning of programming languages.[1] Semantics assigns computational meaning to valid strings in a programming language syntax. It is closely related to, and often crosses over with, the semantics of mathematical proofs. Semantics describes the processes a computer follows when executing a program in that specific language. This can be done by describing the relationship between the input and output of a program, or giving an explanation of how the program will be executed on a certain platform, thereby creating a model of computation. In 1967, Robert W. Floyd published the paper Assigning meanings to programs; his chief aim was \"a rigorous standard for proofs about computer programs, including proofs of correctness, equivalence, and termination\".[2][3] Floyd further wrote:[2] A semantic definition of a programming language, in our approach, is founded on a syntactic definition. It must specify which of the phrases in a syntactically correct program represent commands, and what conditions must be imposed on an interpretation in the neighborhood of each command.",
+  "url": "https://en.wikipedia.org/wiki/Program_semantics",
+  "embedding": null,
+  "db_path": "kb_databases/program_semantics_51143ccd.db",
+  "last_updated": 1743796485.538191,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

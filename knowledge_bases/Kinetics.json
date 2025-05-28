@@ -1,0 +1,14 @@
+{
+  "kb_id": "1541d0ed-f41b-443f-9ce4-4d7055c13c1a",
+  "name": "Kinetics",
+  "content": "In physics and engineering, kinetics is the branch of classical mechanics that is concerned with the relationship between the motion and its causes, specifically, forces and torques.[1][2][3] Since the mid-20th century, the term \"dynamics\" (or \"analytical dynamics\") has largely superseded \"kinetics\" in physics textbooks,[4] though the term is still used in engineering. In plasma physics, kinetics refers to the study of continua in velocity space. This is usually in the context of non-thermal (non-Maxwellian) velocity distributions, or processes that perturb thermal distributions. These \"kinetic plasmas\" cannot be adequately described with fluid equations. The term kinetics is also used to refer to chemical kinetics, particularly in chemical physics and physical chemistry.[5][6][7][8][9][10] In such uses, a qualifier is often used or implied, for example: \"physical kinetics\", \"crystal growth kinetics\", and so on.",
+  "url": "https://en.wikipedia.org/wiki/Kinetics_(physics)",
+  "embedding": null,
+  "db_path": "kb_databases/kinetics_752fa81b.db",
+  "last_updated": 1743796485.5305102,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

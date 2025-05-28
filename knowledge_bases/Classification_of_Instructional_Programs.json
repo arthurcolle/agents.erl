@@ -1,0 +1,14 @@
+{
+  "kb_id": "50565f0b-2ebd-49f2-9e1c-98cc799e0d7c",
+  "name": "Classification of Instructional Programs",
+  "content": "The Classification of Instructional Programs (CIP) is a taxonomy of academic disciplines at institutions of higher education in the United States and Canada. The CIP was originally developed by the National Center for Education Statistics (NCES) of the United States Department of Education in 1980 and was revised in 1985, 1990, 2000, 2010, and 2020. The 2020 edition (CIP 2020) is the fifth and current revision of the taxonomy. Instructional programs are classified by a six-digit CIP at the most granular level and are classified according to the two-digit and four-digit prefixes of the code. For example, \"Forensic Science and Technology\" has the six-digit code 43.0406, which places it in \"Security Science and Technology\" (43.04) and \"Homeland Security, Law Enforcement, Firefighting and Related Protective Services\" (two-digit CIP 43). This article relating to education in the United States is a stub. You can help Wikipedia by expanding it.",
+  "url": "https://en.wikipedia.org/wiki/Classification_of_Instructional_Programs",
+  "embedding": null,
+  "db_path": "kb_databases/classification_of_instructional_programs_0ea47700.db",
+  "last_updated": 1743796484.933782,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

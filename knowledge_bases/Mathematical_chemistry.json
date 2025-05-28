@@ -1,0 +1,14 @@
+{
+  "kb_id": "663edddd-8877-426b-b9cc-53fe5950cdc2",
+  "name": "Mathematical chemistry",
+  "content": "Mathematical chemistry[1] is the area of research engaged in novel applications of mathematics to chemistry; it concerns itself principally with the mathematical modeling of chemical phenomena.[2] Mathematical chemistry has also sometimes been called computer chemistry, but should not be confused with computational chemistry. Major areas of research in mathematical chemistry include chemical graph theory, which deals with topology such as the mathematical study of isomerism and the development of topological descriptors or indices which find application in quantitative structure-property relationships; and chemical aspects of group theory, which finds applications in stereochemistry and quantum chemistry. Another important area is molecular knot theory and circuit topology that describe the topology of folded linear molecules such as proteins and nucleic acids. The history of the approach may be traced back to the 19th century. Georg Helm published a treatise titled \"The Principles of Mathematical Chemistry: The Energetics of Chemical Phenomena\" in 1894.[3] Some of the more contemporary periodical publications specializing in the field are MATCH Communications in Mathematical and in Computer Chemistry, first published in 1975, and the Journal of Mathematical Chemistry, first published in 1987. In 1986 a series of annual conferences MATH/CHEM/COMP taking place in Dubrovnik was initiated by the late Ante Graovac.",
+  "url": "https://en.wikipedia.org/wiki/Mathematical_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/mathematical_chemistry_fb27de15.db",
+  "last_updated": 1743796485.564692,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

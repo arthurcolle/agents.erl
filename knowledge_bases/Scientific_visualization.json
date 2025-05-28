@@ -1,0 +1,14 @@
+{
+  "kb_id": "d0afaa13-b318-460a-a1e3-2ac6a9d69645",
+  "name": "Scientific visualization",
+  "content": "Scientific visualization (also spelled scientific visualisation) is an interdisciplinary branch of science concerned with the visualization of scientific phenomena.[2] It is also considered a subset of computer graphics, a branch of computer science. The purpose of scientific visualization is to graphically illustrate scientific data to enable scientists to understand, illustrate, and glean insight from their data. Research into how people read and misread various types of visualizations is helping to determine what types and features of visualizations are most understandable and effective in conveying information.[3][4] One of the earliest examples of three-dimensional scientific visualisation was Maxwell's thermodynamic surface, sculpted in clay in 1874 by James Clerk Maxwell.[5] This prefigured modern scientific visualization techniques that use computer graphics.[6] Notable early two-dimensional examples include the flow map of Napoleon's March on Moscow produced by Charles Joseph Minard in 1869;[2] the \"coxcombs\" used by Florence Nightingale in 1857 as part of a campaign to improve sanitary conditions in the British Army;[2] and the dot map used by John Snow in 1855 to visualise the Broad Street cholera outbreak.[2]",
+  "url": "https://en.wikipedia.org/wiki/Scientific_visualization",
+  "embedding": null,
+  "db_path": "kb_databases/scientific_visualization_5c9a8b0a.db",
+  "last_updated": 1743796484.8161721,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

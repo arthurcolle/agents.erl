@@ -1,0 +1,14 @@
+{
+  "kb_id": "20321fcc-c2b7-46bf-a3c8-1b1dc460adf7",
+  "name": "Special relativity",
+  "content": "In physics, the special theory of relativity, or special relativity for short, is a scientific theory of the relationship between space and time. In Albert Einstein's 1905 paper, On the Electrodynamics of Moving Bodies, the theory is presented as being based on just two postulates:[p 1][1][2] The first postulate was first formulated by Galileo Galilei (see Galilean invariance). Special relativity was described by Albert Einstein in a paper published on 26 September 1905 titled \"On the Electrodynamics of Moving Bodies\".[p 1] Maxwell's equations of electromagnetism appeared to be incompatible with Newtonian mechanics, and the Michelson\u2013Morley experiment failed to detect the Earth's motion against the hypothesized luminiferous aether. These led to the development of the Lorentz transformations, by Hendrik Lorentz, which adjust distances and times for moving objects. Special relativity corrects the hitherto laws of mechanics to handle situations involving all motions and especially those at a speed close to that of light (known as relativistic velocities). Today, special relativity is proven to be the most accurate model of motion at any speed when gravitational and quantum effects are negligible.[3][4] Even so, the Newtonian model is still valid as a simple and accurate approximation at low velocities (relative to the speed of light), for example, everyday motions on Earth.",
+  "url": "https://en.wikipedia.org/wiki/Special_relativity",
+  "embedding": null,
+  "db_path": "kb_databases/special_relativity_408a012e.db",
+  "last_updated": 1743796485.319406,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

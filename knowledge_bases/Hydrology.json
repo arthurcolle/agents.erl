@@ -1,0 +1,14 @@
+{
+  "kb_id": "dcfa1ed1-15c1-4505-b547-6ab0295e5fca",
+  "name": "Hydrology",
+  "content": "Hydrology (from Ancient Greek \u1f55\u03b4\u03c9\u03c1 (h\u00fad\u014dr) 'water' and -\u03bb\u03bf\u03b3\u03af\u03b1 (-log\u00eda) 'study of') is the scientific study of the movement, distribution, and management of water on Earth and other planets, including the water cycle, water resources, and drainage basin sustainability. A practitioner of hydrology is called a hydrologist. Hydrologists are scientists studying earth or environmental science, civil or environmental engineering, and physical geography.[1] Using various analytical methods and scientific techniques, they collect and analyze data to help solve water related problems such as environmental preservation, natural disasters, and water management.[1] Hydrology subdivides into surface water hydrology, groundwater hydrology (hydrogeology), and marine hydrology. Domains of hydrology include hydrometeorology, surface hydrology, hydrogeology, drainage-basin management, and water quality. Oceanography and meteorology are not included because water is only one of many important aspects within those fields.",
+  "url": "https://en.wikipedia.org/wiki/Hydrology",
+  "embedding": null,
+  "db_path": "kb_databases/hydrology_5db4921c.db",
+  "last_updated": 1743796485.0851939,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

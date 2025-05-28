@@ -1,0 +1,14 @@
+{
+  "kb_id": "20eae403-ada1-42a0-abb8-6c8963b3647e",
+  "name": "Nuclear physics",
+  "content": "Nuclear physics is the field of physics that studies atomic nuclei and their constituents and interactions, in addition to the study of other forms of nuclear matter. Nuclear physics should not be confused with atomic physics, which studies the atom as a whole, including its electrons. Discoveries in nuclear physics have led to applications in many fields such as nuclear power, nuclear weapons, nuclear medicine and magnetic resonance imaging, industrial and agricultural isotopes, ion implantation in materials engineering, and radiocarbon dating in geology and archaeology. Such applications are studied in the field of nuclear engineering. Particle physics evolved out of nuclear physics and the two fields are typically taught in close association. Nuclear astrophysics, the application of nuclear physics to astrophysics, is crucial in explaining the inner workings of stars and the origin of the chemical elements. The history of nuclear physics as a discipline distinct from atomic physics, starts with the discovery of radioactivity by Henri Becquerel in 1896,[1] made while investigating phosphorescence in uranium salts.[2] The discovery of the electron by J. J. Thomson[3] a year later was an indication that the atom had internal structure. At the beginning of the 20th century the accepted model of the atom was J. J. Thomson's \"plum pudding\" model in which the atom was a positively charged ball with smaller negatively charged electrons embedded inside it.",
+  "url": "https://en.wikipedia.org/wiki/Nuclear_physics",
+  "embedding": null,
+  "db_path": "kb_databases/nuclear_physics_7ef0f096.db",
+  "last_updated": 1743796485.296739,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

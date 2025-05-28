@@ -1,0 +1,14 @@
+{
+  "kb_id": "47e1d2d5-e98f-432c-80fd-c59bfa6f06f3",
+  "name": "Astronautics",
+  "content": "Astronautics (or cosmonautics) is the practice of sending spacecraft beyond Earth's atmosphere into outer space. Spaceflight is one of its main applications and space science is its overarching field. The term astronautics (originally astronautique in French) was coined in the 1920s by J.-H. Rosny, president of the Goncourt academy, in analogy with aeronautics.[1] Because there is a degree of technical overlap between the two fields, the term aerospace is often used to describe both at once. In 1930, Robert Esnault-Pelterie published the first book on the new research field.[2] The term cosmonautics (originally cosmonautique in French) was introduced in the 1930s by Ary Sternfeld with his book Initiation \u00e0 la Cosmonautique (Introduction to cosmonautics)[3] (the book brought him the Prix REP-Hirsch, later known as the Prix d'Astronautique, of the French Astronomical Society in 1934.[4]) As with aeronautics, the restrictions of mass, temperatures, and external forces require that applications in space survive extreme conditions: high-grade vacuum, the radiation bombardment of interplanetary space and the magnetic belts of low Earth orbit. Space launch vehicles must withstand titanic forces, while satellites can experience huge variations in temperature in very brief periods.[5] Extreme constraints on mass cause astronautical engineers to face the constant need to save mass in the design in order to maximize the actual payload that reaches orbit.",
+  "url": "https://en.wikipedia.org/wiki/Astronautics",
+  "embedding": null,
+  "db_path": "kb_databases/astronautics_d692b982.db",
+  "last_updated": 1743796485.35167,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

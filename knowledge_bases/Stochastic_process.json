@@ -1,0 +1,14 @@
+{
+  "kb_id": "f8f99051-5f22-4a44-bca4-3e434845770d",
+  "name": "Stochastic process",
+  "content": "In probability theory and related fields, a stochastic (/st\u0259\u02c8k\u00e6st\u026ak/) or random process is a mathematical object usually defined as a family of random variables in a probability space, where the index of the family often has the interpretation of time. Stochastic processes are widely used as mathematical models of systems and phenomena that appear to vary in a random manner. Examples include the growth of a bacterial population, an electrical current fluctuating due to thermal noise, or the movement of a gas molecule.[1][4][5] Stochastic processes have applications in many disciplines such as biology,[6] chemistry,[7] ecology,[8] neuroscience,[9] physics,[10] image processing, signal processing,[11] control theory,[12] information theory,[13] computer science,[14] and telecommunications.[15] Furthermore, seemingly random changes in financial markets have motivated the extensive use of stochastic processes in finance.[16][17][18] Applications and the study of phenomena have in turn inspired the proposal of new stochastic processes. Examples of such stochastic processes include the Wiener process or Brownian motion process,[a] used by Louis Bachelier to study price changes on the Paris Bourse,[21] and the Poisson process, used by A. K. Erlang to study the number of phone calls occurring in a certain period of time.[22] These two stochastic processes are considered the most important and central in the theory of stochastic processes,[1][4][23] and were invented repeatedly and independently, both before and after Bachelier and Erlang, in different settings and countries.[21][24]",
+  "url": "https://en.wikipedia.org/wiki/Stochastic_process",
+  "embedding": null,
+  "db_path": "kb_databases/stochastic_process_8f60ef05.db",
+  "last_updated": 1743796485.072601,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

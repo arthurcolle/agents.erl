@@ -1,0 +1,14 @@
+{
+  "kb_id": "3612d09b-4d9b-402b-8b88-28af4e390562",
+  "name": "Mechatronics",
+  "content": "Mechatronics engineering, also called mechatronics, is an interdisciplinary branch of engineering that focuses on the integration of mechanical engineering, electrical engineering, electronic engineering and software engineering,[1] and also includes a combination of robotics, computer science, telecommunications, systems, control, automation and product engineering.[2][3] As technology advances over time, various subfields of engineering have succeeded in both adapting and multiplying. The intention of mechatronics is to produce a design solution that unifies each of these various subfields. Originally, the field of mechatronics was intended to be nothing more than a combination of mechanics, electrical and electronics, hence the name being a portmanteau of the words \"mechanics\" and \"electronics\"; however, as the complexity of technical systems continued to evolve, the definition had been broadened to include more technical areas. The word mechatronics originated in Japanese-English and was created by Tetsuro Mori, an engineer of Yaskawa Electric Corporation. The word mechatronics was registered as trademark by the company in Japan with the registration number of \"46-32714\" in 1971. The company later released the right to use the word to the public, and the word began being used globally. Currently the word is translated into many languages and is considered an essential term for advanced automated industry.[4]",
+  "url": "https://en.wikipedia.org/wiki/Mechatronics",
+  "embedding": null,
+  "db_path": "kb_databases/mechatronics_e755fd6e.db",
+  "last_updated": 1743796484.756672,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

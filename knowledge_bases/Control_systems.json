@@ -1,0 +1,14 @@
+{
+  "kb_id": "cc61fa1b-0eff-430f-bf63-4a46b11be0ae",
+  "name": "Control systems",
+  "content": "A control system manages, commands, directs, or regulates the behavior of other devices or systems using control loops. It can range from a single home heating controller using a thermostat controlling a domestic boiler to large industrial control systems which are used for controlling processes or machines. The control systems are designed via control engineering process. For continuously modulated control, a feedback controller is used to automatically control a process or operation. The control system compares the value or status of the process variable (PV) being controlled with the desired value or setpoint (SP), and applies the difference as a control signal to bring the process variable output of the plant to the same value as the setpoint. For sequential and combinational logic, software logic, such as in a programmable logic controller, is used.[clarification needed] Fundamentally, there are two types of control loop: open-loop control (feedforward), and closed-loop control (feedback).",
+  "url": "https://en.wikipedia.org/wiki/Control_systems",
+  "embedding": null,
+  "db_path": "kb_databases/control_systems_19194e85.db",
+  "last_updated": 1743796485.50822,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

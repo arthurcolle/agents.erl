@@ -1,0 +1,14 @@
+{
+  "kb_id": "f36bd70e-8d60-447d-89be-4da988d0a9ed",
+  "name": "Clinical informatics",
+  "content": "Health informatics combines communications, information technology (IT), and health care to enhance patient care and is at the forefront of the medical technological revolution.[1] It can be viewed as a branch of engineering and applied science. The health domain provides an extremely wide variety of problems that can be tackled using computational techniques.[2] Health informatics is a spectrum of multidisciplinary fields that includes study of the design, development, and application of computational innovations to improve health care.[3] The disciplines involved combine healthcare fields with computing fields, in particular computer engineering, software engineering, information engineering, bioinformatics, bio-inspired computing, theoretical computer science, information systems, data science, information technology, autonomic computing, and behavior informatics.[4] In the healthcare industry, health informatics has provided such technological solutions as telemedicine, surgical robots, electronic health records (EHR), Picture Archiving and Communication Systems (PACS), and decision support, artificial intelligence, and machine learning innovations including IBM's Watson and Google's DeepMind platform.",
+  "url": "https://en.wikipedia.org/wiki/Clinical_informatics",
+  "embedding": null,
+  "db_path": "kb_databases/clinical_informatics_8a22c21e.db",
+  "last_updated": 1743796485.222326,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

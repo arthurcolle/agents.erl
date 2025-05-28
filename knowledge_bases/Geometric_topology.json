@@ -1,0 +1,14 @@
+{
+  "kb_id": "8673dd39-edd2-45e2-8108-4e2baf6b6102",
+  "name": "Geometric topology",
+  "content": "In mathematics, geometric topology is the study of manifolds and maps between them, particularly embeddings of one manifold into another. Geometric topology as an area distinct from algebraic topology may be said to have originated in the 1935 classification of lens spaces by Reidemeister torsion, which required distinguishing spaces that are homotopy equivalent but not homeomorphic. This was the origin of simple homotopy theory. The use of the term geometric topology to describe these seems to have originated rather recently.[1] Manifolds differ radically in behavior in high and low dimension. High-dimensional topology refers to manifolds of dimension 5 and above, or in relative terms, embeddings in codimension 3 and above. Low-dimensional topology is concerned with questions in dimensions up to 4, or embeddings in codimension up to 2. Dimension 4 is special, in that in some respects (topologically), dimension 4 is high-dimensional, while in other respects (differentiably), dimension 4 is low-dimensional; this overlap yields phenomena exceptional to dimension 4, such as exotic differentiable structures on R4. Thus the topological classification of 4-manifolds is in principle tractable, and the key questions are: does a topological manifold admit a differentiable structure, and if so, how many? Notably, the smooth case of dimension 4 is the last open case of the generalized Poincar\u00e9 conjecture; see Gluck twists.",
+  "url": "https://en.wikipedia.org/wiki/Geometric_topology",
+  "embedding": null,
+  "db_path": "kb_databases/geometric_topology_f8ccee35.db",
+  "last_updated": 1743796485.520239,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

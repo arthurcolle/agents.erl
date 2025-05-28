@@ -1,0 +1,14 @@
+{
+  "kb_id": "d33cb960-a54f-4b23-94e6-d19c0bab463a",
+  "name": "Arithmetic",
+  "content": "Arithmetic is an elementary branch of mathematics that studies numerical operations like addition, subtraction, multiplication, and division. In a wider sense, it also includes exponentiation, extraction of roots, and taking logarithms. Arithmetic systems can be distinguished based on the type of numbers they operate on. Integer arithmetic is about calculations with positive and negative integers. Rational number arithmetic involves operations on fractions of integers. Real number arithmetic is about calculations with real numbers, which include both rational and irrational numbers. Another distinction is based on the numeral system employed to perform calculations. Decimal arithmetic is the most common. It uses the basic numerals from 0 to 9 and their combinations to express numbers. Binary arithmetic, by contrast, is used by most computers and represents numbers as combinations of the basic numerals 0 and 1. Computer arithmetic deals with the specificities of the implementation of binary arithmetic on computers. Some arithmetic systems operate on mathematical objects other than numbers, such as interval arithmetic and matrix arithmetic.",
+  "url": "https://en.wikipedia.org/wiki/Arithmetic",
+  "embedding": null,
+  "db_path": "kb_databases/arithmetic_9b8f0983.db",
+  "last_updated": 1743796485.544843,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

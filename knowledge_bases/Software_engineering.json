@@ -1,0 +1,14 @@
+{
+  "kb_id": "c2deb11f-0c01-4d9a-a216-99a66ab7442a",
+  "name": "Software engineering",
+  "content": "Software engineering is a field within computer science and a branch of engineering focused on designing, developing, testing, and maintaining of software applications. It involves applying engineering principles and computer programming expertise to develop software systems that meet user needs.[1][2][3][4] The terms programmer and coder overlap software engineer, but they imply only the construction aspect of typical software engineer workload.[5] A software engineer applies a software development process,[1][6] which involves defining, implementing, testing, managing, and maintaining software systems; creating and modifying the development process. Beginning in the 1960s, software engineering was recognized as a separate field of engineering. The development of software engineering was seen as a struggle. Problems included software that was over budget, exceeded deadlines, required extensive debugging and maintenance, and unsuccessfully met the needs of consumers or was never even completed.",
+  "url": "https://en.wikipedia.org/wiki/Software_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/software_engineering_0126b68b.db",
+  "last_updated": 1743796484.817798,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "8ae9465c-f7e9-4be4-a782-ad60ed9cf7ac",
+  "name": "Radiocarbon dating",
+  "content": "Radiocarbon dating (also referred to as carbon dating or carbon-14 dating) is a method for determining the age of an object containing organic material by using the properties of radiocarbon, a radioactive isotope of carbon. The method was developed in the late 1940s at the University of Chicago by Willard Libby. It is based on the fact that radiocarbon (14C) is constantly being created in the Earth's atmosphere by the interaction of cosmic rays with atmospheric nitrogen. The resulting 14C combines with atmospheric oxygen to form radioactive carbon dioxide, which is incorporated into plants by photosynthesis; animals then acquire 14C by eating the plants. When the animal or plant dies, it stops exchanging carbon with its environment, and thereafter the amount of 14C it contains begins to decrease as the 14C undergoes radioactive decay. Measuring the amount of 14C in a sample from a dead plant or animal, such as a piece of wood or a fragment of bone, provides information that can be used to calculate when the animal or plant died. The older a sample is, the less 14C there is to be detected, and because the half-life of 14C (the period of time after which half of a given sample will have decayed) is about 5,730 years, the oldest dates that can be reliably measured by this process date to approximately 50,000 years ago, although special preparation methods occasionally make an accurate analysis of older samples possible. Libby received the Nobel Prize in Chemistry for his work in 1960.",
+  "url": "https://en.wikipedia.org/wiki/Radiocarbon_dating",
+  "embedding": null,
+  "db_path": "kb_databases/radiocarbon_dating_35aa0951.db",
+  "last_updated": 1743796484.976125,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

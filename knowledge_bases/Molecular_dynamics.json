@@ -1,0 +1,14 @@
+{
+  "kb_id": "ff5e6eea-e2a6-4ef1-9320-a16bb90c65c7",
+  "name": "Molecular dynamics",
+  "content": "Molecular dynamics (MD) is a computer simulation method for analyzing the physical movements of atoms and molecules. The atoms and molecules are allowed to interact for a fixed period of time, giving a view of the dynamic \"evolution\" of the system. In the most common version, the trajectories of atoms and molecules are determined by numerically solving Newton's equations of motion for a system of interacting particles, where forces between the particles and their potential energies are often calculated using interatomic potentials or molecular mechanical force fields. The method is applied mostly in chemical physics, materials science, and biophysics. Because molecular systems typically consist of a vast number of particles, it is impossible to determine the properties of such complex systems analytically; MD simulation circumvents this problem by using numerical methods. However, long MD simulations are mathematically ill-conditioned, generating cumulative errors in numerical integration that can be minimized with proper selection of algorithms and parameters, but not eliminated.",
+  "url": "https://en.wikipedia.org/wiki/Molecular_dynamics",
+  "embedding": null,
+  "db_path": "kb_databases/molecular_dynamics_2d3f9ad4.db",
+  "last_updated": 1743796485.209276,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

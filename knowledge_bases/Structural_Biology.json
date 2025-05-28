@@ -1,0 +1,14 @@
+{
+  "kb_id": "2e7b44ed-477e-4e89-ba9b-803c88922daf",
+  "name": "Structural Biology",
+  "content": "Structural biology deals with structural analysis of living material (formed, composed of, and/or maintained and refined by living cells) at every level of organization.[1] Early structural biologists throughout the 19th and early 20th centuries were primarily only able to study structures to the limit of the naked eye's visual acuity and through magnifying glasses and light microscopes. In the 20th century, a variety of experimental techniques were developed to examine the 3D structures of biological molecules. The most prominent techniques are X-ray crystallography, nuclear magnetic resonance, and electron microscopy. Through the discovery of X-rays and its applications to protein crystals, structural biology was revolutionized, as now scientists could obtain the three-dimensional structures of biological molecules in atomic detail.[2] Likewise, NMR spectroscopy allowed information about protein structure and dynamics to be obtained.[3] Finally, in the 21st century, electron microscopy also saw a drastic revolution with the development of more coherent electron sources, aberration correction for electron microscopes, and reconstruction software that enabled the successful implementation of high resolution cryo-electron microscopy, thereby permitting the study of individual proteins and molecular complexes in three-dimensions at angstrom resolution.",
+  "url": "https://en.wikipedia.org/wiki/Structural_Biology",
+  "embedding": null,
+  "db_path": "kb_databases/structural_biology_c04534d4.db",
+  "last_updated": 1743796484.9460459,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

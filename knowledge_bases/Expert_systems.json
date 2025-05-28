@@ -1,0 +1,14 @@
+{
+  "kb_id": "595a2213-fde3-45a5-ac14-021654cf6f8a",
+  "name": "Expert systems",
+  "content": "In artificial intelligence (AI), an expert system is a computer system emulating the decision-making ability of a human expert.[1] Expert systems are designed to solve complex problems by reasoning through bodies of knowledge, represented mainly as if\u2013then rules rather than through conventional procedural programming code.[2] Expert systems were among the first truly successful forms of AI software.[3][4][5][6][7] They were created in the 1970s and then proliferated in the 1980s,[8] being then widely regarded as the future of AI \u2014 before the advent of successful artificial neural networks.[9] An expert system is divided into two subsystems: 1) a knowledge base, which represents facts and rules; and 2) an inference engine, which applies the rules to the known facts to deduce new facts, and can include explaining and debugging abilities. Soon after the dawn of modern computers in the late 1940s and early 1950s, researchers started realizing the immense potential these machines had for modern society. One of the first challenges was to make such machines able to \u201cthink\u201d like humans \u2013 in particular, making these machines able to make important decisions the way humans do. The medical\u2013healthcare field presented the tantalizing challenge of enabling these machines to make medical diagnostic decisions.[10]",
+  "url": "https://en.wikipedia.org/wiki/Expert_systems",
+  "embedding": null,
+  "db_path": "kb_databases/expert_systems_18c8e2cc.db",
+  "last_updated": 1743796484.8903239,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

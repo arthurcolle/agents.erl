@@ -1,0 +1,14 @@
+{
+  "kb_id": "ac625afb-fc69-419e-9cdd-a0c4a0332d39",
+  "name": "Cardiology",
+  "content": "Cardiology (from Ancient Greek \u03ba\u03b1\u03c1\u03b4\u03af\u1fb1 (kardi\u0101) 'heart' and -\u03bb\u03bf\u03b3\u03af\u03b1 (-logia) 'study') is the study of the heart. Cardiology is a branch of medicine that deals with disorders of the heart and the cardiovascular system. The field includes medical diagnosis and treatment of congenital heart defects, coronary artery disease, heart failure, valvular heart disease, and electrophysiology. Physicians who specialize in this field of medicine are called cardiologists, a sub-specialty of internal medicine. Pediatric cardiologists are pediatricians who specialize in cardiology. Physicians who specialize in cardiac surgery are called cardiothoracic surgeons or cardiac surgeons, a specialty of general surgery.[1] All cardiologists in the branch of medicine study the disorders of the heart, but the study of adult and child heart disorders each require different training pathways. Therefore, an adult cardiologist (often simply called \"cardiologist\") is inadequately trained to take care of children, and pediatric cardiologists are not trained to treat adult heart disease. Surgical aspects outside of cardiac rhythm device implant are not included in cardiology and are in the domain of cardiothoracic surgery. For example, coronary artery bypass surgery (CABG), cardiopulmonary bypass and valve replacement are surgical procedures performed by surgeons, not cardiologists. Typically a cardiologist would first identify who is in need of cardiac surgery and refer them to a cardiac surgeon for the procedure. However, some invasive procedures such as cardiac catheterization and pacemaker implantation are performed by cardiologists.",
+  "url": "https://en.wikipedia.org/wiki/Cardiology",
+  "embedding": null,
+  "db_path": "kb_databases/cardiology_fd711c61.db",
+  "last_updated": 1743796485.239852,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

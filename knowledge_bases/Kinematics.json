@@ -1,0 +1,14 @@
+{
+  "kb_id": "31278080-600a-464c-8045-5f7a6354f8cf",
+  "name": "Kinematics",
+  "content": "Kinematics is a subfield of physics and mathematics, developed in classical mechanics, that describes the motion of points, bodies (objects), and systems of bodies (groups of objects) without considering the forces that cause them to move.[1][2][3] Kinematics, as a field of study, is often referred to as the \"geometry of motion\" and is occasionally seen as a branch of both applied and pure mathematics since it can be studied without considering the mass of a body or the forces acting upon it.[4][5][6] A kinematics problem begins by describing the geometry of the system and declaring the initial conditions of any known values of position, velocity and/or acceleration of points within the system. Then, using arguments from geometry, the position, velocity and acceleration of any unknown parts of the system can be determined. The study of how forces act on bodies falls within kinetics, not kinematics. For further details, see analytical dynamics. Kinematics is used in astrophysics to describe the motion of celestial bodies and collections of such bodies. In mechanical engineering, robotics, and biomechanics,[7] kinematics is used to describe the motion of systems composed of joined parts (multi-link systems) such as an engine, a robotic arm or the human skeleton.",
+  "url": "https://en.wikipedia.org/wiki/Kinematics",
+  "embedding": null,
+  "db_path": "kb_databases/kinematics_8d5c850b.db",
+  "last_updated": 1743796485.2375622,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

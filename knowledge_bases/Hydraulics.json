@@ -1,0 +1,14 @@
+{
+  "kb_id": "4f6afea4-1532-49a1-b742-7d03c5e0a6f8",
+  "name": "Hydraulics",
+  "content": "Hydraulics (from Ancient Greek \u1f55\u03b4\u03c9\u03c1 (h\u00fad\u014dr) 'water' and \u03b1\u1f50\u03bb\u03cc\u03c2 (aul\u00f3s) 'pipe')[2] is a technology and applied science using engineering, chemistry, and other sciences involving the mechanical properties and use of liquids. At a very basic level, hydraulics is the liquid counterpart of pneumatics, which concerns gases. Fluid mechanics provides the theoretical foundation for hydraulics, which focuses on applied engineering using the properties of fluids. In its fluid power applications, hydraulics is used for the generation, control, and transmission of power by the use of pressurized liquids. Hydraulic topics range through some parts of science and most of engineering modules, and they cover concepts such as pipe flow, dam design, fluidics, and fluid control circuitry. The principles of hydraulics are in use naturally in the human body within the vascular system and erectile tissue.[3][4] Free surface hydraulics is the branch of hydraulics dealing with free surface flow, such as occurring in rivers, canals, lakes, estuaries, and seas. Its sub-field open-channel flow studies the flow in open channels.",
+  "url": "https://en.wikipedia.org/wiki/Hydraulics",
+  "embedding": null,
+  "db_path": "kb_databases/hydraulics_1de58ed3.db",
+  "last_updated": 1743796485.52431,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

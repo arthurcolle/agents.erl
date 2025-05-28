@@ -1,0 +1,14 @@
+{
+  "kb_id": "718539c2-35ae-449b-8822-70b3fadc6bb1",
+  "name": "Neutrino astronomy",
+  "content": "Neutrino astronomy is the branch of astronomy that gathers information about astronomical objects by observing and studying neutrinos emitted by them with the help of neutrino detectors in special Earth observatories.[1] It is an emerging field in astroparticle physics providing insights into the high-energy and non-thermal processes in the universe. Neutrinos are nearly massless and electrically neutral or chargeless elementary particles. They are created as a result of certain types of radioactive decay, nuclear reactions such as those that take place in the Sun or high energy astrophysical phenomena, in nuclear reactors, or when cosmic rays hit atoms in the atmosphere. Neutrinos rarely interact with matter (only via the weak nuclear force), travel at nearly the speed of light in straight lines, pass through large amounts of matter without any notable absorption or without being deflected by magnetic fields. Unlike photons, neutrinos rarely scatter along their trajectory. But like photons, neutrinos are some of the most common particles in the universe. Because of this, neutrinos offer a unique opportunity to observe processes that are inaccessible to optical telescopes, such as reactions in the Sun's core. Neutrinos that are created in the Sun\u2019s core are barely absorbed, so a large quantity of them escape from the Sun and reach the Earth. Neutrinos can also offer a very strong pointing direction compared to charged particle cosmic rays.",
+  "url": "https://en.wikipedia.org/wiki/Neutrino_astronomy",
+  "embedding": null,
+  "db_path": "kb_databases/neutrino_astronomy_f33ee43a.db",
+  "last_updated": 1743796485.55472,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

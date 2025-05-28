@@ -1,0 +1,14 @@
+{
+  "kb_id": "e0bf9c76-9501-419d-8280-489a41c1d9f4",
+  "name": "Chemical engineering",
+  "content": "Chemical engineering is an engineering field which deals with the study of the operation and design of chemical plants as well as methods of improving production. Chemical engineers develop economical commercial processes to convert raw materials into useful products. Chemical engineering uses principles of chemistry, physics, mathematics, biology, and economics to efficiently use, produce, design, transport and transform energy and materials. The work of chemical engineers can range from the utilization of nanotechnology and nanomaterials in the laboratory to large-scale industrial processes that convert chemicals, raw materials, living cells, microorganisms, and energy into useful forms and products. Chemical engineers are involved in many aspects of plant design and operation, including safety and hazard assessments, process design and analysis, modeling, control engineering, chemical reaction engineering, nuclear engineering, biological engineering, construction specification, and operating instructions.",
+  "url": "https://en.wikipedia.org/wiki/Chemical_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/chemical_engineering_59cd05e4.db",
+  "last_updated": 1743796485.050792,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

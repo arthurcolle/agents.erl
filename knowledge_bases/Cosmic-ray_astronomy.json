@@ -1,0 +1,14 @@
+{
+  "kb_id": "25d43531-9a15-4653-8d93-6e7d0bf096b7",
+  "name": "Cosmic-ray astronomy",
+  "content": "A cosmic-ray observatory is a scientific installation built to detect high-energy-particles coming from space called cosmic rays. This typically includes photons (high-energy light), electrons, protons, and some heavier nuclei, as well as antimatter particles. About 90% of cosmic rays are protons, 9% are alpha particles, and the remaining ~1% are other particles. It is not yet possible to build image forming optics for cosmic rays, like a Wolter telescope for lower energy X-rays,[1][2] although some cosmic-ray observatories also look for high energy gamma rays and x-rays. Ultra-high-energy cosmic rays (UHECR) pose further detection problems. One way of learning about cosmic rays is using different detectors to observe aspects of a cosmic ray air shower. Methods of detection for gamma-rays:[3] For example, while a visible light photon may have an energy of a few eV, a cosmic gamma ray may exceed a TeV (1,000,000,000,000 eV).[3] Sometimes cosmic gamma rays (photons) are not grouped with nuclei cosmic rays.[3]",
+  "url": "https://en.wikipedia.org/wiki/Cosmic-ray_observatory",
+  "embedding": null,
+  "db_path": "kb_databases/cosmic-ray_astronomy_2f137453.db",
+  "last_updated": 1743796485.549432,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

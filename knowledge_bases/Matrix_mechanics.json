@@ -1,0 +1,14 @@
+{
+  "kb_id": "74cd51f9-3400-4aab-bbb3-f50c9daa0188",
+  "name": "Matrix mechanics",
+  "content": "Matrix mechanics is a formulation of quantum mechanics created by Werner Heisenberg, Max Born, and Pascual Jordan in 1925. It was the first conceptually autonomous and logically consistent formulation of quantum mechanics. Its account of quantum jumps supplanted the Bohr model's electron orbits. It did so by interpreting the physical properties of particles as matrices that evolve in time. It is equivalent to the Schr\u00f6dinger wave formulation of quantum mechanics, as manifest in Dirac's bra\u2013ket notation. In some contrast to the wave formulation, it produces spectra of (mostly energy) operators by purely algebraic, ladder operator methods.[1] Relying on these methods, Wolfgang Pauli derived the hydrogen atom spectrum in 1926,[2] before the development of wave mechanics. In 1925, Werner Heisenberg, Max Born, and Pascual Jordan formulated the matrix mechanics representation of quantum mechanics. In 1925 Werner Heisenberg was working in G\u00f6ttingen on the problem of calculating the spectral lines of hydrogen. By May 1925 he began trying to describe atomic systems by observables only. On June 7, after weeks of failing to alleviate his hay fever with aspirin and cocaine,[3] Heisenberg left for the pollen-free North Sea island of Helgoland. While there, in between climbing and memorizing poems from Goethe's West-\u00f6stlicher Diwan, he continued to ponder the spectral issue and eventually realised that adopting non-commuting observables might solve the problem. He later wrote:",
+  "url": "https://en.wikipedia.org/wiki/Matrix_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/matrix_mechanics_f7334c44.db",
+  "last_updated": 1743796485.2761312,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

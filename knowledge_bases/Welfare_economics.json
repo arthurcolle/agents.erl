@@ -1,0 +1,14 @@
+{
+  "kb_id": "702ee522-03c5-49b6-bcec-9b5ea37bb33e",
+  "name": "Welfare economics",
+  "content": "Empirical methods Prescriptive and policy Welfare economics is a field of economics that applies microeconomic techniques to evaluate the overall well-being (welfare) of a society.[1] The principles of welfare economics are often used to inform public economics, which focuses on the ways in which government intervention can improve social welfare. Additionally, welfare economics serves as the theoretical foundation for several instruments of public economics, such as cost\u2013benefit analysis. The intersection of welfare economics and behavioral economics has given rise to the subfield of behavioral welfare economics.[2] Two fundamental theorems are associated with welfare economics. The first states that competitive markets, under certain assumptions, lead to Pareto efficient outcomes.[3] This idea is sometimes referred to as Adam Smith's invisible hand.[4] The second theorem states that with further restrictions, any Pareto efficient outcome can be achieved through a competitive market equilibrium,[3] provided that a social planner uses a social welfare function to choose the most equitable efficient outcome and then uses lump sum transfers followed by competitive trade to achieve it.[3][5] Arrow's impossibility theorem which is closely related to social choice theory, is sometimes considered a third fundamental theorem of welfare economics.[6]",
+  "url": "https://en.wikipedia.org/wiki/Welfare_economics",
+  "embedding": null,
+  "db_path": "kb_databases/welfare_economics_7cac533b.db",
+  "last_updated": 1743796485.036542,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

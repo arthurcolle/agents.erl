@@ -1,0 +1,14 @@
+{
+  "kb_id": "01c73f9b-1187-449b-9a2c-f7bb2ea88bfe",
+  "name": "Volcanology",
+  "content": "Volcanology (also spelled vulcanology) is the study of volcanoes, lava, magma and related geological, geophysical and geochemical phenomena (volcanism). The term volcanology is derived from the Latin word vulcan. Vulcan was the ancient Roman god of fire. A volcanologist is a geologist who studies the eruptive activity and formation of volcanoes and their current and historic eruptions. Volcanologists frequently visit volcanoes, especially active ones, to observe volcanic eruptions, collect eruptive products including tephra (such as ash or pumice), rock and lava samples. One major focus of enquiry is the prediction of eruptions; there is currently no accurate way to do this, but predicting or forecasting eruptions, like predicting earthquakes, could save many lives. In 1841, the first volcanological observatory, the Vesuvius Observatory, was founded in the Kingdom of the Two Sicilies.[1] Volcanology advances have required more than just structured observation, and the science relies upon the understanding and integration of knowledge in many fields including geology, tectonics, physics, chemistry and mathematics, with many advances only being able to occur after the advance had occurred in another field of science. For example, the study of radioactivity only commenced in 1896,[2] and its application to the theory of plate tectonics and radiometric dating took about 50 years after this. Many other developments in fluid dynamics, experimental physics and chemistry, techniques of mathematical modelling, instrumentation and in other sciences have been applied to volcanology since 1841.",
+  "url": "https://en.wikipedia.org/wiki/Volcanology",
+  "embedding": null,
+  "db_path": "kb_databases/volcanology_5edf13ea.db",
+  "last_updated": 1743796485.5690958,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

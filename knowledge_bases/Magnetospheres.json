@@ -1,0 +1,14 @@
+{
+  "kb_id": "c3bfc2fa-0c87-4df8-8fb2-61ed2b2bff90",
+  "name": "Magnetospheres",
+  "content": "In astronomy and planetary science, a magnetosphere is a region of space surrounding an astronomical object in which charged particles are affected by that object's magnetic field.[1][2] It is created by a celestial body with an active interior dynamo. In the space environment close to a planetary body with a dipole magnetic field such as Earth, the field lines resemble a simple magnetic dipole. Farther out, field lines can be significantly distorted by the flow of electrically conducting plasma, as emitted from the Sun (i.e., the solar wind) or a nearby star.[3][4] Planets having active magnetospheres, like the Earth, are capable of mitigating or blocking the effects of solar radiation or cosmic radiation.[citation needed] Interactions of particles and atmospheres with magnetospheres are studied under the specialized scientific subjects of plasma physics, space physics, and aeronomy. Study of Earth's magnetosphere began in 1600, when William Gilbert discovered that the magnetic field on the surface of Earth resembled that of a terrella, a small, magnetized sphere. In the 1940s, Walter M. Elsasser proposed the model of dynamo theory, which attributes Earth's magnetic field to the motion of Earth's iron outer core. Through the use of magnetometers, scientists were able to study the variations in Earth's magnetic field as functions of both time and latitude and longitude.",
+  "url": "https://en.wikipedia.org/wiki/Magnetosphere",
+  "embedding": null,
+  "db_path": "kb_databases/magnetospheres_0377cd7f.db",
+  "last_updated": 1743796485.518456,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

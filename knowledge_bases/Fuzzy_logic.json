@@ -1,0 +1,14 @@
+{
+  "kb_id": "0ba2d041-e06a-463a-9dcf-4f40af4b8ecb",
+  "name": "Fuzzy logic",
+  "content": "Fuzzy logic is a form of many-valued logic in which the truth value of variables may be any real number between 0 and 1. It is employed to handle the concept of partial truth, where the truth value may range between completely true and completely false.[1] By contrast, in Boolean logic, the truth values of variables may only be the integer values 0 or 1. The term fuzzy logic was introduced with the 1965 proposal of fuzzy set theory by mathematician Lotfi Zadeh.[2][3] Fuzzy logic had, however, been studied since the 1920s, as infinite-valued logic\u2014notably by \u0141ukasiewicz and Tarski.[4] Fuzzy logic is based on the observation that people make decisions based on imprecise and non-numerical information. Fuzzy models or fuzzy sets are mathematical means of representing vagueness and imprecise information (hence the term fuzzy). These models have the capability of recognising, representing, manipulating, interpreting, and using data and information that are vague and lack certainty.[5][6] Fuzzy logic has been applied to many fields, from control theory to artificial intelligence.",
+  "url": "https://en.wikipedia.org/wiki/Fuzzy_logic",
+  "embedding": null,
+  "db_path": "kb_databases/fuzzy_logic_02099cf7.db",
+  "last_updated": 1743796485.009078,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

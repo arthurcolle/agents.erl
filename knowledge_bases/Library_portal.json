@@ -1,0 +1,14 @@
+{
+  "kb_id": "5da31121-0e0e-49eb-87f2-151b0a40a3bd",
+  "name": "Library portal",
+  "content": "A library portal is an interface to access library resources and services through a single access and management point for users: for example, by combining the circulation and catalog functions of an integrated library system (ILS) with additional tools and facilities.[1] A library portal is defined as \"a combination of software components that unify the user experience of discovering and accessing information\" in contrast to a \"single technology\" to provide \"services that support discovery, access and effective use of information.\"[2] In addition to the basic functions of access to the library catalog, and a user's subscription records, significant elements of a library portal normally include: More recently, the focus has been on the discovery goal, which has led to even more difficulties in defining a library portal. The terms \"discovery tools\", \"discovery services\", \"next-generation discovery tool\", and \"next-generation OPAC\" are often used interchangeably. The focus on discovery tools has led to increased competitors in the discovery services market; the competitors that existed in the library portal market have also shifted their focus to this particular function.",
+  "url": "https://en.wikipedia.org/wiki/Library_portal",
+  "embedding": null,
+  "db_path": "kb_databases/library_portal_50847748.db",
+  "last_updated": 1743796485.506987,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

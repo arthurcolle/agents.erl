@@ -1,0 +1,14 @@
+{
+  "kb_id": "f172a86e-12f8-463a-87c5-8d7727248759",
+  "name": "Econometrics",
+  "content": "Empirical methods Prescriptive and policy Econometrics is an application of statistical methods to economic data in order to give empirical content to economic relationships.[1] More precisely, it is \"the quantitative analysis of actual economic phenomena based on the concurrent development of theory and observation, related by appropriate methods of inference.\"[2] An introductory economics textbook describes econometrics as allowing economists \"to sift through mountains of data to extract simple relationships.\"[3] Jan Tinbergen is one of the two founding fathers of econometrics.[4][5][6] The other, Ragnar Frisch, also coined the term in the sense in which it is used today.[7] A basic tool for econometrics is the multiple linear regression model.[8] Econometric theory uses statistical theory and mathematical statistics to evaluate and develop econometric methods.[9][10] Econometricians try to find estimators that have desirable statistical properties including unbiasedness, efficiency, and consistency. Applied econometrics uses theoretical econometrics and real-world data for assessing economic theories, developing econometric models, analysing economic history, and forecasting.",
+  "url": "https://en.wikipedia.org/wiki/Econometrics",
+  "embedding": null,
+  "db_path": "kb_databases/econometrics_b3019fec.db",
+  "last_updated": 1743796484.929298,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

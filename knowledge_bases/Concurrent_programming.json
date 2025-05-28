@@ -1,0 +1,14 @@
+{
+  "kb_id": "9c94b057-7fe1-47f4-985a-e92a9d7b74a0",
+  "name": "Concurrent programming",
+  "content": "Concurrent computing is a form of computing in which several computations are executed concurrently\u2014during overlapping time periods\u2014instead of sequentially\u2014with one completing before the next starts. This is a property of a system\u2014whether a program, computer, or a network\u2014where there is a separate execution point or \"thread of control\" for each process. A concurrent system is one where a computation can advance without waiting for all other computations to complete.[1] Concurrent computing is a form of modular programming. In its paradigm an overall computation is factored into subcomputations that may be executed concurrently. Pioneers in the field of concurrent computing include Edsger Dijkstra, Per Brinch Hansen, and C.A.R. Hoare.[2] The concept of concurrent computing is frequently confused with the related but distinct concept of parallel computing,[3][4] although both can be described as \"multiple processes executing during the same period of time\". In parallel computing, execution occurs at the same physical instant: for example, on separate processors of a multi-processor machine, with the goal of speeding up computations\u2014parallel computing is impossible on a (one-core) single processor, as only one computation can occur at any instant (during any single clock cycle).[a] By contrast, concurrent computing consists of process lifetimes overlapping, but execution does not happen at the same instant. The goal here is to model processes that happen concurrently, like multiple clients accessing a server at the same time. Structuring software systems as composed of multiple concurrent, communicating parts can be useful for tackling complexity, regardless of whether the parts can be executed in parallel.[5]: 1",
+  "url": "https://en.wikipedia.org/wiki/Concurrent_programming_language",
+  "embedding": null,
+  "db_path": "kb_databases/concurrent_programming_e3eb12b5.db",
+  "last_updated": 1743796485.5042171,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

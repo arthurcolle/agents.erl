@@ -1,0 +1,14 @@
+{
+  "kb_id": "d24b8d5b-2dab-406a-b8cd-d0bc714d17e7",
+  "name": "Algebraic geometry",
+  "content": "Algebraic geometry is a branch of mathematics which uses abstract algebraic techniques, mainly from commutative algebra, to solve geometrical problems. Classically, it studies zeros of multivariate polynomials; the modern approach generalizes this in a few different aspects. The fundamental objects of study in algebraic geometry are algebraic varieties, which are geometric manifestations of solutions of systems of polynomial equations. Examples of the most studied classes of algebraic varieties are lines, circles, parabolas, ellipses, hyperbolas, cubic curves like elliptic curves, and quartic curves like lemniscates and Cassini ovals. These are plane algebraic curves. A point of the plane lies on an algebraic curve if its coordinates satisfy a given polynomial equation. Basic questions involve the study of points of special interest like singular points, inflection points and points at infinity. More advanced questions involve the topology of the curve and the relationship between curves defined by different equations.",
+  "url": "https://en.wikipedia.org/wiki/Algebraic_geometry",
+  "embedding": null,
+  "db_path": "kb_databases/algebraic_geometry_579dcfd0.db",
+  "last_updated": 1743796485.084459,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "a1267d17-edb2-4bc9-b173-12c77e8a4c7a",
+  "name": "General topology",
+  "content": "In mathematics, general topology (or point set topology) is the branch of topology that deals with the basic set-theoretic definitions and constructions used in topology. It is the foundation of most other branches of topology, including differential topology, geometric topology, and algebraic topology. The fundamental concepts in point-set topology are continuity, compactness, and connectedness: The terms 'nearby', 'arbitrarily small', and 'far apart' can all be made precise by using the concept of open sets. If we change the definition of 'open set', we change what continuous functions, compact sets, and connected sets are. Each choice of definition for 'open set' is called a topology. A set with a topology is called a topological space. Metric spaces are an important class of topological spaces where a real, non-negative distance, also called a metric, can be defined on pairs of points in the set. Having a metric simplifies many proofs, and many of the most common topological spaces are metric spaces.",
+  "url": "https://en.wikipedia.org/wiki/General_topology",
+  "embedding": null,
+  "db_path": "kb_databases/general_topology_b620cd8d.db",
+  "last_updated": 1743796485.078818,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

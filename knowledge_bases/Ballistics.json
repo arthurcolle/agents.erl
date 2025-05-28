@@ -1,0 +1,14 @@
+{
+  "kb_id": "41a496b4-88bb-4d12-a8c6-1c4e58b55ebc",
+  "name": "Ballistics",
+  "content": "Ballistics is the field of mechanics concerned with the launching, flight behaviour and impact effects of projectiles, especially weapon munitions such as bullets, unguided bombs, rockets and the like; the science or art of designing and accelerating projectiles so as to achieve a desired performance. A ballistic body is a free-moving body with momentum, which can be subject to forces such as those exerted by pressurized gases from a gun barrel or a propelling nozzle, normal force by rifling, and gravity and air drag during flight. A ballistic missile is a missile that is guided only during the relatively brief initial phase of powered flight, with the trajectory subsequently governed by the laws of classical mechanics, in contrast to (for example) a cruise missile, which is aerodynamically guided in powered flight like a fixed-wing aircraft. The earliest known ballistic projectiles were stones, spears, and the throwing stick. The oldest evidence of stone-tipped projectiles, which may or may not have been propelled by a bow (c.f. atlatl), dating to c. 280,000 years ago, were found in Ethiopia, present day East Africa.[1] The oldest evidence of the use of bows to shoot arrows dates to about 10,000 years ago; it is based on pinewood arrows found in the Ahrensburg valley north of Hamburg. They had shallow grooves on the base, indicating that they were shot from a bow.[2] The oldest bow so far recovered is about 8,000 years old, found in the Holmeg\u00e5rd swamp in Denmark.",
+  "url": "https://en.wikipedia.org/wiki/Ballistics",
+  "embedding": null,
+  "db_path": "kb_databases/ballistics_6cab8242.db",
+  "last_updated": 1743796485.2580621,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

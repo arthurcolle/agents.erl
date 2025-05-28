@@ -1,0 +1,14 @@
+{
+  "kb_id": "c3c16a74-9cf4-4b45-9221-d277936d14c8",
+  "name": "Formal languages",
+  "content": "In logic, mathematics, computer science, and linguistics, a formal language consists of words whose letters are taken from an alphabet and are well-formed according to a specific set of rules called a formal grammar. The alphabet of a formal language consists of symbols, letters, or tokens that concatenate into strings called words.[1] Words that belong to a particular formal language are sometimes called well-formed words or well-formed formulas. A formal language is often defined by means of a formal grammar such as a regular grammar or context-free grammar, which consists of its formation rules. In computer science, formal languages are used, among others, as the basis for defining the grammar of programming languages and formalized versions of subsets of natural languages, in which the words of the language represent concepts that are associated with meanings or semantics. In computational complexity theory, decision problems are typically defined as formal languages, and complexity classes are defined as the sets of the formal languages that can be parsed by machines with limited computational power. In logic and the foundations of mathematics, formal languages are used to represent the syntax of axiomatic systems, and mathematical formalism is the philosophy that all of mathematics can be reduced to the syntactic manipulation of formal languages in this way.",
+  "url": "https://en.wikipedia.org/wiki/Formal_languages",
+  "embedding": null,
+  "db_path": "kb_databases/formal_languages_f6ad4765.db",
+  "last_updated": 1743796485.5523489,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

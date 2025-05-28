@@ -1,0 +1,14 @@
+{
+  "kb_id": "46b74b2e-9d73-43ea-b9d3-3b82050736a6",
+  "name": "Lagrangian mechanics",
+  "content": "In physics, Lagrangian mechanics is a formulation of classical mechanics founded on the stationary-action principle (also known as the principle of least action). It was introduced by the Italian-French mathematician and astronomer Joseph-Louis Lagrange in his presentation to the Turin Academy of Science in 1760[1] culminating in his 1788 grand opus, M\u00e9canique analytique.[2] Lagrangian mechanics describes a mechanical system as a pair (M, L) consisting of a configuration space M and a smooth function L {\\textstyle L} within that space called a Lagrangian. For many systems, L = T \u2212 V, where T and V are the kinetic and potential energy of the system, respectively.[3] The stationary action principle requires that the action functional of the system derived from L must remain at a stationary point (a maximum, minimum, or saddle) throughout the time evolution of the system. This constraint allows the calculation of the equations of motion of the system using Lagrange's equations.[4]",
+  "url": "https://en.wikipedia.org/wiki/Lagrangian_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/lagrangian_mechanics_6ac85619.db",
+  "last_updated": 1743796485.273964,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

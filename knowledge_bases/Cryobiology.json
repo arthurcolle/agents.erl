@@ -1,0 +1,14 @@
+{
+  "kb_id": "d8409c9d-3f59-4212-97fe-94c654c02756",
+  "name": "Cryobiology",
+  "content": "Cryobiology is the branch of biology that studies the effects of low temperatures on living things within Earth's cryosphere or in science. The word cryobiology is derived from the Greek words \u03ba\u03c1\u1fe7\u03bf\u03c2 [kryos], \"cold\", \u03b2\u03af\u03bf\u03c2 [bios], \"life\", and \u03bb\u03cc\u03b3\u03bf\u03c2 [logos], \"word\". In practice, cryobiology is the study of biological material or systems at temperatures below normal. Materials or systems studied may include proteins, cells, tissues, organs, or whole organisms. Temperatures may range from moderately hypothermic conditions to cryogenic temperatures. At least six major areas of cryobiology can be identified: 1) study of cold-adaptation of microorganisms, plants (cold hardiness), and animals, both invertebrates and vertebrates (including hibernation), 2) cryopreservation of cells, tissues, gametes, and embryos of animal and human origin for (medical) purposes of long-term storage by cooling to temperatures below the freezing point of water. This usually requires the addition of substances which protect the cells during freezing and thawing (cryoprotectants), 3) preservation of organs under hypothermic conditions for transplantation, 4) lyophilization (freeze-drying) of pharmaceuticals, 5) cryosurgery, a (minimally) invasive approach for the destruction of unhealthy tissue using cryogenic gases/fluids, and 6) physics of supercooling, ice nucleation/growth and mechanical engineering aspects of heat transfer during cooling and warming, as applied to biological systems. Cryobiology would include cryonics, the low temperature preservation of humans and mammals with the intention of future revival, although this is not part of mainstream cryobiology, depending heavily on speculative technology yet to be invented. Several of these areas of study rely on cryogenics, the branch of physics and engineering that studies the production and use of very low temperatures.",
+  "url": "https://en.wikipedia.org/wiki/Cryobiology",
+  "embedding": null,
+  "db_path": "kb_databases/cryobiology_1ff2ef69.db",
+  "last_updated": 1743796484.819944,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

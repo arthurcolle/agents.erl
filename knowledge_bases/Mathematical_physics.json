@@ -1,0 +1,14 @@
+{
+  "kb_id": "0eee7eb4-65f1-4de7-a9dd-d7bc8cd3b9bf",
+  "name": "Mathematical physics",
+  "content": "Mathematical physics refers to the development of mathematical methods for application to problems in physics. The Journal of Mathematical Physics defines the field as \"the application of mathematics to problems in physics and the development of mathematical methods suitable for such applications and for the formulation of physical theories\".[1] An alternative definition would also include those mathematics that are inspired by physics, known as physical mathematics.[2] There are several distinct branches of mathematical physics, and these roughly correspond to particular historical parts of our world. Applying the techniques of mathematical physics to classical mechanics typically involves the rigorous, abstract, and advanced reformulation of Newtonian mechanics in terms of Lagrangian mechanics and Hamiltonian mechanics (including both approaches in the presence of constraints). Both formulations are embodied in analytical mechanics and lead to an understanding of the deep interplay between the notions of symmetry and conserved quantities during the dynamical evolution of mechanical systems, as embodied within the most elementary formulation of Noether's theorem. These approaches and ideas have been extended to other areas of physics, such as statistical mechanics, continuum mechanics, classical field theory, and quantum field theory. Moreover, they have provided multiple examples and ideas in differential geometry (e.g., several notions in symplectic geometry and vector bundles).",
+  "url": "https://en.wikipedia.org/wiki/Mathematical_physics",
+  "embedding": null,
+  "db_path": "kb_databases/mathematical_physics_3110b54d.db",
+  "last_updated": 1743796485.5301461,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

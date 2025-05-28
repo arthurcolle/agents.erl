@@ -1,0 +1,14 @@
+{
+  "kb_id": "b494c70d-d410-443f-af46-f6a773686ff0",
+  "name": "Australian and New Zealand Standard Research Classification",
+  "content": "The Australian and New Zealand Standard Research Classification (ANZSRC) is a set of three classifications developed by the Australian Bureau of Statistics to measure and analyse of research and development (R&D) undertaken in Australia and New Zealand. It replaced the Australian Standard Research Classification (ASRC) on 31 March 2008. The ANZSRC is released under the Creative Commons Attribution 2.5 Australia license.[1] The first ASRC was released in 1993 [2] and was in use until 1998. It comprised three classification schemes; Type of Activity (TOA), Field of Research (FOR) and Socio-Economic Objective (SEO). In 1998, a second ASRC was released [3] with a revised Socio-Economic Objective classification that used a different numbering range, and a Research Field, Course and Discipline (RFCD) classification to replace FORs. This revised classification came into effect in the 2000 collection period, which was due on 31 August 2001.[4] The 2008 standard replaced the RFCD classification with a new 'Field of Research' classification that included approximately 40% more classifiers,[5] using a different numbering scheme to reduce confusion with the 1993 'Field of Research' classification.",
+  "url": "https://en.wikipedia.org/wiki/Australian_and_New_Zealand_Standard_Research_Classification",
+  "embedding": null,
+  "db_path": "kb_databases/australian_and_new_zealand_standard_research_classification_849a23b7.db",
+  "last_updated": 1743796484.9754188,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "bda1153f-47c3-4848-a808-9e5caf06c17a",
+  "name": "Microbotics",
+  "content": "Microbotics (or microrobotics) is the field of miniature robotics, in particular mobile robots with characteristic dimensions less than 1 mm. The term can also be used for robots capable of handling micrometer size components. Microbots were born thanks to the appearance of the microcontroller in the last decade of the 20th century, and the appearance of microelectromechanical systems (MEMS) on silicon, although many microbots do not use silicon for mechanical components other than sensors. The earliest research and conceptual design of such small robots was conducted in the early 1970s in (then) classified research for U.S. intelligence agencies. Applications envisioned at that time included prisoner of war rescue assistance and electronic intercept missions. The underlying miniaturization support technologies were not fully developed at that time, so that progress in prototype development was not immediately forthcoming from this early set of calculations and concept design.[1] As of 2008, the smallest microrobots use a scratch drive actuator.[2]",
+  "url": "https://en.wikipedia.org/wiki/Microbotics",
+  "embedding": null,
+  "db_path": "kb_databases/microbotics_672ffc05.db",
+  "last_updated": 1743796485.538502,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

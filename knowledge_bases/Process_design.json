@@ -1,0 +1,14 @@
+{
+  "kb_id": "d28d6a08-d5a9-4478-8108-ba368bb223b8",
+  "name": "Process design",
+  "content": "In chemical engineering, process design is the choice and sequencing of units for desired physical and/or chemical transformation of materials. Process design is central to chemical engineering, and it can be considered to be the summit of that field, bringing together all of the field's components. Process design can be the design of new facilities or it can be the modification or expansion of existing facilities. The design starts at a conceptual level and ultimately ends in the form of fabrication and construction plans. Process design is distinct from equipment design, which is closer in spirit to the design of unit operations. Processes often include many unit operations. Process design documents serve to define the design and they ensure that the design components fit together. They are useful in communicating ideas and plans to other engineers involved with the design, to external regulatory agencies, to equipment vendors, and to construction contractors. In order of increasing detail, process design documents include:",
+  "url": "https://en.wikipedia.org/wiki/Process_design",
+  "embedding": null,
+  "db_path": "kb_databases/process_design_7708b122.db",
+  "last_updated": 1743796485.518544,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

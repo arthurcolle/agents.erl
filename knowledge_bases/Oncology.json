@@ -1,0 +1,14 @@
+{
+  "kb_id": "977b45f0-a279-4aff-b1bc-3ff44e7392d8",
+  "name": "Oncology",
+  "content": "Oncology is a branch of medicine that deals with the study, treatment, diagnosis, and prevention of cancer. A medical professional who practices oncology is an oncologist.[1] The name's etymological origin is the Greek word \u1f44\u03b3\u03ba\u03bf\u03c2 (\u00f3nkos), meaning \"tumor\", \"volume\" or \"mass\".[2] Oncology is concerned with: Medical histories remain an important screening tool: the character of the complaints and nonspecific symptoms (such as fatigue, weight loss,[3] unexplained anemia,[4] fever of unknown origin, paraneoplastic phenomena and other signs) may warrant further investigation for malignancy. Occasionally, a physical examination may find the location of a malignancy. Diagnostic methods include: Apart from diagnoses, these modalities (especially imaging by CT scanning) are often used to determine operability, i.e. whether it is surgically possible to remove a tumor in its entirety. Currently, a tissue diagnosis (from a biopsy) by a pathologist is essential for the proper classification of cancer and to guide the next step of treatment. On extremely rare instances when this is not possible, \"empirical therapy\" (without an exact diagnosis) may be considered, based on the available evidence (e.g. history, x-rays and scans.)",
+  "url": "https://en.wikipedia.org/wiki/Oncology",
+  "embedding": null,
+  "db_path": "kb_databases/oncology_50b74a83.db",
+  "last_updated": 1743796485.5375192,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

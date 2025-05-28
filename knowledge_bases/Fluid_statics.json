@@ -1,0 +1,14 @@
+{
+  "kb_id": "35c2b9e5-e8d1-40e7-ab3d-7b705581d07b",
+  "name": "Fluid statics",
+  "content": "Fluid statics or hydrostatics is the branch of fluid mechanics that studies fluids at hydrostatic equilibrium[1] and \"the pressure in a fluid or exerted by a fluid on an immersed body\".[2] It encompasses the study of the conditions under which fluids are at rest in stable equilibrium as opposed to fluid dynamics, the study of fluids in motion. Hydrostatics is a subcategory of fluid statics, which is the study of all fluids, both compressible or incompressible, at rest. Hydrostatics is fundamental to hydraulics, the engineering of equipment for storing, transporting and using fluids. It is also relevant to geophysics and astrophysics (for example, in understanding plate tectonics and the anomalies of the Earth's gravitational field), to meteorology, to medicine (in the context of blood pressure), and many other fields. Hydrostatics offers physical explanations for many phenomena of everyday life, such as why atmospheric pressure changes with altitude, why wood and oil float on water, and why the surface of still water is always level according to the curvature of the earth.",
+  "url": "https://en.wikipedia.org/wiki/Fluid_statics",
+  "embedding": null,
+  "db_path": "kb_databases/fluid_statics_8032c858.db",
+  "last_updated": 1743796485.503416,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "5bd7e309-bbbf-4e31-8c4d-0c310215ed5b",
+  "name": "Logic programming",
+  "content": "Logic programming is a programming, database and knowledge representation paradigm based on formal logic. A logic program is a set of sentences in logical form, representing knowledge about some problem domain. Computation is performed by applying logical reasoning to that knowledge, to solve problems in the domain. Major logic programming language families include Prolog, Answer Set Programming (ASP) and Datalog. In all of these languages, rules are written in the form of clauses: and are read as declarative sentences in logical form: A is called the head of the rule, B1, ..., Bn is called the body, and the Bi are called literals or conditions. When n = 0, the rule is called a fact and is written in the simplified form: Queries (or goals) have the same syntax as the bodies of rules and are commonly written in the form: In the simplest case of Horn clauses (or \"definite\" clauses), all of the A, B1, ..., Bn are atomic formulae of the form p(t1 ,..., tm), where p is a predicate symbol naming a relation, like \"motherhood\", and the ti are terms naming objects (or individuals). Terms include both constant symbols, like \"charles\", and variables, such as X, which start with an upper case letter.",
+  "url": "https://en.wikipedia.org/wiki/Logic_programming",
+  "embedding": null,
+  "db_path": "kb_databases/logic_programming_0d012685.db",
+  "last_updated": 1743796484.8346019,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "c3ebef35-d1b6-41ad-b218-7e72d6ecb601",
+  "name": "Dutch history",
+  "content": "The history of the Netherlands extends back before the founding of the modern Kingdom of the Netherlands in 1815 after the defeat of Napoleon. For thousands of years, people have been living together around the river deltas of this section of the North Sea coast. Records begin with the four centuries during which the region formed a militarized border zone of the Roman Empire. As the Western Roman Empire collapsed and the Middle Ages began, three dominant Germanic peoples coalesced in the area \u2013 Frisians in the north and coastal areas, Low Saxons in the northeast, and the Franks to the south. By 800, the Frankish Carolingian dynasty had once again integrated the area into an empire covering a large part of Western Europe. The region was part of the duchy of Lower Lotharingia within the Holy Roman Empire, but neither the empire nor the duchy were governed in a centralized manner. For several centuries, medieval lordships such as Brabant, Holland, Zeeland, Friesland, Guelders and others held a changing patchwork of territories.",
+  "url": "https://en.wikipedia.org/wiki/History_of_the_Netherlands",
+  "embedding": null,
+  "db_path": "kb_databases/dutch_history_50f94639.db",
+  "last_updated": 1743796485.534902,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

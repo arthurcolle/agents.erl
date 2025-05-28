@@ -1,0 +1,14 @@
+{
+  "kb_id": "c9eb5029-8286-4ed5-b03a-781ed9ac14e5",
+  "name": "Mass transit",
+  "content": "Public transport (also known as public transportation, public transit, mass transit, or simply transit) is a system of transport for passengers by group travel systems available for use by the general public unlike private transport, typically managed on a schedule, operated on established routes, and that may charge a posted fee for each trip.[1][2][3] There is no rigid definition of which kinds of transport are included, and air travel is often not thought of when discussing public transport\u2014dictionaries use wording like \"buses, trains, etc.\"[4] Examples of public transport include city buses, trolleybuses, trams (or light rail) and passenger trains, rapid transit (metro/subway/underground, etc.) and ferries. Public transport between cities is dominated by airlines, coaches, and intercity rail. High-speed rail networks are being developed in many parts of the world. Most public transport systems run along fixed routes with set embarkation/disembarkation points to a prearranged timetable, with the most frequent services running to a headway (e.g., \"every 15 minutes\" as opposed to being scheduled for a specific time of the day). However, most public transport trips include other modes of travel, such as passengers walking or catching bus services to access train stations.[5] Share taxis offer on-demand services in many parts of the world, which may compete with fixed public transport lines, or complement them, by bringing passengers to interchanges. Paratransit is sometimes used in areas of low demand and for people who need a door-to-door service.[6]",
+  "url": "https://en.wikipedia.org/wiki/Mass_transit",
+  "embedding": null,
+  "db_path": "kb_databases/mass_transit_7d04e3ad.db",
+  "last_updated": 1743796484.891468,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

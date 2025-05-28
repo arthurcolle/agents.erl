@@ -1,0 +1,14 @@
+{
+  "kb_id": "b5c1c37b-b2df-4aae-9bb2-7de3f26ddbc5",
+  "name": "Electrostatic",
+  "content": "Electrostatics is a branch of physics that studies slow-moving or stationary electric charges. Since classical times, it has been known that some materials, such as amber, attract lightweight particles after rubbing. The Greek word for amber, \u1f24\u03bb\u03b5\u03ba\u03c4\u03c1\u03bf\u03bd (\u1e17lektron), was thus the root of the word electricity. Electrostatic phenomena arise from the forces that electric charges exert on each other. Such forces are described by Coulomb's law. There are many examples of electrostatic phenomena, from those as simple as the attraction of plastic wrap to one's hand after it is removed from a package, to the apparently spontaneous explosion of grain silos, the damage of electronic components during manufacturing, and photocopier and laser printer operation. The electrostatic model accurately predicts electrical phenomena in \"classical\" cases where the velocities are low and the system is macroscopic so no quantum effects are involved. It also plays a role in quantum mechanics, where additional terms also need to be included.",
+  "url": "https://en.wikipedia.org/wiki/Electrostatic",
+  "embedding": null,
+  "db_path": "kb_databases/electrostatic_36edcfa2.db",
+  "last_updated": 1743796485.228938,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

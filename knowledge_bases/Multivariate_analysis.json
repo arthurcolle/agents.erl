@@ -1,0 +1,14 @@
+{
+  "kb_id": "1748ca62-a74d-4f1d-ac0f-13e325a8ca5b",
+  "name": "Multivariate analysis",
+  "content": "Multivariate statistics is a subdivision of statistics encompassing the simultaneous observation and analysis of more than one outcome variable, i.e., multivariate random variables. Multivariate statistics concerns understanding the different aims and background of each of the different forms of multivariate analysis, and how they relate to each other. The practical application of multivariate statistics to a particular problem may involve several types of univariate and multivariate analyses in order to understand the relationships between variables and their relevance to the problem being studied. In addition, multivariate statistics is concerned with multivariate probability distributions, in terms of both Certain types of problems involving multivariate data, for example simple linear regression and multiple regression, are not usually considered to be special cases of multivariate statistics because the analysis is dealt with by considering the (univariate) conditional distribution of a single outcome variable given the other variables.",
+  "url": "https://en.wikipedia.org/wiki/Multivariate_analysis",
+  "embedding": null,
+  "db_path": "kb_databases/multivariate_analysis_6df95a0c.db",
+  "last_updated": 1743796485.176759,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

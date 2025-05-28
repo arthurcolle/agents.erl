@@ -1,0 +1,14 @@
+{
+  "kb_id": "fb8272f1-5691-41e5-950f-f6686bb35f98",
+  "name": "Sampling theory",
+  "content": "In statistics, quality assurance, and survey methodology, sampling is the selection of a subset or a statistical sample (termed sample for short) of individuals from within a statistical population to estimate characteristics of the whole population. The subset is meant to reflect the whole population, and statisticians attempt to collect samples that are representative of the population. Sampling has lower costs and faster data collection compared to recording data from the entire population (in many cases, collecting the whole population is impossible, like getting sizes of all stars in the universe), and thus, it can provide insights in cases where it is infeasible to measure an entire population. Each observation measures one or more properties (such as weight, location, colour or mass) of independent objects or individuals. In survey sampling, weights can be applied to the data to adjust for the sample design, particularly in stratified sampling.[1] Results from probability theory and statistical theory are employed to guide the practice. In business and medical research, sampling is widely used for gathering information about a population.[2] Acceptance sampling is used to determine if a production lot of material meets the governing specifications.",
+  "url": "https://en.wikipedia.org/wiki/Statistical_sampling",
+  "embedding": null,
+  "db_path": "kb_databases/sampling_theory_6891c852.db",
+  "last_updated": 1743796485.526967,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

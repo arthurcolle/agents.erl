@@ -1,0 +1,14 @@
+{
+  "kb_id": "2bd27193-e5b4-4294-9669-ec27e92c0143",
+  "name": "Engineering cybernetics",
+  "content": "Engineering cybernetics, also known as technical cybernetics or cybernetic engineering, is the branch of cybernetics concerned with applications in engineering, in fields such as control engineering and robotics. Qian Xuesen (Hsue-Shen Tsien) defined engineering cybernetics as a theoretical field of \"engineering science\",[1] the purpose of which is to \"study those parts of the broad science of cybernetics which have direct engineering applications in designing controlled or guided systems\".[2] Published in 1954, Qian's published work \"Engineering Cybernetics\" describes the mathematical and engineering concepts of cybernetic ideas as understood at the time, breaking them down into granular scientific concepts for application. Qian's work is notable for going beyond model-based theories and arguing for the necessity of a new design principle for types of system the properties and characteristics of which are largely unknown.[3] In the 2020s, concerns with the social consequences of cyber-physical systems, have led to calls to develop \"a new branch of engineering\", \"drawing on the history of cybernetics and reimagining it for our 21st century challenges\".[4]",
+  "url": "https://en.wikipedia.org/wiki/Engineering_cybernetics",
+  "embedding": null,
+  "db_path": "kb_databases/engineering_cybernetics_e54b5c88.db",
+  "last_updated": 1743796485.199405,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

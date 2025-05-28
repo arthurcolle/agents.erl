@@ -1,0 +1,14 @@
+{
+  "kb_id": "f1d22f66-cd1f-4c87-a616-73e514e16205",
+  "name": "Robotics",
+  "content": "Robotics is the interdisciplinary study and practice of the design, construction, operation, and use of robots.[1] Within mechanical engineering, robotics is the design and construction of the physical structures of robots, while in computer science, robotics focuses on robotic automation algorithms. Other disciplines contributing to robotics include electrical, control, software, information, electronic, telecommunication, computer, mechatronic, and materials engineering. The goal of most robotics is to design machines that can help and assist humans. Many robots are built to do jobs that are hazardous to people, such as finding survivors in unstable ruins, and exploring space, mines and shipwrecks. Others replace people in jobs that are boring, repetitive, or unpleasant, such as cleaning, monitoring, transporting, and assembling. Today, robotics is a rapidly growing field, as technological advances continue; researching, designing, and building new robots serve various practical purposes.",
+  "url": "https://en.wikipedia.org/wiki/Robotics",
+  "embedding": null,
+  "db_path": "kb_databases/robotics_c98c1972.db",
+  "last_updated": 1743796484.892791,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

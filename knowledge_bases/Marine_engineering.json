@@ -1,0 +1,14 @@
+{
+  "kb_id": "ded10a76-82c0-43ad-b030-923e03cc9e50",
+  "name": "Marine engineering",
+  "content": "Marine propulsion is the mechanism or system used to generate thrust to move a watercraft through water. While paddles and sails are still used on some smaller boats, most modern ships are propelled by mechanical systems consisting of an electric motor or internal combustion engine driving a propeller, or less frequently, in pump-jets, an impeller. Marine engineering is the discipline concerned with the engineering design process of marine propulsion systems. Human-powered paddles and oars, and later, sails were the first forms of marine propulsion. Rowed galleys, some equipped with sail, played an important early role in early human seafaring and warfares. The first advanced mechanical means of marine propulsion was the marine steam engine, introduced in the early 19th century. During the 20th century it was replaced by two-stroke or four-stroke diesel engines, outboard motors, and gas turbine engines on faster ships. Marine nuclear reactors, which appeared in the 1950s, produce steam to propel warships and icebreakers; commercial application, attempted late that decade, failed to catch on. Electric motors using battery packs have been used for propulsion on submarines and electric boats and have been proposed for energy-efficient propulsion.[1]",
+  "url": "https://en.wikipedia.org/wiki/Marine_propulsion",
+  "embedding": null,
+  "db_path": "kb_databases/marine_engineering_0cc28c99.db",
+  "last_updated": 1743796484.796675,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

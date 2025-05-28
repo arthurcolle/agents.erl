@@ -1,0 +1,14 @@
+{
+  "kb_id": "b0df8515-5dff-4d07-a7c2-70be262dc1f3",
+  "name": "Computational sociology",
+  "content": "1800s: Martineau \u00b7 Tocqueville \u00b7 Marx \u00b7 Spencer \u00b7 Le Bon \u00b7 Ward \u00b7 Pareto \u00b7 T\u00f6nnies \u00b7 Veblen \u00b7 Simmel \u00b7 Durkheim \u00b7 Addams \u00b7 Mead \u00b7 Weber \u00b7 Du Bois \u00b7 Mannheim \u00b7 Elias Computational sociology is a branch of sociology that uses computationally intensive methods to analyze and model social phenomena. Using computer simulations, artificial intelligence, complex statistical methods, and analytic approaches like social network analysis, computational sociology develops and tests theories of complex social processes through bottom-up modeling of social interactions.[1] It involves the understanding of social agents, the interaction among these agents, and the effect of these interactions on the social aggregate.[2] Although the subject matter and methodologies in social science differ from those in natural science or computer science, several of the approaches used in contemporary social simulation originated from fields such as physics and artificial intelligence.[3][4] Some of the approaches that originated in this field have been imported into the natural sciences, such as measures of network centrality from the fields of social network analysis and network science.",
+  "url": "https://en.wikipedia.org/wiki/Computational_sociology",
+  "embedding": null,
+  "db_path": "kb_databases/computational_sociology_47b258ce.db",
+  "last_updated": 1743796485.505088,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "19c7996d-e27c-4c72-b3ed-ce1651f2d722",
+  "name": "Femtochemistry",
+  "content": "Femtochemistry is the area of physical chemistry that studies chemical reactions on extremely short timescales (approximately 10\u221215 seconds or one femtosecond, hence the name) in order to study the very act of atoms within molecules (reactants) rearranging themselves to form new molecules (products). In a 1988 issue of the journal Science, Ahmed Hassan Zewail published an article using this term for the first time, stating \"Real-time femtochemistry, that is, chemistry on the femtosecond timescale...\".[1] Later in 1999, Zewail received the Nobel Prize in Chemistry for his pioneering work in this field showing that it is possible to see how atoms in a molecule move during a chemical reaction with flashes of laser light.[2] Application of femtochemistry in biological studies has also helped to elucidate the conformational dynamics of stem-loop RNA structures.[3][4] Many publications have discussed the possibility of controlling chemical reactions by this method,[clarification needed] but this remains controversial.[5] The steps in some reactions occur in the femtosecond timescale and sometimes in attosecond timescales,[6] and will sometimes form intermediate products. These reaction intermediates cannot always be deduced from observing the start and end products.",
+  "url": "https://en.wikipedia.org/wiki/Femtochemistry",
+  "embedding": null,
+  "db_path": "kb_databases/femtochemistry_fcd64771.db",
+  "last_updated": 1743796485.06444,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

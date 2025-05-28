@@ -1,0 +1,14 @@
+{
+  "kb_id": "3f4afcdd-fe96-4ef0-8e32-091b7020abfa",
+  "name": "Philosophical logic",
+  "content": "Understood in a narrow sense, philosophical logic is the area of logic that studies the application of logical methods to philosophical problems, often in the form of extended logical systems like modal logic. Some theorists conceive philosophical logic in a wider sense as the study of the scope and nature of logic in general. In this sense, philosophical logic can be seen as identical to the philosophy of logic, which includes additional topics like how to define logic or a discussion of the fundamental concepts of logic. The current article treats philosophical logic in the narrow sense, in which it forms one field of inquiry within the philosophy of logic. An important issue for philosophical logic is the question of how to classify the great variety of non-classical logical systems, many of which are of rather recent origin. One form of classification often found in the literature is to distinguish between extended logics and deviant logics. Logic itself can be defined as the study of valid inference. Classical logic is the dominant form of logic and articulates rules of inference in accordance with logical intuitions shared by many, like the law of excluded middle, the double negation elimination, and the bivalence of truth.",
+  "url": "https://en.wikipedia.org/wiki/Philosophical_logic",
+  "embedding": null,
+  "db_path": "kb_databases/philosophical_logic_8f9797a3.db",
+  "last_updated": 1743796485.308169,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

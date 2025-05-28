@@ -1,0 +1,14 @@
+{
+  "kb_id": "e09bc758-df71-4120-b63a-c524c54e6ffa",
+  "name": "Applied mechanics",
+  "content": "Applied mechanics is the branch of science concerned with the motion of any substance that can be experienced or perceived by humans without the help of instruments.[1] In short, when mechanics concepts surpass being theoretical and are applied and executed, general mechanics becomes applied mechanics. It is this stark difference that makes applied mechanics an essential understanding for practical everyday life.[2] It has numerous applications in a wide variety of fields and disciplines, including but not limited to structural engineering, astronomy, oceanography, meteorology, hydraulics, mechanical engineering, aerospace engineering, nanotechnology, structural design, earthquake engineering, fluid dynamics, planetary sciences, and other life sciences.[3][4] Connecting research between numerous disciplines, applied mechanics plays an important role in both science and engineering.[1] Pure mechanics describes the response of bodies (solids and fluids) or systems of bodies to external behavior of a body, in either a beginning state of rest or of motion, subjected to the action of forces. Applied mechanics bridges the gap between physical theory and its application to technology.",
+  "url": "https://en.wikipedia.org/wiki/Applied_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/applied_mechanics_9ec03e44.db",
+  "last_updated": 1743796485.509171,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

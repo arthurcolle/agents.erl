@@ -1,0 +1,14 @@
+{
+  "kb_id": "e0d1e74b-b28f-4a80-bf2f-b5a162f92eb5",
+  "name": "Concurrency theory",
+  "content": "Concurrency refers to the ability of a system to execute multiple tasks through simultaneous execution or time-sharing (context switching), sharing resources and managing interactions. Concurrency improves responsiveness, throughput, and scalability in modern computing, including: [1][2][3][4][5] Concurrency is a broader concept that encompasses several related ideas, including: [1][2][3][4][5] Because computations in a concurrent system can interact with each other while being executed, the number of possible execution paths in the system can be extremely large, and the resulting outcome can be indeterminate. Concurrent use of shared resources can be a source of indeterminacy leading to issues such as deadlocks, and resource starvation.[7] Design of concurrent systems often entails finding reliable techniques for coordinating their execution, data exchange, memory allocation, and execution scheduling to minimize response time and maximise throughput.[8] Concurrency theory has been an active field of research in theoretical computer science. One of the first proposals was Carl Adam Petri's seminal work on Petri nets in the early 1960s. In the years since, a wide variety of formalisms have been developed for modeling and reasoning about concurrency.",
+  "url": "https://en.wikipedia.org/wiki/Concurrency_theory",
+  "embedding": null,
+  "db_path": "kb_databases/concurrency_theory_6397ec66.db",
+  "last_updated": 1743796485.528182,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "b286acfc-d654-4ee8-a922-1bd496ddd68c",
+  "name": "Vehicles",
+  "content": "A vehicle (from Latin vehiculum)[1] is a machine designed for self-propulsion, usually to transport people, cargo, or both. The term \"vehicle\" typically refers to land vehicles such as human-powered vehicles (e.g. bicycles, tricycles, velomobiles), animal-powered transports (e.g. horse-drawn carriages/wagons, ox carts, dog sleds), motor vehicles (e.g. motorcycles, cars, trucks, buses, mobility scooters) and railed vehicles (trains, trams and monorails), but more broadly also includes cable transport (cable cars and elevators), watercraft (ships, boats and underwater vehicles), amphibious vehicles (e.g. screw-propelled vehicles, hovercraft, seaplanes), aircraft (airplanes, helicopters, gliders and aerostats) and space vehicles (spacecraft, spaceplanes and launch vehicles).[2] This article primarily concerns the more ubiquitous land vehicles, which can be broadly classified by the type of contact interface with the ground: wheels, tracks, rails or skis, as well as the non-contact technologies such as maglev. ISO 3833-1977 is the international standard for road vehicle types, terms and definitions.[3]",
+  "url": "https://en.wikipedia.org/wiki/Vehicles",
+  "embedding": null,
+  "db_path": "kb_databases/vehicles_83467144.db",
+  "last_updated": 1743796484.896373,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

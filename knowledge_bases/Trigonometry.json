@@ -1,0 +1,14 @@
+{
+  "kb_id": "c51b046c-3288-4d6c-949b-9daa69d70c68",
+  "name": "Trigonometry",
+  "content": "Trigonometry (from Ancient Greek \u03c4\u03c1\u03af\u03b3\u03c9\u03bd\u03bf\u03bd (tr\u00edg\u014dnon) 'triangle' and \u03bc\u03ad\u03c4\u03c1\u03bf\u03bd (m\u00e9tron) 'measure')[1] is a branch of mathematics concerned with relationships between angles and side lengths of triangles. In particular, the trigonometric functions relate the angles of a right triangle with ratios of its side lengths. The field emerged in the Hellenistic world during the 3rd century BC from applications of geometry to astronomical studies.[2] The Greeks focused on the calculation of chords, while mathematicians in India created the earliest-known tables of values for trigonometric ratios (also called trigonometric functions) such as sine.[3] Throughout history, trigonometry has been applied in areas such as geodesy, surveying, celestial mechanics, and navigation.[4] Trigonometry is known for its many identities. These trigonometric identities[5] are commonly used for rewriting trigonometrical expressions with the aim to simplify an expression, to find a more useful form of an expression, or to solve an equation.[6]",
+  "url": "https://en.wikipedia.org/wiki/Trigonometry",
+  "embedding": null,
+  "db_path": "kb_databases/trigonometry_be895874.db",
+  "last_updated": 1743796485.5648441,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

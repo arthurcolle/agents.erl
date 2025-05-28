@@ -1,0 +1,14 @@
+{
+  "kb_id": "c2a29ab8-8856-4cde-80b5-2a91ec5b27e8",
+  "name": "Thermal physics",
+  "content": "Thermal physics is the combined study of thermodynamics, statistical mechanics, and kinetic theory of gases. This umbrella-subject is typically designed for physics students and functions to provide a general introduction to each of three core heat-related subjects. Other authors, however, define thermal physics loosely as a summation of only thermodynamics and statistical mechanics.[1] Thermal physics can be seen as the study of system with larger number of atom, it unites thermodynamics to statistical mechanics. Thermal physics, generally speaking, is the study of the statistical nature of physical systems from an energetic perspective. Starting with the basics of heat and temperature, thermal physics analyzes the first law of thermodynamics and second law of thermodynamics from the statistical perspective, in terms of the number of microstates corresponding to a given macrostate. In addition, the concept of entropy is studied via quantum theory. A central topic in thermal physics is the canonical probability distribution. The electromagnetic nature of photons and phonons are studied which show that the oscillations of electromagnetic fields and of crystal lattices have much in common. Waves form a basis for both, provided one incorporates quantum theory.",
+  "url": "https://en.wikipedia.org/wiki/Thermal_physics",
+  "embedding": null,
+  "db_path": "kb_databases/thermal_physics_cc02352d.db",
+  "last_updated": 1743796485.340299,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

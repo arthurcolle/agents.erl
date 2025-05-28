@@ -1,0 +1,14 @@
+{
+  "kb_id": "20f48c09-36da-4420-8dda-939b3cd23679",
+  "name": "Calculus",
+  "content": "Calculus is the mathematical study of continuous change, in the same way that geometry is the study of shape, and algebra is the study of generalizations of arithmetic operations. Originally called infinitesimal calculus or \"the calculus of infinitesimals\", it has two major branches, differential calculus and integral calculus. The former concerns instantaneous rates of change, and the slopes of curves, while the latter concerns accumulation of quantities, and areas under or between curves. These two branches are related to each other by the fundamental theorem of calculus. They make use of the fundamental notions of convergence of infinite sequences and infinite series to a well-defined limit.[1] It is the \"mathematical backbone\" for dealing with problems where variables change with time or another reference variable.[2] Infinitesimal calculus was formulated separately in the late 17th century by Isaac Newton and Gottfried Wilhelm Leibniz.[3][4] Later work, including codifying the idea of limits, put these developments on a more solid conceptual footing. Today, calculus is widely used in science, engineering, biology, and even has applications in social science and other branches of math.[5][6]",
+  "url": "https://en.wikipedia.org/wiki/Calculus",
+  "embedding": null,
+  "db_path": "kb_databases/calculus_0349a55a.db",
+  "last_updated": 1743796485.537756,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

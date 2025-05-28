@@ -1,0 +1,14 @@
+{
+  "kb_id": "cc4f7e7d-0528-4dea-b237-a37e1df2725b",
+  "name": "Space medicine",
+  "content": "Space Medicine is a subspecialty of Emergency Medicine (Fellowship Training Pathway) which evolved from the Aerospace Medicine specialty. Space Medicine is dedicated to the prevention and treatment of medical conditions that would limit success in space operations. Space medicine focuses specifically on prevention, acute care, emergency medicine, wilderness medicine, hyper/hypobaric medicine in order to provide medical care of astronauts and spaceflight participants. The spaceflight environment poses many unique stressors to the human body, including G forces, microgravity, unusual atmospheres such as low pressure or high carbon dioxide, and space radiation. Space medicine applies space physiology, preventive medicine, primary care, emergency medicine, acute care medicine, austere medicine, public health, and toxicology to prevent and treat medical problems in space. This expertise is additionally used to inform vehicle systems design to minimize the risk to human health and performance while meeting mission objectives.",
+  "url": "https://en.wikipedia.org/wiki/Space_medicine",
+  "embedding": null,
+  "db_path": "kb_databases/space_medicine_64bdff14.db",
+  "last_updated": 1743796485.534849,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

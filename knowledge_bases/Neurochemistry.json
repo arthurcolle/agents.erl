@@ -1,0 +1,14 @@
+{
+  "kb_id": "9b6ffdd5-357b-42a8-872e-31ed8f45952b",
+  "name": "Neurochemistry",
+  "content": "Neurochemistry is the study of chemicals, including neurotransmitters and other molecules such as psychopharmaceuticals and neuropeptides, that control and influence the physiology of the nervous system. This particular field within neuroscience examines how neurochemicals influence the operation of neurons, synapses, and neural networks. Neurochemists analyze the biochemistry and molecular biology of organic compounds in the nervous system, and their roles in such neural processes including cortical plasticity, neurogenesis, and neural differentiation. While neurochemistry as a recognized science is relatively new, the idea behind neurochemistry has been around since the 18th century. Originally, the brain had been thought to be a separate entity apart from the peripheral nervous system. Beginning in 1856, there was a string of research that refuted that idea. The chemical makeup of the brain was nearly identical to the makeup of the peripheral nervous system.[1] The first large leap forward in the study of neurochemistry came from Johann Ludwig Wilhelm Thudichum, who is one of the pioneers in the field of \"brain chemistry.\" He was one of the first to hypothesize that many neurological illnesses could be attributed to an imbalance of chemicals in the brain. He was also one of the first scientists to believe that through chemical means, the vast majority of neurological diseases could be treated, if not cured.[2]",
+  "url": "https://en.wikipedia.org/wiki/Neurochemistry",
+  "embedding": null,
+  "db_path": "kb_databases/neurochemistry_0d959f05.db",
+  "last_updated": 1743796485.090964,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "f408943e-c51f-4b18-a0d7-dd304741348a",
+  "name": "Piano",
+  "content": "A piano is a keyboard instrument that produces sound when its keys are depressed, activating an action mechanism where hammers strike strings. Modern pianos have a row of 88 black and white keys, tuned to a chromatic scale in equal temperament. A musician who specializes in piano is called a pianist. There are two main types of piano: the grand piano and the upright piano. The grand piano offers better sound and more precise key control, making it the preferred choice when space and budget allow. The grand piano is also considered a necessity in venues hosting skilled pianists. The upright piano is more commonly used because of its smaller size and lower cost. When a key is depressed, the strings inside are struck by felt-coated wooden hammers. The vibrations are transmitted through a bridge to a soundboard that amplifies the sound by coupling the acoustic energy to the air. When the key is released, a damper stops the string's vibration, ending the sound. Most notes have three strings, except for the bass, which graduates from one to two. Notes can be sustained when the keys are released by the use of pedals at the base of the instrument, which lift the dampers off the strings. The sustain pedal allows pianists to connect and overlay sound, and achieve expressive and colorful sonority.",
+  "url": "https://en.wikipedia.org/wiki/Piano",
+  "embedding": null,
+  "db_path": "kb_databases/piano_060e8e88.db",
+  "last_updated": 1743796485.5015612,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

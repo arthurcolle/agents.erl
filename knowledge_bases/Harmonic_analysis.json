@@ -1,0 +1,14 @@
+{
+  "kb_id": "d5740589-ad05-4e99-beed-10653a2d3c6d",
+  "name": "Harmonic analysis",
+  "content": "Harmonic analysis is a branch of mathematics concerned with investigating the connections between a function and its representation in frequency. The frequency representation is found by using the Fourier transform for functions on unbounded domains such as the full real line or by Fourier series for functions on bounded domains, especially periodic functions on finite intervals. Generalizing these transforms to other domains is generally called Fourier analysis, although the term is sometimes used interchangeably with harmonic analysis. Harmonic analysis has become a vast subject with applications in areas as diverse as number theory, representation theory, signal processing, quantum mechanics, tidal analysis, spectral analysis, and neuroscience. The term \"harmonics\" originated from the Ancient Greek word harmonikos, meaning \"skilled in music\".[1] In physical eigenvalue problems, it began to mean waves whose frequencies are integer multiples of one another, as are the frequencies of the harmonics of music notes. Still, the term has been generalized beyond its original meaning.",
+  "url": "https://en.wikipedia.org/wiki/Harmonic_analysis",
+  "embedding": null,
+  "db_path": "kb_databases/harmonic_analysis_66e3089e.db",
+  "last_updated": 1743796485.058987,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

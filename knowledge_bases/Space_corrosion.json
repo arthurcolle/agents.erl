@@ -1,0 +1,14 @@
+{
+  "kb_id": "5be00467-0d3c-461b-98fc-f92b64fddd68",
+  "name": "Space corrosion",
+  "content": "Corrosion in space is the corrosion of materials occurring in outer space. Instead of moisture and oxygen acting as the primary corrosion causes, the materials exposed to outer space are subjected to vacuum, bombardment by ultraviolet and X-rays, solar energetic particles (mostly electrons and protons from solar wind), and electromagnetic radiation.[1] In the upper layers of the atmosphere (between 90\u2013800 km), the atmospheric atoms, ions, and free radicals, most notably atomic oxygen, play a major role. The concentration of atomic oxygen depends on altitude and solar activity, as the bursts of ultraviolet radiation cause photodissociation of molecular oxygen.[2] Between 160 and 560 km, the atmosphere consists of about 90% atomic oxygen.[3] Corrosion in space has the highest impact on spacecraft with moving parts. Early satellites tended to develop problems with seizing bearings. Now the bearings are coated with a thin layer of gold. Different materials resist corrosion in space differently. Electrolytes in batteries or cooling loops can cause galvanic corrosion, general corrosion, and stress corrosion.[1] Aluminium is slowly eroded by atomic oxygen, while gold and platinum are highly corrosion-resistant. Gold-coated foils and thin layers of gold on exposed surfaces are therefore used to protect the spacecraft from the harsh environment. Thin layers of silicon dioxide deposited on the surfaces can also protect metals from the effects of atomic oxygen; e.g., the Starshine 3 satellite aluminium front mirrors were protected that way. However, the protective layers are subject to erosion by micrometeorites.",
+  "url": "https://en.wikipedia.org/wiki/Space_corrosion",
+  "embedding": null,
+  "db_path": "kb_databases/space_corrosion_c7925ca7.db",
+  "last_updated": 1743796485.390549,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

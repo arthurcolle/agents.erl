@@ -1,0 +1,14 @@
+{
+  "kb_id": "9dce3bc4-5782-4153-a6e0-5973f1d1b928",
+  "name": "Interstellar medium",
+  "content": "The interstellar medium (ISM) is the matter and radiation that exists in the space between the star systems in a galaxy. This matter includes gas in ionic, atomic, and molecular form, as well as dust and cosmic rays. It fills interstellar space and blends smoothly into the surrounding intergalactic space. The energy that occupies the same volume, in the form of electromagnetic radiation, is the interstellar radiation field. Although the density of atoms in the ISM is usually far below that in the best laboratory vacuums, the mean free path between collisions is short compared to typical interstellar lengths, so on these scales the ISM behaves as a gas (more precisely, as a plasma: it is everywhere at least slightly ionized), responding to pressure forces, and not as a collection of non-interacting particles. The interstellar medium is composed of multiple phases distinguished by whether matter is ionic, atomic, or molecular, and the temperature and density of the matter. The interstellar medium is composed primarily of hydrogen, followed by helium with trace amounts of carbon, oxygen, and nitrogen.[1] The thermal pressures of these phases are in rough equilibrium with one another. Magnetic fields and turbulent motions also provide pressure in the ISM, and are typically more important, dynamically, than the thermal pressure. In the interstellar medium, matter is primarily in molecular form and reaches number densities of 1012 molecules per m3 (1 trillion molecules per m3). In hot, diffuse regions, gas is highly ionized, and the density may be as low as 100 ions per m3. Compare this with a number density of roughly 1025 molecules per m3 for air at sea level, and 1016 molecules per m3 (10 quadrillion molecules per m3) for a laboratory high-vacuum chamber. Within our galaxy, by mass, 99% of the ISM is gas in any form, and 1% is dust.[2] Of the gas in the ISM, by number 91% of atoms are hydrogen and 8.9% are helium, with 0.1% being atoms of elements heavier than hydrogen or helium,[3] known as \"metals\" in astronomical parlance. By mass this amounts to 70% hydrogen, 28% helium, and 1.5% heavier elements. The hydrogen and helium are primarily a result of primordial nucleosynthesis, while the heavier elements in the ISM are mostly a result of enrichment (due to stellar nucleosynthesis) in the process of stellar evolution.",
+  "url": "https://en.wikipedia.org/wiki/Interstellar_medium",
+  "embedding": null,
+  "db_path": "kb_databases/interstellar_medium_0abf5b3f.db",
+  "last_updated": 1743796485.465722,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

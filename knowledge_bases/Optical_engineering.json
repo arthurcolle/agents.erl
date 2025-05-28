@@ -1,0 +1,14 @@
+{
+  "kb_id": "f4d7383a-4a1f-40ad-aae7-e4e92f501492",
+  "name": "Optical engineering",
+  "content": "Optical engineering is the field of engineering encompassing the physical phenomena and technologies associated with the generation, transmission, manipulation, detection, and utilization of light.[2] Optical engineers use the science of optics to solve problems and to design and build devices that make light do something useful.[3] They design and operate optical equipment that uses the properties of light using physics and chemistry,[4] such as lenses, microscopes, telescopes, lasers, sensors, fiber-optic communication systems and optical disc systems (e.g. CD, DVD). Optical engineering metrology uses optical methods to measure either micro-vibrations with instruments like the laser speckle interferometer, or properties of masses with instruments that measure refraction.[5] Nano-measuring and nano-positioning machines are devices designed by optical engineers. These machines, for example microphotolithographic steppers, have nanometer precision, and consequently are used in the fabrication of goods at this scale.[6]",
+  "url": "https://en.wikipedia.org/wiki/Optical_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/optical_engineering_6ff7c077.db",
+  "last_updated": 1743796484.803637,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

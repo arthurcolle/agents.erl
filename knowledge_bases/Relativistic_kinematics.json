@@ -1,0 +1,14 @@
+{
+  "kb_id": "898348b8-44d1-4915-885b-98a492f96fbe",
+  "name": "Relativistic kinematics",
+  "content": "In physics, relativistic mechanics refers to mechanics compatible with special relativity (SR) and general relativity (GR). It provides a non-quantum mechanical description of a system of particles, or of a fluid, in cases where the velocities of moving objects are comparable to the speed of light c. As a result, classical mechanics is extended correctly to particles traveling at high velocities and energies, and provides a consistent inclusion of electromagnetism with the mechanics of particles. This was not possible in Galilean relativity, where it would be permitted for particles and light to travel at any speed, including faster than light. The foundations of relativistic mechanics are the postulates of special relativity and general relativity. The unification of SR with quantum mechanics is relativistic quantum mechanics, while attempts for that of GR is quantum gravity, an unsolved problem in physics. As with classical mechanics, the subject can be divided into \"kinematics\"; the description of motion by specifying positions, velocities and accelerations, and \"dynamics\"; a full description by considering energies, momenta, and angular momenta and their conservation laws, and forces acting on particles or exerted by particles. There is however a subtlety; what appears to be \"moving\" and what is \"at rest\"\u2014which is termed by \"statics\" in classical mechanics\u2014depends on the relative motion of observers who measure in frames of reference.",
+  "url": "https://en.wikipedia.org/wiki/Relativistic_mechanics#Relativistic_kinematics",
+  "embedding": null,
+  "db_path": "kb_databases/relativistic_kinematics_6c9dd5fc.db",
+  "last_updated": 1743796485.523602,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "9810b647-c5e9-4472-8e4e-273151eefaa4",
+  "name": "Paleoradiology",
+  "content": "Paleoradiology (ancient radiology) is the study of archaeological remains through the use of radiographic techniques, such as X-ray, CT (computer tomography) and micro-CT scans.[1] It is predominately used by archaeologists and anthropologists to examine mummified remains due to its non-invasive nature.[2] Paleoradiologists can discover post-mortem damage to the body, or any artefacts buried with them, while still keeping the remains intact. Radiological images can also contribute evidence about the person's life, such as their age and cause of death. The first recorded use of paleoradiology (although not by that name) was in 1896, just a year after the R\u014dntgen radiograph was first produced.[3] Although this method of viewing ancient remains is advantageous due to its non-invasive manner, many radiologists lack expertise in archeology and very few radiologists can identify ancient diseases which may be present.[4] CT scans are most commonly used in paleoradiological studies because they can create images of soft tissue, organs and body cavities of mummified remains without performing an invasive and damaging autopsy.[5] This enables archaeologists and anthropologists to digitally unwrap the remains and reveal what they contain. CT scanners create these images by taking multiple radiographic planes (or cuts) of the body at different angles which records the layers of different structures in the remains. This differs from typical radiographic scans (X-rays) where all the structural layers are documented in one image, which can create shadows and therefore limit their accuracy.[6][7]",
+  "url": "https://en.wikipedia.org/wiki/Paleoradiology",
+  "embedding": null,
+  "db_path": "kb_databases/paleoradiology_6fe1e80e.db",
+  "last_updated": 1743796485.509422,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "34fc964c-ed09-4364-86c0-940853929166",
+  "name": "Geometric number theory",
+  "content": "Geometry of numbers is the part of number theory which uses geometry for the study of algebraic numbers. Typically, a ring of algebraic integers is viewed as a lattice in R n , {\\displaystyle \\mathbb {R} ^{n},} and the study of these lattices provides fundamental information on algebraic numbers.[1] Hermann Minkowski (1896) initiated this line of research at the age of 26 in his work The Geometry of Numbers.[2] The geometry of numbers has a close relationship with other fields of mathematics, especially functional analysis and Diophantine approximation, the problem of finding rational numbers that approximate an irrational quantity.[3] Suppose that \u0393 {\\displaystyle \\Gamma } is a lattice in n {\\displaystyle n} -dimensional Euclidean space R n {\\displaystyle \\mathbb {R} ^{n}} and K {\\displaystyle K} is a convex centrally symmetric body. Minkowski's theorem, sometimes called Minkowski's first theorem, states that if vol \u2061 ( K ) > 2 n vol \u2061 ( R n / \u0393 ) {\\displaystyle \\operatorname {vol} (K)>2^{n}\\operatorname {vol} (\\mathbb {R} ^{n}/\\Gamma )} , then K {\\displaystyle K} contains a nonzero vector in \u0393 {\\displaystyle \\Gamma } .",
+  "url": "https://en.wikipedia.org/wiki/Geometric_number_theory",
+  "embedding": null,
+  "db_path": "kb_databases/geometric_number_theory_863ee604.db",
+  "last_updated": 1743796485.109505,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

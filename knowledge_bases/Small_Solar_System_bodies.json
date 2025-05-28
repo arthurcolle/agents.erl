@@ -1,0 +1,14 @@
+{
+  "kb_id": "2eb7fc6b-7852-416a-a49e-a1e94669fdd6",
+  "name": "Small Solar System bodies",
+  "content": "A small Solar System body (SSSB) is an object in the Solar System that is neither a planet, a dwarf planet, nor a natural satellite. The term was first defined in 2006 by the International Astronomical Union (IAU) as follows: \"All other objects, except satellites, orbiting the Sun shall be referred to collectively as 'Small Solar System Bodies'\".[1] This encompasses all comets and all minor planets other than those that are dwarf planets. Thus SSSBs are: the comets; the classical asteroids, with the exception of the dwarf planet Ceres; the trojans; and the centaurs and trans-Neptunian objects, with the exception of the dwarf planets Pluto, Haumea, Makemake, Quaoar, Orcus, Sedna, Gonggong and Eris and others that may turn out to be dwarf planets. The current definition was included in the 2006 IAU resolution that defined the term planet, demoting the status of Pluto to that of dwarf planet. In the context, it should be interpreted as, \"All objects other than planets and dwarf planets orbiting the Sun shall be referred to collectively as 'Small Solar System Bodies'. The definition excludes interstellar objects traveling through the Solar System, such as the interstellar interlopers 1I/\u02bbOumuamua and 2I/Borisov.",
+  "url": "https://en.wikipedia.org/wiki/Small_Solar_System_bodies",
+  "embedding": null,
+  "db_path": "kb_databases/small_solar_system_bodies_00854437.db",
+  "last_updated": 1743796485.527648,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

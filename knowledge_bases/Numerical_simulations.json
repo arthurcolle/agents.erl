@@ -1,0 +1,14 @@
+{
+  "kb_id": "5fcf3e4e-58c2-4c82-946e-78a6dafe2aae",
+  "name": "Numerical simulations",
+  "content": "A direct numerical simulation (DNS)[1][2] is a simulation in computational fluid dynamics (CFD) in which the Navier\u2013Stokes equations are numerically solved without any turbulence model. This means that the whole range of spatial and temporal scales of the turbulence must be resolved. All the spatial scales of the turbulence must be resolved in the computational mesh, from the smallest dissipative scales (Kolmogorov microscales), up to the integral scale L {\\displaystyle L} , associated with the motions containing most of the kinetic energy. The Kolmogorov scale, \u03b7 {\\displaystyle \\eta } , is given by where \u03bd {\\displaystyle \\nu } is the kinematic viscosity and \u03b5 {\\displaystyle \\varepsilon } is the rate of kinetic energy dissipation. On the other hand, the integral scale depends usually on the spatial scale of the boundary conditions. To satisfy these resolution requirements, the number of points N {\\displaystyle N} along a given mesh direction with increments h {\\displaystyle h} , must be",
+  "url": "https://en.wikipedia.org/wiki/Direct_numerical_simulation",
+  "embedding": null,
+  "db_path": "kb_databases/numerical_simulations_c916d2fa.db",
+  "last_updated": 1743796485.467256,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "69ece86f-fa13-4bed-832e-e56cbf5c40ad",
+  "name": "Electrokinetics",
+  "content": "Electrohydrodynamics (EHD), also known as electro-fluid-dynamics (EFD) or electrokinetics, is the study of the dynamics of electrically charged fluids.[1][2] Electrohydrodynamics (EHD) is a joint domain of electrodynamics and fluid dynamics mainly focused on the fluid motion induced by electric fields. EHD, in its simplest form, involves the application of an electric field to a fluid medium, resulting in fluid flow, form, or properties manipulation. These mechanisms arise from the interaction between the electric fields and charged particles or polarization effects within the fluid.[2] The generation and movement of charge carriers (ions) in a fluid subjected to an electric field are the underlying physics of all EHD-based technologies. The electric forces acting on particles consist of electrostatic (Coulomb) and electrophoresis force (first term in the following equation)., dielectrophoretic force (second term in the following equation), and electrostrictive force (third term in the following equation):",
+  "url": "https://en.wikipedia.org/wiki/Electrohydrodynamics",
+  "embedding": null,
+  "db_path": "kb_databases/electrokinetics_bc839a3d.db",
+  "last_updated": 1743796485.242391,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

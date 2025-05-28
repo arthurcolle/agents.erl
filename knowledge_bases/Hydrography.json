@@ -1,0 +1,14 @@
+{
+  "kb_id": "8a1f4fbd-865b-4465-846d-8b3f24066c83",
+  "name": "Hydrography",
+  "content": "Hydrography is the branch of applied sciences which deals with the measurement and description of the physical features of oceans, seas, coastal areas, lakes and rivers, as well as with the prediction of their change over time, for the primary purpose of safety of navigation and in support of all other marine activities, including economic development, security and defense, scientific research, and environmental protection.[1] The origins of hydrography lay in the making of charts to aid navigation, by individual mariners as they navigated into new waters. These were usually the private property, even closely held secrets, of individuals who used them for commercial or military advantage. As transoceanic trade and exploration increased, hydrographic surveys started to be carried out as an exercise in their own right, and the commissioning of surveys was increasingly done by governments and special hydrographic offices. National organizations, particularly navies, realized that the collection, systematization and distribution of this knowledge gave it great organizational and military advantages. Thus were born dedicated national hydrographic organizations for the collection, organization, publication and distribution of hydrography incorporated into charts and sailing directions.",
+  "url": "https://en.wikipedia.org/wiki/Hydrography",
+  "embedding": null,
+  "db_path": "kb_databases/hydrography_62bbb6f7.db",
+  "last_updated": 1743796485.087085,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

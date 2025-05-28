@@ -1,0 +1,14 @@
+{
+  "kb_id": "9785c854-014a-43ee-b906-28d5e82eb025",
+  "name": "Theoretical physics",
+  "content": "Theoretical physics is a branch of physics that employs mathematical models and abstractions of physical objects and systems to rationalize, explain, and predict natural phenomena. This is in contrast to experimental physics, which uses experimental tools to probe these phenomena. The advancement of science generally depends on the interplay between experimental studies and theory. In some cases, theoretical physics adheres to standards of mathematical rigour while giving little weight to experiments and observations.[a] For example, while developing special relativity, Albert Einstein was concerned with the Lorentz transformation which left Maxwell's equations invariant, but was apparently uninterested in the Michelson\u2013Morley experiment on Earth's drift through a luminiferous aether.[1] Conversely, Einstein was awarded the Nobel Prize for explaining the photoelectric effect, previously an experimental result lacking a theoretical formulation.[2] A physical theory is a model of physical events. It is judged by the extent to which its predictions agree with empirical observations. The quality of a physical theory is also judged on its ability to make new predictions which can be verified by new observations. A physical theory differs from a mathematical theorem in that while both are based on some form of axioms, judgment of mathematical applicability is not based on agreement with any experimental results.[3][4] A physical theory similarly differs from a mathematical theory, in the sense that the word \"theory\" has a different meaning in mathematical terms.[b]",
+  "url": "https://en.wikipedia.org/wiki/Theoretical_physics",
+  "embedding": null,
+  "db_path": "kb_databases/theoretical_physics_3fb040f9.db",
+  "last_updated": 1743796485.335059,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "1cd24388-d30f-4d9a-af87-8eb20fe1beba",
+  "name": "Inventory theory",
+  "content": "Material theory (or more formally the mathematical theory of inventory and production) is the sub-specialty within operations research and operations management that is concerned with the design of production/inventory systems to minimize costs: it studies the decisions faced by firms and the military in connection with manufacturing, warehousing, supply chains, spare part allocation and so on and provides the mathematical foundation for logistics. The inventory control problem is the problem faced by a firm that must decide how much to order in each time period to meet demand for its products. The problem can be modeled using mathematical techniques of optimal control, dynamic programming and network optimization. The study of such models is part of inventory theory. One issue is infrequent large orders vs. frequent small orders. Large orders will increase the amount of inventory on hand, which is costly, but may benefit from volume discounts. Frequent orders are costly to process, and the resulting small inventory levels may increase the probability of stockouts, leading to loss of customers. In principle all these factors can be calculated mathematically and the optimum found.",
+  "url": "https://en.wikipedia.org/wiki/Inventory_theory",
+  "embedding": null,
+  "db_path": "kb_databases/inventory_theory_0c9a66da.db",
+  "last_updated": 1743796485.127897,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

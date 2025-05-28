@@ -1,0 +1,14 @@
+{
+  "kb_id": "c1e756c9-2812-49c0-9389-71f9b44ffb0f",
+  "name": "Social network analysis",
+  "content": "1800s: Martineau \u00b7 Tocqueville \u00b7 Marx \u00b7 Spencer \u00b7 Le Bon \u00b7 Ward \u00b7 Pareto \u00b7 T\u00f6nnies \u00b7 Veblen \u00b7 Simmel \u00b7 Durkheim \u00b7 Addams \u00b7 Mead \u00b7 Weber \u00b7 Du Bois \u00b7 Mannheim \u00b7 Elias Social network analysis (SNA) is the process of investigating social structures through the use of networks and graph theory.[1] It characterizes networked structures in terms of nodes (individual actors, people, or things within the network) and the ties, edges, or links (relationships or interactions) that connect them. Examples of social structures commonly visualized through social network analysis include social media networks,[2][3] meme proliferation,[4] information circulation,[5] friendship and acquaintance networks, business networks, knowledge networks,[6][7] difficult working relationships,[8] collaboration graphs, kinship, disease transmission, and sexual relationships.[9][10] These networks are often visualized through sociograms in which nodes are represented as points and ties are represented as lines. These visualizations provide a means of qualitatively assessing networks by varying the visual representation of their nodes and edges to reflect attributes of interest.[11]",
+  "url": "https://en.wikipedia.org/wiki/Social_network_analysis",
+  "embedding": null,
+  "db_path": "kb_databases/social_network_analysis_7e925418.db",
+  "last_updated": 1743796485.335959,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

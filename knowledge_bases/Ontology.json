@@ -1,0 +1,14 @@
+{
+  "kb_id": "8608bd12-cc1d-4a77-ba70-de97ac5439f0",
+  "name": "Ontology",
+  "content": "Ontology is the philosophical study of being. It is traditionally understood as the subdiscipline of metaphysics focused on the most general features of reality. As one of the most fundamental concepts, being encompasses all of reality and every entity within it. To articulate the basic structure of being, ontology examines the commonalities among all things and investigates their classification into basic types, such as the categories of particulars and universals. Particulars are unique, non-repeatable entities, such as the person Socrates, whereas universals are general, repeatable entities, like the color green. Another distinction exists between concrete objects existing in space and time, such as a tree, and abstract objects existing outside space and time, like the number 7. Systems of categories aim to provide a comprehensive inventory of reality by employing categories such as substance, property, relation, state of affairs, and event. Ontologists disagree regarding which entities exist at the most basic level. Platonic realism asserts that universals have objective existence, while conceptualism maintains that universals exist only in the mind, and nominalism denies their existence altogether. Similar disputes pertain to mathematical objects, unobservable objects assumed by scientific theories, and moral facts. Materialism posits that fundamentally only matter exists, whereas dualism asserts that mind and matter are independent principles. According to some ontologists, objective answers to ontological questions do not exist, with perspectives shaped by differing linguistic practices.",
+  "url": "https://en.wikipedia.org/wiki/Ontology",
+  "embedding": null,
+  "db_path": "kb_databases/ontology_0632b1f4.db",
+  "last_updated": 1743796485.231922,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

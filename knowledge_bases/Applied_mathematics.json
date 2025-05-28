@@ -1,0 +1,14 @@
+{
+  "kb_id": "77d3d11b-f120-4172-9f52-a4bcc1b959cf",
+  "name": "Applied mathematics",
+  "content": "Applied mathematics is the application of mathematical methods by different fields such as physics, engineering, medicine, biology, finance, business, computer science, and industry. Thus, applied mathematics is a combination of mathematical science and specialized knowledge. The term \"applied mathematics\" also describes the professional specialty in which mathematicians work on practical problems by formulating and studying mathematical models. In the past, practical applications have motivated the development of mathematical theories, which then became the subject of study in pure mathematics where abstract concepts are studied for their own sake. The activity of applied mathematics is thus intimately connected with research in pure mathematics. Historically, applied mathematics consisted principally of applied analysis, most notably differential equations; approximation theory (broadly construed, to include representations, asymptotic methods, variational methods, and numerical analysis); and applied probability. These areas of mathematics related directly to the development of Newtonian physics, and in fact, the distinction between mathematicians and physicists was not sharply drawn before the mid-19th century. This history left a pedagogical legacy in the United States: until the early 20th century, subjects such as classical mechanics were often taught in applied mathematics departments at American universities rather than in physics departments, and fluid mechanics may still be taught in applied mathematics departments.[1] Engineering and computer science departments have traditionally made use of applied mathematics.",
+  "url": "https://en.wikipedia.org/wiki/Applied_mathematics",
+  "embedding": null,
+  "db_path": "kb_databases/applied_mathematics_74c0e40b.db",
+  "last_updated": 1743796485.115272,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

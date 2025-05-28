@@ -1,0 +1,14 @@
+{
+  "kb_id": "83178e9d-8709-4f8d-9cdb-cc8af28e6748",
+  "name": "Optimal maintenance",
+  "content": "Optimal maintenance is the discipline within operations research concerned with maintaining a system in a manner that maximizes profit or minimizes cost. Cost functions depending on the reliability, availability and maintainability characteristics of the system of interest determine the parameters to minimize. Parameters often considered are the cost of failure, the cost per time unit of \"downtime\" (for example: revenue losses), the cost (per time unit) of corrective maintenance, the cost per time unit of preventive maintenance and the cost of repairable system replacement [Cassady and Pohl]. The foundation of any maintenance model relies on the correct description of the underlying deterioration process and failure behavior of the component, and on the relationships between maintained components in the product breakdown (system / sub-system / assembly / sub-assembly...). Optimal Maintenance strategies are often constructed using stochastic models and focus on finding an optimal inspection time or the optimal acceptable degree of system degradation before maintenance and/or replacement. Cost considerations on an Asset scale may also lead to select a \"run-to-failure\" approach for specific components.",
+  "url": "https://en.wikipedia.org/wiki/Optimal_maintenance",
+  "embedding": null,
+  "db_path": "kb_databases/optimal_maintenance_f2ee1fc0.db",
+  "last_updated": 1743796485.136991,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

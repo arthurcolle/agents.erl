@@ -1,0 +1,14 @@
+{
+  "kb_id": "d9fad300-6760-4d51-9789-c3903b48f2ea",
+  "name": "Analytical chemistry",
+  "content": "Analytical chemistry studies and uses instruments and methods to separate, identify, and quantify matter.[1] In practice, separation, identification or quantification may constitute the entire analysis or be combined with another method. Separation isolates analytes. Qualitative analysis identifies analytes, while quantitative analysis determines the numerical amount or concentration. Analytical chemistry consists of classical, wet chemical methods and modern analytical techniques.[2][3] Classical qualitative methods use separations such as precipitation, extraction, and distillation. Identification may be based on differences in color, odor, melting point, boiling point, solubility, radioactivity or reactivity. Classical quantitative analysis uses mass or volume changes to quantify amount. Instrumental methods may be used to separate samples using chromatography, electrophoresis or field flow fractionation. Then qualitative and quantitative analysis can be performed, often with the same instrument and may use light interaction, heat interaction, electric fields or magnetic fields. Often the same instrument can separate, identify and quantify an analyte.",
+  "url": "https://en.wikipedia.org/wiki/Analytical_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/analytical_chemistry_885bbc9d.db",
+  "last_updated": 1743796485.528019,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

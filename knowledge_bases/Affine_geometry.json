@@ -1,0 +1,14 @@
+{
+  "kb_id": "5b594d64-ede8-4285-87aa-079028e90928",
+  "name": "Affine geometry",
+  "content": "In mathematics, affine geometry is what remains of Euclidean geometry when ignoring (mathematicians often say \"forgetting\"[1][2]) the metric notions of distance and angle. As the notion of parallel lines is one of the main properties that is independent of any metric, affine geometry is often considered as the study of parallel lines. Therefore, Playfair's axiom (Given a line L and a point P not on L, there is exactly one line parallel to L that passes through P.) is fundamental in affine geometry. Comparisons of figures in affine geometry are made with affine transformations, which are mappings that preserve alignment of points and parallelism of lines. Affine geometry can be developed in two ways that are essentially equivalent.[3] In synthetic geometry, an affine space is a set of points to which is associated a set of lines, which satisfy some axioms (such as Playfair's axiom). Affine geometry can also be developed on the basis of linear algebra. In this context an affine space is a set of points equipped with a set of transformations (that is bijective mappings), the translations, which forms a vector space (over a given field, commonly the real numbers), and such that for any given ordered pair of points there is a unique translation sending the first point to the second; the composition of two translations is their sum in the vector space of the translations.",
+  "url": "https://en.wikipedia.org/wiki/Affine_geometry",
+  "embedding": null,
+  "db_path": "kb_databases/affine_geometry_eb2cd29b.db",
+  "last_updated": 1743796485.522163,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

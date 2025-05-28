@@ -1,0 +1,14 @@
+{
+  "kb_id": "f938ec8a-b33c-4421-91a8-f320a73b7313",
+  "name": "Computational physics",
+  "content": "Computational physics is the study and implementation of numerical analysis to solve problems in physics.[1] Historically, computational physics was the first application of modern computers in science, and is now a subset of computational science. It is sometimes regarded as a subdiscipline (or offshoot) of theoretical physics, but others consider it an intermediate branch between theoretical and experimental physics \u2014 an area of study which supplements both theory and experiment.[2] In physics, different theories based on mathematical models provide very precise predictions on how systems behave. Unfortunately, it is often the case that solving the mathematical model for a particular system in order to produce a useful prediction is not feasible. This can occur, for instance, when the solution does not have a closed-form expression, or is too complicated. In such cases, numerical approximations are required. Computational physics is the subject that deals with these numerical approximations: the approximation of the solution is written as a finite (and typically large) number of simple mathematical operations (algorithm), and a computer is used to perform these operations and compute an approximated solution and respective error.[1]",
+  "url": "https://en.wikipedia.org/wiki/Computational_physics",
+  "embedding": null,
+  "db_path": "kb_databases/computational_physics_a21d80ea.db",
+  "last_updated": 1743796485.186414,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

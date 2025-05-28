@@ -1,0 +1,14 @@
+{
+  "kb_id": "4acd1c32-9e69-4c5a-ab77-013fb8a7d606",
+  "name": "Parallel algorithms",
+  "content": "In computer science, a parallel algorithm, as opposed to a traditional serial algorithm, is an algorithm which can do multiple operations in a given time. It has been a tradition of computer science to describe serial algorithms in abstract machine models, often the one known as random-access machine. Similarly, many computer science researchers have used a so-called parallel random-access machine (PRAM) as a parallel abstract machine (shared-memory).[1][2] Many parallel algorithms are executed concurrently \u2013 though in general concurrent algorithms are a distinct concept \u2013 and thus these concepts are often conflated, with which aspect of an algorithm is parallel and which is concurrent not being clearly distinguished. Further, non-parallel, non-concurrent algorithms are often referred to as \"sequential algorithms\", by contrast with concurrent algorithms. Algorithms vary significantly in how parallelizable they are, ranging from easily parallelizable to completely unparallelizable. Further, a given problem may accommodate different algorithms, which may be more or less parallelizable.",
+  "url": "https://en.wikipedia.org/wiki/Parallel_algorithms",
+  "embedding": null,
+  "db_path": "kb_databases/parallel_algorithms_b36b7bda.db",
+  "last_updated": 1743796484.763684,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

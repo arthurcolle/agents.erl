@@ -1,0 +1,14 @@
+{
+  "kb_id": "4d8d9eb3-8bc7-4c5c-9c22-7931f1965a3b",
+  "name": "Dynamics",
+  "content": "This is an accepted version of this page Classical mechanics is a physical theory describing the motion of objects such as projectiles, parts of machinery, spacecraft, planets, stars, and galaxies. The development of classical mechanics involved substantial change in the methods and philosophy of physics.[1] The qualifier classical distinguishes this type of mechanics from physics developed after the revolutions in physics of the early 20th century, all of which revealed limitations in classical mechanics.[2] The earliest formulation of classical mechanics is often referred to as Newtonian mechanics. It consists of the physical concepts based on the 17th century foundational works of Sir Isaac Newton, and the mathematical methods invented by Newton, Gottfried Wilhelm Leibniz, Leonhard Euler and others to describe the motion of bodies under the influence of forces. Later, methods based on energy were developed by Euler, Joseph-Louis Lagrange, William Rowan Hamilton and others, leading to the development of analytical mechanics (which includes Lagrangian mechanics and Hamiltonian mechanics). These advances, made predominantly in the 18th and 19th centuries, extended beyond earlier works; they are, with some modification, used in all areas of modern physics.",
+  "url": "https://en.wikipedia.org/wiki/Dynamics_(mechanics)",
+  "embedding": null,
+  "db_path": "kb_databases/dynamics_405d9a69.db",
+  "last_updated": 1743796485.191801,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "57b6229d-44a1-42d2-9769-57479327b12a",
+  "name": "Computational linguistics",
+  "content": "Computational linguistics is an interdisciplinary field concerned with the computational modelling of natural language, as well as the study of appropriate computational approaches to linguistic questions. In general, computational linguistics draws upon linguistics, computer science, artificial intelligence, mathematics, logic, philosophy, cognitive science, cognitive psychology, psycholinguistics, anthropology and neuroscience, among others. The field overlapped with artificial intelligence since the efforts in the United States in the 1950s to use computers to automatically translate texts from foreign languages, particularly Russian scientific journals, into English.[1] Since rule-based approaches were able to make arithmetic (systematic) calculations much faster and more accurately than humans, it was expected that lexicon, morphology, syntax and semantics can be learned using explicit rules, as well. After the failure of rule-based approaches, David Hays[2] coined the term in order to distinguish the field from AI and co-founded both the Association for Computational Linguistics (ACL) and the International Committee on Computational Linguistics (ICCL) in the 1970s and 1980s. What started as an effort to translate between languages evolved into a much wider field of natural language processing.[3][4]",
+  "url": "https://en.wikipedia.org/wiki/Computational_linguistics",
+  "embedding": null,
+  "db_path": "kb_databases/computational_linguistics_bc596d76.db",
+  "last_updated": 1743796485.187351,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

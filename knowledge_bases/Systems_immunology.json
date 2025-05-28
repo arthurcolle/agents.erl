@@ -1,0 +1,14 @@
+{
+  "kb_id": "a7b8ae3d-b632-485d-ae99-4d8284776ac9",
+  "name": "Systems immunology",
+  "content": "Systems immunology is a research field under systems biology that uses mathematical approaches and computational methods to examine the interactions within cellular and molecular networks of the immune system.[1] The immune system has been thoroughly analyzed as regards to its components and function by using a \"reductionist\" approach, but its overall function can't be easily predicted by studying the characteristics of its isolated components because they strongly rely on the interactions among these numerous constituents. It focuses on in silico experiments rather than in vivo. Recent studies in experimental and clinical immunology have led to development of mathematical models that discuss the dynamics of both the innate and adaptive immune system.[2] Most of the mathematical models were used to examine processes in silico that can't be done in vivo. These processes include: the activation of T cells, cancer-immune interactions, migration and death of various immune cells (e.g. T cells, B cells and neutrophils) and how the immune system will respond to a certain vaccine or drug without carrying out a clinical trial.[3]",
+  "url": "https://en.wikipedia.org/wiki/Systems_immunology",
+  "embedding": null,
+  "db_path": "kb_databases/systems_immunology_3fc919e0.db",
+  "last_updated": 1743796485.2158341,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

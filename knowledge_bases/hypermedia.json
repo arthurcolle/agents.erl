@@ -1,0 +1,14 @@
+{
+  "kb_id": "f58d2b7c-9d3e-43a6-8233-41ad2bbca15e",
+  "name": "hypermedia",
+  "content": "Hypermedia, an extension of hypertext, is a nonlinear medium of information that includes graphics, audio, video, plain text and hyperlinks. This designation contrasts with the broader term multimedia, which may include non-interactive linear presentations as well as hypermedia. The term was first used in a 1965 article written by Ted Nelson.[1][2] Hypermedia is a type of multimedia that features interactive elements, such as hypertext, buttons, or interactive images and videos, allowing users to navigate and engage with content in a non-linear manner. The World Wide Web is a classic example of hypermedia to access web content, whereas a conventional cinema presentation is an example of standard multimedia, due to its inherent linearity and lack of interactivity via hyperlinks. The first hypermedia work was, arguably, the Aspen Movie Map. Bill Atkinson's HyperCard popularized hypermedia writing, while a variety of literary hypertext and non-fiction hypertext works, demonstrated the promise of hyperlinks. Most modern hypermedia is delivered via electronic pages from a variety of systems including media players, web browsers, and stand-alone applications (i.e., software that does not require network access). Audio hypermedia is emerging with voice command devices and voice browsing.[3]",
+  "url": "https://en.wikipedia.org/wiki/Hypermedia",
+  "embedding": null,
+  "db_path": "kb_databases/hypermedia_e1ef5b6e.db",
+  "last_updated": 1743796485.532904,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

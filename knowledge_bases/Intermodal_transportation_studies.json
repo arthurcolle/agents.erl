@@ -1,0 +1,14 @@
+{
+  "kb_id": "393d65c0-146f-44e5-9588-2e2bc81c327f",
+  "name": "Intermodal transportation studies",
+  "content": "Intermodal passenger transport, also called mixed-mode commuting, involves using two or more modes of transportation in a journey. Mixed-mode commuting is often used to combine the strengths (and offset the weaknesses) of various transportation options. A major goal of modern intermodal passenger transport is to reduce dependence on the automobile as the major mode of ground transportation and increase use of public transport. To assist the traveller, various intermodal journey planners such as Rome2rio and Google Transit have been devised to help travellers plan and schedule their journey. Mixed-mode commuting often centers on one type of rapid transit, such as regional rail, to which low-speed options (i.e. bus, tram, or bicycle) are appended at the beginning or end of the journey.[1] Trains offer quick transit from a suburb into an urban area, where passengers can choose a way to complete the trip. Most transportation modes have always been used intermodally; for example, people have used road or urban railway to an airport or inter-regional railway station.",
+  "url": "https://en.wikipedia.org/wiki/Intermodal_passenger_transport",
+  "embedding": null,
+  "db_path": "kb_databases/intermodal_transportation_studies_eca528ab.db",
+  "last_updated": 1743796484.884516,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

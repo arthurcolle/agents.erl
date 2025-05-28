@@ -1,0 +1,14 @@
+{
+  "kb_id": "8c1e88e7-bd30-48c1-97b7-769b68f53e8a",
+  "name": "Geodynamics",
+  "content": "Geodynamics is a subfield of geophysics dealing with dynamics of the Earth. It applies physics, chemistry and mathematics to the understanding of how mantle convection leads to plate tectonics and geologic phenomena such as seafloor spreading, mountain building, volcanoes, earthquakes, faulting. It also attempts to probe the internal activity by measuring magnetic fields, gravity, and seismic waves, as well as the mineralogy of rocks and their isotopic composition. Methods of geodynamics are also applied to exploration of other planets.[1] Geodynamics is generally concerned with processes that move materials throughout the Earth. In the Earth's interior, movement happens when rocks melt or deform and flow in response to a stress field.[2] This deformation may be brittle, elastic, or plastic, depending on the magnitude of the stress and the material's physical properties, especially the stress relaxation time scale. Rocks are structurally and compositionally heterogeneous and are subjected to variable stresses, so it is common to see different types of deformation in close spatial and temporal proximity.[3] When working with geological timescales and lengths, it is convenient to use the continuous medium approximation and equilibrium stress fields to consider the average response to average stress.[4]",
+  "url": "https://en.wikipedia.org/wiki/Geodynamics",
+  "embedding": null,
+  "db_path": "kb_databases/geodynamics_e8e4ebaa.db",
+  "last_updated": 1743796485.2085829,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

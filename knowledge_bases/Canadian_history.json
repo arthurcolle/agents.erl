@@ -1,0 +1,14 @@
+{
+  "kb_id": "d9230e53-e209-4a56-8230-d41d76d43d8d",
+  "name": "Canadian history",
+  "content": "The history of Canada covers the period from the arrival of the Paleo-Indians to North America thousands of years ago to the present day. The lands encompassing present-day Canada have been inhabited for millennia by Indigenous peoples, with distinct trade networks, spiritual beliefs, and styles of social organization. Some of these older civilizations had long faded by the time of the first European arrivals and have been discovered through archeological investigations. From the late 15th century, French and British expeditions explored, colonized, and fought over various places within North America in what constitutes present-day Canada. The colony of New France was claimed in 1534 with permanent settlements beginning in 1608. France ceded nearly all its North American possessions to the Great Britain in 1763 at the Treaty of Paris after the Seven Years' War. The now British Province of Quebec was divided into Upper and Lower Canada in 1791. The two provinces were united as the Province of Canada by the Act of Union 1840, which came into force in 1841. In 1867, the Province of Canada was joined with two other British colonies of New Brunswick and Nova Scotia through Confederation, forming a self-governing entity. \"Canada\" was adopted as the legal name of the new country and the word \"Dominion\" was conferred as the country's title. Over the next eighty-two years, Canada expanded by incorporating other parts of British North America, finishing with Newfoundland and Labrador in 1949.",
+  "url": "https://en.wikipedia.org/wiki/History_of_Canada",
+  "embedding": null,
+  "db_path": "kb_databases/canadian_history_5be19bb8.db",
+  "last_updated": 1743796485.545177,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

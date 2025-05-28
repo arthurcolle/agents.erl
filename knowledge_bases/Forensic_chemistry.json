@@ -1,0 +1,14 @@
+{
+  "kb_id": "da79607f-7567-47e5-ad4a-3aebc86c5185",
+  "name": "Forensic chemistry",
+  "content": "Forensic chemistry is the application of chemistry and its subfield, forensic toxicology, in a legal setting. A forensic chemist can assist in the identification of unknown materials found at a crime scene.[1] Specialists in this field have a wide array of methods and instruments to help identify unknown substances. These include high-performance liquid chromatography, gas chromatography-mass spectrometry, atomic absorption spectroscopy, Fourier transform infrared spectroscopy, and thin layer chromatography. The range of different methods is important due to the destructive nature of some instruments and the number of possible unknown substances that can be found at a scene. Forensic chemists prefer using nondestructive methods first, to preserve evidence and to determine which destructive methods will produce the best results. Along with other forensic specialists, forensic chemists commonly testify in court as expert witnesses regarding their findings. Forensic chemists follow a set of standards that have been proposed by various agencies and governing bodies, including the Scientific Working Group on the Analysis of Seized Drugs. In addition to the standard operating procedures proposed by the group, specific agencies have their own standards regarding the quality assurance and quality control of their results and their instruments. To ensure the accuracy of what they are reporting, forensic chemists routinely check and verify that their instruments are working correctly and are still able to detect and measure various quantities of different substances.",
+  "url": "https://en.wikipedia.org/wiki/Forensic_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/forensic_chemistry_60cdc697.db",
+  "last_updated": 1743796485.067301,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

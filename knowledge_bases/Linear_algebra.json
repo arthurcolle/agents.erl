@@ -1,0 +1,14 @@
+{
+  "kb_id": "dba1fe40-be7e-4dc7-bb23-62b4e0ccb83a",
+  "name": "Linear algebra",
+  "content": "Linear algebra is the branch of mathematics concerning linear equations such as: linear maps such as: and their representations in vector spaces and through matrices.[1][2][3] Linear algebra is central to almost all areas of mathematics. For instance, linear algebra is fundamental in modern presentations of geometry, including for defining basic objects such as lines, planes and rotations. Also, functional analysis, a branch of mathematical analysis, may be viewed as the application of linear algebra to function spaces. Linear algebra is also used in most sciences and fields of engineering because it allows modeling many natural phenomena, and computing efficiently with such models. For nonlinear systems, which cannot be modeled with linear algebra, it is often used for dealing with first-order approximations, using the fact that the differential of a multivariate function at a point is the linear map that best approximates the function near that point. The procedure (using counting rods) for solving simultaneous linear equations now called Gaussian elimination appears in the ancient Chinese mathematical text Chapter Eight: Rectangular Arrays of The Nine Chapters on the Mathematical Art. Its use is illustrated in eighteen problems, with two to five equations.[4]",
+  "url": "https://en.wikipedia.org/wiki/Linear_algebra",
+  "embedding": null,
+  "db_path": "kb_databases/linear_algebra_311c11d0.db",
+  "last_updated": 1743796485.511404,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

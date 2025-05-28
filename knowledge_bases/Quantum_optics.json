@@ -1,0 +1,14 @@
+{
+  "kb_id": "d21b70cb-e08c-426c-b448-71b6b355775c",
+  "name": "Quantum optics",
+  "content": "Quantum optics is a branch of atomic, molecular, and optical physics and quantum chemistry dealing with how individual quanta of light, known as photons, interact with atoms and molecules. It includes the study of the particle-like properties of photons. Photons have been used to test many of the counter-intuitive predictions of quantum mechanics, such as entanglement and teleportation, and are a useful resource for quantum information processing. Light propagating in a restricted volume of space has its energy and momentum quantized according to an integer number of particles known as photons. Quantum optics studies the nature and effects of light as quantized photons. The first major development leading to that understanding was the correct modeling of the blackbody radiation spectrum by Max Planck in 1899 under the hypothesis of light being emitted in discrete units of energy. The photoelectric effect was further evidence of this quantization as explained by Albert Einstein in a 1905 paper, a discovery for which he was to be awarded the Nobel Prize in 1921. Niels Bohr showed that the hypothesis of optical radiation being quantized corresponded to his theory of the quantized energy levels of atoms, and the spectrum of discharge emission from hydrogen in particular. The understanding of the interaction between light and matter following these developments was crucial for the development of quantum mechanics as a whole. However, the subfields of quantum mechanics dealing with matter-light interaction were principally regarded as research into matter rather than into light; hence one rather spoke of atom physics and quantum electronics in 1960. Laser science\u2014i.e., research into principles, design and application of these devices\u2014became an important field, and the quantum mechanics underlying the laser's principles was studied now with more emphasis on the properties of light[dubious \u2013 discuss], and the name quantum optics became customary.",
+  "url": "https://en.wikipedia.org/wiki/Quantum_optics",
+  "embedding": null,
+  "db_path": "kb_databases/quantum_optics_9e62901c.db",
+  "last_updated": 1743796485.535101,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

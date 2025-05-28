@@ -1,0 +1,14 @@
+{
+  "kb_id": "fa580040-51b2-4ee2-af88-a4763d9092a4",
+  "name": "Assignment problem",
+  "content": "The assignment problem is a fundamental combinatorial optimization problem. In its most general form, the problem is as follows: Alternatively, describing the problem using graph theory: If the numbers of agents and tasks are equal, then the problem is called balanced assignment, and the graph-theoretic version is called minimum-cost perfect matching. Otherwise, it is called unbalanced assignment.[1] If the total cost of the assignment for all tasks is equal to the sum of the costs for each agent (or the sum of the costs for each task, which is the same thing in this case), then the problem is called linear assignment. Commonly, when speaking of the assignment problem without any additional qualification, then the linear balanced assignment problem is meant. Suppose that a taxi firm has three taxis (the agents) available, and three customers (the tasks) wishing to be picked up as soon as possible. The firm prides itself on speedy pickups, so for each taxi the \"cost\" of picking up a particular customer will depend on the time taken for the taxi to reach the pickup point. This is a balanced assignment problem. Its solution is whichever combination of taxis and customers results in the least total cost.",
+  "url": "https://en.wikipedia.org/wiki/Assignment_problem",
+  "embedding": null,
+  "db_path": "kb_databases/assignment_problem_6fd6d136.db",
+  "last_updated": 1743796485.125175,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

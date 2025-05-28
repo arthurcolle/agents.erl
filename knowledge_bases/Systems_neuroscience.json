@@ -1,0 +1,14 @@
+{
+  "kb_id": "3418b00e-fff5-4129-b4ef-b440d9008722",
+  "name": "Systems neuroscience",
+  "content": "Systems neuroscience is a subdiscipline of neuroscience and systems biology that studies the structure and function of various neural circuits and systems that make up the central nervous system of an organism.[1] Systems neuroscience encompasses a number of areas of study concerned with how nerve cells behave when connected together to form neural pathways, neural circuits, and larger brain networks. At this level of analysis, neuroscientists study how different neural circuits work together to analyze sensory information, form perceptions of the external world, form emotions, make decisions, and execute movements.[2] Researchers in systems neuroscience are concerned with the relation between molecular and cellular approaches to understanding brain structure and function, as well as with the study of high-level mental functions such as language, memory, and self-awareness (which are the purview of behavioral and cognitive neuroscience). To deepen their understanding of these relations and understanding, systems neuroscientists typically employ techniques for understanding networks of neurons as they are seen to function, by way of electrophysiology using either single-unit recording or multi-electrode recording, functional magnetic resonance imaging (fMRI), and PET scans.[1] The term is commonly used in an educational framework: a common sequence of graduate school neuroscience courses consists of cellular/molecular neuroscience for the first semester, then systems neuroscience for the second semester. It is also sometimes used to distinguish a subdivision within a neuroscience department in a university.",
+  "url": "https://en.wikipedia.org/wiki/Systems_neuroscience",
+  "embedding": null,
+  "db_path": "kb_databases/systems_neuroscience_d46854b6.db",
+  "last_updated": 1743796485.217303,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

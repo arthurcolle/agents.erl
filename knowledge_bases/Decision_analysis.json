@@ -1,0 +1,14 @@
+{
+  "kb_id": "3a19943c-0143-42cb-bb65-747269095fa6",
+  "name": "Decision analysis",
+  "content": "Decision analysis (DA) is the discipline comprising the philosophy, methodology, and professional practice necessary to address important decisions in a formal manner. Decision analysis includes many procedures, methods, and tools for identifying, clearly representing, and formally assessing important aspects of a decision; for prescribing a recommended course of action by applying the maximum expected-utility axiom to a well-formed representation of the decision; and for translating the formal representation of a decision and its corresponding recommendation into insight for the decision maker, and other corporate and non-corporate stakeholders. In 1931, mathematical philosopher Frank Ramsey pioneered the idea of subjective probability as a representation of an individual\u2019s beliefs or uncertainties. Then, in the 1940s, mathematician John von Neumann and economist Oskar Morgenstern developed an axiomatic basis for utility theory as a way of expressing an individual\u2019s preferences over uncertain outcomes. (This is in contrast to social-choice theory, which addresses the problem of deriving group preferences from individual preferences.) Statistician Leonard Jimmie Savage then developed an alternate axiomatic framework for decision analysis in the early 1950s. The resulting expected-utility theory provides a complete axiomatic basis for decision making under uncertainty.",
+  "url": "https://en.wikipedia.org/wiki/Decision_analysis",
+  "embedding": null,
+  "db_path": "kb_databases/decision_analysis_9b44a655.db",
+  "last_updated": 1743796485.1275048,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

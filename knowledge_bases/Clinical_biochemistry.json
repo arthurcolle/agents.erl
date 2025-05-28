@@ -1,0 +1,14 @@
+{
+  "kb_id": "2c93ebdc-d759-477f-86c5-e83311930992",
+  "name": "Clinical biochemistry",
+  "content": "Clinical chemistry (also known as chemical pathology, clinical biochemistry or medical biochemistry) is a division in medical laboratory sciences focusing on qualitative tests of important compounds, referred to as analytes or markers, in bodily fluids and tissues using analytical techniques and specialized instruments.[1] This interdisciplinary field includes knowledge from medicine, biology, chemistry, biomedical engineering, informatics, and an applied form of biochemistry (not to be confused with medicinal chemistry, which involves basic research for drug development).[citation needed] The discipline originated in the late 19th century with the use of simple chemical reaction tests for various components of blood and urine. Many decades later, clinical chemists use automated analyzers in many clinical laboratories. These instruments perform experimental techniques ranging from pipetting specimens and specimen labelling to advanced measurement techniques such as spectrometry, chromatography, photometry, potentiometry, etc.[2] These instruments provide different results that help identify uncommon analytes, changes in light and electronic voltage properties of naturally-occurring analytes such as enzymes, ions, electrolytes, and their concentrations, all of which are important for diagnosing diseases.",
+  "url": "https://en.wikipedia.org/wiki/Clinical_biochemistry",
+  "embedding": null,
+  "db_path": "kb_databases/clinical_biochemistry_e6582fe1.db",
+  "last_updated": 1743796485.559823,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

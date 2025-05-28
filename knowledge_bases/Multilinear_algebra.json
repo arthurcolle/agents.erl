@@ -1,0 +1,14 @@
+{
+  "kb_id": "8acf85bc-8764-4ca1-8fd3-fbbec9184360",
+  "name": "Multilinear algebra",
+  "content": "Multilinear algebra is the study of functions with multiple vector-valued arguments, with the functions being linear maps with respect to each argument. It involves concepts such as matrices, tensors, multivectors, systems of linear equations, higher-dimensional spaces, determinants, inner and outer products, and dual spaces. It is a mathematical tool used in engineering, machine learning, physics, and mathematics.[1] While many theoretical concepts and applications involve single vectors, mathematicians such as Hermann Grassmann considered structures involving pairs, triplets, and multivectors that generalize vectors. With multiple combinational possibilities, the space of multivectors expands to 2n dimensions, where n is the dimension of the relevant vector space.[2] The determinant can be formulated abstractly using the structures of multilinear algebra. Multilinear algebra appears in the study of the mechanical response of materials to stress and strain, involving various moduli of elasticity. The term \"tensor\" describes elements within the multilinear space due to its added structure. Despite Grassmann's early work in 1844 with his Ausdehnungslehre, which was also republished in 1862, the subject was initially not widely understood, as even ordinary linear algebra posed many challenges at the time.",
+  "url": "https://en.wikipedia.org/wiki/Multilinear_algebra",
+  "embedding": null,
+  "db_path": "kb_databases/multilinear_algebra_e2bbe6fc.db",
+  "last_updated": 1743796485.0299342,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

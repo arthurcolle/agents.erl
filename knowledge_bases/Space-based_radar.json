@@ -1,0 +1,14 @@
+{
+  "kb_id": "84a28f05-cda5-4bed-b84c-68911bf66ab1",
+  "name": "Space-based radar",
+  "content": "Space-based radar or spaceborne radar is a radar operating in outer space; orbiting radar is a radar in orbit and Earth orbiting radar is a radar in geocentric orbit. A number of Earth-observing satellites, such as RADARSAT, have employed synthetic aperture radar (SAR) to obtain terrain and land-cover information about the Earth.[1] In the United States, Discoverer II was a proposed military space-based radar program initiated in February 1998 as a joint Air Force, DARPA, and NRO program. The concept was to provide high-range-resolution ground moving target indication (GMTI), as well as SAR imaging and high-resolution digital mapping. This program was cancelled by Congress in 2007. SBR is a less-ambitious version of Discoverer II. Space-based radar (SBR) is a proposed constellation of active radar satellites for the United States Department of Defense. The SBR system would allow detection and tracking of aircraft, ocean-going vessels (similar to the Soviet US-A program), and potentially land vehicles from space. This information would then be relayed to regional and national command centers, as well as E-10 MC2A airborne command posts.",
+  "url": "https://en.wikipedia.org/wiki/Space-based_radar",
+  "embedding": null,
+  "db_path": "kb_databases/space-based_radar_bf5271ea.db",
+  "last_updated": 1743796485.395988,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

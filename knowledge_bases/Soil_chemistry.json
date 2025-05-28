@@ -1,0 +1,14 @@
+{
+  "kb_id": "f2d56adf-fdbf-4655-b763-4b1447aafd3e",
+  "name": "Soil chemistry",
+  "content": "Soil chemistry is the study of the chemical characteristics of soil. Soil chemistry is affected by mineral composition, organic matter and environmental factors. In the early 1870s a consulting chemist to the Royal Agricultural Society in England, named J. Thomas Way, performed many experiments on how soils exchange ions, and is considered the father of soil chemistry.[1] Other scientists who contributed to this branch of ecology include Edmund Ruffin, and Linus Pauling.[1] Until the late 1960s, soil chemistry focused primarily on chemical reactions in the soil that contribute to pedogenesis or that affect plant growth. Since then, concerns have grown about environmental pollution, organic and inorganic soil contamination and potential ecological health and environmental health risks. Consequently, the emphasis in soil chemistry has shifted from pedology and agricultural soil science to an emphasis on environmental soil science. A knowledge of environmental soil chemistry is paramount to predicting the fate of contaminants, as well as the processes by which they are initially released into the soil. Once a chemical is exposed to the soil environment, myriad chemical reactions can occur that may increase or decrease contaminant toxicity. These reactions include adsorption/desorption, precipitation, polymerization, dissolution, hydrolysis, hydration, complexation and oxidation/reduction. These reactions are often disregarded by scientists and engineers involved with environmental remediation. Understanding these processes enable us to better predict the fate and toxicity of contaminants and provide the knowledge to develop scientifically correct, and cost-effective remediation strategies.",
+  "url": "https://en.wikipedia.org/wiki/Soil_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/soil_chemistry_83dbb40c.db",
+  "last_updated": 1743796485.515726,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

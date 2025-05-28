@@ -1,0 +1,14 @@
+{
+  "kb_id": "e22066a5-5645-41ff-b173-181d47063e62",
+  "name": "Observational astronomy",
+  "content": "Observational astronomy is a division of astronomy that is concerned with recording data about the observable universe, in contrast with theoretical astronomy, which is mainly concerned with calculating the measurable implications of physical models. It is the practice and study of observing celestial objects with the use of telescopes and other astronomical instruments. As a science, the study of astronomy is somewhat hindered in that direct experiments with the properties of the distant universe are not possible. However, this is partly compensated by the fact that astronomers have a vast number of visible examples of stellar phenomena that can be examined. This allows for observational data to be plotted on graphs, and general trends recorded. Nearby examples of specific phenomena, such as variable stars, can then be used to infer the behavior of more distant representatives. Those distant yardsticks can then be employed to measure other phenomena in that neighborhood, including the distance to a galaxy.",
+  "url": "https://en.wikipedia.org/wiki/Observational_astronomy",
+  "embedding": null,
+  "db_path": "kb_databases/observational_astronomy_71935d87.db",
+  "last_updated": 1743796485.5244942,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

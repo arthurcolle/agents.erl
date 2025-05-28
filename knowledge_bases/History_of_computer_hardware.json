@@ -1,0 +1,14 @@
+{
+  "kb_id": "e338869c-783c-458f-868d-312b08496de4",
+  "name": "History of computer hardware",
+  "content": "The history of computing hardware spans the developments from early devices used for simple calculations to today's complex computers, encompassing advancements in both analog and digital technology. The first aids to computation were purely mechanical devices which required the operator to set up the initial values of an elementary arithmetic operation, then manipulate the device to obtain the result. In later stages, computing devices began representing numbers in continuous forms, such as by distance along a scale, rotation of a shaft, or a specific voltage level. Numbers could also be represented in the form of digits, automatically manipulated by a mechanism. Although this approach generally required more complex mechanisms, it greatly increased the precision of results. The development of transistor technology, followed by the invention of integrated circuit chips, led to revolutionary breakthroughs. Transistor-based computers and, later, integrated circuit-based computers enabled digital systems to gradually replace analog systems, increasing both efficiency and processing power. Metal-oxide-semiconductor (MOS) large-scale integration (LSI) then enabled semiconductor memory and the microprocessor, leading to another key breakthrough, the miniaturized personal computer (PC), in the 1970s. The cost of computers gradually became so low that personal computers by the 1990s, and then mobile computers (smartphones and tablets) in the 2000s, became ubiquitous.",
+  "url": "https://en.wikipedia.org/wiki/History_of_computer_hardware",
+  "embedding": null,
+  "db_path": "kb_databases/history_of_computer_hardware_e83d9efc.db",
+  "last_updated": 1743796485.571535,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

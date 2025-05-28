@@ -1,0 +1,14 @@
+{
+  "kb_id": "ecf81813-94ae-4b5b-ae76-dad02dbb4047",
+  "name": "Object-oriented programming",
+  "content": "Object-oriented programming (OOP) is a programming paradigm based on the concept of objects,[1] which can contain data and code: data in the form of fields (often known as attributes or properties), and code in the form of procedures (often known as methods). In OOP, computer programs are designed by making them out of objects that interact with one another.[2][3] Many of the most widely used programming languages (such as C++, Java,[4] and Python) are multi-paradigm and support object-oriented programming to a greater or lesser degree, typically in combination with imperative programming and declarative programming. Significant object-oriented languages include Ada, ActionScript, C++, Common Lisp, C#, Dart, Eiffel, Fortran 2003, Haxe, Java,[4] JavaScript, Kotlin, Logo, MATLAB, Objective-C, Object Pascal, Perl, PHP, Python, R, Raku, Ruby, Scala, SIMSCRIPT, Simula, Smalltalk, Swift, Vala and Visual Basic.NET. Terminology invoking \"objects\" in the modern sense of object-oriented programming made its first appearance at the artificial intelligence group at MIT in the late 1950s and early 1960s. \"Object\" referred to LISP atoms with identified properties (attributes).[5][6] Another early MIT example was Sketchpad created by Ivan Sutherland in 1960\u20131961; in the glossary of the 1963 technical report based on his dissertation about Sketchpad, Sutherland defined notions of \"object\" and \"instance\" (with the class concept covered by \"master\" or \"definition\"), albeit specialized to graphical interaction.[7] Also, in 1968, an MIT ALGOL version, AED-0, established a direct link between data structures (\"plexes\", in that dialect) and procedures, prefiguring what were later termed \"messages\", \"methods\", and \"member functions\".[8][9] Topics such as data abstraction and modular programming were common points of discussion at this time.",
+  "url": "https://en.wikipedia.org/wiki/Object-oriented_programming",
+  "embedding": null,
+  "db_path": "kb_databases/object-oriented_programming_00f9d583.db",
+  "last_updated": 1743796485.566334,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

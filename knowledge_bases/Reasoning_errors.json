@@ -1,0 +1,14 @@
+{
+  "kb_id": "c9518972-0b65-41f1-8dbb-36f4aea8b6f2",
+  "name": "Reasoning errors",
+  "content": "A fallacy is the use of invalid or otherwise faulty reasoning in the construction of an argument. All forms of human communication can contain fallacies. Because of their variety, fallacies are challenging to classify. They can be classified by their structure (formal fallacies) or content (informal fallacies). Informal fallacies, the larger group, may then be subdivided into categories such as improper presumption, faulty generalization, error in assigning causation, and relevance, among others. The use of fallacies is common when the speaker's goal of achieving common agreement is more important to them than utilizing sound reasoning. When fallacies are used, the premise should be recognized as not well-grounded, the conclusion as unproven (but not necessarily false), and the argument as unsound.[1] A formal fallacy is an error in the argument's form.[2] All formal fallacies are types of non sequitur. A propositional fallacy is an error that concerns compound propositions. For a compound proposition to be true, the truth values of its constituent parts must satisfy the relevant logical connectives that occur in it (most commonly: [and], [or], [not], [only if], [if and only if]). The following fallacies involve relations whose truth values are not guaranteed and therefore not guaranteed to yield true conclusions. Types of propositional fallacies:",
+  "url": "https://en.wikipedia.org/wiki/List_of_informal_fallacies",
+  "embedding": null,
+  "db_path": "kb_databases/reasoning_errors_e41d41a4.db",
+  "last_updated": 1743796485.25136,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

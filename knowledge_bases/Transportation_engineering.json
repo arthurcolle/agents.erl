@@ -1,0 +1,14 @@
+{
+  "kb_id": "124282b3-5f7a-408b-ae62-804f325d907b",
+  "name": "Transportation engineering",
+  "content": "Transportation engineering or transport engineering is the application of technology and scientific principles to the planning, functional design, operation and management of facilities for any mode of transportation to provide for the safe, efficient, rapid, comfortable, convenient, economical, and environmentally compatible movement of people and goods transport.[1][2] The planning aspects of transportation engineering relate to elements of urban planning, and involve technical forecasting decisions and political factors. Technical forecasting of passenger travel usually involves an urban transportation planning model, requiring the estimation of trip generation, trip distribution, mode choice, and route assignment. More sophisticated forecasting can include other aspects of traveler decisions, including auto ownership, trip chaining (the decision to link individual trips together in a tour) and the choice of residential or business location (known as land use forecasting). Passenger trips are the focus of transportation engineering because they often represent the peak of demand on any transportation system.[3]",
+  "url": "https://en.wikipedia.org/wiki/Transportation_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/transportation_engineering_6f573700.db",
+  "last_updated": 1743796485.55876,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

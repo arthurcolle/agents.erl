@@ -1,0 +1,14 @@
+{
+  "kb_id": "4deb2ba4-d820-4c24-bc5a-60690ab282a7",
+  "name": "Languages",
+  "content": "Language is a structured system of communication that consists of grammar and vocabulary. It is the primary means by which humans convey meaning, both in spoken and signed forms, and may also be conveyed through writing. Human language is characterized by its cultural and historical diversity, with significant variations observed between cultures and across time.[1] Human languages possess the properties of productivity and displacement, which enable the creation of an infinite number of sentences, and the ability to refer to objects, events, and ideas that are not immediately present in the discourse. The use of human language relies on social convention and is acquired through learning. Estimates of the number of human languages in the world vary between 5,000 and 7,000. Precise estimates depend on an arbitrary distinction (dichotomy) established between languages and dialects.[2] Natural languages are spoken, signed, or both; however, any language can be encoded into secondary media using auditory, visual, or tactile stimuli \u2013 for example, writing, whistling, signing, or braille. In other words, human language is modality-independent, but written or signed language is the way to inscribe or encode the natural human speech or gestures.",
+  "url": "https://en.wikipedia.org/wiki/Language",
+  "embedding": null,
+  "db_path": "kb_databases/languages_3a08e2e3.db",
+  "last_updated": 1743796485.1750941,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

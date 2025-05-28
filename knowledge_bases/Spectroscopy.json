@@ -1,0 +1,14 @@
+{
+  "kb_id": "95cf3e50-70a5-4449-9562-02f657bb8573",
+  "name": "Spectroscopy",
+  "content": "Spectroscopy is the field of study that measures and interprets electromagnetic spectra.[1][2] In narrower contexts, spectroscopy is the precise study of color as generalized from visible light to all bands of the electromagnetic spectrum. Spectroscopy, primarily in the electromagnetic spectrum, is a fundamental exploratory tool in the fields of astronomy, chemistry, materials science, and physics, allowing the composition, physical structure and electronic structure of matter to be investigated at the atomic, molecular and macro scale, and over astronomical distances. Historically, spectroscopy originated as the study of the wavelength dependence of the absorption by gas phase matter of visible light dispersed by a prism. Current applications of spectroscopy include biomedical spectroscopy in the areas of tissue analysis and medical imaging. Matter waves and acoustic waves can also be considered forms of radiative energy, and recently gravitational waves have been associated with a spectral signature in the context of the Laser Interferometer Gravitational-Wave Observatory (LIGO).[3]",
+  "url": "https://en.wikipedia.org/wiki/Spectroscopy",
+  "embedding": null,
+  "db_path": "kb_databases/spectroscopy_27d6bf0f.db",
+  "last_updated": 1743796485.452922,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

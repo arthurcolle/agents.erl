@@ -1,0 +1,14 @@
+{
+  "kb_id": "268c41b6-cdb1-444d-a073-b49f68a4da33",
+  "name": "European history",
+  "content": "The history of Europe is traditionally divided into four time periods: prehistoric Europe (prior to about 800 BC), classical antiquity (800 BC to AD 500), the Middle Ages (AD 500\u20131500), and the modern era (since AD 1500). The first early European modern humans appear in the fossil record about 48,000 years ago, during the Paleolithic era. Settled agriculture marked the Neolithic era, which spread slowly across Europe from southeast to the north and west. The later Neolithic period saw the introduction of early metallurgy and the use of copper-based tools and weapons, and the building of megalithic structures, as exemplified by Stonehenge. During the Indo-European migrations, Europe saw migrations from the east and southeast. The period known as classical antiquity began with the emergence of the city-states of ancient Greece. Later, the Roman Empire came to dominate the entire Mediterranean Basin. The Migration Period of the Germanic people began in the late 4th century AD and made gradual incursions into various parts of the Roman Empire.",
+  "url": "https://en.wikipedia.org/wiki/History_of_Europe",
+  "embedding": null,
+  "db_path": "kb_databases/european_history_e5c07e80.db",
+  "last_updated": 1743796485.5637,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

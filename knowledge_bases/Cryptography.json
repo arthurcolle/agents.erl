@@ -1,0 +1,14 @@
+{
+  "kb_id": "614fbe5f-c35b-4cf8-b88e-7df97c221154",
+  "name": "Cryptography",
+  "content": "This is an accepted version of this page Cryptography, or cryptology (from Ancient Greek: \u03ba\u03c1\u03c5\u03c0\u03c4\u03cc\u03c2, romanized: krypt\u00f3s \"hidden, secret\"; and \u03b3\u03c1\u03ac\u03c6\u03b5\u03b9\u03bd graphein, \"to write\", or -\u03bb\u03bf\u03b3\u03af\u03b1 -logia, \"study\", respectively[1]), is the practice and study of techniques for secure communication in the presence of adversarial behavior.[2] More generally, cryptography is about constructing and analyzing protocols that prevent third parties or the public from reading private messages.[3] Modern cryptography exists at the intersection of the disciplines of mathematics, computer science, information security, electrical engineering, digital signal processing, physics, and others.[4] Core concepts related to information security (data confidentiality, data integrity, authentication, and non-repudiation) are also central to cryptography.[5] Practical applications of cryptography include electronic commerce, chip-based payment cards, digital currencies, computer passwords, and military communications. Cryptography prior to the modern age was effectively synonymous with encryption, converting readable information (plaintext) to unintelligible nonsense text (ciphertext), which can only be read by reversing the process (decryption). The sender of an encrypted (coded) message shares the decryption (decoding) technique only with the intended recipients to preclude access from adversaries. The cryptography literature often uses the names \"Alice\" (or \"A\") for the sender, \"Bob\" (or \"B\") for the intended recipient, and \"Eve\" (or \"E\") for the eavesdropping adversary.[6] Since the development of rotor cipher machines in World War I and the advent of computers in World War II, cryptography methods have become increasingly complex and their applications more varied.",
+  "url": "https://en.wikipedia.org/wiki/Cryptography",
+  "embedding": null,
+  "db_path": "kb_databases/cryptography_64ef07ce.db",
+  "last_updated": 1743796484.799715,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

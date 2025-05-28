@@ -1,0 +1,14 @@
+{
+  "kb_id": "8c376c88-6403-4db4-8c24-66a32c7f53bf",
+  "name": "Homological algebra",
+  "content": "Homological algebra is the branch of mathematics that studies homology in a general algebraic setting. It is a relatively young discipline, whose origins can be traced to investigations in combinatorial topology (a precursor to algebraic topology) and abstract algebra (theory of modules and syzygies) at the end of the 19th century, chiefly by Henri Poincar\u00e9 and David Hilbert. Homological algebra is the study of homological functors and the intricate algebraic structures that they entail; its development was closely intertwined with the emergence of category theory. A central concept is that of chain complexes, which can be studied through their homology and cohomology. Homological algebra affords the means to extract information contained in these complexes and present it in the form of homological invariants of rings, modules, topological spaces, and other \"tangible\" mathematical objects. A spectral sequence is a powerful tool for this. It has played an enormous role in algebraic topology. Its influence has gradually expanded and presently includes commutative algebra, algebraic geometry, algebraic number theory, representation theory, mathematical physics, operator algebras, complex analysis, and the theory of partial differential equations. K-theory is an independent discipline which draws upon methods of homological algebra, as does the noncommutative geometry of Alain Connes.",
+  "url": "https://en.wikipedia.org/wiki/Homological_algebra",
+  "embedding": null,
+  "db_path": "kb_databases/homological_algebra_27141791.db",
+  "last_updated": 1743796485.520401,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

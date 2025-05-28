@@ -1,0 +1,14 @@
+{
+  "kb_id": "5c135d66-96d8-4530-8400-3a1cfaa57686",
+  "name": "Functional analysis",
+  "content": "Functional analysis is a branch of mathematical analysis, the core of which is formed by the study of vector spaces endowed with some kind of limit-related structure (for example, inner product, norm, or topology) and the linear functions defined on these spaces and suitably respecting these structures. The historical roots of functional analysis lie in the study of spaces of functions and the formulation of properties of transformations of functions such as the Fourier transform as transformations defining, for example, continuous or unitary operators between function spaces. This point of view turned out to be particularly useful for the study of differential and integral equations. The usage of the word functional as a noun goes back to the calculus of variations, implying a function whose argument is a function. The term was first used in Hadamard's 1910 book on that subject. However, the general concept of a functional had previously been introduced in 1887 by the Italian mathematician and physicist Vito Volterra.[1][2] The theory of nonlinear functionals was continued by students of Hadamard, in particular Fr\u00e9chet and L\u00e9vy. Hadamard also founded the modern school of linear functional analysis further developed by Riesz and the group of Polish mathematicians around Stefan Banach.",
+  "url": "https://en.wikipedia.org/wiki/Functional_analysis",
+  "embedding": null,
+  "db_path": "kb_databases/functional_analysis_56250110.db",
+  "last_updated": 1743796485.054167,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

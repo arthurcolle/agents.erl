@@ -1,0 +1,14 @@
+{
+  "kb_id": "5aed3c89-3429-4d23-b7d4-95ffb02591b5",
+  "name": "Data archaeology",
+  "content": "There are two conceptualisations of data archaeology, the technical definition and the social science definition. Data archaeology (also data archeology) in the technical sense refers to the art and science of recovering computer data encoded and/or encrypted in now obsolete media or formats. Data archaeology can also refer to recovering information from damaged electronic formats after natural disasters or human error. It entails the rescue and recovery of old data trapped in outdated, archaic or obsolete storage formats such as floppy disks, magnetic tape, punch cards and transforming/transferring that data to more usable formats. Data archaeology in the social sciences usually involves an investigation into the source and history of datasets and the construction of these datasets. It involves mapping out the entire lineage of data, its nature and characteristics, its quality and veracity and how these affect the analysis and interpretation of the dataset. The findings of performing data archaeology affect the level to which the conclusions parsed from data analysis can be trusted.[1]",
+  "url": "https://en.wikipedia.org/wiki/Data_archaeology",
+  "embedding": null,
+  "db_path": "kb_databases/data_archaeology_bdfc1bae.db",
+  "last_updated": 1743796484.996908,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

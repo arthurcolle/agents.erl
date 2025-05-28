@@ -1,0 +1,14 @@
+{
+  "kb_id": "43aa80fe-09e0-4b8d-a43f-7e6e7fd16447",
+  "name": "Transport economics",
+  "content": "Transport economics is a branch of economics founded in 1959 by American economist John R. Meyer that deals with the allocation of resources within the transport sector.[1] It has strong links to civil engineering. Transport economics differs from some other branches of economics in that the assumption of a spaceless, instantaneous economy does not hold. People and goods flow over networks at certain speeds. Demands peak. Advance ticket purchase is often induced by lower fares. The networks themselves may or may not be competitive. A single trip (the final good, in the consumer's eyes) may require the bundling of services provided by several firms, agencies and modes.[2] Although transport systems follow the same supply and demand theory as other industries, the complications of network effects and choices between dissimilar goods (e.g. car and bus travel) make estimating the demand for transportation facilities difficult. The development of models to estimate the likely choices between the goods involved in transport decisions (discrete choice models) led to the development of an important branch of econometrics, as well as a Nobel Prize for Daniel McFadden.",
+  "url": "https://en.wikipedia.org/wiki/Transport_economics",
+  "embedding": null,
+  "db_path": "kb_databases/transport_economics_be165e67.db",
+  "last_updated": 1743796485.034247,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

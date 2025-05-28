@@ -1,0 +1,14 @@
+{
+  "kb_id": "65779f0e-3e48-4e7e-bac7-cae49352aeeb",
+  "name": "Theoretical chemistry",
+  "content": "Theoretical chemistry is the branch of chemistry which develops theoretical generalizations that are part of the theoretical arsenal of modern chemistry: for example, the concepts of chemical bonding, chemical reaction, valence, the surface of potential energy, molecular orbitals, orbital interactions, and molecule activation. Theoretical chemistry unites principles and concepts common to all branches of chemistry. Within the framework of theoretical chemistry, there is a systematization of chemical laws, principles and rules, their refinement and detailing, the construction of a hierarchy. The central place in theoretical chemistry is occupied by the doctrine of the interconnection of the structure and properties of molecular systems. It uses mathematical and physical methods to explain the structures and dynamics of chemical systems and to correlate, understand, and predict their thermodynamic and kinetic properties. In the most general sense, it is explanation of chemical phenomena by methods of theoretical physics. In contrast to theoretical physics, in connection with the high complexity of chemical systems, theoretical chemistry, in addition to approximate mathematical methods, often uses semi-empirical and empirical methods.",
+  "url": "https://en.wikipedia.org/wiki/Theoretical_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/theoretical_chemistry_094f780b.db",
+  "last_updated": 1743796485.514128,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

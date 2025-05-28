@@ -1,0 +1,14 @@
+{
+  "kb_id": "439054b5-e964-440d-96d4-cc4944325cb1",
+  "name": "Fluid kinematics",
+  "content": "Fluid kinematics is a term from fluid mechanics,[1] usually referring to a mere mathematical description or specification of a flow field, divorced from any account of the forces and conditions that might actually create such a flow. The term fluids includes liquids or gases, but also may refer to materials that behave with fluid-like properties, including crowds of people[2] or large numbers of grains[3] if those are describable approximately under the continuum assumption as used in continuum mechanics. The composition of the material contains two types of terms: those involving the time derivative and those involving spatial derivatives. The time derivative portion is denoted as the local derivative, and represents the effects of unsteady flow. The local derivative occurs during unsteady flow, and becomes zero for steady flow. The portion of the material derivative represented by the spatial derivatives is called the convective derivative. It accounts for the variation in fluid property, be it velocity or temperature for example, due to the motion of a fluid particle in space where its values are different.",
+  "url": "https://en.wikipedia.org/wiki/Fluid_kinematics",
+  "embedding": null,
+  "db_path": "kb_databases/fluid_kinematics_d5298e8a.db",
+  "last_updated": 1743796485.523977,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

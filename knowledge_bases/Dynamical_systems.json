@@ -1,0 +1,14 @@
+{
+  "kb_id": "c5406a60-e558-4e20-ac0b-e8cb81132104",
+  "name": "Dynamical systems",
+  "content": "In mathematics, a dynamical system is a system in which a function describes the time dependence of a point in an ambient space, such as in a parametric curve. Examples include the mathematical models that describe the swinging of a clock pendulum, the flow of water in a pipe, the random motion of particles in the air, and the number of fish each springtime in a lake. The most general definition unifies several concepts in mathematics such as ordinary differential equations and ergodic theory by allowing different choices of the space and how time is measured.[citation needed] Time can be measured by integers, by real or complex numbers or can be a more general algebraic object, losing the memory of its physical origin, and the space may be a manifold or simply a set, without the need of a smooth space-time structure defined on it. At any given time, a dynamical system has a state representing a point in an appropriate state space. This state is often given by a tuple of real numbers or by a vector in a geometrical manifold. The evolution rule of the dynamical system is a function that describes what future states follow from the current state. Often the function is deterministic, that is, for a given time interval only one future state follows from the current state.[1][2] However, some systems are stochastic, in that random events also affect the evolution of the state variables.",
+  "url": "https://en.wikipedia.org/wiki/Dynamical_systems",
+  "embedding": null,
+  "db_path": "kb_databases/dynamical_systems_d3c60cb8.db",
+  "last_updated": 1743796485.1379058,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

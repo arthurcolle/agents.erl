@@ -1,0 +1,14 @@
+{
+  "kb_id": "3eb8e4d5-1a38-497f-824e-99ad34e955f6",
+  "name": "Heat transfer",
+  "content": "Heat transfer is a discipline of thermal engineering that concerns the generation, use, conversion, and exchange of thermal energy (heat) between physical systems. Heat transfer is classified into various mechanisms, such as thermal conduction, thermal convection, thermal radiation, and transfer of energy by phase changes. Engineers also consider the transfer of mass of differing chemical species (mass transfer in the form of advection), either cold or hot, to achieve heat transfer. While these mechanisms have distinct characteristics, they often occur simultaneously in the same system. Heat conduction, also called diffusion, is the direct microscopic exchanges of kinetic energy of particles (such as molecules) or quasiparticles (such as lattice waves) through the boundary between two systems. When an object is at a different temperature from another body or its surroundings, heat flows so that the body and the surroundings reach the same temperature, at which point they are in thermal equilibrium. Such spontaneous heat transfer always occurs from a region of high temperature to another region of lower temperature, as described in the second law of thermodynamics.",
+  "url": "https://en.wikipedia.org/wiki/Heat_transfer",
+  "embedding": null,
+  "db_path": "kb_databases/heat_transfer_d7b1e3cd.db",
+  "last_updated": 1743796484.789199,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "a246d271-d162-439a-9d08-8245588143dc",
+  "name": "Atmospheric physics",
+  "content": "Within the atmospheric sciences, atmospheric physics is the application of physics to the study of the atmosphere. Atmospheric physicists attempt to model Earth's atmosphere and the atmospheres of the other planets using fluid flow equations, radiation budget, and energy transfer processes in the atmosphere (as well as how these tie into boundary systems such as the oceans). In order to model weather systems, atmospheric physicists employ elements of scattering theory, wave propagation models, cloud physics, statistical mechanics and spatial statistics which are highly mathematical and related to physics. It has close links to meteorology and climatology and also covers the design and construction of instruments for studying the atmosphere and the interpretation of the data they provide, including remote sensing instruments. At the dawn of the space age and the introduction of sounding rockets, aeronomy became a subdiscipline concerning the upper layers of the atmosphere, where dissociation and ionization are important.",
+  "url": "https://en.wikipedia.org/wiki/Atmospheric_physics",
+  "embedding": null,
+  "db_path": "kb_databases/atmospheric_physics_773eb64f.db",
+  "last_updated": 1743796485.17775,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

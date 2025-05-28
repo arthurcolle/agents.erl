@@ -1,0 +1,14 @@
+{
+  "kb_id": "f42c3f3f-4d49-4ff6-a600-c70c540dcbc8",
+  "name": "General relativity",
+  "content": "General relativity, also known as the general theory of relativity, and as Einstein's theory of gravity, is the geometric theory of gravitation published by Albert Einstein in 1915 and is the current description of gravitation in modern physics. General relativity generalizes special relativity and refines Newton's law of universal gravitation, providing a unified description of gravity as a geometric property of space and time, or four-dimensional spacetime. In particular, the curvature of spacetime is directly related to the energy and momentum of whatever is present, including matter and radiation. The relation is specified by the Einstein field equations, a system of second-order partial differential equations. Newton's law of universal gravitation, which describes classical gravity, can be seen as a prediction of general relativity for the almost flat spacetime geometry around stationary mass distributions. Some predictions of general relativity, however, are beyond Newton's law of universal gravitation in classical physics. These predictions concern the passage of time, the geometry of space, the motion of bodies in free fall, and the propagation of light, and include gravitational time dilation, gravitational lensing, the gravitational redshift of light, the Shapiro time delay and singularities/black holes. So far, all tests of general relativity have been shown to be in agreement with the theory. The time-dependent solutions of general relativity enable us to talk about the history of the universe and have provided the modern framework for cosmology, thus leading to the discovery of the Big Bang and cosmic microwave background radiation. Despite the introduction of a number of alternative theories, general relativity continues to be the simplest theory consistent with experimental data.",
+  "url": "https://en.wikipedia.org/wiki/General_relativity",
+  "embedding": null,
+  "db_path": "kb_databases/general_relativity_fd1f6839.db",
+  "last_updated": 1743796485.5245912,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

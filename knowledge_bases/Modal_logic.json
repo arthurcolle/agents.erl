@@ -1,0 +1,14 @@
+{
+  "kb_id": "87d553da-c015-4645-89f2-9c6f898b075a",
+  "name": "Modal logic",
+  "content": "Modal logic is a kind of logic used to represent statements about necessity and possibility. It plays a major role in philosophy and related fields as a tool for understanding concepts such as knowledge, obligation, and causation. For instance, in epistemic modal logic, the formula \u25fb P {\\displaystyle \\Box P} can be used to represent the statement that P {\\displaystyle P} is known. In deontic modal logic, that same formula can represent that P {\\displaystyle P} is a moral obligation. Modal logic considers the inferences that modal statements give rise to. For instance, most epistemic modal logics treat the formula \u25fb P \u2192 P {\\displaystyle \\Box P\\rightarrow P} as a tautology, representing the principle that only true statements can count as knowledge. However, this formula is not a tautology in deontic modal logic, since what ought to be true can be false. Modal logics are formal systems that include unary operators such as \u25ca {\\displaystyle \\Diamond } and \u25fb {\\displaystyle \\Box } , representing possibility and necessity respectively. For instance the modal formula \u25ca P {\\displaystyle \\Diamond P} can be read as \"possibly P {\\displaystyle P} \" while \u25fb P {\\displaystyle \\Box P} can be read as \"necessarily P {\\displaystyle P} \". In the standard relational semantics for modal logic, formulas are assigned truth values relative to a possible world. A formula's truth value at one possible world can depend on the truth values of other formulas at other accessible possible worlds. In particular, \u25ca P {\\displaystyle \\Diamond P} is true at a world if P {\\displaystyle P} is true at some accessible possible world, while \u25fb P {\\displaystyle \\Box P} is true at a world if P {\\displaystyle P} is true at every accessible possible world. A variety of proof systems exist which are sound and complete with respect to the semantics one gets by restricting the accessibility relation. For instance, the deontic modal logic D is sound and complete if one requires the accessibility relation to be serial.",
+  "url": "https://en.wikipedia.org/wiki/Modal_logic",
+  "embedding": null,
+  "db_path": "kb_databases/modal_logic_0cc5e8c0.db",
+  "last_updated": 1743796485.5057762,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

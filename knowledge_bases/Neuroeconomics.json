@@ -1,0 +1,14 @@
+{
+  "kb_id": "4395ca3d-751a-48d9-bac7-47ecf0ae1f8f",
+  "name": "Neuroeconomics",
+  "content": "Neuroeconomics is an interdisciplinary field that seeks to explain human decision-making, the ability to process multiple alternatives and to follow through on a plan of action. It studies how economic behavior can shape our understanding of the brain, and how neuroscientific discoveries can guide models of economics.[1] It combines research from neuroscience, experimental and behavioral economics, and cognitive and social psychology. As research into decision-making behavior becomes increasingly computational, it has also incorporated new approaches from theoretical biology, computer science, and mathematics. Neuroeconomics studies decision-making by using a combination of tools from these fields so as to avoid the shortcomings that arise from a single-perspective approach. In mainstream economics, expected utility (EU) and the concept of rational agents are still being used. Neuroscience has the potential to reduce the reliance on this flawed assumption by inferring what emotions, habits, biases, heuristics and environmental factors contribute to individual, and societal preferences.[2] Economists can thereby make more accurate predictions of human behavior in their models.",
+  "url": "https://en.wikipedia.org/wiki/Neuroeconomics",
+  "embedding": null,
+  "db_path": "kb_databases/neuroeconomics_4bd543da.db",
+  "last_updated": 1743796485.016587,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

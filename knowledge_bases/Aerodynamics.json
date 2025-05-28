@@ -1,0 +1,14 @@
+{
+  "kb_id": "7ba12408-b5d7-4c71-9dd4-f5babeb2e2ca",
+  "name": "Aerodynamics",
+  "content": "Aerodynamics (Ancient Greek: \u1f00\u03ae\u03c1 aero (air) + Ancient Greek: \u03b4\u03c5\u03bd\u03b1\u03bc\u03b9\u03ba\u03ae (dynamics)) is the study of the motion of air, particularly when affected by a solid object, such as an airplane wing.[1] It involves topics covered in the field of fluid dynamics and its subfield of gas dynamics, and is an important domain of study in aeronautics. The term aerodynamics is often used synonymously with gas dynamics, the difference being that \"gas dynamics\" applies to the study of the motion of all gases, and is not limited to air. The formal study of aerodynamics began in the modern sense in the eighteenth century, although observations of fundamental concepts such as aerodynamic drag were recorded much earlier. Most of the early efforts in aerodynamics were directed toward achieving heavier-than-air flight, which was first demonstrated by Otto Lilienthal in 1891.[2] Since then, the use of aerodynamics through mathematical analysis, empirical approximations, wind tunnel experimentation, and computer simulations has formed a rational basis for the development of heavier-than-air flight and a number of other technologies. Recent work in aerodynamics has focused on issues related to compressible flow, turbulence, and boundary layers and has become increasingly computational in nature.",
+  "url": "https://en.wikipedia.org/wiki/Aerodynamics",
+  "embedding": null,
+  "db_path": "kb_databases/aerodynamics_27044a3e.db",
+  "last_updated": 1743796485.2038,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "47fcc649-6dca-4f78-a6c3-07c873cb175c",
+  "name": "Statistical classification",
+  "content": "When classification is performed by a computer, statistical methods are normally used to develop the algorithm. Often, the individual observations are analyzed into a set of quantifiable properties, known variously as explanatory variables or features. These properties may variously be categorical (e.g. \"A\", \"B\", \"AB\" or \"O\", for blood type), ordinal (e.g. \"large\", \"medium\" or \"small\"), integer-valued (e.g. the number of occurrences of a particular word in an email) or real-valued (e.g. a measurement of blood pressure). Other classifiers work by comparing observations to previous observations by means of a similarity or distance function. An algorithm that implements classification, especially in a concrete implementation, is known as a classifier. The term \"classifier\" sometimes also refers to the mathematical function, implemented by a classification algorithm, that maps input data to a category. Terminology across fields is quite varied. In statistics, where classification is often done with logistic regression or a similar procedure, the properties of observations are termed explanatory variables (or independent variables, regressors, etc.), and the categories to be predicted are known as outcomes, which are considered to be possible values of the dependent variable. In machine learning, the observations are often known as instances, the explanatory variables are termed features (grouped into a feature vector), and the possible categories to be predicted are classes. Other fields may use different terminology: e.g. in community ecology, the term \"classification\" normally refers to cluster analysis.",
+  "url": "https://en.wikipedia.org/wiki/Statistical_classification",
+  "embedding": null,
+  "db_path": "kb_databases/statistical_classification_e85c5771.db",
+  "last_updated": 1743796485.099315,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "752cce40-82cf-4701-ab92-189792cd0239",
+  "name": "Reference management software",
+  "content": "Reference management software, citation management software, or bibliographic management software is software that stores a database of bibliographic records and produces bibliographic citations (references) for those records, needed in scholarly research. Once a record has been stored, it can be used time and again in generating bibliographies, such as lists of references in scholarly books and articles. Modern reference management applications can usually be integrated with word processors so that a reference list in one of the many different bibliographic formats required by publishers and scholarly journals is produced automatically as an article is written, reducing the risk that a cited source is not included in the reference list. They will also have a facility for importing bibliographic records from bibliographic databases. Reference management software does not do the same job as a bibliographic database that tries to store records of all publications published within a given scope such as a particular academic discipline or group of disciplines. Such bibliographic databases are large and have to be housed on major server installations. Reference management software collects a much smaller database, of the publications that have been used or are likely to be used by a particular researcher or group of researchers, and such a database can easily be stored on an individual's personal computer.",
+  "url": "https://en.wikipedia.org/wiki/Reference_management_software",
+  "embedding": null,
+  "db_path": "kb_databases/reference_management_software_071207e7.db",
+  "last_updated": 1743796485.507898,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

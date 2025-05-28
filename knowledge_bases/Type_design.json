@@ -1,0 +1,14 @@
+{
+  "kb_id": "52f2b924-b05f-41d5-9675-66f35b9e2cdf",
+  "name": "Type design",
+  "content": "Type design is the art and process of designing typefaces. This involves drawing each letterform using a consistent style. The basic concepts and design variables are described below. A typeface differs from other modes of graphic production such as handwriting and drawing in that it is a fixed set of alphanumeric characters with specific characteristics to be used repetitively. Historically, these were physical elements, called sorts, placed in a wooden frame; modern typefaces are stored and used electronically. It is the art of a type designer to develop a pleasing and functional typeface. In contrast, it is the task of the typographer (or typesetter) to lay out a page using a typeface that is appropriate to the work to be printed or displayed. Type designers use the basic concepts of strokes, counter, body, and structural groups when designing typefaces. There are also variables that type designers take into account when creating typefaces. These design variables are style, weight, contrast, width, posture, and case.",
+  "url": "https://en.wikipedia.org/wiki/Type_design",
+  "embedding": null,
+  "db_path": "kb_databases/type_design_09ac80d4.db",
+  "last_updated": 1743796485.529875,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

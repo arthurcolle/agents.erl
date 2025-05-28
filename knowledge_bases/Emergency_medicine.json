@@ -1,0 +1,14 @@
+{
+  "kb_id": "1b84fcd3-f136-4d2a-9511-e3e34e5cb64a",
+  "name": "Emergency medicine",
+  "content": "Emergency medicine is the medical specialty concerned with the care of illnesses or injuries requiring immediate medical attention. Emergency medicine physicians (often called \"ER doctors\" in the United States) specialize in providing care for unscheduled and undifferentiated patients of all ages. As first-line providers, in coordination with emergency medical services, they are primarily responsible for initiating resuscitation and stabilization and performing the initial investigations and interventions necessary to diagnose and treat illnesses or injuries in the acute phase. Emergency medical physicians generally practice in hospital emergency departments, pre-hospital settings via emergency medical services, and intensive care units. Still, they may also work in primary care settings such as urgent care clinics. Sub-specializations of emergency medicine include; disaster medicine, medical toxicology, point-of-care ultrasonography, critical care medicine, emergency medical services, hyperbaric medicine, sports medicine, palliative care, or aerospace medicine.",
+  "url": "https://en.wikipedia.org/wiki/Emergency_medicine",
+  "embedding": null,
+  "db_path": "kb_databases/emergency_medicine_0edd434d.db",
+  "last_updated": 1743796485.2196438,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

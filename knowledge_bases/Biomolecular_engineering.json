@@ -1,0 +1,14 @@
+{
+  "kb_id": "40100fd5-da8b-495e-a35a-f013441f4db7",
+  "name": "Biomolecular engineering",
+  "content": "Biomolecular engineering is the application of engineering principles and practices to the purposeful manipulation of molecules of biological origin. Biomolecular engineers integrate knowledge of biological processes with the core knowledge of chemical engineering in order to focus on molecular level solutions to issues and problems in the life sciences related to the environment, agriculture, energy, industry, food production, biotechnology and medicine. Biomolecular engineers purposefully manipulate carbohydrates, proteins, nucleic acids and lipids within the framework of the relation between their structure (see: nucleic acid structure, carbohydrate chemistry, protein structure,), function (see: protein function) and properties and in relation to applicability to such areas as environmental remediation, crop and livestock production, biofuel cells and biomolecular diagnostics. The thermodynamics and kinetics of molecular recognition in enzymes, antibodies, DNA hybridization, bio-conjugation/bio-immobilization and bioseparations are studied. Attention is also given to the rudiments of engineered biomolecules in cell signaling, cell growth kinetics, biochemical pathway engineering and bioreactor engineering.",
+  "url": "https://en.wikipedia.org/wiki/Biomolecular_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/biomolecular_engineering_c7544f61.db",
+  "last_updated": 1743796485.561669,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

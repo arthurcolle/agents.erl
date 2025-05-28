@@ -1,0 +1,14 @@
+{
+  "kb_id": "51297afb-7201-44f0-83fe-ebe32c9d1530",
+  "name": "Information retrieval",
+  "content": "Information retrieval (IR) in computing and information science is the task of identifying and retrieving information system resources that are relevant to an information need. The information need can be specified in the form of a search query. In the case of document retrieval, queries can be based on full-text or other content-based indexing. Information retrieval is the science[1] of searching for information in a document, searching for documents themselves, and also searching for the metadata that describes data, and for databases of texts, images or sounds. Automated information retrieval systems are used to reduce what has been called information overload. An IR system is a software system that provides access to books, journals and other documents; it also stores and manages those documents. Web search engines are the most visible IR applications. An information retrieval process begins when a user enters a query into the system. Queries are formal statements of information needs, for example search strings in web search engines. In information retrieval, a query does not uniquely identify a single object in the collection. Instead, several objects may match the query, perhaps with different degrees of relevance.",
+  "url": "https://en.wikipedia.org/wiki/Information_retrieval",
+  "embedding": null,
+  "db_path": "kb_databases/information_retrieval_34ca9175.db",
+  "last_updated": 1743796484.858306,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

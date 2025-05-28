@@ -1,0 +1,14 @@
+{
+  "kb_id": "a5d97d50-8ded-403f-ae32-71ae552aef55",
+  "name": "Statistical modelling",
+  "content": "A statistical model is a mathematical model that embodies a set of statistical assumptions concerning the generation of sample data (and similar data from a larger population). A statistical model represents, often in considerably idealized form, the data-generating process.[1] When referring specifically to probabilities, the corresponding term is probabilistic model. All statistical hypothesis tests and all statistical estimators are derived via statistical models. More generally, statistical models are part of the foundation of statistical inference. A statistical model is usually specified as a mathematical relationship between one or more random variables and other non-random variables. As such, a statistical model is \"a formal representation of a theory\" (Herman Ad\u00e8r quoting Kenneth Bollen).[2] Informally, a statistical model can be thought of as a statistical assumption (or set of statistical assumptions) with a certain property: that the assumption allows us to calculate the probability of any event. As an example, consider a pair of ordinary six-sided dice. We will study two different statistical assumptions about the dice.",
+  "url": "https://en.wikipedia.org/wiki/Statistical_model",
+  "embedding": null,
+  "db_path": "kb_databases/statistical_modelling_b9a0d9e5.db",
+  "last_updated": 1743796485.518059,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

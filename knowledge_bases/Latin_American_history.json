@@ -1,0 +1,14 @@
+{
+  "kb_id": "5552a01a-3e76-4da8-8dce-0120b01a2e25",
+  "name": "Latin American history",
+  "content": "The term Latin America originated in the 1830s, primarily through Michel Chevalier, who proposed the region could ally with \"Latin Europe\" against other European cultures. It primarily refers to the Spanish- and Portuguese-speaking countries in the New World. Before the arrival of Europeans in the late 15th and early 16th centuries, the region was home to many indigenous peoples, including advanced civilizations, most notably from South: the Olmec, Maya, Muisca, Aztecs and Inca. The region came under control of the kingdoms of Spain and Portugal, which established colonies, and imposed Roman Catholicism and their languages. Both brought African slaves to their colonies as laborers, exploiting large, settled societies and their resources. The Spanish Crown regulated immigration, allowing only Christians to travel to the New World. The colonization process led to significant native population declines due to disease, forced labor, and violence. They imposed their culture, destroying native codices and artwork. Colonial-era religion played a crucial role in everyday life, with the Spanish Crown ensuring religious purity and aggressively prosecuting perceived deviations like witchcraft.",
+  "url": "https://en.wikipedia.org/wiki/History_of_Latin_America",
+  "embedding": null,
+  "db_path": "kb_databases/latin_american_history_b6a74a03.db",
+  "last_updated": 1743796485.0807118,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

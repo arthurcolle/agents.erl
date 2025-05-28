@@ -1,0 +1,14 @@
+{
+  "kb_id": "28244316-17f8-44f4-b333-3144fa7547ca",
+  "name": "Integrated library system",
+  "content": "An integrated library system (ILS), also known as a library management system (LMS),[1][2] is an enterprise resource planning system for a library, used to track items owned, orders made, bills paid, and patrons who have borrowed. An ILS is usually made up of a relational database, software to interact with that database, and two graphical user interfaces (one for patrons, one for staff). Most ILSes separate software functions into discrete programs called modules, each of them integrated with a unified interface. Examples of modules might include: Each patron and item has a unique ID in the database that allows the ILS to track its activity. Prior to computerization, library tasks were performed manually and independently from one another. Selectors ordered materials with ordering slips, cataloguers manually catalogued sources and indexed them with the card catalog system (in which all bibliographic data was kept on a single index card), fines were collected by local bailiffs, and users signed books out manually, indicating their name on clue cards which were then kept at the circulation desk. Early mechanization came in 1936, when the University of Texas began using a punch card system to manage library circulation.[3] While the punch card system allowed for more efficient tracking of loans, library services were far from being integrated, and no other library task was affected by this change.",
+  "url": "https://en.wikipedia.org/wiki/Integrated_library_system",
+  "embedding": null,
+  "db_path": "kb_databases/integrated_library_system_aa785e85.db",
+  "last_updated": 1743796485.52321,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

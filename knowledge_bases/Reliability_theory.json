@@ -1,0 +1,14 @@
+{
+  "kb_id": "fa44818a-9ecc-4ed0-8acf-056da4729047",
+  "name": "Reliability theory",
+  "content": "Reliability engineering is a sub-discipline of systems engineering that emphasizes the ability of equipment to function without failure. Reliability is defined as the probability that a product, system, or service will perform its intended function adequately for a specified period of time, OR will operate in a defined environment without failure.[1] Reliability is closely related to availability, which is typically described as the ability of a component or system to function at a specified moment or interval of time. The reliability function is theoretically defined as the probability of success. In practice, it is calculated using different techniques, and its value ranges between 0 and 1, where 0 indicates no probability of success while 1 indicates definite success. This probability is estimated from detailed (physics of failure) analysis, previous data sets, or through reliability testing and reliability modeling. Availability, testability, maintainability, and maintenance are often defined as a part of \"reliability engineering\" in reliability programs. Reliability often plays a key role in the cost-effectiveness of systems.",
+  "url": "https://en.wikipedia.org/wiki/Reliability_theory",
+  "embedding": null,
+  "db_path": "kb_databases/reliability_theory_ed9dfa16.db",
+  "last_updated": 1743796485.1812758,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

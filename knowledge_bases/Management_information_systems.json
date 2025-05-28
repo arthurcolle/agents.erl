@@ -1,0 +1,14 @@
+{
+  "kb_id": "af6695c6-883e-4a20-97aa-6c08726a0dc9",
+  "name": "Management information systems",
+  "content": "A management information system (MIS) is an information system[1] used for decision-making, and for the coordination, control, analysis, and visualization of information in an organization. The study of the management information systems involves people, processes and technology in an organizational context. In other words, it serves, as the functions of controlling, planning, decision making in the management level setting.[2][3] In a corporate setting, the ultimate goal of using management information system is to increase the value and profits of the business.[4][5] While it can be contested that the history of management information systems dates as far back as companies using ledgers to keep track of accounting, the modern history of MIS can be divided into five eras originally identified by Kenneth C. Laudon and Jane Laudon in their seminal textbook Management Information Systems.[6][7] The first era (mainframe and minicomputer computing) was ruled by IBM and their mainframe computers for which they supplied both the hardware and software. These computers would often take up whole rooms and require teams to run them. As technology advanced, these computers were able to handle greater capacities and therefore reduce their cost. Smaller, more affordable minicomputers allowed larger businesses to run their own computing centers in-house / on-site / on-premises.",
+  "url": "https://en.wikipedia.org/wiki/Management_information_systems",
+  "embedding": null,
+  "db_path": "kb_databases/management_information_systems_ff179177.db",
+  "last_updated": 1743796485.3745668,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

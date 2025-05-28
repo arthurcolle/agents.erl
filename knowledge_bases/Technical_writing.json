@@ -1,0 +1,14 @@
+{
+  "kb_id": "23e0e261-5206-4d74-ad84-67f0a2c01e91",
+  "name": "Technical writing",
+  "content": "Technical writing is a specialized form of communication used by many of today's industrial and scientific organizations to clearly and accurately convey complex information to a user. An organization's customers, employees, assembly workers, engineers, and scientists are some of the most common users who reference this form of content to complete a task or research a subject. Most technical writing relies on simplified grammar, supported by easy-to-understand visual communication to clearly and accurately explain complex information. Technical writing is a labor-intensive form of writing that demands accurate research of a subject and the conversion of the collected information into a written format, style, and reading level the end-user will easily understand or connect with. There are two main forms of technical writing. By far, the most common form of technical writing is procedural documentation written for the general public (e.g., standardized step-by-step guides and standard operating procedures (SOPs)). Procedural technical writing is used in all types of manufacturing to explain user operation, assembly, installation instructions, and personnel work/safety steps. Written procedures are widely used in manufacturing, software development, medical research, and many other scientific fields. The software industry has grown into one of the largest users of technical writing and relies on procedural documents to describe a program's user operation and installation instructions.",
+  "url": "https://en.wikipedia.org/wiki/Technical_writing",
+  "embedding": null,
+  "db_path": "kb_databases/technical_writing_28597ef7.db",
+  "last_updated": 1743796485.008746,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

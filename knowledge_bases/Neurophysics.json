@@ -1,0 +1,14 @@
+{
+  "kb_id": "896fbbaf-4ef5-451b-9b7a-db063e164c27",
+  "name": "Neurophysics",
+  "content": "Neurophysics (or neurobiophysics) is the branch of biophysics dealing with the development and use of physical methods to gain information about the nervous system. Neurophysics is an interdisciplinary science using physics and combining it with other neurosciences to better understand neural processes. The methods used include the techniques of experimental biophysics and other physical measurements such as EEG[1] mostly to study electrical, mechanical or fluidic properties, as well as theoretical and computational approaches.[2] The term \"neurophysics\" is a portmanteau of \"neuron\" and \"physics\". Among other examples, the theorisation of ectopic action potentials in neurons using a Kramers-Moyal expansion[3] and the description of physical phenomena measured during an EEG using a dipole approximation[1] use neurophysics to better understand neural activity. Another quite distinct theoretical approach considers neurons as having Ising model energies of interaction and explores the physical consequences of this for various Cayley tree topologies and large neural networks. In 1981, the exact solution for the closed Cayley tree (with loops) was derived by Peter Barth for an arbitrary branching ratio[4] and found to exhibit an unusual phase transition behavior[5] in its local-apex and long-range site-site correlations, suggesting that the emergence of structurally-determined and connectivity-influenced cooperative phenomena may play a significant role in large neural networks.",
+  "url": "https://en.wikipedia.org/wiki/Neurophysics",
+  "embedding": null,
+  "db_path": "kb_databases/neurophysics_92fa4dda.db",
+  "last_updated": 1743796484.874169,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

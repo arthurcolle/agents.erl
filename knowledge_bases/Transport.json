@@ -1,0 +1,14 @@
+{
+  "kb_id": "c35b5510-0019-4013-9088-16b714a994dd",
+  "name": "Transport",
+  "content": "Transport (in British English) or transportation (in American English) is the intentional movement of humans, animals, and goods from one location to another. Modes of transport include air, land (rail and road), water, cable, pipelines, and space. The field can be divided into infrastructure, vehicles, and operations. Transport enables human trade, which is essential for the development of civilizations. Transport infrastructure consists of both fixed installations, including roads, railways, airways, waterways, canals, and pipelines, and terminals such as airports, railway stations, bus stations, warehouses, trucking terminals, refueling depots (including fuel docks and fuel stations), and seaports. Terminals may be used both for the interchange of passengers and cargo and for maintenance. Means of transport are any of the different kinds of transport facilities used to carry people or cargo. They may include vehicles, riding animals, and pack animals. Vehicles may include wagons, automobiles, bicycles, buses, trains, trucks, helicopters, watercraft, spacecraft, and aircraft.",
+  "url": "https://en.wikipedia.org/wiki/Transport",
+  "embedding": null,
+  "db_path": "kb_databases/transport_f5f0c488.db",
+  "last_updated": 1743796484.8756568,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "aded26d5-cd37-4fc9-9834-532315dac7cc",
+  "name": "Film classification",
+  "content": "A motion picture content rating system classifies films based on their suitability for audiences due to their treatment of issues such as sex, violence, or substance abuse, their use of profanity, or other matters typically deemed unsuitable for children or adolescents. Most countries have some form of rating system that issues determinations variously known as certifications, classifications, certificates, or ratings. Age recommendations, of either an advisory or restrictive capacity, are often applied in lieu of censorship; in some jurisdictions movie theaters may have a legal obligation to enforce restrictive ratings. In some countries such as Australia, Canada, and Singapore, an official government body decides on ratings; in other countries such as Denmark, Japan, and the United States, it is done by industry committees with little if any official government status. In most countries, however, films that are considered morally offensive have been censored, restricted, or banned. Even if the film rating system has no legal consequences, and a film has not explicitly been restricted or banned, there are usually laws forbidding certain films, or forbidding minors to view them. The influence of specific factors in deciding a rating varies from country to country.",
+  "url": "https://en.wikipedia.org/wiki/Film_classification",
+  "embedding": null,
+  "db_path": "kb_databases/film_classification_587827b1.db",
+  "last_updated": 1743796485.514636,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

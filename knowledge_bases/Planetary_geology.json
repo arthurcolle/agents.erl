@@ -1,0 +1,14 @@
+{
+  "kb_id": "264f5f6e-bd86-430d-86d6-5db171c03c29",
+  "name": "Planetary geology",
+  "content": "Planetary geology, alternatively known as astrogeology or exogeology, is a planetary science discipline concerned with the geology of celestial bodies such as planets and their moons, asteroids, comets, and meteorites.[1][2] Although the geo- prefix typically indicates topics of or relating to Earth, planetary geology is named as such for historical and convenience reasons; due to the subject matter, it is closely linked with more traditional Earth-based geology.[3] Planetary geology includes such topics as determining the properties and processes of the internal structure of the terrestrial planets, surface processes such as volcanism, impact craters, even fluvial and aeolian action where applicable. Despite their outermost layers being dominated by gases, the giant planets are also included in the field of planetary geology, especially when it comes to their interiors. Fields within Planetary geology are largely derived from fields in the traditional geological sciences, such as geophysics, geomorphology, and geochemistry.",
+  "url": "https://en.wikipedia.org/wiki/Planetary_geology",
+  "embedding": null,
+  "db_path": "kb_databases/planetary_geology_a9e4909a.db",
+  "last_updated": 1743796485.509989,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "3c4c6f7a-0ffd-421f-86a9-4b50c793e78c",
+  "name": "Inorganic chemistry",
+  "content": "Inorganic chemistry deals with synthesis and behavior of inorganic and organometallic compounds. This field covers chemical compounds that are not carbon-based, which are the subjects of organic chemistry. The distinction between the two disciplines is far from absolute, as there is much overlap in the subdiscipline of organometallic chemistry. It has applications in every aspect of the chemical industry, including catalysis, materials science, pigments, surfactants, coatings, medications, fuels, and agriculture.[1] Many inorganic compounds are found in nature as minerals.[2] Soil may contain iron sulfide as pyrite or calcium sulfate as gypsum.[3][4] Inorganic compounds are also found multitasking as biomolecules: as electrolytes (sodium chloride), in energy storage (ATP) or in construction (the polyphosphate backbone in DNA). Inorganic compounds exhibit a range of bonding properties. Some are ionic compounds, consisting of very simple cations and anions joined by ionic bonding. Examples of salts (which are ionic compounds) are magnesium chloride MgCl2, which consists of magnesium cations Mg2+ and chloride anions Cl\u2212; or sodium hydroxide NaOH, which consists of sodium cations Na+ and hydroxide anions OH\u2212. Some inorganic compounds are highly covalent, such as sulfur dioxide and iron pentacarbonyl. Many inorganic compounds feature polar covalent bonding, which is a form of bonding intermediate between covalent and ionic bonding. This description applies to many oxides, carbonates, and halides. Many inorganic compounds are characterized by high melting points. Some salts (e.g., NaCl) are very soluble in water.",
+  "url": "https://en.wikipedia.org/wiki/Inorganic_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/inorganic_chemistry_22110cdc.db",
+  "last_updated": 1743796485.0767832,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

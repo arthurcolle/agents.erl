@@ -1,0 +1,14 @@
+{
+  "kb_id": "3d19b6f8-4f39-46b7-b0e8-77cf260fbce0",
+  "name": "Astrometry",
+  "content": "Astrometry is a branch of astronomy that involves precise measurements of the positions and movements of stars and other celestial bodies. It provides the kinematics and physical origin of the Solar System and this galaxy, the Milky Way. The history of astrometry is linked to the history of star catalogues, which gave astronomers reference points for objects in the sky so they could track their movements. This can be dated back to the ancient Greek astronomer Hipparchus, who around 190 BC used the catalogue of his predecessors Timocharis and Aristillus to discover Earth's precession. In doing so, he also developed the brightness scale still in use today.[1] Hipparchus compiled a catalogue with at least 850 stars and their positions.[2] Hipparchus's successor, Ptolemy, included a catalogue of 1,022 stars in his work the Almagest, giving their location, coordinates, and brightness.[3] In the 10th century, the Iranian astronomer Abd al-Rahman al-Sufi carried out observations on the stars and described their positions, magnitudes and star color; furthermore, he provided drawings for each constellation, which are depicted in his Book of Fixed Stars. Egyptian mathematician Ibn Yunus observed more than 10,000 entries for the Sun's position for many years using a large astrolabe with a diameter of nearly 1.4 metres. His observations on eclipses were still used centuries later in Canadian\u2013American astronomer Simon Newcomb's investigations on the motion of the Moon, while his other observations of the motions of the planets Jupiter and Saturn inspired French scholar Laplace's Obliquity of the Ecliptic and Inequalities of Jupiter and Saturn.[4] In the 15th century, the Timurid astronomer Ulugh Beg compiled the Zij-i-Sultani, in which he catalogued 1,019 stars. Like the earlier catalogs of Hipparchus and Ptolemy, Ulugh Beg's catalogue is estimated to have been precise to within approximately 20 minutes of arc.[5]",
+  "url": "https://en.wikipedia.org/wiki/Astrometry",
+  "embedding": null,
+  "db_path": "kb_databases/astrometry_4376edc2.db",
+  "last_updated": 1743796485.4242911,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

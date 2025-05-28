@@ -1,0 +1,14 @@
+{
+  "kb_id": "3f092d0d-8883-499b-8319-eb7a77df9e84",
+  "name": "Systems chemistry",
+  "content": "Systems chemistry is the science of studying networks of interacting molecules, to create new functions from a set (or library) of molecules with different hierarchical levels and emergent properties.[1][2] Systems chemistry is also related to the origin of life (abiogenesis).[3] Systems chemistry is a relatively young sub-discipline of chemistry, where the focus does not lie on the individual chemical components but rather on the overall network of interacting molecules and on their emergent properties. Hence, it combines the classical knowledge of chemistry (structure, reactions and interactions of molecules) together with a systems approach inspired by systems biology and systems science. Dynamic combinatorial chemistry has been used as a method to develop ligands for biomolecules and receptors for small molecules.[4] Ligands that can recognize biomolecules are being identified by preparing libraries of potential ligands in the presence of a target biomacromolecule. This is relevant for application as biosensors for fast monitoring of imbalances and illnesses and therapeutic agents.[5]",
+  "url": "https://en.wikipedia.org/wiki/Systems_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/systems_chemistry_f6fa4a77.db",
+  "last_updated": 1743796485.557379,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "22d5e106-d567-42f8-bcd2-74692c4db0a6",
+  "name": "Synthetic biology",
+  "content": "Synthetic biology (SynBio) is a multidisciplinary field of science that focuses on living systems and organisms, and it applies engineering principles to develop new biological parts, devices, and systems or to redesign existing systems found in nature.[1] It is a branch of science that encompasses a broad range of methodologies from various disciplines, such as biochemistry, biotechnology, biomaterials, material science/engineering, genetic engineering, molecular biology, molecular engineering, systems biology, membrane science, biophysics, chemical and biological engineering, electrical and computer engineering, control engineering and evolutionary biology. It includes designing and constructing biological modules, biological systems, and biological machines, or re-designing existing biological systems for useful purposes.[2] Additionally, it is the branch of science that focuses on the new abilities of engineering into existing organisms to redesign them for useful purposes.[3] In order to produce predictable and robust systems with novel functionalities that do not already exist in nature, it is also necessary to apply the engineering paradigm of systems design to biological systems. According to the European Commission, this possibly involves a molecular assembler based on biomolecular systems such as the ribosome.[4]",
+  "url": "https://en.wikipedia.org/wiki/Synthetic_biology",
+  "embedding": null,
+  "db_path": "kb_databases/synthetic_biology_0f0001c9.db",
+  "last_updated": 1743796485.214154,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

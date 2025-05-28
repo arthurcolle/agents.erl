@@ -1,0 +1,14 @@
+{
+  "kb_id": "2dcac6a5-44db-4338-90ef-bec1def52f99",
+  "name": "Literary genre",
+  "content": "A literary genre is a category of literature. Genres may be determined by literary technique, tone, content, or length (especially for fiction). They generally move from more abstract, encompassing classes, which are then further sub-divided into more concrete distinctions.[1] The distinctions between genres and categories are flexible and loosely defined, and even the rules designating genres change over time and are fairly unstable.[2] Genres can all be in the form of prose or poetry. Additionally, a genre such as satire, allegory or pastoral might appear in any of the above, not only as a subgenre (see below), but as a mixture of genres. They are defined by the general cultural movement of the historical period in which they were composed. The concept of genre began in the works of Aristotle, who applied biological concepts to the classification of literary genres, or, as he called them, \"species\" (eid\u0113).[3] These classifications are mainly discussed in his treatises Rhetoric and Poetics.",
+  "url": "https://en.wikipedia.org/wiki/Literary_genre",
+  "embedding": null,
+  "db_path": "kb_databases/literary_genre_d6fc204d.db",
+  "last_updated": 1743796485.50428,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

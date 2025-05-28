@@ -1,0 +1,14 @@
+{
+  "kb_id": "58237dbe-5e62-410f-bd54-17e8a4024039",
+  "name": "Computational mathematics",
+  "content": "Computational mathematics is the study of the interaction between mathematics and calculations done by a computer.[1] A large part of computational mathematics consists roughly of using mathematics for allowing and improving computer computation in areas of science and engineering where mathematics are useful. This involves in particular algorithm design, computational complexity, numerical methods and computer algebra. Computational mathematics refers also to the use of computers for mathematics itself. This includes mathematical experimentation for establishing conjectures (particularly in number theory), the use of computers for proving theorems (for example the four color theorem), and the design and use of proof assistants. Computational mathematics emerged as a distinct part of applied mathematics by the early 1950s. Currently, computational mathematics can refer to or include: Journals that publish contributions from computational mathematics include",
+  "url": "https://en.wikipedia.org/wiki/Computational_mathematics",
+  "embedding": null,
+  "db_path": "kb_databases/computational_mathematics_92cae6a9.db",
+  "last_updated": 1743796484.932982,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

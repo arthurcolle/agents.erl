@@ -1,0 +1,14 @@
+{
+  "kb_id": "7635fcda-21aa-435a-a7ee-da1bc3cb6570",
+  "name": "Wireless computing",
+  "content": "A wireless network is a computer network that uses wireless data connections between network nodes.[1] Wireless networking allows homes, telecommunications networks, and business installations to avoid the costly process of introducing cables into a building, or as a connection between various equipment locations.[2] Admin telecommunications networks are generally implemented and administered using radio communication. This implementation takes place at the physical level (layer) of the OSI model network structure.[3] Examples of wireless networks include cell phone networks, wireless local area networks (WLANs), wireless sensor networks, satellite communication networks, and terrestrial microwave networks.[4] The first professional wireless network was developed under the brand ALOHAnet in 1969 at the University of Hawaii and became operational in June 1971. The first commercial wireless network was the WaveLAN product family, developed by NCR in 1986. Advances in MOSFET (MOS transistor) wireless technology enabled the development of digital wireless networks. The wide adoption of RF CMOS (radio frequency CMOS), power MOSFET and LDMOS (lateral diffused MOS) devices led to the development and proliferation of digital wireless networks by the 1990s, with further advances in MOSFET technology leading to increasing bandwidth in the 2000s (Edholm's law).[5][6][7] Most of the essential elements of wireless networks are built from MOSFETs, including the mobile transceivers, base station modules, routers, RF power amplifiers,[6] telecommunication circuits,[8] RF circuits, and radio transceivers,[7] in networks such as 2G, 3G,[5] and 4G.[6]",
+  "url": "https://en.wikipedia.org/wiki/Wireless_computing",
+  "embedding": null,
+  "db_path": "kb_databases/wireless_computing_077f9a5d.db",
+  "last_updated": 1743796484.783131,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

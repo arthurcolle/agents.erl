@@ -1,0 +1,14 @@
+{
+  "kb_id": "bd372fb3-3f89-453d-ba45-f0c94b919824",
+  "name": "Surgery",
+  "content": "Surgery[a] is a medical specialty that uses manual and instrumental techniques to diagnose or treat pathological conditions (e.g., trauma, disease, injury, malignancy), to alter bodily functions (e.g., malabsorption created by bariatric surgery such as gastric bypass), to reconstruct or alter aesthetics and appearance (cosmetic surgery), or to remove unwanted tissues (body fat, glands, scars or skin tags) or foreign bodies. The act of performing surgery may be called a surgical procedure or surgical operation, or simply \"surgery\" or \"operation\". In this context, the verb \"operate\" means to perform surgery. The adjective surgical means pertaining to surgery; e.g. surgical instruments, surgical facility or surgical nurse. Most surgical procedures are performed by a pair of operators: a surgeon who is the main operator performing the surgery, and a surgical assistant who provides in-procedure manual assistance during surgery. Modern surgical operations typically require a surgical team that typically consists of the surgeon, the surgical assistant, an anaesthetist (often also complemented by an anaesthetic nurse), a scrub nurse (who handles sterile equipment), a circulating nurse and a surgical technologist, while procedures that mandate cardiopulmonary bypass will also have a perfusionist. All surgical procedures are considered invasive and often require a period of postoperative care (sometimes intensive care) for the patient to recover from the iatrogenic trauma inflicted by the procedure. The duration of surgery can span from several minutes to tens of hours depending on the specialty, the nature of the condition, the target body parts involved and the circumstance of each procedure, but most surgeries are designed to be one-off interventions that are typically not intended as an ongoing or repeated type of treatment.",
+  "url": "https://en.wikipedia.org/wiki/Surgery",
+  "embedding": null,
+  "db_path": "kb_databases/surgery_4cc2ab05.db",
+  "last_updated": 1743796485.304769,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

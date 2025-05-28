@@ -1,0 +1,14 @@
+{
+  "kb_id": "ad4cf8e0-58a3-4b28-83b2-59ad2186f6b5",
+  "name": "Number theory",
+  "content": "Number theory is a branch of pure mathematics devoted primarily to the study of the integers and arithmetic functions. German mathematician Carl Friedrich Gauss (1777\u20131855) said, \"Mathematics is the queen of the sciences\u2014and number theory is the queen of mathematics.\"[1] Number theorists study prime numbers as well as the properties of mathematical objects constructed from integers (for example, rational numbers), or defined as generalizations of the integers (for example, algebraic integers). Integers can be considered either in themselves or as solutions to equations (Diophantine geometry). Questions in number theory are often best understood through the study of analytical objects (for example, the Riemann zeta function) that encode properties of the integers, primes or other number-theoretic objects in some fashion (analytic number theory). One may also study real numbers in relation to rational numbers; for example, as approximated by the latter (Diophantine approximation). The older term for number theory is arithmetic. By the early twentieth century, it had been superseded by number theory.[note 1] (The word arithmetic is used by the general public to mean elementary calculations; it has also acquired other meanings in mathematical logic, as in Peano arithmetic, and computer science, as in floating-point arithmetic.) The use of the term arithmetic for number theory regained some ground in the second half of the twentieth century, arguably in part due to French influence.[note 2] In particular, arithmetical is commonly preferred as an adjective to number-theoretic.",
+  "url": "https://en.wikipedia.org/wiki/Number_theory",
+  "embedding": null,
+  "db_path": "kb_databases/number_theory_18c5c2c2.db",
+  "last_updated": 1743796485.5193322,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

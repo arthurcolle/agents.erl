@@ -1,0 +1,14 @@
+{
+  "kb_id": "6b67bae4-b9f6-4196-9ad5-450c30f93836",
+  "name": "Therapy",
+  "content": "A therapy or medical treatment is the attempted remediation of a health problem, usually following a medical diagnosis. Both words, treatment and therapy, are often abbreviated tx, Tx, or Tx. As a rule, each therapy has indications and contraindications. There are many different types of therapy. Not all therapies are effective. Many therapies can produce unwanted adverse effects. Treatment and therapy are often synonymous, especially in the usage of health professionals. However, in the context of mental health, the term therapy may refer specifically to psychotherapy. The words care, therapy, treatment, and intervention overlap in a semantic field, and thus they can be synonymous depending on context. Moving rightward through that order, the connotative level of holism decreases and the level of specificity (to concrete instances) increases. Thus, in health-care contexts (where its senses are always noncount), the word care tends to imply a broad idea of everything done to protect or improve someone's health (for example, as in the terms preventive care and primary care, which connote ongoing action), although it sometimes implies a narrower idea (for example, in the simplest cases of wound care or postanesthesia care, a few particular steps are sufficient, and the patient's interaction with the provider of such care is soon finished). In contrast, the word intervention tends to be specific and concrete, and thus the word is often countable; for example, one instance of cardiac catheterization is one intervention performed, and coronary care (noncount) can require a series of interventions (count). At the extreme, the piling on of such countable interventions amounts to interventionism, a flawed model of care lacking holistic circumspection\u2014merely treating discrete problems (in billable increments) rather than maintaining health. Therapy and treatment, in the middle of the semantic field, can connote either the holism of care or the discreteness of intervention, with context conveying the intent in each use. Accordingly, they can be used in both noncount and count senses (for example, therapy for chronic kidney disease can involve several dialysis treatments per week).",
+  "url": "https://en.wikipedia.org/wiki/Therapy",
+  "embedding": null,
+  "db_path": "kb_databases/therapy_8b7674a7.db",
+  "last_updated": 1743796485.3155599,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

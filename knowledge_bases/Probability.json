@@ -1,0 +1,14 @@
+{
+  "kb_id": "5ca19ef4-bc71-453a-a4bf-e005345d1b0f",
+  "name": "Probability",
+  "content": "Probability is the branch of mathematics and statistics concerning events and numerical descriptions of how likely they are to occur. The probability of an event is a number between 0 and 1; the larger the probability, the more likely an event is to occur.[note 1][1][2] This number is often expressed as a percentage (%), ranging from 0% to 100%. A simple example is the tossing of a fair (unbiased) coin. Since the coin is fair, the two outcomes (\"heads\" and \"tails\") are both equally probable; the probability of \"heads\" equals the probability of \"tails\"; and since no other outcomes are possible, the probability of either \"heads\" or \"tails\" is 1/2 (which could also be written as 0.5 or 50%). These concepts have been given an axiomatic mathematical formalization in probability theory, which is used widely in areas of study such as statistics, mathematics, science, finance, gambling, artificial intelligence, machine learning, computer science, game theory, and philosophy to, for example, draw inferences about the expected frequency of events. Probability theory is also used to describe the underlying mechanics and regularities of complex systems.[3]",
+  "url": "https://en.wikipedia.org/wiki/Probability",
+  "embedding": null,
+  "db_path": "kb_databases/probability_0d2765b3.db",
+  "last_updated": 1743796485.511607,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

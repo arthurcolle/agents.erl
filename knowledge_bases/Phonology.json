@@ -1,0 +1,14 @@
+{
+  "kb_id": "a0d89eb0-6018-481f-97fc-4e631881c0e6",
+  "name": "Phonology",
+  "content": "Phonology is the branch of linguistics that studies how languages systematically organize their phonemes or, for sign languages, their constituent parts of signs. The term can also refer specifically to the sound or sign system of a particular language variety. At one time, the study of phonology related only to the study of the systems of phonemes in spoken languages, but now it may relate to any linguistic analysis either: Sign languages have a phonological system equivalent to the system of sounds in spoken languages. The building blocks of signs are specifications for movement, location, and handshape.[2] At first, a separate terminology was used for the study of sign phonology (\"chereme\" instead of \"phoneme\", etc.), but the concepts are now considered to apply universally to all human languages. The word \"phonology\" (as in \"phonology of English\") can refer either to the field of study or to the phonological system of a given language.[3] This is one of the fundamental systems that a language is considered to comprise, like its syntax, its morphology and its lexicon. The word phonology comes from Ancient Greek \u03c6\u03c9\u03bd\u03ae, ph\u014dn\u1e17, 'voice, sound', and the suffix -logy (which is from Greek \u03bb\u03cc\u03b3\u03bf\u03c2, l\u00f3gos, 'word, speech, subject of discussion').",
+  "url": "https://en.wikipedia.org/wiki/Phonology",
+  "embedding": null,
+  "db_path": "kb_databases/phonology_bda196b8.db",
+  "last_updated": 1743796485.522282,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

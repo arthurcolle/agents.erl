@@ -1,0 +1,14 @@
+{
+  "kb_id": "237abe9e-a5fe-4d1f-b8ca-9b3c10a647fc",
+  "name": "Mastery learning",
+  "content": "Mastery learning is an instructional strategy and educational philosophy that emphasizes the importance of students achieving a high level of competence (e.g., 90% accuracy) in prerequisite knowledge before moving on to new material. This approach involves providing students with individualized support and repeated opportunities to demonstrate mastery through assessments. If a student does not initially achieve mastery, they receive additional instruction and support until they do. Mastery learning is based on the idea that all students can learn effectively with appropriate instruction and sufficient time, and it contrasts with traditional teaching methods that often focus on covering a set amount of material within a fixed timeframe, regardless of individual student needs. Mastery learning (or, as it was initially called, \"learning for mastery\"; also known as \"mastery-based learning\") is an instructional strategy and educational philosophy, first formally proposed by Benjamin Bloom in 1968.[1] Mastery learning maintains that students must achieve a level of mastery (e.g., 90% on a knowledge test) in prerequisite knowledge before moving forward to learn subsequent information. If a student does not achieve mastery on the test, they are given additional support in learning and reviewing the information and then tested again. This cycle continues until the learner accomplishes mastery, and they may then move on to the next stage. In a self-paced online learning environment, students study the material and take assessments. If they make mistakes, the system provides insightful explanations and directs them to revisit the relevant sections. They then answer different questions on the same material, and this cycle repeats until they reach the established mastery threshold. Only then can they move on to subsequent learning modules, assessments, or certifications.",
+  "url": "https://en.wikipedia.org/wiki/Mastery_learning",
+  "embedding": null,
+  "db_path": "kb_databases/mastery_learning_4d62e53d.db",
+  "last_updated": 1743796485.566457,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

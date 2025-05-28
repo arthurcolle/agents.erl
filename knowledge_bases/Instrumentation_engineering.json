@@ -1,0 +1,14 @@
+{
+  "kb_id": "85db2692-88a5-4220-b8ba-e0146ce0ebba",
+  "name": "Instrumentation engineering",
+  "content": "Instrumentation is a collective term for measuring instruments, used for indicating, measuring, and recording physical quantities. It is also a field of study about the art and science about making measurement instruments, involving the related areas of metrology, automation, and control theory. The term has its origins in the art and science of scientific instrument-making. Instrumentation can refer to devices as simple as direct-reading thermometers, or as complex as multi-sensor components of industrial control systems. Instruments can be found in laboratories, refineries, factories and vehicles, as well as in everyday household use (e.g., smoke detectors and thermostats). Instrumentation is used to measure many parameters (physical values), including: The history of instrumentation can be divided into several phases. Elements of industrial instrumentation have long histories. Scales for comparing weights and simple pointers to indicate position are ancient technologies. Some of the earliest measurements were of time. One of the oldest water clocks was found in the tomb of the ancient Egyptian pharaoh Amenhotep I, buried around 1500 BCE.[1] Improvements were incorporated in the clocks. By 270 BCE they had the rudiments of an automatic control system device.[2]",
+  "url": "https://en.wikipedia.org/wiki/Instrumentation_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/instrumentation_engineering_b624e435.db",
+  "last_updated": 1743796485.515319,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

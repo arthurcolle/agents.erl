@@ -1,0 +1,14 @@
+{
+  "kb_id": "c02b745a-76df-4b02-bf50-f9061ff480fc",
+  "name": "Chemical physics",
+  "content": "Chemical physics is a branch of physics that studies chemical processes from a physical point of view. It focuses on understanding the physical properties and behavior of chemical systems, using principles from both physics and chemistry. This field investigates physicochemical phenomena using techniques from atomic and molecular physics and condensed matter physics. The United States Department of Education defines chemical physics as \"A program that focuses on the scientific study of structural phenomena combining the disciplines of physical chemistry and atomic/molecular physics. Includes instruction in heterogeneous structures, alignment and surface phenomena, quantum theory, mathematical physics, statistical and classical mechanics, chemical kinetics, and laser physics.\"[1] While at the interface of physics and chemistry, chemical physics is distinct from physical chemistry as it focuses more on using physical theories to understand and explain chemical phenomena at the microscopic level, such as quantum mechanics, statistical mechanics, and molecular dynamics. Meanwhile, physical chemistry uses a broader range of methods, such as thermodynamics and kinetics, to study the physical nature of chemical processes. On the other hand, physical chemistry deals with the physical properties and behavior of matter in chemical reactions, covering a broader range of topics such as thermodynamics, kinetics, and spectroscopy, and often links the macroscopic and microscopic chemical behavior. The distinction between the two fields still needs to be clarified as both fields share common grounds. Scientists often practice in both fields during their research, as there is significant overlap in the topics and techniques used.[2] Journals like PCCP (Physical Chemistry Chemical Physics) cover research in both areas, highlighting their overlap.",
+  "url": "https://en.wikipedia.org/wiki/Chemical_physics",
+  "embedding": null,
+  "db_path": "kb_databases/chemical_physics_c635cc83.db",
+  "last_updated": 1743796485.4997172,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

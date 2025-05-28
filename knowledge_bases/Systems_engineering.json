@@ -1,0 +1,14 @@
+{
+  "kb_id": "51b3688e-3b45-48ba-bbf5-92a25603ef25",
+  "name": "Systems engineering",
+  "content": "Systems engineering is an interdisciplinary field of engineering and engineering management that focuses on how to design, integrate, and manage complex systems over their life cycles. At its core, systems engineering utilizes systems thinking principles to organize this body of knowledge. The individual outcome of such efforts, an engineered system, can be defined as a combination of components that work in synergy to collectively perform a useful function. Issues such as requirements engineering, reliability, logistics, coordination of different teams, testing and evaluation, maintainability, and many other disciplines, aka \"ilities\", necessary for successful system design, development, implementation, and ultimate decommission become more difficult when dealing with large or complex projects. Systems engineering deals with work processes, optimization methods, and risk management tools in such projects. It overlaps technical and human-centered disciplines such as industrial engineering, production systems engineering, process systems engineering, mechanical engineering, manufacturing engineering, production engineering, control engineering, software engineering, electrical engineering, cybernetics, aerospace engineering, organizational studies, civil engineering and project management. Systems engineering ensures that all likely aspects of a project or system are considered and integrated into a whole.",
+  "url": "https://en.wikipedia.org/wiki/Systems_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/systems_engineering_200ec2a8.db",
+  "last_updated": 1743796485.2234938,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

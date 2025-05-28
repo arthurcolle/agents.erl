@@ -1,0 +1,14 @@
+{
+  "kb_id": "23e1d7d9-b3f7-4c49-8ddc-4cdfa2c964ab",
+  "name": "Discrete geometry",
+  "content": "Discrete geometry and combinatorial geometry are branches of geometry that study combinatorial properties and constructive methods of discrete geometric objects. Most questions in discrete geometry involve finite or discrete sets of basic geometric objects, such as points, lines, planes, circles, spheres, polygons, and so forth. The subject focuses on the combinatorial properties of these objects, such as how they intersect one another, or how they may be arranged to cover a larger object. Discrete geometry has a large overlap with convex geometry and computational geometry, and is closely related to subjects such as finite geometry, combinatorial optimization, digital geometry, discrete differential geometry, geometric graph theory, toric geometry, and combinatorial topology. Polyhedra and tessellations had been studied for many years by people such as Kepler and Cauchy, modern discrete geometry has its origins in the late 19th century. Early topics studied were: the density of circle packings by Thue, projective configurations by Reye and Steinitz, the geometry of numbers by Minkowski, and map colourings by Tait, Heawood, and Hadwiger.",
+  "url": "https://en.wikipedia.org/wiki/Discrete_geometry",
+  "embedding": null,
+  "db_path": "kb_databases/discrete_geometry_2a86ddda.db",
+  "last_updated": 1743796485.09409,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

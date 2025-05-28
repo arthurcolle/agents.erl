@@ -1,0 +1,14 @@
+{
+  "kb_id": "d253365b-5baf-4733-b0df-2a87140e9723",
+  "name": "Star formation",
+  "content": "Star formation is the process by which dense regions within molecular clouds in interstellar space\u2014sometimes referred to as \"stellar nurseries\" or \"star-forming regions\"\u2014collapse and form stars.[1] As a branch of astronomy, star formation includes the study of the interstellar medium (ISM) and giant molecular clouds (GMC) as precursors to the star formation process, and the study of protostars and young stellar objects as its immediate products. It is closely related to planet formation, another branch of astronomy. Star formation theory, as well as accounting for the formation of a single star, must also account for the statistics of binary stars and the initial mass function. Most stars do not form in isolation but as part of a group of stars referred as star clusters or stellar associations.[2] The first stars were believed to be formed approximately 12-13 billion years ago following the Big Bang. Over intervals of time, stars have fused helium to form a series of chemical elements.",
+  "url": "https://en.wikipedia.org/wiki/Star_formation",
+  "embedding": null,
+  "db_path": "kb_databases/star_formation_e3dd1ea6.db",
+  "last_updated": 1743796485.473239,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "0fad202f-a8b3-4cd4-9dd8-702f4659f218",
+  "name": "Aerospace physiology",
+  "content": "Aerospace physiology is the study of the effects of high altitudes on the body, such as different pressures and levels of oxygen. At different altitudes the body may react in different ways, provoking more cardiac output, and producing more erythrocytes. These changes cause more energy waste in the body, causing muscle fatigue, but this varies depending on the level of the altitude. The physics that affect the body in the sky or in space are different from the ground. For example, barometric pressure is different at different heights. At sea level barometric pressure is 760 mmHg; at 3,048 m above sea level, barometric pressure is 523 mmHg, and at 15,240 m, the barometric pressure is 87 mmHg. As the barometric pressure decreases, atmospheric partial pressure decreases also. This pressure is always below 20% of the total barometric pressure. At sea level, alveolar partial pressure of oxygen is 104 mmHg, reaching 6000 meters above the sea level. This pressure will decrease up to 40 mmHg in a non-acclimated person, but in an acclimated person, it will decrease as much as 52 mmHg. This is because alveolar ventilation will increase more in the acclimated person.[1] Aviation physiology can also include the effect in humans and animals exposed for long periods of time inside pressurized cabins.[2]",
+  "url": "https://en.wikipedia.org/wiki/Aerospace_physiology",
+  "embedding": null,
+  "db_path": "kb_databases/aerospace_physiology_514253a2.db",
+  "last_updated": 1743796485.3474271,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "7ed5d522-7a55-4962-a402-5d81e79b8931",
+  "name": "Sonochemistry",
+  "content": "In chemistry, the study of sonochemistry is concerned with understanding the effect of ultrasound in forming acoustic cavitation in liquids, resulting in the initiation or enhancement of the chemical activity in the solution.[1] Therefore, the chemical effects of ultrasound do not come from a direct interaction of the ultrasonic sound wave with the molecules in the solution. The influence of sonic waves travelling through liquids was first reported by Robert Williams Wood (1868\u20131955) and Alfred Lee Loomis (1887\u20131975) in 1927. The experiment was about the frequency of the energy that it took for sonic waves to \"penetrate\" the barrier of water. He came to the conclusion that sound does travel faster in water, but because of the water's density compared to Earth's atmosphere it was incredibly hard to get the sonic waves to couple their energy into the water. Due to the sudden density change, much of the energy is lost, similar to shining a flashlight towards a piece of glass; some of the light is transmitted into the glass, but much of it is lost to reflection outwards. Similarly with an air-water interface, almost all of the sound is reflected off the water, instead of being transmitted into it. After much research they decided that the best way to disperse sound into the water was to create bubbles at the same time as the sound. Another issue was the ratio of the amount of time it took for the lower frequency waves to penetrate the bubbles walls and access the water around the bubble, compared to the time from that point to the point on the other end of the body of water. But despite the revolutionary ideas of this article it was left mostly unnoticed.[2] Sonochemistry experienced a renaissance in the 1980s with the advent of inexpensive and reliable generators of high-intensity ultrasound, most based around piezoelectric elements.[3]",
+  "url": "https://en.wikipedia.org/wiki/Sonochemistry",
+  "embedding": null,
+  "db_path": "kb_databases/sonochemistry_8d4d326e.db",
+  "last_updated": 1743796485.118047,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

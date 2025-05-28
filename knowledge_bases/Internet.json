@@ -1,0 +1,14 @@
+{
+  "kb_id": "040ee87a-2c68-487a-a385-903a6f04f4b4",
+  "name": "Internet",
+  "content": "The Internet (or internet)[a] is the global system of interconnected computer networks that uses the Internet protocol suite (TCP/IP)[b] to communicate between networks and devices. It is a network of networks that consists of private, public, academic, business, and government networks of local to global scope, linked by a broad array of electronic, wireless, and optical networking technologies. The Internet carries a vast range of information resources and services, such as the interlinked hypertext documents and applications of the World Wide Web (WWW), electronic mail, internet telephony, and file sharing. The origins of the Internet date back to research that enabled the time-sharing of computer resources, the development of packet switching in the 1960s and the design of computer networks for data communication.[2][3] The set of rules (communication protocols) to enable internetworking on the Internet arose from research and development commissioned in the 1970s by the Defense Advanced Research Projects Agency (DARPA) of the United States Department of Defense in collaboration with universities and researchers across the United States and in the United Kingdom and France.[4][5][6] The ARPANET initially served as a backbone for the interconnection of regional academic and military networks in the United States to enable resource sharing. The funding of the National Science Foundation Network as a new backbone in the 1980s, as well as private funding for other commercial extensions, encouraged worldwide participation in the development of new networking technologies and the merger of many networks using DARPA's Internet protocol suite.[7] The linking of commercial networks and enterprises by the early 1990s, as well as the advent of the World Wide Web,[8] marked the beginning of the transition to the modern Internet,[9] and generated sustained exponential growth as generations of institutional, personal, and mobile computers were connected to the internetwork. Although the Internet was widely used by academia in the 1980s, the subsequent commercialization of the Internet in the 1990s and beyond incorporated its services and technologies into virtually every aspect of modern life.",
+  "url": "https://en.wikipedia.org/wiki/Internet",
+  "embedding": null,
+  "db_path": "kb_databases/internet_c8205c76.db",
+  "last_updated": 1743796485.5362911,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

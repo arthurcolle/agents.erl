@@ -1,0 +1,14 @@
+{
+  "kb_id": "9e3c535a-1073-42d5-9760-40be413548f9",
+  "name": "Logic in computer science",
+  "content": "Logic in computer science covers the overlap between the field of logic and that of computer science. The topic can essentially be divided into three main areas: Logic plays a fundamental role in computer science. Some of the key areas of logic that are particularly significant are computability theory (formerly called recursion theory), modal logic and category theory. The theory of computation is based on concepts defined by logicians and mathematicians such as Alonzo Church and Alan Turing.[1][2] Church first showed the existence of algorithmically unsolvable problems using his notion of lambda-definability. Turing gave the first compelling analysis of what can be called a mechanical procedure and Kurt G\u00f6del asserted that he found Turing's analysis \"perfect.\".[3] In addition some other major areas of theoretical overlap between logic and computer science are: One of the first applications to use the term artificial intelligence was the Logic Theorist system developed by Allen Newell, Cliff Shaw, and Herbert Simon in 1956. One of the things that a logician does is to take a set of statements in logic and deduce the conclusions (additional statements) that must be true by the laws of logic. For example, if given the statements \"All humans are mortal\" and \"Socrates is human\" a valid conclusion is \"Socrates is mortal\". Of course this is a trivial example. In actual logical systems the statements can be numerous and complex. It was realized early on that this kind of analysis could be significantly aided by the use of computers. Logic Theorist validated the theoretical work of Bertrand Russell and Alfred North Whitehead in their influential work on mathematical logic called Principia Mathematica. In addition, subsequent systems have been utilized by logicians to validate and discover new mathematical theorems and proofs.[7]",
+  "url": "https://en.wikipedia.org/wiki/Logic_in_computer_science",
+  "embedding": null,
+  "db_path": "kb_databases/logic_in_computer_science_4bf88ed2.db",
+  "last_updated": 1743796485.003454,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

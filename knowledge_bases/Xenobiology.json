@@ -1,0 +1,14 @@
+{
+  "kb_id": "a8c096e1-b9ce-49ce-904f-a485223f9a1b",
+  "name": "Xenobiology",
+  "content": "Xenobiology (XB) is a subfield of synthetic biology, the study of synthesizing and manipulating biological devices and systems.[1] The name \"xenobiology\" derives from the Greek word xenos, which means \"stranger, alien\". Xenobiology is a form of biology that is not (yet) familiar to science and is not found in nature.[2] In practice, it describes novel biological systems and biochemistries that differ from the canonical DNA\u2013RNA-20 amino acid system (see central dogma of molecular biology). For example, instead of DNA or RNA, XB explores nucleic acid analogues, termed xeno nucleic acid (XNA) as information carriers.[3] It also focuses on an expanded genetic code[4] and the incorporation of non-proteinogenic amino acids, or \u201cxeno amino acids\u201d into proteins.[5][6] \"Astro\" means \"star\" and \"exo\" means \"outside\". Both exo- and astrobiology deal with the search for naturally evolved life in the Universe, mostly on other planets in the circumstellar habitable zone. (These are also occasionally referred to as xenobiology.[2]) Whereas astrobiologists are concerned with the detection and analysis of life elsewhere in the Universe, xenobiology attempts to design forms of life with a different biochemistry or different genetic code than on planet Earth.[2]",
+  "url": "https://en.wikipedia.org/wiki/Xenobiology",
+  "embedding": null,
+  "db_path": "kb_databases/xenobiology_8e2369c2.db",
+  "last_updated": 1743796485.544527,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

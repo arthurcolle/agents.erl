@@ -1,0 +1,14 @@
+{
+  "kb_id": "3c62f58e-aee2-4b13-891c-45c2e984f56e",
+  "name": "Condensed matter physics",
+  "content": "Condensed matter physics is the field of physics that deals with the macroscopic and microscopic physical properties of matter, especially the solid and liquid phases, that arise from electromagnetic forces between atoms and electrons. More generally, the subject deals with condensed phases of matter: systems of many constituents with strong interactions among them. More exotic condensed phases include the superconducting phase exhibited by certain materials at extremely low cryogenic temperatures, the ferromagnetic and antiferromagnetic phases of spins on crystal lattices of atoms, the Bose\u2013Einstein condensates found in ultracold atomic systems, and liquid crystals. Condensed matter physicists seek to understand the behavior of these phases by experiments to measure various material properties, and by applying the physical laws of quantum mechanics, electromagnetism, statistical mechanics, and other physics theories to develop mathematical models and predict the properties of extremely large groups of atoms.[1]",
+  "url": "https://en.wikipedia.org/wiki/Condensed_matter_physics",
+  "embedding": null,
+  "db_path": "kb_databases/condensed_matter_physics_2627fb28.db",
+  "last_updated": 1743796485.5196521,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

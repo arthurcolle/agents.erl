@@ -1,0 +1,14 @@
+{
+  "kb_id": "e42049d7-f81f-4a0b-b502-b3cf3124d1af",
+  "name": "historical keyboards",
+  "content": "A keyboard instrument is a musical instrument played using a keyboard, a row of levers that are pressed by the fingers. The most common of these are the piano, organ, and various electronic keyboards, including synthesizers and digital pianos. Other keyboard instruments include celestas, which are struck idiophones operated by a keyboard, and carillons, which are usually housed in bell towers or belfries of churches or municipal buildings.[1] Today, the term keyboard often refers to keyboard-style synthesizers and arrangers as well as work-stations. These keyboards typically work by translating the physical act of pressing keys into electrical signals that produce sound. Under the fingers of a sensitive performer, the keyboard may also be used to control dynamics, phrasing, shading, articulation, and other elements of expression\u2014depending on the design and inherent capabilities of the instrument.[1] Modern keyboards, especially digital ones, can simulate a wide range of sounds beyond traditional piano tones, thanks to advanced sound synthesis techniques and digital sampling technology.",
+  "url": "https://en.wikipedia.org/wiki/Keyboard_instrument",
+  "embedding": null,
+  "db_path": "kb_databases/historical_keyboards_d279d613.db",
+  "last_updated": 1743796484.774237,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

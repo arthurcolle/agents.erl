@@ -1,0 +1,14 @@
+{
+  "kb_id": "814b8c7a-0926-4ec2-996f-e5b643603593",
+  "name": "Nuclear",
+  "content": "Nuclear warfare, also known as atomic warfare, is a military conflict or prepared political strategy that deploys nuclear weaponry. Nuclear weapons are weapons of mass destruction; in contrast to conventional warfare, nuclear warfare can produce destruction in a much shorter time and can have a long-lasting radiological result. A major nuclear exchange would likely have long-term effects, primarily from the fallout released, and could also lead to secondary effects, such as \"nuclear winter\",[1][2][3][4][5][6] nuclear famine, and societal collapse.[7][8][9] A global thermonuclear war with Cold War-era stockpiles, or even with the current smaller stockpiles, may lead to various scenarios including human extinction.[10] To date, the only use of nuclear weapons in armed conflict occurred in 1945 with the American atomic bombings of Hiroshima and Nagasaki. On August 6, 1945, a uranium gun-type device (code name \"Little Boy\") was detonated over the Japanese city of Hiroshima. Three days later, on August 9, a plutonium implosion-type device (code name \"Fat Man\") was detonated over the Japanese city of Nagasaki. Together, these two bombings resulted in the deaths of approximately 200,000 people and contributed to the surrender of Japan, which occurred before any further nuclear weapons could be deployed. These events remain the only two times nuclear weapons were deployed in warfare.",
+  "url": "https://en.wikipedia.org/wiki/Nuclear_warfare",
+  "embedding": null,
+  "db_path": "kb_databases/nuclear_c49e6d73.db",
+  "last_updated": 1743796485.5247328,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "61314fc8-3578-4f20-b92d-7309cf398ee2",
+  "name": "File dynamics",
+  "content": "The term file dynamics is the motion of many particles in a narrow channel. In science: in chemistry, physics, mathematics and related fields, file dynamics (sometimes called, single file dynamics) is the diffusion of N (N \u2192 \u221e) identical Brownian hard spheres in a quasi-one-dimensional channel of length L (L \u2192 \u221e), such that the spheres do not jump one on top of the other, and the average particle's density is approximately fixed. The most famous statistical properties of this process is that the mean squared displacement (MSD) of a particle in the file follows, M S D \u2248 t 1 2 {\\displaystyle \\mathrm {MSD} \\approx t^{\\frac {1}{2}}} , and its probability density function (PDF) is Gaussian in position with a variance MSD.[1][2][3] Results in files that generalize the basic file include: Generalizations of the basic file are important since these models represent reality much more accurately than the basic file. Indeed, file dynamics are used in modeling numerous microscopic processes:[10][11][12][13][14][15][16] the diffusion within biological and synthetic pores and porous material, the diffusion along 1D objects, such as in biological roads, the dynamics of a monomer in a polymer, etc.",
+  "url": "https://en.wikipedia.org/wiki/File_dynamics",
+  "embedding": null,
+  "db_path": "kb_databases/file_dynamics_95d85f5b.db",
+  "last_updated": 1743796485.201494,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

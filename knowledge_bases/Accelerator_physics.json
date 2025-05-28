@@ -1,0 +1,14 @@
+{
+  "kb_id": "a304f5c2-f6bc-42c7-a34e-bd6ec64821bd",
+  "name": "Accelerator physics",
+  "content": "Accelerator physics is a branch of applied physics, concerned with designing, building and operating particle accelerators. As such, it can be described as the study of motion, manipulation and observation of relativistic charged particle beams and their interaction with accelerator structures by electromagnetic fields. It is also related to other fields: The experiments conducted with particle accelerators are not regarded as part of accelerator physics, but belong (according to the objectives of the experiments) to, e.g., particle physics, nuclear physics, condensed matter physics or materials physics. The types of experiments done at a particular accelerator facility are determined by characteristics of the generated particle beam such as average energy, particle type, intensity, and dimensions. While it is possible to accelerate charged particles using electrostatic fields, like in a Cockcroft-Walton voltage multiplier, this method has limits given by electrical breakdown at high voltages. Furthermore, due to electrostatic fields being conservative, the maximum voltage limits the kinetic energy that is applicable to the particles.",
+  "url": "https://en.wikipedia.org/wiki/Accelerator_physics",
+  "embedding": null,
+  "db_path": "kb_databases/accelerator_physics_74cfabb8.db",
+  "last_updated": 1743796485.1748538,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -10,7 +10,9 @@
     cross_node_agent_communication/2,
     agent_swarm_computation/3,
     hierarchical_agent_network/2,
-    fault_tolerant_agent_group/2
+    fault_tolerant_agent_group/2,
+    distributed_cluster_example/0,
+    collaborative_research_example/0
 ]).
 
 %% @doc Start a distributed agent cluster across multiple nodes
@@ -601,3 +603,24 @@ calculate_availability_metrics(Monitoring) ->
         mean_time_between_failures => 86400,
         mean_time_to_recovery => 500
     }.
+
+%% Example wrapper functions for web interface
+distributed_cluster_example() ->
+    try
+        Nodes = [node()],
+        Result = #{cluster_nodes => Nodes, status => active, agents => 0},
+        #{status => success, result => Result}
+    catch
+        Error:Reason ->
+            #{status => error, error => Error, reason => Reason}
+    end.
+
+collaborative_research_example() ->
+    try
+        Topic = <<"Erlang distributed systems">>,
+        Result = #{topic => Topic, status => completed, researchers => 3, findings => <<"Research completed successfully">>},
+        #{status => success, result => Result}
+    catch
+        Error:Reason ->
+            #{status => error, error => Error, reason => Reason}
+    end.

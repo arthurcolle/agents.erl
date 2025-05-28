@@ -1,0 +1,14 @@
+{
+  "kb_id": "612ed971-153b-4d67-972f-0766066bde71",
+  "name": "Game theory",
+  "content": "Empirical methods Prescriptive and policy Game theory is the study of mathematical models of strategic interactions.[1] It has applications in many fields of social science, and is used extensively in economics, logic, systems science and computer science.[2] Initially, game theory addressed two-person zero-sum games, in which a participant's gains or losses are exactly balanced by the losses and gains of the other participant. In the 1950s, it was extended to the study of non zero-sum games, and was eventually applied to a wide range of behavioral relations. It is now an umbrella term for the science of rational decision making in humans, animals, and computers. Modern game theory began with the idea of mixed-strategy equilibria in two-person zero-sum games and its proof by John von Neumann. Von Neumann's original proof used the Brouwer fixed-point theorem on continuous mappings into compact convex sets, which became a standard method in game theory and mathematical economics. His paper was followed by Theory of Games and Economic Behavior (1944), co-written with Oskar Morgenstern, which considered cooperative games of several players.[3] The second edition provided an axiomatic theory of expected utility, which allowed mathematical statisticians and economists to treat decision-making under uncertainty.[4]",
+  "url": "https://en.wikipedia.org/wiki/Game_theory",
+  "embedding": null,
+  "db_path": "kb_databases/game_theory_edd608dc.db",
+  "last_updated": 1743796485.14957,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

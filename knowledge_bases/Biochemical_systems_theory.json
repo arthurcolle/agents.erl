@@ -1,0 +1,14 @@
+{
+  "kb_id": "217c0d75-f5cb-4d0a-989d-8a91d53ea860",
+  "name": "Biochemical systems theory",
+  "content": "Biochemical systems theory is a mathematical modelling framework for biochemical systems, based on ordinary differential equations (ODE), in which biochemical processes are represented using power-law expansions in the variables of the system. This framework, which became known as Biochemical Systems Theory, has been developed since the 1960s by Michael Savageau, Eberhard Voit and others for the systems analysis of biochemical processes.[1] According to Cornish-Bowden (2007) they \"regarded this as a general theory of metabolic control, which includes both metabolic control analysis and flux-oriented theory as special cases\".[2] The dynamics of a species is represented by a differential equation with the structure: where Xi represents one of the nd variables of the model (metabolite concentrations, protein concentrations or levels of gene expression). j represents the nf biochemical processes affecting the dynamics of the species. On the other hand, \u03bc {\\displaystyle \\mu } ij (stoichiometric coefficient), \u03b3 {\\displaystyle \\gamma } j (rate constants) and fjk (kinetic orders) are two different kinds of parameters defining the dynamics of the system.",
+  "url": "https://en.wikipedia.org/wiki/Biochemical_systems_theory",
+  "embedding": null,
+  "db_path": "kb_databases/biochemical_systems_theory_89961542.db",
+  "last_updated": 1743796485.238111,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

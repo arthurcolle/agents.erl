@@ -1,0 +1,14 @@
+{
+  "kb_id": "cf8901db-1e2b-4046-8419-5c2820393471",
+  "name": "Aerospace architecture",
+  "content": "Aerospace architecture is broadly defined to encompass architectural design of non-habitable and habitable structures and living and working environments in aerospace-related facilities, habitats, and vehicles. These environments include, but are not limited to: science platform aircraft and aircraft-deployable systems; space vehicles, space stations, habitats and lunar and planetary surface construction bases; and Earth-based control, experiment, launch, logistics, payload, simulation and test facilities. Earth analogs to space applications may include Antarctic, desert, high altitude, underground, undersea environments and closed ecological systems. The American Institute of Aeronautics and Astronautics (AIAA) Design Engineering Technical Committee (DETC) meets several times a year to discuss policy, education, standards, and practice issues pertaining to aerospace architecture.[1] \"The role of design creates and develops concepts and specifications that seek to simultaneously and synergistically optimize function, production, value and appearance.\" In connection with, and with respect to, human presence and interactions, appearance is a component of human factors and includes considerations of human characteristics, needs and interests.",
+  "url": "https://en.wikipedia.org/wiki/Aerospace_architecture",
+  "embedding": null,
+  "db_path": "kb_databases/aerospace_architecture_54c6e85f.db",
+  "last_updated": 1743796485.3471239,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

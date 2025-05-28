@@ -1,0 +1,14 @@
+{
+  "kb_id": "82f551df-d115-4473-9e7b-a60d4e607623",
+  "name": "Gravitational wave astronomy",
+  "content": "Gravitational-wave astronomy is a subfield of astronomy concerned with the detection and study of gravitational waves emitted by astrophysical sources.[1] Gravitational waves are minute distortions or ripples in spacetime caused by the acceleration of massive objects. They are produced by cataclysmic events such as the merger of binary black holes, the coalescence of binary neutron stars, supernova explosions and processes including those of the early universe shortly after the Big Bang. Studying them offers a new way to observe the universe, providing valuable insights into the behavior of matter under extreme conditions. Similar to electromagnetic radiation (such as light wave, radio wave, infrared radiation and X-rays) which involves transport of energy via propagation of electromagnetic field fluctuations, gravitational radiation involves fluctuations of the relatively weaker gravitational field. The existence of gravitational waves was first suggested by Oliver Heaviside in 1893 and then later conjectured by Henri Poincar\u00e9 in 1905 as the gravitational equivalent of electromagnetic waves before they were predicted by Albert Einstein in 1916 as a corollary to his theory of general relativity.",
+  "url": "https://en.wikipedia.org/wiki/Gravitational_wave_astronomy",
+  "embedding": null,
+  "db_path": "kb_databases/gravitational_wave_astronomy_c9611a33.db",
+  "last_updated": 1743796485.4514508,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

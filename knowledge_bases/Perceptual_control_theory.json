@@ -1,0 +1,14 @@
+{
+  "kb_id": "5b2ff209-1306-485f-a4a6-a58c28c4a9e7",
+  "name": "Perceptual control theory",
+  "content": "Perceptual control theory (PCT) is a model of behavior based on the properties of negative feedback control loops. A control loop maintains a sensed variable at or near a reference value by means of the effects of its outputs upon that variable, as mediated by physical properties of the environment. In engineering control theory, reference values are set by a user outside the system. An example is a thermostat. In a living organism, reference values for controlled perceptual variables are endogenously maintained. Biological homeostasis and reflexes are simple, low-level examples. The discovery of mathematical principles of control introduced a way to model a negative feedback loop closed through the environment (circular causation), which spawned perceptual control theory. It differs fundamentally from some models in behavioral and cognitive psychology that model stimuli as causes of behavior (linear causation). PCT research is published in experimental psychology, neuroscience, ethology, anthropology, linguistics, sociology, robotics, developmental psychology, organizational psychology and management, and a number of other fields. PCT has been applied to design and administration of educational systems, and has led to a psychotherapy called the method of levels.",
+  "url": "https://en.wikipedia.org/wiki/Perceptual_control_theory",
+  "embedding": null,
+  "db_path": "kb_databases/perceptual_control_theory_dc48583d.db",
+  "last_updated": 1743796485.212458,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

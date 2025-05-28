@@ -1,0 +1,14 @@
+{
+  "kb_id": "3da171af-c17a-4d25-8d4c-4a7b1799f916",
+  "name": "Intuitionistic logic",
+  "content": "Intuitionistic logic, sometimes more generally called constructive logic, refers to systems of symbolic logic that differ from the systems used for classical logic by more closely mirroring the notion of constructive proof. In particular, systems of intuitionistic logic do not assume the law of excluded middle and double negation elimination, which are fundamental inference rules in classical logic. Formalized intuitionistic logic was originally developed by Arend Heyting to provide a formal basis for L. E. J. Brouwer's programme of intuitionism. From a proof-theoretic perspective, Heyting\u2019s calculus is a restriction of classical logic in which the law of excluded middle and double negation elimination have been removed. Excluded middle and double negation elimination can still be proved for some propositions on a case by case basis, however, but do not hold universally as they do with classical logic. The standard explanation of intuitionistic logic is the BHK interpretation.[1] Several systems of semantics for intuitionistic logic have been studied. One of these semantics mirrors classical Boolean-valued semantics but uses Heyting algebras in place of Boolean algebras. Another semantics uses Kripke models. These, however, are technical means for studying Heyting\u2019s deductive system rather than formalizations of Brouwer\u2019s original informal semantic intuitions. Semantical systems claiming to capture such intuitions, due to offering meaningful concepts of \u201cconstructive truth\u201d (rather than merely validity or provability), are Kurt G\u00f6del\u2019s dialectica interpretation, Stephen Cole Kleene\u2019s realizability, Yurii Medvedev\u2019s logic of finite problems,[2] or Giorgi Japaridze\u2019s computability logic. Yet such semantics persistently induce logics properly stronger than Heyting\u2019s logic. Some authors have argued that this might be an indication of inadequacy of Heyting\u2019s calculus itself, deeming the latter incomplete as a constructive logic.[3]",
+  "url": "https://en.wikipedia.org/wiki/Intuitionistic_logic",
+  "embedding": null,
+  "db_path": "kb_databases/intuitionistic_logic_fb0e4314.db",
+  "last_updated": 1743796484.996574,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

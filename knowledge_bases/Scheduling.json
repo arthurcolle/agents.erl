@@ -1,0 +1,14 @@
+{
+  "kb_id": "dc73d0c5-a8de-4c35-a447-8dfb4a33188d",
+  "name": "Scheduling",
+  "content": "Job-shop scheduling, the job-shop problem (JSP) or job-shop scheduling problem (JSSP) is an optimization problem in computer science and operations research. It is a variant of optimal job scheduling. In a general job scheduling problem, we are given n jobs J1, J2, ..., Jn of varying processing times, which need to be scheduled on m machines with varying processing power, while trying to minimize the makespan \u2013 the total length of the schedule (that is, when all the jobs have finished processing). In the specific variant known as job-shop scheduling, each job consists of a set of operations O1, O2, ..., On which need to be processed in a specific order (known as precedence constraints). Each operation has a specific machine that it needs to be processed on and only one operation in a job can be processed at a given time. A common relaxation is the flexible job shop, where each operation can be processed on any machine of a given set (the machines in each set are identical). The name originally came from the scheduling of jobs in a job shop, but the theme has wide applications beyond that type of instance. This problem is one of the best known combinatorial optimization problems, and was the first problem for which competitive analysis was presented, by Graham in 1966.[1] The best problem instances for a basic model with a makespan objective are due to Taillard.[2]",
+  "url": "https://en.wikipedia.org/wiki/Job_shop_scheduling",
+  "embedding": null,
+  "db_path": "kb_databases/scheduling_ddfdc2a2.db",
+  "last_updated": 1743796485.129345,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

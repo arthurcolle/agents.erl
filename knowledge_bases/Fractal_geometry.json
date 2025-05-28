@@ -1,0 +1,14 @@
+{
+  "kb_id": "f699f0ae-31b4-4351-9344-e06187969762",
+  "name": "Fractal geometry",
+  "content": "In mathematics, a fractal is a geometric shape containing detailed structure at arbitrarily small scales, usually having a fractal dimension strictly exceeding the topological dimension. Many fractals appear similar at various scales, as illustrated in successive magnifications of the Mandelbrot set.[1][2][3][4] This exhibition of similar patterns at increasingly smaller scales is called self-similarity, also known as expanding symmetry or unfolding symmetry; if this replication is exactly the same at every scale, as in the Menger sponge, the shape is called affine self-similar.[5] Fractal geometry lies within the mathematical branch of measure theory. One way that fractals are different from finite geometric figures is how they scale. Doubling the edge lengths of a filled polygon multiplies its area by four, which is two (the ratio of the new to the old side length) raised to the power of two (the conventional dimension of the filled polygon). Likewise, if the radius of a filled sphere is doubled, its volume scales by eight, which is two (the ratio of the new to the old radius) to the power of three (the conventional dimension of the filled sphere). However, if a fractal's one-dimensional lengths are all doubled, the spatial content of the fractal scales by a power that is not necessarily an integer and is in general greater than its conventional dimension.[1] This power is called the fractal dimension of the geometric object, to distinguish it from the conventional dimension (which is formally called the topological dimension).[6]",
+  "url": "https://en.wikipedia.org/wiki/Fractal_geometry",
+  "embedding": null,
+  "db_path": "kb_databases/fractal_geometry_2bb02362.db",
+  "last_updated": 1743796485.572491,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

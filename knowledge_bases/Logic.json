@@ -1,0 +1,14 @@
+{
+  "kb_id": "8968e34b-f69e-4785-abb6-42ba420ae143",
+  "name": "Logic",
+  "content": "Logic is the study of correct reasoning. It includes both formal and informal logic. Formal logic is the study of deductively valid inferences or logical truths. It examines how conclusions follow from premises based on the structure of arguments alone, independent of their topic and content. Informal logic is associated with informal fallacies, critical thinking, and argumentation theory. Informal logic examines arguments expressed in natural language whereas formal logic uses formal language. When used as a countable noun, the term \"a logic\" refers to a specific logical formal system that articulates a proof system. Logic plays a central role in many fields, such as philosophy, mathematics, computer science, and linguistics. Logic studies arguments, which consist of a set of premises that leads to a conclusion. An example is the argument from the premises \"it's Sunday\" and \"if it's Sunday then I don't have to work\" leading to the conclusion \"I don't have to work\".[1] Premises and conclusions express propositions or claims that can be true or false. An important feature of propositions is their internal structure. For example, complex propositions are made up of simpler propositions linked by logical vocabulary like \u2227 {\\displaystyle \\land } (and) or \u2192 {\\displaystyle \\to } (if...then). Simple propositions also have parts, like \"Sunday\" or \"work\" in the example. The truth of a proposition usually depends on the meanings of all of its parts. However, this is not the case for logically true propositions. They are true only because of their logical structure independent of the specific meanings of the individual parts.",
+  "url": "https://en.wikipedia.org/wiki/Logic",
+  "embedding": null,
+  "db_path": "kb_databases/logic_35ba1271.db",
+  "last_updated": 1743796485.519118,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

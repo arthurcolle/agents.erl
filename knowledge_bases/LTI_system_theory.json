@@ -1,0 +1,14 @@
+{
+  "kb_id": "bcc7c24a-9fc8-4234-b0f6-92aad12850c7",
+  "name": "LTI system theory",
+  "content": "In system analysis, among other fields of study, a linear time-invariant (LTI) system is a system that produces an output signal from any input signal subject to the constraints of linearity and time-invariance; these terms are briefly defined in the overview below. These properties apply (exactly or approximately) to many important physical systems, in which case the response y(t) of the system to an arbitrary input x(t) can be found directly using convolution: y(t) = (x \u2217 h)(t) where h(t) is called the system's impulse response and \u2217 represents convolution (not to be confused with multiplication). What's more, there are systematic methods for solving any such system (determining h(t)), whereas systems not meeting both properties are generally more difficult (or impossible) to solve analytically. A good example of an LTI system is any electrical circuit consisting of resistors, capacitors, inductors and linear amplifiers.[2] Linear time-invariant system theory is also used in image processing, where the systems have spatial dimensions instead of, or in addition to, a temporal dimension. These systems may be referred to as linear translation-invariant to give the terminology the most general reach. In the case of generic discrete-time (i.e., sampled) systems, linear shift-invariant is the corresponding term. LTI system theory is an area of applied mathematics which has direct applications in electrical circuit analysis and design, signal processing and filter design, control theory, mechanical engineering, image processing, the design of measuring instruments of many sorts, NMR spectroscopy[citation needed], and many other technical areas where systems of ordinary differential equations present themselves.",
+  "url": "https://en.wikipedia.org/wiki/LTI_system_theory",
+  "embedding": null,
+  "db_path": "kb_databases/lti_system_theory_a196931f.db",
+  "last_updated": 1743796485.244865,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

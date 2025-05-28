@@ -1,0 +1,14 @@
+{
+  "kb_id": "e1270a9a-af7f-4878-a8f8-a0a264007ab8",
+  "name": "Petrophysics",
+  "content": "Petrophysics (from the Greek \u03c0\u03ad\u03c4\u03c1\u03b1, petra, \"rock\" and \u03c6\u03cd\u03c3\u03b9\u03c2, physis, \"nature\") is the study of physical and chemical rock properties and their interactions with fluids.[1] A major application of petrophysics is in studying reservoirs for the hydrocarbon industry. Petrophysicists work together with reservoir engineers and geoscientists to understand the porous media properties of the reservoir. Particularly how the pores are interconnected in the subsurface, controlling the accumulation and migration of hydrocarbons.[1] Some fundamental petrophysical properties determined are lithology, porosity, water saturation, permeability, and capillary pressure.[1] The petrophysicists workflow measures and evaluates these petrophysical properties through well-log interpretation (i.e. in-situ reservoir conditions) and core analysis in the laboratory. During well perforation, different well-log tools are used to measure the petrophysical and mineralogical properties through radioactivity and seismic technologies in the borehole.[2] In addition, core plugs are taken from the well as sidewall core or whole core samples. These studies are combined with geological, geophysical, and reservoir engineering studies to model the reservoir and determine its economic feasibility.",
+  "url": "https://en.wikipedia.org/wiki/Petrophysics",
+  "embedding": null,
+  "db_path": "kb_databases/petrophysics_9db11760.db",
+  "last_updated": 1743796485.307404,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

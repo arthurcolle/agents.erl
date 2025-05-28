@@ -1,0 +1,14 @@
+{
+  "kb_id": "24da6cb5-f0b9-4111-b18e-e1f62688eb5b",
+  "name": "Flight dynamics",
+  "content": "Flight dynamics in aviation and spacecraft, is the study of the performance, stability, and control of vehicles flying through the air or in outer space.[1] It is concerned with how forces acting on the vehicle determine its velocity and attitude with respect to time. For a fixed-wing aircraft, its changing orientation with respect to the local air flow is represented by two critical angles, the angle of attack of the wing (\"alpha\") and the angle of attack of the vertical tail, known as the sideslip angle (\"beta\"). A sideslip angle will arise if an aircraft yaws about its centre of gravity and if the aircraft sideslips bodily, i.e. the centre of gravity moves sideways.[2] These angles are important because they are the principal source of changes in the aerodynamic forces and moments applied to the aircraft. Spacecraft flight dynamics involve three main forces: propulsive (rocket engine), gravitational, and atmospheric resistance.[3] Propulsive force and atmospheric resistance have significantly less influence over a given spacecraft compared to gravitational forces.",
+  "url": "https://en.wikipedia.org/wiki/Flight_dynamics",
+  "embedding": null,
+  "db_path": "kb_databases/flight_dynamics_459ee089.db",
+  "last_updated": 1743796485.54867,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

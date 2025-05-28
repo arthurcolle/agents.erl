@@ -1,0 +1,14 @@
+{
+  "kb_id": "b075400c-1b57-4678-a7d9-f6296c61e6a9",
+  "name": "VLSI design",
+  "content": "Very-large-scale integration (VLSI) is the process of creating an integrated circuit (IC) by combining millions or billions of MOS transistors onto a single chip. VLSI began in the 1970s when MOS integrated circuit (metal oxide semiconductor) chips were developed and then widely adopted, enabling complex semiconductor and telecommunications technologies. The microprocessor and memory chips are VLSI devices. Before the introduction of VLSI technology, most ICs had a limited set of functions they could perform. An electronic circuit might consist of a CPU, ROM, RAM and other glue logic. VLSI enables IC designers to add all of these into one chip. The history of the transistor dates to the 1920s when several inventors attempted devices that were intended to control current in solid-state diodes and convert them into triodes. Success came after World War II, when the use of silicon and germanium crystals as radar detectors led to improvements in fabrication and theory. Scientists who had worked on radar returned to solid-state device development. With the invention of the first transistor at Bell Labs in 1947, the field of electronics shifted from vacuum tubes to solid-state devices.[1]",
+  "url": "https://en.wikipedia.org/wiki/Very-large-scale_integration",
+  "embedding": null,
+  "db_path": "kb_databases/vlsi_design_eca536da.db",
+  "last_updated": 1743796484.752936,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "330cac2a-45ff-4a2f-8ace-6cbb12dee627",
+  "name": "Thermodynamics",
+  "content": "Thermodynamics is a branch of physics that deals with heat, work, and temperature, and their relation to energy, entropy, and the physical properties of matter and radiation. The behavior of these quantities is governed by the four laws of thermodynamics, which convey a quantitative description using measurable macroscopic physical quantities, but may be explained in terms of microscopic constituents by statistical mechanics. Thermodynamics applies to a wide variety of topics in science and engineering, especially physical chemistry, biochemistry, chemical engineering and mechanical engineering, but also in other complex fields such as meteorology. Historically, thermodynamics developed out of a desire to increase the efficiency of early steam engines, particularly through the work of French physicist Sadi Carnot (1824) who believed that engine efficiency was the key that could help France win the Napoleonic Wars.[1] Scots-Irish physicist Lord Kelvin was the first to formulate a concise definition of thermodynamics in 1854[2] which stated, \"Thermo-dynamics is the subject of the relation of heat to forces acting between contiguous parts of bodies, and the relation of heat to electrical agency.\" German physicist and mathematician Rudolf Clausius restated Carnot's principle known as the Carnot cycle and gave to the theory of heat a truer and sounder basis. His most important paper, \"On the Moving Force of Heat\",[3] published in 1850, first stated the second law of thermodynamics. In 1865 he introduced the concept of entropy. In 1870 he introduced the virial theorem, which applied to heat.[4]",
+  "url": "https://en.wikipedia.org/wiki/Thermodynamics",
+  "embedding": null,
+  "db_path": "kb_databases/thermodynamics_f1ed490d.db",
+  "last_updated": 1743796485.5077472,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

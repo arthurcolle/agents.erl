@@ -1,0 +1,14 @@
+{
+  "kb_id": "87397609-1ac0-4308-a820-1ea2078de36f",
+  "name": "Electricity",
+  "content": "Electricity is the set of physical phenomena associated with the presence and motion of matter possessing an electric charge. Electricity is related to magnetism, both being part of the phenomenon of electromagnetism, as described by Maxwell's equations. Common phenomena are related to electricity, including lightning, static electricity, electric heating, electric discharges and many others. The presence of either a positive or negative electric charge produces an electric field. The motion of electric charges is an electric current and produces a magnetic field. In most applications, Coulomb's law determines the force acting on an electric charge. Electric potential is the work done to move an electric charge from one point to another within an electric field, typically measured in volts. Electricity plays a central role in many modern technologies, serving in electric power where electric current is used to energise equipment, and in electronics dealing with electrical circuits involving active components such as vacuum tubes, transistors, diodes and integrated circuits, and associated passive interconnection technologies.",
+  "url": "https://en.wikipedia.org/wiki/Electricity",
+  "embedding": null,
+  "db_path": "kb_databases/electricity_656e4358.db",
+  "last_updated": 1743796485.500048,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "3578ddb5-a353-44b8-9dcd-73e62415a663",
+  "name": "Solid mechanics",
+  "content": "Solid mechanics (also known as mechanics of solids) is the branch of continuum mechanics that studies the behavior of solid materials, especially their motion and deformation under the action of forces, temperature changes, phase changes, and other external or internal agents. Solid mechanics is fundamental for civil, aerospace, nuclear, biomedical and mechanical engineering, for geology, and for many branches of physics and chemistry such as materials science.[1] It has specific applications in many other areas, such as understanding the anatomy of living beings, and the design of dental prostheses and surgical implants. One of the most common practical applications of solid mechanics is the Euler\u2013Bernoulli beam equation. Solid mechanics extensively uses tensors to describe stresses, strains, and the relationship between them. Solid mechanics is a vast subject because of the wide range of solid materials available, such as steel, wood, concrete, biological materials, textiles, geological materials, and plastics.",
+  "url": "https://en.wikipedia.org/wiki/Solid_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/solid_mechanics_cbd7e876.db",
+  "last_updated": 1743796485.571316,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

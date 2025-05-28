@@ -1,0 +1,14 @@
+{
+  "kb_id": "20f2f6c7-fb11-4908-a108-6fbf035016fa",
+  "name": "Algebraic topology",
+  "content": "Algebraic topology is a branch of mathematics that uses tools from abstract algebra to study topological spaces. The basic goal is to find algebraic invariants that classify topological spaces up to homeomorphism, though usually most classify up to homotopy equivalence. Although algebraic topology primarily uses algebra to study topological problems, using topology to solve algebraic problems is sometimes also possible. Algebraic topology, for example, allows for a convenient proof that any subgroup of a free group is again a free group. Below are some of the main areas studied in algebraic topology: In mathematics, homotopy groups are used in algebraic topology to classify topological spaces. The first and simplest homotopy group is the fundamental group, which records information about loops in a space. Intuitively, homotopy groups record information about the basic shape, or holes, of a topological space. In algebraic topology and abstract algebra, homology (in part from Greek \u1f41\u03bc\u03cc\u03c2 homos \"identical\") is a certain general procedure to associate a sequence of abelian groups or modules with a given mathematical object such as a topological space or a group.[1]",
+  "url": "https://en.wikipedia.org/wiki/Algebraic_topology",
+  "embedding": null,
+  "db_path": "kb_databases/algebraic_topology_b992d861.db",
+  "last_updated": 1743796485.540493,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

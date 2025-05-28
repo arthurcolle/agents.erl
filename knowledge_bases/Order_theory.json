@@ -1,0 +1,14 @@
+{
+  "kb_id": "109ed350-9865-4815-8dec-a22258962cd6",
+  "name": "Order theory",
+  "content": "Order theory is a branch of mathematics that investigates the intuitive notion of order using binary relations. It provides a formal framework for describing statements such as \"this is less than that\" or \"this precedes that\". This article introduces the field and provides basic definitions. A list of order-theoretic terms can be found in the order theory glossary. Orders are everywhere in mathematics and related fields like computer science. The first order often discussed in primary school is the standard order on the natural numbers e.g. \"2 is less than 3\", \"10 is greater than 5\", or \"Does Tom have fewer cookies than Sally?\". This intuitive concept can be extended to orders on other sets of numbers, such as the integers and the reals. The idea of being greater than or less than another number is one of the basic intuitions of number systems (compare with numeral systems) in general (although one usually is also interested in the actual difference of two numbers, which is not given by the order). Other familiar examples of orderings are the alphabetical order of words in a dictionary and the genealogical property of lineal descent within a group of people.",
+  "url": "https://en.wikipedia.org/wiki/Order_theory",
+  "embedding": null,
+  "db_path": "kb_databases/order_theory_6b6ad73c.db",
+  "last_updated": 1743796485.039231,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

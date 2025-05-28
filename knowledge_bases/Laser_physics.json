@@ -1,0 +1,14 @@
+{
+  "kb_id": "a4b1ed9f-44f1-45ec-877a-859ce1d577d4",
+  "name": "Laser physics",
+  "content": "Laser science or laser physics is a branch of optics that describes the theory and practice of lasers.[1] Laser science is principally concerned with quantum electronics, laser construction, optical cavity design, the physics of producing a population inversion in laser media, and the temporal evolution of the light field in the laser. It is also concerned with the physics of laser beam propagation, particularly the physics of Gaussian beams, with laser applications, and with associated fields such as nonlinear optics and quantum optics. Laser science predates the invention of the laser itself. Albert Einstein created the foundations for the laser and maser in 1917, via a paper in which he re-derived Max Planck\u2019s law of radiation using a formalism based on probability coefficients (Einstein coefficients) for the absorption, spontaneous emission, and stimulated emission of electromagnetic radiation.[2] The existence of stimulated emission was confirmed in 1928 by Rudolf W. Ladenburg.[3] In 1939, Valentin A. Fabrikant made the earliest laser proposal. He specified the conditions required for light amplification using stimulated emission.[4] In 1947, Willis E. Lamb and R. C. Retherford found apparent stimulated emission in hydrogen spectra and effected the first demonstration of stimulated emission;[3] in 1950, Alfred Kastler (Nobel Prize for Physics 1966) proposed the method of optical pumping, experimentally confirmed, two years later, by Brossel, Kastler, and Winter.[5]",
+  "url": "https://en.wikipedia.org/wiki/Laser_physics",
+  "embedding": null,
+  "db_path": "kb_databases/laser_physics_6b199420.db",
+  "last_updated": 1743796485.245749,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

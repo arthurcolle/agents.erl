@@ -1,0 +1,14 @@
+{
+  "kb_id": "daa885a8-eb49-4828-b9a6-31e12b1f0aea",
+  "name": "Geometry",
+  "content": "Geometry (from Ancient Greek \u03b3\u03b5\u03c9\u03bc\u03b5\u03c4\u03c1\u03af\u03b1 (ge\u014dmetr\u00eda) 'land measurement'; from \u03b3\u1fc6 (g\u00ea) 'earth, land' and \u03bc\u03ad\u03c4\u03c1\u03bf\u03bd (m\u00e9tron) 'a measure')[1] is a branch of mathematics concerned with properties of space such as the distance, shape, size, and relative position of figures.[2] Geometry is, along with arithmetic, one of the oldest branches of mathematics. A mathematician who works in the field of geometry is called a geometer. Until the 19th century, geometry was almost exclusively devoted to Euclidean geometry,[a] which includes the notions of point, line, plane, distance, angle, surface, and curve, as fundamental concepts.[3] Originally developed to model the physical world, geometry has applications in almost all sciences, and also in art, architecture, and other activities that are related to graphics.[4] Geometry also has applications in areas of mathematics that are apparently unrelated. For example, methods of algebraic geometry are fundamental in Wiles's proof of Fermat's Last Theorem, a problem that was stated in terms of elementary arithmetic, and remained unsolved for several centuries.",
+  "url": "https://en.wikipedia.org/wiki/Geometry",
+  "embedding": null,
+  "db_path": "kb_databases/geometry_d9c63336.db",
+  "last_updated": 1743796485.0747972,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

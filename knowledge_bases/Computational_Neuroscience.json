@@ -1,0 +1,14 @@
+{
+  "kb_id": "75c54b85-476d-442d-b7c4-d73fd86117b5",
+  "name": "Computational neuroscience",
+  "content": "Computational neuroscience (also known as theoretical neuroscience or mathematical neuroscience) is a branch of neuroscience which employs mathematics, computer science, theoretical analysis and abstractions of the brain to understand the principles that govern the development, structure, physiology and cognitive abilities of the nervous system.[1][2][3][4] Computational neuroscience employs computational simulations[5] to validate and solve mathematical models, and so can be seen as a sub-field of theoretical neuroscience; however, the two fields are often synonymous.[6] The term mathematical neuroscience is also used sometimes, to stress the quantitative nature of the field.[7] Computational neuroscience focuses on the description of biologically plausible neurons (and neural systems) and their physiology and dynamics, and it is therefore not directly concerned with biologically unrealistic models used in connectionism, control theory, cybernetics, quantitative psychology, machine learning, artificial neural networks, artificial intelligence and computational learning theory;[8][9] [10] although mutual inspiration exists and sometimes there is no strict limit between fields,[11][12][13] with model abstraction in computational neuroscience depending on research scope and the granularity at which biological entities are analyzed.",
+  "url": "https://en.wikipedia.org/wiki/Computational_neuroscience",
+  "embedding": null,
+  "db_path": "kb_databases/computational_neuroscience_35160bf0.db",
+  "last_updated": 1743796485.549487,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "89c9b8b8-5408-433d-8680-cc0af664b2b4",
+  "name": "Distributed computing",
+  "content": "Distributed computing is a field of computer science that studies distributed systems, defined as computer systems whose inter-communicating components are located on different networked computers.[1][2] The components of a distributed system communicate and coordinate their actions by passing messages to one another in order to achieve a common goal. Three significant challenges of distributed systems are: maintaining concurrency of components, overcoming the lack of a global clock, and managing the independent failure of components.[1] When a component of one system fails, the entire system does not fail.[3] Examples of distributed systems vary from SOA-based systems to microservices to massively multiplayer online games to peer-to-peer applications. Distributed systems cost significantly more than monolithic architectures, primarily due to increased needs for additional hardware, servers, gateways, firewalls, new subnets, proxies, and so on.[4] Also, distributed systems are prone to fallacies of distributed computing. On the other hand, a well designed distributed system is more scalable, more durable, more changeable and more fine-tuned than a monolithic application deployed on a single machine.[5] According to Marc Brooker: \"a system is scalable in the range where marginal cost of additional workload is nearly constant.\" Serverless technologies fit this definition but the total cost of ownership, and not just the infra cost must be considered.[6]",
+  "url": "https://en.wikipedia.org/wiki/Distributed_computing",
+  "embedding": null,
+  "db_path": "kb_databases/distributed_computing_6a907954.db",
+  "last_updated": 1743796485.511456,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

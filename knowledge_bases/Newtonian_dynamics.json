@@ -1,0 +1,14 @@
+{
+  "kb_id": "966eda37-78d7-49a8-87a2-b41d6ad0aeb0",
+  "name": "Newtonian dynamics",
+  "content": "In physics, Newtonian dynamics (also known as Newtonian mechanics) is the study of the dynamics of a particle or a small body according to Newton's laws of motion.[1][2][3] Typically, the Newtonian dynamics occurs in a three-dimensional Euclidean space, which is flat. However, in mathematics Newton's laws of motion can be generalized to multidimensional and curved spaces. Often the term Newtonian dynamics is narrowed to Newton's second law m a = F {\\displaystyle \\displaystyle m\\,\\mathbf {a} =\\mathbf {F} } . Consider N {\\displaystyle \\displaystyle N} particles with masses m 1 , \u2026 , m N {\\displaystyle \\displaystyle m_{1},\\,\\ldots ,\\,m_{N}} in the regular three-dimensional Euclidean space. Let r 1 , \u2026 , r N {\\displaystyle \\displaystyle \\mathbf {r} _{1},\\,\\ldots ,\\,\\mathbf {r} _{N}} be their radius-vectors in some inertial coordinate system. Then the motion of these particles is governed by Newton's second law applied to each of them",
+  "url": "https://en.wikipedia.org/wiki/Newtonian_dynamics",
+  "embedding": null,
+  "db_path": "kb_databases/newtonian_dynamics_164c7b0c.db",
+  "last_updated": 1743796485.211425,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

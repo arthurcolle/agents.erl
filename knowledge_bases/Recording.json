@@ -1,0 +1,14 @@
+{
+  "kb_id": "46a60d57-2247-471d-9ff5-01ba997810d5",
+  "name": "Recording",
+  "content": "Sound recording and reproduction is the electrical, mechanical, electronic, or digital inscription and re-creation of sound waves, such as spoken voice, singing, instrumental music, or sound effects. The two main classes of sound recording technology are analog recording and digital recording. Acoustic analog recording is achieved by a microphone diaphragm that senses changes in atmospheric pressure caused by acoustic sound waves and records them as a mechanical representation of the sound waves on a medium such as a phonograph record (in which a stylus cuts grooves on a record). In magnetic tape recording, the sound waves vibrate the microphone diaphragm and are converted into a varying electric current, which is then converted to a varying magnetic field by an electromagnet, which makes a representation of the sound as magnetized areas on a plastic tape with a magnetic coating on it. Analog sound reproduction is the reverse process, with a larger loudspeaker diaphragm causing changes to atmospheric pressure to form acoustic sound waves.",
+  "url": "https://en.wikipedia.org/wiki/Sound_recording_and_reproduction",
+  "embedding": null,
+  "db_path": "kb_databases/recording_c5564d2e.db",
+  "last_updated": 1743796484.792945,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "c227a70a-f992-4ac1-aaa2-2785a1d4e74e",
+  "name": "Computational number theory",
+  "content": "In mathematics and computer science, computational number theory, also known as algorithmic number theory, is the study of computational methods for investigating and solving problems in number theory and arithmetic geometry, including algorithms for primality testing and integer factorization, finding solutions to diophantine equations, and explicit methods in arithmetic geometry.[1] Computational number theory has applications to cryptography, including RSA, elliptic curve cryptography and post-quantum cryptography, and is used to investigate conjectures and open problems in number theory, including the Riemann hypothesis, the Birch and Swinnerton-Dyer conjecture, the ABC conjecture, the modularity conjecture, the Sato-Tate conjecture, and explicit aspects of the Langlands program.[1][2][3]",
+  "url": "https://en.wikipedia.org/wiki/Computational_number_theory",
+  "embedding": null,
+  "db_path": "kb_databases/computational_number_theory_3b6da3e6.db",
+  "last_updated": 1743796484.9264472,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

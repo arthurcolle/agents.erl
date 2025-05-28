@@ -1,0 +1,14 @@
+{
+  "kb_id": "c29574ea-eb2f-45e6-b478-8f3351affec7",
+  "name": "Nanomaterials",
+  "content": "Nanomaterials describe, in principle, chemical substances or materials of which a single unit is sized (in at least one dimension) between 1 and 100 nm (the usual definition of nanoscale[1]). Nanomaterials research takes a materials science-based approach to nanotechnology, leveraging advances in materials metrology and synthesis which have been developed in support of microfabrication research. Materials with structure at the nanoscale often have unique optical, electronic, thermo-physical or mechanical properties.[2][3][4] Nanomaterials are slowly becoming commercialized[5] and beginning to emerge as commodities.[6] In ISO/TS 80004, nanomaterial is defined as the \"material with any external dimension in the nanoscale or having internal structure or surface structure in the nanoscale\", with nanoscale defined as the \"length range approximately from 1 nm to 100 nm\". This includes both nano-objects, which are discrete pieces of material, and nanostructured materials, which have internal or surface structure on the nanoscale; a nanomaterial may be a member of both these categories.[7]",
+  "url": "https://en.wikipedia.org/wiki/Nanomaterials",
+  "embedding": null,
+  "db_path": "kb_databases/nanomaterials_8cd6cbe0.db",
+  "last_updated": 1743796484.775039,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

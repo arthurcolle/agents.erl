@@ -1,0 +1,14 @@
+{
+  "kb_id": "0db03466-8953-47a7-a507-4631ce09a56d",
+  "name": "Radiology",
+  "content": "Radiology (/\u02ccre\u026ad\u026a\u02c8\u0252l\u0259d\u0292i/ rey-dee-ol-uh-jee) is the medical specialty that uses medical imaging to diagnose diseases and guide treatment within the bodies of humans and other animals. It began with radiography (which is why its name has a root referring to radiation), but today it includes all imaging modalities. This includes technologies that use no ionizing electromagnetic radiation, such as ultrasonography and magnetic resonance imaging (MRI), as well as others that do use radiation, such as computed tomography (CT), fluoroscopy, and nuclear medicine including positron emission tomography (PET). Interventional radiology is the performance of usually minimally invasive medical procedures with the guidance of imaging technologies such as those mentioned above. The modern practice of radiology involves a team of several different healthcare professionals. A radiologist, who is a medical doctor with specialized post-graduate training, interprets medical images, communicates these findings to other physicians through reports or verbal communication, and uses imaging to perform minimally invasive medical procedures[1][2] The nurse is involved in the care of patients before and after imaging or procedures, including administration of medications, monitoring of vital signs and monitoring of sedated patients.[3] The radiographer, also known as a \"radiologic technologist\" in some countries such as the United States and Canada, is a specially trained healthcare professional that uses sophisticated technology and positioning techniques to produce medical images for the radiologist to interpret. Depending on the individual's training and country of practice, the radiographer may specialize in one of the above-mentioned imaging modalities or have expanded roles in image reporting.[4]",
+  "url": "https://en.wikipedia.org/wiki/Radiology",
+  "embedding": null,
+  "db_path": "kb_databases/radiology_e4fb50dd.db",
+  "last_updated": 1743796485.290847,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

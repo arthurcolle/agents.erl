@@ -1,0 +1,14 @@
+{
+  "kb_id": "7dcf34b4-792a-4f0b-b70d-43e363397451",
+  "name": "Philosophy of action",
+  "content": "In philosophy, an action is an event that an agent performs for a purpose, that is, guided by the person's intention.[1][2] The first question in the philosophy of action is to determine how actions differ from other forms of behavior, like involuntary reflexes.[3][4] According to Ludwig Wittgenstein, it involves discovering \"What is left over if I subtract the fact that my arm goes up from the fact that I raise my arm\".[5] There is broad agreement that the answer to this question has to do with the agent's intentions. So driving a car is an action since the agent intends to do so, but sneezing is a mere behavior since it happens independent of the agent's intention. The dominant theory of the relation between the intention and the behavior is causalism:[1] driving the car is an action because it is caused by the agent's intention to do so. On this view, actions are distinguished from other events by their causal history.[2] Causalist theories include Donald Davidson's account, which defines actions as bodily movements caused by intentions in the right way, and volitionalist theories, according to which volitions form a core aspect of actions. Non-causalist theories, on the other hand, often see intentions not as the action's cause but as a constituent of it.",
+  "url": "https://en.wikipedia.org/wiki/Action_(philosophy)",
+  "embedding": null,
+  "db_path": "kb_databases/philosophy_of_action_5623eeda.db",
+  "last_updated": 1743796485.519168,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

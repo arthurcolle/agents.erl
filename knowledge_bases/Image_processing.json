@@ -1,0 +1,14 @@
+{
+  "kb_id": "8102cffb-aa93-4faf-bf37-a58b3ad253ac",
+  "name": "Image processing",
+  "content": "Digital image processing is the use of a digital computer to process digital images through an algorithm.[1][2] As a subcategory or field of digital signal processing, digital image processing has many advantages over analog image processing. It allows a much wider range of algorithms to be applied to the input data and can avoid problems such as the build-up of noise and distortion during processing. Since images are defined over two dimensions (perhaps more), digital image processing may be modeled in the form of multidimensional systems. The generation and development of digital image processing are mainly affected by three factors: first, the development of computers;[3] second, the development of mathematics (especially the creation and improvement of discrete mathematics theory);[4] and third, the demand for a wide range of applications in environment, agriculture, military, industry and medical science has increased.[5] Many of the techniques of digital image processing, or digital picture processing as it often was called, were developed in the 1960s, at Bell Laboratories, the Jet Propulsion Laboratory, Massachusetts Institute of Technology, University of Maryland, and a few other research facilities, with application to satellite imagery, wire-photo standards conversion, medical imaging, videophone, character recognition, and photograph enhancement.[6] The purpose of early image processing was to improve the quality of the image. It was aimed for human beings to improve the visual effect of people. In image processing, the input is a low-quality image, and the output is an image with improved quality. Common image processing include image enhancement, restoration, encoding, and compression. The first successful application was the American Jet Propulsion Laboratory (JPL). They used image processing techniques such as geometric correction, gradation transformation, noise removal, etc. on the thousands of lunar photos sent back by the Space Detector Ranger 7 in 1964, taking into account the position of the Sun and the environment of the Moon. The impact of the successful mapping of the Moon's surface map by the computer has been a success. Later, more complex image processing was performed on the nearly 100,000 photos sent back by the spacecraft, so that the topographic map, color map and panoramic mosaic of the Moon were obtained, which achieved extraordinary results and laid a solid foundation for human landing on the Moon.[7]",
+  "url": "https://en.wikipedia.org/wiki/Image_processing",
+  "embedding": null,
+  "db_path": "kb_databases/image_processing_7cfe1c77.db",
+  "last_updated": 1743796485.5172758,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

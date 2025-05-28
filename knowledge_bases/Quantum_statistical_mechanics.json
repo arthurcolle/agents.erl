@@ -1,0 +1,14 @@
+{
+  "kb_id": "d55ffead-777f-4a62-83a3-927350f373e0",
+  "name": "Quantum statistical mechanics",
+  "content": "Quantum statistical mechanics is statistical mechanics applied to quantum mechanical systems. In quantum mechanics a statistical ensemble (probability distribution over possible quantum states) is described by a density operator S, which is a non-negative, self-adjoint, trace-class operator of trace 1 on the Hilbert space H describing the quantum system. This can be shown under various mathematical formalisms for quantum mechanics. From classical probability theory, we know that the expectation of a random variable X is defined by its distribution DX by assuming, of course, that the random variable is integrable or that the random variable is non-negative. Similarly, let A be an observable of a quantum mechanical system. A is given by a densely defined self-adjoint operator on H. The spectral measure of A defined by uniquely determines A and conversely, is uniquely determined by A. EA is a Boolean homomorphism from the Borel subsets of R into the lattice Q of self-adjoint projections of H. In analogy with probability theory, given a state S, we introduce the distribution of A under S which is the probability measure defined on the Borel subsets of R by",
+  "url": "https://en.wikipedia.org/wiki/Quantum_statistical_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/quantum_statistical_mechanics_da054b68.db",
+  "last_updated": 1743796485.291156,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

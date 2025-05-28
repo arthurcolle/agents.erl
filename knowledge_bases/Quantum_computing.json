@@ -1,0 +1,14 @@
+{
+  "kb_id": "a44b91e7-9393-48fd-9996-c8bdc66d77a2",
+  "name": "Quantum computing",
+  "content": "A quantum computer is a computer that exploits quantum mechanical phenomena. On small scales, physical matter exhibits properties of both particles and waves, and quantum computing leverages this behavior using specialized hardware. Classical physics cannot explain the operation of these quantum devices, and a scalable quantum computer could perform some calculations exponentially faster[a] than any modern \"classical\" computer. Theoretically a large-scale quantum computer could break some widely used encryption schemes and aid physicists in performing physical simulations; however, the current state of the art is largely experimental and impractical, with several obstacles to useful applications. The basic unit of information in quantum computing, the qubit (or \"quantum bit\"), serves the same function as the bit in classical computing. However, unlike a classical bit, which can be in one of two states (a binary), a qubit can exist in a superposition of its two \"basis\" states, a state that is in an abstract sense \"between\" the two basis states. When measuring a qubit, the result is a probabilistic output of a classical bit. If a quantum computer manipulates the qubit in a particular way, wave interference effects can amplify the desired measurement results. The design of quantum algorithms involves creating procedures that allow a quantum computer to perform calculations efficiently and quickly.",
+  "url": "https://en.wikipedia.org/wiki/Quantum_computing",
+  "embedding": null,
+  "db_path": "kb_databases/quantum_computing_c89ffe68.db",
+  "last_updated": 1743796485.517133,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

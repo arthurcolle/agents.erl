@@ -1,0 +1,14 @@
+{
+  "kb_id": "73356e58-3475-4e5d-a649-985237948432",
+  "name": "Neuroscience",
+  "content": "Neuroscience is the scientific study of the nervous system (the brain, spinal cord, and peripheral nervous system), its functions, and its disorders.[1][2][3] It is a multidisciplinary science that combines physiology, anatomy, molecular biology, developmental biology, cytology, psychology, physics, computer science, chemistry, medicine, statistics, and mathematical modeling to understand the fundamental and emergent properties of neurons, glia and neural circuits.[4][5][6][7][8] The understanding of the biological basis of learning, memory, behavior, perception, and consciousness has been described by Eric Kandel as the \"epic challenge\" of the biological sciences.[9] The scope of neuroscience has broadened over time to include different approaches used to study the nervous system at different scales. The techniques used by neuroscientists have expanded enormously, from molecular and cellular studies of individual neurons to imaging of sensory, motor and cognitive tasks in the brain.",
+  "url": "https://en.wikipedia.org/wiki/Neuroscience",
+  "embedding": null,
+  "db_path": "kb_databases/neuroscience_993c8c6f.db",
+  "last_updated": 1743796484.870188,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

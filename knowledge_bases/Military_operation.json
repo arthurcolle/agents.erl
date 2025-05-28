@@ -1,0 +1,14 @@
+{
+  "kb_id": "2887a1bb-fd20-4b0f-8458-e1eb15436f37",
+  "name": "Military operation",
+  "content": "A military operation (op) is the coordinated military actions of a state, or a non-state actor, in response to a developing situation. These actions are designed as a military plan to resolve the situation in the state or actor's favor. Operations may be of a combat or non-combat nature and may be referred to by a code name for the purpose of national security. Military operations are often known for their more generally accepted common usage names than their actual operational objectives. Military operations can be classified by the scale and scope of force employment, and their impact on the wider conflict. The scope of military operations can be: Parallel to and reflecting this framework for operations are organized elements within the armed forces which prepare for and conduct operations at various levels of war. While there is a general correlation between the size of units, the area within which they operate, and the scope of mission they perform, the correlation is not absolute. In fact, it is ultimately the mission that a unit performs that determines the level of war within which it operates.",
+  "url": "https://en.wikipedia.org/wiki/Military_operation",
+  "embedding": null,
+  "db_path": "kb_databases/military_operation_7c4894da.db",
+  "last_updated": 1743796485.363557,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

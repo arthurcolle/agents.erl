@@ -1,0 +1,14 @@
+{
+  "kb_id": "042ea778-9cf0-475f-94a2-011e8cd10c40",
+  "name": "Clinical physiology",
+  "content": "Clinical physiology is an academic discipline within the medical sciences and a clinical medical specialty for physicians in the health care systems of Sweden,[1] Denmark, Portugal[2] and Finland. Clinical physiology is characterized as a branch of physiology that uses a functional approach to understand the pathophysiology of a disease.[3] As a specialty for medical doctors, clinical physiology is a diagnostic specialty in which patients are subjected to specialized tests for the functions of the heart, blood vessels, lungs, kidneys and gastrointestinal tract, and other organs. Testing methods include evaluation of electrical activity (e.g. electrocardiogram of the heart), blood pressure (e.g. ankle brachial pressure index), and air flow (e.g. pulmonary function testing using spirometry). In addition, Clinical Physiologists measure movements, velocities, and metabolic processes through imaging techniques such as ultrasound, echocardiography, magnetic resonance imaging (MRI), x-ray computed tomography (CT), and nuclear medicine scanners (e.g. single photon emission computed tomography (SPECT) and positron emission tomography (PET) with and without CT or MRI).",
+  "url": "https://en.wikipedia.org/wiki/Clinical_physiology",
+  "embedding": null,
+  "db_path": "kb_databases/clinical_physiology_ebfada00.db",
+  "last_updated": 1743796485.198802,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

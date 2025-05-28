@@ -1,0 +1,14 @@
+{
+  "kb_id": "308392a9-3394-4182-b799-5c0177855994",
+  "name": "Biomechanics",
+  "content": "Biomechanics is the study of the structure, function and motion of the mechanical aspects of biological systems, at any level from whole organisms to organs, cells and cell organelles,[1] using the methods of mechanics.[2] Biomechanics is a branch of biophysics. The word \"biomechanics\" (1899) and the related \"biomechanical\" (1856) come from the Ancient Greek \u03b2\u03af\u03bf\u03c2 bios \"life\" and \u03bc\u03b7\u03c7\u03b1\u03bd\u03b9\u03ba\u03ae, m\u0113chanik\u0113 \"mechanics\", to refer to the study of the mechanical principles of living organisms, particularly their movement and structure.[3] Biological fluid mechanics, or biofluid mechanics, is the study of both gas and liquid fluid flows in or around biological organisms. An often studied liquid biofluid problem is that of blood flow in the human cardiovascular system. Under certain mathematical circumstances, blood flow can be modeled by the Navier\u2013Stokes equations. In vivo whole blood is assumed to be an incompressible Newtonian fluid. However, this assumption fails when considering forward flow within arterioles. At the microscopic scale, the effects of individual red blood cells become significant, and whole blood can no longer be modeled as a continuum. When the diameter of the blood vessel is just slightly larger than the diameter of the red blood cell the Fahraeus\u2013Lindquist effect occurs and there is a decrease in wall shear stress. However, as the diameter of the blood vessel decreases further, the red blood cells have to squeeze through the vessel and often can only pass in a single file. In this case, the inverse Fahraeus\u2013Lindquist effect occurs and the wall shear stress increases.",
+  "url": "https://en.wikipedia.org/wiki/Biomechanics",
+  "embedding": null,
+  "db_path": "kb_databases/biomechanics_0b98954f.db",
+  "last_updated": 1743796485.259627,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

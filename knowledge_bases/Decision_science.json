@@ -1,0 +1,14 @@
+{
+  "kb_id": "b1c4f885-93fe-4309-9352-2b40db527e63",
+  "name": "Decision science",
+  "content": "Decision theory or the theory of rational choice is a branch of probability, economics, and analytic philosophy that uses the tools of expected utility and probability to model how individuals would behave rationally under uncertainty.[1][2] It differs from the cognitive and behavioral sciences in that it is mainly prescriptive and concerned with identifying optimal decisions for a rational agent, rather than describing how people actually make decisions. Despite this, the field is important to the study of real human behavior by social scientists, as it lays the foundations to mathematically model and analyze individuals in fields such as sociology, economics, criminology, cognitive science, moral philosophy and political science. Normative decision theory is concerned with identification of optimal decisions where optimality is often determined by considering an ideal decision maker who is able to calculate with perfect accuracy and is in some sense fully rational. The practical application of this prescriptive approach (how people ought to make decisions) is called decision analysis and is aimed at finding tools, methodologies, and software (decision support systems) to help people make better decisions.[3][4]",
+  "url": "https://en.wikipedia.org/wiki/Decision_science",
+  "embedding": null,
+  "db_path": "kb_databases/decision_science_3b2a4e9e.db",
+  "last_updated": 1743796485.167661,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

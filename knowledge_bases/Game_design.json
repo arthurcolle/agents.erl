@@ -1,0 +1,14 @@
+{
+  "kb_id": "b3ec01dd-5e3d-47c4-a381-041fa0f0b3f3",
+  "name": "Game design",
+  "content": "Game design is the process of creating and shaping the mechanics, systems, rules, and gameplay of a game. Game design processes apply to board games, card games, dice games, casino games, role-playing games, sports, war games, or simulation games. In Elements of Game Design, game designer Robert Zubek defines game design by breaking it down into three elements:[3] In academic research, game design falls within the field of game studies (not to be confused with game theory, which studies strategic decision making, primarily in non-game situations). Game design is part of a game's development from concept to final form. Typically, the development process is iterative, with repeated phases of testing and revision. During revision, additional design or re-design may be needed. A game designer (or inventor) is a person who invents a game's concept, central mechanisms, rules, and themes. Game designers may work alone or in teams. A game developer is a person who fleshes out the details of a game's design, oversees its testing, and revises the game in response to player feedback.",
+  "url": "https://en.wikipedia.org/wiki/Game_design",
+  "embedding": null,
+  "db_path": "kb_databases/game_design_fd7175ec.db",
+  "last_updated": 1743796484.862154,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

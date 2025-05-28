@@ -1,0 +1,14 @@
+{
+  "kb_id": "52fa0ae5-c55e-4051-8214-c8d757c74dbd",
+  "name": "Representation theory",
+  "content": "Representation theory is a branch of mathematics that studies abstract algebraic structures by representing their elements as linear transformations of vector spaces, and studies modules over these abstract algebraic structures.[1][2] In essence, a representation makes an abstract algebraic object more concrete by describing its elements by matrices and their algebraic operations (for example, matrix addition, matrix multiplication). The algebraic objects amenable to such a description include groups, associative algebras and Lie algebras. The most prominent of these (and historically the first) is the representation theory of groups, in which elements of a group are represented by invertible matrices such that the group operation is matrix multiplication.[3][4] Representation theory is a useful method because it reduces problems in abstract algebra to problems in linear algebra, a subject that is well understood.[5][6] Representations of more abstract objects in terms of familiar linear algebra can elucidate properties and simplify calculations within more abstract theories. For instance, representing a group by an infinite-dimensional Hilbert space allows methods of analysis to be applied to the theory of groups.[7][8] Furthermore, representation theory is important in physics because it can describe how the symmetry group of a physical system affects the solutions of equations describing that system.[9]",
+  "url": "https://en.wikipedia.org/wiki/Representation_theory",
+  "embedding": null,
+  "db_path": "kb_databases/representation_theory_0e0947f8.db",
+  "last_updated": 1743796485.0400908,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

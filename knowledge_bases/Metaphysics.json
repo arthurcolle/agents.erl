@@ -1,0 +1,14 @@
+{
+  "kb_id": "db13d6f2-f21a-4b04-b450-e010041e908f",
+  "name": "Metaphysics",
+  "content": "Metaphysics is the branch of philosophy that examines the basic structure of reality. It is traditionally seen as the study of mind-independent features of the world, but some theorists view it as an inquiry into the conceptual framework of human understanding. Some philosophers, including Aristotle, designate metaphysics as first philosophy to suggest that it is more fundamental than other forms of philosophical inquiry. Metaphysics encompasses a wide range of general and abstract topics. It investigates the nature of existence, the features all entities have in common, and their division into categories of being. An influential division is between particulars and universals. Particulars are individual unique entities, like a specific apple. Universals are general features that different particulars have in common, like the color red. Modal metaphysics examines what it means for something to be possible or necessary. Metaphysicians also explore the concepts of space, time, and change, and their connection to causality and the laws of nature. Other topics include how mind and matter are related, whether everything in the world is predetermined, and whether there is free will.",
+  "url": "https://en.wikipedia.org/wiki/Metaphysics",
+  "embedding": null,
+  "db_path": "kb_databases/metaphysics_96628a28.db",
+  "last_updated": 1743796485.230152,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

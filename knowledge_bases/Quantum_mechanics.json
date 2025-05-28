@@ -1,0 +1,14 @@
+{
+  "kb_id": "7fa7e07a-5d5f-47f4-80fd-0c4c01d41fba",
+  "name": "Quantum mechanics",
+  "content": "Quantum mechanics is a fundamental theory that describes the behavior of nature at and below the scale of atoms.[2]: 1.1 It is the foundation of all quantum physics, which includes quantum chemistry, quantum field theory, quantum technology, and quantum information science. Quantum mechanics can describe many systems that classical physics cannot. Classical physics can describe many aspects of nature at an ordinary (macroscopic and (optical) microscopic) scale, but is not sufficient for describing them at very small submicroscopic (atomic and subatomic) scales. Most theories in classical physics can be derived from quantum mechanics as an approximation, valid at large (macroscopic/microscopic) scale.[3] Quantum systems have bound states that are quantized to discrete values of energy, momentum, angular momentum, and other quantities, in contrast to classical systems where these quantities can be measured continuously. Measurements of quantum systems show characteristics of both particles and waves (wave\u2013particle duality), and there are limits to how accurately the value of a physical quantity can be predicted prior to its measurement, given a complete set of initial conditions (the uncertainty principle).",
+  "url": "https://en.wikipedia.org/wiki/Quantum_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/quantum_mechanics_e185f86a.db",
+  "last_updated": 1743796485.280425,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

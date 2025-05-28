@@ -4,7 +4,11 @@
 
 ## 🚀 Overview
 
-![Main Page](MainPage.png)
+![New UI Dashboard](NewPic1.png)
+
+![Latest System Interface](Now1.png)
+
+![Current Implementation](Now2.png)
 
 This project represents a revolutionary advancement in distributed agent systems, combining:
 - **Traditional AI Agent Framework** with comprehensive OpenAI API integration
@@ -18,15 +22,16 @@ Built on Erlang/OTP's proven actor model, it delivers unprecedented capabilities
 
 ## 🌟 Core Features
 
-### 🌐 Modern Web Interface
-- **Interactive Dashboard**: Real-time web interface for agent management and interaction
+### 🌐 Modern Web Interface with shadcn UI
+- **Interactive Dashboard**: Real-time web interface powered by shadcn UI components
+- **Modern Design System**: Beautiful, consistent UI components with shadcn/ui
 - **Agent Chat Interface**: Direct communication with OpenAI-powered agents via web browser
 - **Template System**: Pre-configured agent templates for common use cases
 - **RESTful API**: Comprehensive API endpoints for programmatic access
 - **WebSocket Support**: Real-time bidirectional communication for streaming responses
 - **System Monitoring**: Live metrics dashboard with quantum coordination status
 - **Example Gallery**: Interactive examples and demonstrations
-- **Responsive Design**: Modern, mobile-friendly interface
+- **Responsive Design**: Modern, mobile-friendly interface with enhanced accessibility
 
 ### 🤖 Traditional AI Agent Framework
 - **OpenAI API Integration**: Complete integration with all OpenAI endpoints (chat, completions, embeddings)
@@ -1779,11 +1784,11 @@ For high-throughput applications:
 
 ## 🌐 Web Interface (NEW in v0.2.0)
 
-### 🎨 Modern Web Dashboard
+### 🎨 Modern Web Dashboard with shadcn UI
 
-![Erlang Web System Screenshot](ErlangWebSystemScreenshot.png)
+![Modern shadcn UI Interface](NewPic2.png)
 
-The system now includes a comprehensive web interface for agent management and interaction:
+The system now includes a comprehensive web interface built with modern shadcn UI components for enhanced user experience and visual consistency:
 
 #### Web Interface Features
 - **Real-time Agent Chat**: Interactive chat interface with OpenAI integration

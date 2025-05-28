@@ -1,0 +1,14 @@
+{
+  "kb_id": "10dade2f-1149-466d-a9c1-77825dd50294",
+  "name": "Forensic science",
+  "content": "Forensic science, also known as criminalistics,[1] is the application of science principles and methods to support legal decision-making in matters of criminal and civil law. During criminal investigation in particular, it is governed by the legal standards of admissible evidence and criminal procedure. It is a broad field utilizing numerous practices such as the analysis of DNA, fingerprints, bloodstain patterns, firearms, ballistics, toxicology, microscopy and fire debris analysis. Forensic scientists collect, preserve, and analyze evidence during the course of an investigation. While some forensic scientists travel to the scene of the crime to collect the evidence themselves, others occupy a laboratory role, performing analysis on objects brought to them by other individuals.[2] Others are involved in analysis of financial, banking, or other numerical data for use in financial crime investigation, and can be employed as consultants from private firms, academia, or as government employees.[3]",
+  "url": "https://en.wikipedia.org/wiki/Forensic_science",
+  "embedding": null,
+  "db_path": "kb_databases/forensic_science_d1658b68.db",
+  "last_updated": 1743796485.565203,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

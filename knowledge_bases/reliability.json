@@ -1,0 +1,14 @@
+{
+  "kb_id": "27e7a086-65d4-4544-9dda-14f65adca203",
+  "name": "reliability",
+  "content": "High availability (HA) is a characteristic of a system that aims to ensure an agreed level of operational performance, usually uptime, for a higher than normal period.[1] There is now more dependence on these systems as a result of modernization. For instance, in order to carry out their regular daily tasks, hospitals and data centers need their systems to be highly available. Availability refers to the ability of the user community to obtain a service or good, access the system, whether to submit new work, update or alter existing work, or collect the results of previous work. If a user cannot access the system, it is \u2013 from the user's point of view \u2013 unavailable.[2] Generally, the term downtime is used to refer to periods when a system is unavailable. High availability is a property of network resilience, the ability to \"provide and maintain an acceptable level of service in the face of faults and challenges to normal operation.\"[3] Threats and challenges for services can range from simple misconfiguration over large scale natural disasters to targeted attacks.[4] As such, network resilience touches a very wide range of topics. In order to increase the resilience of a given communication network, the probable challenges and risks have to be identified and appropriate resilience metrics have to be defined for the service to be protected.[5]",
+  "url": "https://en.wikipedia.org/wiki/High_availability",
+  "embedding": null,
+  "db_path": "kb_databases/reliability_464fe4ea.db",
+  "last_updated": 1743796484.796372,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

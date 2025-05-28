@@ -1,0 +1,14 @@
+{
+  "kb_id": "1f6417d6-04c3-4d82-a76b-ad6444591f72",
+  "name": "Supply chain management",
+  "content": "Military supply-chain management is a cross-functional approach to procuring, producing and delivering products and services for military materiel applications. Military supply chain management includes sub-suppliers, suppliers, internal information and funds flow.[1] A supply involves the procurement, distribution, maintenance while in storage, and salvage of supplies, including the determination of kind and quantity of supplies. United States Department of Defense definitions refer to a \"producer phase\" and a \"consumer phase\": A supply chain is a set of linked activities associated with providing material from a raw material stage to an end user as a finished good.[3] Supply control is the process by which an item of supply is controlled within the supply system, including requisitioning, receipt, storage, stock control, shipment, disposition, identification, and accounting.[4] A supply point is a location where supplies, services and materials are located and issued. As a single moving entity,[5] a supply point location is temporary and mobile, normally being occupied for up to 72 hours.[6]",
+  "url": "https://en.wikipedia.org/wiki/Military_supply_chain_management",
+  "embedding": null,
+  "db_path": "kb_databases/supply_chain_management_f10f6e31.db",
+  "last_updated": 1743796485.557621,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

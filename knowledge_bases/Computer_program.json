@@ -1,0 +1,14 @@
+{
+  "kb_id": "75f21273-448e-408d-ab70-442bb9dfd789",
+  "name": "Computer program",
+  "content": "A computer program is a sequence or set[a] of instructions in a programming language for a computer to execute. It is one component of software, which also includes documentation and other intangible components.[1] A computer program in its human-readable form is called source code. Source code needs another computer program to execute because computers can only execute their native machine instructions. Therefore, source code may be translated to machine instructions using a compiler written for the language. (Assembly language programs are translated using an assembler.) The resulting file is called an executable. Alternatively, source code may execute within an interpreter written for the language.[2] If the executable is requested for execution, then the operating system loads it into memory and starts a process.[3] The central processing unit will soon switch to this process so it can fetch, decode, and then execute each machine instruction.[4] If the source code is requested for execution, then the operating system loads the corresponding interpreter into memory and starts a process. The interpreter then loads the source code into memory to translate and execute each statement. Running the source code is slower than running an executable.[5][b] Moreover, the interpreter must be installed on the computer.",
+  "url": "https://en.wikipedia.org/wiki/Computer_program",
+  "embedding": null,
+  "db_path": "kb_databases/computer_program_0da0b2de.db",
+  "last_updated": 1743796484.789669,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

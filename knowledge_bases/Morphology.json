@@ -1,0 +1,14 @@
+{
+  "kb_id": "ebd7e108-b787-4bd0-ab52-61498f0e4a35",
+  "name": "Morphology",
+  "content": "In linguistics, morphology is the study of words, including the principles by which they are formed, and how they relate to one another within a language.[1][2] Most approaches to morphology investigate the structure of words in terms of morphemes, which are the smallest units in a language with some independent meaning. Morphemes include roots that can exist as words by themselves, but also categories such as affixes that can only appear as part of a larger word. For example, in English the root catch and the suffix -ing are both morphemes; catch may appear as its own word, or it may be combined with -ing to form the new word catching. Morphology also analyzes how words behave as parts of speech, and how they may be inflected to express grammatical categories including number, tense, and aspect. Concepts such as productivity are concerned with how speakers create words in specific contexts, which evolves over the history of a language. The basic fields of linguistics broadly focus on language structure at different \"scales\". Morphology is considered to operate at a scale larger than phonology, which investigates the categories of speech sounds that are distinguished within a spoken language, and thus may constitute the difference between a morpheme and another. Conversely, syntax is concerned with the next-largest scale, and studies how words in turn form phrases and sentences. Morphological typology is a distinct field that categorises languages based on the morphological features they exhibit.",
+  "url": "https://en.wikipedia.org/wiki/Morphology_(linguistics)",
+  "embedding": null,
+  "db_path": "kb_databases/morphology_a143f1ae.db",
+  "last_updated": 1743796485.505217,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

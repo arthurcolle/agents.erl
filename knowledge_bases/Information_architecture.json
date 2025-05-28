@@ -1,0 +1,14 @@
+{
+  "kb_id": "73e9225b-e987-4a04-9d9a-34a74dd98890",
+  "name": "Information architecture",
+  "content": "Information architecture (IA) is the structural design of shared information environments; the art and science of organizing and labelling websites, intranets, online communities and software to support usability and findability; and an emerging community of practice focused on bringing principles of design, architecture and information science to the digital landscape.[1] Typically, it involves a model or concept of information that is used and applied to activities which require explicit details of complex information systems. These activities include library systems and database development. Information architecture has somewhat different meanings in different branches of information systems or information technology: The difficulty in establishing a common definition for \"information architecture\" arises partly from the term's existence in multiple fields. In the field of systems design, for example, information architecture is a component of enterprise architecture that deals with the information component when describing the structure of an enterprise.",
+  "url": "https://en.wikipedia.org/wiki/Information_architecture",
+  "embedding": null,
+  "db_path": "kb_databases/information_architecture_03aabf1d.db",
+  "last_updated": 1743796485.33537,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

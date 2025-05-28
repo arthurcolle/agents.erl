@@ -1,0 +1,14 @@
+{
+  "kb_id": "08182172-8bbe-45df-a6f2-1ef48fcd9537",
+  "name": "Knowledge engineering",
+  "content": "Knowledge engineering (KE) refers to all aspects involved in knowledge-based systems. One of the first examples of an expert system was MYCIN, an application to perform medical diagnosis. In the MYCIN example, the domain experts were medical doctors and the knowledge represented was their expertise in diagnosis. Expert systems were first developed in artificial intelligence laboratories as an attempt to understand complex human decision making. Based on positive results from these initial prototypes, the technology was adopted by the US business community (and later worldwide) in the 1980s. The Stanford heuristic programming project led by Edward Feigenbaum was one of the leaders in defining and developing the first expert systems. In the earliest days of expert systems, there was little or no formal process for the creation of the software. Researchers just sat down with domain experts and started programming, often developing the required tools (e.g. inference engines) at the same time as the applications themselves. As expert systems moved from academic prototypes to deployed business systems it was realized that a methodology was required to bring predictability and control to the process of building the software. There were essentially two approaches that were attempted:",
+  "url": "https://en.wikipedia.org/wiki/Knowledge_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/knowledge_engineering_ec716a52.db",
+  "last_updated": 1743796485.139937,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

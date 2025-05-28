@@ -1,0 +1,14 @@
+{
+  "kb_id": "f3555d70-3622-4e44-ba17-748f4059f886",
+  "name": "guitar",
+  "content": "The guitar is a stringed musical instrument that is usually fretted (with some exceptions) and typically has six or twelve strings. It is usually held flat against the player's body and played by strumming or plucking the strings with the dominant hand, while simultaneously pressing selected strings against frets with the fingers of the opposite hand. A guitar pick may also be used to strike the strings. The sound of the guitar is projected either acoustically, by means of a resonant hollow chamber on the guitar, or amplified by an electronic pickup and an amplifier. The guitar is classified as a chordophone, meaning the sound is produced by a vibrating string stretched between two fixed points. Historically, a guitar was constructed from wood, with its strings made of catgut. Steel guitar strings were introduced near the end of the nineteenth century in the United States,[1] but nylon and steel strings became mainstream only following World War II.[1] The guitar's ancestors include the gittern, the vihuela, the four-course Renaissance guitar, and the five-course baroque guitar, all of which contributed to the development of the modern six-string instrument.",
+  "url": "https://en.wikipedia.org/wiki/Guitar",
+  "embedding": null,
+  "db_path": "kb_databases/guitar_4c39e90d.db",
+  "last_updated": 1743796484.7843788,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

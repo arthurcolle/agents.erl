@@ -1,0 +1,14 @@
+{
+  "kb_id": "3bca99aa-e753-4123-a683-3960bc88bb10",
+  "name": "Solar astronomy",
+  "content": "The Sun is the star at the center of the Solar System. It is a massive, nearly perfect sphere of hot plasma, heated to incandescence by nuclear fusion reactions in its core, radiating the energy from its surface mainly as visible light and infrared radiation with 10% at ultraviolet energies. It is by far the most important source of energy for life on Earth. The Sun has been an object of veneration in many cultures. It has been a central subject for astronomical research since antiquity. The Sun orbits the Galactic Center at a distance of 24,000 to 28,000 light-years. From Earth, it is 1 astronomical unit (1.496\u00d7108 km) or about 8 light-minutes away. Its diameter is about 1,391,400 km (864,600 mi), 109 times that of Earth. Its mass is about 330,000 times that of Earth, making up about 99.86% of the total mass of the Solar System. Roughly three-quarters of the Sun's mass consists of hydrogen (~73%); the rest is mostly helium (~25%), with much smaller quantities of heavier elements, including oxygen, carbon, neon, and iron.",
+  "url": "https://en.wikipedia.org/wiki/Solar_astronomy",
+  "embedding": null,
+  "db_path": "kb_databases/solar_astronomy_abc58ba4.db",
+  "last_updated": 1743796485.455324,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

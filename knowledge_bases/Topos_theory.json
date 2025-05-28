@@ -1,0 +1,14 @@
+{
+  "kb_id": "e5d3f393-7654-428f-bc6a-d514c50b03e8",
+  "name": "Topos theory",
+  "content": "In mathematics, a topos (US: /\u02c8t\u0252p\u0252s/, UK: /\u02c8to\u028apo\u028as, \u02c8to\u028ap\u0252s/; plural topoi /\u02c8t\u0252p\u0254\u026a/ or /\u02c8to\u028ap\u0254\u026a/, or toposes) is a category that behaves like the category of sheaves of sets on a topological space (or more generally, on a site). Topoi behave much like the category of sets and possess a notion of localization; they are a direct generalization of point-set topology.[1] The Grothendieck topoi find applications in algebraic geometry, and more general elementary topoi are used in logic. The mathematical field that studies topoi is called topos theory. Since the introduction of sheaves into mathematics in the 1940s, a major theme has been to study a space by studying sheaves on a space. This idea was expounded by Alexander Grothendieck by introducing the notion of a \"topos\". The main utility of this notion is in the abundance of situations in mathematics where topological heuristics are very effective, but an honest topological space is lacking; it is sometimes possible to find a topos formalizing the heuristic. An important example of this programmatic idea is the \u00e9tale topos of a scheme. Another illustration of the capability of Grothendieck topoi to incarnate the \u201cessence\u201d of different mathematical situations is given by their use as \"bridges\" for connecting theories which, albeit written in possibly very different languages, share a common mathematical content.[2][3]",
+  "url": "https://en.wikipedia.org/wiki/Topos",
+  "embedding": null,
+  "db_path": "kb_databases/topos_theory_52959649.db",
+  "last_updated": 1743796485.521784,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

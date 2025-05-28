@@ -1,0 +1,14 @@
+{
+  "kb_id": "d8837632-ded3-4abb-a82a-4eaf02f3a618",
+  "name": "History of computer science",
+  "content": "The history of computer science began long before the modern discipline of computer science, usually appearing in forms like mathematics or physics. Developments in previous centuries alluded to the discipline that we now know as computer science.[1] This progression, from mechanical inventions and mathematical theories towards modern computer concepts and machines, led to the development of a major academic field, massive technological advancement across the Western world, and the basis of a massive worldwide trade and culture.[2] The earliest known tool for use in computation was the abacus, developed in the period between 2700 and 2300 BCE in Sumer.[3] The Sumerians' abacus consisted of a table of successive columns which delimited the successive orders of magnitude of their sexagesimal number system.[4]: 11 Its original style of usage was by lines drawn in sand with pebbles. Abaci of a more modern design are still used as calculation tools today, such as the Chinese abacus.[5] In the 5th century BC in ancient India, the grammarian P\u0101\u1e47ini formulated the grammar of Sanskrit in 3959 rules known as the Ashtadhyayi which was highly systematized and technical. Panini used metarules, transformations and recursions.[6]",
+  "url": "https://en.wikipedia.org/wiki/History_of_computer_science",
+  "embedding": null,
+  "db_path": "kb_databases/history_of_computer_science_55d9d8db.db",
+  "last_updated": 1743796484.9770691,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

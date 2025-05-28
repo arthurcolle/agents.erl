@@ -1,0 +1,14 @@
+{
+  "kb_id": "0d9f7c96-cfb1-4af5-8cde-1b4c4df3c27e",
+  "name": "Taxonomic classification",
+  "content": "In biology, taxonomy (from Ancient Greek \u03c4\u03ac\u03be\u03b9\u03c2 (taxis) 'arrangement' and -\u03bd\u03bf\u03bc\u03af\u03b1 (-nomia) 'method') is the scientific study of naming, defining (circumscribing) and classifying groups of biological organisms based on shared characteristics. Organisms are grouped into taxa (singular: taxon), and these groups are given a taxonomic rank; groups of a given rank can be aggregated to form a more inclusive group of higher rank, thus creating a taxonomic hierarchy. The principal ranks in modern use are domain, kingdom, phylum (division is sometimes used in botany in place of phylum), class, order, family, genus, and species. The Swedish botanist Carl Linnaeus is regarded as the founder of the current system of taxonomy, as he developed a ranked system known as Linnaean taxonomy for categorizing organisms and binomial nomenclature for naming organisms. With advances in the theory, data and analytical technology of biological systematics, the Linnaean system has transformed into a system of modern biological classification intended to reflect the evolutionary relationships among organisms, both living and extinct.",
+  "url": "https://en.wikipedia.org/wiki/Taxonomic_classification",
+  "embedding": null,
+  "db_path": "kb_databases/taxonomic_classification_a230ecba.db",
+  "last_updated": 1743796485.0969758,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

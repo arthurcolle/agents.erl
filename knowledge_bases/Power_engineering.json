@@ -1,0 +1,14 @@
+{
+  "kb_id": "6dd0d1c7-13fb-4672-bf62-860b4bc276ad",
+  "name": "Power engineering",
+  "content": "Power engineering, also called power systems engineering, is a subfield of electrical engineering that deals with the generation, transmission, distribution, and utilization of electric power, and the electrical apparatus connected to such systems. Although much of the field is concerned with the problems of three-phase AC power \u2013 the standard for large-scale power transmission and distribution across the modern world \u2013 a significant fraction of the field is concerned with the conversion between AC and DC power and the development of specialized power systems such as those used in aircraft or for electric railway networks. Power engineering draws the majority of its theoretical base from electrical engineering and mechanical engineering. Electricity became a subject of scientific interest in the late 17th century. Over the next two centuries a number of important discoveries were made including the incandescent light bulb and the voltaic pile.[1][2] Probably the greatest discovery with respect to power engineering came from Michael Faraday who in 1831 discovered that a change in magnetic flux induces an electromotive force in a loop of wire\u2014a principle known as electromagnetic induction that helps explain how generators and transformers work.[3]",
+  "url": "https://en.wikipedia.org/wiki/Power_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/power_engineering_86726b55.db",
+  "last_updated": 1743796484.757803,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

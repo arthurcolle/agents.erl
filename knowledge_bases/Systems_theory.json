@@ -1,0 +1,14 @@
+{
+  "kb_id": "a4a7776f-26a9-4092-9adc-7fedf99adbc8",
+  "name": "Systems theory",
+  "content": "Collective intelligence Collective action Self-organized criticality Herd mentality Phase transition Agent-based modelling Synchronization Ant colony optimization Particle swarm optimization Swarm behaviour Social network analysis Small-world networks Centrality Motifs Graph theory Scaling Robustness Systems biology Dynamic networks Evolutionary computation Genetic algorithms Genetic programming Artificial life Machine learning Evolutionary developmental biology Artificial intelligence Evolutionary robotics Reaction\u2013diffusion systems Partial differential equations Dissipative structures Percolation Cellular automata Spatial ecology Self-replication Conversation theory Entropy Feedback Goal-oriented Homeostasis Information theory Operationalization Second-order cybernetics Self-reference System dynamics Systems science Systems thinking Sensemaking Variety Ordinary differential equations Phase space Attractors Population dynamics Chaos Multistability Bifurcation Rational choice theory Bounded rationality",
+  "url": "https://en.wikipedia.org/wiki/Systems_theory",
+  "embedding": null,
+  "db_path": "kb_databases/systems_theory_26e27d20.db",
+  "last_updated": 1743796485.5142028,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

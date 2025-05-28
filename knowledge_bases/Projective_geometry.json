@@ -1,0 +1,14 @@
+{
+  "kb_id": "edfdfbf4-b8b0-45e7-ab55-7c0334933f14",
+  "name": "Projective geometry",
+  "content": "In mathematics, projective geometry is the study of geometric properties that are invariant with respect to projective transformations. This means that, compared to elementary Euclidean geometry, projective geometry has a different setting (projective space) and a selective set of basic geometric concepts. The basic intuitions are that projective space has more points than Euclidean space, for a given dimension, and that geometric transformations are permitted that transform the extra points (called \"points at infinity\") to Euclidean points, and vice versa. Properties meaningful for projective geometry are respected by this new idea of transformation, which is more radical in its effects than can be expressed by a transformation matrix and translations (the affine transformations). The first issue for geometers is what kind of geometry is adequate for a novel situation. Unlike in Euclidean geometry, the concept of an angle does not apply in projective geometry, because no measure of angles is invariant with respect to projective transformations, as is seen in perspective drawing from a changing perspective. One source for projective geometry was indeed the theory of perspective. Another difference from elementary geometry is the way in which parallel lines can be said to meet in a point at infinity, once the concept is translated into projective geometry's terms. Again this notion has an intuitive basis, such as railway tracks meeting at the horizon in a perspective drawing. See Projective plane for the basics of projective geometry in two dimensions.",
+  "url": "https://en.wikipedia.org/wiki/Projective_geometry",
+  "embedding": null,
+  "db_path": "kb_databases/projective_geometry_4e5be6ac.db",
+  "last_updated": 1743796485.086255,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

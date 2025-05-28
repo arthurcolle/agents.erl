@@ -1,0 +1,14 @@
+{
+  "kb_id": "a3c78e47-ba31-4ec6-8637-56e3b2d9ee1f",
+  "name": "Euclidean geometry",
+  "content": "Euclidean geometry is a mathematical system attributed to ancient Greek mathematician Euclid, which he described in his textbook on geometry, Elements. Euclid's approach consists in assuming a small set of intuitively appealing axioms (postulates) and deducing many other propositions (theorems) from these. Although many of Euclid's results had been stated earlier,[1] Euclid was the first to organize these propositions into a logical system in which each result is proved from axioms and previously proved theorems.[2] The Elements begins with plane geometry, still taught in secondary school (high school) as the first axiomatic system and the first examples of mathematical proofs. It goes on to the solid geometry of three dimensions. Much of the Elements states results of what are now called algebra and number theory, explained in geometrical language.[1] For more than two thousand years, the adjective \"Euclidean\" was unnecessary because Euclid's axioms seemed so intuitively obvious (with the possible exception of the parallel postulate) that theorems proved from them were deemed absolutely true, and thus no other sorts of geometry were possible. Today, however, many other self-consistent non-Euclidean geometries are known, the first ones having been discovered in the early 19th century. An implication of Albert Einstein's theory of general relativity is that physical space itself is not Euclidean, and Euclidean space is a good approximation for it only over short distances (relative to the strength of the gravitational field).[3]",
+  "url": "https://en.wikipedia.org/wiki/Euclidean_geometry",
+  "embedding": null,
+  "db_path": "kb_databases/euclidean_geometry_d30a3a51.db",
+  "last_updated": 1743796485.0952718,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

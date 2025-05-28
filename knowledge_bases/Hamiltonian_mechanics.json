@@ -1,0 +1,14 @@
+{
+  "kb_id": "ae2daa56-ba86-46bc-b054-69b63cc732eb",
+  "name": "Hamiltonian mechanics",
+  "content": "In physics, Hamiltonian mechanics is a reformulation of Lagrangian mechanics that emerged in 1833. Introduced by Sir William Rowan Hamilton,[1] Hamiltonian mechanics replaces (generalized) velocities q \u02d9 i {\\displaystyle {\\dot {q}}^{i}} used in Lagrangian mechanics with (generalized) momenta. Both theories provide interpretations of classical mechanics and describe the same physical phenomena. Hamiltonian mechanics has a close relationship with geometry (notably, symplectic geometry and Poisson structures) and serves as a link between classical and quantum mechanics. Let ( M , L ) {\\displaystyle (M,{\\mathcal {L}})} be a mechanical system with configuration space M {\\displaystyle M} and smooth Lagrangian L . {\\displaystyle {\\mathcal {L}}.} Select a standard coordinate system ( q , q \u02d9 ) {\\displaystyle ({\\boldsymbol {q}},{\\boldsymbol {\\dot {q}}})} on M . {\\displaystyle M.} The quantities p i ( q , q \u02d9 , t ) = def \u2202 L / \u2202 q \u02d9 i {\\displaystyle \\textstyle p_{i}({\\boldsymbol {q}},{\\boldsymbol {\\dot {q}}},t)~{\\stackrel {\\text{def}}{=}}~{\\partial {\\mathcal {L}}}/{\\partial {\\dot {q}}^{i}}} are called momenta. (Also generalized momenta, conjugate momenta, and canonical momenta). For a time instant t , {\\displaystyle t,} the Legendre transformation of L {\\displaystyle {\\mathcal {L}}} is defined as the map ( q , q \u02d9 ) \u2192 ( p , q ) {\\displaystyle ({\\boldsymbol {q}},{\\boldsymbol {\\dot {q}}})\\to \\left({\\boldsymbol {p}},{\\boldsymbol {q}}\\right)} which is assumed to have a smooth inverse ( p , q ) \u2192 ( q , q \u02d9 ) . {\\displaystyle ({\\boldsymbol {p}},{\\boldsymbol {q}})\\to ({\\boldsymbol {q}},{\\boldsymbol {\\dot {q}}}).} For a system with n {\\displaystyle n} degrees of freedom, the Lagrangian mechanics defines the energy function E L ( q , q \u02d9 , t ) = def \u2211 i = 1 n q \u02d9 i \u2202 L \u2202 q \u02d9 i \u2212 L . {\\displaystyle E_{\\mathcal {L}}({\\boldsymbol {q}},{\\boldsymbol {\\dot {q}}},t)\\,{\\stackrel {\\text{def}}{=}}\\,\\sum _{i=1}^{n}{\\dot {q}}^{i}{\\frac {\\partial {\\mathcal {L}}}{\\partial {\\dot {q}}^{i}}}-{\\mathcal {L}}.}",
+  "url": "https://en.wikipedia.org/wiki/Hamiltonian_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/hamiltonian_mechanics_ef82eeb2.db",
+  "last_updated": 1743796485.271286,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

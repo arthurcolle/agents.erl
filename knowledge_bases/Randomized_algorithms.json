@@ -1,0 +1,14 @@
+{
+  "kb_id": "ce690ead-b681-496e-82a3-b94d6b5939a6",
+  "name": "Randomized algorithms",
+  "content": "A randomized algorithm is an algorithm that employs a degree of randomness as part of its logic or procedure. The algorithm typically uses uniformly random bits as an auxiliary input to guide its behavior, in the hope of achieving good performance in the \"average case\" over all possible choices of random determined by the random bits; thus either the running time, or the output (or both) are random variables. There is a distinction between algorithms that use the random input so that they always terminate with the correct answer, but where the expected running time is finite (Las Vegas algorithms, for example Quicksort[1]), and algorithms which have a chance of producing an incorrect result (Monte Carlo algorithms, for example the Monte Carlo algorithm for the MFAS problem[2]) or fail to produce a result either by signaling a failure or failing to terminate. In some cases, probabilistic algorithms are the only practical means of solving a problem.[3] In common practice, randomized algorithms are approximated using a pseudorandom number generator in place of a true source of random bits; such an implementation may deviate from the expected theoretical behavior and mathematical guarantees which may depend on the existence of an ideal true random number generator.",
+  "url": "https://en.wikipedia.org/wiki/Randomized_algorithms",
+  "embedding": null,
+  "db_path": "kb_databases/randomized_algorithms_bf1e2a3e.db",
+  "last_updated": 1743796484.7608,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "03934533-db29-4cea-957a-acf4dc8ba3f3",
+  "name": "Interaction design",
+  "content": "Interaction design, often abbreviated as IxD, is \"the practice of designing interactive digital products, environments, systems, and services.\"[1]: xxvii, 30 While interaction design has an interest in form (similar to other design fields), its main area of focus rests on behavior.[1]: xxvii, 30 Rather than analyzing how things are, interaction design synthesizes and imagines things as they could be. This element of interaction design is what characterizes IxD as a design field, as opposed to a science or engineering field.[1] Interaction design borrows from a wide range of fields like psychology, human-computer interaction, information architecture, and user research to create designs that are tailored to the needs and preferences of users. This involves understanding the context in which the product will be used, identifying user goals and behaviors, and developing design solutions that are responsive to user needs and expectations. While disciplines such as software engineering have a heavy focus on designing for technical stakeholders, interaction design is focused on meeting the needs and optimizing the experience of users, within relevant technical or business constraints.[1]: xviii",
+  "url": "https://en.wikipedia.org/wiki/Interaction_design",
+  "embedding": null,
+  "db_path": "kb_databases/interaction_design_b1c743af.db",
+  "last_updated": 1743796485.334164,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

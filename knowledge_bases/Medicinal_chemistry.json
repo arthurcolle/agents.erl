@@ -1,0 +1,14 @@
+{
+  "kb_id": "4109bccc-8d78-4358-abee-cba54b52dca4",
+  "name": "Medicinal chemistry",
+  "content": "Medicinal or pharmaceutical chemistry is a scientific discipline at the intersection of chemistry and pharmacy involved with designing and developing pharmaceutical drugs. Medicinal chemistry involves the identification, synthesis and development of new chemical entities suitable for therapeutic use. It also includes the study of existing drugs, their biological properties, and their quantitative structure-activity relationships (QSAR).[1][2] Medicinal chemistry is a highly interdisciplinary science combining organic chemistry with biochemistry, computational chemistry, pharmacology, molecular biology, statistics, and physical chemistry. Compounds used as medicines are most often organic compounds, which are often divided into the broad classes of small organic molecules (e.g., atorvastatin, fluticasone, clopidogrel) and \"biologics\" (infliximab, erythropoietin, insulin glargine), the latter of which are most often medicinal preparations of proteins (natural and recombinant antibodies, hormones etc.). Medicines can also be inorganic and organometallic compounds, commonly referred to as metallodrugs (e.g., platinum, lithium and gallium-based agents such as cisplatin, lithium carbonate and gallium nitrate, respectively). The discipline of Medicinal Inorganic Chemistry investigates the role of metals in medicine metallotherapeutics, which involves the study and treatment of diseases and health conditions associated with inorganic metals in biological systems. There are several metallotherapeutics approved for the treatment of cancer (e.g., contain Pt, Ru, Gd, Ti, Ge, V, and Ga), antimicrobials (e.g., Ag, Cu, and Ru), diabetes (e.g., V and Cr), broad-spectrum antibiotic (e.g., Bi), bipolar disorder (e.g., Li).[3][4] Other areas of study include: metallomics, genomics, proteomics, diagnostic agents (e.g., MRI: Gd, Mn; X-ray: Ba, I) and radiopharmaceuticals (e.g., 99mTc for diagnostics, 186Re for therapeutics).",
+  "url": "https://en.wikipedia.org/wiki/Medicinal_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/medicinal_chemistry_00938871.db",
+  "last_updated": 1743796485.531981,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "2b939532-56cb-46d3-b146-21a29782b5d7",
+  "name": "Helioseismology",
+  "content": "Helioseismology is the study of the structure and dynamics of the Sun through its oscillations. These are principally caused by sound waves that are continuously driven and damped by convection near the Sun's surface. It is similar to geoseismology, or asteroseismology, which are respectively the studies of the Earth or stars through their oscillations. While the Sun's oscillations were first detected in the early 1960s, it was only in the mid-1970s that it was realized that the oscillations propagated throughout the Sun and could allow scientists to study the Sun's deep interior. The term was coined by Douglas Gough in the 90s. The modern field is separated into global helioseismology, which studies the Sun's resonant modes directly,[1] and local helioseismology, which studies the propagation of the component waves near the Sun's surface.[2] Helioseismology has contributed to a number of scientific breakthroughs. The most notable was to show that the anomaly in the predicted neutrino flux from the Sun could not be caused by flaws in stellar models and must instead be a problem of particle physics. The so-called solar neutrino problem was ultimately resolved by neutrino oscillations.[3][4][5] The experimental discovery of neutrino oscillations was recognized by the 2015 Nobel Prize for Physics.[6] Helioseismology also allowed accurate measurements of the quadrupole (and higher-order) moments of the Sun's gravitational potential,[7][8][9] which are consistent with General Relativity. The first helioseismic calculations of the Sun's internal rotation profile showed a rough separation into a rigidly-rotating core and differentially-rotating envelope. The boundary layer is now known as the tachocline[10] and is thought to be a key component for the solar dynamo.[11] Although it roughly coincides with the base of the solar convection zone \u2014 also inferred through helioseismology \u2014 it is conceptually distinct, being a boundary layer in which there is a meridional flow connected with the convection zone and driven by the interplay between baroclinicity and Maxwell stresses.[12]",
+  "url": "https://en.wikipedia.org/wiki/Helioseismology",
+  "embedding": null,
+  "db_path": "kb_databases/helioseismology_6a5e1969.db",
+  "last_updated": 1743796485.517183,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "1c8d5daa-9f06-489b-8e0a-2d120bc26c68",
+  "name": "Ring theory",
+  "content": "Ring homomorphisms Algebraic structures Related structures Algebraic number theory Noncommutative algebraic geometry Free algebra Clifford algebra In algebra, ring theory is the study of rings, algebraic structures in which addition and multiplication are defined and have similar properties to those operations defined for the integers. Ring theory studies the structure of rings; their representations, or, in different language, modules; special classes of rings (group rings, division rings, universal enveloping algebras); related structures like rngs; as well as an array of properties that prove to be of interest both within the theory itself and for its applications, such as homological properties and polynomial identities. Commutative rings are much better understood than noncommutative ones. Algebraic geometry and algebraic number theory, which provide many natural examples of commutative rings, have driven much of the development of commutative ring theory, which is now, under the name of commutative algebra, a major area of modern mathematics. Because these three fields (algebraic geometry, algebraic number theory and commutative algebra) are so intimately connected it is usually difficult and meaningless to decide which field a particular result belongs to. For example, Hilbert's Nullstellensatz is a theorem which is fundamental for algebraic geometry, and is stated and proved in terms of commutative algebra. Similarly, Fermat's Last Theorem is stated in terms of elementary arithmetic, which is a part of commutative algebra, but its proof involves deep results of both algebraic number theory and algebraic geometry.",
+  "url": "https://en.wikipedia.org/wiki/Ring_theory",
+  "embedding": null,
+  "db_path": "kb_databases/ring_theory_4ef27b5c.db",
+  "last_updated": 1743796485.0209951,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

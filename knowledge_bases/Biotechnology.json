@@ -1,0 +1,14 @@
+{
+  "kb_id": "9aa26c54-91aa-4d83-9d77-c899af9d2bef",
+  "name": "Biotechnology",
+  "content": "Biotechnology is a multidisciplinary field that involves the integration of natural sciences and engineering sciences in order to achieve the application of organisms and parts thereof for products and services.[1] Specialists in the field are known as biotechnologists. The term biotechnology was first used by K\u00e1roly Ereky in 1919[2] to refer to the production of products from raw materials with the aid of living organisms. The core principle of biotechnology involves harnessing biological systems and organisms, such as bacteria, yeast, and plants, to perform specific tasks or produce valuable substances. Biotechnology had a significant impact on many areas of society, from medicine to agriculture to environmental science. One of the key techniques used in biotechnology is genetic engineering, which allows scientists to modify the genetic makeup of organisms to achieve desired outcomes. This can involve inserting genes from one organism into another, and consequently, create new traits or modifying existing ones.[3]",
+  "url": "https://en.wikipedia.org/wiki/Biotechnology",
+  "embedding": null,
+  "db_path": "kb_databases/biotechnology_8a07f2e2.db",
+  "last_updated": 1743796484.805652,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

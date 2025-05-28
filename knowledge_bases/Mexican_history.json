@@ -1,0 +1,14 @@
+{
+  "kb_id": "c94b42ac-0eea-4233-a81b-0bcebc02cf11",
+  "name": "Mexican history",
+  "content": "The history of Mexico spans more than three millennia, beginning with the early settlement over 13,000 years ago. Central and southern Mexico, known as Mesoamerica, saw the rise of complex civilizations that developed glyphic writing systems to record political histories and conquests. The Spanish conquest of the Aztec Empire in the early 16th century established New Spain, bringing Spanish rule, Christianity, and European influences. Mexico gained independence from Spain in 1821, after a prolonged struggle marked by the Mexican War of Independence. The country faced numerous challenges in the 19th century, including regional conflicts, caudillo power struggles, the Mexican\u2013American War, and foreign interventions like the French invasion. Efforts at modernization during La Reforma included promoting civil liberties and the separation of church and state, but the country was still beset by internal strife and external threats, including the Second Mexican Empire. The late 19th-century Porfiriato era brought economic growth but also authoritarianism and social inequality, which eventually fueled the Mexican Revolution in 1910. The revolution led to significant social and political changes, with the emergence of the Institutional Revolutionary Party (PRI) as the dominant force. Throughout the 20th century, Mexico implemented land reforms, nationalized key industries, and expanded social welfare, but these achievements were marred by corruption, violence, and economic crises.",
+  "url": "https://en.wikipedia.org/wiki/History_of_Mexico",
+  "embedding": null,
+  "db_path": "kb_databases/mexican_history_1c44dbed.db",
+  "last_updated": 1743796485.075856,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

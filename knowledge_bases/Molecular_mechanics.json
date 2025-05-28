@@ -1,0 +1,14 @@
+{
+  "kb_id": "cd90da79-18bb-414a-ac0e-ad574ebc7eeb",
+  "name": "Molecular mechanics",
+  "content": "Molecular mechanics uses classical mechanics to model molecular systems. The Born\u2013Oppenheimer approximation is assumed valid and the potential energy of all systems is calculated as a function of the nuclear coordinates using force fields. Molecular mechanics can be used to study molecule systems ranging in size and complexity from small to large biological systems or material assemblies with many thousands to millions of atoms. All-atomistic molecular mechanics methods have the following properties: Variants on this theme are possible. For example, many simulations have historically used a united-atom representation in which each terminal methyl group or intermediate methylene unit was considered one particle, and large protein systems are commonly simulated using a bead model that assigns two to four particles per amino acid. The following functional abstraction, termed an interatomic potential function or force field in chemistry, calculates the molecular system's potential energy (E) in a given conformation as a sum of individual energy terms.",
+  "url": "https://en.wikipedia.org/wiki/Molecular_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/molecular_mechanics_628c3de2.db",
+  "last_updated": 1743796485.0838568,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

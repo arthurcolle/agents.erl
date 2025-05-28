@@ -1,0 +1,14 @@
+{
+  "kb_id": "c6f5b535-940e-4278-8f3b-8da7ba8164c9",
+  "name": "Information systems",
+  "content": "An information system (IS) is a formal, sociotechnical, organizational system designed to collect, process, store, and distribute information.[1] From a sociotechnical perspective, information systems comprise four components: task, people, structure (or roles), and technology.[2] Information systems can be defined as an integration of components for collection, storage and processing of data, comprising digital products that process data to facilitate decision making[3] and the data being used to provide information and contribute to knowledge. A computer information system is a system, which consists of people and computers that process or interpret information.[4][5][6][7] The term is also sometimes used to simply refer to a computer system with software installed. \"Information systems\" is also an academic field of study about systems with a specific reference to information and the complementary networks of computer hardware and software that people and organizations use to collect, filter, process, create and also distribute data.[8] An emphasis is placed on an information system having a definitive boundary, users, processors, storage, inputs, outputs and the aforementioned communication networks.[9]",
+  "url": "https://en.wikipedia.org/wiki/Information_systems",
+  "embedding": null,
+  "db_path": "kb_databases/information_systems_204ed3e8.db",
+  "last_updated": 1743796485.368788,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "c530e86e-b0e0-4829-b5f8-4344b38bbc5f",
+  "name": "Electronic engineering",
+  "content": "Electronic engineering is a sub-discipline of electrical engineering that emerged in the early 20th century and is distinguished by the additional use of active components such as semiconductor devices to amplify and control electric current flow. Previously electrical engineering only used passive devices such as mechanical switches, resistors, inductors, and capacitors. It covers fields such as analog electronics, digital electronics, consumer electronics, embedded systems and power electronics. It is also involved in many related fields, for example solid-state physics, radio engineering, telecommunications, control systems, signal processing, systems engineering, computer engineering, instrumentation engineering, electric power control, photonics and robotics. The Institute of Electrical and Electronics Engineers (IEEE) is one of the most important professional bodies for electronics engineers in the US; the equivalent body in the UK is the Institution of Engineering and Technology (IET). The International Electrotechnical Commission (IEC) publishes electrical standards including those for electronics engineering.",
+  "url": "https://en.wikipedia.org/wiki/Electronic_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/electronic_engineering_a82cea44.db",
+  "last_updated": 1743796484.75027,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

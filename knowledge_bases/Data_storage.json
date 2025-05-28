@@ -1,0 +1,14 @@
+{
+  "kb_id": "9edf5119-c48e-49ac-ad14-077038aa9cb8",
+  "name": "Data storage",
+  "content": "Data storage is the recording (storing) of information (data) in a storage medium. Handwriting, phonographic recording, magnetic tape, and optical discs are all examples of storage media. Biological molecules such as RNA and DNA are considered by some as data storage.[1][2] Recording may be accomplished with virtually any form of energy. Electronic data storage requires electrical power to store and retrieve data. Data storage in a digital, machine-readable medium is sometimes called digital data. Computer data storage is one of the core functions of a general-purpose computer. Electronic documents can be stored in much less space than paper documents.[3] Barcodes and magnetic ink character recognition (MICR) are two ways of recording machine-readable data on paper. A recording medium is a physical material that holds information. Newly created information is distributed and can be stored in four storage media\u2013print, film, magnetic, and optical\u2013and seen or heard in four information flows\u2013telephone, radio and TV, and the Internet[4] as well as being observed directly. Digital information is stored on electronic media in many different recording formats.",
+  "url": "https://en.wikipedia.org/wiki/Data_storage",
+  "embedding": null,
+  "db_path": "kb_databases/data_storage_dc21b082.db",
+  "last_updated": 1743796485.502607,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

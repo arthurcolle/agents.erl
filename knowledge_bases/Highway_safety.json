@@ -1,0 +1,14 @@
+{
+  "kb_id": "c93feabf-7e89-47d8-9790-218341b981ab",
+  "name": "Highway safety",
+  "content": "Road traffic safety refers to the methods and measures, such as traffic calming, to prevent road users from being killed or seriously injured. Typical road users include pedestrians, cyclists, motorists, passengers of vehicles, and passengers of on-road public transport, mainly buses and trams. Best practices in modern road safety strategy: The basic strategy of a Safe System approach is to ensure that in the event of a crash, the impact energies remain below the threshold likely to produce either death or serious injury. This threshold will vary from crash scenario to crash scenario, depending upon the level of protection offered to the road users involved. For example, the chances of survival for an unprotected pedestrian hit by a vehicle diminish rapidly at speeds greater than 30 km/h, whereas for a properly restrained motor vehicle occupant the critical impact speed is 50 km/h (for side impact crashes) and 70 km/h (for head-on crashes). As sustainable solutions for classes of road safety have not been identified, particularly low-traffic rural and remote roads, a hierarchy of control should be applied, similar to classifications used to improve occupational safety and health.[2] At the highest level is sustainable prevention of serious injury and death crashes, with sustainable requiring all key result areas to be considered. At the second level is real-time risk reduction, which involves providing users at severe risk with a specific warning to enable them to take mitigating action. The third level is about reducing the crash risk which involves applying the road-design standards and guidelines (such as from AASHTO), improving driver behavior and enforcement.[1] It is important to note that drivers' traffic behaviors are significantly influenced by their perceptions and attitudes.[3]",
+  "url": "https://en.wikipedia.org/wiki/Highway_safety",
+  "embedding": null,
+  "db_path": "kb_databases/highway_safety_c04026c9.db",
+  "last_updated": 1743796485.570163,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

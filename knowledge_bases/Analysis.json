@@ -1,0 +1,14 @@
+{
+  "kb_id": "ff532c57-c8f4-4805-96bc-04719c02443d",
+  "name": "Analysis",
+  "content": "Analysis is the branch of mathematics dealing with continuous functions, limits, and related theories, such as differentiation, integration, measure, infinite sequences, series, and analytic functions.[1][2] These theories are usually studied in the context of real and complex numbers and functions. Analysis evolved from calculus, which involves the elementary concepts and techniques of analysis. Analysis may be distinguished from geometry; however, it can be applied to any space of mathematical objects that has a definition of nearness (a topological space) or specific distances between objects (a metric space). Mathematical analysis formally developed in the 17th century during the Scientific Revolution,[3] but many of its ideas can be traced back to earlier mathematicians. Early results in analysis were implicitly present in the early days of ancient Greek mathematics. For instance, an infinite geometric sum is implicit in Zeno's paradox of the dichotomy.[4] (Strictly speaking, the point of the paradox is to deny that the infinite sum exists.) Later, Greek mathematicians such as Eudoxus and Archimedes made more explicit, but informal, use of the concepts of limits and convergence when they used the method of exhaustion to compute the area and volume of regions and solids.[5] The explicit use of infinitesimals appears in Archimedes' The Method of Mechanical Theorems, a work rediscovered in the 20th century.[6] In Asia, the Chinese mathematician Liu Hui used the method of exhaustion in the 3rd century CE to find the area of a circle.[7] From Jain literature, it appears that Hindus were in possession of the formulae for the sum of the arithmetic and geometric series as early as the 4th century BCE.[8] \u0100c\u0101rya Bhadrab\u0101hu uses the sum of a geometric series in his Kalpas\u016btra in 433 BCE.[9]",
+  "url": "https://en.wikipedia.org/wiki/Mathematical_analysis",
+  "embedding": null,
+  "db_path": "kb_databases/analysis_739e6d2a.db",
+  "last_updated": 1743796485.520459,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

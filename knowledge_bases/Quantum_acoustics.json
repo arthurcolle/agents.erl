@@ -1,0 +1,14 @@
+{
+  "kb_id": "e224a5be-9bf5-43c6-b63b-854bb1aba3a2",
+  "name": "Quantum acoustics",
+  "content": "In physics, quantum acoustics is the study of sound under conditions such that quantum mechanical effects are relevant. For most applications, classical mechanics are sufficient to accurately describe the physics of sound. However very high frequency sounds, or sounds made at very low temperatures may be subject to quantum effects. Quantum acoustics [1] can also refer to attempts within the scientific community to couple superconducting qubits to acoustic waves.[2] One particularly successful method involves coupling a superconducting qubit with a Surface Acoustic Wave (SAW) Resonator and placing these components on different substrates to achieve a higher signal to noise ratio as well as controlling the coupling strength of the components. This allows quantum experiments to verify that the phonons within the SAW Resonator are in quantum fock states by using Quantum tomography.[3] Similar attempts have been made by using bulk acoustic resonators.[4] One consequence of these developments is that it is possible to explore the properties of atoms with a much larger size than found conventionally by modelling them using a superconducting qubit coupled with a SAW Resonator.[5]",
+  "url": "https://en.wikipedia.org/wiki/Quantum_acoustics",
+  "embedding": null,
+  "db_path": "kb_databases/quantum_acoustics_f1a046a3.db",
+  "last_updated": 1743796485.172052,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

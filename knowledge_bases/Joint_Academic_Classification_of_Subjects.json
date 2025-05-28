@@ -1,0 +1,14 @@
+{
+  "kb_id": "3bae1dd3-989c-4785-9917-4f73c2febb11",
+  "name": "Joint Academic Classification of Subjects",
+  "content": "The Joint Academic Coding System (JACS) system was used by the Higher Education Statistics Agency (HESA) and the Universities and Colleges Admissions Service (UCAS) in the United Kingdom to classify academic subjects. It was replaced by the Higher Education Classification of Subjects (HECoS) and the Common Aggregation Hierarchy (CAH) for the 2019/20 academic year.[1] A JACS code for a single subject consists of a letter and three numbers. The letter represents the broad subject classification, e.g. F for physical sciences. The first number represents the principal subject area, e.g. F3 for physics, and subsequent numbers represent further details, similar to the Dewey Decimal System. The principal subject of physics, for example, is broken into 19 detailed subjects, represented by a letter plus three numbers: e.g., F300 represents physics, F330 environmental physics, and F331 atmospheric physics. HESA and UCAS used to operate two different (though similar) subject coding systems - HESAcode and Standard Classification of Academic Subjects (SCAS) respectively. In 1996 a joint project was launched to bring these two systems together to create a unified structure. A project team was established with two people from each of the two organizations. The project team became known as JACS since this was an acronym of their names (Jonathan Waller and Andy Youell from HESA, Clive Sillence and Sara Goodwins from UCAS).[1]",
+  "url": "https://en.wikipedia.org/wiki/Joint_Academic_Classification_of_Subjects",
+  "embedding": null,
+  "db_path": "kb_databases/joint_academic_classification_of_subjects_fdf96cf7.db",
+  "last_updated": 1743796484.965444,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

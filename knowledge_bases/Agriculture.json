@@ -1,0 +1,14 @@
+{
+  "kb_id": "7d9b48bc-f068-4726-9401-d5a1c5a1a9c2",
+  "name": "Agriculture",
+  "content": "Agriculture encompasses crop and livestock production, aquaculture, and forestry for food and non-food products.[1] Agriculture was a key factor in the rise of sedentary human civilization, whereby farming of domesticated species created food surpluses that enabled people to live in the cities. While humans started gathering grains at least 105,000 years ago, nascent farmers only began planting them around 11,500 years ago. Sheep, goats, pigs, and cattle were domesticated around 10,000 years ago. Plants were independently cultivated in at least 11 regions of the world. In the 20th century, industrial agriculture based on large-scale monocultures came to dominate agricultural output. As of 2021[update], small farms produce about one-third of the world's food, but large farms are prevalent.[2] The largest 1% of farms in the world are greater than 50 hectares (120 acres) and operate more than 70% of the world's farmland.[2] Nearly 40% of agricultural land is found on farms larger than 1,000 hectares (2,500 acres).[2] However, five of every six farms in the world consist of fewer than 2 hectares (4.9 acres), and take up only around 12% of all agricultural land.[2] Farms and farming greatly influence rural economics and greatly shape rural society, affecting both the direct agricultural workforce and broader businesses that support the farms and farming populations.",
+  "url": "https://en.wikipedia.org/wiki/Agriculture",
+  "embedding": null,
+  "db_path": "kb_databases/agriculture_8e54e9aa.db",
+  "last_updated": 1743796485.257065,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "0b7d321b-b2fa-43f2-b77f-60fdaaa07822",
+  "name": "Military weapons",
+  "content": "A weapon, arm, or armament is any implement or device that is used to deter, threaten, inflict physical damage, harm, or kill. Weapons are used to increase the efficacy and efficiency of activities such as hunting, crime (e.g., murder), law enforcement, self-defense, warfare, or suicide. In a broader context, weapons may be construed to include anything used to gain a tactical, strategic, material, or mental advantage over an adversary or enemy target. While ordinary objects such as rocks and bottles can be used as weapons, many objects are expressly designed for the purpose; these range from simple implements such as clubs and swords to complicated modern firearms, tanks, missiles and biological weapons. Something that has been repurposed, converted, or enhanced to become a weapon of war is termed weaponized, such as a weaponized virus or weaponized laser. The use of weapons has been a major driver of cultural evolution and human history up to today since weapons are a type of tool that is used to dominate and subdue autonomous agents such as animals and, by doing so, allow for an expansion of the cultural niche, while simultaneously other weapon users (i.e., agents such as humans, groups, and cultures) are able to adapt to the weapons of enemies by learning, triggering a continuous process of competitive technological, skill, and cognitive improvement (arms race).[1]",
+  "url": "https://en.wikipedia.org/wiki/Weapon",
+  "embedding": null,
+  "db_path": "kb_databases/military_weapons_f1b0d005.db",
+  "last_updated": 1743796485.513484,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

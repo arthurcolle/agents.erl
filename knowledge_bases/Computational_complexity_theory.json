@@ -1,0 +1,14 @@
+{
+  "kb_id": "ab6db60b-ccd5-4066-a137-f506109a3cba",
+  "name": "Computational complexity theory",
+  "content": "In theoretical computer science and mathematics, computational complexity theory focuses on classifying computational problems according to their resource usage, and explores the relationships between these classifications. A computational problem is a task solved by a computer. A computation problem is solvable by mechanical application of mathematical steps, such as an algorithm. A problem is regarded as inherently difficult if its solution requires significant resources, whatever the algorithm used. The theory formalizes this intuition, by introducing mathematical models of computation to study these problems and quantifying their computational complexity, i.e., the amount of resources needed to solve them, such as time and storage. Other measures of complexity are also used, such as the amount of communication (used in communication complexity), the number of gates in a circuit (used in circuit complexity) and the number of processors (used in parallel computing). One of the roles of computational complexity theory is to determine the practical limits on what computers can and cannot do. The P versus NP problem, one of the seven Millennium Prize Problems,[1] is part of the field of computational complexity.",
+  "url": "https://en.wikipedia.org/wiki/Computational_complexity_theory",
+  "embedding": null,
+  "db_path": "kb_databases/computational_complexity_theory_595a198e.db",
+  "last_updated": 1743796484.749794,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

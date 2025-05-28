@@ -1,0 +1,14 @@
+{
+  "kb_id": "808198fd-7e5c-4361-af13-cb54ca1a4b10",
+  "name": "Cuisine",
+  "content": "A cuisine is a style of cooking characterized by distinctive ingredients, techniques and dishes, and usually associated with a specific culture or geographic region. Regional food preparation techniques, customs and ingredients combine to enable dishes unique to a region.[1] Used in English since the late 18th century, the word cuisine\u2014meaning manner or style of cooking\u2014is borrowed from the French for 'style of cooking', as originally derived from Latin coquere, 'to cook'.[2] A cuisine is partly determined by ingredients that are available locally or through trade. Regional ingredients are developed and commonly contribute to a regional or national cuisine, such as Japanese rice in Japanese cuisine. Religious food laws can also exercise an influence on cuisine, such as Indian cuisine and Hinduism that is mainly lacto-vegetarian (avoiding meat and eggs) due to sacred animal worship. Sikhism in Punjabi cuisine, Buddhism in East Asian cuisine, Christianity in European cuisine,[3][4][5] Islam in Middle Eastern cuisine, and Judaism in Jewish and Israeli cuisine all exercise an influence on cuisine.",
+  "url": "https://en.wikipedia.org/wiki/Cuisine",
+  "embedding": null,
+  "db_path": "kb_databases/cuisine_1c2800d2.db",
+  "last_updated": 1743796485.573524,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "792df75c-3661-4bf7-884f-71b17e3b5105",
+  "name": "Quality control",
+  "content": "Quality control (QC) is a process by which entities review the quality of all factors involved in production. ISO 9000 defines quality control as \"a part of quality management focused on fulfilling quality requirements\".[1] This approach places emphasis on three aspects (enshrined in standards such as ISO 9001):[2][3] Inspection is a major component of quality control, where physical product is examined visually (or the end results of a service are analyzed). Product inspectors will be provided with lists and descriptions of unacceptable product defects such as cracks or surface blemishes for example.[3] Early stone tools such as anvils had no holes and were not designed as interchangeable parts. Mass production established processes for the creation of parts and system with identical dimensions and design, but these processes are not uniform and hence some customers were unsatisfied with the result. Quality control separates the act of testing products to uncover defects from the decision to allow or deny product release, which may be determined by fiscal constraints.[6] For contract work, particularly work awarded by government agencies, quality control issues are among the top reasons for not renewing a contract.[7]",
+  "url": "https://en.wikipedia.org/wiki/Quality_control",
+  "embedding": null,
+  "db_path": "kb_databases/quality_control_d7ddee08.db",
+  "last_updated": 1743796485.176532,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "481d9530-3654-4819-9d32-85a7effff623",
+  "name": "Petrochemistry",
+  "content": "Petrochemicals (sometimes abbreviated as petchems[1]) are the chemical products obtained from petroleum by refining. Some chemical compounds made from petroleum are also obtained from other fossil fuels, such as coal or natural gas, or renewable sources such as maize, palm fruit or sugar cane. The two most common petrochemical classes are olefins (including ethylene and propylene) and aromatics (including benzene, toluene and xylene isomers). Oil refineries produce olefins and aromatics by fluid catalytic cracking of petroleum fractions. Chemical plants produce olefins by steam cracking of natural gas liquids like ethane and propane. Aromatics are produced by catalytic reforming of naphtha. Olefins and aromatics are the building-blocks for a wide range of materials such as solvents, detergents, and adhesives. Olefins are the basis for polymers and oligomers used in plastics, resins, fibers, elastomers, lubricants, and gels.[2][3] Global ethylene production was 190 million tonnes and propylene was 120 million tonnes in 2019.[4] Aromatics production is approximately 70 million tonnes. The largest petrochemical industries are located in the United States and Western Europe; however, major growth in new production capacity is in the Middle East and Asia. There is substantial inter-regional petrochemical trade.",
+  "url": "https://en.wikipedia.org/wiki/Petrochemistry",
+  "embedding": null,
+  "db_path": "kb_databases/petrochemistry_8ea5ed06.db",
+  "last_updated": 1743796485.097451,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

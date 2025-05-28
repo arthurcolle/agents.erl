@@ -1,0 +1,14 @@
+{
+  "kb_id": "98e1dfc7-6c9e-4978-970f-12e57fbc5a68",
+  "name": "Electromagnetism",
+  "content": "In physics, electromagnetism is an interaction that occurs between particles with electric charge via electromagnetic fields. The electromagnetic force is one of the four fundamental forces of nature. It is the dominant force in the interactions of atoms and molecules. Electromagnetism can be thought of as a combination of electrostatics and magnetism, which are distinct but closely intertwined phenomena. Electromagnetic forces occur between any two charged particles. Electric forces cause an attraction between particles with opposite charges and repulsion between particles with the same charge, while magnetism is an interaction that occurs between charged particles in relative motion. These two forces are described in terms of electromagnetic fields. Macroscopic charged objects are described in terms of Coulomb's law for electricity and Amp\u00e8re's force law for magnetism; the Lorentz force describes microscopic charged particles. The electromagnetic force is responsible for many of the chemical and physical phenomena observed in daily life. The electrostatic attraction between atomic nuclei and their electrons holds atoms together. Electric forces also allow different atoms to combine into molecules, including the macromolecules such as proteins that form the basis of life. Meanwhile, magnetic interactions between the spin and angular momentum magnetic moments of electrons also play a role in chemical reactivity; such relationships are studied in spin chemistry. Electromagnetism also plays several crucial roles in modern technology: electrical energy production, transformation and distribution; light, heat, and sound production and detection; fiber optic and wireless communication; sensors; computation; electrolysis; electroplating; and mechanical motors and actuators.",
+  "url": "https://en.wikipedia.org/wiki/Electromagnetism",
+  "embedding": null,
+  "db_path": "kb_databases/electromagnetism_5290abaf.db",
+  "last_updated": 1743796485.53731,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

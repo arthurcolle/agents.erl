@@ -1,0 +1,14 @@
+{
+  "kb_id": "b4f67288-80d5-4b90-a053-2c3c5cf7df94",
+  "name": "Data mining",
+  "content": "Data mining is the process of extracting and finding patterns in massive data sets involving methods at the intersection of machine learning, statistics, and database systems.[1] Data mining is an interdisciplinary subfield of computer science and statistics with an overall goal of extracting information (with intelligent methods) from a data set and transforming the information into a comprehensible structure for further use.[1][2][3][4] Data mining is the analysis step of the \"knowledge discovery in databases\" process, or KDD.[5] Aside from the raw analysis step, it also involves database and data management aspects, data pre-processing, model and inference considerations, interestingness metrics, complexity considerations, post-processing of discovered structures, visualization, and online updating.[1] The term \"data mining\" is a misnomer because the goal is the extraction of patterns and knowledge from large amounts of data, not the extraction (mining) of data itself.[6] It also is a buzzword[7] and is frequently applied to any form of large-scale data or information processing (collection, extraction, warehousing, analysis, and statistics) as well as any application of computer decision support system, including artificial intelligence (e.g., machine learning) and business intelligence. Often the more general terms (large scale) data analysis and analytics\u2014or, when referring to actual methods, artificial intelligence and machine learning\u2014are more appropriate.",
+  "url": "https://en.wikipedia.org/wiki/Data_mining",
+  "embedding": null,
+  "db_path": "kb_databases/data_mining_d0ee2a28.db",
+  "last_updated": 1743796485.502552,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

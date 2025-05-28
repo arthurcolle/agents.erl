@@ -1,0 +1,14 @@
+{
+  "kb_id": "427d511d-9047-4f50-86f7-a115481dbc9e",
+  "name": "Organic chemistry",
+  "content": "Organic chemistry is a subdiscipline within chemistry involving the scientific study of the structure, properties, and reactions of organic compounds and organic materials, i.e., matter in its various forms that contain carbon atoms.[1] Study of structure determines their structural formula. Study of properties includes physical and chemical properties, and evaluation of chemical reactivity to understand their behavior. The study of organic reactions includes the chemical synthesis of natural products, drugs, and polymers, and study of individual organic molecules in the laboratory and via theoretical (in silico) study. The range of chemicals studied in organic chemistry includes hydrocarbons (compounds containing only carbon and hydrogen) as well as compounds based on carbon, but also containing other elements,[1][2][3] especially oxygen, nitrogen, sulfur, phosphorus (included in many biochemicals) and the halogens. Organometallic chemistry is the study of compounds containing carbon\u2013metal bonds.",
+  "url": "https://en.wikipedia.org/wiki/Organic_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/organic_chemistry_f15c9ddb.db",
+  "last_updated": 1743796485.095516,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

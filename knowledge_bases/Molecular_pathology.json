@@ -1,0 +1,14 @@
+{
+  "kb_id": "fd1e8e0f-3e33-48a9-bb33-644a219ba649",
+  "name": "Molecular pathology",
+  "content": "Molecular pathology is an emerging discipline within pathology which is focused in the study and diagnosis of disease through the examination of molecules within organs, tissues or bodily fluids.[1] Molecular pathology shares some aspects of practice with both anatomic pathology and clinical pathology, molecular biology, biochemistry, proteomics and genetics, and is sometimes considered a \"crossover\" discipline. It is multi-disciplinary in nature and focuses mainly on the sub-microscopic aspects of disease. A key consideration is that more accurate diagnosis is possible when the diagnosis is based on both the morphologic changes in tissues (traditional anatomic pathology) and on molecular testing.[2] It is a scientific discipline that encompasses the development of molecular and genetic approaches to the diagnosis and classification of human diseases, the design and validation of predictive biomarkers for treatment response and disease progression, the susceptibility of individuals of different genetic constitution to develop disorders.",
+  "url": "https://en.wikipedia.org/wiki/Molecular_pathology",
+  "embedding": null,
+  "db_path": "kb_databases/molecular_pathology_297e61e3.db",
+  "last_updated": 1743796485.566901,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

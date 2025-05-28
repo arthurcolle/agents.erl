@@ -1,0 +1,14 @@
+{
+  "kb_id": "b04aa229-cd4f-4bea-b7ae-fd1d14c16bf4",
+  "name": "Quantum technology",
+  "content": "Quantum engineering is the development of technology that capitalizes on the laws of quantum mechanics. This type of engineering uses quantum mechanics to develop technologies such as quantum sensors and quantum computers. Devices that rely on quantum mechanical effects such as lasers, MRI imagers and transistors have revolutionized many areas of technology. New technologies are being developed that rely on phenomena such as quantum coherence and on progress achieved in the last century in understanding and controlling atomic-scale systems. Quantum mechanical effects are used as a resource in novel technologies with far-reaching applications, including quantum sensors[1][2] and novel imaging techniques,[3] secure communication (quantum internet)[4][5][6] and quantum computing.[7][8][9][10][11] The field of quantum technology was explored in a 1997 book by Gerard J. Milburn.[12] It was then followed by a 2003 article by Milburn and Jonathan P. Dowling,[13] and a separate publication by David Deutsch on the same year.[14]",
+  "url": "https://en.wikipedia.org/wiki/Quantum_technology",
+  "embedding": null,
+  "db_path": "kb_databases/quantum_technology_c2eb4cb0.db",
+  "last_updated": 1743796485.3140259,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

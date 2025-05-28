@@ -1,0 +1,14 @@
+{
+  "kb_id": "221dba75-c2b3-4687-84ff-4cded1bcd6fd",
+  "name": "Meteorology",
+  "content": "Meteorology is a branch of the atmospheric sciences (which include atmospheric chemistry and physics) with a major focus on weather forecasting. The study of meteorology dates back millennia, though significant progress in meteorology did not begin until the 18th century. The 19th century saw modest progress in the field after weather observation networks were formed across broad regions. Prior attempts at prediction of weather depended on historical data. It was not until after the elucidation of the laws of physics, and more particularly in the latter half of the 20th century, the development of the computer (allowing for the automated solution of a great many modelling equations) that significant breakthroughs in weather forecasting were achieved. An important branch of weather forecasting is marine weather forecasting as it relates to maritime and coastal safety, in which weather effects also include atmospheric interactions with large bodies of water. Meteorological phenomena are observable weather events that are explained by the science of meteorology. Meteorological phenomena are described and quantified by the variables of Earth's atmosphere: temperature, air pressure, water vapour, mass flow, and the variations and interactions of these variables, and how they change over time. Different spatial scales are used to describe and predict weather on local, regional, and global levels.",
+  "url": "https://en.wikipedia.org/wiki/Meteorology",
+  "embedding": null,
+  "db_path": "kb_databases/meteorology_e41faa82.db",
+  "last_updated": 1743796485.145678,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

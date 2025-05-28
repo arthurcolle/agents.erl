@@ -1,0 +1,14 @@
+{
+  "kb_id": "bbe29a29-07e0-4d8f-b75f-7e7cb6975513",
+  "name": "Internal medicine",
+  "content": "Internal medicine, also known as general medicine in Commonwealth nations, is a medical specialty for medical doctors focused on the prevention, diagnosis, and treatment of diseases in adults. Medical practitioners of internal medicine are referred to as internists, or physicians in Commonwealth nations.[1] Internists possess specialized skills in managing patients with undifferentiated or multi-system disease processes. They provide care to both hospitalized (inpatient) and ambulatory (outpatient) patients and often contribute significantly to teaching and research. Internists are qualified physicians who have undergone postgraduate training in internal medicine, and should not be confused with \"interns\",[2] a term commonly used for a medical doctor who has obtained a medical degree but does not yet have a license to practice medicine unsupervised.[3][4] In the United States and Commonwealth nations, there is often confusion between internal medicine and family medicine, with people mistakenly considering them equivalent.",
+  "url": "https://en.wikipedia.org/wiki/Internal_medicine",
+  "embedding": null,
+  "db_path": "kb_databases/internal_medicine_3a6a87d8.db",
+  "last_updated": 1743796485.236934,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

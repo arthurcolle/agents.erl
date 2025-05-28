@@ -1,0 +1,14 @@
+{
+  "kb_id": "a6a591e0-7c4b-4505-ab2b-5b49f1f90317",
+  "name": "Integral geometry",
+  "content": "In mathematics, integral geometry is the theory of measures on a geometrical space invariant under the symmetry group of that space. In more recent times, the meaning has been broadened to include a view of invariant (or equivariant) transformations from the space of functions on one geometrical space to the space of functions on another geometrical space. Such transformations often take the form of integral transforms such as the Radon transform and its generalizations. Integral geometry as such first emerged as an attempt to refine certain statements of geometric probability theory. The early work of Luis Santal\u00f3[1] and Wilhelm Blaschke[2] was in this connection. It follows from the classic theorem of Crofton expressing the length of a plane curve as an expectation of the number of intersections with a random line. Here the word 'random' must be interpreted as subject to correct symmetry considerations. There is a sample space of lines, one on which the affine group of the plane acts. A probability measure is sought on this space, invariant under the symmetry group. If, as in this case, we can find a unique such invariant measure, then that solves the problem of formulating accurately what 'random line' means and expectations become integrals with respect to that measure. (Note for example that the phrase 'random chord of a circle' can be used to construct some paradoxes\u2014for example Bertrand's paradox.)",
+  "url": "https://en.wikipedia.org/wiki/Integral_geometry",
+  "embedding": null,
+  "db_path": "kb_databases/integral_geometry_5e31a1bf.db",
+  "last_updated": 1743796485.069706,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "15470faa-983c-4cb7-bd66-929311d6c207",
+  "name": "Fractional dynamics",
+  "content": "In the fields of dynamical systems and control theory, a fractional-order system is a dynamical system that can be modeled by a fractional differential equation containing derivatives of non-integer order.[1] Such systems are said to have fractional dynamics. Derivatives and integrals of fractional orders are used to describe objects that can be characterized by power-law nonlocality,[2] power-law long-range dependence or fractal properties. Fractional-order systems are useful in studying the anomalous behavior of dynamical systems in physics, electrochemistry, biology, viscoelasticity and chaotic systems.[1] A general dynamical system of fractional order can be written in the form[3] where H {\\displaystyle H} and G {\\displaystyle G} are functions of the fractional derivative operator D {\\displaystyle D} of orders \u03b1 1 , \u03b1 2 , \u2026 , \u03b1 m {\\displaystyle \\alpha _{1},\\alpha _{2},\\ldots ,\\alpha _{m}} and \u03b2 1 , \u03b2 2 , \u2026 , \u03b2 n {\\displaystyle \\beta _{1},\\beta _{2},\\ldots ,\\beta _{n}} and y i {\\displaystyle y_{i}} and u j {\\displaystyle u_{j}} are functions of time. A common special case of this is the linear time-invariant (LTI) system in one variable:",
+  "url": "https://en.wikipedia.org/wiki/Fractional_dynamics",
+  "embedding": null,
+  "db_path": "kb_databases/fractional_dynamics_26922eb1.db",
+  "last_updated": 1743796485.5579698,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

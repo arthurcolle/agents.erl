@@ -1,0 +1,14 @@
+{
+  "kb_id": "aa9d1b11-cc91-4de7-95f2-7db794a39aa1",
+  "name": "Biblical Hebrew",
+  "content": "Biblical Hebrew (Hebrew: \u05e2\u05b4\u05d1\u05b0\u05e8\u05b4\u05d9\u05ea \u05de\u05b4\u05e7\u05b0\u05e8\u05b8\u05d0\u05b4\u05d9\u05ea\u200e, romanized: \u02bfi\u1e07r\u00ee\u1e6f miqr\u0101\u02be\u00ee\u1e6f (Ivrit Miqra'it)\u24d8 or \u05dc\u05b0\u05e9\u05c1\u05d5\u05b9\u05df \u05d4\u05b7\u05de\u05b4\u05bc\u05e7\u05b0\u05e8\u05b8\u05d0\u200e, l\u0259\u0161\u00f4n ham-miqr\u0101\u02be (Leshon ha-Miqra)\u24d8), also called Classical Hebrew, is an archaic form of the Hebrew language, a language in the Canaanitic branch of the Semitic languages spoken by the Israelites in the area known as the Land of Israel, roughly west of the Jordan River and east of the Mediterranean Sea. The term \u02bfi\u1e07r\u00ee\u1e6f 'Hebrew' was not used for the language in the Hebrew Bible, which was referred to as \u05e9\u05b0\u05b9\u05e4\u05b7\u05ea \u05db\u05b0\u05bc\u05e0\u05b7\u05e2\u05b7\u05df\u200e \u015b\u0259p\u0304a\u1e6f k\u0259na\u02bfan 'language of Canaan' or \u05d9\u05b0\u05d4\u05d5\u05bc\u05d3\u05b4\u05d9\u05ea\u200e Y\u0259h\u00fb\u1e0f\u00ee\u1e6f 'Judean', but it was used in Koine Greek and Mishnaic Hebrew texts.[1] The Hebrew language is attested in inscriptions from about the 10th century BCE,[2][3] when it was almost identical to Phoenician and other Canaanite languages, and spoken Hebrew persisted through and beyond the Second Temple period, which ended in 70 CE with the siege of Jerusalem. It eventually developed into Mishnaic Hebrew, which was spoken until the 5th century.",
+  "url": "https://en.wikipedia.org/wiki/Biblical_Hebrew_language",
+  "embedding": null,
+  "db_path": "kb_databases/biblical_hebrew_bff9b136.db",
+  "last_updated": 1743796485.533932,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

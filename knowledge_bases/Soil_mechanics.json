@@ -1,0 +1,14 @@
+{
+  "kb_id": "d15ffb1d-95bf-4a10-b49e-431337600369",
+  "name": "Soil mechanics",
+  "content": "Soil mechanics is a branch of soil physics and applied mechanics that describes the behavior of soils. It differs from fluid mechanics and solid mechanics in the sense that soils consist of a heterogeneous mixture of fluids (usually air and water) and particles (usually clay, silt, sand, and gravel) but soil may also contain organic solids and other matter.[1][2][3][4] Along with rock mechanics, soil mechanics provides the theoretical basis for analysis in geotechnical engineering,[5] a subdiscipline of civil engineering, and engineering geology, a subdiscipline of geology. Soil mechanics is used to analyze the deformations of and flow of fluids within natural and man-made structures that are supported on or made of soil, or structures that are buried in soils.[6] Example applications are building and bridge foundations, retaining walls, dams, and buried pipeline systems. Principles of soil mechanics are also used in related disciplines such as geophysical engineering, coastal engineering, agricultural engineering, and hydrology.",
+  "url": "https://en.wikipedia.org/wiki/Soil_mechanics",
+  "embedding": null,
+  "db_path": "kb_databases/soil_mechanics_2602e658.db",
+  "last_updated": 1743796485.285762,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

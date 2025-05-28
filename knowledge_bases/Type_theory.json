@@ -1,0 +1,14 @@
+{
+  "kb_id": "5aec5c68-9377-490e-b86e-f156c11af25c",
+  "name": "Type theory",
+  "content": "In mathematics and theoretical computer science, a type theory is the formal presentation of a specific type system.[a] Type theory is the academic study of type systems. Some type theories serve as alternatives to set theory as a foundation of mathematics. Two influential type theories that have been proposed as foundations are: Most computerized proof-writing systems use a type theory for their foundation. A common one is Thierry Coquand's Calculus of Inductive Constructions. Type theory was created to avoid a paradox in a mathematical equation[b] based on naive set theory and formal logic. Russell's paradox (first described in Gottlob Frege's The Foundations of Arithmetic) is that, without proper axioms, it is possible to define the set of all sets that are not members of themselves; this set both contains itself and does not contain itself. Between 1902 and 1908, Bertrand Russell proposed various solutions to this problem. By 1908, Russell arrived at a ramified theory of types together with an axiom of reducibility, both of which appeared in Whitehead and Russell's Principia Mathematica published in 1910, 1912, and 1913. This system avoided contradictions suggested in Russell's paradox by creating a hierarchy of types and then assigning each concrete mathematical entity to a specific type. Entities of a given type were built exclusively of subtypes of that type,[c] thus preventing an entity from being defined using itself. This resolution of Russell's paradox is similar to approaches taken in other formal systems, such as Zermelo-Fraenkel set theory.[4]",
+  "url": "https://en.wikipedia.org/wiki/Type_theory",
+  "embedding": null,
+  "db_path": "kb_databases/type_theory_d3d903e1.db",
+  "last_updated": 1743796484.840362,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

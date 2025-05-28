@@ -1,0 +1,14 @@
+{
+  "kb_id": "2909a6f6-2a83-47d6-b79d-004163981f27",
+  "name": "Knowledge management",
+  "content": "Knowledge management (KM) is the set of procedures for producing, disseminating, utilizing, and overseeing an organization's knowledge and data. It alludes to a multidisciplinary strategy that maximizes knowledge utilization to accomplish organizational goals. Courses in business administration, information systems, management, libraries, and information science are all part of knowledge management (KM), a discipline that has been around since 1991. Information and media, computer science, public health, and public policy are some of the other disciplines that may contribute to KM research. Numerous academic institutions provide master's degrees specifically focused on knowledge management. As a component of their IT, human resource management, or business strategy departments, many large corporations, government agencies, and nonprofit organizations have resources devoted to internal knowledge management initiatives. These organizations receive KM guidance from a number of consulting firms. Organizational goals including enhanced performance, competitive advantage, innovation, sharing of lessons learned, integration, and ongoing organizational improvement are usually the focus of knowledge management initiatives. These initiatives are similar to organizational learning, but they can be differentiated by their increased emphasis on knowledge management as a strategic asset and information sharing. Organizational learning is facilitated by knowledge management. The setting of supply chain may be the most challenging situation for knowledge management since it involves several businesses without a hierarchy or ownership tie; some authors refer to this type of knowledge as transorganizational or interorganizational knowledge. industry 4.0 (or 4th industrial revolution) and digital transformation also add to that complexity, as new issues arise from the volume and speed of information flows and knowledge generation.",
+  "url": "https://en.wikipedia.org/wiki/Knowledge_management",
+  "embedding": null,
+  "db_path": "kb_databases/knowledge_management_2e715265.db",
+  "last_updated": 1743796485.508849,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

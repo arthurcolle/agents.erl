@@ -1,0 +1,14 @@
+{
+  "kb_id": "2eaaa4c1-848c-47a5-a532-d2804a6bae12",
+  "name": "Public safety",
+  "content": "Public security or public safety is the prevention of and protection from events that could endanger the safety and security of the public from significant danger, injury, or property damage. It is often conducted by a state government to ensure the protection of citizens, persons in their territory, organizations, and institutions against threats to their well-being, survival, and prosperity.[1] The public safety issues that a municipality, county, regional, or federal jurisdiction may handle include crimes (ranging from misdemeanors to felonies), structure fires, conflagrations, medical emergencies, mass-casualty incidents, disasters, terrorism, and other concerns. Public safety organizations are organizations that conduct public safety. They generally consist of emergency services and first responders such as law enforcement, fire services, emergency medical services, security forces, and military forces. They are often operated by a government, though some private public safety organizations exist where possible.",
+  "url": "https://en.wikipedia.org/wiki/Public_safety",
+  "embedding": null,
+  "db_path": "kb_databases/public_safety_23cb2c70.db",
+  "last_updated": 1743796485.5285969,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

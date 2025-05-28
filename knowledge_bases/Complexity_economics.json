@@ -1,0 +1,14 @@
+{
+  "kb_id": "89d60e6a-8a48-4aea-911c-b9add18f9ab1",
+  "name": "Complexity economics",
+  "content": "Empirical methods Prescriptive and policy Complexity economics is the application of complexity science to the problems of economics. It relaxes several common assumptions in economics, including general equilibrium theory. While it does not reject the existence of an equilibrium, it features a non-equilibrium approach and sees such equilibria as a special case and as an emergent property resulting from complex interactions between economic agents.[1][2][3] The complexity science approach has also been applied to computational economics.[4] The \"nearly archetypal example\" is an artificial stock market model created by the Santa Fe Institute in 1989.[5] The model shows two different outcomes, one where \"agents do not search much for predictors and there is convergence on a homogeneous rational expectations outcome\" and another where \"all kinds of technical trading strategies appearing and remaining and periods of bubbles and crashes occurring\".[5] Another area has studied the prisoner's dilemma, such as in a network where agents play amongst their nearest neighbors or a network where the agents can make mistakes from time to time and \"evolve strategies\".[5] In these models, the results show a system which displays \"a pattern of constantly changing distributions of the strategies\".[5]",
+  "url": "https://en.wikipedia.org/wiki/Complexity_economics",
+  "embedding": null,
+  "db_path": "kb_databases/complexity_economics_0f3c4fd6.db",
+  "last_updated": 1743796485.535993,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

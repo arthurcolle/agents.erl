@@ -1,0 +1,14 @@
+{
+  "kb_id": "6fbbf8a9-0d1d-437a-afb3-cb93e25dcab7",
+  "name": "Magnetism",
+  "content": "Magnetism is the class of physical attributes that occur through a magnetic field, which allows objects to attract or repel each other. Because both electric currents and magnetic moments of elementary particles give rise to a magnetic field, magnetism is one of two aspects of electromagnetism. The most familiar effects occur in ferromagnetic materials, which are strongly attracted by magnetic fields and can be magnetized to become permanent magnets, producing magnetic fields themselves. Demagnetizing a magnet is also possible. Only a few substances are ferromagnetic; the most common ones are iron, cobalt, nickel, and their alloys. All substances exhibit some type of magnetism. Magnetic materials are classified according to their bulk susceptibility.[1] Ferromagnetism is responsible for most of the effects of magnetism encountered in everyday life, but there are actually several types of magnetism. Paramagnetic substances, such as aluminium and oxygen, are weakly attracted to an applied magnetic field; diamagnetic substances, such as copper and carbon, are weakly repelled; while antiferromagnetic materials, such as chromium, have a more complex relationship with a magnetic field.[vague] The force of a magnet on paramagnetic, diamagnetic, and antiferromagnetic materials is usually too weak to be felt and can be detected only by laboratory instruments, so in everyday life, these substances are often described as non-magnetic.",
+  "url": "https://en.wikipedia.org/wiki/Magnetism",
+  "embedding": null,
+  "db_path": "kb_databases/magnetism_64fd3ed5.db",
+  "last_updated": 1743796485.2294211,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

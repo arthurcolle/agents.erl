@@ -1,0 +1,14 @@
+{
+  "kb_id": "e1f395e3-aa33-42b3-9a89-8f4541431c3d",
+  "name": "Reaction engineering",
+  "content": "Chemical reaction engineering (reaction engineering or reactor engineering) is a specialty in chemical engineering or industrial chemistry dealing with chemical reactors. Frequently the term relates specifically to catalytic reaction systems where either a homogeneous or heterogeneous catalyst is present in the reactor. Sometimes a reactor per se is not present by itself, but rather is integrated into a process, for example in reactive separations vessels, retorts, certain fuel cells, and photocatalytic surfaces. The issue of solvent effects on reaction kinetics is also considered as an integral part.[1] Chemical reaction engineering as a discipline started in the early 1950s under the impulse of researchers at the Shell Amsterdam research center and the university of Delft. The term chemical reaction engineering was apparently coined by J.C. Vlugter while preparing the 1st European Symposium on Chemical Reaction Engineering which was held in Amsterdam in 1957. Chemical reaction engineering aims at studying and optimizing chemical reactions in order to define the best reactor design. Hence, the interactions of flow phenomena, mass transfer, heat transfer, and reaction kinetics are of prime importance in order to relate reactor performance to feed composition and operating conditions. Although originally applied to the petroleum and petrochemical industries, its general methodology combining reaction chemistry and chemical engineering concepts allows optimization of a variety of systems where modeling or engineering of reactions is needed. Chemical reaction engineering approaches are indeed tailored for the development of new processes and the improvement of existing technologies.",
+  "url": "https://en.wikipedia.org/wiki/Reaction_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/reaction_engineering_a4dd7e04.db",
+  "last_updated": 1743796485.505028,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

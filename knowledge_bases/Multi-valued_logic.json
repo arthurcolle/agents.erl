@@ -1,0 +1,14 @@
+{
+  "kb_id": "e810f677-5e67-41f1-a0dd-fb8f156a9e23",
+  "name": "Multi-valued logic",
+  "content": "Many-valued logic (also multi- or multiple-valued logic) is a propositional calculus in which there are more than two truth values. Traditionally, in Aristotle's logical calculus, there were only two possible values (i.e., \"true\" and \"false\") for any proposition. Classical two-valued logic may be extended to n-valued logic for n greater than 2. Those most popular in the literature are three-valued (e.g., \u0141ukasiewicz's and Kleene's, which accept the values \"true\", \"false\", and \"unknown\"), four-valued, nine-valued, the finite-valued (finitely-many valued) with more than three values, and the infinite-valued (infinitely-many-valued), such as fuzzy logic and probability logic. It is wrong that the first known classical logician who did not fully accept the law of excluded middle was Aristotle (who, ironically, is also generally considered to be the first classical logician and the \"father of [two-valued] logic\"[1]). In fact, Aristotle did not contest the universality of the law of excluded middle, but the universality of the bivalence principle: he admitted that this principle did not all apply to future events (De Interpretatione, ch. IX),[2] but he didn't create a system of multi-valued logic to explain this isolated remark. Until the coming of the 20th century, later logicians followed Aristotelian logic, which includes or assumes the law of the excluded middle.",
+  "url": "https://en.wikipedia.org/wiki/Multi-valued_logic",
+  "embedding": null,
+  "db_path": "kb_databases/multi-valued_logic_2e186ba5.db",
+  "last_updated": 1743796485.0075898,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "28664da5-e9fb-4f1e-a84c-6c27a483f582",
+  "name": "Complex analysis",
+  "content": "Complex analysis, traditionally known as the theory of functions of a complex variable, is the branch of mathematical analysis that investigates functions of complex numbers. It is helpful in many branches of mathematics, including algebraic geometry, number theory, analytic combinatorics, and applied mathematics, as well as in physics, including the branches of hydrodynamics, thermodynamics, quantum mechanics, and twistor theory. By extension, use of complex analysis also has applications in engineering fields such as nuclear, aerospace, mechanical and electrical engineering.[1] As a differentiable function of a complex variable is equal to the sum function given by its Taylor series (that is, it is analytic), complex analysis is particularly concerned with analytic functions of a complex variable, that is, holomorphic functions. The concept can be extended to functions of several complex variables. Complex analysis is one of the classical branches in mathematics, with roots in the 18th century and just prior. Important mathematicians associated with complex numbers include Euler, Gauss, Riemann, Cauchy, G\u00f6sta Mittag-Leffler, Weierstrass, and many more in the 20th century. Complex analysis, in particular the theory of conformal mappings, has many physical applications and is also used throughout analytic number theory. In modern times, it has become very popular through a new boost from complex dynamics and the pictures of fractals produced by iterating holomorphic functions. Another important application of complex analysis is in string theory which examines conformal invariants in quantum field theory.",
+  "url": "https://en.wikipedia.org/wiki/Complex_analysis",
+  "embedding": null,
+  "db_path": "kb_databases/complex_analysis_70f9a51c.db",
+  "last_updated": 1743796485.562929,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

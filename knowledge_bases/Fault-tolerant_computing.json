@@ -1,0 +1,14 @@
+{
+  "kb_id": "d09c0f0b-6d0c-43be-86a1-9a217d2382db",
+  "name": "Fault-tolerant computing",
+  "content": "Fault tolerance is the ability of a system to maintain proper operation despite failures or faults in one or more of its components. This capability is essential for high-availability, mission-critical, or even life-critical systems. Fault tolerance specifically refers to a system's capability to handle faults without any degradation or downtime. In the event of an error, end-users remain unaware of any issues. Conversely, a system that experiences errors with some interruption in service or graceful degradation of performance is termed 'resilient'. In resilience, the system adapts to the error, maintaining service but acknowledging a certain impact on performance. Typically, fault tolerance describes computer systems, ensuring the overall system remains functional despite hardware or software issues. Non-computing examples include structures that retain their integrity despite damage from fatigue, corrosion or impact. The first known fault-tolerant computer was SAPO, built in 1951 in Czechoslovakia by Anton\u00edn Svoboda.[1]: 155 Its basic design was magnetic drums connected via relays, with a voting method of memory error detection (triple modular redundancy). Several other machines were developed along this line, mostly for military use. Eventually, they separated into three distinct categories:",
+  "url": "https://en.wikipedia.org/wiki/Fault-tolerant_system",
+  "embedding": null,
+  "db_path": "kb_databases/fault-tolerant_computing_13d98e9a.db",
+  "last_updated": 1743796484.8018649,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

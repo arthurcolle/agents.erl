@@ -1,0 +1,14 @@
+{
+  "kb_id": "f0b653f1-7460-48b8-b96a-54d5d49c642a",
+  "name": "Epistemology",
+  "content": "Epistemology is the branch of philosophy that examines the nature, origin, and limits of knowledge. Also called \"theory of knowledge\", it explores different types of knowledge, such as propositional knowledge about facts, practical knowledge in the form of skills, and knowledge by acquaintance as a familiarity through experience. Epistemologists study the concepts of belief, truth, and justification to understand the nature of knowledge. To discover how knowledge arises, they investigate sources of justification, such as perception, introspection, memory, reason, and testimony. The school of skepticism questions the human ability to attain knowledge while fallibilism says that knowledge is never certain. Empiricists hold that all knowledge comes from sense experience, whereas rationalists believe that some knowledge does not depend on it. Coherentists argue that a belief is justified if it coheres with other beliefs. Foundationalists, by contrast, maintain that the justification of basic beliefs does not depend on other beliefs. Internalism and externalism debate whether justification is determined solely by mental states or also by external circumstances.",
+  "url": "https://en.wikipedia.org/wiki/Epistemology",
+  "embedding": null,
+  "db_path": "kb_databases/epistemology_b4d3863e.db",
+  "last_updated": 1743796485.2470899,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

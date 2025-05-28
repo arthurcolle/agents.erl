@@ -1,0 +1,14 @@
+{
+  "kb_id": "8c7aa2a1-5e01-4203-8ae4-48ee6105723f",
+  "name": "Theory of computation",
+  "content": "In theoretical computer science and mathematics, the theory of computation is the branch that deals with what problems can be solved on a model of computation, using an algorithm, how efficiently they can be solved or to what degree (e.g., approximate solutions versus precise ones). The field is divided into three major branches: automata theory and formal languages, computability theory, and computational complexity theory, which are linked by the question: \"What are the fundamental capabilities and limitations of computers?\".[1] In order to perform a rigorous study of computation, computer scientists work with a mathematical abstraction of computers called a model of computation. There are several models in use, but the most commonly examined is the Turing machine.[2] Computer scientists study the Turing machine because it is simple to formulate, can be analyzed and used to prove results, and because it represents what many consider the most powerful possible \"reasonable\" model of computation (see Church\u2013Turing thesis).[3] It might seem that the potentially infinite memory capacity is an unrealizable attribute, but any decidable problem[4] solved by a Turing machine will always require only a finite amount of memory. So in principle, any problem that can be solved (decided) by a Turing machine can be solved by a computer that has a finite amount of memory.",
+  "url": "https://en.wikipedia.org/wiki/Theory_of_computation",
+  "embedding": null,
+  "db_path": "kb_databases/theory_of_computation_5f23becd.db",
+  "last_updated": 1743796484.741139,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

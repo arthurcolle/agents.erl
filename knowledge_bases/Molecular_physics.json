@@ -1,0 +1,14 @@
+{
+  "kb_id": "57a2efa4-8771-4df0-b074-01c001e7ac34",
+  "name": "Molecular physics",
+  "content": "Molecular physics is the study of the physical properties of molecules and molecular dynamics. The field overlaps significantly with physical chemistry, chemical physics, and quantum chemistry. It is often considered as a sub-field of atomic, molecular, and optical physics. Research groups studying molecular physics are typically designated as one of these other fields. Molecular physics addresses phenomena due to both molecular structure and individual atomic processes within molecules. Like atomic physics, it relies on a combination of classical and quantum mechanics to describe interactions between electromagnetic radiation and matter. Experiments in the field often rely heavily on techniques borrowed from atomic physics, such as spectroscopy and scattering. In a molecule, both the electrons and nuclei experience similar-scale forces from the Coulomb interaction. However, the nuclei remain at nearly fixed locations in the molecule while the electrons move significantly. This picture of a molecule is based on the idea that nucleons are much heavier than electrons, so will move much less in response to the same force. Neutron scattering experiments on molecules have been used to verify this description.[1]",
+  "url": "https://en.wikipedia.org/wiki/Molecular_physics",
+  "embedding": null,
+  "db_path": "kb_databases/molecular_physics_0996466e.db",
+  "last_updated": 1743796485.2950342,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "03046037-47dd-4818-9ec5-cda2951cfd6b",
+  "name": "Neuroethology",
+  "content": "Neuroethology is the evolutionary and comparative approach to the study of animal behavior and its underlying mechanistic control by the nervous system.[1][2][3] It is an interdisciplinary science that combines both neuroscience (study of the nervous system) and ethology (study of animal behavior in natural conditions). A central theme of neuroethology, which differentiates it from other branches of neuroscience, is its focus on behaviors that have been favored by natural selection (e.g., finding mates, navigation, locomotion, and predator avoidance) rather than on behaviors that are specific to a particular disease state or laboratory experiment. Neuroethologists hope to uncover general principles of the nervous system from the study of animals with exaggerated or specialized behaviors. They endeavor to understand how the nervous system translates biologically relevant stimuli into natural behavior. For example, many bats are capable of echolocation which is used for prey capture and navigation. The auditory system of bats is often cited as an example for how acoustic properties of sounds can be converted into a sensory map of behaviorally relevant features of sounds.[4]",
+  "url": "https://en.wikipedia.org/wiki/Neuroethology",
+  "embedding": null,
+  "db_path": "kb_databases/neuroethology_a389cdda.db",
+  "last_updated": 1743796485.028057,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

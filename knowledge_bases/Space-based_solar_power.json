@@ -1,0 +1,14 @@
+{
+  "kb_id": "cdfd5d9f-0601-4ae0-9efb-48a7191dd1f1",
+  "name": "Space-based solar power",
+  "content": "Space-based solar power (SBSP or SSP) is the concept of collecting solar power in outer space with solar power satellites (SPS) and distributing it to Earth. Its advantages include a higher collection of energy due to the lack of reflection and absorption by the atmosphere, the possibility of very little night, and a better ability to orient to face the Sun. Space-based solar power systems convert sunlight to some other form of energy (such as microwaves) which can be transmitted through the atmosphere to receivers on the Earth's surface. Solar panels on spacecraft have been in use since 1958, when Vanguard I used them to power one of its radio transmitters; however, the term (and acronyms) above are generally used in the context of large-scale transmission of energy for use on Earth. Various SBSP proposals have been researched since the early 1970s,[1][2] but as of 2014[update] none is economically viable with the space launch costs. Some technologists propose lowering launch costs with space manufacturing or with radical new space launch technologies other than rocketry.",
+  "url": "https://en.wikipedia.org/wiki/Space-based_solar_power",
+  "embedding": null,
+  "db_path": "kb_databases/space-based_solar_power_bc0231fb.db",
+  "last_updated": 1743796485.562878,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

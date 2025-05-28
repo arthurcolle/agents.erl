@@ -1,0 +1,14 @@
+{
+  "kb_id": "3a3ac8d6-b414-423c-90e9-bf6d8c98ff5b",
+  "name": "Control systems engineering",
+  "content": "Control engineering, also known as control systems engineering and, in some European countries, automation engineering, is an engineering discipline that deals with control systems, applying control theory to design equipment and systems with desired behaviors in control environments.[1] The discipline of controls overlaps and is usually taught along with electrical engineering, chemical engineering and mechanical engineering at many institutions around the world.[1] The practice uses sensors and detectors to measure the output performance of the process being controlled; these measurements are used to provide corrective feedback helping to achieve the desired performance. Systems designed to perform without requiring human input are called automatic control systems (such as cruise control for regulating the speed of a car). Multi-disciplinary in nature, control systems engineering activities focus on implementation of control systems mainly derived by mathematical modeling of a diverse range of systems.[2]",
+  "url": "https://en.wikipedia.org/wiki/Control_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/control_systems_engineering_97871649.db",
+  "last_updated": 1743796485.543065,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

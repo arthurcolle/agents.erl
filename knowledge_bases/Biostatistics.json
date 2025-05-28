@@ -1,0 +1,14 @@
+{
+  "kb_id": "7981ada4-90f4-43ad-84d7-9a3e396d3f09",
+  "name": "Biostatistics",
+  "content": "Biostatistics (also known as biometry) is a branch of statistics that applies statistical methods to a wide range of topics in biology. It encompasses the design of biological experiments, the collection and analysis of data from those experiments and the interpretation of the results. Biostatistical modeling forms an important part of numerous modern biological theories. Genetics studies, since its beginning, used statistical concepts to understand observed experimental results. Some genetics scientists even contributed with statistical advances with the development of methods and tools. Gregor Mendel started the genetics studies investigating genetics segregation patterns in families of peas and used statistics to explain the collected data. In the early 1900s, after the rediscovery of Mendel's Mendelian inheritance work, there were gaps in understanding between genetics and evolutionary Darwinism. Francis Galton tried to expand Mendel's discoveries with human data and proposed a different model with fractions of the heredity coming from each ancestral composing an infinite series. He called this the theory of \"Law of Ancestral Heredity\". His ideas were strongly disagreed by William Bateson, who followed Mendel's conclusions, that genetic inheritance were exclusively from the parents, half from each of them. This led to a vigorous debate between the biometricians, who supported Galton's ideas, as Raphael Weldon, Arthur Dukinfield Darbishire and Karl Pearson, and Mendelians, who supported Bateson's (and Mendel's) ideas, such as Charles Davenport and Wilhelm Johannsen. Later, biometricians could not reproduce Galton conclusions in different experiments, and Mendel's ideas prevailed. By the 1930s, models built on statistical reasoning had helped to resolve these differences and to produce the neo-Darwinian modern evolutionary synthesis.",
+  "url": "https://en.wikipedia.org/wiki/Biostatistics",
+  "embedding": null,
+  "db_path": "kb_databases/biostatistics_f8f777d7.db",
+  "last_updated": 1743796485.174148,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

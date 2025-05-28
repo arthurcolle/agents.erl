@@ -1,0 +1,14 @@
+{
+  "kb_id": "d1702c57-fe2c-42bd-8187-c7ef872b3254",
+  "name": "Plasma physics",
+  "content": "Plasma (from Ancient Greek \u03c0\u03bb\u03ac\u03c3\u03bc\u03b1 (pl\u00e1sma) 'moldable substance'[1]) is one of four fundamental states of matter (the other three being solid, liquid, and gas) characterized by the presence of a significant portion of charged particles in any combination of ions or electrons. It is the most abundant form of ordinary matter in the universe, mostly in stars (including the Sun), but also dominating the rarefied intracluster medium and intergalactic medium.[2][3][4][5] Plasma can be artificially generated, for example, by heating a neutral gas or subjecting it to a strong electromagnetic field.[6] The presence of charged particles makes plasma electrically conductive, with the dynamics of individual particles and macroscopic plasma motion governed by collective electromagnetic fields and very sensitive to externally applied fields.[7] The response of plasma to electromagnetic fields is used in many modern devices and technologies, such as plasma televisions or plasma etching.[8] Depending on temperature and density, a certain number of neutral particles may also be present, in which case plasma is called partially ionized. Neon signs and lightning are examples of partially ionized plasmas.[9] Unlike the phase transitions between the other three states of matter, the transition to plasma is not well defined and is a matter of interpretation and context.[10] Whether a given degree of ionization suffices to call a substance \"plasma\" depends on the specific phenomenon being considered.",
+  "url": "https://en.wikipedia.org/wiki/Plasma_physics",
+  "embedding": null,
+  "db_path": "kb_databases/plasma_physics_5c9b6f35.db",
+  "last_updated": 1743796485.309481,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

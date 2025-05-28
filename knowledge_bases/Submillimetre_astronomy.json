@@ -1,0 +1,14 @@
+{
+  "kb_id": "f6725b48-4ef5-4267-87e5-7850aa9c3955",
+  "name": "Submillimetre astronomy",
+  "content": "Submillimetre astronomy or submillimeter astronomy (see spelling differences) is the branch of observational astronomy that is conducted at submillimetre wavelengths (i.e., terahertz radiation) of the electromagnetic spectrum. Astronomers place the submillimetre waveband between the far-infrared and microwave wavebands, typically taken to be between a few hundred micrometres and a millimetre. It is still common in submillimetre astronomy to quote wavelengths in 'microns', the old name for micrometre. Submillimetre observations can be used to trace emission from gas and dust, including the CI, CO, and CII lines.[1][2] Sources behind this emission include molecular clouds and dark cloud cores, which can be used to clarify the process of star formation from earliest collapse to stellar birth, by determining chemical abundances in dark clouds and the cooling mechanisms for the molecules which comprise them. Other sources include protoplanetary discs, dusty starburst galaxies in the early Universe, immediate environments surrounding AGN, and secondary anisotropies in the cosmic microwave background.[1][3]",
+  "url": "https://en.wikipedia.org/wiki/Submillimetre_astronomy",
+  "embedding": null,
+  "db_path": "kb_databases/submillimetre_astronomy_7385d20e.db",
+  "last_updated": 1743796485.533699,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

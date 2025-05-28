@@ -1,0 +1,14 @@
+{
+  "kb_id": "94bb5a03-9246-4a1f-8e5d-223231e75324",
+  "name": "Arithmetic combinatorics",
+  "content": "In mathematics, arithmetic combinatorics is a field in the intersection of number theory, combinatorics, ergodic theory and harmonic analysis. Arithmetic combinatorics is about combinatorial estimates associated with arithmetic operations (addition, subtraction, multiplication, and division). Additive combinatorics is the special case when only the operations of addition and subtraction are involved. Ben Green explains arithmetic combinatorics in his review of \"Additive Combinatorics\" by Tao and Vu.[1] Szemer\u00e9di's theorem is a result in arithmetic combinatorics concerning arithmetic progressions in subsets of the integers. In 1936, Erd\u0151s and Tur\u00e1n conjectured[2] that every set of integers A with positive natural density contains a k term arithmetic progression for every k. This conjecture, which became Szemer\u00e9di's theorem, generalizes the statement of van der Waerden's theorem. The Green\u2013Tao theorem, proved by Ben Green and Terence Tao in 2004,[3] states that the sequence of prime numbers contains arbitrarily long arithmetic progressions. In other words, there exist arithmetic progressions of primes, with k terms, where k can be any natural number. The proof is an extension of Szemer\u00e9di's theorem.",
+  "url": "https://en.wikipedia.org/wiki/Arithmetic_combinatorics",
+  "embedding": null,
+  "db_path": "kb_databases/arithmetic_combinatorics_1d28ee59.db",
+  "last_updated": 1743796485.1124978,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

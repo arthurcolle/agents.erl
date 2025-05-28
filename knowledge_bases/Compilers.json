@@ -1,0 +1,14 @@
+{
+  "kb_id": "41a8a340-de1f-4ce6-93ce-bf9e9e3b612e",
+  "name": "Compilers",
+  "content": "In computing, a compiler is a computer program that translates computer code written in one programming language (the source language) into another language (the target language). The name \"compiler\" is primarily used for programs that translate source code from a high-level programming language to a low-level programming language (e.g. assembly language, object code, or machine code) to create an executable program.[1][2]: p1 [3] There are many different types of compilers which produce output in different useful forms. A cross-compiler produces code for a different CPU or operating system than the one on which the cross-compiler itself runs. A bootstrap compiler is often a temporary compiler, used for compiling a more permanent or better optimised compiler for a language. Related software include decompilers, programs that translate from low-level languages to higher level ones; programs that translate between high-level languages, usually called source-to-source compilers or transpilers; language rewriters, usually programs that translate the form of expressions without a change of language; and compiler-compilers, compilers that produce compilers (or parts of them), often in a generic and reusable way so as to be able to produce many differing compilers.",
+  "url": "https://en.wikipedia.org/wiki/Compilers",
+  "embedding": null,
+  "db_path": "kb_databases/compilers_49b9284d.db",
+  "last_updated": 1743796484.842605,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

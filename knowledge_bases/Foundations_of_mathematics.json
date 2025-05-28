@@ -1,0 +1,14 @@
+{
+  "kb_id": "1df02bd5-5c55-41a3-ad84-728e71c37965",
+  "name": "Foundations of mathematics",
+  "content": "Foundations of mathematics are the logical and mathematical framework that allows the development of mathematics without generating self-contradictory theories, and, in particular, to have reliable concepts of theorems, proofs, algorithms, etc. This may also include the philosophical study of the relation of this framework with reality.[1] The term \"foundations of mathematics\" was not coined before the end of the 19th century, although foundations were first established by the ancient Greek philosophers under the name of Aristotle's logic and systematically applied in Euclid's Elements. A mathematical assertion is considered as truth only if it is a theorem that is proved from true premises by means of a sequence of syllogisms (inference rules), the premises being either already proved theorems or self-evident assertions called axioms or postulates. These foundations were tacitly assumed to be definitive until the introduction of infinitesimal calculus by Isaac Newton and Gottfried Wilhelm Leibniz in the 17th century. This new area of mathematics involved new methods of reasoning and new basic concepts (continuous functions, derivatives, limits) that were not well founded, but had astonishing consequences, such as the deduction from Newton's law of gravitation that the orbits of the planets are ellipses.",
+  "url": "https://en.wikipedia.org/wiki/Foundations_of_mathematics",
+  "embedding": null,
+  "db_path": "kb_databases/foundations_of_mathematics_2186cad2.db",
+  "last_updated": 1743796485.112757,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

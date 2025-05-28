@@ -1,0 +1,14 @@
+{
+  "kb_id": "65a5e642-1f06-4ee1-b4a5-740fafe35795",
+  "name": "Measure theory",
+  "content": "In mathematics, the concept of a measure is a generalization and formalization of geometrical measures (length, area, volume) and other common notions, such as magnitude, mass, and probability of events. These seemingly distinct concepts have many similarities and can often be treated together in a single mathematical context. Measures are foundational in probability theory, integration theory, and can be generalized to assume negative values, as with electrical charge. Far-reaching generalizations (such as spectral measures and projection-valued measures) of measure are widely used in quantum physics and physics in general. The intuition behind this concept dates back to ancient Greece, when Archimedes tried to calculate the area of a circle.[1][2] But it was not until the late 19th and early 20th centuries that measure theory became a branch of mathematics. The foundations of modern measure theory were laid in the works of \u00c9mile Borel, Henri Lebesgue, Nikolai Luzin, Johann Radon, Constantin Carath\u00e9odory, and Maurice Fr\u00e9chet, among others.",
+  "url": "https://en.wikipedia.org/wiki/Measure_theory",
+  "embedding": null,
+  "db_path": "kb_databases/measure_theory_a86e0437.db",
+  "last_updated": 1743796485.5070379,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

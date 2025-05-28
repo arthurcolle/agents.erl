@@ -1,0 +1,14 @@
+{
+  "kb_id": "2b503349-f2a3-4c80-8088-397d9d0ff480",
+  "name": "Analytical dynamics",
+  "content": "In theoretical physics and mathematical physics, analytical mechanics, or theoretical mechanics is a collection of closely related formulations of classical mechanics. Analytical mechanics uses scalar properties of motion representing the system as a whole\u2014usually its kinetic energy and potential energy. The equations of motion are derived from the scalar quantity by some underlying principle about the scalar's variation. Analytical mechanics was developed by many scientists and mathematicians during the 18th century and onward, after Newtonian mechanics. Newtonian mechanics considers vector quantities of motion, particularly accelerations, momenta, forces, of the constituents of the system; it can also be called vectorial mechanics.[1] A scalar is a quantity, whereas a vector is represented by quantity and direction. The results of these two different approaches are equivalent, but the analytical mechanics approach has many advantages for complex problems. Analytical mechanics takes advantage of a system's constraints to solve problems. The constraints limit the degrees of freedom the system can have, and can be used to reduce the number of coordinates needed to solve for the motion. The formalism is well suited to arbitrary choices of coordinates, known in the context as generalized coordinates. The kinetic and potential energies of the system are expressed using these generalized coordinates or momenta, and the equations of motion can be readily set up, thus analytical mechanics allows numerous mechanical problems to be solved with greater efficiency than fully vectorial methods. It does not always work for non-conservative forces or dissipative forces like friction, in which case one may revert to Newtonian mechanics.",
+  "url": "https://en.wikipedia.org/wiki/Analytical_dynamics",
+  "embedding": null,
+  "db_path": "kb_databases/analytical_dynamics_4c781292.db",
+  "last_updated": 1743796485.1941261,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

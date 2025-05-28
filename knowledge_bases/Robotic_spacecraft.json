@@ -1,0 +1,14 @@
+{
+  "kb_id": "463332c9-a70f-497f-94c7-a6402156afbe",
+  "name": "Robotic spacecraft",
+  "content": "Uncrewed spacecraft or robotic spacecraft are spacecraft without people on board. Uncrewed spacecraft may have varying levels of autonomy from human input, such as remote control, or remote guidance. They may also be autonomous, in which they have a pre-programmed list of operations that will be executed unless otherwise instructed. A robotic spacecraft for scientific measurements is often called a space probe or space observatory. Many space missions are more suited to telerobotic rather than crewed operation, due to lower cost and risk factors. In addition, some planetary destinations such as Venus or the vicinity of Jupiter are too hostile for human survival, given current technology. Outer planets such as Saturn, Uranus, and Neptune are too distant to reach with current crewed spaceflight technology, so telerobotic probes are the only way to explore them. Telerobotics also allows exploration of regions that are vulnerable to contamination by Earth micro-organisms since spacecraft can be sterilized. Humans can not be sterilized in the same way as a spaceship, as they coexist with numerous micro-organisms, and these micro-organisms are also hard to contain within a spaceship or spacesuit.",
+  "url": "https://en.wikipedia.org/wiki/Robotic_spacecraft",
+  "embedding": null,
+  "db_path": "kb_databases/robotic_spacecraft_affc7153.db",
+  "last_updated": 1743796485.388483,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

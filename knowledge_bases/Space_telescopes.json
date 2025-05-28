@@ -1,0 +1,14 @@
+{
+  "kb_id": "f02d6151-6b87-4624-ba57-09397ca6d327",
+  "name": "Space telescopes",
+  "content": "A space telescope (also known as space observatory) is a telescope in outer space used to observe astronomical objects. Suggested by Lyman Spitzer in 1946, the first operational telescopes were the American Orbiting Astronomical Observatory, OAO-2 launched in 1968, and the Soviet Orion 1 ultraviolet telescope aboard space station Salyut 1 in 1971. Space telescopes avoid several problems caused by the atmosphere, including the absorption or scattering of certain wavelengths of light, obstruction by clouds, and distortions due to atmospheric refraction such as twinkling. Space telescopes can also observe dim objects during the daytime, and they avoid light pollution which ground-based observatories encounter. They are divided into two types: Satellites which map the entire sky (astronomical survey), and satellites which focus on selected astronomical objects or parts of the sky and beyond. Space telescopes are distinct from Earth imaging satellites, which point toward Earth for satellite imaging, applied for weather analysis, espionage, and other types of information gathering.",
+  "url": "https://en.wikipedia.org/wiki/Space_telescopes",
+  "embedding": null,
+  "db_path": "kb_databases/space_telescopes_0883d0a5.db",
+  "last_updated": 1743796485.394634,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

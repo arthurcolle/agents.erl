@@ -1,0 +1,14 @@
+{
+  "kb_id": "5d40c4e8-12ee-48fb-a5b0-f476bf341157",
+  "name": "Histopathology",
+  "content": "Histopathology (compound of three Greek words: \u1f31\u03c3\u03c4\u03cc\u03c2 histos 'tissue', \u03c0\u03ac\u03b8\u03bf\u03c2 pathos 'suffering', and -\u03bb\u03bf\u03b3\u03af\u03b1 -logia 'study of') is the microscopic examination of tissue in order to study the manifestations of disease. Specifically, in clinical medicine, histopathology refers to the examination of a biopsy or surgical specimen by a pathologist, after the specimen has been processed and histological sections have been placed onto glass slides. In contrast, cytopathology examines free cells or tissue micro-fragments (as \"cell blocks \"). Histopathological examination of tissues starts with surgery, biopsy, or autopsy. The tissue is removed from the body or plant, and then, often following expert dissection in the fresh state, placed in a fixative which stabilizes the tissues to prevent decay. The most common fixative is 10% neutral buffered formalin (corresponding to 3.7% w/v formaldehyde in neutral buffered water, such as phosphate buffered saline). The tissue is then prepared for viewing under a microscope using either chemical fixation or frozen section.",
+  "url": "https://en.wikipedia.org/wiki/Histopathology",
+  "embedding": null,
+  "db_path": "kb_databases/histopathology_a9b92b7d.db",
+  "last_updated": 1743796484.901336,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

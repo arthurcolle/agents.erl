@@ -1,0 +1,14 @@
+{
+  "kb_id": "37373bc5-c5db-4e85-b225-d05c00fb7a7c",
+  "name": "Biophysics",
+  "content": "Biophysics is an interdisciplinary science that applies approaches and methods traditionally used in physics to study biological phenomena.[1][2][3][4] Biophysics covers all scales of biological organization, from molecular to organismic and populations. Biophysical research shares significant overlap with biochemistry, molecular biology, physical chemistry, physiology, nanotechnology, bioengineering, computational biology, biomechanics, developmental biology and systems biology. The term biophysics was originally introduced by Karl Pearson in 1892.[5][6] The term biophysics is also regularly used in academia to indicate the study of the physical quantities (e.g. electric current, temperature, stress, entropy) in biological systems. Other biological sciences also perform research on the biophysical properties of living organisms including molecular biology, cell biology, chemical biology, and biochemistry. Molecular biophysics typically addresses biological questions similar to those in biochemistry and molecular biology, seeking to find the physical underpinnings of biomolecular phenomena. Scientists in this field conduct research concerned with understanding the interactions between the various systems of a cell, including the interactions between DNA, RNA and protein biosynthesis, as well as how these interactions are regulated. A great variety of techniques are used to answer these questions.",
+  "url": "https://en.wikipedia.org/wiki/Biophysics",
+  "embedding": null,
+  "db_path": "kb_databases/biophysics_ab5f2775.db",
+  "last_updated": 1743796484.8021739,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

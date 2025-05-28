@@ -1,0 +1,14 @@
+{
+  "kb_id": "63229585-49b0-48e7-b85f-3dab5c12a4c4",
+  "name": "Infrared astronomy",
+  "content": "Infrared astronomy is a sub-discipline of astronomy which specializes in the observation and analysis of astronomical objects using infrared (IR) radiation. The wavelength of infrared light ranges from 0.75 to 300 micrometers, and falls in between visible radiation, which ranges from 380 to 750 nanometers, and submillimeter waves. Infrared astronomy began in the 1830s,[citation needed] a few decades after the discovery of infrared light by William Herschel in 1800.[1] Early progress was limited, and it was not until the early 20th century that conclusive detections of astronomical objects other than the Sun and Moon were made in infrared light.[citation needed] After a number of discoveries were made in the 1950s and 1960s in radio astronomy, astronomers realized the information available outside the visible wavelength range, and modern infrared astronomy was established.[2] Infrared and optical astronomy are often practiced using the same telescopes, as the same mirrors or lenses are usually effective over a wavelength range that includes both visible and infrared light. Both fields also use solid state detectors, though the specific type of solid state photodetectors used are different. Infrared light is absorbed at many wavelengths by water vapor in the Earth's atmosphere, so most infrared telescopes are at high elevations in dry places, above as much of the atmosphere as possible. There have also been infrared observatories in space, including the Spitzer Space Telescope, the Herschel Space Observatory, and more recently the James Webb Space Telescope.[3]",
+  "url": "https://en.wikipedia.org/wiki/Infrared_astronomy",
+  "embedding": null,
+  "db_path": "kb_databases/infrared_astronomy_cb7a6ce9.db",
+  "last_updated": 1743796485.44116,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "89845ece-d256-4bab-b44d-68b46f4cbe83",
+  "name": "Programming paradigms",
+  "content": "A programming paradigm is a relatively high-level way to conceptualize and structure the implementation of a computer program. A programming language can be classified as supporting one or more paradigms.[1] Paradigms are separated along and described by different dimensions of programming. Some paradigms are about implications of the execution model, such as allowing side effects, or whether the sequence of operations is defined by the execution model. Other paradigms are about the way code is organized, such as grouping into units that include both state and behavior. Yet others are about syntax and grammar. Some common programming paradigms include (shown in hierarchical relationship):[2][3][4] Programming paradigms come from computer science research into existing practices of software development. The findings allow for describing and comparing programming practices and the languages used to code programs. For perspective, other fields of research study software engineering processes and describe various methodologies to describe and compare them.",
+  "url": "https://en.wikipedia.org/wiki/Programming_paradigms",
+  "embedding": null,
+  "db_path": "kb_databases/programming_paradigms_4f32320c.db",
+  "last_updated": 1743796484.8263521,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "0824bb85-3884-4ebc-9108-1a756c95eba7",
+  "name": "Computational chemistry",
+  "content": "Computational chemistry is a branch of chemistry that uses computer simulations to assist in solving chemical problems.[1] It uses methods of theoretical chemistry incorporated into computer programs to calculate the structures and properties of molecules, groups of molecules, and solids.[2] The importance of this subject stems from the fact that, with the exception of some relatively recent findings related to the hydrogen molecular ion (dihydrogen cation), achieving an accurate quantum mechanical depiction of chemical systems analytically, or in a closed form, is not feasible.[3] The complexity inherent in the many-body problem exacerbates the challenge of providing detailed descriptions of quantum mechanical systems.[4] While computational results normally complement information obtained by chemical experiments, it can occasionally predict unobserved chemical phenomena.[5] Computational chemistry differs from theoretical chemistry, which involves a mathematical description of chemistry. However, computational chemistry involves the usage of computer programs and additional mathematical skills in order to accurately model various chemical problems. In theoretical chemistry, chemists, physicists, and mathematicians develop algorithms and computer programs to predict atomic and molecular properties and reaction paths for chemical reactions. Computational chemists, in contrast, may simply apply existing computer programs and methodologies to specific chemical questions.[6]",
+  "url": "https://en.wikipedia.org/wiki/Computational_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/computational_chemistry_39c95aee.db",
+  "last_updated": 1743796485.521579,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

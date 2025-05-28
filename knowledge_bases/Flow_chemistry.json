@@ -1,0 +1,14 @@
+{
+  "kb_id": "25dd1b22-dbb0-40d4-aa46-e28e225e9b75",
+  "name": "Flow chemistry",
+  "content": "In flow chemistry, also called reactor engineering, a chemical reaction is run in a continuously flowing stream rather than in batch production. In other words, pumps move fluid into a reactor, and where tubes join one another, the fluids contact one another. If these fluids are reactive, a reaction takes place. Flow chemistry is a well-established technique for use at a large scale when manufacturing large quantities of a given material. However, the term has only been coined recently for its application on a laboratory scale by chemists and describes small pilot plants, and lab-scale continuous plants.[1] Often, microreactors are used.[2] Choosing to run a chemical reaction using flow chemistry, either in a microreactor or other mixing device offers a variety of pros and cons. Typical drivers are higher yields/selectivities, less needed manpower, or a higher safety level. The drawbacks have been discussed in view of establishing small scale continuous production processes by Pashkova and Greiner.[7]",
+  "url": "https://en.wikipedia.org/wiki/Flow_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/flow_chemistry_7efcb330.db",
+  "last_updated": 1743796485.0667589,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

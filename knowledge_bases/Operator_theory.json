@@ -1,0 +1,14 @@
+{
+  "kb_id": "3e856341-2dd8-4e2c-958c-d938759a6135",
+  "name": "Operator theory",
+  "content": "In mathematics, operator theory is the study of linear operators on function spaces, beginning with differential operators and integral operators. The operators may be presented abstractly by their characteristics, such as bounded linear operators or closed operators, and consideration may be given to nonlinear operators. The study, which depends heavily on the topology of function spaces, is a branch of functional analysis. If a collection of operators forms an algebra over a field, then it is an operator algebra. The description of operator algebras is part of operator theory. Single operator theory deals with the properties and classification of operators, considered one at a time. For example, the classification of normal operators in terms of their spectra falls into this category. The spectral theorem is any of a number of results about linear operators or about matrices.[1] In broad terms the spectral theorem provides conditions under which an operator or a matrix can be diagonalized (that is, represented as a diagonal matrix in some basis). This concept of diagonalization is relatively straightforward for operators on finite-dimensional spaces, but requires some modification for operators on infinite-dimensional spaces. In general, the spectral theorem identifies a class of linear operators that can be modelled by multiplication operators, which are as simple as one can hope to find. In more abstract language, the spectral theorem is a statement about commutative C*-algebras. See also spectral theory for a historical perspective.",
+  "url": "https://en.wikipedia.org/wiki/Operator_theory",
+  "embedding": null,
+  "db_path": "kb_databases/operator_theory_9ff4d5c9.db",
+  "last_updated": 1743796485.502499,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

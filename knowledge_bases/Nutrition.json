@@ -1,0 +1,14 @@
+{
+  "kb_id": "e4864190-60f0-4d85-8ee4-2a9a42f1f66d",
+  "name": "Nutrition",
+  "content": "Nutrition is the biochemical and physiological process by which an organism uses food to support its life. It provides organisms with nutrients, which can be metabolized to create energy and chemical structures. Failure to obtain the required amount of nutrients causes malnutrition. Nutritional science is the study of nutrition, though it typically emphasizes human nutrition. The type of organism determines what nutrients it needs and how it obtains them. Organisms obtain nutrients by consuming organic matter, consuming inorganic matter, absorbing light, or some combination of these. Some can produce nutrients internally by consuming basic elements, while some must consume other organisms to obtain pre-existing nutrients. All forms of life require carbon, energy, and water as well as various other molecules. Animals require complex nutrients such as carbohydrates, lipids, and proteins, obtaining them by consuming other organisms. Humans have developed agriculture and cooking to replace foraging and advance human nutrition. Plants acquire nutrients through the soil and the atmosphere. Fungi absorb nutrients around them by breaking them down and absorbing them through the mycelium.",
+  "url": "https://en.wikipedia.org/wiki/Nutrition",
+  "embedding": null,
+  "db_path": "kb_databases/nutrition_cf6586f7.db",
+  "last_updated": 1743796484.879055,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

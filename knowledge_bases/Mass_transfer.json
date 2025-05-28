@@ -1,0 +1,14 @@
+{
+  "kb_id": "18a51c02-0d9b-4f76-8d47-e276e83efe7e",
+  "name": "Mass transfer",
+  "content": "Mass transfer is the net movement of mass from one location (usually meaning stream, phase, fraction, or component) to another. Mass transfer occurs in many processes, such as absorption, evaporation, drying, precipitation, membrane filtration, and distillation. Mass transfer is used by different scientific disciplines for different processes and mechanisms. The phrase is commonly used in engineering for physical processes that involve diffusive and convective transport of chemical species within physical systems. Some common examples of mass transfer processes are the evaporation of water from a pond to the atmosphere, the purification of blood in the kidneys and liver, and the distillation of alcohol. In industrial processes, mass transfer operations include separation of chemical components in distillation columns, absorbers such as scrubbers or stripping, adsorbers such as activated carbon beds, and liquid-liquid extraction. Mass transfer is often coupled to additional transport processes, for instance in industrial cooling towers. These towers couple heat transfer to mass transfer by allowing hot water to flow in contact with air. The water is cooled by expelling some of its content in the form of water vapour.",
+  "url": "https://en.wikipedia.org/wiki/Mass_transfer",
+  "embedding": null,
+  "db_path": "kb_databases/mass_transfer_c6bd8fd4.db",
+  "last_updated": 1743796484.7986848,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "03c086eb-e4cf-4a7f-af2b-bebfd9ffab80",
+  "name": "Category theory",
+  "content": "Category theory is a general theory of mathematical structures and their relations. It was introduced by Samuel Eilenberg and Saunders Mac Lane in the middle of the 20th century in their foundational work on algebraic topology.[1] Category theory is used in almost all areas of mathematics. In particular, many constructions of new mathematical objects from previous ones that appear similarly in several contexts are conveniently expressed and unified in terms of categories. Examples include quotient spaces, direct products, completion, and duality. Many areas of computer science also rely on category theory, such as functional programming and semantics. A category is formed by two sorts of objects: the objects of the category, and the morphisms, which relate two objects called the source and the target of the morphism. Metaphorically, a morphism is an arrow that maps its source to its target. Morphisms can be composed if the target of the first morphism equals the source of the second one. Morphism composition has similar properties as function composition (associativity and existence of an identity morphism for each object). Morphisms are often some sort of functions, but this is not always the case. For example, a monoid may be viewed as a category with a single object, whose morphisms are the elements of the monoid.",
+  "url": "https://en.wikipedia.org/wiki/Category_theory",
+  "embedding": null,
+  "db_path": "kb_databases/category_theory_95e8fee9.db",
+  "last_updated": 1743796485.042165,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

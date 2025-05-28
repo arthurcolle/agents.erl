@@ -1,0 +1,14 @@
+{
+  "kb_id": "0ef628c9-da7b-4e7b-8177-3625436c85cf",
+  "name": "Commutative algebra",
+  "content": "Ring homomorphisms Algebraic structures Related structures Algebraic number theory Noncommutative algebraic geometry Free algebra Clifford algebra Commutative algebra, first known as ideal theory, is the branch of algebra that studies commutative rings, their ideals, and modules over such rings. Both algebraic geometry and algebraic number theory build on commutative algebra. Prominent examples of commutative rings include polynomial rings; rings of algebraic integers, including the ordinary integers Z {\\displaystyle \\mathbb {Z} } ; and p-adic integers.[1] Commutative algebra is the main technical tool of algebraic geometry, and many results and concepts of commutative algebra are strongly related with geometrical concepts. The study of rings that are not necessarily commutative is known as noncommutative algebra; it includes ring theory, representation theory, and the theory of Banach algebras. Commutative algebra is essentially the study of the rings occurring in algebraic number theory and algebraic geometry.",
+  "url": "https://en.wikipedia.org/wiki/Commutative_algebra",
+  "embedding": null,
+  "db_path": "kb_databases/commutative_algebra_2dc6dfce.db",
+  "last_updated": 1743796485.023138,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

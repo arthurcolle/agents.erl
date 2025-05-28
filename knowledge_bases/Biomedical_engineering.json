@@ -1,0 +1,14 @@
+{
+  "kb_id": "90a8ce12-37bd-43af-914a-51a61d7f4107",
+  "name": "Biomedical engineering",
+  "content": "Biomedical engineering (BME) or medical engineering is the application of engineering principles and design concepts to medicine and biology for healthcare applications (e.g., diagnostic or therapeutic purposes). BME is also traditionally logical sciences to advance health care treatment, including diagnosis, monitoring, and therapy.[1][2] Also included under the scope of a biomedical engineer is the management of current medical equipment in hospitals while adhering to relevant industry standards. This involves procurement, routine testing, preventive maintenance, and making equipment recommendations, a role also known as a Biomedical Equipment Technician (BMET) or as a clinical engineer. Biomedical engineering has recently emerged as its own field of study, as compared to many other engineering fields.[3] Such an evolution is common as a new field transitions from being an interdisciplinary specialization among already-established fields to being considered a field in itself. Much of the work in biomedical engineering consists of research and development, spanning a broad array of subfields (see below). Prominent biomedical engineering applications include the development of biocompatible prostheses, various diagnostic and therapeutic medical devices ranging from clinical equipment to micro-implants, imaging technologies such as MRI and EKG/ECG, regenerative tissue growth, and the development of pharmaceutical drugs including biopharmaceuticals.",
+  "url": "https://en.wikipedia.org/wiki/Biomedical_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/biomedical_engineering_de6c6815.db",
+  "last_updated": 1743796485.501751,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

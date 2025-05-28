@@ -1,0 +1,14 @@
+{
+  "kb_id": "f2d15430-0928-4a11-b890-e525e9a0e0ec",
+  "name": "Information theory",
+  "content": "Information theory is the mathematical study of the quantification, storage, and communication of information. The field was established and formalized by Claude Shannon in the 1940s,[1] though early contributions were made in the 1920s through the works of Harry Nyquist and Ralph Hartley. It is at the intersection of electronic engineering, mathematics, statistics, computer science, neurobiology, physics, and electrical engineering.[2][3] A key measure in information theory is entropy. Entropy quantifies the amount of uncertainty involved in the value of a random variable or the outcome of a random process. For example, identifying the outcome of a fair coin flip (which has two equally likely outcomes) provides less information (lower entropy, less uncertainty) than identifying the outcome from a roll of a die (which has six equally likely outcomes). Some other important measures in information theory are mutual information, channel capacity, error exponents, and relative entropy. Important sub-fields of information theory include source coding, algorithmic complexity theory, algorithmic information theory and information-theoretic security.",
+  "url": "https://en.wikipedia.org/wiki/Information_theory",
+  "embedding": null,
+  "db_path": "kb_databases/information_theory_32eb517a.db",
+  "last_updated": 1743796484.776191,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

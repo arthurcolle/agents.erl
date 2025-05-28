@@ -49,3 +49,7 @@ Thumbs.db
 # Rebar3 artifacts
 .rebar3/
 **/rebar.lock
+
+# Node.js dependencies
+node_modules/
+**/node_modules/

@@ -1,0 +1,14 @@
+{
+  "kb_id": "28c7a416-d913-43c5-8313-fc240204e0c3",
+  "name": "Imperative programming",
+  "content": "In computer science, imperative programming is a programming paradigm of software that uses statements that change a program's state. In much the same way that the imperative mood in natural languages expresses commands, an imperative program consists of commands for the computer to perform. Imperative programming focuses on describing how a program operates step by step (generally order of the steps being determined in source code by the placement of statements one below the other),[1] rather than on high-level descriptions of its expected results. The term is often used in contrast to declarative programming, which focuses on what the program should accomplish without specifying all the details of how the program should achieve the result.[2] Procedural programming is a type of imperative programming in which the program is built from one or more procedures (also termed subroutines or functions). The terms are often used as synonyms, but the use of procedures has a dramatic effect on how imperative programs appear and how they are constructed. Heavy procedural programming, in which state changes are localized to procedures or restricted to explicit arguments and returns from procedures, is a form of structured programming. Since the 1960s, structured programming and modular programming in general have been promoted as techniques to improve the maintainability and overall quality of imperative programs. The concepts behind object-oriented programming attempt to extend this approach.",
+  "url": "https://en.wikipedia.org/wiki/Imperative_programming",
+  "embedding": null,
+  "db_path": "kb_databases/imperative_programming_16aa9fc6.db",
+  "last_updated": 1743796485.5659468,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

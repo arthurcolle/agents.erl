@@ -1,0 +1,14 @@
+{
+  "kb_id": "64773368-c109-43d8-a6c0-27567a578337",
+  "name": "Control theory",
+  "content": "Control theory is a field of control engineering and applied mathematics that deals with the control of dynamical systems in engineered processes and machines. The objective is to develop a model or algorithm governing the application of system inputs to drive the system to a desired state, while minimizing any delay, overshoot, or steady-state error and ensuring a level of control stability; often with the aim to achieve a degree of optimality. To do this, a controller with the requisite corrective behavior is required. This controller monitors the controlled process variable (PV), and compares it with the reference or set point (SP). The difference between actual and desired value of the process variable, called the error signal, or SP-PV error, is applied as feedback to generate a control action to bring the controlled process variable to the same value as the set point. Other aspects which are also studied are controllability and observability. Control theory is used in control system engineering to design automation that have revolutionized manufacturing, aircraft, communications and other industries, and created new fields such as robotics.",
+  "url": "https://en.wikipedia.org/wiki/Control_theory",
+  "embedding": null,
+  "db_path": "kb_databases/control_theory_c84c2074.db",
+  "last_updated": 1743796485.2073228,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

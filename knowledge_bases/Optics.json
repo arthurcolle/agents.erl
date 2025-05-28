@@ -1,0 +1,14 @@
+{
+  "kb_id": "3a2dd172-6a0f-4488-81f4-4a4400cd8d4b",
+  "name": "Optics",
+  "content": "Optics is the branch of physics that studies the behaviour and properties of light, including its interactions with matter and the construction of instruments that use or detect it.[1] Optics usually describes the behaviour of visible, ultraviolet, and infrared light. Light is a type of electromagnetic radiation, and other forms of electromagnetic radiation such as X-rays, microwaves, and radio waves exhibit similar properties.[1] Most optical phenomena can be accounted for by using the classical electromagnetic description of light, however complete electromagnetic descriptions of light are often difficult to apply in practice. Practical optics is usually done using simplified models. The most common of these, geometric optics, treats light as a collection of rays that travel in straight lines and bend when they pass through or reflect from surfaces. Physical optics is a more comprehensive model of light, which includes wave effects such as diffraction and interference that cannot be accounted for in geometric optics. Historically, the ray-based model of light was developed first, followed by the wave model of light. Progress in electromagnetic theory in the 19th century led to the discovery that light waves were in fact electromagnetic radiation.",
+  "url": "https://en.wikipedia.org/wiki/Optics",
+  "embedding": null,
+  "db_path": "kb_databases/optics_beea0f2a.db",
+  "last_updated": 1743796485.534646,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "5aa50239-5f29-4188-93bc-6b0e782da30b",
+  "name": "Coding theory",
+  "content": "Coding theory is the study of the properties of codes and their respective fitness for specific applications. Codes are used for data compression, cryptography, error detection and correction, data transmission and data storage. Codes are studied by various scientific disciplines\u2014such as information theory, electrical engineering, mathematics, linguistics, and computer science\u2014for the purpose of designing efficient and reliable data transmission methods. This typically involves the removal of redundancy and the correction or detection of errors in the transmitted data. There are four types of coding:[1] Data compression attempts to remove unwanted redundancy from the data from a source in order to transmit it more efficiently. For example, DEFLATE data compression makes files smaller, for purposes such as to reduce Internet traffic. Data compression and error correction may be studied in combination. Error correction adds useful redundancy to the data from a source to make the transmission more robust to disturbances present on the transmission channel. The ordinary user may not be aware of many applications using error correction. A typical music compact disc (CD) uses the Reed\u2013Solomon code to correct for scratches and dust. In this application the transmission channel is the CD itself. Cell phones also use coding techniques to correct for the fading and noise of high frequency radio transmission. Data modems, telephone transmissions, and the NASA Deep Space Network all employ channel coding techniques to get the bits through, for example the turbo code and LDPC codes.",
+  "url": "https://en.wikipedia.org/wiki/Coding_theory",
+  "embedding": null,
+  "db_path": "kb_databases/coding_theory_5ea903dd.db",
+  "last_updated": 1743796485.1469598,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

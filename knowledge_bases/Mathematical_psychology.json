@@ -1,0 +1,14 @@
+{
+  "kb_id": "6b52fc41-ab45-425e-9b75-aa72143a6d99",
+  "name": "Mathematical psychology",
+  "content": "Mathematical psychology is an approach to psychological research that is based on mathematical modeling of perceptual, thought, cognitive and motor processes, and on the establishment of law-like rules that relate quantifiable stimulus characteristics with quantifiable behavior (in practice often constituted by task performance). The mathematical approach is used with the goal of deriving hypotheses that are more exact and thus yield stricter empirical validations. There are five major research areas in mathematical psychology: learning and memory, perception and psychophysics, choice and decision-making, language and thinking, and measurement and scaling.[1] Although psychology, as an independent subject of science, is a more recent discipline than physics,[2] the application of mathematics to psychology has been done in the hope of emulating the success of this approach in the physical sciences, which dates back to at least the seventeenth century.[3] Mathematics in psychology is used extensively roughly in two areas: one is the mathematical modeling of psychological theories and experimental phenomena, which leads to mathematical psychology; the other is the statistical approach of quantitative measurement practices in psychology, which leads to psychometrics.[2]",
+  "url": "https://en.wikipedia.org/wiki/Mathematical_psychology",
+  "embedding": null,
+  "db_path": "kb_databases/mathematical_psychology_78eda8bb.db",
+  "last_updated": 1743796485.261533,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "e510e9f8-1fc8-4a5c-9b9c-1e0a616d05c9",
+  "name": "Quantum field theory",
+  "content": "In theoretical physics, quantum field theory (QFT) is a theoretical framework that combines field theory and the principle of relativity with ideas behind quantum mechanics.[1]: xi QFT is used in particle physics to construct physical models of subatomic particles and in condensed matter physics to construct models of quasiparticles. The current standard model of particle physics is based on QFT. Quantum field theory emerged from the work of generations of theoretical physicists spanning much of the 20th century. Its development began in the 1920s with the description of interactions between light and electrons, culminating in the first quantum field theory\u2014quantum electrodynamics. A major theoretical obstacle soon followed with the appearance and persistence of various infinities in perturbative calculations, a problem only resolved in the 1950s with the invention of the renormalization procedure. A second major barrier came with QFT's apparent inability to describe the weak and strong interactions, to the point where some theorists called for the abandonment of the field theoretic approach. The development of gauge theory and the completion of the Standard Model in the 1970s led to a renaissance of quantum field theory.",
+  "url": "https://en.wikipedia.org/wiki/Quantum_field_theory",
+  "embedding": null,
+  "db_path": "kb_databases/quantum_field_theory_d9c47e5e.db",
+  "last_updated": 1743796485.336263,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

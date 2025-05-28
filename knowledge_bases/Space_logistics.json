@@ -1,0 +1,14 @@
+{
+  "kb_id": "07e4f000-6db1-4146-844a-21de800e036b",
+  "name": "Space logistics",
+  "content": "Space logistics is \"the theory and practice of driving space system design for operability and supportability, and of managing the flow of materiel, services, and information needed throughout a space system lifecycle.\"[1] It includes terrestrial logistics in support of space travel, including any additional \"design and development, acquisition, storage, movement, distribution, maintenance, evacuation, and disposition of space materiel\", movement of people in space (both routine and for medical and other emergencies), and contracting and supplying any required support services for maintaining space travel. The space logistics research and practice primarily focus on the modeling and management of the astro-logistics supply chain from Earth and on to destinations throughout the solar system as well as the system architecture strategies to minimize both logistics requirements and operational costs of human and robotic operations in space.[1] As early as 1960, Wernher von Braun spoke of the necessity and the underdevelopment of space logistics:[2]",
+  "url": "https://en.wikipedia.org/wiki/Space_logistics",
+  "embedding": null,
+  "db_path": "kb_databases/space_logistics_55f552ac.db",
+  "last_updated": 1743796485.534091,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

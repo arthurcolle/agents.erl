@@ -1,0 +1,14 @@
+{
+  "kb_id": "b41a4c30-6690-41ba-8a6c-0a1b9b36743e",
+  "name": "Information broker",
+  "content": "A data broker is an individual or company that specializes in collecting personal data (such as income, ethnicity, political beliefs, or geolocation data) or data about people, mostly from public records but sometimes sourced privately, and selling or licensing such information to third parties for a variety of uses. Sources, usually Internet-based since the 1990s, may include census and electoral roll records, social networking sites, court reports and purchase histories. The information from data brokers may be used in background checks used by employers and housing. There are varying regulations around the world limiting the collection of information on individuals; privacy laws vary. In the United States there is no federal regulation protection for the consumer from data brokers, although some states have begun enacting laws individually. In the European Union, GDPR serves to regulate data brokers' operations. Some data brokers report to have large numbers of population data or \"data attributes\". Acxiom purports to have data from 2.5 billion different people.",
+  "url": "https://en.wikipedia.org/wiki/Information_broker",
+  "embedding": null,
+  "db_path": "kb_databases/information_broker_320449ec.db",
+  "last_updated": 1743796485.521162,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

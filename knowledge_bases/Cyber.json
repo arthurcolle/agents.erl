@@ -1,0 +1,14 @@
+{
+  "kb_id": "5272f640-6b54-451b-bfc4-6f96c33d35ed",
+  "name": "Cyber",
+  "content": "Cyberweapons are commonly defined as malware agents employed for military, paramilitary, or intelligence objectives as part of a cyberattack. This includes computer viruses, trojans, spyware, and worms that can introduce malicious code into existing software, causing a computer to perform actions or processes unintended by its operator. A cyberweapon is usually sponsored or employed by a state or non-state actor, meets an objective that would otherwise require espionage or the use of force, and is employed against specific targets. A cyberweapon performs an action that would normally require a soldier or spy, and which would be considered either illegal or an act of war if performed directly by a human agent of the sponsor during peacetime. Legal issues include violating the privacy of the target and the sovereignty of its host nation.[1] Example of such actions are surveillance, data theft and electronic or physical destruction. While a cyberweapon almost certainly results in either direct or indirect financial damages to the target group, direct financial gains for the sponsor are not a primary objective of this class of agent. Often cyberweapons are associated with causing physical or functional harm to the system which it attacks, despite being software.[2] However, there is no consensus on what officially constitutes a cyberweapon.[2]",
+  "url": "https://en.wikipedia.org/wiki/Cyberweapon",
+  "embedding": null,
+  "db_path": "kb_databases/cyber_046e43ea.db",
+  "last_updated": 1743796485.5115578,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

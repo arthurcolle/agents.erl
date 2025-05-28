@@ -1,0 +1,14 @@
+{
+  "kb_id": "1de357f0-d22b-4c31-acfb-ba8d60c43ae7",
+  "name": "Ergodic theory",
+  "content": "Ergodic theory is a branch of mathematics that studies statistical properties of deterministic dynamical systems; it is the study of ergodicity. In this context, \"statistical properties\" refers to properties which are expressed through the behavior of time averages of various functions along trajectories of dynamical systems. The notion of deterministic dynamical systems assumes that the equations determining the dynamics do not contain any random perturbations, noise, etc. Thus, the statistics with which we are concerned are properties of the dynamics. Ergodic theory, like probability theory, is based on general notions of measure theory. Its initial development was motivated by problems of statistical physics. A central concern of ergodic theory is the behavior of a dynamical system when it is allowed to run for a long time. The first result in this direction is the Poincar\u00e9 recurrence theorem, which claims that almost all points in any subset of the phase space eventually revisit the set. Systems for which the Poincar\u00e9 recurrence theorem holds are conservative systems; thus all ergodic systems are conservative.",
+  "url": "https://en.wikipedia.org/wiki/Ergodic_theory",
+  "embedding": null,
+  "db_path": "kb_databases/ergodic_theory_8bda0516.db",
+  "last_updated": 1743796485.071454,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

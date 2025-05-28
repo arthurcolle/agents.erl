@@ -1,0 +1,14 @@
+{
+  "kb_id": "d3c0d74e-ac00-4f3a-9323-fec4dd31174a",
+  "name": "Analysis of variance",
+  "content": "Analysis of variance (ANOVA) is a family of statistical methods used to compare the means of two or more groups by analyzing variance. Specifically, ANOVA compares the amount of variation between the group means to the amount of variation within each group. If the between-group variation is substantially larger than the within-group variation, it suggests that the group means are likely different. This comparison is done using an F-test. The underlying principle of ANOVA is based on the law of total variance, which states that the total variance in a dataset can be broken down into components attributable to different sources. In the case of ANOVA, these sources are the variation between groups and the variation within groups. ANOVA was developed by the statistician Ronald Fisher. In its simplest form, it provides a statistical test of whether two or more population means are equal, and therefore generalizes the t-test beyond two means. While the analysis of variance reached fruition in the 20th century, antecedents extend centuries into the past according to Stigler.[1] These include hypothesis testing, the partitioning of sums of squares, experimental techniques and the additive model. Laplace was performing hypothesis testing in the 1770s.[2] Around 1800, Laplace and Gauss developed the least-squares method for combining observations, which improved upon methods then used in astronomy and geodesy. It also initiated much study of the contributions to sums of squares. Laplace knew how to estimate a variance from a residual (rather than a total) sum of squares.[3] By 1827, Laplace was using least squares methods to address ANOVA problems regarding measurements of atmospheric tides.[4] Before 1800, astronomers had isolated observational errors resulting from reaction times (the \"personal equation\") and had developed methods of reducing the errors.[5] The experimental methods used in the study of the personal equation were later accepted by the emerging field of psychology [6] which developed strong (full factorial) experimental methods to which randomization and blinding were soon added.[7] An eloquent non-mathematical explanation of the additive effects model was available in 1885.[8]",
+  "url": "https://en.wikipedia.org/wiki/Analysis_of_variance",
+  "embedding": null,
+  "db_path": "kb_databases/analysis_of_variance_c3af5cdc.db",
+  "last_updated": 1743796485.167348,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

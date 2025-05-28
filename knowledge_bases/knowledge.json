@@ -1,0 +1,14 @@
+{
+  "kb_id": "864c5268-5759-48a3-9e1b-2255ee86a398",
+  "name": "knowledge",
+  "content": "Knowledge is an awareness of facts, a familiarity with individuals and situations, or a practical skill. Knowledge of facts, also called propositional knowledge, is often characterized as true belief that is distinct from opinion or guesswork by virtue of justification. While there is wide agreement among philosophers that propositional knowledge is a form of true belief, many controversies focus on justification. This includes questions like how to understand justification, whether it is needed at all, and whether something else besides it is needed. These controversies intensified in the latter half of the 20th century due to a series of thought experiments called Gettier cases that provoked alternative definitions. Knowledge can be produced in many ways. The main source of empirical knowledge is perception, which involves the usage of the senses to learn about the external world. Introspection allows people to learn about their internal mental states and processes. Other sources of knowledge include memory, rational intuition, inference, and testimony.[a] According to foundationalism, some of these sources are basic in that they can justify beliefs, without depending on other mental states. Coherentists reject this claim and contend that a sufficient degree of coherence among all the mental states of the believer is necessary for knowledge. According to infinitism, an infinite chain of beliefs is needed.",
+  "url": "https://en.wikipedia.org/wiki/Knowledge",
+  "embedding": null,
+  "db_path": "kb_databases/knowledge_a542e9b7.db",
+  "last_updated": 1743796485.533437,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

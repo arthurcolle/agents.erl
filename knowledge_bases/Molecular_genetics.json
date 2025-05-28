@@ -1,0 +1,14 @@
+{
+  "kb_id": "6c097b0a-d8ac-43c1-b2fb-e168caecd28a",
+  "name": "Molecular genetics",
+  "content": "Molecular genetics is a branch of biology that addresses how differences in the structures or expression of DNA molecules manifests as variation among organisms. Molecular genetics often applies an \"investigative approach\" to determine the structure and/or function of genes in an organism's genome using genetic screens.[1][2] The field of study is based on the merging of several sub-fields in biology: classical Mendelian inheritance, cellular biology, molecular biology, biochemistry, and biotechnology. It integrates these disciplines to explore things like genetic inheritance, gene regulation and expression, and the molecular mechanism behind various life processes.[1] A key goal of molecular genetics is to identify and study genetic mutations. Researchers search for mutations in a gene or induce mutations in a gene to link a gene sequence to a specific phenotype.[3] Therefore molecular genetics is a powerful methodology for linking mutations to genetic conditions that may aid the search for treatments of various genetics diseases.",
+  "url": "https://en.wikipedia.org/wiki/Molecular_genetics",
+  "embedding": null,
+  "db_path": "kb_databases/molecular_genetics_311439af.db",
+  "last_updated": 1743796484.840103,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

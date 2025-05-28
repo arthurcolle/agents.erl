@@ -1,0 +1,14 @@
+{
+  "kb_id": "5dd05605-707f-457c-bad7-3d847f850f98",
+  "name": "Theoretical computer science",
+  "content": "Theoretical computer science is a subfield of computer science and mathematics that focuses on the abstract and mathematical foundations of computation. It is difficult to circumscribe the theoretical areas precisely. The ACM's Special Interest Group on Algorithms and Computation Theory (SIGACT) provides the following description:[1] TCS covers a wide variety of topics including algorithms, data structures, computational complexity, parallel and distributed computation, probabilistic computation, quantum computation, automata theory, information theory, cryptography, program semantics and verification, algorithmic game theory, machine learning, computational biology, computational economics, computational geometry, and computational number theory and algebra. Work in this field is often distinguished by its emphasis on mathematical technique and rigor. While logical inference and mathematical proof had existed previously, in 1931 Kurt G\u00f6del proved with his incompleteness theorem that there are fundamental limitations on what statements could be proved or disproved.",
+  "url": "https://en.wikipedia.org/wiki/Theoretical_computer_science",
+  "embedding": null,
+  "db_path": "kb_databases/theoretical_computer_science_5f4af393.db",
+  "last_updated": 1743796484.876066,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

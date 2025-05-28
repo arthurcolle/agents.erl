@@ -1,0 +1,14 @@
+{
+  "kb_id": "d1ebc9df-1b51-47c3-8a7f-ba1a17503b69",
+  "name": "Algebraic number theory",
+  "content": "Ring homomorphisms Algebraic structures Related structures Algebraic number theory Noncommutative algebraic geometry Free algebra Clifford algebra Algebraic number theory is a branch of number theory that uses the techniques of abstract algebra to study the integers, rational numbers, and their generalizations. Number-theoretic questions are expressed in terms of properties of algebraic objects such as algebraic number fields and their rings of integers, finite fields, and function fields. These properties, such as whether a ring admits unique factorization, the behavior of ideals, and the Galois groups of fields, can resolve questions of primary importance in number theory, like the existence of solutions to Diophantine equations. The beginnings of algebraic number theory can be traced to Diophantine equations,[1] named after the 3rd-century Alexandrian mathematician, Diophantus, who studied them and developed methods for the solution of some kinds of Diophantine equations. A typical Diophantine problem is to find two integers x and y such that their sum, and the sum of their squares, equal two given numbers A and B, respectively:",
+  "url": "https://en.wikipedia.org/wiki/Algebraic_number_theory",
+  "embedding": null,
+  "db_path": "kb_databases/algebraic_number_theory_57ad9efb.db",
+  "last_updated": 1743796485.107266,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "60e90b7d-428f-4b10-b870-70c47c0d2bd7",
+  "name": "Microwave astronomy",
+  "content": "The cosmic microwave background (CMB, CMBR), or relic radiation, is microwave radiation that fills all space in the observable universe. With a standard optical telescope, the background space between stars and galaxies is almost completely dark. However, a sufficiently sensitive radio telescope detects a faint background glow that is almost uniform and is not associated with any star, galaxy, or other object. This glow is strongest in the microwave region of the electromagnetic spectrum. The accidental discovery of the CMB in 1965 by American radio astronomers Arno Penzias and Robert Wilson was the culmination of work initiated in the 1940s. The CMB is landmark evidence of the Big Bang theory for the origin of the universe. In the Big Bang cosmological models, during the earliest periods, the universe was filled with an opaque fog of dense, hot plasma of sub-atomic particles. As the universe expanded, this plasma cooled to the point where protons and electrons combined to form neutral atoms of mostly hydrogen. Unlike the plasma, these atoms could not scatter thermal radiation by Thomson scattering, and so the universe became transparent. Known as the recombination epoch, this decoupling event released photons to travel freely through space. However, the photons have grown less energetic due to the cosmological redshift associated with the expansion of the universe. The surface of last scattering refers to a shell at the right distance in space so photons are now received that were originally emitted at the time of decoupling.",
+  "url": "https://en.wikipedia.org/wiki/Timeline_of_cosmic_microwave_background_astronomy",
+  "embedding": null,
+  "db_path": "kb_databases/microwave_astronomy_ba454c42.db",
+  "last_updated": 1743796485.530619,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

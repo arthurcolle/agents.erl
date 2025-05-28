@@ -1,0 +1,14 @@
+{
+  "kb_id": "c7682c43-0cbd-404b-bf85-d6581bac55e3",
+  "name": "Optometry",
+  "content": "Optometry is a specialized health care profession that involves examining the eyes and related structures for defects or abnormalities. Optometrists are health care professionals who typically provide comprehensive eye care. In the United States of America and Canada, optometrists are those that hold a 4-year Doctor of Optometry degree, which is earned following their undergraduate college training. They are trained and licensed to practice medicine for eye related conditions, in addition to providing refractive (optical) eye care. Within their scope of practice, optometrists are considered physicians and bill medical insurance(s) (example: Medicare) accordingly. In the United Kingdom, optometrists may also provide medical care (e.g. prescribe medications and perform various surgeries) for eye-related conditions in addition to providing refractive care. The Doctor of Optometry degree is rarer in the UK. Many optometrists participate in academic research for eye-related conditions and diseases. In addition to prescribing glasses and contact lenses for vision related deficiencies, optometrists are trained in monitoring and treating ocular disease-pathologies.",
+  "url": "https://en.wikipedia.org/wiki/Optometry",
+  "embedding": null,
+  "db_path": "kb_databases/optometry_684bb0bf.db",
+  "last_updated": 1743796485.5108202,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

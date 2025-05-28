@@ -1,0 +1,14 @@
+{
+  "kb_id": "3a729c0a-4cdf-4a1c-ab35-358ce592b6d2",
+  "name": "Immunology",
+  "content": "Immunology is a branch of biology and medicine[1] that covers the study of immune systems[2] in all organisms. Immunology charts, measures, and contextualizes the physiological functioning of the immune system in states of both health and diseases; malfunctions of the immune system in immunological disorders (such as autoimmune diseases, hypersensitivities,[3] immune deficiency,[4] and transplant rejection[5]); and the physical, chemical, and physiological characteristics of the components of the immune system in vitro,[6] in situ, and in vivo.[7] Immunology has applications in numerous disciplines of medicine, particularly in the fields of organ transplantation, oncology, rheumatology, virology, bacteriology, parasitology, psychiatry, and dermatology. The term was coined by Russian biologist Ilya Ilyich Mechnikov,[8] who advanced studies on immunology and received the Nobel Prize for his work in 1908 with Paul Ehrlich \"in recognition of their work on immunity\". He pinned small thorns into starfish larvae and noticed unusual cells surrounding the thorns. This was the active response of the body trying to maintain its integrity. It was Mechnikov who first observed the phenomenon of phagocytosis,[9] in which the body defends itself against a foreign body. Ehrlich accustomed mice to the poisonous ricin and abrin. After feeding them with small but increasing dosages of ricin he ascertained that they had become \"ricin-proof\". Ehrlich interpreted this as immunization and observed that it was abruptly initiated after a few days and was still in existence after several months.",
+  "url": "https://en.wikipedia.org/wiki/Immunology",
+  "embedding": null,
+  "db_path": "kb_databases/immunology_ceb4fd14.db",
+  "last_updated": 1743796484.856658,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

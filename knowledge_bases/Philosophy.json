@@ -1,0 +1,14 @@
+{
+  "kb_id": "2cf37c11-7dc9-4481-b35a-108b2037c766",
+  "name": "Philosophy",
+  "content": "Philosophy is a systematic study of general and fundamental questions concerning topics like existence, reason, knowledge, value, mind, and language. It is a rational and critical inquiry that reflects on its methods and assumptions. Historically, many of the individual sciences, such as physics and psychology, formed part of philosophy. However, they are considered separate academic disciplines in the modern sense of the term. Influential traditions in the history of philosophy include Western, Arabic\u2013Persian, Indian, and Chinese philosophy. Western philosophy originated in Ancient Greece and covers a wide area of philosophical subfields. A central topic in Arabic\u2013Persian philosophy is the relation between reason and revelation. Indian philosophy combines the spiritual problem of how to reach enlightenment with the exploration of the nature of reality and the ways of arriving at knowledge. Chinese philosophy focuses principally on practical issues about right social conduct, government, and self-cultivation.",
+  "url": "https://en.wikipedia.org/wiki/Philosophy",
+  "embedding": null,
+  "db_path": "kb_databases/philosophy_e5348e0c.db",
+  "last_updated": 1743796485.226913,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "88b1024a-27e9-4109-963b-1cb0b7015829",
+  "name": "Computer graphics",
+  "content": "Computer graphics deals with generating images and art with the aid of computers. Computer graphics is a core technology in digital photography, film, video games, digital art, cell phone and computer displays, and many specialized applications. A great deal of specialized hardware and software has been developed, with the displays of most devices being driven by computer graphics hardware. It is a vast and recently developed area of computer science. The phrase was coined in 1960 by computer graphics researchers Verne Hudson and William Fetter of Boeing. It is often abbreviated as CG, or typically in the context of film as computer generated imagery (CGI). The non-artistic aspects of computer graphics are the subject of computer science research.[1] Some topics in computer graphics include user interface design, sprite graphics, rendering, ray tracing, geometry processing, computer animation, vector graphics, 3D modeling, shaders, GPU design, implicit surfaces, visualization, scientific computing, image processing, computational photography, scientific visualization, computational geometry and computer vision, among others. The overall methodology depends heavily on the underlying sciences of geometry, optics, physics, and perception.",
+  "url": "https://en.wikipedia.org/wiki/Computer_graphics",
+  "embedding": null,
+  "db_path": "kb_databases/computer_graphics_dd8b1193.db",
+  "last_updated": 1743796485.5363479,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

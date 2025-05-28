@@ -1,0 +1,14 @@
+{
+  "kb_id": "009becc8-b8dd-4910-a8a5-628e609b1c81",
+  "name": "American politics",
+  "content": "In the United States, politics functions within a framework of a constitutional federal republic. The three distinct branches share powers: the U.S. Congress which forms the legislative branch, a bicameral legislative body comprising the House of Representatives and the Senate; the executive branch, which is headed by the president of the United States, who serves as the country's head of state and government; and the judicial branch, composed of the Supreme Court and lower federal courts, and which exercises judicial power. Each of the 50 individual state governments has the power to make laws within its jurisdiction that are not granted to the federal government nor denied to the states in the U.S. Constitution. Each state also has a constitution following the pattern of the federal constitution but differing in details. Each has three branches: an executive branch headed by a governor, a legislative body, and a judicial branch. At the local level, governments are found in counties or county-equivalents, and beneath them individual municipalities, townships, school districts, and special districts.",
+  "url": "https://en.wikipedia.org/wiki/Politics_of_the_United_States",
+  "embedding": null,
+  "db_path": "kb_databases/american_politics_bfbaccee.db",
+  "last_updated": 1743796485.182985,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

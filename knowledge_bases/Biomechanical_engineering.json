@@ -1,0 +1,14 @@
+{
+  "kb_id": "d615ae0f-eb55-498a-90a6-67bbe52f80b5",
+  "name": "Biomechanical engineering",
+  "content": "Biomechanical engineering, also considered a subfield of mechanical engineering and biomedical engineering, combines principles of physics (with a focus on mechanics), biology, and engineering. Topics of interest in this field include (experimental and theoretical) biomechanics, computational mechanics, continuum mechanics, bioinstrumentation, design of implants and prostheses, etc.[1][2] This is a highly multidisciplinary field, and engineers with such a background may enter related niche careers, e.g., as an ergonomics consultant, rehabilitation engineer, biomechanics researcher, and biomedical device engineer.[3] Biomechanical engineers can be seen as mechanical engineers that work in a biomedical context. This is not only due to occasionally mechanical nature of medical devices, but also mechanical engineering tools (such as numerical software packages) are commonly used in analysis of biological materials and biomaterials due to the high importance of their mechanical properties.[2] Some research examples are computer simulation of the osteoarthritis,[4] patient-specific evaluation of cranial implants for virtual surgical planning,[5] computed tomography analysis for clinical assessment of osteoporosis,[6] to name a few.",
+  "url": "https://en.wikipedia.org/wiki/Biomechanical_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/biomechanical_engineering_16b8dcf7.db",
+  "last_updated": 1743796485.532702,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

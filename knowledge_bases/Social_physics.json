@@ -1,0 +1,14 @@
+{
+  "kb_id": "a56035cd-bc67-4d19-adb8-11354b47261f",
+  "name": "Social physics",
+  "content": "Social physics or sociophysics is a field of science which uses mathematical tools inspired by physics to understand the behavior of human crowds. In a modern commercial use, it can also refer to the analysis of social phenomena with big data. Social physics is closely related to econophysics, which uses physics methods to describe economics.[1] The earliest mentions of a concept of social physics began with the English philosopher Thomas Hobbes. In 1636 he traveled to Florence, Italy, and met physicist-astronomer Galileo Galilei, known for his contributions to the study of motion.[2] It was here that Hobbes began to outline the idea of representing the \"physical phenomena\" of society in terms of the laws of motion.[2] In his treatise De Corpore, Hobbes sought to relate the movement of \"material bodies\"[3] to the mathematical terms of motion outlined by Galileo and similar scientists of the time period. Although there was no explicit mention of \"social physics\", the sentiment of examining society with scientific methods began before the first written mention of social physics.",
+  "url": "https://en.wikipedia.org/wiki/Social_physics",
+  "embedding": null,
+  "db_path": "kb_databases/social_physics_e4cee71a.db",
+  "last_updated": 1743796485.321743,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

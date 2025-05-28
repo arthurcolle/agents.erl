@@ -1,0 +1,14 @@
+{
+  "kb_id": "a9a6be91-3666-449e-b87d-272c8bf85e7e",
+  "name": "UV astronomy",
+  "content": "Ultraviolet astronomy is the observation of electromagnetic radiation at ultraviolet wavelengths between approximately 10 and 320 nanometres; shorter wavelengths\u2014higher energy photons\u2014are studied by X-ray astronomy and gamma-ray astronomy.[1] Ultraviolet light is not visible to the human eye.[2] Most of the light at these wavelengths is absorbed by the Earth's atmosphere, so observations at these wavelengths must be performed from the upper atmosphere or from space.[1] Ultraviolet line spectrum measurements (spectroscopy) are used to discern the chemical composition, densities, and temperatures of the interstellar medium, and the temperature and composition of hot young stars. UV observations can also provide essential information about the evolution of galaxies. They can be used to discern the presence of a hot white dwarf or main sequence companion in orbit around a cooler star.[3][4] The ultraviolet universe looks quite different from the familiar stars and galaxies seen in visible light. Most stars are actually relatively cool objects emitting much of their electromagnetic radiation in the visible or near-infrared part of the spectrum. Ultraviolet radiation is the signature of hotter objects, typically in the early and late stages of their evolution. In the Earth's sky seen in ultraviolet light, most stars would fade in prominence. Some very young massive stars and some very old stars and galaxies, growing hotter and producing higher-energy radiation near their birth or death, would be visible. Clouds of gas and dust would block the vision in many directions along the Milky Way.",
+  "url": "https://en.wikipedia.org/wiki/UV_astronomy",
+  "embedding": null,
+  "db_path": "kb_databases/uv_astronomy_148bf35b.db",
+  "last_updated": 1743796485.444454,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

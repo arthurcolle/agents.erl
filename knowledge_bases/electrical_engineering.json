@@ -1,0 +1,14 @@
+{
+  "kb_id": "6aea9431-c354-48ee-9151-ada9d5900fc8",
+  "name": "Electrical engineering",
+  "content": "Electrical engineering is an engineering discipline concerned with the study, design, and application of equipment, devices, and systems that use electricity, electronics, and electromagnetism. It emerged as an identifiable occupation in the latter half of the 19th century after the commercialization of the electric telegraph, the telephone, and electrical power generation, distribution, and use. Electrical engineering is divided into a wide range of different fields, including computer engineering, systems engineering, power engineering, telecommunications, radio-frequency engineering, signal processing, instrumentation, photovoltaic cells, electronics, and optics and photonics. Many of these disciplines overlap with other engineering branches, spanning a huge number of specializations including hardware engineering, power electronics, electromagnetics and waves, microwave engineering, nanotechnology, electrochemistry, renewable energies, mechatronics/control, and electrical materials science.[a]",
+  "url": "https://en.wikipedia.org/wiki/Electrical_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/electrical_engineering_e0673f8f.db",
+  "last_updated": 1743796485.524073,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "b0528e23-4713-4b35-8c21-909c8f397e68",
+  "name": "Fluid dynamics",
+  "content": "In physics, physical chemistry and engineering, fluid dynamics is a subdiscipline of fluid mechanics that describes the flow of fluids \u2013 liquids and gases. It has several subdisciplines, including aerodynamics (the study of air and other gases in motion) and hydrodynamics (the study of water and other liquids in motion). Fluid dynamics has a wide range of applications, including calculating forces and moments on aircraft, determining the mass flow rate of petroleum through pipelines, predicting weather patterns, understanding nebulae in interstellar space and modelling fission weapon detonation. Fluid dynamics offers a systematic structure\u2014which underlies these practical disciplines\u2014that embraces empirical and semi-empirical laws derived from flow measurement and used to solve practical problems. The solution to a fluid dynamics problem typically involves the calculation of various properties of the fluid, such as flow velocity, pressure, density, and temperature, as functions of space and time.",
+  "url": "https://en.wikipedia.org/wiki/Fluid_dynamics",
+  "embedding": null,
+  "db_path": "kb_databases/fluid_dynamics_389e338e.db",
+  "last_updated": 1743796485.202338,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

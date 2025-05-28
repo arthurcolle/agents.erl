@@ -1,0 +1,14 @@
+{
+  "kb_id": "b47eadce-8098-4ad1-98e3-9f3618d40047",
+  "name": "Green chemistry",
+  "content": "Green chemistry, similar to sustainable chemistry or circular chemistry,[1] is an area of chemistry and chemical engineering focused on the design of products and processes that minimize or eliminate the use and generation of hazardous substances.[2] While environmental chemistry focuses on the effects of polluting chemicals on nature, green chemistry focuses on the environmental impact of chemistry, including lowering consumption of nonrenewable resources and technological approaches for preventing pollution.[3][4][5][6][7][8] The overarching goals of green chemistry\u2014namely, more resource-efficient and inherently safer design of molecules, materials, products, and processes\u2014can be pursued in a wide range of contexts.[9] Green chemistry (sustainable chemistry): Design of chemical products and processes that minimize or eliminate the use or generation of substances hazardous to humans, animals, plants, and the environment. Note 1: Modified from ref.[10] to be more general. Note 2: Green chemistry discusses the engineering concept of pollution prevention and zero waste both at laboratory and industrial scales. It encourages the use of economical and ecocompatible techniques that not only improve the yield but also bring down the cost of disposal of wastes at the end of a chemical process.[11]",
+  "url": "https://en.wikipedia.org/wiki/Green_chemistry",
+  "embedding": null,
+  "db_path": "kb_databases/green_chemistry_0e0e35d0.db",
+  "last_updated": 1743796485.070762,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

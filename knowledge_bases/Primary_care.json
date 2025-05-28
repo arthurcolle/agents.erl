@@ -1,0 +1,14 @@
+{
+  "kb_id": "ee2cc4f9-237d-4a07-85e8-15c5de93e575",
+  "name": "Primary care",
+  "content": "Primary care is a model of health care that supports first-contact, accessible, continuous, comprehensive and coordinated person-focused care. It aims to optimise population health and reduce disparities across the population by ensuring that subgroups have equal access to services.[1][better source needed] Primary care is the day-to-day healthcare given by a health care provider. Typically this provider acts as the first contact and principal point of continuing care for patients within a healthcare system, and coordinates other care the patient may need.[2][3][4] Patients commonly receive primary care from professionals such as a primary care physician (general practitioner or family physician), a physician assistant, a physical therapist, or a nurse practitioner. In some localities, such a professional may be a registered nurse, a pharmacist, a clinical officer (as in parts of Africa), or an Ayurvedic or other traditional medicine professional (as in parts of Asia). Depending on the nature of the health condition, patients may then be referred for secondary or tertiary care.",
+  "url": "https://en.wikipedia.org/wiki/Primary_care",
+  "embedding": null,
+  "db_path": "kb_databases/primary_care_7c020e9c.db",
+  "last_updated": 1743796485.569556,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "33af32d5-cdb5-4f4c-b310-8cb85667fa54",
+  "name": "Quantum electrodynamics",
+  "content": "In particle physics, quantum electrodynamics (QED) is the relativistic quantum field theory of electrodynamics.[1][2][3] In essence, it describes how light and matter interact and is the first theory where full agreement between quantum mechanics and special relativity is achieved.[2] QED mathematically describes all phenomena involving electrically charged particles interacting by means of exchange of photons and represents the quantum counterpart of classical electromagnetism giving a complete account of matter and light interaction.[2][3] In technical terms, QED can be described as a very accurate way to calculate the probability of the position and movement of particles, even those massless such as photons, and the quantity depending on position (field) of those particles, and described light and matter beyond the wave-particle duality proposed by Albert Einstein in 1905. Richard Feynman called it \"the jewel of physics\" for its extremely accurate predictions of quantities like the anomalous magnetic moment of the electron and the Lamb shift of the energy levels of hydrogen.[2]: Ch1 It is the most precise and stringently tested theory in physics.[4][5]",
+  "url": "https://en.wikipedia.org/wiki/Quantum_electrodynamics",
+  "embedding": null,
+  "db_path": "kb_databases/quantum_electrodynamics_bd0abbe2.db",
+  "last_updated": 1743796485.214388,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

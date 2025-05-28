@@ -1,0 +1,14 @@
+{
+  "kb_id": "70aee803-4058-40ae-b9ed-6f43a0f74059",
+  "name": "Linear programming",
+  "content": "Linear programming (LP), also called linear optimization, is a method to achieve the best outcome (such as maximum profit or lowest cost) in a mathematical model whose requirements and objective are represented by linear relationships. Linear programming is a special case of mathematical programming (also known as mathematical optimization). More formally, linear programming is a technique for the optimization of a linear objective function, subject to linear equality and linear inequality constraints. Its feasible region is a convex polytope, which is a set defined as the intersection of finitely many half spaces, each of which is defined by a linear inequality. Its objective function is a real-valued affine (linear) function defined on this polytope. A linear programming algorithm finds a point in the polytope where this function has the largest (or smallest) value if such a point exists. Linear programs are problems that can be expressed in standard form as Here the components of x {\\displaystyle \\mathbf {x} } are the variables to be determined, c {\\displaystyle \\mathbf {c} } and b {\\displaystyle \\mathbf {b} } are given vectors, and A {\\displaystyle A} is a given matrix. The function whose value is to be maximized ( x \u21a6 c T x {\\displaystyle \\mathbf {x} \\mapsto \\mathbf {c} ^{\\mathsf {T}}\\mathbf {x} } in this case) is called the objective function. The constraints A x \u2264 b {\\displaystyle A\\mathbf {x} \\leq \\mathbf {b} } and x \u2265 0 {\\displaystyle \\mathbf {x} \\geq \\mathbf {0} } specify a convex polytope over which the objective function is to be optimized.",
+  "url": "https://en.wikipedia.org/wiki/Linear_programming",
+  "embedding": null,
+  "db_path": "kb_databases/linear_programming_b712d984.db",
+  "last_updated": 1743796485.1218932,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

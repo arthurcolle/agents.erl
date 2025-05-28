@@ -1,0 +1,14 @@
+{
+  "kb_id": "32c8a2c1-99c0-4743-b3c2-d893ff81adeb",
+  "name": "Molecular engineering",
+  "content": "Molecular engineering is an emerging field of study concerned with the design and testing of molecular properties, behavior and interactions in order to assemble better materials, systems, and processes for specific functions. This approach, in which observable properties of a macroscopic system are influenced by direct alteration of a molecular structure, falls into the broader category of \u201cbottom-up\u201d design. Molecular engineering is highly interdisciplinary by nature, encompassing aspects of chemical engineering, materials science, bioengineering, electrical engineering, physics, mechanical engineering, and chemistry. There is also considerable overlap with nanotechnology, in that both are concerned with the behavior of materials on the scale of nanometers or smaller. Given the highly fundamental nature of molecular interactions, there are a plethora of potential application areas, limited perhaps only by one's imagination and the laws of physics. However, some of the early successes of molecular engineering have come in the fields of immunotherapy, synthetic biology, and printable electronics (see molecular engineering applications).",
+  "url": "https://en.wikipedia.org/wiki/Molecular_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/molecular_engineering_4e690678.db",
+  "last_updated": 1743796485.4722922,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

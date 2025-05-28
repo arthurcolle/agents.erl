@@ -1,0 +1,14 @@
+{
+  "kb_id": "70489e3b-6639-43e7-8211-1796b21611db",
+  "name": "Bioinformatics",
+  "content": "Bioinformatics (/\u02ccba\u026a.o\u028a\u02cc\u026anf\u0259r\u02c8m\u00e6t\u026aks/ \u24d8) is an interdisciplinary field of science that develops methods and software tools for understanding biological data, especially when the data sets are large and complex. Bioinformatics uses biology, chemistry, physics, computer science, data science, computer programming, information engineering, mathematics and statistics to analyze and interpret biological data. The process of analyzing and interpreting data can sometimes be referred to as computational biology, however this distinction between the two terms is often disputed. To some, the term computational biology refers to building and using models of biological systems. Computational, statistical, and computer programming techniques have been used for computer simulation analyses of biological queries. They include reused specific analysis \"pipelines\", particularly in the field of genomics, such as by the identification of genes and single nucleotide polymorphisms (SNPs). These pipelines are used to better understand the genetic basis of disease, unique adaptations, desirable properties (especially in agricultural species), or differences between populations. Bioinformatics also includes proteomics, which tries to understand the organizational principles within nucleic acid and protein sequences.[1]",
+  "url": "https://en.wikipedia.org/wiki/Bioinformatics",
+  "embedding": null,
+  "db_path": "kb_databases/bioinformatics_af9845c9.db",
+  "last_updated": 1743796484.800666,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

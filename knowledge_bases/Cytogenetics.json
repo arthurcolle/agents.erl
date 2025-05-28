@@ -1,0 +1,14 @@
+{
+  "kb_id": "8657a7b9-0560-404e-b4b0-0d4a931962b5",
+  "name": "Cytogenetics",
+  "content": "Cytogenetics is essentially a branch of genetics, but is also a part of cell biology/cytology (a subdivision of human anatomy), that is concerned with how the chromosomes relate to cell behaviour, particularly to their behaviour during mitosis and meiosis.[1] Techniques used include karyotyping, analysis of G-banded chromosomes, other cytogenetic banding techniques, as well as molecular cytogenetics such as fluorescence in situ hybridization (FISH) and comparative genomic hybridization (CGH). Chromosomes were first observed in plant cells by Carl N\u00e4geli in 1842. Their behavior in animal (salamander) cells was described by Walther Flemming, the discoverer of mitosis, in 1882. The name was coined by another German anatomist, von Waldeyer in 1888. The next stage took place after the development of genetics in the early 20th century, when it was appreciated that the set of chromosomes (the karyotype) was the carrier of the genes. Levitsky seems to have been the first to define the karyotype as the phenotypic appearance of the somatic chromosomes, in contrast to their genic contents.[2][3] Investigation into the human karyotype took many years to settle the most basic question: how many chromosomes does a normal diploid human cell contain?[4] In 1912, Hans von Winiwarter reported 47 chromosomes in spermatogonia and 48 in oogonia, concluding an XX/XO sex determination mechanism.[5] Painter in 1922 was not certain whether the diploid number of humans was 46 or 48, at first favoring 46.[6] He revised his opinion later from 46 to 48, and he correctly insisted on humans having an XX/XY system of sex-determination.[7] Considering their techniques, these results were quite remarkable. In science books, the number of human chromosomes remained at 48 for over thirty years. New techniques were needed to correct this error. Joe Hin Tjio working in Albert Levan's lab[8][9] was responsible for finding the approach:",
+  "url": "https://en.wikipedia.org/wiki/Cytogenetics",
+  "embedding": null,
+  "db_path": "kb_databases/cytogenetics_26f70954.db",
+  "last_updated": 1743796485.188991,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

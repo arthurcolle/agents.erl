@@ -1,0 +1,14 @@
+{
+  "kb_id": "095f0536-8239-451b-a414-61ef3e043074",
+  "name": "Remote sensing",
+  "content": "This is an accepted version of this page Remote sensing is the acquisition of information about an object or phenomenon without making physical contact with the object, in contrast to in situ or on-site observation. The term is applied especially to acquiring information about Earth and other planets. Remote sensing is used in numerous fields, including geophysics, geography, land surveying and most Earth science disciplines (e.g. exploration geophysics, hydrology, ecology, meteorology, oceanography, glaciology, geology). It also has military, intelligence, commercial, economic, planning, and humanitarian applications, among others. In current usage, the term remote sensing generally refers to the use of satellite- or aircraft-based sensor technologies to detect and classify objects on Earth. It includes the surface and the atmosphere and oceans, based on propagated signals (e.g. electromagnetic radiation). It may be split into \"active\" remote sensing (when a signal is emitted by a satellite or aircraft to the object and its reflection is detected by the sensor) and \"passive\" remote sensing (when the reflection of sunlight is detected by the sensor).[1][2][3][4]",
+  "url": "https://en.wikipedia.org/wiki/Remote_sensing",
+  "embedding": null,
+  "db_path": "kb_databases/remote_sensing_79eb1e1c.db",
+  "last_updated": 1743796485.10125,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

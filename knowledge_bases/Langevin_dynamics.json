@@ -1,0 +1,14 @@
+{
+  "kb_id": "373d7746-7fb9-4797-bd91-9f7a17054f56",
+  "name": "Langevin dynamics",
+  "content": "In physics, Langevin dynamics is an approach to the mathematical modeling of the dynamics of molecular systems using the Langevin equation. It was originally developed by French physicist Paul Langevin. The approach is characterized by the use of simplified models while accounting for omitted degrees of freedom by the use of stochastic differential equations. Langevin dynamics simulations are a kind of Monte Carlo simulation.[1] A real world molecular system is unlikely to be present in vacuum. Jostling of solvent or air molecules causes friction, and the occasional high velocity collision will perturb the system. Langevin dynamics attempts to extend molecular dynamics to allow for these effects. Also, Langevin dynamics allows temperature to be controlled as with a thermostat, thus approximating the canonical ensemble. Langevin dynamics mimics the viscous aspect of a solvent. It does not fully model an implicit solvent; specifically, the model does not account for the electrostatic screening and also not for the hydrophobic effect. For denser solvents, hydrodynamic interactions are not captured via Langevin dynamics.",
+  "url": "https://en.wikipedia.org/wiki/Langevin_dynamics",
+  "embedding": null,
+  "db_path": "kb_databases/langevin_dynamics_b045b62f.db",
+  "last_updated": 1743796485.517229,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

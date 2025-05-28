@@ -1,0 +1,14 @@
+{
+  "kb_id": "0325af79-2c10-4a31-b46f-155b8af997a4",
+  "name": "Quantum gravity",
+  "content": "Quantum gravity (QG) is a field of theoretical physics that seeks to describe gravity according to the principles of quantum mechanics. It deals with environments in which neither gravitational nor quantum effects can be ignored,[1] such as in the vicinity of black holes or similar compact astrophysical objects, as well as in the early stages of the universe moments after the Big Bang.[2] Three of the four fundamental forces of nature are described within the framework of quantum mechanics and quantum field theory: the electromagnetic interaction, the strong force, and the weak force; this leaves gravity as the only interaction that has not been fully accommodated. The current understanding of gravity is based on Albert Einstein's general theory of relativity, which incorporates his theory of special relativity and deeply modifies the understanding of concepts like time and space. Although general relativity is highly regarded for its elegance and accuracy, it has limitations: the gravitational singularities inside black holes, the ad hoc postulation of dark matter, as well as dark energy and its relation to the cosmological constant are among the current unsolved mysteries regarding gravity,[3] all of which signal the collapse of the general theory of relativity at different scales and highlight the need for a gravitational theory that goes into the quantum realm. At distances close to the Planck length, like those near the center of a black hole, quantum fluctuations of spacetime are expected to play an important role.[4] Finally, the discrepancies between the predicted value for the vacuum energy and the observed values (which, depending on considerations, can be of 60 or 120 orders of magnitude)[5][6] highlight the necessity for a quantum theory of gravity.",
+  "url": "https://en.wikipedia.org/wiki/Quantum_gravity",
+  "embedding": null,
+  "db_path": "kb_databases/quantum_gravity_ab43cba0.db",
+  "last_updated": 1743796485.3381472,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

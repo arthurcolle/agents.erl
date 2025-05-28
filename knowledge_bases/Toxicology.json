@@ -1,0 +1,14 @@
+{
+  "kb_id": "5cd64a75-8e25-489a-868a-6d22d5ab040f",
+  "name": "Toxicology",
+  "content": "Toxicology is a scientific discipline, overlapping with biology, chemistry, pharmacology, and medicine, that involves the study of the adverse effects of chemical substances on living organisms[1] and the practice of diagnosing and treating exposures to toxins and toxicants. The relationship between dose and its effects on the exposed organism is of high significance in toxicology. Factors that influence chemical toxicity include the dosage, duration of exposure (whether it is acute or chronic), route of exposure, species, age, sex, and environment. Toxicologists are experts on poisons and poisoning. There is a movement for evidence-based toxicology as part of the larger movement towards evidence-based practices. Toxicology is currently contributing to the field of cancer research, since some toxins can be used as drugs for killing tumor cells. One prime example of this is ribosome-inactivating proteins, tested in the treatment of leukemia.[2] The word toxicology (/\u02cct\u0252ks\u026a\u02c8k\u0252l\u0259d\u0292i/) is a neoclassical compound from Neo-Latin, first attested c. 1799,[3] from the combining forms toxico- + -logy, which in turn come from the Ancient Greek words \u03c4\u03bf\u03be\u03b9\u03ba\u03cc\u03c2 toxikos, \"poisonous\", and \u03bb\u03cc\u03b3\u03bf\u03c2 logos, \"subject matter\").",
+  "url": "https://en.wikipedia.org/wiki/Toxicology",
+  "embedding": null,
+  "db_path": "kb_databases/toxicology_c89ec17c.db",
+  "last_updated": 1743796484.962392,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

@@ -1,0 +1,14 @@
+{
+  "kb_id": "4025e03f-ba7b-4b44-b61c-36b0579bd007",
+  "name": "Statics",
+  "content": "Statics is the branch of classical mechanics that is concerned with the analysis of force and torque acting on a physical system that does not experience an acceleration, but rather is in equilibrium with its environment. If F {\\displaystyle {\\textbf {F}}} is the total of the forces acting on the system, m {\\displaystyle m} is the mass of the system and a {\\displaystyle {\\textbf {a}}} is the acceleration of the system, Newton's second law states that F = m a {\\displaystyle {\\textbf {F}}=m{\\textbf {a}}\\,} (the bold font indicates a vector quantity, i.e. one with both magnitude and direction). If a = 0 {\\displaystyle {\\textbf {a}}=0} , then F = 0 {\\displaystyle {\\textbf {F}}=0} . As for a system in static equilibrium, the acceleration equals zero, the system is either at rest, or its center of mass moves at constant velocity. The application of the assumption of zero acceleration to the summation of moments acting on the system leads to M = I \u03b1 = 0 {\\displaystyle {\\textbf {M}}=I\\alpha =0} , where M {\\displaystyle {\\textbf {M}}} is the summation of all moments acting on the system, I {\\displaystyle I} is the moment of inertia of the mass and \u03b1 {\\displaystyle \\alpha } is the angular acceleration of the system. For a system where \u03b1 = 0 {\\displaystyle \\alpha =0} , it is also true that M = 0. {\\displaystyle {\\textbf {M}}=0.}",
+  "url": "https://en.wikipedia.org/wiki/Statics",
+  "embedding": null,
+  "db_path": "kb_databases/statics_4a8111b7.db",
+  "last_updated": 1743796485.32898,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

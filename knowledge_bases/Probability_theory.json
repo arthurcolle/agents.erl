@@ -1,0 +1,14 @@
+{
+  "kb_id": "c20c6095-ddc2-47e6-8c86-0998b5da42fd",
+  "name": "Probability theory",
+  "content": "Probability theory or probability calculus is the branch of mathematics concerned with probability. Although there are several different probability interpretations, probability theory treats the concept in a rigorous mathematical manner by expressing it through a set of axioms. Typically these axioms formalise probability in terms of a probability space, which assigns a measure taking values between 0 and 1, termed the probability measure, to a set of outcomes called the sample space. Any specified subset of the sample space is called an event. Central subjects in probability theory include discrete and continuous random variables, probability distributions, and stochastic processes (which provide mathematical abstractions of non-deterministic or uncertain processes or measured quantities that may either be single occurrences or evolve over time in a random fashion). Although it is not possible to perfectly predict random events, much can be said about their behavior. Two major results in probability theory describing such behaviour are the law of large numbers and the central limit theorem.",
+  "url": "https://en.wikipedia.org/wiki/Probability_theory",
+  "embedding": null,
+  "db_path": "kb_databases/probability_theory_01ba0904.db",
+  "last_updated": 1743796485.067565,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

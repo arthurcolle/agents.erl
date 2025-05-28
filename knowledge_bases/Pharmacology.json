@@ -1,0 +1,14 @@
+{
+  "kb_id": "288c7c35-9d16-4348-9c67-0c29a205938d",
+  "name": "Pharmacology",
+  "content": "Pharmacology is the science of drugs and medications,[1] including a substance's origin, composition, pharmacokinetics, pharmacodynamics, therapeutic use, and toxicology. More specifically, it is the study of the interactions that occur between a living organism and chemicals that affect normal or abnormal biochemical function.[2] If substances have medicinal properties, they are considered pharmaceuticals. The field encompasses drug composition and properties, functions, sources, synthesis and drug design, molecular and cellular mechanisms, organ/systems mechanisms, signal transduction/cellular communication, molecular diagnostics, interactions, chemical biology, therapy, and medical applications and antipathogenic capabilities. The two main areas of pharmacology are pharmacodynamics and pharmacokinetics. Pharmacodynamics studies the effects of a drug on biological systems, and pharmacokinetics studies the effects of biological systems on a drug. In broad terms, pharmacodynamics discusses the chemicals with biological receptors, and pharmacokinetics discusses the absorption, distribution, metabolism, and excretion (ADME) of chemicals from the biological systems.",
+  "url": "https://en.wikipedia.org/wiki/Pharmacology",
+  "embedding": null,
+  "db_path": "kb_databases/pharmacology_bf035ab7.db",
+  "last_updated": 1743796485.099704,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

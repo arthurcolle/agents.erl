@@ -1,0 +1,14 @@
+{
+  "kb_id": "7a4ce2b8-5489-4d79-865f-187d88538de5",
+  "name": "Aerospace engineering",
+  "content": "Aerospace engineering is the primary field of engineering concerned with the development of aircraft and spacecraft.[3] It has two major and overlapping branches: aeronautical engineering and astronautical engineering. Avionics engineering is similar, but deals with the electronics side of aerospace engineering. \"Aeronautical engineering\" was the original term for the field. As flight technology advanced to include vehicles operating in outer space, the broader term \"aerospace engineering\" has come into use.[4] Aerospace engineering, particularly the astronautics branch, is often colloquially referred to as \"rocket science\".[5][a] Flight vehicles are subjected to demanding conditions such as those caused by changes in atmospheric pressure and temperature, with structural loads applied upon vehicle components. Consequently, they are usually the products of various technological and engineering disciplines including aerodynamics, air propulsion, avionics, materials science, structural analysis and manufacturing. The interaction between these technologies is known as aerospace engineering. Because of the complexity and number of disciplines involved, aerospace engineering is carried out by teams of engineers, each having their own specialized area of expertise.[7]",
+  "url": "https://en.wikipedia.org/wiki/Aerospace_engineering",
+  "embedding": null,
+  "db_path": "kb_databases/aerospace_engineering_0fc695c2.db",
+  "last_updated": 1743796485.522651,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

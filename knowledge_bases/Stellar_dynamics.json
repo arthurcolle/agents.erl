@@ -1,0 +1,14 @@
+{
+  "kb_id": "f8705c3b-6456-425c-ba6c-f165278bdb94",
+  "name": "Stellar dynamics",
+  "content": "Stellar dynamics is the branch of astrophysics which describes in a statistical way the collective motions of stars subject to their mutual gravity. The essential difference from celestial mechanics is that the number of body N \u226b 10. {\\displaystyle N\\gg 10.} Typical galaxies have upwards of millions of macroscopic gravitating bodies and countless number of neutrinos and perhaps other dark microscopic bodies. Also each star contributes more or less equally to the total gravitational field, whereas in celestial mechanics the pull of a massive body dominates any satellite orbits.[1] Stellar dynamics also has connections to the field of plasma physics.[2] The two fields underwent significant development during a similar time period in the early 20th century, and both borrow mathematical formalism originally developed in the field of fluid mechanics. In accretion disks and stellar surfaces, the dense plasma or gas particles collide very frequently, and collisions result in equipartition and perhaps viscosity under magnetic field. We see various sizes for accretion disks and stellar atmosphere, both made of enormous number of microscopic particle mass, ( L / V , M / N ) {\\displaystyle (L/V,M/N)}",
+  "url": "https://en.wikipedia.org/wiki/Stellar_dynamics",
+  "embedding": null,
+  "db_path": "kb_databases/stellar_dynamics_3b5b4716.db",
+  "last_updated": 1743796485.5073438,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

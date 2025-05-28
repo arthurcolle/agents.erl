@@ -1,0 +1,14 @@
+{
+  "kb_id": "50f56ece-f452-48da-864a-b22dfa3e5809",
+  "name": "Transport phenomena",
+  "content": "In engineering, physics, and chemistry, the study of transport phenomena concerns the exchange of mass, energy, charge, momentum and angular momentum between observed and studied systems. While it draws from fields as diverse as continuum mechanics and thermodynamics, it places a heavy emphasis on the commonalities between the topics covered. Mass, momentum, and heat transport all share a very similar mathematical framework, and the parallels between them are exploited in the study of transport phenomena to draw deep mathematical connections that often provide very useful tools in the analysis of one field that are directly derived from the others. The fundamental analysis in all three subfields of mass, heat, and momentum transfer are often grounded in the simple principle that the total sum of the quantities being studied must be conserved by the system and its environment. Thus, the different phenomena that lead to transport are each considered individually with the knowledge that the sum of their contributions must equal zero. This principle is useful for calculating many relevant quantities. For example, in fluid mechanics, a common use of transport analysis is to determine the velocity profile of a fluid flowing through a rigid volume.",
+  "url": "https://en.wikipedia.org/wiki/Transport_phenomena",
+  "embedding": null,
+  "db_path": "kb_databases/transport_phenomena_4048447c.db",
+  "last_updated": 1743796485.481924,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}

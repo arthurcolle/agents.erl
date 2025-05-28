@@ -1,0 +1,14 @@
+{
+  "kb_id": "e49f8c43-390f-4b1a-89f8-ac6a17a2bb09",
+  "name": "Population genetics",
+  "content": "Population genetics is a subfield of genetics that deals with genetic differences within and among populations, and is a part of evolutionary biology. Studies in this branch of biology examine such phenomena as adaptation, speciation, and population structure.[1] Population genetics was a vital ingredient in the emergence of the modern evolutionary synthesis. Its primary founders were Sewall Wright, J. B. S. Haldane and Ronald Fisher, who also laid the foundations for the related discipline of quantitative genetics. Traditionally a highly mathematical discipline, modern population genetics encompasses theoretical, laboratory, and field work. Population genetic models are used both for statistical inference from DNA sequence data and for proof/disproof of concept.[2] What sets population genetics apart from newer, more phenotypic approaches to modelling evolution, such as evolutionary game theory and adaptive dynamics, is its emphasis on such genetic phenomena as dominance, epistasis, the degree to which genetic recombination breaks linkage disequilibrium, and the random phenomena of mutation and genetic drift. This makes it appropriate for comparison to population genomics data.",
+  "url": "https://en.wikipedia.org/wiki/Population_genetics",
+  "embedding": null,
+  "db_path": "kb_databases/population_genetics_d2d9a3ad.db",
+  "last_updated": 1743796485.5196018,
+  "query_count": 0,
+  "enrichment_count": 0,
+  "amplification_count": 0,
+  "shared_knowledge_count": 0,
+  "learning_contexts_count": 0
+}
