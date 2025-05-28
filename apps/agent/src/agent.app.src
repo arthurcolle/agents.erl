@@ -1,10 +1,15 @@
 {application, agent, [
-    {description, "Distributed Erlang agent for OpenAI API"},
-    {vsn, "0.1.0"},
+    {description, "Advanced Self-Optimizing Distributed Multi-Agent System with Quantum Coordination"},
+    {vsn, "0.2.0"},
     {registered, [
         agent,
         agent_tools,
         agent_registry,
+        agent_supervisor,
+        quantum_runtime,
+        quantum_protocol,
+        cluster_orchestrator,
+        lockfree_coordination,
         openai_sup,
         openai_generator_sup,
         openai_clients_sup,
@@ -24,6 +29,11 @@
     {env, [
         {auto_start_groups, [chat, completions, embeddings]},
         {output_dir, "/tmp/openai-erlang"},
-        {default_model, <<"gpt-4.1">>}
+        {default_model, <<"gpt-4.1">>},
+        {quantum_coordination, true},
+        {lockfree_primitives, true},
+        {self_optimization, true},
+        {numa_awareness, true},
+        {thermal_monitoring, true}
     ]}
 ]}.

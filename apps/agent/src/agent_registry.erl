@@ -6,6 +6,7 @@
 -export([
     start_link/1,
     register_agent/2,
+    register_agent/3,
     unregister_agent/1,
     list_agents/0,
     get_agent/1,
@@ -24,7 +25,7 @@
 -define(SERVER, ?MODULE).
 
 -record(state, {
-    agents = #{} :: map()     % SessionId -> {Pid, Timestamp} mapping
+    agents = #{} :: map()     % SessionId -> {Pid, Timestamp, Meta} mapping
 }).
 
 %% API Functions
@@ -33,7 +34,10 @@ start_link(Options) ->
 
 %% Register an agent process
 register_agent(SessionId, Pid) ->
-    gen_server:cast(?SERVER, {register, SessionId, Pid}).
+    register_agent(SessionId, Pid, #{}).
+
+register_agent(SessionId, Pid, Meta) ->
+    gen_server:cast(?SERVER, {register, SessionId, Pid, Meta}).
 
 %% Unregister an agent process
 unregister_agent(SessionId) ->
@@ -58,18 +62,21 @@ init(_Options) ->
     {ok, #state{}}.
 
 handle_call(list_agents, _From, State) ->
-    {reply, maps:keys(State#state.agents), State};
+    AgentList = maps:fold(fun(K, V, Acc) ->
+        [{K, element(1, V), element(3, V)} | Acc]
+    end, [], State#state.agents),
+    {reply, AgentList, State};
 
 handle_call({get_agent, SessionId}, _From, State) ->
     Result = case maps:find(SessionId, State#state.agents) of
-        {ok, {Pid, _Timestamp}} -> {ok, Pid};
+        {ok, {Pid, _Timestamp, _Meta}} -> {ok, Pid};
         error -> {error, agent_not_found}
     end,
     {reply, Result, State};
 
 handle_call({send_to_agent, SessionId, Message}, _From, State) ->
     Result = case maps:find(SessionId, State#state.agents) of
-        {ok, {Pid, _Timestamp}} ->
+        {ok, {Pid, _Timestamp, _Meta}} ->
             Pid ! Message,
             ok;
         error ->
@@ -80,12 +87,12 @@ handle_call({send_to_agent, SessionId, Message}, _From, State) ->
 handle_call(_Request, _From, State) ->
     {reply, {error, unknown_call}, State}.
 
-handle_cast({register, SessionId, Pid}, State) ->
+handle_cast({register, SessionId, Pid, Meta}, State) ->
     % Monitor the process to detect crashes
     erlang:monitor(process, Pid),
     
-    % Store the agent with timestamp
-    NewAgents = maps:put(SessionId, {Pid, os:timestamp()}, State#state.agents),
+    % Store the agent with timestamp and metadata
+    NewAgents = maps:put(SessionId, {Pid, os:timestamp(), Meta}, State#state.agents),
     {noreply, State#state{agents = NewAgents}};
 
 handle_cast({unregister, SessionId}, State) ->
@@ -99,7 +106,7 @@ handle_cast(_Msg, State) ->
 handle_info({'DOWN', _MonitorRef, process, Pid, _Reason}, State) ->
     % Process crashed or exited, remove it from the registry
     NewAgents = maps:filter(
-        fun(_SessionId, {AgentPid, _Timestamp}) -> AgentPid =/= Pid end,
+        fun(_SessionId, {AgentPid, _Timestamp, _Meta}) -> AgentPid =/= Pid end,
         State#state.agents
     ),
     {noreply, State#state{agents = NewAgents}};
@@ -110,7 +117,7 @@ handle_info(cleanup_stale_agents, State) ->
     Threshold = 600 * 1000000, % 10 minutes in microseconds
     
     NewAgents = maps:filter(
-        fun(_SessionId, {_Pid, Timestamp}) ->
+        fun(_SessionId, {_Pid, Timestamp, _Meta}) ->
             timer:now_diff(Now, Timestamp) < Threshold
         end,
         State#state.agents

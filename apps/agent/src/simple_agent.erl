@@ -9,7 +9,8 @@
     chat/1,
     chat/2,
     chat_stream/1,
-    chat_stream/2
+    chat_stream/2,
+    start_link/1
 ]).
 
 %% @doc Start the application
@@ -25,6 +26,16 @@ start() ->
 -spec stop() -> ok | {error, term()}.
 stop() ->
     application:stop(agent).
+
+%% @doc Start a simple agent as a gen_server
+-spec start_link(string()) -> {ok, pid()} | {error, term()}.
+start_link(AgentId) ->
+    agent:start_link(AgentId, #{
+        name => "Simple Agent",
+        description => "A basic agent for simple conversations",
+        model => <<"gpt-4o-mini">>,
+        system_message => <<"You are a helpful assistant.">>
+    }).
 
 %% @doc Send a chat message with default settings
 -spec chat(binary()) -> binary() | {error, term()}.

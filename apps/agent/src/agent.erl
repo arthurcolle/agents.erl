@@ -19,7 +19,11 @@
 -export([
     start/0,
     start_link/0,
+    start_link/1,
+    start_link/2,
     stop/0,
+    stop_agent/1,
+    get_info/1,
     run_agent/2,
     run_agent/3,
     define_tool/2,
@@ -62,9 +66,40 @@ start() ->
 start_link() ->
     supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
-%% Stop the agent
+%% Start the agent supervisor with options or create an agent instance
+start_link(Options) ->
+    % This is for supervisor initialization
+    supervisor:start_link({local, ?MODULE}, ?MODULE, [Options]).
+
+%% Start an agent with ID and options
+start_link(AgentId, Options) when is_map(Options) ->
+    % Add the agent_id to the options
+    OptionsWithId = Options#{agent_id => AgentId},
+    agent_supervisor:start_agent(OptionsWithId).
+
+%% Stop the agent application
 stop() ->
     application:stop(agent).
+
+%% Stop a specific agent process
+stop_agent(Pid) when is_pid(Pid) ->
+    exit(Pid, normal),
+    ok.
+
+%% Get information about an agent process
+get_info(Pid) when is_pid(Pid) ->
+    case erlang:process_info(Pid) of
+        undefined ->
+            #{status => dead};
+        Info ->
+            #{
+                status => alive,
+                pid => Pid,
+                memory => proplists:get_value(memory, Info, 0),
+                message_queue_len => proplists:get_value(message_queue_len, Info, 0),
+                current_function => proplists:get_value(current_function, Info, undefined)
+            }
+    end.
 
 %% Run an agent with a prompt and available tools
 run_agent(Prompt, ToolNames) ->
@@ -150,6 +185,26 @@ init([]) ->
             shutdown => 5000,
             type => worker,
             modules => [agent_registry]
+        },
+        
+        % Agent supervisor for managing agent instances
+        #{
+            id => agent_supervisor,
+            start => {agent_supervisor, start_link, []},
+            restart => permanent,
+            shutdown => infinity,
+            type => supervisor,
+            modules => [agent_supervisor]
+        },
+        
+        % Agent collaboration manager
+        #{
+            id => agent_collaboration,
+            start => {agent_collaboration, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [agent_collaboration]
         }
     ],
     

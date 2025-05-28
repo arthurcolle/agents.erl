@@ -1,5 +1,5 @@
 # Erlang/OTP build artifacts
-/_build/
+_build/
 /rel/
 
 # Crash dumps and logs
@@ -10,6 +10,7 @@ erl_crash.dump
 # Compiler artifacts
 *.beam
 ebin/*.beam
+**/*.beam
 
 # Dependency directories
 /deps/
@@ -44,3 +45,7 @@ Thumbs.db
 .idea/
 .vscode/
 *.iml
+
+# Rebar3 artifacts
+.rebar3/
+**/rebar.lock

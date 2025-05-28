@@ -1,0 +1,23 @@
+{application, agent_web,
+ [{description, "Agent System Web Interface"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, {agent_web_app, []}},
+  {applications,
+   [kernel,
+    stdlib,
+    agent,
+    openai,
+    cowboy,
+    jsx,
+    uuid
+   ]},
+  {env,[
+   {port, 8080},
+   {static_dir, "priv/static"},
+   {templates_dir, "priv/templates"}
+  ]},
+  {modules, []},
+  {licenses, ["MIT"]},
+  {links, []}
+ ]}.
