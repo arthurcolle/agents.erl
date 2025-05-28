@@ -4,7 +4,9 @@
 
 init(Req0, Opts) ->
     %% Serve the built index.html file
-    {ok, Html} = file:read_file("apps/agent_web/priv/static/dist/index.html"),
+    PrivDir = code:priv_dir(agent_web),
+    HtmlPath = filename:join([PrivDir, "static", "dist", "index.html"]),
+    {ok, Html} = file:read_file(HtmlPath),
     
     Req = cowboy_req:reply(200, #{
         <<"content-type">> => <<"text/html">>

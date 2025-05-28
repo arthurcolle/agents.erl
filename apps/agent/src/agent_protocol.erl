@@ -197,7 +197,7 @@ get_timestamp(Message) ->
 
 %% Generate a unique message ID
 generate_id() ->
-    erlang:list_to_binary(uuid:to_string(uuid:uuid4())).
+    erlang:list_to_binary(uuid:uuid_to_string(uuid:get_v4())).
 
 %% Ensure a term is binary
 ensure_binary(Term) when is_atom(Term) ->

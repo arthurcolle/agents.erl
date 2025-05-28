@@ -296,4 +296,4 @@ generate_trends() ->
     }.
 
 generate_collaboration_id() ->
-    list_to_binary(uuid:to_string(uuid:uuid4())).
+    list_to_binary(uuid:uuid_to_string(uuid:get_v4())).
