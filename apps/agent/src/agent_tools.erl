@@ -49,6 +49,14 @@ unregister_tool(Name) ->
 get_tools(ToolNames) ->
     gen_server:call(?SERVER, {get_tools, ToolNames}).
 
+%% Get all tools including MCP tools
+get_all_tools() ->
+    gen_server:call(?SERVER, get_all_tools).
+
+%% Get tools enhanced with MCP tools
+get_enhanced_tools(ToolNames) ->
+    gen_server:call(?SERVER, {get_enhanced_tools, ToolNames}).
+
 %% Execute a tool with the given arguments
 execute_tool(Name, Arguments) ->
     gen_server:call(?SERVER, {execute_tool, Name, Arguments}, infinity).
@@ -138,12 +146,60 @@ handle_call({execute_tool, Name, Arguments}, _From, State) ->
                     {error, {tool_execution_failed, E, R, S}}
             end;
         error ->
-            {error, {unknown_tool, Name}}
+            % Check if it's an MCP tool
+            try
+                case mcp_agent_integration:handle_llm_tool_call(Name, Arguments) of
+                    {error, not_mcp_tool} ->
+                        {error, {unknown_tool, Name}};
+                    McpResult ->
+                        McpResult
+                end
+            catch
+                _:_ ->
+                    {error, {unknown_tool, Name}}
+            end
     end,
     {reply, Result, State};
 
 handle_call(list_tools, _From, State) ->
     {reply, maps:keys(State#state.tools), State};
+
+handle_call(get_all_tools, _From, State) ->
+    % Get local tools
+    LocalTools = maps:values(State#state.tools),
+    
+    % Try to get MCP tools if available
+    McpTools = try
+        mcp_agent_integration:format_tools_for_llm()
+    catch
+        _:_ -> []
+    end,
+    
+    AllTools = LocalTools ++ McpTools,
+    {reply, AllTools, State};
+
+handle_call({get_enhanced_tools, ToolNames}, _From, State) ->
+    % Get requested local tools
+    LocalTools = lists:foldl(
+        fun(ToolName, Acc) ->
+            case maps:find(ToolName, State#state.tools) of
+                {ok, Schema} -> [Schema | Acc];
+                error -> Acc
+            end
+        end,
+        [],
+        ToolNames
+    ),
+    
+    % Add MCP tools
+    McpTools = try
+        mcp_agent_integration:format_tools_for_llm()
+    catch
+        _:_ -> []
+    end,
+    
+    EnhancedTools = LocalTools ++ McpTools,
+    {reply, EnhancedTools, State};
 
 handle_call(_Request, _From, State) ->
     {reply, {error, unknown_call}, State}.

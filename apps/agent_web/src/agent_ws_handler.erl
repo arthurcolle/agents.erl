@@ -1,6 +1,6 @@
 -module(agent_ws_handler).
 
--export([init/2]).
+-export([init/2, broadcast/1]).
 -export([websocket_init/1]).
 -export([websocket_handle/2]).
 -export([websocket_info/2]).
@@ -290,3 +290,11 @@ ensure_json_safe(Data) when is_map(Data) ->
     end;
 ensure_json_safe(_Data) ->
     <<"#Unknown">>.
+
+%% Broadcast function for notifying all connected websocket clients
+broadcast(Message) ->
+    io:format("[WS] Broadcasting message: ~p~n", [Message]),
+    %% For now, just log the broadcast - in a full implementation,
+    %% this would maintain a registry of connected websocket processes
+    %% and send the message to all of them
+    ok.
