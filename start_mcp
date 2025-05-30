@@ -1,0 +1,387 @@
+#!/bin/bash
+
+# Comprehensive MCP Start Script for agents.erl
+# Supports both local server hosting and remote client connections
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+EBIN_DIR="$SCRIPT_DIR/_build/default/lib/agent/ebin"
+WEB_EBIN_DIR="$SCRIPT_DIR/_build/default/lib/agent_web/ebin"
+ALL_EBIN_DIRS="$SCRIPT_DIR/_build/default/lib/*/ebin"
+
+# Colors for output
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m' # No Color
+
+# Print colored output
+print_status() {
+    echo -e "${GREEN}[INFO]${NC} $1"
+}
+
+print_warning() {
+    echo -e "${YELLOW}[WARN]${NC} $1"
+}
+
+print_error() {
+    echo -e "${RED}[ERROR]${NC} $1"
+}
+
+print_header() {
+    echo -e "${BLUE}=====================================${NC}"
+    echo -e "${BLUE}   Erlang Agents MCP System${NC}"
+    echo -e "${BLUE}=====================================${NC}"
+}
+
+# Check if Erlang is available
+check_erlang() {
+    if ! command -v erl &> /dev/null; then
+        print_error "Erlang/OTP is not installed or not in PATH"
+        exit 1
+    fi
+    
+    ERL_VERSION=$(erl -eval 'io:format("~s~n", [erlang:system_info(otp_release)]), halt().' -noshell)
+    print_status "Using Erlang/OTP $ERL_VERSION"
+}
+
+# Compile the project
+compile_project() {
+    print_status "Compiling project..."
+    
+    if [ -f "$SCRIPT_DIR/rebar3" ]; then
+        REBAR3="$SCRIPT_DIR/rebar3"
+    elif command -v rebar3 &> /dev/null; then
+        REBAR3="rebar3"
+    else
+        print_error "rebar3 not found. Please install rebar3."
+        exit 1
+    fi
+    
+    cd "$SCRIPT_DIR"
+    $REBAR3 compile
+    
+    if [ $? -eq 0 ]; then
+        print_status "Project compiled successfully"
+    else
+        print_error "Compilation failed"
+        exit 1
+    fi
+}
+
+# Start MCP server in stdio mode
+start_stdio_server() {
+    print_status "Starting MCP server in stdio mode..."
+    print_status "Use this for external MCP clients that connect via stdin/stdout"
+    
+    cd "$SCRIPT_DIR"
+    erl -pa $ALL_EBIN_DIRS -noshell \
+        -eval "application:ensure_all_started(agent_web), mcp_cli:start_stdio_server()."
+}
+
+# Start full web application with MCP support
+start_web_app() {
+    local PORT=${1:-8080}
+    local MCP_PORT=${2:-8765}
+    
+    print_status "Starting web application on port $PORT"
+    print_status "MCP server will be available on port $MCP_PORT"
+    
+    cd "$SCRIPT_DIR"
+    erl -pa $ALL_EBIN_DIRS -noshell \
+        -eval "
+        io:format(\"[STARTUP] Setting port environment variable to ~p~n\", [$PORT]),
+        application:set_env(agent_web, port, $PORT),
+        io:format(\"[STARTUP] Starting all applications for agent_web~n\"),
+        case application:ensure_all_started(agent_web) of
+            {ok, Started} -> 
+                io:format(\"[STARTUP] Successfully started applications: ~p~n\", [Started]);
+            {error, Reason} -> 
+                io:format(\"[ERROR] Failed to start applications: ~p~n\", [Reason]),
+                halt(1)
+        end,
+        io:format(\"[STARTUP] Checking if web server is listening on port ~p~n\", [$PORT]),
+        case gen_tcp:connect(\"localhost\", $PORT, []) of
+            {ok, Socket} ->
+                gen_tcp:close(Socket),
+                io:format(\"[STARTUP] Web server is listening on port ~p~n\", [$PORT]);
+            {error, ConnError} ->
+                io:format(\"[WARNING] Could not connect to port ~p: ~p~n\", [$PORT, ConnError])
+        end,
+        io:format(\"~n[MCP] Web interface: http://localhost:$PORT~n\"),
+        io:format(\"[MCP] WebSocket server: ws://localhost:$MCP_PORT/mcp~n\"),
+        io:format(\"[MCP] Press Ctrl+C to stop~n~n\"),
+        io:format(\"[STARTUP] Server ready, entering infinite sleep~n\"),
+        timer:sleep(infinity).
+        "
+}
+
+# Connect to remote MCP server
+connect_client() {
+    local URL="$1"
+    
+    if [ -z "$URL" ]; then
+        print_error "Please provide MCP server URL"
+        echo "Usage: $0 client <ws://host:port/mcp>"
+        exit 1
+    fi
+    
+    print_status "Connecting to remote MCP server: $URL"
+    
+    cd "$SCRIPT_DIR"
+    erl -pa $ALL_EBIN_DIRS -noshell \
+        -eval "mcp_cli:main([\"client\", \"$URL\"])."
+}
+
+# Discover MCP servers on network
+discover_servers() {
+    print_status "Discovering MCP servers on the network..."
+    
+    cd "$SCRIPT_DIR"
+    erl -pa $ALL_EBIN_DIRS -noshell \
+        -eval "mcp_cli:main([\"discover\"])."
+}
+
+# List available servers
+list_servers() {
+    print_status "Listing available MCP servers..."
+    
+    cd "$SCRIPT_DIR"
+    erl -pa $ALL_EBIN_DIRS -noshell \
+        -eval "mcp_cli:main([\"list\"])."
+}
+
+# Call a tool on a server
+call_tool() {
+    local SERVER_ID="$1"
+    local TOOL_NAME="$2"
+    shift 2
+    local ARGS="$@"
+    
+    if [ -z "$SERVER_ID" ] || [ -z "$TOOL_NAME" ]; then
+        print_error "Please provide server ID and tool name"
+        echo "Usage: $0 call <server_id> <tool_name> [args...]"
+        exit 1
+    fi
+    
+    print_status "Calling tool '$TOOL_NAME' on server '$SERVER_ID'"
+    
+    cd "$SCRIPT_DIR"
+    erl -pa $ALL_EBIN_DIRS -noshell \
+        -eval "mcp_cli:main([\"call\", \"$SERVER_ID\", \"$TOOL_NAME\" | [\"$ARGS\"]])."
+}
+
+# Start Inspector-compatible SSE server
+start_inspector_server() {
+    local PORT=${1:-8080}
+    
+    print_status "Starting Inspector-compatible SSE server on port $PORT"
+    print_status "Compatible with: npx @modelcontextprotocol/inspector http://localhost:$PORT/mcp"
+    
+    cd "$SCRIPT_DIR"
+    erl -pa $ALL_EBIN_DIRS -noshell \
+        -eval "
+        application:set_env(agent_web, port, $PORT),
+        application:ensure_all_started(agent_web),
+        io:format(\"~n[Inspector] SSE endpoint: http://localhost:$PORT/mcp~n\"),
+        io:format(\"[Inspector] Use with: npx @modelcontextprotocol/inspector http://localhost:$PORT/mcp~n\"),
+        io:format(\"[Inspector] Press Ctrl+C to stop~n~n\"),
+        receive stop -> ok end.
+        "
+}
+
+# Export server configurations for Inspector
+export_config() {
+    local TYPE="$1"
+    local SERVER_ID="$2"
+    
+    case "$TYPE" in
+        "server")
+            if [ -z "$SERVER_ID" ]; then
+                print_error "Please provide server ID for single server export"
+                echo "Usage: $0 export server <server_id>"
+                exit 1
+            fi
+            
+            print_status "Exporting configuration for server: $SERVER_ID"
+            
+            cd "$SCRIPT_DIR"
+            erl -pa $ALL_EBIN_DIRS -noshell \
+                -eval "
+                application:ensure_all_started(agent_web),
+                case mcp_manager:export_server_config(<<\"$SERVER_ID\">>) of
+                    {ok, Config} ->
+                        io:format(\"~s~n\", [jsx:encode(Config, [{space, 1}, {indent, 2}])]);
+                    {error, Reason} ->
+                        io:format(\"Error: ~p~n\", [Reason])
+                end,
+                halt().
+                "
+            ;;
+        "all")
+            print_status "Exporting complete mcp.json configuration file"
+            
+            cd "$SCRIPT_DIR"
+            erl -pa $ALL_EBIN_DIRS -noshell \
+                -eval "
+                application:ensure_all_started(agent_web),
+                case mcp_manager:export_servers_file() of
+                    {ok, ServersJson} ->
+                        io:format(\"~s~n\", [ServersJson]);
+                    {error, Reason} ->
+                        io:format(\"Error: ~p~n\", [Reason])
+                end,
+                halt().
+                " > mcp.json
+            
+            if [ -f "mcp.json" ]; then
+                print_status "Configuration exported to mcp.json"
+                print_status "Use with: npx @modelcontextprotocol/inspector --config mcp.json --server <server_name>"
+            fi
+            ;;
+        *)
+            print_error "Invalid export type. Use 'server' or 'all'"
+            echo "Usage:"
+            echo "  $0 export server <server_id>  # Export single server config"
+            echo "  $0 export all                 # Export complete mcp.json file"
+            exit 1
+            ;;
+    esac
+}
+
+# Show usage information
+show_usage() {
+    print_header
+    echo
+    echo "Usage: $0 <command> [options]"
+    echo
+    echo "Commands:"
+    echo "  web [port] [mcp_port]    Start web application (default ports: 8080, 8765)"
+    echo "  server                   Start MCP server in stdio mode"
+    echo "  client <url>             Connect to remote MCP server"
+    echo "  discover                 Discover MCP servers on network"
+    echo "  list                     List available servers"
+    echo "  call <server> <tool>     Call a tool on a server"
+    echo "  tools <server>           List tools from a server"
+    echo "  resources <server>       List resources from a server"
+    echo "  prompts <server>         List prompts from a server"
+    echo "  inspector [port]         Start Inspector-compatible SSE server"
+    echo "  export <type> [id]       Export Inspector-compatible config"
+    echo
+    echo "Examples:"
+    echo "  $0 web                                    # Start web app on default ports"
+    echo "  $0 web 3000 8766                        # Start web app on custom ports"
+    echo "  $0 server                                # Start stdio MCP server"
+    echo "  $0 client ws://localhost:8765/mcp       # Connect to remote server"
+    echo "  $0 discover                              # Find servers on network"
+    echo "  $0 call agents_main get_system_info     # Call system info tool"
+    echo "  $0 inspector                             # Start Inspector SSE server"
+    echo "  $0 inspector 6277                        # Start Inspector on port 6277"
+    echo "  $0 export server agents_main             # Export single server config"
+    echo "  $0 export all                            # Export complete mcp.json"
+    echo
+    echo "Inspector Integration:"
+    echo "  npx @modelcontextprotocol/inspector http://localhost:8080/mcp"
+    echo "  npx @modelcontextprotocol/inspector --config mcp.json --server agents_main"
+    echo
+}
+
+# Create MCP configuration directory
+setup_config() {
+    local CONFIG_DIR="$HOME/.mcp"
+    local CONFIG_FILE="$CONFIG_DIR/servers.json"
+    
+    if [ ! -d "$CONFIG_DIR" ]; then
+        mkdir -p "$CONFIG_DIR"
+        print_status "Created MCP config directory: $CONFIG_DIR"
+    fi
+    
+    if [ ! -f "$CONFIG_FILE" ]; then
+        cat > "$CONFIG_FILE" << 'EOF'
+{
+  "servers": [
+    {
+      "name": "Local Agents Server",
+      "url": "ws://localhost:8765/mcp",
+      "type": "local",
+      "auto_connect": true
+    }
+  ],
+  "discovery": {
+    "enabled": true,
+    "auto_connect_local": true,
+    "scan_ports": [8765, 8766, 8767, 8080, 3000]
+  }
+}
+EOF
+        print_status "Created default MCP config: $CONFIG_FILE"
+    fi
+}
+
+# Main script logic
+main() {
+    check_erlang
+    
+    case "${1:-help}" in
+        "web")
+            compile_project
+            setup_config
+            start_web_app "$2" "$3"
+            ;;
+        "server")
+            compile_project
+            start_stdio_server
+            ;;
+        "client")
+            compile_project
+            connect_client "$2"
+            ;;
+        "discover")
+            compile_project
+            discover_servers
+            ;;
+        "list")
+            compile_project
+            list_servers
+            ;;
+        "call")
+            compile_project
+            call_tool "$2" "$3" "${@:4}"
+            ;;
+        "tools")
+            compile_project
+            cd "$SCRIPT_DIR"
+            erl -pa $ALL_EBIN_DIRS -noshell \
+                -eval "mcp_cli:main([\"tools\", \"$2\"])."
+            ;;
+        "resources")
+            compile_project
+            cd "$SCRIPT_DIR"
+            erl -pa $ALL_EBIN_DIRS -noshell \
+                -eval "mcp_cli:main([\"resources\", \"$2\"])."
+            ;;
+        "prompts")
+            compile_project
+            cd "$SCRIPT_DIR"
+            erl -pa $ALL_EBIN_DIRS -noshell \
+                -eval "mcp_cli:main([\"prompts\", \"$2\"])."
+            ;;
+        "inspector")
+            compile_project
+            setup_config
+            start_inspector_server "$2"
+            ;;
+        "export")
+            compile_project
+            export_config "$2" "$3"
+            ;;
+        "help"|"--help"|"-h"|*)
+            show_usage
+            ;;
+    esac
+}
+
+# Run main function with all arguments
+main "$@"

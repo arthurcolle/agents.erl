@@ -1,0 +1,301 @@
+-module(mcp_api_handler).
+-export([init/2]).
+
+init(Req0, State) ->
+    Method = cowboy_req:method(Req0),
+    Path = cowboy_req:path_info(Req0),
+    handle_request(Method, Path, Req0, State).
+
+handle_request(<<"GET">>, [<<"servers">>], Req0, State) ->
+    % Get all registered MCP servers
+    Servers = mcp_registry:list_servers(),
+    Response = jsx:encode(#{servers => Servers}),
+    Req = cowboy_req:reply(200,
+        #{<<"content-type">> => <<"application/json">>},
+        Response,
+        Req0),
+    {ok, Req, State};
+
+handle_request(<<"POST">>, [<<"servers">>], Req0, State) ->
+    % Register a new MCP server
+    {ok, Body, Req1} = cowboy_req:read_body(Req0),
+    case jsx:decode(Body, [return_maps]) of
+        #{<<"name">> := Name, <<"url">> := Url} = ServerConfig ->
+            case mcp_registry:register_server(Name, Url, ServerConfig) of
+                {ok, ServerId} ->
+                    Response = jsx:encode(#{id => ServerId, status => <<"registered">>}),
+                    Req = cowboy_req:reply(201,
+                        #{<<"content-type">> => <<"application/json">>},
+                        Response,
+                        Req1),
+                    {ok, Req, State};
+                {error, Reason} ->
+                    Response = jsx:encode(#{error => atom_to_binary(Reason)}),
+                    Req = cowboy_req:reply(400,
+                        #{<<"content-type">> => <<"application/json">>},
+                        Response,
+                        Req1),
+                    {ok, Req, State}
+            end;
+        _ ->
+            Response = jsx:encode(#{error => <<"Invalid request body">>}),
+            Req = cowboy_req:reply(400,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req1),
+            {ok, Req, State}
+    end;
+
+handle_request(<<"GET">>, [<<"export">>, <<"server">>, ServerId], Req0, State) ->
+    % Export server configuration for Inspector compatibility
+    case mcp_manager:export_server_config(ServerId) of
+        {ok, Config} ->
+            Response = jsx:encode(Config),
+            Req = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State};
+        {error, Reason} ->
+            Response = jsx:encode(#{error => atom_to_binary(Reason)}),
+            Req = cowboy_req:reply(404,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State}
+    end;
+
+handle_request(<<"GET">>, [<<"export">>, <<"servers">>], Req0, State) ->
+    % Export complete servers file for Inspector compatibility
+    case mcp_manager:export_servers_file() of
+        {ok, ServersJson} ->
+            Req = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                ServersJson,
+                Req0),
+            {ok, Req, State};
+        {error, Reason} ->
+            Response = jsx:encode(#{error => atom_to_binary(Reason)}),
+            Req = cowboy_req:reply(500,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State}
+    end;
+
+handle_request(<<"GET">>, [<<"servers">>, ServerId], Req0, State) ->
+    % Get specific MCP server details
+    case mcp_registry:get_server(ServerId) of
+        {ok, Server} ->
+            Response = jsx:encode(Server),
+            Req = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State};
+        {error, not_found} ->
+            Response = jsx:encode(#{error => <<"Server not found">>}),
+            Req = cowboy_req:reply(404,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State}
+    end;
+
+handle_request(<<"PUT">>, [<<"servers">>, ServerId], Req0, State) ->
+    % Update MCP server configuration
+    {ok, Body, Req1} = cowboy_req:read_body(Req0),
+    case jsx:decode(Body, [return_maps]) of
+        ServerConfig when is_map(ServerConfig) ->
+            case mcp_registry:update_server(ServerId, ServerConfig) of
+                ok ->
+                    Response = jsx:encode(#{status => <<"updated">>}),
+                    Req = cowboy_req:reply(200,
+                        #{<<"content-type">> => <<"application/json">>},
+                        Response,
+                        Req1),
+                    {ok, Req, State};
+                {error, not_found} ->
+                    Response = jsx:encode(#{error => <<"Server not found">>}),
+                    Req = cowboy_req:reply(404,
+                        #{<<"content-type">> => <<"application/json">>},
+                        Response,
+                        Req1),
+                    {ok, Req, State};
+                {error, Reason} ->
+                    Response = jsx:encode(#{error => atom_to_binary(Reason)}),
+                    Req = cowboy_req:reply(400,
+                        #{<<"content-type">> => <<"application/json">>},
+                        Response,
+                        Req1),
+                    {ok, Req, State}
+            end;
+        _ ->
+            Response = jsx:encode(#{error => <<"Invalid request body">>}),
+            Req = cowboy_req:reply(400,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req1),
+            {ok, Req, State}
+    end;
+
+handle_request(<<"DELETE">>, [<<"servers">>, ServerId], Req0, State) ->
+    % Unregister MCP server
+    case mcp_registry:unregister_server(ServerId) of
+        ok ->
+            Response = jsx:encode(#{status => <<"deleted">>}),
+            Req = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State};
+        {error, not_found} ->
+            Response = jsx:encode(#{error => <<"Server not found">>}),
+            Req = cowboy_req:reply(404,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State}
+    end;
+
+handle_request(<<"POST">>, [<<"servers">>, ServerId, <<"test">>], Req0, State) ->
+    % Test connection to MCP server
+    case mcp_client:test_connection(ServerId) of
+        {ok, Status} ->
+            Response = jsx:encode(#{status => <<"success">>, details => Status}),
+            Req = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State};
+        {error, Reason} when is_atom(Reason) ->
+            Response = jsx:encode(#{status => <<"error">>, error => atom_to_binary(Reason)}),
+            Req = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State};
+        {error, Reason} ->
+            ReasonBin = case Reason of
+                {not_connected, Status} -> 
+                    iolist_to_binary(io_lib:format("not_connected: ~p", [Status]));
+                _ -> 
+                    iolist_to_binary(io_lib:format("~p", [Reason]))
+            end,
+            Response = jsx:encode(#{status => <<"error">>, error => ReasonBin}),
+            Req = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State}
+    end;
+
+handle_request(<<"GET">>, [<<"servers">>, ServerId, <<"tools">>], Req0, State) ->
+    % Get available tools from MCP server
+    case mcp_client:list_tools(ServerId) of
+        {ok, Tools} ->
+            Response = jsx:encode(#{tools => Tools}),
+            Req = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State};
+        {error, Reason} ->
+            Response = jsx:encode(#{error => atom_to_binary(Reason)}),
+            Req = cowboy_req:reply(500,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State}
+    end;
+
+handle_request(<<"POST">>, [<<"servers">>, ServerId, <<"connect">>], Req0, State) ->
+    % Connect to MCP server
+    case mcp_connection_manager:connect_server(ServerId) of
+        {ok, _Pid} ->
+            Response = jsx:encode(#{status => <<"connected">>}),
+            Req = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State};
+        {error, Reason} ->
+            ReasonBin = case Reason of
+                already_connected -> <<"already_connected">>;
+                server_not_found -> <<"server_not_found">>;
+                _ -> iolist_to_binary(io_lib:format("~p", [Reason]))
+            end,
+            Response = jsx:encode(#{status => <<"error">>, error => ReasonBin}),
+            Req = cowboy_req:reply(400,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State}
+    end;
+
+handle_request(<<"POST">>, [<<"servers">>, ServerId, <<"disconnect">>], Req0, State) ->
+    % Disconnect from MCP server
+    case mcp_connection_manager:disconnect_server(ServerId) of
+        ok ->
+            Response = jsx:encode(#{status => <<"disconnected">>}),
+            Req = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State};
+        {error, not_connected} ->
+            Response = jsx:encode(#{status => <<"error">>, error => <<"not_connected">>}),
+            Req = cowboy_req:reply(400,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State}
+    end;
+
+handle_request(<<"GET">>, [<<"servers">>, ServerId, <<"resources">>], Req0, State) ->
+    % Get available resources from MCP server
+    case mcp_client:list_resources(ServerId) of
+        {ok, Resources} ->
+            Response = jsx:encode(#{resources => Resources}),
+            Req = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State};
+        {error, Reason} ->
+            ReasonBin = iolist_to_binary(io_lib:format("~p", [Reason])),
+            Response = jsx:encode(#{error => ReasonBin}),
+            Req = cowboy_req:reply(500,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State}
+    end;
+
+handle_request(<<"GET">>, [<<"servers">>, ServerId, <<"prompts">>], Req0, State) ->
+    % Get available prompts from MCP server
+    case mcp_client:list_prompts(ServerId) of
+        {ok, Prompts} ->
+            Response = jsx:encode(#{prompts => Prompts}),
+            Req = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State};
+        {error, Reason} ->
+            ReasonBin = iolist_to_binary(io_lib:format("~p", [Reason])),
+            Response = jsx:encode(#{error => ReasonBin}),
+            Req = cowboy_req:reply(500,
+                #{<<"content-type">> => <<"application/json">>},
+                Response,
+                Req0),
+            {ok, Req, State}
+    end;
+
+handle_request(_, _, Req0, State) ->
+    Response = jsx:encode(#{error => <<"Method not allowed">>}),
+    Req = cowboy_req:reply(405,
+        #{<<"content-type">> => <<"application/json">>},
+        Response,
+        Req0),
+    {ok, Req, State}.

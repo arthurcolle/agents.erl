@@ -11,7 +11,8 @@ import {
   BarChart3,
   Terminal,
   Settings,
-  Play
+  Play,
+  Plug
 } from 'lucide-react'
 import Dashboard from './components/Dashboard'
 import AgentList from './components/AgentList'
@@ -21,6 +22,7 @@ import MonitoringPanel from './components/MonitoringPanel'
 import ExamplesPanel from './components/ExamplesPanel'
 import LogsViewer from './components/LogsViewer'
 import CreateAgentDialog from './components/CreateAgentDialog'
+import ComprehensiveMCPManager from './components/ComprehensiveMCPManager'
 
 function App() {
   const [agents, setAgents] = useState<Map<string, any>>(new Map())
@@ -149,7 +151,7 @@ function App() {
 
           <main className="col-span-9">
             <Tabs value={activeTab} onValueChange={setActiveTab}>
-              <TabsList className="grid w-full grid-cols-7">
+              <TabsList className="grid w-full grid-cols-8">
                 <TabsTrigger value="dashboard">
                   <Activity className="h-4 w-4 mr-2" />
                   Dashboard
@@ -165,6 +167,10 @@ function App() {
                 <TabsTrigger value="chat">
                   <MessageSquare className="h-4 w-4 mr-2" />
                   Chat
+                </TabsTrigger>
+                <TabsTrigger value="mcp">
+                  <Plug className="h-4 w-4 mr-2" />
+                  MCP
                 </TabsTrigger>
                 <TabsTrigger value="monitoring">
                   <BarChart3 className="h-4 w-4 mr-2" />
@@ -236,6 +242,10 @@ function App() {
                   agents={agents}
                   ws={ws}
                 />
+              </TabsContent>
+
+              <TabsContent value="mcp">
+                <ComprehensiveMCPManager />
               </TabsContent>
 
               <TabsContent value="monitoring">
