@@ -1,6 +1,6 @@
 {application, agents, [
     {description, "Advanced Self-Optimizing Distributed Multi-Agent System with Quantum Coordination"},
-    {vsn, "0.2.0"},
+    {vsn, "0.3.0"},
     {licenses, ["MIT"]},
     {links, [{"GitHub", "https://github.com/arthurcolle/agents.erl"}]},
     {maintainers, ["Arthur M. Collé"]},

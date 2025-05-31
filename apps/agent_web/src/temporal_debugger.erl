@@ -232,11 +232,11 @@ initialize_quantum_state_tracker() ->
 
 initialize_temporal_indices() ->
     #{
-        time_index => btree:new(),
-        causal_index => btree:new(),
-        state_index => btree:new(),
-        event_index => btree:new(),
-        process_index => btree:new()
+        time_index => #{},
+        causal_index => #{},
+        state_index => #{},
+        event_index => #{},
+        process_index => #{}
     }.
 
 create_temporal_checkpoint(CheckpointData, State) ->
