@@ -303,7 +303,7 @@ start_websocket_connection(Url) ->
             end;
         #{scheme := Scheme, host := Host} = ParsedUrl 
         when Scheme =:= <<"http">> orelse Scheme =:= <<"https">> ->
-            % Handle SSE connections for HTTP/HTTPS URLs
+            % For HTTP/HTTPS URLs, try multiple connection strategies
             Port = maps:get(port, ParsedUrl, case Scheme of
                 <<"https">> -> 443;
                 <<"http">> -> 80
