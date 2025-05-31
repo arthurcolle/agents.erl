@@ -6,11 +6,13 @@
   {applications,
    [kernel,
     stdlib,
-    agent,
+    ssl,
+    agents,
     openai,
     cowboy,
     jsx,
-    uuid
+    uuid,
+    gun
    ]},
   {env,[
    {port, 8080},
@@ -19,5 +21,9 @@
   ]},
   {modules, []},
   {licenses, ["MIT"]},
-  {links, []}
+  {maintainers, ["Arthur Colle"]},
+  {links, [
+   {"GitHub", "https://github.com/arthurcolle/agents.erl"},
+   {"Documentation", "https://agents.erl.sh"}
+  ]}
  ]}.

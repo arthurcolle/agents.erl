@@ -1,0 +1,36 @@
+{application, agents, [
+    {description, "Advanced Self-Optimizing Distributed Multi-Agent System with Quantum Coordination"},
+    {vsn, "0.2.0"},
+    {licenses, ["MIT"]},
+    {links, [{"GitHub", "https://github.com/arthurcolle/agents.erl"}]},
+    {maintainers, ["Arthur M. Collé"]},
+    {registered, [
+        agent,
+        agent_tools,
+        agent_registry,
+        agent_supervisor,
+        quantum_runtime,
+        quantum_protocol,
+        cluster_orchestrator,
+        lockfree_coordination
+    ]},
+    {applications, [
+        kernel,
+        stdlib,
+        inets,
+        ssl,
+        jsx,
+        openai
+    ]},
+    {mod, {agent, []}},
+    {env, [
+        {auto_start_groups, [chat, completions, embeddings]},
+        {output_dir, "/tmp/openai-erlang"},
+        {default_model, <<"gpt-4.1">>},
+        {quantum_coordination, true},
+        {lockfree_primitives, true},
+        {self_optimization, true},
+        {numa_awareness, true},
+        {thermal_monitoring, true}
+    ]}
+]}.

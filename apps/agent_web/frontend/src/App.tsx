@@ -12,7 +12,9 @@ import {
   Terminal,
   Settings,
   Play,
-  Plug
+  Plug,
+  Clock,
+  Brain
 } from 'lucide-react'
 import Dashboard from './components/Dashboard'
 import AgentList from './components/AgentList'
@@ -22,7 +24,10 @@ import MonitoringPanel from './components/MonitoringPanel'
 import ExamplesPanel from './components/ExamplesPanel'
 import LogsViewer from './components/LogsViewer'
 import CreateAgentDialog from './components/CreateAgentDialog'
-import ComprehensiveMCPManager from './components/ComprehensiveMCPManager'
+import AdvancedMCPDashboard from './components/AdvancedMCPDashboard'
+import MCPOrchestrationEngine from './components/MCPOrchestrationEngine'
+import Timeline from './components/Timeline'
+import AdaptiveAIInterface from './components/AdaptiveAIInterface'
 
 function App() {
   const [agents, setAgents] = useState<Map<string, any>>(new Map())
@@ -90,6 +95,12 @@ function App() {
       case 'agent_update':
         loadAgents()
         break
+      case 'stream_token':
+      case 'stream_complete':
+      case 'agent_event':
+        // Forward streaming messages to chat component via custom event
+        window.dispatchEvent(new CustomEvent('agent_stream', { detail: data }))
+        break
       default:
         console.log('Received message:', data)
     }
@@ -151,7 +162,7 @@ function App() {
 
           <main className="col-span-9">
             <Tabs value={activeTab} onValueChange={setActiveTab}>
-              <TabsList className="grid w-full grid-cols-8">
+              <TabsList className="grid w-full grid-cols-10">
                 <TabsTrigger value="dashboard">
                   <Activity className="h-4 w-4 mr-2" />
                   Dashboard
@@ -168,9 +179,17 @@ function App() {
                   <MessageSquare className="h-4 w-4 mr-2" />
                   Chat
                 </TabsTrigger>
+                <TabsTrigger value="timeline">
+                  <Clock className="h-4 w-4 mr-2" />
+                  Timeline
+                </TabsTrigger>
                 <TabsTrigger value="mcp">
                   <Plug className="h-4 w-4 mr-2" />
                   MCP
+                </TabsTrigger>
+                <TabsTrigger value="orchestration">
+                  <Settings className="h-4 w-4 mr-2" />
+                  Orchestration
                 </TabsTrigger>
                 <TabsTrigger value="monitoring">
                   <BarChart3 className="h-4 w-4 mr-2" />
@@ -183,6 +202,10 @@ function App() {
                 <TabsTrigger value="logs">
                   <Terminal className="h-4 w-4 mr-2" />
                   Logs
+                </TabsTrigger>
+                <TabsTrigger value="ai-interface">
+                  <Brain className="h-4 w-4 mr-2" />
+                  AI Interface
                 </TabsTrigger>
               </TabsList>
 
@@ -244,8 +267,19 @@ function App() {
                 />
               </TabsContent>
 
+              <TabsContent value="timeline">
+                <Timeline 
+                  ws={ws}
+                  agents={agents}
+                />
+              </TabsContent>
+
               <TabsContent value="mcp">
-                <ComprehensiveMCPManager />
+                <AdvancedMCPDashboard />
+              </TabsContent>
+
+              <TabsContent value="orchestration">
+                <MCPOrchestrationEngine />
               </TabsContent>
 
               <TabsContent value="monitoring">
@@ -261,6 +295,10 @@ function App() {
 
               <TabsContent value="logs">
                 <LogsViewer />
+              </TabsContent>
+
+              <TabsContent value="ai-interface">
+                <AdaptiveAIInterface />
               </TabsContent>
             </Tabs>
           </main>

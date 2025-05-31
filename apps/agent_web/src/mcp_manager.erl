@@ -162,21 +162,60 @@ init([]) ->
     % Start discovery timer - much longer interval to reduce spam
     Timer = erlang:send_after(60000, self(), discovery_tick), % Start after 1 minute
     
-    % Start default local server
+    % Start advanced configuration manager
+    case mcp_advanced_config:start_link() of
+        {ok, _} -> ok;
+        {error, {already_started, _}} -> ok
+    end,
+    
+    % Start OAuth manager
+    case oauth_manager:start_link() of
+        {ok, _} -> ok;
+        {error, {already_started, _}} -> ok
+    end,
+    
+    % Get dynamic port allocation
     DefaultConfig = #{
         server_id => <<"agents_main">>,
-        transport => websocket,
-        port => 8765
+        transport => websocket
     },
     
-    {ok, LocalPid} = mcp_server:start_link(DefaultConfig),
-    register(agents_main_mcp_server, LocalPid),
+    % Use advanced config to handle port allocation
+    {ok, ConfigWithPort} = mcp_advanced_config:configure_server(DefaultConfig),
+    
+    % Start default local server with allocated port
+    LocalPid = case mcp_server:start_link(ConfigWithPort) of
+        {ok, Pid} ->
+            register(agents_main_mcp_server, Pid),
+            io:format("[MCP_MGR] Started default server on port ~p~n", 
+                     [maps:get(port, ConfigWithPort)]),
+            Pid;
+        {error, StartError} ->
+            io:format("[MCP_MGR] Failed to start default server: ~p~n", [StartError]),
+            throw({error, {failed_to_start_default_server, StartError}})
+    end,
+    
+    % Initialize Graphlit MCP server
+    GraphlitConfig = #{
+        server_id => <<"graphlit">>,
+        command => <<"npx">>,
+        args => [<<"-y">>, <<"graphlit-mcp-server">>],
+        env => #{
+            <<"GRAPHLIT_ORGANIZATION_ID">> => <<"1b591b0d-eb12-4f6d-be5a-ceb95b40e716">>,
+            <<"GRAPHLIT_ENVIRONMENT_ID">> => <<"42d0e0ef-8eeb-463d-921c-ef5119541eb9">>,
+            <<"GRAPHLIT_JWT_SECRET">> => <<"+Lhv6z0u6qjp/mEHVN/vH2iCkKAJ5Z2TOraf4Zit8K0=">>
+        },
+        transport => stdio,
+        auto_start => true
+    },
     
     % Initialize default discovery filters
     DefaultFilters = [
         fun(#{url := Url}) ->
             % Filter out same-host connections to avoid loops
-            case binary:match(Url, [<<"localhost:8765">>, <<"127.0.0.1:8765">>]) of
+            % Also filter out the current server ports 8080 and 8767
+            case binary:match(Url, [<<"localhost:8767">>, <<"127.0.0.1:8767">>, 
+                                   <<"localhost:8080">>, <<"127.0.0.1:8080">>]) of
                 nomatch -> true;
                 _ -> false
             end
@@ -184,11 +223,23 @@ init([]) ->
         fun(#{type := Type}) -> Type =:= network end % Only network discovery
     ],
     
+    % Try to auto-connect Graphlit server
+    GraphlitServers = case auto_connect_graphlit(GraphlitConfig) of
+        {ok, GraphlitPid} ->
+            #{<<"graphlit">> => {GraphlitPid, GraphlitConfig}};
+        {error, ConnectError} ->
+            io:format("[WARNING] Failed to auto-connect Graphlit server: ~p~n", [ConnectError]),
+            #{}
+    end,
+    
     State = #state{
-        local_servers = #{<<"agents_main">> => {LocalPid, DefaultConfig}},
+        local_servers = maps:merge(#{<<"agents_main">> => {LocalPid, DefaultConfig}}, GraphlitServers),
         discovery_timer = Timer,
         discovery_filters = DefaultFilters
     },
+    
+    % Auto-connect all configured MCP servers after a short delay
+    erlang:send_after(5000, self(), auto_connect_configured_servers),
     
     {ok, State}.
 
@@ -412,6 +463,12 @@ handle_call(_Request, _From, State) ->
 handle_cast(_Msg, State) ->
     {noreply, State}.
 
+handle_info(auto_connect_configured_servers, State) ->
+    % Connect to all configured MCP servers from mcp_server_config
+    io:format("[MCP_MGR] Auto-connecting to configured MCP servers~n"),
+    connect_all_configured_servers(),
+    {noreply, State};
+
 handle_info(discovery_tick, State) ->
     % Perform periodic discovery with caching and filtering
     if State#state.auto_connect_enabled ->
@@ -466,6 +523,74 @@ code_change(_OldVsn, State, _Extra) ->
 generate_server_id() ->
     iolist_to_binary(io_lib:format("server_~p", [erlang:system_time(microsecond)])).
 
+connect_all_configured_servers() ->
+    % Get all servers from mcp_server_config
+    try
+        case mcp_server_config:get_all_servers() of
+            {ok, ConfiguredServers} ->
+                io:format("[MCP_MGR] Found ~p configured servers to connect~n", [length(ConfiguredServers)]),
+                lists:foreach(fun(ServerConfig) ->
+                    connect_configured_server(ServerConfig)
+                end, ConfiguredServers);
+            {error, Reason} ->
+                io:format("[MCP_MGR] Failed to get configured servers: ~p~n", [Reason])
+        end
+    catch
+        Class:Error:Stack ->
+            io:format("[MCP_MGR] Error connecting configured servers: ~p:~p~n~p~n", [Class, Error, Stack])
+    end.
+
+connect_configured_server(ServerRecord) ->
+    % Extract data from the #mcp_server{} record
+    % Based on the record definition in mcp_server_config.erl:
+    % -record(mcp_server, {id, name, category, url, auth_type, maintainer, description, capabilities, status, last_checked, metadata}).
+    
+    try
+        ServerId = element(2, ServerRecord),    % id field
+        ServerName = element(3, ServerRecord),  % name field  
+        ServerUrl = element(5, ServerRecord),   % url field
+        
+        if ServerId =:= undefined orelse ServerUrl =:= undefined ->
+            io:format("[MCP_MGR] Skipping server with missing id or url: ~p~n", [ServerRecord]);
+        true ->
+            io:format("[MCP_MGR] Connecting to configured server: ~s (~s)~n", [ServerName, ServerId]),
+            
+            % Convert record to map for registry config
+            ServerConfig = #{
+                id => ServerId,
+                name => ServerName,
+                url => ServerUrl,
+                auth_type => element(6, ServerRecord),    % auth_type field
+                maintainer => element(7, ServerRecord),   % maintainer field
+                description => element(8, ServerRecord),  % description field
+                capabilities => element(9, ServerRecord), % capabilities field
+                status => element(10, ServerRecord),      % status field
+                metadata => element(12, ServerRecord)     % metadata field
+            },
+            
+            % Register server in registry first
+            case mcp_registry:register_server(ServerName, ServerUrl, ServerConfig) of
+                {ok, RegistryId} ->
+                    % Now try to connect using the registry ID with extended timeout
+                    case catch gen_server:call(mcp_connection_manager, {connect_server, RegistryId}, 15000) of
+                        {ok, _Pid} ->
+                            io:format("[MCP_MGR] Successfully connected to server: ~s~n", [ServerName]);
+                        {error, Reason} ->
+                            io:format("[MCP_MGR] Failed to connect to server ~s: ~p~n", [ServerName, Reason]);
+                        {'EXIT', {timeout, _}} ->
+                            io:format("[MCP_MGR] Connection to server ~s timed out, will retry in background~n", [ServerName]);
+                        Other ->
+                            io:format("[MCP_MGR] Unexpected response connecting to server ~s: ~p~n", [ServerName, Other])
+                    end;
+                {error, Reason} ->
+                    io:format("[MCP_MGR] Failed to register server ~s: ~p~n", [ServerName, Reason])
+            end
+        end
+    catch
+        Class:Error:Stack ->
+            io:format("[MCP_MGR] Error processing server record ~p: ~p:~p~n~p~n", [ServerRecord, Class, Error, Stack])
+    end.
+
 find_local_server(ServerId, State) ->
     case maps:find(ServerId, State#state.local_servers) of
         {ok, {Pid, _Config}} -> {ok, Pid};
@@ -512,9 +637,10 @@ perform_discovery() ->
     Discovered ++ NetworkServers ++ ProcessServers ++ ConfigServers.
 
 discover_network_servers() ->
-    % Scan common ports for MCP WebSocket servers
-    CommonPorts = [8765, 8766, 8767, 8080, 3000],
-    Hosts = [<<"localhost">>, <<"127.0.0.1">>],
+    % Scan common ports for MCP WebSocket servers, but only a few well-known ones
+    % Reduce spam by limiting to the most common MCP ports
+    CommonPorts = [8767, 3000],  % Reduced from [8767, 8768, 8769, 8080, 3000]
+    Hosts = [<<"localhost">>],   % Only check localhost to avoid network scanning
     
     lists:foldl(fun(Host, Acc) ->
         lists:foldl(fun(Port, InnerAcc) ->
@@ -556,8 +682,20 @@ discover_config_servers() ->
 test_mcp_server(Url) ->
     % Quick test to see if a server responds to MCP protocol
     try
-        % This is a simplified test - would need proper implementation
-        {ok, #{server_info => #{name => <<"Unknown Server">>}}}
+        % Extract host and port from URL
+        case parse_websocket_url(Url) of
+            {ok, Host, Port} ->
+                % Try to connect to the port to see if anything is listening
+                case gen_tcp:connect(Host, Port, [binary, {active, false}], 5000) of
+                    {ok, Socket} ->
+                        gen_tcp:close(Socket),
+                        {ok, #{server_info => #{name => <<"Detected Server">>}}};
+                    {error, _Reason} ->
+                        {error, not_reachable}
+                end;
+            {error, invalid_url} ->
+                {error, invalid_url}
+        end
     catch
         _:_ ->
             {error, not_reachable}
@@ -773,13 +911,49 @@ attempt_auto_connect(#{url := Url} = ServerInfo) ->
             {error, Reason}
     end.
 
+parse_websocket_url(Url) ->
+    % Parse WebSocket URL like "ws://localhost:8765/mcp" or "ws://127.0.0.1:3000/mcp"
+    try
+        % Remove ws:// prefix
+        case binary:match(Url, <<"ws://">>) of
+            {0, 5} ->
+                Rest = binary:part(Url, 5, byte_size(Url) - 5),
+                % Find the first slash to separate host:port from path
+                case binary:split(Rest, <<"/">>) of
+                    [HostPort | _] ->
+                        % Split host and port
+                        case binary:split(HostPort, <<":">>) of
+                            [Host, PortBin] ->
+                                try
+                                    Port = binary_to_integer(PortBin),
+                                    HostStr = binary_to_list(Host),
+                                    {ok, HostStr, Port}
+                                catch
+                                    _:_ -> {error, invalid_url}
+                                end;
+                            [Host] ->
+                                % Default port for ws:// is 80
+                                HostStr = binary_to_list(Host),
+                                {ok, HostStr, 80}
+                        end;
+                    _ ->
+                        {error, invalid_url}
+                end;
+            _ ->
+                {error, invalid_url}
+        end
+    catch
+        _:_ ->
+            {error, invalid_url}
+    end.
+
 %% Inspector compatibility helpers
 export_server_entry(Config) ->
     case maps:get(transport, Config, websocket) of
         websocket ->
             case maps:get(url, Config) of
                 undefined ->
-                    Port = maps:get(port, Config, 8765),
+                    Port = maps:get(port, Config, 8767),
                     #{
                         <<"type">> => <<"sse">>,
                         <<"url">> => iolist_to_binary(io_lib:format("http://localhost:~p/mcp", [Port])),
@@ -802,10 +976,55 @@ export_server_entry(Config) ->
                 }
             };
         http_sse ->
-            Url = maps:get(url, Config, <<"http://localhost:8765/mcp">>),
+            Url = maps:get(url, Config, <<"http://localhost:8767/mcp">>),
             #{
                 <<"type">> => <<"sse">>,
                 <<"url">> => Url,
                 <<"note">> => <<"HTTP SSE transport">>
             }
+    end.
+
+%% Helper function to auto-connect Graphlit MCP server
+auto_connect_graphlit(Config) ->
+    % Register Graphlit server in the server configuration
+    case mcp_server_config:add_server(#{
+        id => <<"graphlit">>,
+        name => <<"Graphlit">>,
+        category => <<"Knowledge Management">>,
+        url => <<"npx -y graphlit-mcp-server">>,
+        auth_type => api_key,
+        maintainer => <<"Graphlit">>,
+        description => <<"Ingest anything from Slack, Discord, websites, Google Drive, email, Jira, Linear or GitHub into a searchable, RAG-ready knowledge base">>,
+        status => active,
+        capabilities => [
+            <<"query_contents">>, <<"query_collections">>, <<"query_feeds">>,
+            <<"retrieve_relevant_sources">>, <<"extract_structured_json">>,
+            <<"ingest_files">>, <<"ingest_web_pages">>, <<"web_crawling">>,
+            <<"web_search">>, <<"slack_integration">>, <<"discord_integration">>,
+            <<"github_integration">>, <<"notion_integration">>, <<"linear_integration">>
+        ],
+        metadata => Config
+    }) of
+        {ok, _} ->
+            % Try to connect via MCP client
+            case mcp_connection_manager:connect_server(<<"graphlit">>) of
+                {ok, Pid} ->
+                    io:format("[MCP_MGR] Successfully connected to Graphlit MCP server~n"),
+                    {ok, Pid};
+                {error, Reason} ->
+                    io:format("[WARNING] Failed to connect to Graphlit MCP server: ~p~n", [Reason]),
+                    {error, Reason}
+            end;
+        {error, {aborted, {already_exists, _}}} ->
+            % Server already exists, try to connect
+            case mcp_connection_manager:connect_server(<<"graphlit">>) of
+                {ok, Pid} ->
+                    io:format("[MCP_MGR] Connected to existing Graphlit MCP server~n"),
+                    {ok, Pid};
+                {error, Reason} ->
+                    {error, Reason}
+            end;
+        {error, Reason} ->
+            io:format("[ERROR] Failed to register Graphlit server: ~p~n", [Reason]),
+            {error, Reason}
     end.

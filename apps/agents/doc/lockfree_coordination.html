@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.38.2">
+    <meta name="project" content="agents v0.2.0">
+
+
+    <title>lockfree_coordination — agents v0.2.0</title>
+
+    <link rel="stylesheet" href="dist/html-erlang-DQDXQC7W.css" />
+
+    <script defer src="dist/sidebar_items-F9A9672A.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-DPJLHKSM.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="readme.html" class="sidebar-projectName" translate="no">
+agents
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v0.2.0
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras=""></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of agents</span>
+            <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+          </label>
+          <button type="submit" class="search-button" aria-label="Submit Search" tabindex="-1">
+            <i class="ri-search-2-line ri-lg" aria-hidden="true"></i>
+          </button>
+          <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+            <i class="ri-close-line ri-lg" title="Cancel search"></i>
+          </button>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">lockfree_coordination</span> 
+      <small class="app-vsn" translate="no">(agents v0.2.0)</small>
+
+    </h1>
+
+      <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L3" title="View Source" class="icon-action" rel="help">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#atomic_coordinator/1" data-no-tooltip="" translate="no">atomic_coordinator(State)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#atomic_exchange/3" data-no-tooltip="" translate="no">atomic_exchange(AtomicRef, Index, NewValue)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#atomic_multi_update/2" data-no-tooltip="" translate="no">atomic_multi_update(Updates, Options)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#avalanche_consensus/3" data-no-tooltip="" translate="no">avalanche_consensus(ConsensusId, Operation, Options)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#byzantine_consensus/3" data-no-tooltip="" translate="no">byzantine_consensus(ConsensusId, Operation, Options)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#compare_and_swap_strong/4" data-no-tooltip="" translate="no">compare_and_swap_strong(AtomicRef, Index, Expected, Desired)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#compare_and_swap_weak/4" data-no-tooltip="" translate="no">compare_and_swap_weak(AtomicRef, Index, Expected, Desired)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_consensus_group/2" data-no-tooltip="" translate="no">create_consensus_group(Participants, Options)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_lockfree_hashmap/1" data-no-tooltip="" translate="no">create_lockfree_hashmap(Options)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_lockfree_queue/1" data-no-tooltip="" translate="no">create_lockfree_queue(Options)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_lockfree_stack/1" data-no-tooltip="" translate="no">create_lockfree_stack(Options)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#fetch_and_add/3" data-no-tooltip="" translate="no">fetch_and_add(AtomicRef, Index, Value)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#fetch_and_or/3" data-no-tooltip="" translate="no">fetch_and_or(AtomicRef, Index, Value)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#hazard_pointer_manager/2" data-no-tooltip="" translate="no">hazard_pointer_manager(ThreadId, MaxPointers)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#load_acquire/2" data-no-tooltip="" translate="no">load_acquire(AtomicRef, Index)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#lockfree_broadcast/2" data-no-tooltip="" translate="no">lockfree_broadcast(Message, Recipients)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#lockfree_dequeue/2" data-no-tooltip="" translate="no">lockfree_dequeue(QueueId, HazardPointer)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#lockfree_enqueue/3" data-no-tooltip="" translate="no">lockfree_enqueue(QueueId, Value, HazardPointer)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#lockfree_pop/2" data-no-tooltip="" translate="no">lockfree_pop(StackId, HazardPointer)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#lockfree_push/3" data-no-tooltip="" translate="no">lockfree_push(StackId, Value, HazardPointer)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#memory_barrier/1" data-no-tooltip="" translate="no">memory_barrier(Type)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#memory_reclamation_thread/1" data-no-tooltip="" translate="no">memory_reclamation_thread(Options)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#practical_consensus/3" data-no-tooltip="" translate="no">practical_consensus(ConsensusId, Operation, Options)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#raft_consensus/3" data-no-tooltip="" translate="no">raft_consensus(ConsensusId, Operation, Options)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#start_link/0" data-no-tooltip="" translate="no">start_link()</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#store_release/3" data-no-tooltip="" translate="no">store_release(AtomicRef, Index, Value)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#wait_free_snapshot/1" data-no-tooltip="" translate="no">wait_free_snapshot(AtomicRefs)</a>
+
+      </div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="atomic_coordinator/1">
+
+  <div class="detail-header">
+    <a href="#atomic_coordinator/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">atomic_coordinator(State)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L632" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="atomic_exchange/3">
+
+  <div class="detail-header">
+    <a href="#atomic_exchange/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">atomic_exchange(AtomicRef, Index, NewValue)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L298" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="atomic_multi_update/2">
+
+  <div class="detail-header">
+    <a href="#atomic_multi_update/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">atomic_multi_update(Updates, Options)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L242" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="avalanche_consensus/3">
+
+  <div class="detail-header">
+    <a href="#avalanche_consensus/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">avalanche_consensus(ConsensusId, Operation, Options)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L514" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="byzantine_consensus/3">
+
+  <div class="detail-header">
+    <a href="#byzantine_consensus/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">byzantine_consensus(ConsensusId, Operation, Options)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L509" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="compare_and_swap_strong/4">
+
+  <div class="detail-header">
+    <a href="#compare_and_swap_strong/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">compare_and_swap_strong(AtomicRef, Index, Expected, Desired)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L265" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="compare_and_swap_weak/4">
+
+  <div class="detail-header">
+    <a href="#compare_and_swap_weak/4" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">compare_and_swap_weak(AtomicRef, Index, Expected, Desired)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L272" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="create_consensus_group/2">
+
+  <div class="detail-header">
+    <a href="#create_consensus_group/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_consensus_group(Participants, Options)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L184" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="create_lockfree_hashmap/1">
+
+  <div class="detail-header">
+    <a href="#create_lockfree_hashmap/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_lockfree_hashmap(Options)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L160" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="create_lockfree_queue/1">
+
+  <div class="detail-header">
+    <a href="#create_lockfree_queue/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_lockfree_queue(Options)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L107" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="create_lockfree_stack/1">
+
+  <div class="detail-header">
+    <a href="#create_lockfree_stack/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_lockfree_stack(Options)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L137" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="fetch_and_add/3">
+
+  <div class="detail-header">
+    <a href="#fetch_and_add/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">fetch_and_add(AtomicRef, Index, Value)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L280" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="fetch_and_or/3">
+
+  <div class="detail-header">
+    <a href="#fetch_and_or/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">fetch_and_or(AtomicRef, Index, Value)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L285" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="hazard_pointer_manager/2">
+
+  <div class="detail-header">
+    <a href="#hazard_pointer_manager/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">hazard_pointer_manager(ThreadId, MaxPointers)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L527" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="load_acquire/2">
+
+  <div class="detail-header">
+    <a href="#load_acquire/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">load_acquire(AtomicRef, Index)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L325" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="lockfree_broadcast/2">
+
+  <div class="detail-header">
+    <a href="#lockfree_broadcast/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">lockfree_broadcast(Message, Recipients)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L209" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="lockfree_dequeue/2">
+
+  <div class="detail-header">
+    <a href="#lockfree_dequeue/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">lockfree_dequeue(QueueId, HazardPointer)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L380" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="lockfree_enqueue/3">
+
+  <div class="detail-header">
+    <a href="#lockfree_enqueue/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">lockfree_enqueue(QueueId, Value, HazardPointer)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L340" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="lockfree_pop/2">
+
+  <div class="detail-header">
+    <a href="#lockfree_pop/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">lockfree_pop(StackId, HazardPointer)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L458" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="lockfree_push/3">
+
+  <div class="detail-header">
+    <a href="#lockfree_push/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">lockfree_push(StackId, Value, HazardPointer)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L439" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="memory_barrier/1">
+
+  <div class="detail-header">
+    <a href="#memory_barrier/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">memory_barrier(Type)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L310" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="memory_reclamation_thread/1">
+
+  <div class="detail-header">
+    <a href="#memory_reclamation_thread/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">memory_reclamation_thread(Options)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L564" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="practical_consensus/3">
+
+  <div class="detail-header">
+    <a href="#practical_consensus/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">practical_consensus(ConsensusId, Operation, Options)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L519" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="raft_consensus/3">
+
+  <div class="detail-header">
+    <a href="#raft_consensus/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">raft_consensus(ConsensusId, Operation, Options)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L504" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="start_link/0">
+
+  <div class="detail-header">
+    <a href="#start_link/0" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">start_link()</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L93" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="store_release/3">
+
+  <div class="detail-header">
+    <a href="#store_release/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">store_release(AtomicRef, Index, Value)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L331" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="wait_free_snapshot/1">
+
+  <div class="detail-header">
+    <a href="#wait_free_snapshot/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">wait_free_snapshot(AtomicRefs)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/lockfree_coordination.erl#L253" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+      <p>
+
+          <span class="line">
+            <a href="https://hex.pm/packages/agents/0.2.0" class="footer-hex-package">Hex Package</a>
+
+            <a href="https://preview.hex.pm/preview/agents/0.2.0">Hex Preview</a>
+
+          </span>
+
+        <span class="line">
+          <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+            Search HexDocs
+          </button>
+
+            <a href="agents.epub" title="ePub version">
+              Download ePub version
+            </a>
+
+        </span>
+      </p>
+
+      <p class="built-using">
+        Built using
+        <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.38.2) for the
+
+          <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+      </p>
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,334 @@
+{
+  "mcpServers": {
+    "graphlit": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "graphlit-mcp-server"
+      ],
+      "env": {
+        "GRAPHLIT_ORGANIZATION_ID": "1b591b0d-eb12-4f6d-be5a-ceb95b40e716",
+        "GRAPHLIT_ENVIRONMENT_ID": "42d0e0ef-8eeb-463d-921c-ef5119541eb9",
+        "GRAPHLIT_JWT_SECRET": "+Lhv6z0u6qjp/mEHVN/vH2iCkKAJ5Z2TOraf4Zit8K0="
+      }
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": ""
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/path/to/allowed/directory"
+      ]
+    },
+    "postgres": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres"
+      ],
+      "env": {
+        "POSTGRES_CONNECTION_STRING": "postgresql://username:password@localhost:5432/database"
+      }
+    },
+    "slack": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-slack"
+      ],
+      "env": {
+        "SLACK_BOT_TOKEN": "",
+        "SLACK_TEAM_ID": ""
+      }
+    },
+    "gdrive": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-gdrive"
+      ],
+      "env": {
+        "GOOGLE_CLIENT_ID": "",
+        "GOOGLE_CLIENT_SECRET": ""
+      }
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-brave-search"
+      ],
+      "env": {
+        "BRAVE_API_KEY": ""
+      }
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ]
+    },
+    "sqlite": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sqlite",
+        "/path/to/database.db"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ]
+    },
+    "fetch": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-fetch"
+      ]
+    },
+    "git": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-git"
+      ]
+    },
+    "everything": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-everything"
+      ]
+    },
+    "docker": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "docker-mcp-server"
+      ]
+    },
+    "reddit": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "reddit-mcp-server"
+      ],
+      "env": {
+        "REDDIT_CLIENT_ID": "",
+        "REDDIT_CLIENT_SECRET": "",
+        "REDDIT_USER_AGENT": "MCP-Reddit-Server/1.0"
+      }
+    },
+    "youtube": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "youtube-mcp-server"
+      ],
+      "env": {
+        "YOUTUBE_API_KEY": ""
+      }
+    },
+    "linear": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "linear-mcp-server"
+      ],
+      "env": {
+        "LINEAR_API_KEY": ""
+      }
+    },
+    "aws-kb": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "aws-kb-mcp-server"
+      ],
+      "env": {
+        "AWS_ACCESS_KEY_ID": "",
+        "AWS_SECRET_ACCESS_KEY": "",
+        "AWS_REGION": "us-east-1"
+      }
+    },
+    "axiom": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "axiom-mcp-server"
+      ],
+      "env": {
+        "AXIOM_API_TOKEN": "",
+        "AXIOM_ORG_ID": ""
+      }
+    },
+    "bigquery": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "bigquery-mcp-server"
+      ],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "/path/to/service-account.json"
+      }
+    },
+    "claude-3-5-sonnet": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "claude-3-5-sonnet-mcp-server"
+      ],
+      "env": {
+        "ANTHROPIC_API_KEY": ""
+      }
+    },
+    "email": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "email-mcp-server"
+      ],
+      "env": {
+        "GMAIL_CLIENT_ID": "",
+        "GMAIL_CLIENT_SECRET": "",
+        "GMAIL_REFRESH_TOKEN": ""
+      }
+    },
+    "gitlab": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "gitlab-mcp-server"
+      ],
+      "env": {
+        "GITLAB_PERSONAL_ACCESS_TOKEN": "",
+        "GITLAB_URL": "https://gitlab.com"
+      }
+    },
+    "haystack": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "haystack-mcp-server"
+      ],
+      "env": {
+        "HAYSTACK_API_KEY": ""
+      }
+    },
+    "jira": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "jira-mcp-server"
+      ],
+      "env": {
+        "JIRA_URL": "",
+        "JIRA_EMAIL": "",
+        "JIRA_API_TOKEN": ""
+      }
+    },
+    "kubernetes": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "kubernetes-mcp-server"
+      ],
+      "env": {
+        "KUBECONFIG": "/path/to/kubeconfig"
+      }
+    },
+    "mongo": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mongo-mcp-server"
+      ],
+      "env": {
+        "MONGODB_CONNECTION_STRING": "mongodb://localhost:27017/database"
+      }
+    },
+    "mysql": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mysql-mcp-server"
+      ],
+      "env": {
+        "MYSQL_CONNECTION_STRING": "mysql://username:password@localhost:3306/database"
+      }
+    },
+    "neon": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "neon-mcp-server"
+      ],
+      "env": {
+        "NEON_DATABASE_URL": ""
+      }
+    },
+    "obsidian": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "obsidian-mcp-server"
+      ],
+      "env": {
+        "OBSIDIAN_VAULT_PATH": "/path/to/obsidian/vault"
+      }
+    },
+    "redis": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "redis-mcp-server"
+      ],
+      "env": {
+        "REDIS_URL": "redis://localhost:6379"
+      }
+    },
+    "sentry": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "sentry-mcp-server"
+      ],
+      "env": {
+        "SENTRY_AUTH_TOKEN": "",
+        "SENTRY_ORG": ""
+      }
+    },
+    "time": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "time-mcp-server"
+      ]
+    },
+    "todoist": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "todoist-mcp-server"
+      ],
+      "env": {
+        "TODOIST_API_TOKEN": ""
+      }
+    }
+  }
+}

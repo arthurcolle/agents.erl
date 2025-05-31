@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.38.2">
+    <meta name="project" content="agents v0.2.0">
+
+
+    <title>active_exploration_engine — agents v0.2.0</title>
+
+    <link rel="stylesheet" href="dist/html-erlang-DQDXQC7W.css" />
+
+    <script defer src="dist/sidebar_items-F9A9672A.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-DPJLHKSM.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="readme.html" class="sidebar-projectName" translate="no">
+agents
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v0.2.0
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras=""></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of agents</span>
+            <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+          </label>
+          <button type="submit" class="search-button" aria-label="Submit Search" tabindex="-1">
+            <i class="ri-search-2-line ri-lg" aria-hidden="true"></i>
+          </button>
+          <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+            <i class="ri-close-line ri-lg" title="Cancel search"></i>
+          </button>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">active_exploration_engine</span> 
+      <small class="app-vsn" translate="no">(agents v0.2.0)</small>
+
+    </h1>
+
+      <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L1" title="View Source" class="icon-action" rel="help">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#adaptive_exploration/2" data-no-tooltip="" translate="no">adaptive_exploration(ExplorationPid, AdaptationContext)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#analyze_experimental_results/3" data-no-tooltip="" translate="no">analyze_experimental_results(ExplorationPid, ExperimentId, Results)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#balance_exploration_exploitation/2" data-no-tooltip="" translate="no">balance_exploration_exploitation(ExplorationPid, BalancingContext)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#code_change/3" data-no-tooltip="" translate="no">code_change(OldVsn, State, Extra)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#conduct_exploration_experiments/2" data-no-tooltip="" translate="no">conduct_exploration_experiments(ExplorationPid, ExperimentDesign)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#coordinate_exploration_activities/2" data-no-tooltip="" translate="no">coordinate_exploration_activities(ExplorationPid, CoordinationRequest)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#coordinate_with_goal_formation/2" data-no-tooltip="" translate="no">coordinate_with_goal_formation(ExplorationPid, GoalFormationRequest)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#coordinate_with_learning/2" data-no-tooltip="" translate="no">coordinate_with_learning(ExplorationPid, LearningRequest)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#coordinate_with_reasoning/2" data-no-tooltip="" translate="no">coordinate_with_reasoning(ExplorationPid, ReasoningRequest)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#curiosity_driven_exploration/2" data-no-tooltip="" translate="no">curiosity_driven_exploration(ExplorationPid, CuriosityTrigger)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#design_exploration_experiments/3" data-no-tooltip="" translate="no">design_exploration_experiments(ExplorationPid, ExperimentObjective, Constraints)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#detect_environmental_novelty/2" data-no-tooltip="" translate="no">detect_environmental_novelty(ExplorationPid, EnvironmentalInput)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#discover_environmental_patterns/2" data-no-tooltip="" translate="no">discover_environmental_patterns(ExplorationPid, SearchCriteria)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#evaluate_exploration_outcome/3" data-no-tooltip="" translate="no">evaluate_exploration_outcome(ExplorationPid, ExplorationId, Outcome)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#execute_exploration_strategy/3" data-no-tooltip="" translate="no">execute_exploration_strategy(ExplorationPid, Strategy, Target)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#explore_conceptual_space/2" data-no-tooltip="" translate="no">explore_conceptual_space(ExplorationPid, ConceptualContext)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#explore_knowledge_gap/2" data-no-tooltip="" translate="no">explore_knowledge_gap(ExplorationPid, KnowledgeGap)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#explore_social_environment/2" data-no-tooltip="" translate="no">explore_social_environment(ExplorationPid, SocialContext)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#explore_spatial_environment/2" data-no-tooltip="" translate="no">explore_spatial_environment(ExplorationPid, SpatialContext)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#explore_temporal_patterns/2" data-no-tooltip="" translate="no">explore_temporal_patterns(ExplorationPid, TemporalContext)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#generate_exploration_hypotheses/2" data-no-tooltip="" translate="no">generate_exploration_hypotheses(ExplorationPid, ObservationContext)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_call/3" data-no-tooltip="" translate="no">handle_call(Request, From, State)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_cast/2" data-no-tooltip="" translate="no">handle_cast(Msg, State)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_info/2" data-no-tooltip="" translate="no">handle_info(Info, State)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#hypothesis_driven_exploration/3" data-no-tooltip="" translate="no">hypothesis_driven_exploration(ExplorationPid, Hypothesis, TestingStrategy)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#init/1" data-no-tooltip="" translate="no">init(_)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#initiate_exploration/3" data-no-tooltip="" translate="no">initiate_exploration(ExplorationPid, ExplorationTarget, Context)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#integrate_exploration_insights/2" data-no-tooltip="" translate="no">integrate_exploration_insights(ExplorationPid, InsightIntegrationRequest)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#investigate_anomaly/3" data-no-tooltip="" translate="no">investigate_anomaly(ExplorationPid, Anomaly, InvestigationScope)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#investigate_causal_relationships/3" data-no-tooltip="" translate="no">investigate_causal_relationships(ExplorationPid, CausalHypothesis, InvestigationMethod)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#iterative_hypothesis_refinement/3" data-no-tooltip="" translate="no">iterative_hypothesis_refinement(ExplorationPid, HypothesisId, RefinementData)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#optimize_exploration_parameters/2" data-no-tooltip="" translate="no">optimize_exploration_parameters(ExplorationPid, OptimizationObjective)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#process_surprising_observations/3" data-no-tooltip="" translate="no">process_surprising_observations(ExplorationPid, Observation, ExpectedOutcome)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#select_exploration_strategy/2" data-no-tooltip="" translate="no">select_exploration_strategy(ExplorationPid, SelectionCriteria)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#start_link/1" data-no-tooltip="" translate="no">start_link(Config)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#terminate/2" data-no-tooltip="" translate="no">terminate(Reason, State)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#test_environmental_hypothesis/3" data-no-tooltip="" translate="no">test_environmental_hypothesis(ExplorationPid, Hypothesis, TestDesign)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#validate_exploration_discoveries/3" data-no-tooltip="" translate="no">validate_exploration_discoveries(ExplorationPid, Discovery, ValidationCriteria)</a>
+
+      </div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="adaptive_exploration/2">
+
+  <div class="detail-header">
+    <a href="#adaptive_exploration/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">adaptive_exploration(ExplorationPid, AdaptationContext)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L140" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="analyze_experimental_results/3">
+
+  <div class="detail-header">
+    <a href="#analyze_experimental_results/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">analyze_experimental_results(ExplorationPid, ExperimentId, Results)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L211" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="balance_exploration_exploitation/2">
+
+  <div class="detail-header">
+    <a href="#balance_exploration_exploitation/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">balance_exploration_exploitation(ExplorationPid, BalancingContext)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L172" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="code_change/3">
+
+  <div class="detail-header">
+    <a href="#code_change/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">code_change(OldVsn, State, Extra)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L558" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="conduct_exploration_experiments/2">
+
+  <div class="detail-header">
+    <a href="#conduct_exploration_experiments/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">conduct_exploration_experiments(ExplorationPid, ExperimentDesign)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L208" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="coordinate_exploration_activities/2">
+
+  <div class="detail-header">
+    <a href="#coordinate_exploration_activities/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">coordinate_exploration_activities(ExplorationPid, CoordinationRequest)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L175" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="coordinate_with_goal_formation/2">
+
+  <div class="detail-header">
+    <a href="#coordinate_with_goal_formation/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">coordinate_with_goal_formation(ExplorationPid, GoalFormationRequest)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L218" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="coordinate_with_learning/2">
+
+  <div class="detail-header">
+    <a href="#coordinate_with_learning/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">coordinate_with_learning(ExplorationPid, LearningRequest)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L221" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="coordinate_with_reasoning/2">
+
+  <div class="detail-header">
+    <a href="#coordinate_with_reasoning/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">coordinate_with_reasoning(ExplorationPid, ReasoningRequest)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L224" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="curiosity_driven_exploration/2">
+
+  <div class="detail-header">
+    <a href="#curiosity_driven_exploration/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">curiosity_driven_exploration(ExplorationPid, CuriosityTrigger)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L143" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="design_exploration_experiments/3">
+
+  <div class="detail-header">
+    <a href="#design_exploration_experiments/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">design_exploration_experiments(ExplorationPid, ExperimentObjective, Constraints)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L205" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="detect_environmental_novelty/2">
+
+  <div class="detail-header">
+    <a href="#detect_environmental_novelty/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">detect_environmental_novelty(ExplorationPid, EnvironmentalInput)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L179" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="discover_environmental_patterns/2">
+
+  <div class="detail-header">
+    <a href="#discover_environmental_patterns/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">discover_environmental_patterns(ExplorationPid, SearchCriteria)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L156" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="evaluate_exploration_outcome/3">
+
+  <div class="detail-header">
+    <a href="#evaluate_exploration_outcome/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">evaluate_exploration_outcome(ExplorationPid, ExplorationId, Outcome)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L137" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="execute_exploration_strategy/3">
+
+  <div class="detail-header">
+    <a href="#execute_exploration_strategy/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">execute_exploration_strategy(ExplorationPid, Strategy, Target)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L134" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="explore_conceptual_space/2">
+
+  <div class="detail-header">
+    <a href="#explore_conceptual_space/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">explore_conceptual_space(ExplorationPid, ConceptualContext)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L198" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="explore_knowledge_gap/2">
+
+  <div class="detail-header">
+    <a href="#explore_knowledge_gap/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">explore_knowledge_gap(ExplorationPid, KnowledgeGap)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L153" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="explore_social_environment/2">
+
+  <div class="detail-header">
+    <a href="#explore_social_environment/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">explore_social_environment(ExplorationPid, SocialContext)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L201" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="explore_spatial_environment/2">
+
+  <div class="detail-header">
+    <a href="#explore_spatial_environment/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">explore_spatial_environment(ExplorationPid, SpatialContext)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L192" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="explore_temporal_patterns/2">
+
+  <div class="detail-header">
+    <a href="#explore_temporal_patterns/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">explore_temporal_patterns(ExplorationPid, TemporalContext)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L195" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="generate_exploration_hypotheses/2">
+
+  <div class="detail-header">
+    <a href="#generate_exploration_hypotheses/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">generate_exploration_hypotheses(ExplorationPid, ObservationContext)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L185" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="handle_call/3">
+
+  <div class="detail-header">
+    <a href="#handle_call/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">handle_call(Request, From, State)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L262" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="handle_cast/2">
+
+  <div class="detail-header">
+    <a href="#handle_cast/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">handle_cast(Msg, State)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L502" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="handle_info/2">
+
+  <div class="detail-header">
+    <a href="#handle_info/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">handle_info(Info, State)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L531" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="hypothesis_driven_exploration/3">
+
+  <div class="detail-header">
+    <a href="#hypothesis_driven_exploration/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">hypothesis_driven_exploration(ExplorationPid, Hypothesis, TestingStrategy)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L146" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="init/1">
+
+  <div class="detail-header">
+    <a href="#init/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">init(_)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L234" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="initiate_exploration/3">
+
+  <div class="detail-header">
+    <a href="#initiate_exploration/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">initiate_exploration(ExplorationPid, ExplorationTarget, Context)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L131" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="integrate_exploration_insights/2">
+
+  <div class="detail-header">
+    <a href="#integrate_exploration_insights/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">integrate_exploration_insights(ExplorationPid, InsightIntegrationRequest)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L227" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="investigate_anomaly/3">
+
+  <div class="detail-header">
+    <a href="#investigate_anomaly/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">investigate_anomaly(ExplorationPid, Anomaly, InvestigationScope)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L150" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="investigate_causal_relationships/3">
+
+  <div class="detail-header">
+    <a href="#investigate_causal_relationships/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">investigate_causal_relationships(ExplorationPid, CausalHypothesis, InvestigationMethod)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L162" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="iterative_hypothesis_refinement/3">
+
+  <div class="detail-header">
+    <a href="#iterative_hypothesis_refinement/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">iterative_hypothesis_refinement(ExplorationPid, HypothesisId, RefinementData)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L214" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="optimize_exploration_parameters/2">
+
+  <div class="detail-header">
+    <a href="#optimize_exploration_parameters/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">optimize_exploration_parameters(ExplorationPid, OptimizationObjective)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L169" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="process_surprising_observations/3">
+
+  <div class="detail-header">
+    <a href="#process_surprising_observations/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">process_surprising_observations(ExplorationPid, Observation, ExpectedOutcome)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L182" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="select_exploration_strategy/2">
+
+  <div class="detail-header">
+    <a href="#select_exploration_strategy/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">select_exploration_strategy(ExplorationPid, SelectionCriteria)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L166" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="start_link/1">
+
+  <div class="detail-header">
+    <a href="#start_link/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">start_link(Config)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L125" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="terminate/2">
+
+  <div class="detail-header">
+    <a href="#terminate/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">terminate(Reason, State)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L552" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="test_environmental_hypothesis/3">
+
+  <div class="detail-header">
+    <a href="#test_environmental_hypothesis/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">test_environmental_hypothesis(ExplorationPid, Hypothesis, TestDesign)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L159" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="validate_exploration_discoveries/3">
+
+  <div class="detail-header">
+    <a href="#validate_exploration_discoveries/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">validate_exploration_discoveries(ExplorationPid, Discovery, ValidationCriteria)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/active_exploration_engine.erl#L188" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+      <p>
+
+          <span class="line">
+            <a href="https://hex.pm/packages/agents/0.2.0" class="footer-hex-package">Hex Package</a>
+
+            <a href="https://preview.hex.pm/preview/agents/0.2.0">Hex Preview</a>
+
+          </span>
+
+        <span class="line">
+          <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+            Search HexDocs
+          </button>
+
+            <a href="agents.epub" title="ePub version">
+              Download ePub version
+            </a>
+
+        </span>
+      </p>
+
+      <p class="built-using">
+        Built using
+        <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.38.2) for the
+
+          <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+      </p>
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

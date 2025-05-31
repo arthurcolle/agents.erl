@@ -1,0 +1,52 @@
+## Production VM arguments optimized for BeamAsm JIT performance
+
+## Enable JIT with aggressive optimizations
++JMsingle true
+
+## Memory management optimizations for JIT
++MBas aobf
++MHas aobf
++MMmcs 30
+
+## Process optimizations
++P 1048576
++Q 1048576
+
+## Scheduler optimizations (adjust based on your CPU cores)
++S 8:8
++stbt db
++sbwt very_short
++swt very_low
+
+## IO optimizations
++A 64
+
+## Memory allocator optimizations
++MBmmsbc 512
++MHmmsbc 512
++MBlmbcs 512
++MHlmbcs 512
+
+## GC optimizations for large heaps (good for AI workloads)
++hmqd off_heap
++hmax 134217728
+
+## Distribution optimizations
++zdbbl 32768
+
+## Enable native time correction
++c true
+
+## Kernel polling (better for high throughput)
++K true
+
+## No shell (production)
+-noshell
+-noinput
+
+## Error logger optimizations
++W w
+
+## Crash dump settings
+-env ERL_CRASH_DUMP crash_dumps/erl_crash.dump
+-env ERL_CRASH_DUMP_SECONDS 30
