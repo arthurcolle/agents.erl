@@ -1,6 +1,6 @@
 {application, openai, [
     {description, "Erlang client for OpenAI API with dynamic client generation"},
-    {vsn, "0.1.0"},
+    {vsn, "0.2.0"},
     {registered, [
         openai_sup,
         openai_generator_sup,
