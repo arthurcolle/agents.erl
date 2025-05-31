@@ -539,7 +539,7 @@ create_swarm_particle(Id) ->
         position = [rand:uniform() * 100, rand:uniform() * 100, rand:uniform() * 100],
         velocity = [rand:uniform() * 10 - 5, rand:uniform() * 10 - 5, rand:uniform() * 10 - 5],
         best_position = [0.0, 0.0, 0.0],
-        best_fitness = -infinity,
+        best_fitness = -999999.0,
         social_network = [],
         behavioral_state = active
     }.

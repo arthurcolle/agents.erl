@@ -730,7 +730,7 @@ create_intentional_state(Content, Target) ->
     #intentional_state{
         state_id = generate_intentional_state_id(),
         belief_content = Content,
-        target_object = Target
+        aboutness_relation = Target
     }.
 generate_intentional_state_id() -> <<"intentional_", (integer_to_binary(erlang:unique_integer([positive])))/binary>>.
 establish_aboutness_relation(State, Target) -> aboutness_relation.
