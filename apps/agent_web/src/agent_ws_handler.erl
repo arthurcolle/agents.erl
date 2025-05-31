@@ -33,11 +33,13 @@ websocket_handle({text, Msg}, State) ->
                         L when is_list(L) -> L;
                         _ -> io_lib:format("~p", [Message])
                     end,
+                    % Use the new stream_chat/3 function to send updates to this websocket process
+                    WsPid = self(),
                     spawn(fun() ->
-                        case catch agent:stream_chat(Pid, MessageStr) of
+                        case catch agent:stream_chat(Pid, MessageStr, WsPid) of
                             ok -> ok;
                             Error -> 
-                                self() ! {stream_error, Error}
+                                WsPid ! {stream_error, Error}
                         end
                     end),
                     {ok, State}
@@ -102,6 +104,14 @@ websocket_info({agent_event, Event}, State) ->
     }),
     {reply, {text, Response}, State};
 
+websocket_info({stream_start, Info}, State) ->
+    SafeInfo = ensure_json_safe(Info),
+    Response = jsx:encode(#{
+        type => <<"stream_start">>,
+        info => SafeInfo
+    }),
+    {reply, {text, Response}, State};
+
 websocket_info({stream_token, Token}, State) ->
     SafeToken = ensure_json_safe(Token),
     Response = jsx:encode(#{
@@ -146,6 +156,20 @@ websocket_info({stream_error, Error}, State) ->
     Response = jsx:encode(#{
         type => <<"stream_error">>,
         error => ensure_json_safe(Error)
+    }),
+    {reply, {text, Response}, State};
+
+websocket_info({system_health, HealthData}, State) ->
+    Response = jsx:encode(#{
+        type => <<"system_health">>,
+        data => ensure_json_safe(HealthData)
+    }),
+    {reply, {text, Response}, State};
+
+websocket_info({system_error, ErrorData}, State) ->
+    Response = jsx:encode(#{
+        type => <<"system_error">>,
+        data => ensure_json_safe(ErrorData)
     }),
     {reply, {text, Response}, State};
 

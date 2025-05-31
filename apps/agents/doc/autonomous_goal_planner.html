@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.38.2">
+    <meta name="project" content="agents v0.2.0">
+
+
+    <title>autonomous_goal_planner — agents v0.2.0</title>
+
+    <link rel="stylesheet" href="dist/html-erlang-DQDXQC7W.css" />
+
+    <script defer src="dist/sidebar_items-F9A9672A.js"></script>
+    <script defer src="docs_config.js"></script>
+    <script defer src="dist/html-DPJLHKSM.js"></script>
+
+  </head>
+  <body>
+    <script>(()=>{var t="ex_doc:settings",e="dark";var o="dark",s="light";var E="sidebar_state",n="closed";var r="sidebar_width";var a="sidebar-open";var i=new URLSearchParams(window.location.search),S=i.get("theme")||JSON.parse(localStorage.getItem(t)||"{}").theme;(S===o||S!==s&&window.matchMedia("(prefers-color-scheme: dark)").matches)&&document.body.classList.add(e);var d=sessionStorage.getItem(E),A=d!==n&&!window.matchMedia(`screen and (max-width: ${768}px)`).matches;document.body.classList.toggle(a,A);var c=sessionStorage.getItem(r);c&&document.body.style.setProperty("--sidebarWidth",`${c}px`);var p=/(Macintosh|iPhone|iPad|iPod)/.test(window.navigator.userAgent);document.documentElement.classList.toggle("apple-os",p);})();
+</script>
+
+<div class="body-wrapper">
+
+<button id="sidebar-menu" class="sidebar-button sidebar-toggle" aria-label="toggle sidebar" aria-controls="sidebar">
+  <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+</button>
+
+<nav id="sidebar" class="sidebar">
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectInfo">
+
+      <div>
+        <a href="readme.html" class="sidebar-projectName" translate="no">
+agents
+        </a>
+        <div class="sidebar-projectVersion" translate="no">
+          v0.2.0
+        </div>
+      </div>
+    </div>
+    <ul id="sidebar-list-nav" class="sidebar-list-nav" role="tablist" data-extras=""></ul>
+  </div>
+</nav>
+
+<output role="status" id="toast"></output>
+
+<main class="content page-module" id="main" data-type="modules">
+  <div id="content" class="content-inner">
+    <div class="top-search">
+      <div class="search-settings">
+        <form class="search-bar" action="search.html">
+          <label class="search-label">
+            <span class="sr-only">Search documentation of agents</span>
+            <input name="q" type="text" class="search-input" placeholder="Press / to search" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+          </label>
+          <button type="submit" class="search-button" aria-label="Submit Search" tabindex="-1">
+            <i class="ri-search-2-line ri-lg" aria-hidden="true"></i>
+          </button>
+          <button type="button" tabindex="-1" class="search-close-button" aria-hidden="true">
+            <i class="ri-close-line ri-lg" title="Cancel search"></i>
+          </button>
+        </form>
+        <div class="autocomplete">
+        </div>
+        <button class="icon-settings display-settings">
+          <i class="ri-settings-3-line"></i>
+          <span class="sr-only">Settings</span>
+        </button>
+      </div>
+    </div>
+
+<div id="top-content">
+  <div class="heading-with-actions top-heading">
+    <h1>
+      <span translate="no">autonomous_goal_planner</span> 
+      <small class="app-vsn" translate="no">(agents v0.2.0)</small>
+
+    </h1>
+
+      <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L1" title="View Source" class="icon-action" rel="help">
+        <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        <span class="sr-only">View Source</span>
+      </a>
+
+  </div>
+
+
+</div>
+
+  <section id="summary" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#summary">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Summary</span>
+    </h1>
+<div class="summary-functions summary">
+  <h2>
+    <a href="#functions">Functions</a>
+  </h2>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#activate_goal/2" data-no-tooltip="" translate="no">activate_goal(PlannerPid, GoalId)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#adapt_goal_formation_strategies/2" data-no-tooltip="" translate="no">adapt_goal_formation_strategies(PlannerPid, PerformanceData)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#adapt_plan_during_execution/3" data-no-tooltip="" translate="no">adapt_plan_during_execution(PlannerPid, PlanId, AdaptationTrigger)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#analyze_resource_requirements/2" data-no-tooltip="" translate="no">analyze_resource_requirements(PlannerPid, GoalId)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#check_resource_availability/2" data-no-tooltip="" translate="no">check_resource_availability(PlannerPid, ResourceRequirements)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#code_change/3" data-no-tooltip="" translate="no">code_change(OldVsn, State, Extra)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#create_action_plan/3" data-no-tooltip="" translate="no">create_action_plan(PlannerPid, GoalId, PlanningContext)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#deactivate_goal/2" data-no-tooltip="" translate="no">deactivate_goal(PlannerPid, GoalId)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#decompose_complex_goal/2" data-no-tooltip="" translate="no">decompose_complex_goal(PlannerPid, ComplexGoal)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#evaluate_goal_formation_effectiveness/1" data-no-tooltip="" translate="no">evaluate_goal_formation_effectiveness(PlannerPid)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#evaluate_plan_success/3" data-no-tooltip="" translate="no">evaluate_plan_success(PlannerPid, PlanId, OutcomeData)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#evolve_goal_structures/2" data-no-tooltip="" translate="no">evolve_goal_structures(PlannerPid, EvolutionPressure)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#execute_plan/2" data-no-tooltip="" translate="no">execute_plan(PlannerPid, PlanId)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#form_autonomous_goals/2" data-no-tooltip="" translate="no">form_autonomous_goals(PlannerPid, Context)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#form_meta_goals/2" data-no-tooltip="" translate="no">form_meta_goals(PlannerPid, MetaContext)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_call/3" data-no-tooltip="" translate="no">handle_call(Request, From, State)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_cast/2" data-no-tooltip="" translate="no">handle_cast(Msg, State)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_info/2" data-no-tooltip="" translate="no">handle_info(Info, State)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#handle_resource_conflicts/2" data-no-tooltip="" translate="no">handle_resource_conflicts(PlannerPid, ConflictingGoals)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#identify_goal_conflicts/1" data-no-tooltip="" translate="no">identify_goal_conflicts(PlannerPid)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#init/1" data-no-tooltip="" translate="no">init(_)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#learn_from_goal_outcomes/3" data-no-tooltip="" translate="no">learn_from_goal_outcomes(PlannerPid, GoalId, Outcome)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#merge_compatible_goals/2" data-no-tooltip="" translate="no">merge_compatible_goals(PlannerPid, GoalIds)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#monitor_plan_execution/2" data-no-tooltip="" translate="no">monitor_plan_execution(PlannerPid, PlanId)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#optimize_goal_formation_process/1" data-no-tooltip="" translate="no">optimize_goal_formation_process(PlannerPid)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#optimize_resource_allocation/2" data-no-tooltip="" translate="no">optimize_resource_allocation(PlannerPid, Goals)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#prioritize_goals/2" data-no-tooltip="" translate="no">prioritize_goals(PlannerPid, PrioritizationContext)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#reason_about_goal_formation/2" data-no-tooltip="" translate="no">reason_about_goal_formation(PlannerPid, ReasoningContext)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#resolve_goal_conflicts/2" data-no-tooltip="" translate="no">resolve_goal_conflicts(PlannerPid, ConflictResolutionStrategy)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#resume_goal/2" data-no-tooltip="" translate="no">resume_goal(PlannerPid, GoalId)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#split_complex_goal/2" data-no-tooltip="" translate="no">split_complex_goal(PlannerPid, GoalId)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#start_link/1" data-no-tooltip="" translate="no">start_link(Config)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#suspend_goal/2" data-no-tooltip="" translate="no">suspend_goal(PlannerPid, GoalId)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#terminate/2" data-no-tooltip="" translate="no">terminate(Reason, State)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#update_goal_hierarchy/2" data-no-tooltip="" translate="no">update_goal_hierarchy(PlannerPid, Updates)</a>
+
+      </div>
+
+    </div>
+
+    <div class="summary-row">
+      <div class="summary-signature">
+        <a href="#update_goal_preferences/3" data-no-tooltip="" translate="no">update_goal_preferences(PlannerPid, GoalType, PreferenceUpdate)</a>
+
+      </div>
+
+    </div>
+
+</div>
+
+  </section>
+
+
+  <section id="functions" class="details-list">
+    <h1 class="section-heading">
+      <a class="hover-link" href="#functions">
+        <i class="ri-link-m" aria-hidden="true"></i>
+      </a>
+      <span class="text">Functions</span>
+    </h1>
+    <div class="functions-list">
+<section class="detail" id="activate_goal/2">
+
+  <div class="detail-header">
+    <a href="#activate_goal/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">activate_goal(PlannerPid, GoalId)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L147" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="adapt_goal_formation_strategies/2">
+
+  <div class="detail-header">
+    <a href="#adapt_goal_formation_strategies/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">adapt_goal_formation_strategies(PlannerPid, PerformanceData)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L182" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="adapt_plan_during_execution/3">
+
+  <div class="detail-header">
+    <a href="#adapt_plan_during_execution/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">adapt_plan_during_execution(PlannerPid, PlanId, AdaptationTrigger)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L140" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="analyze_resource_requirements/2">
+
+  <div class="detail-header">
+    <a href="#analyze_resource_requirements/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">analyze_resource_requirements(PlannerPid, GoalId)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L166" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="check_resource_availability/2">
+
+  <div class="detail-header">
+    <a href="#check_resource_availability/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">check_resource_availability(PlannerPid, ResourceRequirements)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L169" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="code_change/3">
+
+  <div class="detail-header">
+    <a href="#code_change/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">code_change(OldVsn, State, Extra)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L501" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="create_action_plan/3">
+
+  <div class="detail-header">
+    <a href="#create_action_plan/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">create_action_plan(PlannerPid, GoalId, PlanningContext)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L131" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="deactivate_goal/2">
+
+  <div class="detail-header">
+    <a href="#deactivate_goal/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">deactivate_goal(PlannerPid, GoalId)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L150" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="decompose_complex_goal/2">
+
+  <div class="detail-header">
+    <a href="#decompose_complex_goal/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">decompose_complex_goal(PlannerPid, ComplexGoal)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L121" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="evaluate_goal_formation_effectiveness/1">
+
+  <div class="detail-header">
+    <a href="#evaluate_goal_formation_effectiveness/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">evaluate_goal_formation_effectiveness(PlannerPid)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L201" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="evaluate_plan_success/3">
+
+  <div class="detail-header">
+    <a href="#evaluate_plan_success/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">evaluate_plan_success(PlannerPid, PlanId, OutcomeData)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L143" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="evolve_goal_structures/2">
+
+  <div class="detail-header">
+    <a href="#evolve_goal_structures/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">evolve_goal_structures(PlannerPid, EvolutionPressure)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L188" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="execute_plan/2">
+
+  <div class="detail-header">
+    <a href="#execute_plan/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">execute_plan(PlannerPid, PlanId)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L134" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="form_autonomous_goals/2">
+
+  <div class="detail-header">
+    <a href="#form_autonomous_goals/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">form_autonomous_goals(PlannerPid, Context)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L112" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="form_meta_goals/2">
+
+  <div class="detail-header">
+    <a href="#form_meta_goals/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">form_meta_goals(PlannerPid, MetaContext)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L192" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="handle_call/3">
+
+  <div class="detail-header">
+    <a href="#handle_call/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">handle_call(Request, From, State)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L240" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="handle_cast/2">
+
+  <div class="detail-header">
+    <a href="#handle_cast/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">handle_cast(Msg, State)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L429" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="handle_info/2">
+
+  <div class="detail-header">
+    <a href="#handle_info/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">handle_info(Info, State)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L474" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="handle_resource_conflicts/2">
+
+  <div class="detail-header">
+    <a href="#handle_resource_conflicts/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">handle_resource_conflicts(PlannerPid, ConflictingGoals)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L175" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="identify_goal_conflicts/1">
+
+  <div class="detail-header">
+    <a href="#identify_goal_conflicts/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">identify_goal_conflicts(PlannerPid)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L124" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="init/1">
+
+  <div class="detail-header">
+    <a href="#init/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">init(_)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L208" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="learn_from_goal_outcomes/3">
+
+  <div class="detail-header">
+    <a href="#learn_from_goal_outcomes/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">learn_from_goal_outcomes(PlannerPid, GoalId, Outcome)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L179" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="merge_compatible_goals/2">
+
+  <div class="detail-header">
+    <a href="#merge_compatible_goals/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">merge_compatible_goals(PlannerPid, GoalIds)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L159" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="monitor_plan_execution/2">
+
+  <div class="detail-header">
+    <a href="#monitor_plan_execution/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">monitor_plan_execution(PlannerPid, PlanId)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L137" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="optimize_goal_formation_process/1">
+
+  <div class="detail-header">
+    <a href="#optimize_goal_formation_process/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">optimize_goal_formation_process(PlannerPid)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L198" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="optimize_resource_allocation/2">
+
+  <div class="detail-header">
+    <a href="#optimize_resource_allocation/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">optimize_resource_allocation(PlannerPid, Goals)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L172" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="prioritize_goals/2">
+
+  <div class="detail-header">
+    <a href="#prioritize_goals/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">prioritize_goals(PlannerPid, PrioritizationContext)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L118" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="reason_about_goal_formation/2">
+
+  <div class="detail-header">
+    <a href="#reason_about_goal_formation/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">reason_about_goal_formation(PlannerPid, ReasoningContext)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L195" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="resolve_goal_conflicts/2">
+
+  <div class="detail-header">
+    <a href="#resolve_goal_conflicts/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">resolve_goal_conflicts(PlannerPid, ConflictResolutionStrategy)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L127" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="resume_goal/2">
+
+  <div class="detail-header">
+    <a href="#resume_goal/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">resume_goal(PlannerPid, GoalId)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L156" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="split_complex_goal/2">
+
+  <div class="detail-header">
+    <a href="#split_complex_goal/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">split_complex_goal(PlannerPid, GoalId)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L162" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="start_link/1">
+
+  <div class="detail-header">
+    <a href="#start_link/1" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">start_link(Config)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L106" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="suspend_goal/2">
+
+  <div class="detail-header">
+    <a href="#suspend_goal/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">suspend_goal(PlannerPid, GoalId)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L153" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="terminate/2">
+
+  <div class="detail-header">
+    <a href="#terminate/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">terminate(Reason, State)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L495" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="update_goal_hierarchy/2">
+
+  <div class="detail-header">
+    <a href="#update_goal_hierarchy/2" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">update_goal_hierarchy(PlannerPid, Updates)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L115" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="update_goal_preferences/3">
+
+  <div class="detail-header">
+    <a href="#update_goal_preferences/3" class="detail-link" data-no-tooltip="" aria-label="Link to this function">
+      <i class="ri-link-m" aria-hidden="true"></i>
+    </a>
+    <div class="heading-with-actions">
+      <h1 class="signature" translate="no">update_goal_preferences(PlannerPid, GoalType, PreferenceUpdate)</h1>
+
+
+        <a href="https://github.com/arthurcolle/agents.erl/blob/v0.2.0/apps/agents/src/autonomous_goal_planner.erl#L185" class="icon-action" rel="help" aria-label="View Source">
+          <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+        </a>
+
+    </div>
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+
+    </div>
+  </section>
+
+    <footer class="footer">
+      <p>
+
+          <span class="line">
+            <a href="https://hex.pm/packages/agents/0.2.0" class="footer-hex-package">Hex Package</a>
+
+            <a href="https://preview.hex.pm/preview/agents/0.2.0">Hex Preview</a>
+
+          </span>
+
+        <span class="line">
+          <button class="a-main footer-button display-quick-switch" title="Search HexDocs packages">
+            Search HexDocs
+          </button>
+
+            <a href="agents.epub" title="ePub version">
+              Download ePub version
+            </a>
+
+        </span>
+      </p>
+
+      <p class="built-using">
+        Built using
+        <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.38.2) for the
+
+          <a href="https://erlang.org" title="Erlang" target="_blank" translate="no">Erlang programming language</a>
+
+      </p>
+
+    </footer>
+  </div>
+</main>
+</div>
+
+  </body>
+</html>

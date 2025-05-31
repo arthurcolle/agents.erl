@@ -20,12 +20,14 @@
     websocket_pid,
     stream_ref,
     connection_pid,
+    connection_type, % websocket | sse
     status = disconnected, % disconnected | connecting | connected | error
     capabilities = #{},
     server_info = #{},
     request_counter = 1,
     pending_requests = #{}, % RequestId -> {From, RequestData}
-    subscriptions = #{} % URI -> true
+    subscriptions = #{}, % URI -> true
+    sse_buffer = <<>> % Buffer for incomplete SSE messages
 }).
 
 -record(mcp_request, {
@@ -105,10 +107,45 @@ handle_call(connect, From, #state{status = disconnected} = State) ->
             NewState = State#state{
                 connection_pid = ConnPid,
                 stream_ref = StreamRef,
+                connection_type = websocket,
                 status = connecting
             },
             % Don't reply yet - will reply after initialization completes
             {noreply, NewState#state{pending_requests = #{init => From}}};
+        {ok, ConnPid, StreamRef, sse} ->
+            NewState = State#state{
+                connection_pid = ConnPid,
+                stream_ref = StreamRef,
+                connection_type = sse,
+                status = connecting
+            },
+            % Send initialization request for SSE
+            InitRequest = #{
+                <<"jsonrpc">> => <<"2.0">>,
+                <<"id">> => <<"init">>,
+                <<"method">> => <<"initialize">>,
+                <<"params">> => #{
+                    <<"protocolVersion">> => ?PROTOCOL_VERSION,
+                    <<"capabilities">> => #{
+                        <<"roots">> => #{
+                            <<"listChanged">> => true
+                        },
+                        <<"sampling">> => #{},
+                        <<"elicitation">> => #{}
+                    },
+                    <<"clientInfo">> => #{
+                        <<"name">> => ?CLIENT_NAME,
+                        <<"version">> => ?CLIENT_VERSION
+                    }
+                }
+            },
+            case send_message(InitRequest, NewState) of
+                ok ->
+                    {noreply, NewState#state{pending_requests = #{init => From}}};
+                {error, Reason} ->
+                    cleanup_connection(NewState),
+                    {reply, {error, Reason}, State#state{status = error}}
+            end;
         {error, Reason} ->
             {reply, {error, Reason}, State#state{status = error}}
     end;
@@ -149,8 +186,16 @@ handle_cast(_Msg, State) ->
     {noreply, State}.
 
 handle_info({gun_ws, ConnPid, StreamRef, {text, Data}}, 
-            #state{connection_pid = ConnPid, stream_ref = StreamRef} = State) ->
+            #state{connection_pid = ConnPid, stream_ref = StreamRef, connection_type = websocket} = State) ->
     handle_websocket_message(Data, State);
+
+handle_info({gun_data, ConnPid, StreamRef, nofin, Data}, 
+            #state{connection_pid = ConnPid, stream_ref = StreamRef, connection_type = sse} = State) ->
+    handle_sse_data(Data, State);
+
+handle_info({gun_data, ConnPid, StreamRef, fin, Data}, 
+            #state{connection_pid = ConnPid, stream_ref = StreamRef, connection_type = sse} = State) ->
+    handle_sse_data(Data, State);
 
 handle_info({gun_ws, ConnPid, StreamRef, {close, Code, Reason}}, 
             #state{connection_pid = ConnPid, stream_ref = StreamRef} = State) ->
@@ -196,8 +241,13 @@ code_change(_OldVsn, State, _Extra) ->
 
 start_websocket_connection(Url) ->
     case uri_string:parse(Url) of
-        #{scheme := Scheme, host := Host, port := Port, path := Path} 
+        #{scheme := Scheme, host := Host} = ParsedUrl 
         when Scheme =:= <<"ws">> orelse Scheme =:= <<"wss">> ->
+            Port = maps:get(port, ParsedUrl, case Scheme of
+                <<"wss">> -> 443;
+                <<"ws">> -> 80
+            end),
+            Path = maps:get(path, ParsedUrl, <<"/">>),
             
             Opts = case Scheme of
                 <<"wss">> -> #{protocols => [http], transport => tls};
@@ -251,10 +301,54 @@ start_websocket_connection(Url) ->
                 {error, Reason} ->
                     {error, Reason}
             end;
+        #{scheme := Scheme, host := Host} = ParsedUrl 
+        when Scheme =:= <<"http">> orelse Scheme =:= <<"https">> ->
+            % Handle SSE connections for HTTP/HTTPS URLs
+            Port = maps:get(port, ParsedUrl, case Scheme of
+                <<"https">> -> 443;
+                <<"http">> -> 80
+            end),
+            Path = maps:get(path, ParsedUrl, <<"/">>),
+            start_sse_connection(Scheme, Host, Port, Path);
         #{scheme := Scheme} ->
             {error, {unsupported_scheme, Scheme}};
         _ ->
             {error, invalid_url}
+    end.
+
+start_sse_connection(Scheme, Host, Port, Path) ->
+    Opts = case Scheme of
+        <<"https">> -> #{protocols => [http], transport => tls};
+        <<"http">> -> #{protocols => [http]}
+    end,
+    
+    case gun:open(binary_to_list(Host), Port, Opts) of
+        {ok, ConnPid} ->
+            case gun:await_up(ConnPid, 5000) of
+                {ok, _Protocol} ->
+                    Headers = [
+                        {<<"accept">>, <<"text/event-stream">>},
+                        {<<"cache-control">>, <<"no-cache">>},
+                        {<<"connection">>, <<"keep-alive">>}
+                    ],
+                    StreamRef = gun:get(ConnPid, binary_to_list(Path), Headers),
+                    case gun:await(ConnPid, StreamRef, 5000) of
+                        {response, nofin, 200, _ResponseHeaders} ->
+                            % SSE connection established
+                            {ok, ConnPid, StreamRef, sse};
+                        {response, _Fin, Status, _Headers} ->
+                            gun:close(ConnPid),
+                            {error, {http_error, Status}};
+                        {error, Reason} ->
+                            gun:close(ConnPid),
+                            {error, Reason}
+                    end;
+                {error, Reason} ->
+                    gun:close(ConnPid),
+                    {error, Reason}
+            end;
+        {error, Reason} ->
+            {error, Reason}
     end.
 
 handle_websocket_message(Data, State) ->
@@ -265,6 +359,75 @@ handle_websocket_message(Data, State) ->
         _:_ ->
             error_logger:warning_msg("Invalid JSON received: ~p~n", [Data]),
             {noreply, State}
+    end.
+
+handle_sse_data(Data, #state{sse_buffer = Buffer} = State) ->
+    % Append new data to buffer
+    NewBuffer = <<Buffer/binary, Data/binary>>,
+    % Process complete SSE events
+    process_sse_events(NewBuffer, State).
+
+process_sse_events(Buffer, State) ->
+    case binary:split(Buffer, <<"\n\n">>) of
+        [Event, Rest] ->
+            % Process the complete event
+            NewState = case parse_sse_event(Event) of
+                {ok, JsonData} ->
+                    try jsx:decode(JsonData, [return_maps]) of
+                        Message ->
+                            case process_mcp_message(Message, State) of
+                                {noreply, ProcessedState} -> ProcessedState;
+                                {reply, _Reply, ProcessedState} -> ProcessedState
+                            end
+                    catch
+                        _:_ ->
+                            error_logger:warning_msg("Invalid JSON in SSE event: ~p~n", [JsonData]),
+                            State
+                    end;
+                ignore ->
+                    State;
+                {error, Reason} ->
+                    error_logger:warning_msg("Failed to parse SSE event: ~p~n", [Reason]),
+                    State
+            end,
+            % Continue processing remaining buffer
+            process_sse_events(Rest, NewState#state{sse_buffer = <<>>});
+        [_IncompleteEvent] ->
+            % Store incomplete event in buffer
+            {noreply, State#state{sse_buffer = Buffer}}
+    end.
+
+parse_sse_event(EventData) ->
+    Lines = binary:split(EventData, <<"\n">>, [global]),
+    parse_sse_lines(Lines, #{}).
+
+parse_sse_lines([], Acc) ->
+    case maps:get(data, Acc, undefined) of
+        undefined -> ignore;
+        Data -> {ok, Data}
+    end;
+parse_sse_lines([Line | Rest], Acc) ->
+    case binary:split(Line, <<": ">>) of
+        [<<"data">>, Data] ->
+            % Accumulate data lines
+            ExistingData = maps:get(data, Acc, <<>>),
+            NewData = case ExistingData of
+                <<>> -> Data;
+                _ -> <<ExistingData/binary, "\n", Data/binary>>
+            end,
+            parse_sse_lines(Rest, Acc#{data => NewData});
+        [<<"event">>, EventType] ->
+            parse_sse_lines(Rest, Acc#{event => EventType});
+        [<<"id">>, Id] ->
+            parse_sse_lines(Rest, Acc#{id => Id});
+        [<<"retry">>, RetryTime] ->
+            parse_sse_lines(Rest, Acc#{retry => RetryTime});
+        [<<>>] ->
+            % Empty line, ignore
+            parse_sse_lines(Rest, Acc);
+        _ ->
+            % Comment or malformed line, ignore
+            parse_sse_lines(Rest, Acc)
     end.
 
 process_mcp_message(#{<<"jsonrpc">> := <<"2.0">>, <<"id">> := Id} = Message, State) ->
@@ -392,7 +555,7 @@ send_notification(Method, Params, State) ->
     },
     send_message(Notification, State).
 
-send_message(Message, #state{connection_pid = ConnPid, stream_ref = StreamRef}) ->
+send_message(Message, #state{connection_pid = ConnPid, stream_ref = StreamRef, connection_type = websocket}) ->
     try
         Data = jsx:encode(Message),
         gun:ws_send(ConnPid, StreamRef, {text, Data}),
@@ -400,6 +563,64 @@ send_message(Message, #state{connection_pid = ConnPid, stream_ref = StreamRef}) 
     catch
         _:Reason ->
             {error, {encode_error, Reason}}
+    end;
+
+send_message(Message, #state{connection_pid = ConnPid, connection_type = sse, url = Url}) ->
+    % For SSE connections, try different approaches to send messages
+    case uri_string:parse(Url) of
+        #{scheme := _Scheme, host := _Host, port := _Port, path := Path} ->
+            % Try multiple POST endpoint patterns that MCP servers might use
+            PostPaths = [
+                % Standard MCP JSON-RPC endpoint
+                binary_to_list(iolist_to_binary([Path])),
+                % Remove /sse suffix and try base path
+                case binary:split(Path, <<"/sse">>) of
+                    [BasePath, _] -> binary_to_list(BasePath);
+                    _ -> binary_to_list(Path)
+                end,
+                % Try /mcp endpoint
+                case binary:split(Path, <<"/sse">>) of
+                    [BasePath, _] -> binary_to_list(<<BasePath/binary, "/mcp">>);
+                    _ -> binary_to_list(<<Path/binary, "/mcp">>)
+                end,
+                % Try /jsonrpc endpoint
+                case binary:split(Path, <<"/sse">>) of
+                    [BasePath, _] -> binary_to_list(<<BasePath/binary, "/jsonrpc">>);
+                    _ -> binary_to_list(<<Path/binary, "/jsonrpc">>)
+                end
+            ],
+            try_post_endpoints(ConnPid, PostPaths, Message);
+        _ ->
+            {error, invalid_url}
+    end.
+
+try_post_endpoints(_ConnPid, [], _Message) ->
+    {error, no_valid_endpoint};
+try_post_endpoints(ConnPid, [PostPath | RestPaths], Message) ->
+    try
+        Data = jsx:encode(Message),
+        Headers = [
+            {<<"content-type">>, <<"application/json">>},
+            {<<"accept">>, <<"application/json">>}
+        ],
+        StreamRefPost = gun:post(ConnPid, PostPath, Headers, Data),
+        case gun:await(ConnPid, StreamRefPost, 5000) of
+            {response, nofin, 200, _ResponseHeaders} ->
+                ok;
+            {response, fin, 200, _ResponseHeaders} ->
+                ok;
+            {response, _Fin, Status, _Headers} when Status >= 400, Status < 500 ->
+                % Client error, try next endpoint
+                try_post_endpoints(ConnPid, RestPaths, Message);
+            {response, _Fin, Status, _Headers} ->
+                {error, {http_error, Status}};
+            {error, PostReason} ->
+                % Connection error, try next endpoint
+                try_post_endpoints(ConnPid, RestPaths, Message)
+        end
+    catch
+        _:CatchReason ->
+            {error, {encode_error, CatchReason}}
     end.
 
 cleanup_connection(#state{connection_pid = undefined} = State) ->

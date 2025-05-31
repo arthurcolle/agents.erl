@@ -229,7 +229,7 @@ export default function AdvancedMessageRenderer({
   }
 
   function parseInlineElements(text: string, startKey: number) {
-    const parts = []
+    const parts: (JSX.Element | string)[] = []
     let currentIndex = 0
 
     // Parse inline code
@@ -263,7 +263,7 @@ export default function AdvancedMessageRenderer({
   }
 
   function parseInlineMath(text: string, startKey: number) {
-    const parts = []
+    const parts: (JSX.Element | string)[] = []
     let currentIndex = 0
 
     const inlineMathRegex = /\$([^$]+)\$/g

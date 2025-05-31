@@ -18,8 +18,11 @@ import {
   Monitor,
   Download,
   Copy,
-  ExternalLink
+  ExternalLink,
+  Database
 } from 'lucide-react'
+import { SeedServersDialog } from './SeedServersDialog'
+import { OAuthManager } from './OAuthManager'
 
 interface MCPServer {
   id: string
@@ -54,6 +57,7 @@ export default function ComprehensiveMCPManager() {
   const [showAddRemoteDialog, setShowAddRemoteDialog] = useState(false)
   const [showAddLocalDialog, setShowAddLocalDialog] = useState(false)
   const [showDiscoveryDialog, setShowDiscoveryDialog] = useState(false)
+  const [showSeedServersDialog, setShowSeedServersDialog] = useState(false)
   
   // Form states
   const [newRemoteUrl, setNewRemoteUrl] = useState('')
@@ -283,6 +287,52 @@ export default function ComprehensiveMCPManager() {
     }
   }
 
+  const testConnection = async (url: string) => {
+    if (!url) return
+    
+    try {
+      // Create a temporary server entry to test
+      const tempConfig = {
+        name: 'temp_test',
+        url: url,
+        type: 'remote'
+      }
+
+      const response = await fetch('/api/mcp/servers', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(tempConfig)
+      })
+
+      if (response.ok) {
+        const result = await response.json()
+        
+        // Try to test the connection
+        const testResponse = await fetch(`/api/mcp/servers/${result.id}/test`, {
+          method: 'POST'
+        })
+
+        const testResult = await testResponse.json()
+        
+        // Clean up the temporary server
+        await fetch(`/api/mcp/servers/${result.id}`, {
+          method: 'DELETE'
+        })
+
+        if (testResult.status === 'success') {
+          alert('✅ Connection successful! The server is reachable.')
+        } else {
+          alert(`❌ Connection failed: ${testResult.error || 'Unknown error'}`)
+        }
+      } else {
+        alert('❌ Invalid URL format')
+      }
+    } catch (error) {
+      console.error('Connection test failed:', error)
+      alert('❌ Connection test failed: Network error')
+    }
+  }
+
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'connected':
@@ -372,7 +422,7 @@ export default function ComprehensiveMCPManager() {
       )}
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="overview">
             <Monitor className="h-4 w-4 mr-2" />
             Overview
@@ -385,8 +435,12 @@ export default function ComprehensiveMCPManager() {
             <Globe className="h-4 w-4 mr-2" />
             Remote Servers
           </TabsTrigger>
-          <TabsTrigger value="inspector">
+          <TabsTrigger value="oauth">
             <ExternalLink className="h-4 w-4 mr-2" />
+            OAuth
+          </TabsTrigger>
+          <TabsTrigger value="inspector">
+            <Database className="h-4 w-4 mr-2" />
             Inspector
           </TabsTrigger>
         </TabsList>
@@ -479,13 +533,22 @@ export default function ComprehensiveMCPManager() {
                     <Globe className="h-5 w-5" />
                     Remote Servers
                   </span>
-                  <Dialog open={showAddRemoteDialog} onOpenChange={setShowAddRemoteDialog}>
-                    <DialogTrigger asChild>
-                      <Button size="sm">
-                        <Plus className="h-4 w-4 mr-2" />
-                        Add
-                      </Button>
-                    </DialogTrigger>
+                  <div className="flex gap-2">
+                    <Button 
+                      size="sm" 
+                      variant="outline"
+                      onClick={() => setShowSeedServersDialog(true)}
+                    >
+                      <Database className="h-4 w-4 mr-2" />
+                      Seed List
+                    </Button>
+                    <Dialog open={showAddRemoteDialog} onOpenChange={setShowAddRemoteDialog}>
+                      <DialogTrigger asChild>
+                        <Button size="sm">
+                          <Plus className="h-4 w-4 mr-2" />
+                          Add
+                        </Button>
+                      </DialogTrigger>
                     <DialogContent>
                       <DialogHeader>
                         <DialogTitle>Connect to Remote MCP Server</DialogTitle>
@@ -513,19 +576,33 @@ export default function ComprehensiveMCPManager() {
                             onChange={(e) => setNewRemoteUrl(e.target.value)}
                             placeholder="ws://localhost:8765/mcp"
                           />
+                          <p className="text-sm text-muted-foreground mt-1">
+                            Enter the WebSocket URL of your MCP server (e.g., ws://localhost:3000/mcp)
+                          </p>
                         </div>
                         
-                        <div className="flex justify-end gap-2">
-                          <Button variant="outline" onClick={() => setShowAddRemoteDialog(false)}>
-                            Cancel
+                        <div className="flex justify-between items-center">
+                          <Button 
+                            variant="outline" 
+                            onClick={() => testConnection(newRemoteUrl)}
+                            disabled={!newRemoteUrl || loading}
+                            size="sm"
+                          >
+                            Test URL
                           </Button>
-                          <Button onClick={addRemoteServer} disabled={!newRemoteName || !newRemoteUrl || loading}>
-                            Add Server
-                          </Button>
+                          <div className="flex gap-2">
+                            <Button variant="outline" onClick={() => setShowAddRemoteDialog(false)}>
+                              Cancel
+                            </Button>
+                            <Button onClick={addRemoteServer} disabled={!newRemoteName || !newRemoteUrl || loading}>
+                              Add Server
+                            </Button>
+                          </div>
                         </div>
                       </div>
                     </DialogContent>
                   </Dialog>
+                  </div>
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -568,6 +645,16 @@ export default function ComprehensiveMCPManager() {
             onDisconnect={disconnectRemoteServer}
             onRefresh={loadRemoteServers}
             loading={loading}
+          />
+        </TabsContent>
+
+        <TabsContent value="oauth" className="space-y-4">
+          <OAuthManager 
+            onAuthChange={(provider, authenticated) => {
+              console.log(`OAuth ${authenticated ? 'connected' : 'disconnected'} for ${provider}`);
+              // Refresh server data when OAuth status changes
+              fetchData();
+            }}
           />
         </TabsContent>
 
@@ -616,6 +703,13 @@ export default function ComprehensiveMCPManager() {
           </div>
         </DialogContent>
       </Dialog>
+
+      {/* Seed Servers Dialog */}
+      <SeedServersDialog
+        open={showSeedServersDialog}
+        onOpenChange={setShowSeedServersDialog}
+        onServerAdded={loadRemoteServers}
+      />
     </div>
   )
 }

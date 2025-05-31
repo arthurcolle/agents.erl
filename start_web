@@ -17,4 +17,4 @@ echo "Starting web server on http://localhost:8080"
 echo "Press Ctrl+C twice to stop the server."
 
 # Start with shell for interactive development
-./rebar3 shell --apps agent,openai,agent_web
+./rebar3 shell --apps agents,openai,agent_web

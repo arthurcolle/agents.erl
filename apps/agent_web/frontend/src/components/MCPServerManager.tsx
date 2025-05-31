@@ -1,699 +1,294 @@
-import { useState, useEffect } from 'react'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { 
-  Plus, 
-  Play, 
-  Trash2, 
-  RefreshCw, 
-  CheckCircle, 
-  XCircle, 
-  AlertCircle,
-  Settings,
-  Plug
-} from 'lucide-react'
+import React, { useState, useEffect } from 'react';
+import { Shield, Server, Key, Globe, RefreshCw, Plus, Trash2, Edit2, Check, X } from 'lucide-react';
 
 interface MCPServer {
-  id: string
-  name: string
-  url: string
-  status: 'connected' | 'disconnected' | 'error'
-  config?: any
-  registered_at?: number
-  last_seen?: number
+  id: string;
+  name: string;
+  category: string;
+  url: string;
+  auth_type: 'oauth2' | 'api_key' | 'open';
+  maintainer: string;
+  description: string;
+  capabilities: any[];
+  status: 'active' | 'inactive';
+  last_checked: string;
 }
 
-interface MCPTool {
-  name: string
-  description?: string
-  inputSchema?: any
+interface MCPServerManagerProps {
+  selectedServers?: string[];
+  onServersChange?: (serverIds: string[]) => void;
+  mode?: 'manage' | 'select';
 }
 
-export default function MCPServerManager() {
-  const [servers, setServers] = useState<MCPServer[]>([])
-  const [selectedServer, setSelectedServer] = useState<string | null>(null)
-  const [serverTools, setServerTools] = useState<MCPTool[]>([])
-  const [loading, setLoading] = useState(false)
-  const [showAddDialog, setShowAddDialog] = useState(false)
-  
-  // Form state for adding new server
-  const [newServerName, setNewServerName] = useState('')
-  const [newServerUrl, setNewServerUrl] = useState('')
-  const [newServerConfig, setNewServerConfig] = useState('{}')
+export const MCPServerManager: React.FC<MCPServerManagerProps> = ({
+  selectedServers = [],
+  onServersChange,
+  mode = 'manage'
+}) => {
+  const [servers, setServers] = useState<MCPServer[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newServer, setNewServer] = useState<Partial<MCPServer>>({
+    auth_type: 'oauth2',
+    category: 'Software Development',
+    status: 'active'
+  });
 
   useEffect(() => {
-    loadServers()
-    const interval = setInterval(loadServers, 5000) // Refresh every 5 seconds
-    return () => clearInterval(interval)
-  }, [])
+    fetchServers();
+  }, []);
 
-  useEffect(() => {
-    if (selectedServer) {
-      loadServerTools(selectedServer)
-    }
-  }, [selectedServer])
-
-  const loadServers = async () => {
+  const fetchServers = async () => {
     try {
-      const response = await fetch('/api/mcp/servers')
-      const data = await response.json()
-      setServers(data.servers || [])
+      const response = await fetch('/api/mcp-servers');
+      const data = await response.json();
+      setServers(data);
     } catch (error) {
-      console.error('Failed to load MCP servers:', error)
-    }
-  }
-
-  const loadServerTools = async (serverId: string) => {
-    try {
-      setLoading(true)
-      const response = await fetch(`/api/mcp/servers/${serverId}/tools`)
-      const data = await response.json()
-      setServerTools(data.tools || [])
-    } catch (error) {
-      console.error('Failed to load server tools:', error)
-      setServerTools([])
+      console.error('Failed to fetch MCP servers:', error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  const addServer = async () => {
+  const handleRefreshCapabilities = async (serverId: string) => {
     try {
-      let config
-      try {
-        config = JSON.parse(newServerConfig)
-      } catch {
-        config = {}
-      }
+      await fetch(`/api/mcp-servers/${serverId}/discover`, { method: 'POST' });
+      fetchServers();
+    } catch (error) {
+      console.error('Failed to refresh capabilities:', error);
+    }
+  };
 
-      const response = await fetch('/api/mcp/servers', {
+  const handleAddServer = async () => {
+    try {
+      const response = await fetch('/api/mcp-servers', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: newServerName,
-          url: newServerUrl,
-          config
-        })
-      })
-
+        body: JSON.stringify(newServer)
+      });
       if (response.ok) {
-        setShowAddDialog(false)
-        setNewServerName('')
-        setNewServerUrl('')
-        setNewServerConfig('{}')
-        await loadServers()
+        fetchServers();
+        setShowAddForm(false);
+        setNewServer({ auth_type: 'oauth2', category: 'Software Development', status: 'active' });
       }
     } catch (error) {
-      console.error('Failed to add server:', error)
+      console.error('Failed to add server:', error);
     }
-  }
+  };
 
-  const removeServer = async (serverId: string) => {
-    try {
-      const response = await fetch(`/api/mcp/servers/${serverId}`, {
-        method: 'DELETE'
-      })
-
-      if (response.ok) {
-        await loadServers()
-        if (selectedServer === serverId) {
-          setSelectedServer(null)
-          setServerTools([])
-        }
+  const handleDeleteServer = async (serverId: string) => {
+    if (confirm('Are you sure you want to delete this server?')) {
+      try {
+        await fetch(`/api/mcp-servers/${serverId}`, { method: 'DELETE' });
+        fetchServers();
+      } catch (error) {
+        console.error('Failed to delete server:', error);
       }
-    } catch (error) {
-      console.error('Failed to remove server:', error)
     }
-  }
+  };
 
-  const testConnection = async (serverId: string) => {
-    try {
-      setLoading(true)
-      const response = await fetch(`/api/mcp/servers/${serverId}/test`, {
-        method: 'POST'
-      })
-      const data = await response.json()
-      
-      if (data.status === 'success') {
-        console.log('Connection test successful')
-      } else {
-        console.error('Connection test failed:', data.error)
-      }
-      
-      await loadServers()
-    } catch (error) {
-      console.error('Failed to test connection:', error)
-    } finally {
-      setLoading(false)
+  const handleToggleServer = (serverId: string) => {
+    if (mode === 'select' && onServersChange) {
+      const newSelection = selectedServers.includes(serverId)
+        ? selectedServers.filter(id => id !== serverId)
+        : [...selectedServers, serverId];
+      onServersChange(newSelection);
     }
-  }
+  };
 
-  const connectServer = async (serverId: string) => {
-    try {
-      setLoading(true)
-      const response = await fetch(`/api/mcp/servers/${serverId}/connect`, {
-        method: 'POST'
-      })
-      const data = await response.json()
-      
-      if (response.ok) {
-        console.log('Server connected successfully')
-        await loadServers()
-      } else {
-        console.error('Failed to connect server:', data.error)
-      }
-    } catch (error) {
-      console.error('Failed to connect server:', error)
-    } finally {
-      setLoading(false)
+  const getAuthIcon = (authType: string) => {
+    switch (authType) {
+      case 'oauth2': return <Shield className="w-4 h-4" />;
+      case 'api_key': return <Key className="w-4 h-4" />;
+      case 'open': return <Globe className="w-4 h-4" />;
+      default: return <Server className="w-4 h-4" />;
     }
-  }
+  };
 
-  const disconnectServer = async (serverId: string) => {
-    try {
-      setLoading(true)
-      const response = await fetch(`/api/mcp/servers/${serverId}/disconnect`, {
-        method: 'POST'
-      })
-      const data = await response.json()
-      
-      if (response.ok) {
-        console.log('Server disconnected successfully')
-        await loadServers()
-        if (selectedServer === serverId) {
-          setSelectedServer(null)
-          setServerTools([])
-        }
-      } else {
-        console.error('Failed to disconnect server:', data.error)
-      }
-    } catch (error) {
-      console.error('Failed to disconnect server:', error)
-    } finally {
-      setLoading(false)
+  const getAuthColor = (authType: string) => {
+    switch (authType) {
+      case 'oauth2': return 'text-green-600 bg-green-100';
+      case 'api_key': return 'text-yellow-600 bg-yellow-100';
+      case 'open': return 'text-blue-600 bg-blue-100';
+      default: return 'text-gray-600 bg-gray-100';
     }
-  }
+  };
 
-  const getStatusIcon = (status: string) => {
-    switch (status) {
-      case 'connected':
-        return <CheckCircle className="h-4 w-4 text-green-500" />
-      case 'disconnected':
-        return <XCircle className="h-4 w-4 text-gray-500" />
-      case 'error':
-        return <AlertCircle className="h-4 w-4 text-red-500" />
-      default:
-        return <AlertCircle className="h-4 w-4 text-yellow-500" />
-    }
-  }
+  const categories = [...new Set(servers.map(s => s.category))].sort();
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case 'connected':
-        return 'text-green-600 bg-green-50'
-      case 'disconnected':
-        return 'text-gray-600 bg-gray-50'
-      case 'error':
-        return 'text-red-600 bg-red-50'
-      default:
-        return 'text-yellow-600 bg-yellow-50'
-    }
+  if (loading) {
+    return <div className="flex justify-center items-center h-64">Loading MCP servers...</div>;
   }
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold">MCP Server Management</h2>
-          <p className="text-muted-foreground">
-            Manage Model Context Protocol servers and their capabilities
-          </p>
-        </div>
-        
-        <div className="flex gap-2">
-          <Button variant="outline" onClick={loadServers} disabled={loading}>
-            <RefreshCw className="h-4 w-4 mr-2" />
-            Refresh
-          </Button>
-          
-          <Dialog open={showAddDialog} onOpenChange={setShowAddDialog}>
-            <DialogTrigger asChild>
-              <Button>
-                <Plus className="h-4 w-4 mr-2" />
-                Add Server
-              </Button>
-            </DialogTrigger>
-            <DialogContent>
-              <DialogHeader>
-                <DialogTitle>Add MCP Server</DialogTitle>
-                <DialogDescription>
-                  Register a new Model Context Protocol server
-                </DialogDescription>
-              </DialogHeader>
-              
-              <div className="space-y-4">
-                <div>
-                  <Label htmlFor="server-name">Server Name</Label>
-                  <Input
-                    id="server-name"
-                    value={newServerName}
-                    onChange={(e) => setNewServerName(e.target.value)}
-                    placeholder="My MCP Server"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="server-url">WebSocket URL</Label>
-                  <Input
-                    id="server-url"
-                    value={newServerUrl}
-                    onChange={(e) => setNewServerUrl(e.target.value)}
-                    placeholder="ws://localhost:8000/mcp"
-                  />
-                </div>
-                
-                <div>
-                  <Label htmlFor="server-config">Configuration (JSON)</Label>
-                  <textarea
-                    id="server-config"
-                    className="w-full h-20 p-2 border border-gray-300 rounded-md"
-                    value={newServerConfig}
-                    onChange={(e) => setNewServerConfig(e.target.value)}
-                    placeholder='{"timeout": 5000}'
-                  />
-                </div>
-                
-                <div className="flex justify-end gap-2">
-                  <Button variant="outline" onClick={() => setShowAddDialog(false)}>
-                    Cancel
-                  </Button>
-                  <Button onClick={addServer} disabled={!newServerName || !newServerUrl}>
-                    Add Server
-                  </Button>
-                </div>
-              </div>
-            </DialogContent>
-          </Dialog>
-        </div>
+      <div className="flex justify-between items-center">
+        <h2 className="text-2xl font-bold">MCP Server {mode === 'manage' ? 'Management' : 'Selection'}</h2>
+        {mode === 'manage' && (
+          <button
+            onClick={() => setShowAddForm(true)}
+            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+          >
+            <Plus className="w-4 h-4" />
+            Add Server
+          </button>
+        )}
       </div>
 
-      <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-5">
-          <Card>
-            <CardHeader>
-              <CardTitle>Registered Servers</CardTitle>
-              <CardDescription>
-                {servers.length} server{servers.length !== 1 ? 's' : ''} registered
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {servers.map((server) => (
-                  <div
-                    key={server.id}
-                    className={`p-3 border rounded-lg cursor-pointer transition-colors ${
-                      selectedServer === server.id
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                    onClick={() => setSelectedServer(server.id)}
-                  >
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2">
-                          {getStatusIcon(server.status)}
-                          <h3 className="font-medium">{server.name}</h3>
-                        </div>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          {server.url}
-                        </p>
-                        <div className="flex items-center gap-2 mt-2">
-                          <Badge variant="outline" className={getStatusColor(server.status)}>
-                            {server.status}
-                          </Badge>
-                          <span className="text-xs text-muted-foreground">
-                            ID: {server.id}
-                          </span>
-                        </div>
-                      </div>
-                      
-                      <div className="flex gap-1">
-                        {server.status === 'connected' ? (
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              disconnectServer(server.id)
-                            }}
-                            disabled={loading}
-                            title="Disconnect"
-                          >
-                            <XCircle className="h-3 w-3 text-red-500" />
-                          </Button>
-                        ) : (
-                          <Button
-                            size="sm"
-                            variant="outline"
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              connectServer(server.id)
-                            }}
-                            disabled={loading}
-                            title="Connect"
-                          >
-                            <CheckCircle className="h-3 w-3 text-green-500" />
-                          </Button>
-                        )}
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            testConnection(server.id)
-                          }}
-                          disabled={loading}
-                          title="Test Connection"
-                        >
-                          <Play className="h-3 w-3" />
-                        </Button>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={(e) => {
-                            e.stopPropagation()
-                            removeServer(server.id)
-                          }}
-                          title="Remove Server"
-                        >
-                          <Trash2 className="h-3 w-3" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-                
-                {servers.length === 0 && (
-                  <div className="text-center py-8 text-muted-foreground">
-                    <Plug className="h-8 w-8 mx-auto mb-2" />
-                    <p>No MCP servers registered</p>
-                    <p className="text-sm">Add your first server to get started</p>
-                  </div>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="col-span-7">
-          {selectedServer ? (
-            <MCPServerDetails 
-              serverId={selectedServer} 
-              tools={serverTools} 
-              loading={loading}
+      {showAddForm && (
+        <div className="bg-gray-50 p-4 rounded-lg border">
+          <h3 className="font-semibold mb-4">Add New MCP Server</h3>
+          <div className="grid grid-cols-2 gap-4">
+            <input
+              type="text"
+              placeholder="Server Name"
+              value={newServer.name || ''}
+              onChange={(e) => setNewServer({ ...newServer, name: e.target.value })}
+              className="px-3 py-2 border rounded"
             />
-          ) : (
-            <Card>
-              <CardContent className="flex items-center justify-center h-64">
-                <div className="text-center text-muted-foreground">
-                  <Settings className="h-8 w-8 mx-auto mb-2" />
-                  <p>Select a server to view details</p>
-                </div>
-              </CardContent>
-            </Card>
-          )}
-        </div>
-      </div>
-    </div>
-  )
-}
-
-interface MCPServerDetailsProps {
-  serverId: string
-  tools: MCPTool[]
-  loading: boolean
-}
-
-function MCPServerDetails({ serverId, tools, loading }: MCPServerDetailsProps) {
-  const [server, setServer] = useState<MCPServer | null>(null)
-  const [resources, setResources] = useState<any[]>([])
-  const [prompts, setPrompts] = useState<any[]>([])
-  const [loadingResources, setLoadingResources] = useState(false)
-  const [loadingPrompts, setLoadingPrompts] = useState(false)
-
-  useEffect(() => {
-    loadServerDetails()
-  }, [serverId])
-
-  const loadServerDetails = async () => {
-    try {
-      const response = await fetch(`/api/mcp/servers/${serverId}`)
-      const data = await response.json()
-      setServer(data)
-    } catch (error) {
-      console.error('Failed to load server details:', error)
-    }
-  }
-
-  const loadResources = async () => {
-    try {
-      setLoadingResources(true)
-      const response = await fetch(`/api/mcp/servers/${serverId}/resources`)
-      const data = await response.json()
-      setResources(data.resources || [])
-    } catch (error) {
-      console.error('Failed to load resources:', error)
-      setResources([])
-    } finally {
-      setLoadingResources(false)
-    }
-  }
-
-  const loadPrompts = async () => {
-    try {
-      setLoadingPrompts(true)
-      const response = await fetch(`/api/mcp/servers/${serverId}/prompts`)
-      const data = await response.json()
-      setPrompts(data.prompts || [])
-    } catch (error) {
-      console.error('Failed to load prompts:', error)
-      setPrompts([])
-    } finally {
-      setLoadingPrompts(false)
-    }
-  }
-
-  if (!server) {
-    return (
-      <Card>
-        <CardContent className="flex items-center justify-center h-64">
-          <RefreshCw className="h-6 w-6 animate-spin" />
-        </CardContent>
-      </Card>
-    )
-  }
-
-  return (
-    <Card>
-      <CardHeader>
-        <div className="flex items-center justify-between">
-          <div>
-            <CardTitle className="flex items-center gap-2">
-              {getStatusIcon(server.status)}
-              {server.name}
-            </CardTitle>
-            <CardDescription>{server.url}</CardDescription>
+            <input
+              type="text"
+              placeholder="Server ID"
+              value={newServer.id || ''}
+              onChange={(e) => setNewServer({ ...newServer, id: e.target.value })}
+              className="px-3 py-2 border rounded"
+            />
+            <input
+              type="text"
+              placeholder="URL"
+              value={newServer.url || ''}
+              onChange={(e) => setNewServer({ ...newServer, url: e.target.value })}
+              className="px-3 py-2 border rounded"
+            />
+            <select
+              value={newServer.auth_type || 'oauth2'}
+              onChange={(e) => setNewServer({ ...newServer, auth_type: e.target.value as any })}
+              className="px-3 py-2 border rounded"
+            >
+              <option value="oauth2">OAuth 2.0</option>
+              <option value="api_key">API Key</option>
+              <option value="open">Open</option>
+            </select>
+            <input
+              type="text"
+              placeholder="Category"
+              value={newServer.category || ''}
+              onChange={(e) => setNewServer({ ...newServer, category: e.target.value })}
+              className="px-3 py-2 border rounded"
+            />
+            <input
+              type="text"
+              placeholder="Maintainer"
+              value={newServer.maintainer || ''}
+              onChange={(e) => setNewServer({ ...newServer, maintainer: e.target.value })}
+              className="px-3 py-2 border rounded"
+            />
+            <textarea
+              placeholder="Description"
+              value={newServer.description || ''}
+              onChange={(e) => setNewServer({ ...newServer, description: e.target.value })}
+              className="col-span-2 px-3 py-2 border rounded"
+              rows={3}
+            />
           </div>
-          <Badge variant="outline" className={getStatusColor(server.status)}>
-            {server.status}
-          </Badge>
+          <div className="flex gap-2 mt-4">
+            <button
+              onClick={handleAddServer}
+              className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700"
+            >
+              <Check className="w-4 h-4" />
+            </button>
+            <button
+              onClick={() => {
+                setShowAddForm(false);
+                setNewServer({ auth_type: 'oauth2', category: 'Software Development', status: 'active' });
+              }}
+              className="px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
         </div>
-      </CardHeader>
-      
-      <CardContent>
-        <Tabs defaultValue="tools">
-          <TabsList>
-            <TabsTrigger value="tools">
-              Tools ({tools.length})
-            </TabsTrigger>
-            <TabsTrigger value="resources">Resources</TabsTrigger>
-            <TabsTrigger value="prompts">Prompts</TabsTrigger>
-            <TabsTrigger value="config">Configuration</TabsTrigger>
-            <TabsTrigger value="logs">Activity</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="tools" className="mt-4">
-            {loading ? (
-              <div className="flex items-center justify-center py-8">
-                <RefreshCw className="h-6 w-6 animate-spin" />
-              </div>
-            ) : tools.length > 0 ? (
-              <div className="space-y-3">
-                {tools.map((tool, index) => (
-                  <div key={index} className="p-3 border rounded-lg">
-                    <div className="flex items-center justify-between">
-                      <h4 className="font-medium">{tool.name}</h4>
-                      <Button size="sm" variant="outline">
-                        Test Tool
-                      </Button>
+      )}
+
+      {categories.map(category => (
+        <div key={category} className="space-y-2">
+          <h3 className="text-lg font-semibold text-gray-700">{category}</h3>
+          <div className="grid gap-4">
+            {servers
+              .filter(server => server.category === category)
+              .map(server => (
+                <div
+                  key={server.id}
+                  className={`border rounded-lg p-4 ${
+                    mode === 'select' && selectedServers.includes(server.id)
+                      ? 'border-blue-500 bg-blue-50'
+                      : 'border-gray-200'
+                  }`}
+                >
+                  <div className="flex justify-between items-start">
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3">
+                        {mode === 'select' && (
+                          <input
+                            type="checkbox"
+                            checked={selectedServers.includes(server.id)}
+                            onChange={() => handleToggleServer(server.id)}
+                            className="w-4 h-4"
+                          />
+                        )}
+                        <h4 className="font-semibold">{server.name}</h4>
+                        <span className={`flex items-center gap-1 px-2 py-1 rounded-full text-xs ${getAuthColor(server.auth_type)}`}>
+                          {getAuthIcon(server.auth_type)}
+                          {server.auth_type.toUpperCase()}
+                        </span>
+                        <span className={`px-2 py-1 rounded-full text-xs ${
+                          server.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
+                        }`}>
+                          {server.status}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-600 mt-1">{server.description}</p>
+                      <div className="flex items-center gap-4 mt-2 text-xs text-gray-500">
+                        <span>URL: {server.url}</span>
+                        <span>Maintainer: {server.maintainer}</span>
+                        {server.capabilities.length > 0 && (
+                          <span>{server.capabilities.length} capabilities</span>
+                        )}
+                      </div>
                     </div>
-                    {tool.description && (
-                      <p className="text-sm text-muted-foreground mt-1">
-                        {tool.description}
-                      </p>
+                    {mode === 'manage' && (
+                      <div className="flex gap-2">
+                        <button
+                          onClick={() => handleRefreshCapabilities(server.id)}
+                          className="p-1 text-gray-600 hover:text-blue-600"
+                          title="Refresh capabilities"
+                        >
+                          <RefreshCw className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => setEditingId(server.id)}
+                          className="p-1 text-gray-600 hover:text-green-600"
+                          title="Edit"
+                        >
+                          <Edit2 className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => handleDeleteServer(server.id)}
+                          className="p-1 text-gray-600 hover:text-red-600"
+                          title="Delete"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
                     )}
                   </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-8 text-muted-foreground">
-                <p>No tools available from this server</p>
-              </div>
-            )}
-          </TabsContent>
-          
-          <TabsContent value="resources" className="mt-4">
-            {!resources.length && !loadingResources && (
-              <div className="text-center py-4">
-                <Button variant="outline" onClick={loadResources}>
-                  Load Resources
-                </Button>
-              </div>
-            )}
-            
-            {loadingResources ? (
-              <div className="flex items-center justify-center py-8">
-                <RefreshCw className="h-6 w-6 animate-spin" />
-              </div>
-            ) : resources.length > 0 ? (
-              <div className="space-y-3">
-                {resources.map((resource, index) => (
-                  <div key={index} className="p-3 border rounded-lg">
-                    <div className="flex items-center justify-between">
-                      <h4 className="font-medium">{resource.name || resource.uri}</h4>
-                      <Badge variant="outline">{resource.mimeType || 'unknown'}</Badge>
-                    </div>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      {resource.description || resource.uri}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-8 text-muted-foreground">
-                <p>No resources available or failed to load</p>
-              </div>
-            )}
-          </TabsContent>
-          
-          <TabsContent value="prompts" className="mt-4">
-            {!prompts.length && !loadingPrompts && (
-              <div className="text-center py-4">
-                <Button variant="outline" onClick={loadPrompts}>
-                  Load Prompts
-                </Button>
-              </div>
-            )}
-            
-            {loadingPrompts ? (
-              <div className="flex items-center justify-center py-8">
-                <RefreshCw className="h-6 w-6 animate-spin" />
-              </div>
-            ) : prompts.length > 0 ? (
-              <div className="space-y-3">
-                {prompts.map((prompt, index) => (
-                  <div key={index} className="p-3 border rounded-lg">
-                    <div className="flex items-center justify-between">
-                      <h4 className="font-medium">{prompt.name}</h4>
-                      <Button size="sm" variant="outline">
-                        Use Prompt
-                      </Button>
-                    </div>
-                    {prompt.description && (
-                      <p className="text-sm text-muted-foreground mt-1">
-                        {prompt.description}
-                      </p>
-                    )}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-8 text-muted-foreground">
-                <p>No prompts available or failed to load</p>
-              </div>
-            )}
-          </TabsContent>
-          
-          <TabsContent value="config" className="mt-4">
-            <div className="space-y-4">
-              <div>
-                <Label>Server Configuration</Label>
-                <pre className="mt-2 p-3 bg-gray-50 rounded-md text-sm overflow-auto">
-                  {JSON.stringify(server.config || {}, null, 2)}
-                </pre>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <Label>Registered At</Label>
-                  <p className="text-sm text-muted-foreground">
-                    {server.registered_at 
-                      ? new Date(server.registered_at * 1000).toLocaleString()
-                      : 'Unknown'
-                    }
-                  </p>
                 </div>
-                <div>
-                  <Label>Last Seen</Label>
-                  <p className="text-sm text-muted-foreground">
-                    {server.last_seen 
-                      ? new Date(server.last_seen * 1000).toLocaleString()
-                      : 'Never'
-                    }
-                  </p>
-                </div>
-              </div>
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="logs" className="mt-4">
-            <div className="text-center py-8 text-muted-foreground">
-              <p>Activity logs will be available in a future update</p>
-            </div>
-          </TabsContent>
-        </Tabs>
-      </CardContent>
-    </Card>
-  )
-
-  function getStatusIcon(status: string) {
-    switch (status) {
-      case 'connected':
-        return <CheckCircle className="h-4 w-4 text-green-500" />
-      case 'disconnected':
-        return <XCircle className="h-4 w-4 text-gray-500" />
-      case 'error':
-        return <AlertCircle className="h-4 w-4 text-red-500" />
-      default:
-        return <AlertCircle className="h-4 w-4 text-yellow-500" />
-    }
-  }
-
-  function getStatusColor(status: string) {
-    switch (status) {
-      case 'connected':
-        return 'text-green-600 bg-green-50'
-      case 'disconnected':
-        return 'text-gray-600 bg-gray-50'
-      case 'error':
-        return 'text-red-600 bg-red-50'
-      default:
-        return 'text-yellow-600 bg-yellow-50'
-    }
-  }
-}
+              ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};

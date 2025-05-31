@@ -20,5 +20,11 @@
     {env, [
         {auto_start_groups, [chat, completions, embeddings]},
         {output_dir, "/tmp/openai-erlang"}
+    ]},
+    {licenses, ["MIT"]},
+    {maintainers, ["Arthur Colle"]},
+    {links, [
+        {"GitHub", "https://github.com/arthurcolle/agents.erl"},
+        {"Documentation", "https://agents.erl.sh"}
     ]}
 ]}.

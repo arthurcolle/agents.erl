@@ -1,0 +1,37 @@
+## Performance analysis VM arguments with perf support
+
+## Enable JIT with perf support for profiling
++JPperf true
+
+## Frame pointers for better perf call graphs  
++JPfp true
+
+## Single scheduler for easier perf analysis
++S 1:1
+
+## Memory management optimizations
++MBas aobf
++MHas aobf
+
+## Process optimizations
++P 262144
++Q 262144
+
+## IO optimizations
++A 32
+
+## Kernel polling
++K true
+
+## Enable shell for interactive analysis
++Bd
+
+## Verbose error reporting
++W w
+
+## Crash dump settings
+-env ERL_CRASH_DUMP crash_dumps/erl_crash_perf.dump
+-env ERL_CRASH_DUMP_SECONDS 60
+
+## Additional debugging options
+-env ERL_FLAGS "+JPperf true"
