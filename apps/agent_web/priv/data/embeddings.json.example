@@ -1,0 +1,65 @@
+{
+  "indices": {},
+  "models": {
+    "ollama-embed": {
+      "name": "ollama-embed",
+      "metadata": {
+        "description": "Ollama local embedding model"
+      },
+      "api_key": "undefined",
+      "max_tokens": 2048,
+      "provider": "ollama",
+      "dimensions": 4096,
+      "cost_per_token": 0.0,
+      "endpoint": "http://localhost:11434/api/embeddings"
+    },
+    "sentence-transformers": {
+      "name": "sentence-transformers",
+      "metadata": {
+        "description": "Local sentence-transformers model"
+      },
+      "api_key": "undefined",
+      "max_tokens": 512,
+      "provider": "local",
+      "dimensions": 768,
+      "cost_per_token": 0.0,
+      "endpoint": "http://localhost:8001/embeddings"
+    },
+    "text-embedding-3-large": {
+      "name": "text-embedding-3-large",
+      "metadata": {
+        "description": "OpenAI text-embedding-3-large model"
+      },
+      "api_key": "YOUR_OPENAI_API_KEY",
+      "max_tokens": 8192,
+      "provider": "openai",
+      "dimensions": 3072,
+      "cost_per_token": 1.3e-4,
+      "endpoint": "https://api.openai.com/v1/embeddings"
+    },
+    "text-embedding-3-small": {
+      "name": "text-embedding-3-small",
+      "metadata": {
+        "description": "OpenAI text-embedding-3-small model"
+      },
+      "api_key": "YOUR_OPENAI_API_KEY",
+      "max_tokens": 8192,
+      "provider": "openai",
+      "dimensions": 1536,
+      "cost_per_token": 2.0e-5,
+      "endpoint": "https://api.openai.com/v1/embeddings"
+    },
+    "text-embedding-ada-002": {
+      "name": "text-embedding-ada-002",
+      "metadata": {
+        "description": "OpenAI text-embedding-ada-002 model"
+      },
+      "api_key": "YOUR_OPENAI_API_KEY",
+      "max_tokens": 8192,
+      "provider": "openai",
+      "dimensions": 1536,
+      "cost_per_token": 0.0001,
+      "endpoint": "https://api.openai.com/v1/embeddings"
+    }
+  }
+}

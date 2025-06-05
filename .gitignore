@@ -81,6 +81,8 @@ config/api_keys.config
 
 # Sensitive data files
 apps/agent_web/priv/data/embeddings.json
+# Keep the example file
+!apps/agent_web/priv/data/embeddings.json.example
 
 # Environment files
 .env
