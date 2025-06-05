@@ -1,0 +1,17 @@
+Pipedream OAuth Credentials
+==========================
+
+Client ID: uh6DUpPCqXU8XfAH_HAIGWD_Vb4dFsJUmC4FcAWeoXc
+Client Secret: aDVpkUne8luOdrkCF7zk8zeAY1xpw2q8Tan5uSGH99E
+Workspace ID: o_wMIvP10
+
+OAuth Configuration:
+- Redirect URI: http://localhost:8080/api/pipedream/oauth/callback
+- Scope: read:apps write:apps read:workflows write:workflows
+
+Notes:
+- These credentials are configured in config/api_keys.config
+- Used for Pipedream workflow automation and app integration
+- Keep these credentials secure and do not commit to version control
+
+Created: $(date)

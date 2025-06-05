@@ -1,0 +1,356 @@
+-module(colored_logger).
+-export([log/3, log/4, error/2, warning/2, success/2, info/2, debug/2, 
+         health_check/2, api_call/3, critical/2, startup/2, 
+         format_colored/3, get_color_code/1, colorize/2, rgb_color/2, true_color/2,
+         rainbow/1, gradient/3, blink/1, bold/1, italic/1, underline/1,
+         neural/2, quantum/2, matrix/2, cosmic/2, fire/2, ocean/2, forest/2,
+         celebration/2, alarm/2, system/2, data/2, progress/2, complete/2,
+         performance/2, network/2, security/2, development/2, production/2]).
+
+%% Enhanced color support using erlang-color library
+%% Color mapping for different log levels and types
+get_color_code(error) -> error;
+get_color_code(warning) -> warning;
+get_color_code(success) -> success;
+get_color_code(startup) -> startup;
+get_color_code(health_check) -> health_check;
+get_color_code(api_call) -> api_call;
+get_color_code(critical) -> critical;
+get_color_code(info) -> info;
+get_color_code(debug) -> debug;
+get_color_code(neural) -> neural;
+get_color_code(quantum) -> quantum;
+get_color_code(matrix) -> matrix;
+get_color_code(cosmic) -> cosmic;
+get_color_code(fire) -> fire;
+get_color_code(ocean) -> ocean;
+get_color_code(forest) -> forest;
+get_color_code(celebration) -> celebration;
+get_color_code(alarm) -> alarm;
+get_color_code(system) -> system;
+get_color_code(data) -> data;
+get_color_code(progress) -> progress;
+get_color_code(complete) -> complete;
+get_color_code(performance) -> performance;
+get_color_code(network) -> network;
+get_color_code(security) -> security;
+get_color_code(development) -> development;
+get_color_code(production) -> production;
+get_color_code(_) -> info.
+
+%% ANSI color codes
+-define(RESET, "\033[0m").
+-define(BOLD, "\033[1m").
+-define(DIM, "\033[2m").
+-define(BLINK, "\033[5m").
+
+%% Text colors
+-define(BLACK, "\033[30m").
+-define(RED, "\033[31m").
+-define(GREEN, "\033[32m").
+-define(YELLOW, "\033[33m").
+-define(BLUE, "\033[34m").
+-define(MAGENTA, "\033[35m").
+-define(CYAN, "\033[36m").
+-define(WHITE, "\033[37m").
+-define(BRIGHT_BLACK, "\033[90m").
+-define(BRIGHT_RED, "\033[91m").
+-define(BRIGHT_GREEN, "\033[92m").
+-define(BRIGHT_YELLOW, "\033[93m").
+-define(BRIGHT_BLUE, "\033[94m").
+-define(BRIGHT_MAGENTA, "\033[95m").
+-define(BRIGHT_CYAN, "\033[96m").
+-define(BRIGHT_WHITE, "\033[97m").
+
+%% Background colors
+-define(BG_BLACK, "\033[40m").
+-define(BG_RED, "\033[41m").
+-define(BG_GREEN, "\033[42m").
+-define(BG_YELLOW, "\033[43m").
+-define(BG_BLUE, "\033[44m").
+-define(BG_MAGENTA, "\033[45m").
+-define(BG_CYAN, "\033[46m").
+-define(BG_WHITE, "\033[47m").
+
+%% Helper to apply color based on level
+apply_color(error, Text) -> ?RED ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(warning, Text) -> ?YELLOW ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(success, Text) -> ?GREEN ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(startup, Text) -> ?BG_GREEN ++ ?WHITE ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(health_check, Text) -> ?BLUE ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(api_call, Text) -> ?CYAN ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(critical, Text) -> ?BG_RED ++ ?WHITE ++ ?BOLD ++ ?BLINK ++ Text ++ ?RESET;
+apply_color(info, Text) -> ?WHITE ++ Text ++ ?RESET;
+apply_color(debug, Text) -> ?BRIGHT_BLACK ++ Text ++ ?RESET;
+apply_color(neural, Text) -> ?MAGENTA ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(quantum, Text) -> ?BG_BLUE ++ ?WHITE ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(matrix, Text) -> ?BG_BLACK ++ ?GREEN ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(cosmic, Text) -> ?BG_MAGENTA ++ ?WHITE ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(fire, Text) -> ?RED ++ ?BG_YELLOW ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(ocean, Text) -> ?BLUE ++ ?BG_CYAN ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(forest, Text) -> ?GREEN ++ ?BG_BLACK ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(celebration, Text) -> ?YELLOW ++ ?BG_MAGENTA ++ ?BOLD ++ ?BLINK ++ Text ++ ?RESET;
+apply_color(alarm, Text) -> ?RED ++ ?BG_WHITE ++ ?BOLD ++ ?BLINK ++ Text ++ ?RESET;
+apply_color(system, Text) -> ?CYAN ++ ?BG_BLACK ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(data, Text) -> ?BLUE ++ ?BG_WHITE ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(progress, Text) -> ?YELLOW ++ ?BG_GREEN ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(complete, Text) -> ?WHITE ++ ?BG_GREEN ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(performance, Text) -> ?MAGENTA ++ ?BG_BLACK ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(network, Text) -> ?CYAN ++ ?BG_BLUE ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(security, Text) -> ?RED ++ ?BG_BLACK ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(development, Text) -> ?YELLOW ++ ?BG_BLACK ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(production, Text) -> ?GREEN ++ ?BG_BLACK ++ ?BOLD ++ Text ++ ?RESET;
+apply_color(_, Text) -> Text.
+
+%% New functions for advanced coloring
+colorize(Color, Text) when is_atom(Color) ->
+    case Color of
+        red -> ?RED ++ Text ++ ?RESET;
+        green -> ?GREEN ++ Text ++ ?RESET;
+        blue -> ?BLUE ++ Text ++ ?RESET;
+        yellow -> ?YELLOW ++ Text ++ ?RESET;
+        cyan -> ?CYAN ++ Text ++ ?RESET;
+        magenta -> ?MAGENTA ++ Text ++ ?RESET;
+        white -> ?WHITE ++ Text ++ ?RESET;
+        black -> ?BLACK ++ Text ++ ?RESET;
+        _ -> Text
+    end.
+
+%% RGB color support (xterm 256 colors)
+rgb_color(_RGB, Text) ->
+    %% Simplified - just return colored text
+    ?BRIGHT_CYAN ++ Text ++ ?RESET.
+
+%% True 24-bit color support
+true_color(_Hex, Text) ->
+    %% Simplified - just return colored text
+    ?BRIGHT_MAGENTA ++ Text ++ ?RESET.
+
+%% Advanced color effects
+rainbow(Text) ->
+    Words = string:split(Text, " ", all),
+    Colors = [red, yellow, green, cyan, blue, magenta],
+    ColoredWords = lists:zipwith(fun(Word, Color) ->
+        colorize(Color, Word)
+    end, Words, lists:duplicate(length(Words), Colors)),
+    string:join(ColoredWords, " ").
+
+gradient(Text, StartColor, EndColor) ->
+    %% Simple gradient effect by alternating colors
+    Chars = Text,
+    Colored = lists:foldl(fun(Char, {Acc, Toggle}) ->
+        Color = case Toggle of
+            true -> StartColor;
+            false -> EndColor
+        end,
+        {Acc ++ colorize(Color, [Char]), not Toggle}
+    end, {"", true}, Chars),
+    element(1, Colored).
+
+blink(Text) ->
+    ?BLINK ++ Text ++ ?RESET.
+
+bold(Text) ->
+    ?BOLD ++ Text ++ ?RESET.
+
+italic(Text) ->
+    "\033[3m" ++ Text ++ ?RESET.
+
+underline(Text) ->
+    "\033[4m" ++ Text ++ ?RESET.
+
+%% Themed color functions
+neural(Level, Text) ->
+    case Level of
+        low -> ?MAGENTA ++ ?DIM ++ Text ++ ?RESET;
+        medium -> ?MAGENTA ++ ?BOLD ++ Text ++ ?RESET;
+        high -> ?BG_MAGENTA ++ ?WHITE ++ ?BOLD ++ Text ++ ?RESET
+    end.
+
+quantum(State, Text) ->
+    case State of
+        entangled -> ?BLUE ++ ?BG_CYAN ++ ?BOLD ++ ?BLINK ++ Text ++ ?RESET;
+        superposition -> ?CYAN ++ ?BG_BLUE ++ ?BOLD ++ Text ++ ?RESET;
+        collapsed -> ?WHITE ++ ?BG_BLUE ++ ?BOLD ++ Text ++ ?RESET
+    end.
+
+matrix(Intensity, Text) ->
+    case Intensity of
+        low -> color:green(color:dim(Text));
+        medium -> color:green(color:bold(Text));
+        high -> color:green(color:on_black(color:bold(color:blink(Text))))
+    end.
+
+cosmic(Phase, Text) ->
+    case Phase of
+        nebula -> color:magenta(color:on_black(color:dim(Text)));
+        star -> color:yellow(color:on_black(color:bold(Text)));
+        supernova -> color:white(color:on_red(color:bold(color:blink(Text))))
+    end.
+
+fire(Intensity, Text) ->
+    case Intensity of
+        ember -> color:red(color:dim(Text));
+        flame -> color:red(color:on_yellow(color:bold(Text)));
+        inferno -> color:yellow(color:on_red(color:bold(color:blink(Text))))
+    end.
+
+ocean(Depth, Text) ->
+    case Depth of
+        surface -> color:cyan(color:dim(Text));
+        deep -> color:blue(color:on_cyan(color:bold(Text)));
+        abyss -> color:black(color:on_blue(color:bold(Text)))
+    end.
+
+forest(Season, Text) ->
+    case Season of
+        spring -> color:green(color:dim(Text));
+        summer -> color:green(color:bold(Text));
+        autumn -> color:yellow(color:on_green(color:bold(Text)))
+    end.
+
+celebration(Style, Text) ->
+    case Style of
+        party -> color:yellow(color:on_magenta(color:bold(Text)));
+        fireworks -> color:red(color:on_yellow(color:bold(color:blink(Text))));
+        carnival -> rainbow(Text)
+    end.
+
+alarm(Urgency, Text) ->
+    case Urgency of
+        low -> color:yellow(color:bold(Text));
+        medium -> color:red(color:bold(Text));
+        high -> color:red(color:on_white(color:bold(color:blink(Text))))
+    end.
+
+system(Component, Text) ->
+    case Component of
+        cpu -> color:red(color:on_black(color:bold(Text)));
+        memory -> color:blue(color:on_black(color:bold(Text)));
+        disk -> color:yellow(color:on_black(color:bold(Text)));
+        network -> color:cyan(color:on_black(color:bold(Text)))
+    end.
+
+data(Type, Text) ->
+    case Type of
+        input -> color:green(color:on_black(color:bold(Text)));
+        output -> color:blue(color:on_black(color:bold(Text)));
+        processed -> color:magenta(color:on_black(color:bold(Text)));
+        cached -> color:cyan(color:on_black(color:bold(Text)))
+    end.
+
+progress(Stage, Text) ->
+    case Stage of
+        starting -> color:yellow(color:dim(Text));
+        working -> color:yellow(color:bold(Text));
+        completing -> color:green(color:bold(Text))
+    end.
+
+complete(Status, Text) ->
+    case Status of
+        success -> color:white(color:on_green(color:bold(Text)));
+        partial -> color:black(color:on_yellow(color:bold(Text)));
+        failed -> color:white(color:on_red(color:bold(Text)))
+    end.
+
+performance(Metric, Text) ->
+    case Metric of
+        fast -> color:green(color:on_black(color:bold(Text)));
+        normal -> color:yellow(color:on_black(color:bold(Text)));
+        slow -> color:red(color:on_black(color:bold(Text)))
+    end.
+
+network(Status, Text) ->
+    case Status of
+        connected -> color:green(color:on_black(color:bold(Text)));
+        connecting -> color:yellow(color:on_black(color:bold(Text)));
+        disconnected -> color:red(color:on_black(color:bold(Text)))
+    end.
+
+security(Level, Text) ->
+    case Level of
+        safe -> color:green(color:on_black(color:bold(Text)));
+        warning -> color:yellow(color:on_red(color:bold(Text)));
+        threat -> color:white(color:on_red(color:bold(color:blink(Text))))
+    end.
+
+development(Phase, Text) ->
+    case Phase of
+        coding -> color:cyan(color:on_black(color:bold(Text)));
+        testing -> color:yellow(color:on_black(color:bold(Text)));
+        debugging -> color:magenta(color:on_black(color:bold(Text)))
+    end.
+
+production(Status, Text) ->
+    case Status of
+        stable -> color:green(color:on_black(color:bold(Text)));
+        deploying -> color:yellow(color:on_blue(color:bold(Text)));
+        critical -> color:white(color:on_red(color:bold(color:blink(Text))))
+    end.
+
+%% Format a colored log message
+format_colored(Level, Message, Args) ->
+    ColorLevel = get_color_code(Level),
+    Timestamp = format_timestamp(),
+    LevelStr = string:uppercase(atom_to_list(Level)),
+    FormattedMsg = case Args of
+        [] -> Message;
+        _ -> io_lib:format(Message, Args)
+    end,
+    TimestampColored = color:black(Timestamp),
+    LevelColored = apply_color(ColorLevel, "[" ++ LevelStr ++ "]"),
+    MessageColored = apply_color(ColorLevel, FormattedMsg),
+    io_lib:format("~s ~s ~s~n", [TimestampColored, LevelColored, MessageColored]).
+
+%% Generic log function
+log(Level, Message, Args) ->
+    FormattedMsg = format_colored(Level, Message, Args),
+    io:format("~s", [FormattedMsg]).
+
+log(Level, Tag, Message, Args) ->
+    ColorLevel = get_color_code(Level),
+    Timestamp = format_timestamp(),
+    LevelStr = string:uppercase(atom_to_list(Level)),
+    FormattedMsg = case Args of
+        [] -> Message;
+        _ -> io_lib:format(Message, Args)
+    end,
+    TimestampColored = color:black(Timestamp),
+    LevelColored = apply_color(ColorLevel, "[" ++ LevelStr ++ "]"),
+    TagColored = color:magenta("[" ++ Tag ++ "]"),
+    MessageColored = apply_color(ColorLevel, FormattedMsg),
+    io:format("~s ~s ~s ~s~n", [TimestampColored, LevelColored, TagColored, MessageColored]).
+
+%% Specific log level functions
+error(Message, Args) ->
+    log(error, Message, Args).
+
+warning(Message, Args) ->
+    log(warning, Message, Args).
+
+success(Message, Args) ->
+    log(success, Message, Args).
+
+info(Message, Args) ->
+    log(info, Message, Args).
+
+debug(Message, Args) ->
+    log(debug, Message, Args).
+
+health_check(Message, Args) ->
+    log(health_check, Message, Args).
+
+api_call(Method, Path, Duration) ->
+    log(api_call, "~s ~s completed in ~pms", [Method, Path, Duration]).
+
+critical(Message, Args) ->
+    log(critical, Message, Args).
+
+startup(Message, Args) ->
+    log(startup, Message, Args).
+
+%% Helper function to format timestamp
+format_timestamp() ->
+    {{Year, Month, Day}, {Hour, Min, Sec}} = calendar:local_time(),
+    io_lib:format("~4..0w-~2..0w-~2..0w ~2..0w:~2..0w:~2..0w", 
+                 [Year, Month, Day, Hour, Min, Sec]).

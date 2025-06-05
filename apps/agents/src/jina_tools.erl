@@ -1,6 +1,6 @@
 -module(jina_tools).
 -export([register_all_tools/1, 
-         jina_search/1, jina_read_webpage/1, jina_fact_check/1,
+         jina_search/1, jina_search_and_read/1, jina_read_webpage/1, jina_fact_check/1,
          jina_embed_text/1, jina_embed_image/1, jina_rerank/1,
          jina_classify/1, jina_segment/1, jina_deep_search/1]).
 
@@ -26,6 +26,42 @@ register_all_tools(ServerPid) ->
                         <<"type">> => <<"integer">>,
                         <<"description">> => <<"Maximum number of results to return (default: 5)">>,
                         <<"default">> => 5
+                    },
+                    <<"site">> => #{
+                        <<"type">> => <<"string">>,
+                        <<"description">> => <<"Optional domain to restrict search to">>
+                    },
+                    <<"country">> => #{
+                        <<"type">> => <<"string">>,
+                        <<"description">> => <<"Two-letter country code for search region">>
+                    },
+                    <<"language">> => #{
+                        <<"type">> => <<"string">>,
+                        <<"description">> => <<"Two-letter language code for search language">>
+                    },
+                    <<"fetch_content">> => #{
+                        <<"type">> => <<"boolean">>,
+                        <<"description">> => <<"Whether to fetch and extract full content from search results (default: false)">>,
+                        <<"default">> => false
+                    }
+                },
+                <<"required">> => [<<"query">>]
+            }
+        }},
+        
+        {<<"jina_search_and_read">>, #{
+            <<"description">> => <<"Search the web and automatically extract full content from top results - ideal for real-time data">>,
+            <<"inputSchema">> => #{
+                <<"type">> => <<"object">>,
+                <<"properties">> => #{
+                    <<"query">> => #{
+                        <<"type">> => <<"string">>,
+                        <<"description">> => <<"The search query">>
+                    },
+                    <<"num_results">> => #{
+                        <<"type">> => <<"integer">>,
+                        <<"description">> => <<"Maximum number of results to fetch and read (default: 3)">>,
+                        <<"default">> => 3
                     },
                     <<"site">> => #{
                         <<"type">> => <<"string">>,
@@ -272,6 +308,7 @@ jina_search(Args) ->
     Site = maps:get(<<"site">>, Args, undefined),
     Country = maps:get(<<"country">>, Args, undefined),
     Language = maps:get(<<"language">>, Args, undefined),
+    FetchContent = maps:get(<<"fetch_content">>, Args, false),
     
     Opts = #{
         num => NumResults,
@@ -282,13 +319,26 @@ jina_search(Args) ->
     
     case jina_client:search(Query, Opts) of
         {ok, #{results := Results}} ->
-            FormattedResults = format_search_results(Results),
-            {ok, #{
-                <<"content">> => [#{
-                    <<"type">> => <<"text">>,
-                    <<"text">> => FormattedResults
-                }]
-            }};
+            case FetchContent of
+                true ->
+                    % Fetch content from search results
+                    EnhancedResults = fetch_content_from_results(Results),
+                    FormattedResults = format_search_results_with_content(EnhancedResults),
+                    {ok, #{
+                        <<"content">> => [#{
+                            <<"type">> => <<"text">>,
+                            <<"text">> => FormattedResults
+                        }]
+                    }};
+                false ->
+                    FormattedResults = format_search_results(Results),
+                    {ok, #{
+                        <<"content">> => [#{
+                            <<"type">> => <<"text">>,
+                            <<"text">> => FormattedResults
+                        }]
+                    }}
+            end;
         {ok, #{content := Content}} ->
             {ok, #{
                 <<"content">> => [#{
@@ -304,6 +354,44 @@ jina_search(Args) ->
         {error, Reason} ->
             {error, #{
                 <<"code">> => <<"JINA_SEARCH_ERROR">>,
+                <<"message">> => format_error(Reason)
+            }}
+    end.
+
+jina_search_and_read(Args) ->
+    Query = maps:get(<<"query">>, Args),
+    NumResults = maps:get(<<"num_results">>, Args, 3),
+    Site = maps:get(<<"site">>, Args, undefined),
+    Country = maps:get(<<"country">>, Args, undefined),
+    Language = maps:get(<<"language">>, Args, undefined),
+    
+    Opts = #{
+        num => NumResults,
+        site => Site,
+        gl => Country,
+        hl => Language
+    },
+    
+    case jina_client:search(Query, Opts) of
+        {ok, #{results := Results}} ->
+            % Fetch full content from top results
+            logger:info("Fetching content from ~p search results", [length(Results)]),
+            EnhancedResults = fetch_content_from_results(Results),
+            FormattedResults = format_search_and_read_results(Query, EnhancedResults),
+            {ok, #{
+                <<"content">> => [#{
+                    <<"type">> => <<"text">>,
+                    <<"text">> => FormattedResults
+                }]
+            }};
+        {error, no_api_key} ->
+            {error, #{
+                <<"code">> => <<"JINA_API_KEY_MISSING">>,
+                <<"message">> => <<"JINA_API_KEY environment variable not set. Get your free key at: https://jina.ai/?sui=apikey">>
+            }};
+        {error, Reason} ->
+            {error, #{
+                <<"code">> => <<"JINA_SEARCH_AND_READ_ERROR">>,
                 <<"message">> => format_error(Reason)
             }}
     end.
@@ -366,7 +454,7 @@ jina_fact_check(Args) ->
 
 jina_embed_text(Args) ->
     Text = maps:get(<<"text">>, Args),
-    Model = maps:get(<<"model">>, Args, <<"jina-embeddings-v3">>),
+    Model = maps:get(<<"model">>, Args),
     
     case jina_client:embed_text(Text, Model) of
         {ok, #{embeddings := [Embedding | _]}} ->
@@ -404,7 +492,7 @@ jina_embed_text(Args) ->
 
 jina_embed_image(Args) ->
     ImageUrl = maps:get(<<"image_url">>, Args),
-    Model = maps:get(<<"model">>, Args, <<"jina-clip-v2">>),
+    Model = maps:get(<<"model">>, Args),
     
     case jina_client:embed_image(ImageUrl, Model) of
         {ok, #{embeddings := [Embedding | _]}} ->
@@ -570,8 +658,8 @@ jina_segment(Args) ->
 
 jina_deep_search(Args) ->
     Query = maps:get(<<"query">>, Args),
-    ReasoningEffort = maps:get(<<"reasoning_effort">>, Args, <<"medium">>),
-    MaxReturnedUrls = maps:get(<<"max_returned_urls">>, Args, 5),
+    ReasoningEffort = maps:get(<<"reasoning_effort">>, Args),
+    MaxReturnedUrls = maps:get(<<"max_returned_urls">>, Args),
     BoostHostnames = maps:get(<<"boost_hostnames">>, Args, undefined),
     BadHostnames = maps:get(<<"bad_hostnames">>, Args, undefined),
     
@@ -756,3 +844,79 @@ format_error(#{reason := Reason}) ->
     io_lib:format("~p", [Reason]);
 format_error(Other) ->
     io_lib:format("~p", [Other]).
+
+%%====================================================================
+%% Content Fetching Functions
+%%====================================================================
+
+fetch_content_from_results(Results) ->
+    fetch_content_from_results(Results, []).
+
+fetch_content_from_results([], Acc) ->
+    lists:reverse(Acc);
+fetch_content_from_results([Result | Rest], Acc) ->
+    #{url := Url} = Result,
+    logger:info("Fetching content from URL: ~s", [Url]),
+    
+    % Use reader API to fetch full content
+    ReaderOpts = #{
+        timeout => 15,  % 15 second timeout
+        no_cache => false,
+        with_links => true,
+        with_images => false
+    },
+    
+    EnhancedResult = case jina_client:reader(Url, ReaderOpts) of
+        {ok, #{content := Content, title := ReaderTitle}} ->
+            Result#{
+                full_content => Content,
+                reader_title => ReaderTitle,
+                content_fetched => true
+            };
+        {ok, #{content := Content}} ->
+            Result#{
+                full_content => Content,
+                content_fetched => true
+            };
+        {error, Reason} ->
+            logger:warning("Failed to fetch content from ~s: ~p", [Url, Reason]),
+            Result#{
+                content_fetch_error => format_error(Reason),
+                content_fetched => false
+            }
+    end,
+    
+    fetch_content_from_results(Rest, [EnhancedResult | Acc]).
+
+format_search_results_with_content(Results) ->
+    FormattedList = [format_single_result_with_content(I, Result) || {I, Result} <- lists:zip(lists:seq(1, length(Results)), Results)],
+    iolist_to_binary(string:join(FormattedList, "\n\n===========================\n\n")).
+
+format_single_result_with_content(Index, #{title := Title, url := Url, content_fetched := true, full_content := FullContent} = Result) ->
+    ReaderTitle = maps:get(reader_title, Result, Title),
+    % Limit content to reasonable size for display
+    TruncatedContent = case byte_size(FullContent) > 2000 of
+        true -> <<(binary:part(FullContent, 0, 2000))/binary, "\n\n[Content truncated - full content available]">>;
+        false -> FullContent
+    end,
+    io_lib:format("~p. ~s~nURL: ~s~nFull Content:~n~s", [Index, ReaderTitle, Url, TruncatedContent]);
+format_single_result_with_content(Index, #{title := Title, url := Url, content := Content, content_fetched := false} = Result) ->
+    ErrorInfo = case maps:get(content_fetch_error, Result, undefined) of
+        undefined -> "Failed to fetch content";
+        Error -> io_lib:format("Error: ~s", [Error])
+    end,
+    TruncatedContent = case byte_size(Content) > 300 of
+        true -> <<(binary:part(Content, 0, 300))/binary, "...">>;
+        false -> Content
+    end,
+    io_lib:format("~p. ~s~nURL: ~s~nOriginal snippet: ~s~n[~s]", [Index, Title, Url, TruncatedContent, ErrorInfo]);
+format_single_result_with_content(Index, Result) ->
+    io_lib:format("~p. ~p", [Index, Result]).
+
+format_search_and_read_results(Query, Results) ->
+    SuccessCount = length([R || R <- Results, maps:get(content_fetched, R, false)]),
+    Header = io_lib:format("Search and Read Results for: \"~s\"~n~nSuccessfully fetched content from ~p out of ~p results:~n~n", 
+                          [Query, SuccessCount, length(Results)]),
+    
+    FormattedResults = format_search_results_with_content(Results),
+    iolist_to_binary([Header, FormattedResults]).

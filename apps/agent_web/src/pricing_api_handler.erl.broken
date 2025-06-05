@@ -1,0 +1,302 @@
+%%%-------------------------------------------------------------------
+%%% @doc Pricing API Handler
+%%% HTTP API endpoints for real-time pricing and cost tracking
+%%% @end
+%%%-------------------------------------------------------------------
+-module(pricing_api_handler).
+
+-export([init/2]).
+
+init(Req0, State) ->
+    Method = cowboy_req:method(Req0),
+    Path = cowboy_req:path_info(Req0),
+    handle_request(Method, Path, Req0, State).
+
+handle_request(<<"GET">>, [<<"models">>], Req, State) ->
+    %% GET /api/pricing/models - Get all model pricing
+    case cost_tracker:get_all_model_pricing() of
+        {ok, Pricing} ->
+            Response = jsx:encode(#{
+                success => true,
+                data => Pricing,
+                timestamp => erlang:system_time(second),
+                count => maps:size(Pricing)
+            }),
+            Req1 = cowboy_req:reply(200, 
+                #{<<"content-type">> => <<"application/json">>}, 
+                Response, Req),
+            {ok, Req1, State};
+        {error, Reason} ->
+            ErrorResponse = jsx:encode(#{
+                success => false,
+                error => atom_to_binary(Reason, utf8),
+                timestamp => erlang:system_time(second)
+            }),
+            Req1 = cowboy_req:reply(500,
+                #{<<"content-type">> => <<"application/json">>},
+                ErrorResponse, Req),
+            {ok, Req1, State}
+    end;
+
+handle_request(<<"GET">>, [<<"models">>, Model], Req, State) ->
+    %% GET /api/pricing/models/{model} - Get specific model pricing
+    case cost_tracker:get_realtime_pricing(Model) of
+        {ok, Pricing} ->
+            Response = jsx:encode(#{
+                success => true,
+                data => #{
+                    model => Model,
+                    pricing => Pricing
+                },
+                timestamp => erlang:system_time(second)
+            }),
+            Req1 = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response, Req),
+            {ok, Req1, State};
+        {error, Reason} ->
+            ErrorResponse = jsx:encode(#{
+                success => false,
+                error => atom_to_binary(Reason, utf8),
+                model => Model,
+                timestamp => erlang:system_time(second)
+            }),
+            StatusCode = case Reason of
+                model_not_found -> 404;
+                _ -> 500
+            end,
+            Req1 = cowboy_req:reply(StatusCode,
+                #{<<"content-type">> => <<"application/json">>},
+                ErrorResponse, Req),
+            {ok, Req1, State}
+    end;
+
+handle_request(<<"POST">>, [<<"calculate">>], Req, State) ->
+    %% POST /api/pricing/calculate - Calculate cost for usage
+    {ok, Body, Req1} = cowboy_req:read_body(Req),
+    try
+        Data = jsx:decode(Body, [return_maps]),
+        Model = maps:get(<<"model">>, Data),
+        Usage = maps:get(<<"usage">>, Data),
+        Options = maps:get(<<"options">>, Data, #{}),
+        
+        case realtime_pricing:calculate_cost(Model, Usage, Options) of
+            {ok, CostData} ->
+                Response = jsx:encode(#{
+                    success => true,
+                    data => CostData,
+                    timestamp => erlang:system_time(second)
+                }),
+                Req2 = cowboy_req:reply(200,
+                    #{<<"content-type">> => <<"application/json">>},
+                    Response, Req1),
+                {ok, Req2, State};
+            {error, Reason} ->
+                ErrorResponse = jsx:encode(#{
+                    success => false,
+                    error => format_error(Reason),
+                    timestamp => erlang:system_time(second)
+                }),
+                Req2 = cowboy_req:reply(400,
+                    #{<<"content-type">> => <<"application/json">>},
+                    ErrorResponse, Req1),
+                {ok, Req2, State}
+        end
+    catch
+        _:Error ->
+            ErrorResponse = jsx:encode(#{
+                success => false,
+                error => <<"Invalid request body">>,
+                details => iolist_to_binary(io_lib:format("~p", [Error])),
+                timestamp => erlang:system_time(second)
+            }),
+            Req2 = cowboy_req:reply(400,
+                #{<<"content-type">> => <<"application/json">>},
+                ErrorResponse, Req1),
+            {ok, Req2, State}
+    end;
+
+handle_request(<<"GET">>, [<<"trends">>, Model], Req, State) ->
+    %% GET /api/pricing/trends/{model} - Get price trends for model
+    case realtime_pricing:get_price_trends(Model) of
+        {ok, Trends} ->
+            Response = jsx:encode(#{
+                success => true,
+                data => #{
+                    model => Model,
+                    trends => Trends
+                },
+                timestamp => erlang:system_time(second)
+            }),
+            Req1 = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response, Req),
+            {ok, Req1, State};
+        {error, Reason} ->
+            ErrorResponse = jsx:encode(#{
+                success => false,
+                error => atom_to_binary(Reason, utf8),
+                model => Model,
+                timestamp => erlang:system_time(second)
+            }),
+            Req1 = cowboy_req:reply(500,
+                #{<<"content-type">> => <<"application/json">>},
+                ErrorResponse, Req),
+            {ok, Req1, State}
+    end;
+
+handle_request(<<"GET">>, [<<"history">>, Model], Req, State) ->
+    %% GET /api/pricing/history/{model} - Get price history for model
+    case realtime_pricing:get_price_history(Model) of
+        {ok, History} ->
+            FormattedHistory = lists:map(fun(Entry) ->
+                #{
+                    timestamp => Entry#price_entry.timestamp,
+                    pricing_data => Entry#price_entry.pricing_data,
+                    source => Entry#price_entry.source
+                }
+            end, History),
+            Response = jsx:encode(#{
+                success => true,
+                data => #{
+                    model => Model,
+                    history => FormattedHistory,
+                    count => length(FormattedHistory)
+                },
+                timestamp => erlang:system_time(second)
+            }),
+            Req1 = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response, Req),
+            {ok, Req1, State};
+        {error, Reason} ->
+            ErrorResponse = jsx:encode(#{
+                success => false,
+                error => atom_to_binary(Reason, utf8),
+                model => Model,
+                timestamp => erlang:system_time(second)
+            }),
+            Req1 = cowboy_req:reply(500,
+                #{<<"content-type">> => <<"application/json">>},
+                ErrorResponse, Req),
+            {ok, Req1, State}
+    end;
+
+handle_request(<<"GET">>, [<<"summary">>], Req, State) ->
+    %% GET /api/pricing/summary - Get cost tracking summary
+    case cost_tracker:get_cost_summary() of
+        {ok, Summary} ->
+            Response = jsx:encode(#{
+                success => true,
+                data => Summary,
+                timestamp => erlang:system_time(second)
+            }),
+            Req1 = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response, Req),
+            {ok, Req1, State};
+        {error, Reason} ->
+            ErrorResponse = jsx:encode(#{
+                success => false,
+                error => atom_to_binary(Reason, utf8),
+                timestamp => erlang:system_time(second)
+            }),
+            Req1 = cowboy_req:reply(500,
+                #{<<"content-type">> => <<"application/json">>},
+                ErrorResponse, Req),
+            {ok, Req1, State}
+    end;
+
+handle_request(<<"GET">>, [<<"export">>], Req, State) ->
+    %% GET /api/pricing/export - Export all pricing data
+    case realtime_pricing:export_pricing_data() of
+        {ok, ExportData} ->
+            Response = jsx:encode(#{
+                success => true,
+                data => ExportData,
+                timestamp => erlang:system_time(second)
+            }),
+            Req1 = cowboy_req:reply(200,
+                #{<<"content-type">> => <<"application/json">>},
+                Response, Req),
+            {ok, Req1, State};
+        {error, Reason} ->
+            ErrorResponse = jsx:encode(#{
+                success => false,
+                error => atom_to_binary(Reason, utf8),
+                timestamp => erlang:system_time(second)
+            }),
+            Req1 = cowboy_req:reply(500,
+                #{<<"content-type">> => <<"application/json">>},
+                ErrorResponse, Req),
+            {ok, Req1, State}
+    end;
+
+handle_request(<<"POST">>, [<<"update">>], Req, State) ->
+    %% POST /api/pricing/update - Update pricing data (admin only)
+    {ok, Body, Req1} = cowboy_req:read_body(Req),
+    try
+        Data = jsx:decode(Body, [return_maps]),
+        PricingUpdates = maps:get(<<"pricing">>, Data),
+        
+        realtime_pricing:update_pricing(PricingUpdates),
+        
+        Response = jsx:encode(#{
+            success => true,
+            message => <<"Pricing data updated successfully">>,
+            updated_models => maps:keys(PricingUpdates),
+            timestamp => erlang:system_time(second)
+        }),
+        Req2 = cowboy_req:reply(200,
+            #{<<"content-type">> => <<"application/json">>},
+            Response, Req1),
+        {ok, Req2, State}
+    catch
+        _:Error ->
+            ErrorResponse = jsx:encode(#{
+                success => false,
+                error => <<"Invalid request body">>,
+                details => iolist_to_binary(io_lib:format("~p", [Error])),
+                timestamp => erlang:system_time(second)
+            }),
+            Req2 = cowboy_req:reply(400,
+                #{<<"content-type">> => <<"application/json">>},
+                ErrorResponse, Req1),
+            {ok, Req2, State}
+    end;
+
+handle_request(<<"OPTIONS">>, _, Req, State) ->
+    %% Handle CORS preflight requests
+    Req1 = cowboy_req:reply(200, #{
+        <<"access-control-allow-origin">> => <<"*">>,
+        <<"access-control-allow-methods">> => <<"GET, POST, OPTIONS">>,
+        <<"access-control-allow-headers">> => <<"content-type, authorization">>,
+        <<"access-control-max-age">> => <<"86400">>
+    }, <<>>, Req),
+    {ok, Req1, State};
+
+handle_request(Method, Path, Req, State) ->
+    %% Handle unknown routes
+    ErrorResponse = jsx:encode(#{
+        success => false,
+        error => <<"Route not found">>,
+        method => Method,
+        path => Path,
+        timestamp => erlang:system_time(second)
+    }),
+    Req1 = cowboy_req:reply(404,
+        #{<<"content-type">> => <<"application/json">>},
+        ErrorResponse, Req),
+    {ok, Req1, State}.
+
+%% Helper functions
+format_error({calculation_failed, Details}) ->
+    iolist_to_binary([<<"Calculation failed: ">>, io_lib:format("~p", [Details])]);
+format_error(model_not_found) ->
+    <<"Model not found in pricing database">>;
+format_error(realtime_pricing_not_available) ->
+    <<"Real-time pricing service is not available">>;
+format_error(Reason) when is_atom(Reason) ->
+    atom_to_binary(Reason, utf8);
+format_error(Reason) ->
+    iolist_to_binary(io_lib:format("~p", [Reason])).

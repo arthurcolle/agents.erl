@@ -1,0 +1,902 @@
+-module(agent_web_sup).
+-behaviour(supervisor).
+
+-export([start_link/0]).
+-export([init/1]).
+
+-define(SERVER, ?MODULE).
+
+start_link() ->
+    colored_logger:startup("Starting agent_web supervisor", []),
+    case supervisor:start_link({local, ?SERVER}, ?MODULE, []) of
+        {ok, Pid} ->
+            colored_logger:success("Supervisor started successfully with PID ~p", [Pid]),
+            {ok, Pid};
+        {error, Reason} ->
+            colored_logger:error("Failed to start supervisor: ~p", [Reason]),
+            {error, Reason}
+    end.
+
+init([]) ->
+    colored_logger:info("Initializing supervisor with children", []),
+    SupFlags = #{strategy => one_for_one,
+                 intensity => 5,
+                 period => 30},
+    
+    Port = application:get_env(agent_web, port, 8080),
+    HttpsPort = application:get_env(agent_web, https_port, 8443),
+    SslEnabled = application:get_env(agent_web, ssl_enabled, false),
+    colored_logger:info("Using port ~p for HTTP web server", [Port]),
+    case SslEnabled of
+        true -> colored_logger:info("Using port ~p for HTTPS web server", [HttpsPort]);
+        false -> colored_logger:info("HTTPS disabled", [])
+    end,
+    
+    Dispatch = cowboy_router:compile([
+        {'_', [
+            {"/", agent_web_handler, []},
+            {"/api/agents", agent_api_handler, []},
+            {"/api/agents/health", agent_api_handler, []},
+            {"/api/agents/:id", agent_api_handler, []},
+            {"/api/agents/:id/chat", agent_chat_handler, []},
+            {"/api/agents/:id/execute", agent_execute_handler, []},
+            %% Bulk operations endpoints
+            {"/api/bulk/broadcast", bulk_operations_handler, []},
+            {"/api/bulk/system-prompt", bulk_operations_handler, []},
+            {"/api/bulk/callback", bulk_operations_handler, []},
+            {"/api/bulk/agent-management", bulk_operations_handler, []},
+            {"/api/bulk/query", bulk_operations_handler, []},
+            {"/api/bulk/transform", bulk_operations_handler, []},
+            
+            %% Workflow orchestration endpoints
+            {"/api/workflow/create", workflow_api_handler, [create]},
+            {"/api/workflow/scatter", workflow_api_handler, [scatter]},
+            {"/api/workflow/gather", workflow_api_handler, [gather]},
+            {"/api/workflow/execute-script", workflow_api_handler, [execute_script]},
+            {"/api/workflow/compose", workflow_api_handler, [compose]},
+            {"/api/workflow/status", workflow_api_handler, [status]},
+            %% Fleet management endpoints
+            {"/api/fleet/agents", fleet_management_handler, []},
+            {"/api/fleet/agents/create", fleet_management_handler, []},
+            {"/api/fleet/autonomous/enable", fleet_management_handler, []},
+            {"/api/fleet/autonomous/execute", fleet_management_handler, []},
+            {"/api/fleet/status", fleet_management_handler, []},
+            {"/api/fleet/broadcast", fleet_management_handler, []},
+            {"/api/agents/communicate", agent_communication_handler, []},
+            {"/api/agents/broadcast", agent_communication_handler, []},
+            {"/api/agents/collaboration/[...]", agent_communication_handler, []},
+            {"/api/agents/messages/:id", agent_communication_handler, []},
+            {"/api/agents/collaborations", agent_communication_handler, []},
+            {"/api/agents/quorum/[...]", agent_quorum_handler, []},
+            %% Super-agent endpoints
+            {"/api/super-agent/capabilities", super_agent_handler, []},
+            {"/api/super-agent/chat", super_agent_handler, []},
+            {"/api/super-agent/system-command", super_agent_handler, []},
+            {"/api/super-agent/system-status", super_agent_handler, []},
+            {"/ws/super-agent", super_agent_handler, []},
+            {"/api/conversations", conversation_handler, []},
+            {"/api/conversations/:conversation_id", conversation_handler, []},
+            {"/api/timeline/events", timeline_handler, []},
+            {"/api/upload/image", image_upload_handler, []},
+            {"/api/templates", agent_templates_handler, []},
+            {"/api/monitoring/[...]", agent_monitoring_handler, []},
+            {"/api/knowledge/[...]", knowledge_base_handler, []},
+            %% Examples endpoints
+            {"/api/examples/:type", examples_handler, []},
+            {"/api/examples", examples_handler, []},
+            %% System metrics endpoint
+            {"/api/system/metrics", system_health_handler, []},
+            {"/ws/system/metrics", system_metrics_handler, []},
+            {"/api/system/supervision-tree", supervision_tree_handler, []},
+            %% Stats control endpoints
+            {"/api/stats", stats_control_handler, []},
+            {"/api/stats/reset", stats_control_handler, []},
+            {"/api/stats/display", stats_control_handler, []},
+            {"/api/mcp-servers", mcp_server_handler, []},
+            {"/api/mcp-servers/:id", mcp_server_handler, []},
+            {"/api/mcp-servers/:id/discover", mcp_server_handler, []},
+            {"/api/mcp", mcp_api_handler, []},
+            {"/api/mcp/servers", mcp_api_handler, []},
+            {"/api/mcp/servers/:id", mcp_api_handler, []},
+            {"/api/mcp/servers/:id/test", mcp_api_handler, []},
+            {"/api/mcp/servers/:id/connect", mcp_api_handler, []},
+            {"/api/mcp/servers/:id/disconnect", mcp_api_handler, []},
+            {"/api/mcp/servers/:id/tools", mcp_api_handler, []},
+            {"/api/mcp/servers/:id/resources", mcp_api_handler, []},
+            {"/api/mcp/servers/:id/prompts", mcp_api_handler, []},
+            {"/api/mcp/orchestration/[...]", mcp_orchestration_handler, []},
+            {"/api/mcp/ai/[...]", mcp_orchestration_handler, []},
+            {"/api/mcp/local/[...]", mcp_management_handler, []},
+            {"/api/mcp/remote/[...]", mcp_management_handler, []},
+            {"/api/mcp/discover", mcp_management_handler, []},
+            {"/api/mcp/status", mcp_management_handler, []},
+            {"/api/mcp/auto_connect", mcp_management_handler, []},
+            {"/api/mcp/execute_tool", mcp_management_handler, []},
+            {"/api/mcp/read_resource", mcp_management_handler, []},
+            {"/api/mcp/get_prompt", mcp_management_handler, []},
+            {"/api/mcp/export/server/:id", mcp_api_handler, []},
+            {"/api/system/health", system_health_handler, []},
+            {"/api/ssl/[...]", ssl_cert_handler, []},
+            {"/api/mcp/export/servers", mcp_api_handler, []},
+            %% MCP OAuth endpoints
+            {"/api/mcp/oauth/start/:server_id", mcp_oauth_handler, []},
+            {"/api/mcp/oauth/callback/:server_id", mcp_oauth_handler, []},
+            {"/api/mcp/oauth/status/:server_id", mcp_oauth_handler, []},
+            {"/api/mcp/oauth/connect/:server_id", mcp_oauth_handler, []},
+            {"/api/mcp/oauth/refresh/:server_id", mcp_oauth_handler, []},
+            {"/api/mcp/oauth/revoke/:server_id", mcp_oauth_handler, []},
+            %% General OAuth endpoints
+            {"/api/oauth/authorize/:provider", oauth_handler, []},
+            {"/api/oauth/callback/:provider", oauth_handler, []},
+            {"/api/oauth/revoke/:provider", oauth_handler, []},
+            {"/api/oauth/status/:provider", oauth_handler, []},
+            {"/api/claude/config", claude_config_handler, []},
+            {"/api/claude/export", claude_config_handler, []},
+            {"/api/claude/oauth-status", claude_config_handler, []},
+            %% Cost tracking endpoints
+            {"/api/costs", cost_tracking_handler, []},
+            {"/api/costs/summary", cost_tracking_handler, []},
+            {"/api/costs/agent/:agent_id", cost_tracking_handler, []},
+            {"/api/costs/model/:model", cost_tracking_handler, []},
+            {"/api/costs/timerange", cost_tracking_handler, []},
+            {"/api/costs/report", cost_tracking_handler, []},
+            {"/api/costs/reset", cost_tracking_handler, []},
+            %% API Key management endpoints
+            {"/api/keys", api_keys_handler, []},
+            {"/api/keys/requirements", api_keys_handler, []},
+            {"/api/keys/check", api_keys_handler, []},
+            {"/api/keys/load-env", api_keys_handler, []},
+            {"/api/keys/:service", api_keys_handler, []},
+            %% Hot reload endpoints
+            {"/api/reload", hot_reload_handler, []},
+            %% Logging endpoints
+            {"/api/logs/interactions", logs_api_handler, []},
+            {"/api/logs/errors", logs_api_handler, []},
+            %% Claude CLI endpoints
+            {"/api/claude-cli", claude_cli_handler, []},
+            %% Discovery mesh endpoints
+            {"/api/discovery/[...]", discovery_mesh_handler, []},
+            %% Crash report endpoints
+            {"/api/crashes", crash_report_api_handler, []},
+            {"/api/crashes/stats", crash_report_api_handler, []},
+            {"/api/crashes/:id", crash_report_api_handler, []},
+            {"/api/crashes/:id/analysis", crash_report_api_handler, []},
+            {"/api/crashes/:id/fixes", crash_report_api_handler, []},
+            {"/api/crashes/:id/analyze", crash_report_api_handler, []},
+            {"/api/crashes/:id/fix", crash_report_api_handler, []},
+            {"/ws/crashes", crash_report_ws_handler, []},
+            %% Error interpretation endpoints
+            {"/api/interpretations", error_interpretation_api_handler, []},
+            {"/api/interpretations/:id", error_interpretation_api_handler, []},
+            {"/api/interpretations/interpret", error_interpretation_api_handler, []},
+            {"/api/interpretations/subscribe", error_interpretation_api_handler, []},
+            %% Error tracking endpoints
+            {"/api/errors", error_api_handler, []},
+            {"/api/errors/summary", error_api_handler, []},
+            {"/api/errors/trends", error_api_handler, []},
+            {"/api/errors/clear", error_api_handler, []},
+            {"/ws/errors", error_ws_handler, []},
+            %% Pipedream MCP endpoints
+            {"/api/pipedream/apps", pipedream_api_handler, []},
+            {"/api/pipedream/apps/:app_slug", pipedream_api_handler, []},
+            {"/api/pipedream/apps/:app_slug/tools", pipedream_api_handler, []},
+            {"/api/pipedream/discover", pipedream_api_handler, []},
+            {"/api/pipedream/connections", pipedream_api_handler, []},
+            {"/api/pipedream/connections/:app_slug", pipedream_api_handler, []},
+            {"/api/pipedream/connect", pipedream_api_handler, []},
+            {"/api/pipedream/disconnect", pipedream_api_handler, []},
+            {"/api/pipedream/refresh", pipedream_api_handler, []},
+            {"/api/pipedream/tools", pipedream_api_handler, []},
+            {"/api/pipedream/tools/call", pipedream_api_handler, []},
+            {"/api/pipedream/oauth/callback", pipedream_api_handler, []},
+            {"/api/pipedream/discovery/refresh", pipedream_api_handler, []},
+            {"/api/pipedream/user/apps/register", pipedream_api_handler, []},
+            {"/api/pipedream/stats", pipedream_api_handler, []},
+            %% MCP GitHub Registry endpoints
+            {"/api/mcp-registry", mcp_github_registry_handler, []},
+            {"/api/mcp-registry/[...]", mcp_github_registry_handler, []},
+            %% Model definition endpoints
+            {"/api/models/definitions", model_api_handler, []},
+            {"/api/models/definitions/:id", model_api_handler, []},
+            {"/api/models/validate", model_api_handler, []},
+            {"/api/models/generate/:id/:language", model_api_handler, []},
+            {"/mcp", mcp_sse_handler, #{server_id => <<"agents_main">>}},
+            {"/mcp/:server_id", mcp_sse_handler, []},
+            {"/ws", agent_ws_handler, []},
+            {"/vite.svg", cowboy_static, {priv_file, agent_web, "static/dist/vite.svg"}},
+            {"/assets/[...]", cowboy_static, {priv_dir, agent_web, "static/dist/assets"}},
+            {"/uploads/[...]", cowboy_static, {priv_dir, agent_web, "static/uploads"}},
+            {"/static/[...]", cowboy_static, {priv_dir, agent_web, "static"}}
+        ]}
+    ]),
+    colored_logger:success("Compiled Cowboy routes", []),
+    
+    % HTTP configuration
+    HttpTransportOpts = [{port, Port}],
+    ProtocolOpts = #{
+        env => #{dispatch => Dispatch},
+        middlewares => [cowboy_router, cowboy_handler],
+        request_timeout => 60000,
+        idle_timeout => infinity
+    },
+    colored_logger:info("Configured Cowboy HTTP with transport opts: ~p", [HttpTransportOpts]),
+    
+    HttpCowboySpec = #{
+        id => agent_web_http_listener,
+        start => {cowboy, start_clear, [
+            agent_web_http_listener,
+            HttpTransportOpts,
+            ProtocolOpts
+        ]},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [cowboy]
+    },
+    colored_logger:success("Created HTTP Cowboy child spec", []),
+    
+    % HTTPS configuration (optional)
+    HttpsSpecs = case SslEnabled of
+        true ->
+            CertFile = application:get_env(agent_web, cert_file, "./certs/localhost.crt"),
+            KeyFile = application:get_env(agent_web, key_file, "./certs/localhost.key"),
+            case {filelib:is_regular(CertFile), filelib:is_regular(KeyFile)} of
+                {true, true} ->
+                    colored_logger:success("SSL certificates found: ~s, ~s", [CertFile, KeyFile]),
+                    HttpsTransportOpts = [
+                        {port, HttpsPort},
+                        {certfile, CertFile},
+                        {keyfile, KeyFile},
+                        {versions, ['tlsv1.2', 'tlsv1.3']},
+                        {ciphers, [
+                            "ECDHE-RSA-AES256-GCM-SHA384",
+                            "ECDHE-RSA-AES128-GCM-SHA256",
+                            "ECDHE-RSA-AES256-SHA384",
+                            "ECDHE-RSA-AES128-SHA256"
+                        ]}
+                    ],
+                    HttpsCowboySpec = #{
+                        id => agent_web_https_listener,
+                        start => {cowboy, start_tls, [
+                            agent_web_https_listener,
+                            HttpsTransportOpts,
+                            ProtocolOpts
+                        ]},
+                        restart => permanent,
+                        shutdown => 5000,
+                        type => worker,
+                        modules => [cowboy]
+                    },
+                    colored_logger:success("Created HTTPS Cowboy child spec", []),
+                    [HttpsCowboySpec];
+                _ ->
+                    colored_logger:warning("SSL certificates not found: ~s or ~s, HTTPS disabled", [CertFile, KeyFile]),
+                    []
+            end;
+        false ->
+            []
+    end,
+    
+    DynamicSupervisorManagerSpec = #{
+        id => dynamic_supervisor_manager,
+        start => {dynamic_supervisor_manager, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [dynamic_supervisor_manager]
+    },
+    
+    SystemIntrospectionSpec = #{
+        id => system_introspection,
+        start => {system_introspection, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [system_introspection]
+    },
+    
+    McpAdvancedLoggerSpec = #{
+        id => mcp_advanced_logger,
+        start => {mcp_advanced_logger, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [mcp_advanced_logger]
+    },
+    
+    McpRegistrySpec = #{
+        id => mcp_registry,
+        start => {mcp_registry, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [mcp_registry]
+    },
+    
+    McpAdvancedConfigSpec = #{
+        id => mcp_advanced_config,
+        start => {mcp_advanced_config, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [mcp_advanced_config]
+    },
+    
+    OAuthManagerSpec = #{
+        id => oauth_manager,
+        start => {oauth_manager, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [oauth_manager]
+    },
+    
+    McpMonitorSpec = #{
+        id => mcp_monitor,
+        start => {mcp_monitor, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [mcp_monitor]
+    },
+    
+    McpConnectionManagerSpec = #{
+        id => mcp_connection_manager,
+        start => {mcp_connection_manager, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [mcp_connection_manager]
+    },
+    
+    McpManagerSpec = #{
+        id => mcp_manager,
+        start => {mcp_manager, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [mcp_manager]
+    },
+    
+    McpOrchestrationEngineSpec = #{
+        id => mcp_orchestration_engine,
+        start => {mcp_orchestration_engine, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [mcp_orchestration_engine]
+    },
+    
+    % Advanced AI Systems
+    AiOrchestrationEngineSpec = #{
+        id => ai_orchestration_engine,
+        start => {ai_orchestration_engine, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [ai_orchestration_engine]
+    },
+    
+    QuantumConsensusEngineSpec = #{
+        id => quantum_consensus_engine,
+        start => {quantum_consensus_engine, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [quantum_consensus_engine]
+    },
+    
+    SelfHealingSystemSpec = #{
+        id => self_healing_system,
+        start => {self_healing_system, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [self_healing_system]
+    },
+    
+    NeuralLoadBalancerSpec = #{
+        id => neural_load_balancer,
+        start => {neural_load_balancer, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [neural_load_balancer]
+    },
+    
+    BlockchainAuthSystemSpec = #{
+        id => blockchain_auth_system,
+        start => {blockchain_auth_system, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [blockchain_auth_system]
+    },
+    
+    TemporalDebuggerSpec = #{
+        id => temporal_debugger,
+        start => {temporal_debugger, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [temporal_debugger]
+    },
+    
+    % Ultra-Advanced Systems
+    MetaAiOptimizerSpec = #{
+        id => meta_ai_optimizer,
+        start => {meta_ai_optimizer, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [meta_ai_optimizer]
+    },
+    
+    EdgeComputingNetworkSpec = #{
+        id => edge_computing_network,
+        start => {edge_computing_network, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [edge_computing_network]
+    },
+    
+    AutonomousCodebaseSpec = #{
+        id => autonomous_codebase,
+        start => {autonomous_codebase, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [autonomous_codebase]
+    },
+    
+    % Transcendent Reality-Defying Systems
+    RealityManipulationEngineSpec = #{
+        id => reality_manipulation_engine,
+        start => {reality_manipulation_engine, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [reality_manipulation_engine]
+    },
+    
+    DimensionalGatewaySystemSpec = #{
+        id => dimensional_gateway_system,
+        start => {dimensional_gateway_system, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [dimensional_gateway_system]
+    },
+    
+    ConsciousnessMergerProtocolSpec = #{
+        id => consciousness_merger_protocol,
+        start => {consciousness_merger_protocol, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [consciousness_merger_protocol]
+    },
+    
+    UniversalKnowledgeCompilerSpec = #{
+        id => universal_knowledge_compiler,
+        start => {universal_knowledge_compiler, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [universal_knowledge_compiler]
+    },
+    
+    % Self-scaffolding supervisor
+    SelfScaffoldSupSpec = #{
+        id => self_scaffold_sup,
+        start => {self_scaffold_sup, start_link, []},
+        restart => permanent,
+        shutdown => infinity,
+        type => supervisor,
+        modules => [self_scaffold_sup]
+    },
+    
+    % Auto Error Fixer
+    AutoErrorFixerSpec = #{
+        id => auto_error_fixer,
+        start => {auto_error_fixer, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [auto_error_fixer]
+    },
+    
+    % Predictive Error Prevention
+    PredictiveErrorPreventionSpec = #{
+        id => predictive_error_prevention,
+        start => {predictive_error_prevention, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [predictive_error_prevention]
+    },
+    
+    % Self-Evolving Error Handler
+    SelfEvolvingErrorHandlerSpec = #{
+        id => self_evolving_error_handler,
+        start => {self_evolving_error_handler, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [self_evolving_error_handler]
+    },
+    
+    % Distributed Error Coordinator
+    DistributedErrorCoordinatorSpec = #{
+        id => distributed_error_coordinator,
+        start => {distributed_error_coordinator, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [distributed_error_coordinator]
+    },
+    
+    % Super-Agent
+    SuperAgentSpec = #{
+        id => super_agent,
+        start => {super_agent, create, [#{
+            name => <<"Super-Agent">>,
+            type => super_agent,
+            model => <<"gpt-4-turbo">>,
+            api_preference => responses
+        }]},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [super_agent]
+    },
+    
+    % Hot Code Reloader
+    HotCodeReloaderSpec = #{
+        id => hot_code_reloader,
+        start => {hot_code_reloader, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [hot_code_reloader]
+    },
+    
+    % Conversation Stats Logger
+    ConversationStatsLoggerSpec = #{
+        id => conversation_stats_logger,
+        start => {conversation_stats_logger, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [conversation_stats_logger]
+    },
+    
+    % System Awareness Logger - Ultra-detailed system monitoring
+    SystemAwarenessLoggerSpec = #{
+        id => system_awareness_logger,
+        start => {system_awareness_logger, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [system_awareness_logger]
+    },
+    
+    % Crash Report Processing System
+    CrashReportProcessorSpec = #{
+        id => crash_report_processor,
+        start => {crash_report_processor, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [crash_report_processor]
+    },
+    
+    CrashAiAnalyzerSpec = #{
+        id => crash_ai_analyzer,
+        start => {crash_ai_analyzer, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [crash_ai_analyzer]
+    },
+    
+    % AI Error Interpreter
+    AiErrorInterpreterSpec = #{
+        id => ai_error_interpreter,
+        start => {ai_error_interpreter, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [ai_error_interpreter]
+    },
+    
+    % AI Timeout Analyzer
+    AiTimeoutAnalyzerSpec = #{
+        id => ai_timeout_analyzer,
+        start => {ai_timeout_analyzer, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [ai_timeout_analyzer]
+    },
+    
+    % AI Log Integration
+    AiLogIntegrationSpec = #{
+        id => ai_log_integration,
+        start => {ai_log_integration, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [ai_log_integration]
+    },
+    
+    % Realtime Log Monitor
+    RealtimeLogMonitorSpec = #{
+        id => realtime_log_monitor,
+        start => {realtime_log_monitor, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [realtime_log_monitor]
+    },
+    
+    % Error Tracking System - Comprehensive error collection and analysis
+    ErrorTrackingSystemSpec = #{
+        id => error_tracking_system,
+        start => {error_tracking_system, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [error_tracking_system]
+    },
+    
+    % System Health Optimizer - Memory and GC optimization
+    SystemHealthOptimizerSpec = #{
+        id => system_health_optimizer,
+        start => {system_health_optimizer, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [system_health_optimizer]
+    },
+    
+    % API Key Manager - Secure API key management
+    ApiKeyManagerSpec = #{
+        id => api_key_manager,
+        start => {api_key_manager, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [api_key_manager]
+    },
+    
+    % Persistent Table Manager - Must start before other modules that create tables
+    PersistentTableManagerSpec = #{
+        id => persistent_table_manager,
+        start => {persistent_table_manager, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [persistent_table_manager]
+    },
+    
+    % Conversation Initializer - Must start after PersistentTableManager
+    ConversationInitializerSpec = #{
+        id => conversation_initializer,
+        start => {conversation_initializer, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [conversation_initializer]
+    },
+    
+    % Workflow Orchestrator - Advanced scatter-gather operations
+    WorkflowOrchestratorSpec = #{
+        id => workflow_orchestrator,
+        start => {workflow_orchestrator, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [workflow_orchestrator]
+    },
+    
+    % Pipedream MCP Integration - Start after core systems
+    PipedreamMcpClientSpec = #{
+        id => pipedream_mcp_client,
+        start => {pipedream_mcp_client, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [pipedream_mcp_client]
+    },
+    
+    PipedreamAutodiscoverySpec = #{
+        id => pipedream_autodiscovery,
+        start => {pipedream_autodiscovery, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [pipedream_autodiscovery]
+    },
+    
+    PipedreamAuthHandlerSpec = #{
+        id => pipedream_auth_handler,
+        start => {pipedream_auth_handler, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [pipedream_auth_handler]
+    },
+    
+    % MCP GitHub Registry Updater - Auto-updates MCP server registry from GitHub
+    McpGithubRegistryUpdaterSpec = #{
+        id => mcp_github_registry_updater,
+        start => {mcp_github_registry_updater, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [mcp_github_registry_updater]
+    },
+    
+    % Essential services that must start first
+    EssentialSpecs = [
+        HttpCowboySpec  % HTTP server is essential
+    ] ++ HttpsSpecs,
+    
+    % Model Definition Manager and HyperGraph Storage
+    ModelDefinitionManagerSpec = #{
+        id => model_definition_manager,
+        start => {model_definition_manager, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [model_definition_manager]
+    },
+    
+    HyperGraphStorageSpec = #{
+        id => hyper_graph_storage,
+        start => {hyper_graph_storage, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [hyper_graph_storage]
+    },
+    
+    EmbeddingIntegrationSpec = #{
+        id => embedding_integration,
+        start => {embedding_integration, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [embedding_integration]
+    },
+    
+    InteractionLoggerSpec = #{
+        id => interaction_logger,
+        start => {interaction_logger, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [interaction_logger]
+    },
+    
+    % Core services that should start next
+    CoreSpecs = [
+        PersistentTableManagerSpec,  % Start first to manage tables
+        ApiKeyManagerSpec,          % Load API keys early
+        ModelDefinitionManagerSpec, % Model definition system
+        HyperGraphStorageSpec,      % HyperGraph storage system
+        EmbeddingIntegrationSpec,   % Embedding integration system
+        InteractionLoggerSpec,      % Interaction logging system
+        McpRegistrySpec,            % MCP registry
+        McpAdvancedConfigSpec,      % MCP advanced config (must start before mcp_manager)
+        McpConnectionManagerSpec,   % MCP connections
+        McpManagerSpec,             % MCP manager (depends on mcp_advanced_config)
+        DynamicSupervisorManagerSpec,
+        WorkflowOrchestratorSpec    % Workflow orchestration system
+    ],
+    
+    % Advanced services (optional, may fail gracefully)
+    AdvancedSpecs = [
+        ConversationInitializerSpec, % Initialize conversation storage
+        SystemIntrospectionSpec,
+        McpOrchestrationEngineSpec,
+        OAuthManagerSpec,
+        McpMonitorSpec,
+        HotCodeReloaderSpec,
+        SystemHealthOptimizerSpec,
+        McpAdvancedLoggerSpec,
+        AiOrchestrationEngineSpec,
+        QuantumConsensusEngineSpec,
+        SelfHealingSystemSpec,
+        NeuralLoadBalancerSpec
+    ],
+    
+    % Filter out specs where modules don't exist (but don't filter core modules)
+    SafeAdvancedSpecs = lists:filter(fun(#{modules := [Module|_]}) ->
+        case code:which(Module) of
+            non_existing -> 
+                colored_logger:warning("Advanced module ~p does not exist, skipping", [Module]),
+                false;
+            _ -> true
+        end;
+        (_) -> true
+    end, AdvancedSpecs),
+    
+    % AI and ML services (highly optional)
+    AISpecs = [
+        CrashReportProcessorSpec,
+        CrashAiAnalyzerSpec,
+        AiErrorInterpreterSpec,
+        AiTimeoutAnalyzerSpec,
+        AiLogIntegrationSpec,
+        RealtimeLogMonitorSpec,
+        ErrorTrackingSystemSpec,
+        ConversationStatsLoggerSpec,
+        SystemAwarenessLoggerSpec
+    ],
+    
+    % Filter AI specs too
+    SafeAISpecs = lists:filter(fun(#{modules := [Module|_]}) ->
+        case code:which(Module) of
+            non_existing -> 
+                colored_logger:warning("AI Module ~p does not exist, skipping", [Module]),
+                false;
+            _ -> true
+        end;
+        (_) -> true
+    end, AISpecs),
+    
+    % Experimental and advanced features (completely optional)
+    ExperimentalSpecs = [
+        PipedreamMcpClientSpec,     % Pipedream MCP client
+        PipedreamAutodiscoverySpec, % Pipedream autodiscovery
+        PipedreamAuthHandlerSpec,   % Pipedream auth handler
+        McpGithubRegistryUpdaterSpec, % GitHub registry updater
+        SelfScaffoldSupSpec,
+        AutoErrorFixerSpec,
+        PredictiveErrorPreventionSpec,
+        SelfEvolvingErrorHandlerSpec,
+        DistributedErrorCoordinatorSpec,
+        SuperAgentSpec,
+        % Ultra-advanced experimental modules
+        BlockchainAuthSystemSpec,
+        TemporalDebuggerSpec,
+        MetaAiOptimizerSpec,
+        EdgeComputingNetworkSpec,
+        AutonomousCodebaseSpec,
+        RealityManipulationEngineSpec,
+        DimensionalGatewaySystemSpec,
+        ConsciousnessMergerProtocolSpec,
+        UniversalKnowledgeCompilerSpec
+    ],
+    
+    % Filter experimental specs
+    SafeExperimentalSpecs = lists:filter(fun(#{modules := [Module|_]}) ->
+        case code:which(Module) of
+            non_existing -> 
+                colored_logger:info("Experimental Module ~p does not exist, skipping", [Module]),
+                false;
+            _ -> 
+                colored_logger:info("Found experimental module ~p", [Module]),
+                true
+        end;
+        (_) -> true
+    end, ExperimentalSpecs),
+    
+    % Combine all specifications in order of importance
+    ChildSpecs = EssentialSpecs ++ CoreSpecs ++ SafeAdvancedSpecs ++ SafeAISpecs ++ SafeExperimentalSpecs,
+    colored_logger:startup("Starting ~p child processes", [length(ChildSpecs)]),
+    lists:foreach(fun(ChildSpec) ->
+        case ChildSpec of
+            #{id := Id} ->
+                colored_logger:info("Will start child: ~p", [Id]);
+            {Id, _, _, _, _, _} ->
+                colored_logger:info("Will start child: ~p (ranch format)", [Id]);
+            _ ->
+                colored_logger:info("Will start child: ~p", [element(1, ChildSpec)])
+        end
+    end, ChildSpecs),
+    colored_logger:success("Supervisor initialization complete", []),
+    {ok, {SupFlags, ChildSpecs}}.

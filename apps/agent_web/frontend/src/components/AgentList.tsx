@@ -16,11 +16,14 @@ export default function AgentList({ agents, selectedAgent, onSelectAgent }: Agen
     )
   }
 
+  // Convert to array and sort for stable ordering
+  const sortedAgents = Array.from(agents.values()).sort((a, b) => a.id.localeCompare(b.id))
+
   return (
     <div className="space-y-2">
-      {Array.from(agents.values()).map(agent => (
+      {sortedAgents.map(agent => (
         <div
-          key={agent.id}
+          key={agent.id} // Use agent.id as key, not array index
           className={cn(
             "flex items-center justify-between p-2 rounded-md cursor-pointer transition-colors",
             "hover:bg-accent hover:text-accent-foreground",
@@ -30,7 +33,7 @@ export default function AgentList({ agents, selectedAgent, onSelectAgent }: Agen
         >
           <div className="flex items-center gap-2">
             <div className={cn(
-              "w-2 h-2 rounded-full",
+              "w-2 h-2 rounded-full transition-colors",
               agent.status === 'active' ? "bg-green-500" : "bg-gray-400"
             )} />
             <div className="flex flex-col">

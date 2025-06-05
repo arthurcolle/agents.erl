@@ -5,15 +5,18 @@
          get_server/1, update_server/2]).
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
 
-%% Enhanced logging utility with line numbers
+%% Enhanced colorful logging utility with line numbers
 -define(LOG(Level, Format, Args), 
-    io:format("[~s:~p] [~s] " ++ Format ++ "~n", 
-              [?MODULE, ?LINE, Level | Args])).
+    colored_logger:log(Level, "MCP_REG", "[~s:~p] " ++ Format, [?MODULE, ?LINE | Args])).
 
--define(LOG_INFO(Format, Args), ?LOG("INFO", Format, Args)).
--define(LOG_WARN(Format, Args), ?LOG("WARN", Format, Args)).
--define(LOG_ERROR(Format, Args), ?LOG("ERROR", Format, Args)).
--define(LOG_DEBUG(Format, Args), ?LOG("DEBUG", Format, Args)).
+-define(LOG_INFO(Format, Args), ?LOG(info, Format, Args)).
+-define(LOG_WARN(Format, Args), ?LOG(warning, Format, Args)).
+-define(LOG_ERROR(Format, Args), ?LOG(error, Format, Args)).
+-define(LOG_DEBUG(Format, Args), ?LOG(debug, Format, Args)).
+-define(LOG_SUCCESS(Format, Args), ?LOG(success, Format, Args)).
+-define(LOG_NETWORK(Format, Args), colored_logger:network(connected, io_lib:format("[~s:~p] " ++ Format, [?MODULE, ?LINE | Args]))).
+-define(LOG_SECURITY(Format, Args), colored_logger:security(safe, io_lib:format("[~s:~p] " ++ Format, [?MODULE, ?LINE | Args]))).
+-define(LOG_COSMIC(Format, Args), colored_logger:cosmic(star, io_lib:format("[~s:~p] " ++ Format, [?MODULE, ?LINE | Args]))).
 
 -record(state, {
     servers = #{},
@@ -31,13 +34,13 @@
 }).
 
 start_link() ->
-    ?LOG_INFO("Starting MCP registry", []),
+    colored_logger:startup("Starting MCP registry", []),
     case gen_server:start_link({local, ?MODULE}, ?MODULE, [], []) of
         {ok, Pid} ->
-            ?LOG_INFO("Registry started successfully with PID ~p", [Pid]),
+            colored_logger:success("Registry started successfully with PID ~p", [Pid]),
             {ok, Pid};
         {error, Reason} ->
-            ?LOG_ERROR("Failed to start MCP registry: ~p", [Reason]),
+            colored_logger:error("Failed to start MCP registry: ~p", [Reason]),
             {error, Reason}
     end.
 
@@ -57,13 +60,13 @@ update_server(ServerId, Config) ->
     gen_server:call(?MODULE, {update_server, ServerId, Config}).
 
 init([]) ->
-    ?LOG_INFO("Initializing registry state", []),
+    colored_logger:info("Initializing registry state", []),
     {ok, #state{}}.
 
 handle_call({register_server, Name, Url, Config}, _From, State) ->
     ServerId = integer_to_binary(State#state.next_id),
-    ?LOG_INFO("Registering server: ~s (~s) with URL: ~s", [Name, ServerId, Url]),
-    ?LOG_DEBUG("Server config: ~p", [Config]),
+    colored_logger:neural(high, io_lib:format("🚀 Registering server: ~s (~s) with URL: ~s", [Name, ServerId, Url])),
+    ?LOG_COSMIC("✨ Server config: ~p", [Config]),
     
     Server = #mcp_server{
         id = ServerId,
@@ -78,7 +81,7 @@ handle_call({register_server, Name, Url, Config}, _From, State) ->
         next_id = State#state.next_id + 1
     },
     
-    ?LOG_INFO("Successfully registered server ~s with ID: ~s", [Name, ServerId]),
+    ?LOG_SUCCESS("Successfully registered server ~s with ID: ~s", [Name, ServerId]),
     
     % Notify websocket clients about new server
     try
@@ -86,16 +89,16 @@ handle_call({register_server, Name, Url, Config}, _From, State) ->
             type => <<"mcp_server_registered">>,
             server => server_to_map(Server)
         }),
-        ?LOG_DEBUG("Notified websocket clients about new server: ~s", [ServerId])
+        ?LOG_NETWORK("📡 Notified websocket clients about new server: ~s", [ServerId])
     catch
         Class:Error:Stack ->
-            ?LOG_WARN("Failed to notify websocket clients about server ~s: ~p:~p", [ServerId, Class, Error])
+            colored_logger:alarm(medium, io_lib:format("⚠️  Failed to notify websocket clients about server ~s: ~p:~p", [ServerId, Class, Error]))
     end,
     
     {reply, {ok, ServerId}, NewState};
 
 handle_call({unregister_server, ServerId}, _From, State) ->
-    ?LOG_INFO("Unregistering server: ~s", [ServerId]),
+    colored_logger:alarm(low, io_lib:format("🗑️ Unregistering server: ~s", [ServerId])),
     case maps:take(ServerId, State#state.servers) of
         {Server, NewServers} ->
             ServerName = Server#mcp_server.name,
@@ -122,7 +125,11 @@ handle_call({unregister_server, ServerId}, _From, State) ->
 
 handle_call(list_servers, _From, State) ->
     ServerCount = maps:size(State#state.servers),
-    ?LOG_DEBUG("Listing ~p registered servers", [ServerCount]),
+    % Only log when server count changes or at info level
+    case ServerCount > 0 of
+        true -> ?LOG_INFO("Listing ~p registered MCP servers", [ServerCount]);
+        false -> ok  % Don't spam logs when no servers are registered
+    end,
     ServerList = [server_to_map(Server) || Server <- maps:values(State#state.servers)],
     {reply, ServerList, State};
 

@@ -99,7 +99,7 @@ export default function AdvancedMessageRenderer({
 
     // Extract function names
     const functions = text.match(/\b\w+\(/g) || []
-    functions.forEach(fn => entities.add(fn.slice(0, -1)))
+    functions.forEach((fn: string) => entities.add(fn.slice(0, -1)))
 
     return Array.from(entities)
   }

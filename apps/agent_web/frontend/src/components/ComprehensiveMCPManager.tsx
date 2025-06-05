@@ -22,7 +22,7 @@ import {
   Database
 } from 'lucide-react'
 import { SeedServersDialog } from './SeedServersDialog'
-import { OAuthManager } from './OAuthManager'
+import { MCPOAuthManager } from './MCPOAuthManager'
 
 interface MCPServer {
   id: string
@@ -649,11 +649,14 @@ export default function ComprehensiveMCPManager() {
         </TabsContent>
 
         <TabsContent value="oauth" className="space-y-4">
-          <OAuthManager 
+          <MCPOAuthManager 
+            serverId="default"
+            serverName="Default OAuth"
+            authType="oauth2"
             onAuthChange={(provider, authenticated) => {
               console.log(`OAuth ${authenticated ? 'connected' : 'disconnected'} for ${provider}`);
               // Refresh server data when OAuth status changes
-              fetchData();
+              loadRemoteServers();
             }}
           />
         </TabsContent>

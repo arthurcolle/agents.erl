@@ -10,19 +10,25 @@
 -export([init/0, get_seed_servers/0, get_all_servers/0, add_server/1, 
          update_server/2, delete_server/1, get_server/1,
          discover_capabilities/1, get_server_capabilities/1,
-         assign_server_to_agent/2, get_agent_servers/1]).
+         assign_server_to_agent/2, get_agent_servers/1,
+         to_anthropic_mcp_format/1, to_anthropic_mcp_format_list/1,
+         get_anthropic_mcp_servers/1, get_all_anthropic_mcp_servers/0]).
+
+%% Track initialization state
+-define(INIT_FLAG, mcp_server_config_initialized).
 
 -include_lib("stdlib/include/qlc.hrl").
 
-%% Enhanced logging utility with line numbers
+%% Enhanced colorful logging utility with line numbers
 -define(LOG(Level, Format, Args), 
-    io:format("[~s:~p] [~s] " ++ Format ++ "~n", 
-              [?MODULE, ?LINE, Level | Args])).
+    colored_logger:log(Level, "MCP_CONFIG", "[~s:~p] " ++ Format, [?MODULE, ?LINE | Args])).
 
--define(LOG_INFO(Format, Args), ?LOG("INFO", Format, Args)).
--define(LOG_WARN(Format, Args), ?LOG("WARN", Format, Args)).
--define(LOG_ERROR(Format, Args), ?LOG("ERROR", Format, Args)).
--define(LOG_DEBUG(Format, Args), ?LOG("DEBUG", Format, Args)).
+-define(LOG_INFO(Format, Args), ?LOG(info, Format, Args)).
+-define(LOG_WARN(Format, Args), ?LOG(warning, Format, Args)).
+-define(LOG_ERROR(Format, Args), ?LOG(error, Format, Args)).
+-define(LOG_DEBUG(Format, Args), ?LOG(debug, Format, Args)).
+-define(LOG_SUCCESS(Format, Args), ?LOG(success, Format, Args)).
+-define(LOG_STARTUP(Format, Args), colored_logger:startup(stable, io_lib:format("[~s:~p] " ++ Format, [?MODULE, ?LINE | Args]))).
 
 -record(mcp_server, {
     id :: binary(),
@@ -48,28 +54,54 @@
 %%%===================================================================
 
 init() ->
+    % Check if already initialized
+    case get({?INIT_FLAG}) of
+        true -> 
+            ?LOG_DEBUG("MCP server configuration already initialized", []),
+            ok;
+        _ ->
+            put({?INIT_FLAG}, true),
+            do_init()
+    end.
+
+do_init() ->
     ?LOG_INFO("Initializing MCP server configuration", []),
     
     % Ensure Mnesia is started first
     case mnesia:start() of
         ok -> 
-            ?LOG_INFO("Mnesia started successfully", []);
+            ?LOG_SUCCESS("Mnesia started successfully", []);
         {error, {already_started, mnesia}} -> 
             ?LOG_INFO("Mnesia already started", []);
-        {error, Reason} -> 
-            ?LOG_ERROR("Failed to start Mnesia: ~p", [Reason]),
-            error(Reason)
+        {error, Reason1} -> 
+            ?LOG_ERROR("Failed to start Mnesia: ~p", [Reason1]),
+            error(Reason1)
     end,
     
     % Wait for Mnesia tables to be ready
     ?LOG_DEBUG("Waiting for Mnesia schema tables", []),
     mnesia:wait_for_tables([schema], 5000),
     
-    % Create tables if they don't exist
-    % Use ram_copies for development when no proper node name is set
+    % Ensure we have a disc schema if using disc_copies
     TableType = case node() of
         nonode@nohost -> ram_copies;
-        _ -> disc_copies
+        Node -> 
+            % Check if we have a disc schema
+            case mnesia:table_info(schema, storage_type) of
+                ram_copies ->
+                    % Create disc schema if needed
+                    ?LOG_INFO("Creating disc schema for node: ~p", [Node]),
+                    case mnesia:change_table_copy_type(schema, Node, disc_copies) of
+                        {atomic, ok} ->
+                            ?LOG_SUCCESS("Successfully created disc schema", []),
+                            disc_copies;
+                        {aborted, DiscSchemaReason} ->
+                            ?LOG_WARN("Failed to create disc schema: ~p, using ram_copies", [DiscSchemaReason]),
+                            ram_copies
+                    end;
+                disc_copies ->
+                    disc_copies
+            end
     end,
     ?LOG_INFO("Using table type: ~p for node: ~p", [TableType, node()]),
     
@@ -80,8 +112,8 @@ init() ->
             ?LOG_INFO("Created mcp_server table", []);
         {aborted, {already_exists, mcp_server}} -> 
             ?LOG_INFO("mcp_server table already exists", []);
-        {aborted, Reason1} ->
-            ?LOG_ERROR("Failed to create mcp_server table: ~p", [Reason1])
+        {aborted, Reason3} ->
+            ?LOG_ERROR("Failed to create mcp_server table: ~p", [Reason3])
     end,
     
     case mnesia:create_table(agent_mcp_mapping,
@@ -91,14 +123,15 @@ init() ->
             ?LOG_INFO("Created agent_mcp_mapping table", []);
         {aborted, {already_exists, agent_mcp_mapping}} -> 
             ?LOG_INFO("agent_mcp_mapping table already exists", []);
-        {aborted, Reason2} ->
-            ?LOG_ERROR("Failed to create agent_mcp_mapping table: ~p", [Reason2])
+        {aborted, Reason4} ->
+            ?LOG_ERROR("Failed to create agent_mcp_mapping table: ~p", [Reason4])
     end,
     
     % Load seed servers
     ?LOG_INFO("Loading seed servers", []),
     load_seed_servers(),
-    ?LOG_INFO("MCP server configuration initialization complete", []).
+    ?LOG_INFO("MCP server configuration initialization complete", []),
+    ok.
 
 get_seed_servers() ->
     [
@@ -310,7 +343,7 @@ get_seed_servers() ->
           ],
           metadata => #{
               <<"command">> => <<"npx">>,
-              <<"args">> => [<<"-y">>, <<"@modelcontextprotocol/server-filesystem">>, <<"/path/to/allowed/directory">>],
+              <<"args">> => [<<"-y">>, <<"@modelcontextprotocol/server-filesystem">>, <<"/Users/agent/agents.erl">>],
               <<"transport">> => <<"stdio">>,
               <<"official">> => true,
               <<"documentation_url">> => <<"https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem">>
@@ -497,7 +530,7 @@ add_server(ServerMap) ->
     
     case mnesia:transaction(F) of
         {atomic, ok} -> 
-            ?LOG_INFO("Successfully added server to database: ~s", [ServerId]),
+            ?LOG_SUCCESS("Successfully added server to database: ~s", [ServerId]),
             {ok, Server};
         {aborted, {already_exists, _}} ->
             ?LOG_INFO("Server ~s already exists in database", [ServerId]),
@@ -509,8 +542,12 @@ add_server(ServerMap) ->
                 {node_not_running, _} ->
                     ?LOG_WARN("Database not available, continuing without persistence", []),
                     {ok, Server};
+                {no_exists, mcp_server} ->
+                    ?LOG_WARN("Table mcp_server does not exist, server will not be persisted", []),
+                    {ok, Server};  % Continue without persistence
                 _ ->
-                    {error, Reason}
+                    ?LOG_WARN("Database error, continuing without persistence: ~p", [Reason]),
+                    {ok, Server}  % Continue startup anyway
             end
     end.
 
@@ -663,7 +700,7 @@ fetch_server_capabilities(Url, AuthType) ->
     ]}.
 
 %% Convert MCP server configuration to Anthropic MCP connector format
-to_anthropic_mcp_format(#mcp_server{id = Id, name = Name, url = Url, auth_type = AuthType, metadata = Metadata}) ->
+to_anthropic_mcp_format(#mcp_server{id = _Id, name = Name, url = Url, auth_type = AuthType, metadata = Metadata}) ->
     BaseServer = #{
         type => <<"url">>,
         url => Url,

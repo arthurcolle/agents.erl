@@ -1,0 +1,59 @@
+## Development clustering VM arguments
+
+## Enable JIT with moderate optimizations
++JMsingle true
+
+## Memory management optimizations
++MBas aobf
++MHas aobf
++MMmcs 30
+
+## Process limits
++P 1048576
++Q 1048576
+
+## Scheduler optimizations
++S 4:4
++stbt db
++sbwt very_short
++swt very_low
+
+## IO optimizations
++A 32
+
+## Memory allocator optimizations
++MBmmsbc 512
++MHmmsbc 512
++MBlmbcs 512
++MHlmbcs 512
+
+## GC optimizations
++hmqd off_heap
++hmax 67108864
+
+## Distribution optimizations for clustering
++zdbbl 32768
+
+## Enable native time correction
++c true
+
+## Kernel polling
++K true
+
+## Node name and networking - enable clustering
+-name agents@127.0.0.1
+-setcookie agents_cluster_cookie
+
+## Enable distributed Erlang
+-proto_dist inet_tcp
+-erl_epmd_port 4369
+
+## Keep shell for development
++Bd
+
+## Error logger optimizations
++W w
+
+## Crash dump settings
+-env ERL_CRASH_DUMP crash_dumps/erl_crash.dump
+-env ERL_CRASH_DUMP_SECONDS 30

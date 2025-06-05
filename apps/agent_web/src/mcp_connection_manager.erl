@@ -1,4 +1,17 @@
 -module(mcp_connection_manager).
+
+%% Colorful logging macros
+-define(LOG_INFO(Msg), colored_logger:data(processed, Msg)).
+-define(LOG_INFO(Msg, Args), colored_logger:data(processed, io_lib:format(Msg, Args))).
+-define(LOG_ERROR(Msg), colored_logger:fire(inferno, Msg)).
+-define(LOG_ERROR(Msg, Args), colored_logger:fire(inferno, io_lib:format(Msg, Args))).
+-define(LOG_WARNING(Msg), colored_logger:alarm(medium, Msg)).
+-define(LOG_WARNING(Msg, Args), colored_logger:alarm(medium, io_lib:format(Msg, Args))).
+-define(LOG_SUCCESS(Msg), colored_logger:complete(success, Msg)).
+-define(LOG_SUCCESS(Msg, Args), colored_logger:complete(success, io_lib:format(Msg, Args))).
+-define(LOG_DEBUG(Msg), colored_logger:development(debugging, Msg)).
+-define(LOG_DEBUG(Msg, Args), colored_logger:development(debugging, io_lib:format(Msg, Args))).
+
 -behaviour(gen_server).
 
 %% API
@@ -23,13 +36,13 @@
 %%====================================================================
 
 start_link() ->
-    io:format("[MCP_CONN] Starting advanced MCP connection manager~n"),
+    ?LOG_INFO("[MCP_CONN] Starting advanced MCP connection manager"),
     case gen_server:start_link({local, ?MODULE}, ?MODULE, [], []) of
         {ok, Pid} ->
-            io:format("[MCP_CONN] Advanced connection manager started successfully with PID ~p~n", [Pid]),
+            ?LOG_INFO("[MCP_CONN] Advanced connection manager started successfully with PID ~p", [Pid]),
             {ok, Pid};
         {error, Reason} ->
-            io:format("[ERROR] Failed to start MCP connection manager: ~p~n", [Reason]),
+            ?LOG_INFO("[ERROR] Failed to start MCP connection manager: ~p", [Reason]),
             {error, Reason}
     end.
 

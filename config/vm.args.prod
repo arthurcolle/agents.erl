@@ -40,6 +40,14 @@
 ## Kernel polling (better for high throughput)
 +K true
 
+## Node name and networking - enable clustering
+-name agents@$(hostname -f)
+-setcookie agents_cluster_cookie
+
+## Enable distributed Erlang
+-proto_dist inet_tcp
+-erl_epmd_port 4369
+
 ## No shell (production)
 -noshell
 -noinput

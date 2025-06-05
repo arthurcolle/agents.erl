@@ -691,8 +691,8 @@ save_workflow(Workflow) ->
     mnesia:transaction(F).
 
 generate_uuid() ->
-    UUID = uuid:uuid4(),
-    uuid:to_string(UUID, binary_standard).
+    UUID = agent_uuid:uuid4(),
+    agent_uuid:to_string(UUID).
 
 %% Placeholder implementations for complex AI functions
 classification_weights() -> #{}.

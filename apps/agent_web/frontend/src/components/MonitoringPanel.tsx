@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 
 interface MonitoringPanelProps {
   agents: Map<string, any>
+  selectedAgent?: string
   systemMetrics: {
     cpuUsage: number
     memoryUsage: number
@@ -11,7 +12,7 @@ interface MonitoringPanelProps {
   }
 }
 
-export default function MonitoringPanel({ agents, systemMetrics }: MonitoringPanelProps) {
+export default function MonitoringPanel({ agents, selectedAgent, systemMetrics }: MonitoringPanelProps) {
   return (
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-2">
@@ -99,20 +100,44 @@ export default function MonitoringPanel({ agents, systemMetrics }: MonitoringPan
                 <div className="grid grid-cols-3 gap-4 text-sm">
                   <div>
                     <span className="text-muted-foreground">Status:</span>
-                    <Badge className="ml-2" variant="secondary">Active</Badge>
+                    <Badge className="ml-2" variant={agent.status === 'active' ? 'default' : 'secondary'}>
+                      {agent.status || 'Active'}
+                    </Badge>
                   </div>
                   <div>
                     <span className="text-muted-foreground">Memory:</span>
-                    <span className="ml-2">-- MB</span>
+                    <span className="ml-2">{agent.memory || 0} MB</span>
                   </div>
                   <div>
                     <span className="text-muted-foreground">Messages:</span>
-                    <span className="ml-2">0</span>
+                    <span className="ml-2">{agent.message_queue_len || 0}</span>
                   </div>
                 </div>
                 <div className="mt-3 flex gap-2">
-                  <Button size="sm" variant="outline">View Details</Button>
-                  <Button size="sm" variant="outline">Restart</Button>
+                  <Button size="sm" variant="outline" onClick={() => {
+                    console.log(`View details for agent ${agent.id}`)
+                    // TODO: Implement agent details view
+                  }}>View Details</Button>
+                  <Button size="sm" variant="outline" onClick={async () => {
+                    try {
+                      // Stop the agent
+                      await fetch(`/api/agents/${agent.id}`, { method: 'DELETE' })
+                      // Recreate the agent
+                      await fetch('/api/agents', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                          name: agent.name,
+                          type: agent.type,
+                          system_prompt: agent.system_prompt || 'You are a helpful AI assistant.'
+                        })
+                      })
+                      // Reload agents
+                      window.location.reload()
+                    } catch (error) {
+                      console.error('Failed to restart agent:', error)
+                    }
+                  }}>Restart</Button>
                 </div>
               </div>
             ))}

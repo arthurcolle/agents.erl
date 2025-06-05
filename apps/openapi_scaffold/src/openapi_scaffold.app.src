@@ -1,0 +1,22 @@
+{application, openapi_scaffold,
+ [{description, "Advanced OpenAPI Scaffolder with AI and Multi-Language Support"},
+  {vsn, "1.0.0"},
+  {registered, []},
+  {mod, {openapi_scaffold_app, []}},
+  {applications,
+   [kernel,
+    stdlib,
+    crypto,
+    ssl,
+    inets,
+    jsx,
+    hackney,
+    cowboy,
+    prometheus
+   ]},
+  {env,[]},
+  {modules, []},
+
+  {licenses, ["Apache 2.0"]},
+  {links, []}
+ ]}.

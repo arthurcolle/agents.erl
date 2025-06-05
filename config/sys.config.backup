@@ -1,0 +1,18 @@
+[
+  {agent_web, [
+    {port, 8080},
+    {disable_colors, false},
+    {log_timestamp_format, short}
+  ]},
+  {kernel, [
+    {logger_level, info},
+    {logger, [
+      {handler, default, undefined},
+      {handler, colored_handler, colored_logger_handler, #{
+        level => all,
+        config => #{disable_colors => false}
+      }}
+    ]},
+    {error_logger, silent}
+  ]}
+].

@@ -367,11 +367,13 @@ calculate_domain_relevance(Agent, QueryAnalysis) ->
     AgentDomains = Agent#expertise_profile.primary_domains ++ Agent#expertise_profile.secondary_domains,
     
     % Calculate overlap score
-    Overlap = length(lists:intersection(QueryDomains, AgentDomains)),
+    % Count overlapping domains
+    Overlap = length([D || D <- QueryDomains, lists:member(D, AgentDomains)]),
     MaxRelevant = max(1, length(QueryDomains)),
     
     % Boost for primary domain matches
-    PrimaryOverlap = length(lists:intersection(QueryDomains, Agent#expertise_profile.primary_domains)),
+    % Count primary domain overlaps
+    PrimaryOverlap = length([D || D <- QueryDomains, lists:member(D, Agent#expertise_profile.primary_domains)]),
     PrimaryBonus = PrimaryOverlap * 0.2,
     
     BaseScore = Overlap / MaxRelevant,
@@ -384,7 +386,8 @@ calculate_expertise_match(Agent, QueryAnalysis) ->
     case RequiredExpertise of
         [] -> 0.5;  % No specific expertise required
         _ ->
-            MatchedSkills = lists:intersection(RequiredExpertise, AgentSkills),
+            % Find matching skills
+            MatchedSkills = [S || S <- RequiredExpertise, lists:member(S, AgentSkills)],
             SkillScores = [maps:get(Skill, Agent#expertise_profile.skill_scores, 0.0) || Skill <- MatchedSkills],
             
             case SkillScores of

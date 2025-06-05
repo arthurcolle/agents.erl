@@ -53,3 +53,37 @@ Thumbs.db
 # Node.js dependencies
 node_modules/
 **/node_modules/
+
+# Process IDs and temporary files
+*.pid
+.demo_startup
+
+# Archive directory
+archive/
+
+# Cache directories
+cache/
+**/cache/
+priv/cache/
+
+# Database files
+*.db
+
+# SSL certificates
+*.crt
+*.key
+*.pem
+
+# API Keys and Configuration
+config/api_keys.config
+# Keep the example file
+!config/api_keys.config.example
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Mnesia database files
+Mnesia.*/
+**/Mnesia.*

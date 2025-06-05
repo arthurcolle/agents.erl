@@ -20,7 +20,7 @@
     websocket_pid,
     stream_ref,
     connection_pid,
-    connection_type, % websocket | sse
+    connection_type, % websocket | sse | http_post | stdio
     status = disconnected, % disconnected | connecting | connected | error
     capabilities = #{},
     server_info = #{},
@@ -97,13 +97,21 @@ init({ServerId, Config}) ->
     Url = maps:get(url, Config),
     State = #state{
         server_id = ServerId,
-        url = Url
+        url = Url,
+        server_info = Config
     },
     {ok, State}.
 
 handle_call(connect, From, #state{status = disconnected} = State) ->
-    case start_websocket_connection(State#state.url) of
-        {ok, ConnPid, StreamRef} ->
+    case determine_connection_type(State) of
+        {stdio, Command, Args} ->
+            error_logger:info_msg("[MCP_CLIENT] Attempting stdio connection: ~s ~p~n", [Command, Args]),
+            start_stdio_connection(Command, Args, From, State);
+        network ->
+            error_logger:info_msg("[MCP_CLIENT] Attempting network connection to: ~s~n", [State#state.url]),
+            case start_websocket_connection(State#state.url) of
+                {ok, ConnPid, StreamRef} ->
+                    error_logger:info_msg("[MCP_CLIENT] WebSocket connection established to ~s~n", [State#state.url]),
             NewState = State#state{
                 connection_pid = ConnPid,
                 stream_ref = StreamRef,
@@ -113,6 +121,7 @@ handle_call(connect, From, #state{status = disconnected} = State) ->
             % Don't reply yet - will reply after initialization completes
             {noreply, NewState#state{pending_requests = #{init => From}}};
         {ok, ConnPid, StreamRef, sse} ->
+            error_logger:info_msg("[MCP_CLIENT] SSE connection established to ~s~n", [State#state.url]),
             NewState = State#state{
                 connection_pid = ConnPid,
                 stream_ref = StreamRef,
@@ -143,11 +152,50 @@ handle_call(connect, From, #state{status = disconnected} = State) ->
                 ok ->
                     {noreply, NewState#state{pending_requests = #{init => From}}};
                 {error, Reason} ->
+                    error_logger:error_msg("[MCP_CLIENT] Failed to send init message: ~p~n", [Reason]),
                     cleanup_connection(NewState),
-                    {reply, {error, Reason}, State#state{status = error}}
+                    {reply, {error, {init_send_failed, Reason}}, State#state{status = error}}
             end;
-        {error, Reason} ->
-            {reply, {error, Reason}, State#state{status = error}}
+        {ok, ConnPid, _, http_post} ->
+            error_logger:info_msg("[MCP_CLIENT] HTTP POST connection established to ~s~n", [State#state.url]),
+            NewState = State#state{
+                connection_pid = ConnPid,
+                stream_ref = undefined,
+                connection_type = http_post,
+                status = connecting
+            },
+            % Send initialization request for HTTP POST
+            InitRequest = #{
+                <<"jsonrpc">> => <<"2.0">>,
+                <<"id">> => <<"init">>,
+                <<"method">> => <<"initialize">>,
+                <<"params">> => #{
+                    <<"protocolVersion">> => ?PROTOCOL_VERSION,
+                    <<"capabilities">> => #{
+                        <<"roots">> => #{
+                            <<"listChanged">> => true
+                        },
+                        <<"sampling">> => #{},
+                        <<"elicitation">> => #{}
+                    },
+                    <<"clientInfo">> => #{
+                        <<"name">> => ?CLIENT_NAME,
+                        <<"version">> => ?CLIENT_VERSION
+                    }
+                }
+            },
+            case send_message(InitRequest, NewState) of
+                ok ->
+                    {noreply, NewState#state{pending_requests = #{init => From}}};
+                {error, Reason} ->
+                    error_logger:error_msg("[MCP_CLIENT] Failed to send init message: ~p~n", [Reason]),
+                    cleanup_connection(NewState),
+                    {reply, {error, {init_send_failed, Reason}}, State#state{status = error}}
+            end;
+                {error, Reason} ->
+                    error_logger:error_msg("[MCP_CLIENT] Failed to establish connection: ~p~n", [Reason]),
+                    {reply, {error, {connection_failed, Reason}}, State#state{status = error}}
+            end
     end;
 
 handle_call(connect, _From, #state{status = Status} = State) ->
@@ -225,6 +273,16 @@ handle_info({'EXIT', ConnPid, Reason},
     reply_to_pending_requests({error, connection_died}, NewState),
     {noreply, NewState#state{status = error}};
 
+handle_info({transport_message, Message}, #state{connection_type = stdio} = State) ->
+    % Handle messages from stdio transport
+    process_mcp_message(Message, State);
+
+handle_info({transport_closed, Reason}, #state{connection_type = stdio} = State) ->
+    error_logger:warning_msg("MCP stdio transport closed: ~p~n", [Reason]),
+    NewState = cleanup_connection(State),
+    reply_to_pending_requests({error, transport_closed}, NewState),
+    {noreply, NewState#state{status = error}};
+
 handle_info(_Info, State) ->
     {noreply, State}.
 
@@ -249,6 +307,8 @@ start_websocket_connection(Url) ->
             end),
             Path = maps:get(path, ParsedUrl, <<"/">>),
             
+            error_logger:info_msg("[MCP_CLIENT] Connecting to WebSocket: ~s://~s:~p~s~n", [Scheme, Host, Port, Path]),
+            
             Opts = case Scheme of
                 <<"wss">> -> #{protocols => [http], transport => tls};
                 <<"ws">> -> #{protocols => [http]}
@@ -256,14 +316,17 @@ start_websocket_connection(Url) ->
             
             case gun:open(binary_to_list(Host), Port, Opts) of
                 {ok, ConnPid} ->
+                    error_logger:info_msg("[MCP_CLIENT] Gun connection opened, awaiting up~n"),
                     case gun:await_up(ConnPid, 5000) of
                         {ok, _Protocol} ->
+                            error_logger:info_msg("[MCP_CLIENT] Gun connection up, upgrading to WebSocket~n"),
                             Headers = [
                                 {<<"sec-websocket-protocol">>, <<"mcp">>}
                             ],
                             StreamRef = gun:ws_upgrade(ConnPid, binary_to_list(Path), Headers),
                             case gun:await(ConnPid, StreamRef, 5000) of
                                 {upgrade, [<<"websocket">>], _Headers} ->
+                                    error_logger:info_msg("[MCP_CLIENT] WebSocket upgrade successful~n"),
                                     % Start initialization sequence after WebSocket is established
                                     InitRequest = #{
                                         <<"jsonrpc">> => <<"2.0">>,
@@ -288,18 +351,22 @@ start_websocket_connection(Url) ->
                                     gun:ws_send(ConnPid, StreamRef, {text, Data}),
                                     {ok, ConnPid, StreamRef};
                                 {response, _Fin, Status, _Headers} ->
+                                    error_logger:error_msg("[MCP_CLIENT] WebSocket upgrade failed with status: ~p~n", [Status]),
                                     gun:close(ConnPid),
-                                    {error, {http_error, Status}};
+                                    {error, {ws_upgrade_failed, Status}};
                                 {error, Reason} ->
+                                    error_logger:error_msg("[MCP_CLIENT] WebSocket upgrade error: ~p~n", [Reason]),
                                     gun:close(ConnPid),
-                                    {error, Reason}
+                                    {error, {ws_upgrade_error, Reason}}
                             end;
                         {error, Reason} ->
+                            error_logger:error_msg("[MCP_CLIENT] Gun await_up error: ~p~n", [Reason]),
                             gun:close(ConnPid),
-                            {error, Reason}
+                            {error, {gun_await_up_error, Reason}}
                     end;
                 {error, Reason} ->
-                    {error, Reason}
+                    error_logger:error_msg("[MCP_CLIENT] Gun open error: ~p~n", [Reason]),
+                    {error, {gun_open_error, Reason}}
             end;
         #{scheme := Scheme, host := Host} = ParsedUrl 
         when Scheme =:= <<"http">> orelse Scheme =:= <<"https">> ->
@@ -309,10 +376,13 @@ start_websocket_connection(Url) ->
                 <<"http">> -> 80
             end),
             Path = maps:get(path, ParsedUrl, <<"/">>),
-            start_sse_connection(Scheme, Host, Port, Path);
+            error_logger:info_msg("[MCP_CLIENT] Trying HTTP connection to: ~s://~s:~p~s~n", [Scheme, Host, Port, Path]),
+            start_http_connection(Scheme, Host, Port, Path);
         #{scheme := Scheme} ->
+            error_logger:error_msg("[MCP_CLIENT] Unsupported URL scheme: ~p~n", [Scheme]),
             {error, {unsupported_scheme, Scheme}};
         _ ->
+            error_logger:error_msg("[MCP_CLIENT] Invalid URL format: ~s~n", [Url]),
             {error, invalid_url}
     end.
 
@@ -348,6 +418,102 @@ start_sse_connection(Scheme, Host, Port, Path) ->
                     {error, Reason}
             end;
         {error, Reason} ->
+            {error, Reason}
+    end.
+
+start_http_connection(Scheme, Host, Port, Path) ->
+    % Try multiple HTTP connection strategies for MCP servers
+    % 1. Try direct JSON-RPC HTTP POST first (most common)
+    % 2. Fall back to SSE if direct POST fails
+    Opts = case Scheme of
+        <<"https">> -> #{protocols => [http], transport => tls};
+        <<"http">> -> #{protocols => [http]}
+    end,
+    
+    error_logger:info_msg("[MCP_CLIENT] Opening HTTP connection to ~s:~p~n", [Host, Port]),
+    case gun:open(binary_to_list(Host), Port, Opts) of
+        {ok, ConnPid} ->
+            error_logger:info_msg("[MCP_CLIENT] HTTP connection opened, awaiting up~n"),
+            case gun:await_up(ConnPid, 5000) of
+                {ok, _Protocol} ->
+                    error_logger:info_msg("[MCP_CLIENT] HTTP connection up, trying POST endpoint~n"),
+                    % First try to establish direct HTTP POST connection
+                    case try_http_post_connection(ConnPid, Path) of
+                        {ok, ConnPid, post} ->
+                            error_logger:info_msg("[MCP_CLIENT] HTTP POST connection established~n"),
+                            {ok, ConnPid, undefined, http_post};
+                        {error, PostReason} ->
+                            error_logger:warning_msg("[MCP_CLIENT] HTTP POST failed: ~p, trying SSE~n", [PostReason]),
+                            % Fall back to SSE connection
+                            try_sse_connection(ConnPid, Path)
+                    end;
+                {error, Reason} ->
+                    error_logger:error_msg("[MCP_CLIENT] HTTP await_up error: ~p~n", [Reason]),
+                    gun:close(ConnPid),
+                    {error, {http_await_up_error, Reason}}
+            end;
+        {error, Reason} ->
+            error_logger:error_msg("[MCP_CLIENT] HTTP gun:open error: ~p~n", [Reason]),
+            {error, {http_gun_open_error, Reason}}
+    end.
+
+try_http_post_connection(ConnPid, Path) ->
+    % Test if the server accepts JSON-RPC POST requests
+    TestRequest = #{
+        <<"jsonrpc">> => <<"2.0">>,
+        <<"id">> => <<"test">>,
+        <<"method">> => <<"initialize">>,
+        <<"params">> => #{
+            <<"protocolVersion">> => ?PROTOCOL_VERSION,
+            <<"capabilities">> => #{},
+            <<"clientInfo">> => #{
+                <<"name">> => ?CLIENT_NAME,
+                <<"version">> => ?CLIENT_VERSION
+            }
+        }
+    },
+    
+    try
+        Data = jsx:encode(TestRequest),
+        Headers = [
+            {<<"content-type">>, <<"application/json">>},
+            {<<"accept">>, <<"application/json">>}
+        ],
+        StreamRef = gun:post(ConnPid, binary_to_list(Path), Headers, Data),
+        case gun:await(ConnPid, StreamRef, 5000) of
+            {response, nofin, 200, _ResponseHeaders} ->
+                % Server accepts POST requests
+                {ok, ConnPid, post};
+            {response, fin, 200, _ResponseHeaders} ->
+                % Server accepts POST requests
+                {ok, ConnPid, post};
+            {response, _Fin, Status, _Headers} ->
+                {error, {http_error, Status}};
+            {error, Reason} ->
+                {error, Reason}
+        end
+    catch
+        _:CatchReason ->
+            {error, {encode_error, CatchReason}}
+    end.
+
+try_sse_connection(ConnPid, Path) ->
+    % Try SSE connection as fallback
+    Headers = [
+        {<<"accept">>, <<"text/event-stream">>},
+        {<<"cache-control">>, <<"no-cache">>},
+        {<<"connection">>, <<"keep-alive">>}
+    ],
+    StreamRef = gun:get(ConnPid, binary_to_list(Path), Headers),
+    case gun:await(ConnPid, StreamRef, 5000) of
+        {response, nofin, 200, _ResponseHeaders} ->
+            % SSE connection established
+            {ok, ConnPid, StreamRef, sse};
+        {response, _Fin, Status, _Headers} ->
+            gun:close(ConnPid),
+            {error, {http_error, Status}};
+        {error, Reason} ->
+            gun:close(ConnPid),
             {error, Reason}
     end.
 
@@ -460,6 +626,8 @@ handle_response(init, {ok, Result}, #state{pending_requests = Pending} = State) 
             ServerInfo = maps:get(<<"serverInfo">>, Result, #{}),
             Capabilities = maps:get(<<"capabilities">>, Result, #{}),
             
+            error_logger:info_msg("[MCP_CLIENT] Initialization successful for server ~s~n", [State#state.server_id]),
+            
             % Send initialized notification
             InitializedNotification = #{
                 <<"jsonrpc">> => <<"2.0">>,
@@ -489,6 +657,13 @@ handle_response(init, {ok, Result}, #state{pending_requests = Pending} = State) 
 handle_response(RequestId, Response, #state{pending_requests = Pending} = State) ->
     case maps:take(RequestId, Pending) of
         {From, UpdatedPending} ->
+            % Log error responses
+            case Response of
+                {error, Error} ->
+                    error_logger:error_msg("[MCP_CLIENT] Request ~s failed: ~p~n", [RequestId, Error]);
+                _ ->
+                    ok
+            end,
             gen_server:reply(From, Response),
             {noreply, State#state{pending_requests = UpdatedPending}};
         error ->
@@ -565,6 +740,48 @@ send_message(Message, #state{connection_pid = ConnPid, stream_ref = StreamRef, c
             {error, {encode_error, Reason}}
     end;
 
+send_message(Message, #state{connection_pid = ConnPid, connection_type = http_post, url = Url} = State) ->
+    % For HTTP POST connections, send directly to the URL
+    case uri_string:parse(Url) of
+        #{scheme := _Scheme, host := _Host, port := _Port, path := Path} ->
+            try
+                Data = jsx:encode(Message),
+                Headers = [
+                    {<<"content-type">>, <<"application/json">>},
+                    {<<"accept">>, <<"application/json">>}
+                ],
+                StreamRef = gun:post(ConnPid, binary_to_list(Path), Headers, Data),
+                % For initialization messages, wait for response immediately
+                case maps:get(<<"method">>, Message, undefined) of
+                    <<"initialize">> ->
+                        case gun:await(ConnPid, StreamRef, 10000) of
+                            {response, nofin, 200, ResponseHeaders} ->
+                                case gun:await_body(ConnPid, StreamRef, 5000) of
+                                    {ok, ResponseBody} ->
+                                        self() ! {http_response, ResponseBody},
+                                        ok;
+                                    {error, Reason} ->
+                                        {error, Reason}
+                                end;
+                            {response, fin, 200, ResponseHeaders} ->
+                                ok;
+                            {response, _Fin, Status, _Headers} ->
+                                {error, {http_error, Status}};
+                            {error, Reason} ->
+                                {error, Reason}
+                        end;
+                    _ ->
+                        % For other messages, don't wait for response
+                        ok
+                end
+            catch
+                _:CatchReason ->
+                    {error, {encode_error, CatchReason}}
+            end;
+        _ ->
+            {error, invalid_url}
+    end;
+
 send_message(Message, #state{connection_pid = ConnPid, connection_type = sse, url = Url}) ->
     % For SSE connections, try different approaches to send messages
     case uri_string:parse(Url) of
@@ -592,7 +809,10 @@ send_message(Message, #state{connection_pid = ConnPid, connection_type = sse, ur
             try_post_endpoints(ConnPid, PostPaths, Message);
         _ ->
             {error, invalid_url}
-    end.
+    end;
+
+send_message(Message, #state{connection_pid = ConnPid, connection_type = stdio}) ->
+    mcp_transport_stdio:send(ConnPid, Message).
 
 try_post_endpoints(_ConnPid, [], _Message) ->
     {error, no_valid_endpoint};
@@ -625,6 +845,17 @@ try_post_endpoints(ConnPid, [PostPath | RestPaths], Message) ->
 
 cleanup_connection(#state{connection_pid = undefined} = State) ->
     State;
+cleanup_connection(#state{connection_pid = ConnPid, connection_type = stdio} = State) ->
+    try
+        mcp_transport_stdio:disconnect(ConnPid)
+    catch
+        _:_ -> ok
+    end,
+    State#state{
+        connection_pid = undefined,
+        stream_ref = undefined,
+        status = disconnected
+    };
 cleanup_connection(#state{connection_pid = ConnPid} = State) ->
     try
         gun:close(ConnPid)
@@ -644,4 +875,81 @@ reply_to_pending_requests(Response, #state{pending_requests = Pending}) ->
         (_RequestId, From, _Acc) ->
             gen_server:reply(From, Response)
     end, ok, Pending).
+
+%% Helper functions for stdio transport
+
+determine_connection_type(#state{server_info = Config, url = Url}) ->
+    Metadata = maps:get(metadata, Config, #{}),
+    
+    % First check if transport is explicitly specified in metadata
+    case maps:get(<<"transport">>, Metadata, undefined) of
+        <<"stdio">> ->
+            Command = maps:get(<<"command">>, Metadata, <<"npx">>),
+            Args = maps:get(<<"args">>, Metadata, []),
+            {stdio, Command, Args};
+        _ ->
+            % If no explicit transport, check if URL looks like a command
+            case is_command_url(Url) of
+                {true, ParsedCommand, ParsedArgs} ->
+                    {stdio, ParsedCommand, ParsedArgs};
+                false ->
+                    network
+            end
+    end.
+
+is_command_url(Url) when is_binary(Url) ->
+    % Check if URL starts with common command patterns
+    case binary:match(Url, [<<"npx ">>, <<"node ">>, <<"python ">>, <<"ruby ">>, <<"bash ">>]) of
+        {0, _} ->
+            % This is a command, not a URL
+            Parts = binary:split(Url, <<" ">>, [global, trim_all]),
+            case Parts of
+                [Command | Args] -> {true, Command, Args};
+                _ -> false
+            end;
+        _ ->
+            false
+    end;
+is_command_url(_) ->
+    false.
+
+start_stdio_connection(Command, Args, From, State) ->
+    case mcp_transport_stdio:connect(Command, Args) of
+        {ok, StdioPid} ->
+            % Send initialization request for stdio
+            InitRequest = #{
+                <<"jsonrpc">> => <<"2.0">>,
+                <<"id">> => <<"init">>,
+                <<"method">> => <<"initialize">>,
+                <<"params">> => #{
+                    <<"protocolVersion">> => ?PROTOCOL_VERSION,
+                    <<"capabilities">> => #{
+                        <<"roots">> => #{
+                            <<"listChanged">> => true
+                        },
+                        <<"sampling">> => #{},
+                        <<"elicitation">> => #{}
+                    },
+                    <<"clientInfo">> => #{
+                        <<"name">> => ?CLIENT_NAME,
+                        <<"version">> => ?CLIENT_VERSION
+                    }
+                }
+            },
+            case mcp_transport_stdio:send(StdioPid, InitRequest) of
+                ok ->
+                    NewState = State#state{
+                        connection_pid = StdioPid,
+                        stream_ref = undefined,
+                        connection_type = stdio,
+                        status = connecting
+                    },
+                    {noreply, NewState#state{pending_requests = #{init => From}}};
+                {error, Reason} ->
+                    mcp_transport_stdio:disconnect(StdioPid),
+                    {reply, {error, Reason}, State#state{status = error}}
+            end;
+        {error, Reason} ->
+            {reply, {error, Reason}, State#state{status = error}}
+    end.
 

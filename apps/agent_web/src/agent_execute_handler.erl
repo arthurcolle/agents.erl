@@ -11,7 +11,16 @@ init(Req0 = #{method := <<"POST">>}, State) ->
             NormalizedId = normalize_agent_id(AgentId),
             case agent_registry:find_agent(NormalizedId) of
                 {ok, Pid} ->
+                    % Log the action request
+                    ConversationId = <<"http_", AgentId/binary>>,
+                    conversation_stats_logger:log_message(ConversationId, NormalizedId, <<"user">>, 
+                        #{action => Action, params => Params}),
+                    
                     Result = execute_action(Pid, Action, Params),
+                    
+                    % Log the response
+                    conversation_stats_logger:log_message(ConversationId, NormalizedId, <<"agent">>, Result),
+                    
                     Response = jsx:encode(#{result => Result}),
                     Req = cowboy_req:reply(200, #{
                         <<"content-type">> => <<"application/json">>
@@ -29,7 +38,7 @@ init(Req0 = #{method := <<"POST">>}, State) ->
     {ok, Req, State};
 
 init(Req0, State) ->
-    Req = cowboy_req:reply(405, #{}, Req0),
+    Req = cowboy_req:reply(405, #{}, <<>>, Req0),
     {ok, Req, State}.
 
 execute_action(Pid, <<"chat">>, #{<<"message">> := Message}) ->

@@ -1,0 +1,71 @@
+%% API Keys Configuration File (Example)
+%% Copy this file to api_keys.config and fill in your actual API keys
+%% DO NOT COMMIT api_keys.config TO VERSION CONTROL
+
+[
+    %% OpenAI Configuration
+    {openai, [
+        {api_key, "sk-YOUR-OPENAI-API-KEY"},
+        {organization, "org-YOUR-ORG-ID"},
+        {description, "OpenAI API for GPT models"}
+    ]},
+    
+    %% Anthropic Configuration
+    {anthropic, [
+        {api_key, "sk-ant-YOUR-ANTHROPIC-KEY"},
+        {description, "Anthropic API for Claude models"}
+    ]},
+    
+    %% Slack Configuration
+    {slack, [
+        {app_id, "YOUR-APP-ID"},
+        {client_id, "YOUR-CLIENT-ID"},
+        {client_secret, "YOUR-CLIENT-SECRET"},
+        {signing_secret, "YOUR-SIGNING-SECRET"},
+        {verification_token, "YOUR-VERIFICATION-TOKEN"},
+        {bot_token, "xoxb-YOUR-BOT-TOKEN"},
+        {team_id, "T-YOUR-TEAM-ID"},
+        {description, "Slack integration for team communication"}
+    ]},
+    
+    %% Linear Configuration
+    {linear, [
+        {api_key, "lin_api_YOUR-LINEAR-KEY"},
+        {description, "Linear issue tracking integration"}
+    ]},
+    
+    %% Plaid Configuration
+    {plaid, [
+        {client_id, "YOUR-PLAID-CLIENT-ID"},
+        {secret, "YOUR-PLAID-SECRET"},
+        {environment, "sandbox"},
+        {description, "Plaid financial services integration"}
+    ]},
+    
+    %% Graphlit Configuration
+    {graphlit, [
+        {api_key, "YOUR-GRAPHLIT-KEY"},
+        {description, "Graphlit knowledge graph integration"}
+    ]},
+    
+    %% GitHub Configuration
+    {github, [
+        {token, "ghp_YOUR-GITHUB-TOKEN"},
+        {description, "GitHub repository integration"}
+    ]},
+    
+    %% Jina Configuration
+    {jina, [
+        {api_key, "jina_YOUR-JINA-KEY"},
+        {description, "Jina AI search and embeddings"}
+    ]},
+    
+    %% Pipedream Configuration
+    {pipedream, [
+        {client_id, "YOUR-PIPEDREAM-CLIENT-ID"},
+        {client_secret, "YOUR-PIPEDREAM-CLIENT-SECRET"},
+        {redirect_uri, "http://localhost:8080/api/pipedream/oauth/callback"},
+        {scope, "read:apps write:apps read:workflows write:workflows"},
+        {description, "Pipedream workflow automation and app integration"}
+    ]}
+].

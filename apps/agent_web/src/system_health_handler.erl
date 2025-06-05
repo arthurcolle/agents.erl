@@ -7,14 +7,29 @@ init(Req0, State) ->
     {ok, handle_request(Method, Req0), State}.
 
 handle_request(<<"GET">>, Req) ->
-    SystemStatus = get_system_status(),
-    ResponseBody = jsx:encode(SystemStatus),
-    cowboy_req:reply(200, #{
-        <<"content-type">> => <<"application/json">>,
-        <<"access-control-allow-origin">> => <<"*">>,
-        <<"access-control-allow-methods">> => <<"GET, POST, OPTIONS">>,
-        <<"access-control-allow-headers">> => <<"content-type">>
-    }, ResponseBody, Req);
+    Path = cowboy_req:path(Req),
+    case Path of
+        <<"/api/system/metrics">> ->
+            % Return simplified metrics for dashboard
+            Metrics = get_simple_metrics(),
+            ResponseBody = jsx:encode(Metrics),
+            cowboy_req:reply(200, #{
+                <<"content-type">> => <<"application/json">>,
+                <<"access-control-allow-origin">> => <<"*">>,
+                <<"access-control-allow-methods">> => <<"GET, POST, OPTIONS">>,
+                <<"access-control-allow-headers">> => <<"content-type">>
+            }, ResponseBody, Req);
+        _ ->
+            % Return full system status
+            SystemStatus = get_system_status(),
+            ResponseBody = jsx:encode(SystemStatus),
+            cowboy_req:reply(200, #{
+                <<"content-type">> => <<"application/json">>,
+                <<"access-control-allow-origin">> => <<"*">>,
+                <<"access-control-allow-methods">> => <<"GET, POST, OPTIONS">>,
+                <<"access-control-allow-headers">> => <<"content-type">>
+            }, ResponseBody, Req)
+    end;
 
 handle_request(<<"OPTIONS">>, Req) ->
     cowboy_req:reply(200, #{
@@ -25,6 +40,27 @@ handle_request(<<"OPTIONS">>, Req) ->
 
 handle_request(_, Req) ->
     cowboy_req:reply(405, #{}, <<"Method not allowed">>, Req).
+
+get_simple_metrics() ->
+    % Get basic metrics for dashboard refresh
+    MemoryInfo = erlang:memory(),
+    TotalMem = proplists:get_value(total, MemoryInfo),
+    ProcessMem = proplists:get_value(processes, MemoryInfo),
+    
+    % Calculate simple CPU usage approximation based on process count and reduction rate
+    ProcessCount = erlang:system_info(process_count),
+    MaxProcesses = erlang:system_info(process_limit),
+    CpuUsage = min(90, round((ProcessCount / MaxProcesses) * 100)),
+    
+    % Calculate memory usage percentage
+    MemoryUsage = round((ProcessMem / TotalMem) * 100),
+    
+    #{
+        <<"cpuUsage">> => CpuUsage,
+        <<"memoryUsage">> => MemoryUsage,
+        <<"processCount">> => ProcessCount,
+        <<"timestamp">> => erlang:system_time(millisecond)
+    }.
 
 get_system_status() ->
     % Check critical processes

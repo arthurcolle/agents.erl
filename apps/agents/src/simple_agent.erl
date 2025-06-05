@@ -92,8 +92,20 @@ chat_stream(Message, Options) ->
 %% Helper function to handle streaming response
 handle_stream_response() ->
     receive
-        {stream_chunk, Content} ->
-            io:format("~s", [Content]),
+        {stream_chunk, Event} ->
+            % Extract and display content from the streaming event
+            case extract_content_from_event(Event) of
+                <<>> -> ok; % No content to display
+                Content ->
+                    % Use io:format with UTF-8 string formatting for safer terminal output
+                    try
+                        io:format("~ts", [Content])
+                    catch
+                        _:_ ->
+                            % Fallback to binary output if UTF-8 fails
+                            io:put_chars(Content)
+                    end
+            end,
             handle_stream_response();
             
         stream_complete ->
@@ -108,6 +120,14 @@ handle_stream_response() ->
         io:format("~nStreaming timeout~n"),
         {error, timeout}
     end.
+
+%% Helper to extract content from streaming events
+extract_content_from_event(#{type := content, data := Data}) ->
+    Data;
+extract_content_from_event(#{type := text_delta, data := Data}) ->
+    Data;
+extract_content_from_event(_) ->
+    <<>>.
 
 %% Helper function to extract content from response
 extract_message_content(Response) ->

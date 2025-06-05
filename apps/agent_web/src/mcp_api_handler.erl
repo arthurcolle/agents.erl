@@ -83,6 +83,12 @@ handle_request(<<"GET">>, PathInfo, Req0, State) when PathInfo =:= [] orelse Pat
                     Req = cowboy_req:reply(500, cors_json_headers(), Response, Req0),
                     {ok, Req, State}
             end;
+        <<"/api/mcp/servers">> ->
+            % Get all registered MCP servers - explicit path handling
+            Servers = mcp_registry:list_servers(),
+            Response = jsx:encode(#{servers => Servers}),
+            Req = cowboy_req:reply(200, cors_json_headers(), Response, Req0),
+            {ok, Req, State};
         _ ->
             % Default: Get all registered MCP servers
             Servers = mcp_registry:list_servers(),
@@ -167,7 +173,7 @@ handle_request(<<"GET">>, [ServerId, <<"tools">>], Req0, State) ->
 
 handle_request(<<"POST">>, [ServerId, <<"connect">>], Req0, State) ->
     % Connect to MCP server
-    case mcp_connection_manager:connect_server(ServerId) of
+    case catch mcp_connection_manager:connect_server(ServerId) of
         {ok, _Pid} ->
             Response = jsx:encode(#{status => <<"connected">>}),
             Req = cowboy_req:reply(200, cors_json_headers(), Response, Req0),
@@ -176,10 +182,16 @@ handle_request(<<"POST">>, [ServerId, <<"connect">>], Req0, State) ->
             ReasonBin = case Reason of
                 already_connected -> <<"already_connected">>;
                 server_not_found -> <<"server_not_found">>;
+                {method_not_allowed, _} -> <<"SSE endpoints not supported yet - use HTTP/JSON endpoints">>;
                 _ -> iolist_to_binary(io_lib:format("~p", [Reason]))
             end,
             Response = jsx:encode(#{status => <<"error">>, error => ReasonBin}),
-            Req = cowboy_req:reply(400, cors_json_headers(), Response, Req0),
+            Req = cowboy_req:reply(200, cors_json_headers(), Response, Req0), % Return 200 with error for UI
+            {ok, Req, State};
+        Error ->
+            ReasonBin = iolist_to_binary(io_lib:format("Connection failed: ~p", [Error])),
+            Response = jsx:encode(#{status => <<"error">>, error => ReasonBin}),
+            Req = cowboy_req:reply(200, cors_json_headers(), Response, Req0),
             {ok, Req, State}
     end;
 

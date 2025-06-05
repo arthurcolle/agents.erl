@@ -368,9 +368,11 @@ format_image_input(Image) ->
     #{<<"image">> => process_image(Image)}.
 
 make_request(Method, Url, Headers, Body) ->
-    % Ensure inets is started
-    application:ensure_started(inets),
-    application:ensure_started(ssl),
+    % Ensure required applications are started with proper error handling
+    ok = ensure_app_started(inets),
+    ok = ensure_app_started(ssl),
+    ok = ensure_app_started(crypto),
+    ok = ensure_app_started(public_key),
     
     RequestOpts = [
         {timeout, ?DEFAULT_TIMEOUT},
@@ -509,3 +511,15 @@ parse_deep_search_response(#{<<"choices">> := [Choice | _]}) ->
     }};
 parse_deep_search_response(Other) ->
     {ok, Other}.
+
+%% Helper to ensure applications are started
+ensure_app_started(App) ->
+    case application:start(App) of
+        ok -> ok;
+        {error, {already_started, App}} -> ok;
+        {error, {not_started, Dep}} ->
+            ok = ensure_app_started(Dep),
+            ensure_app_started(App);
+        {error, Reason} ->
+            error({app_start_failed, App, Reason})
+    end.

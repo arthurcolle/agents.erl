@@ -21,7 +21,8 @@ agent_registry_test_() ->
             
             % List agents should include our session
             Agents = agent_registry:list_agents(),
-            ?assert(lists:member(SessionId, Agents)),
+            SessionIds = [Id || {Id, _Pid, _Meta} <- Agents],
+            ?assert(lists:member(SessionId, SessionIds)),
             
             % Get agent should return our pid
             ?assertMatch({ok, Self}, agent_registry:get_agent(SessionId)),
@@ -38,7 +39,8 @@ agent_registry_test_() ->
             ok = agent_registry:unregister_agent(SessionId),
             timer:sleep(100),
             Agents2 = agent_registry:list_agents(),
-            ?assertNot(lists:member(SessionId, Agents2)),
+            SessionIds2 = [Id || {Id, _Pid, _Meta} <- Agents2],
+            ?assertNot(lists:member(SessionId, SessionIds2)),
             
             % get_agent now returns error
             ?assertMatch({error, agent_not_found}, agent_registry:get_agent(SessionId)),

@@ -1,6 +1,6 @@
-# Erlang Agent System - Modern UI with shadcn/ui
+# Distributed Systems - Modern UI with shadcn/ui
 
-This is a modern React-based frontend for the Erlang Agent System, built with shadcn/ui components for a beautiful and consistent UI.
+This is a modern React-based frontend for the Distributed Systems framework, built with shadcn/ui components for a beautiful and consistent UI.
 
 ## Features
 

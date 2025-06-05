@@ -26,6 +26,7 @@
     get_info/1,
     chat/2,
     stream_chat/2,
+    stream_chat/3,
     subscribe/2,
     process_task/2,
     run_agent/2,
@@ -38,7 +39,19 @@
     execute_tool/3,
     list_available_endpoints/0,
     ensure_api_client/1,
-    ensure_anthropic_client/0
+    ensure_anthropic_client/0,
+    
+    %% Dynamic system augmentation
+    create_supervisor/2,
+    create_supervisor/3,
+    add_subsystem/3,
+    augment_system/2,
+    get_system_tree/0,
+    
+    %% Deep reflection
+    create_reflective_agent/1,
+    enable_deep_reflection/1,
+    get_reflection_report/1
 ]).
 
 %% Internal exports for spawned processes
@@ -215,18 +228,18 @@ run_agent_with_mcp(Prompt, AgentId, ToolNames, Options) ->
                 {agent_error, SessionId, Error} ->
                     % Clean up registration
                     unregister_agent(SessionId),
-                    {error, Error}
+                    {error, human_error_formatter:format_error(Error)}
             after Timeout ->
                 % Clean up registration
                 unregister_agent(SessionId),
-                {error, timeout}
+                {error, human_error_formatter:format_error(timeout)}
             end;
         {error, Reason} ->
-            {error, {mcp_server_error, Reason}}
+            {error, human_error_formatter:format_mcp_error(Reason)}
     end.
 
 %% MCP agent process
-mcp_agent_process(Parent, SessionId, Model, MaxTokens, Messages, McpServers, Options, Timeout) ->
+mcp_agent_process(Parent, SessionId, Model, MaxTokens, Messages, McpServers, Options, _Timeout) ->
     try
         % Make request to Anthropic with MCP servers
         Result = anthropic_client:create_message_with_mcp(
@@ -256,14 +269,14 @@ mcp_agent_process(Parent, SessionId, Model, MaxTokens, Messages, McpServers, Opt
                                         FinalContent = extract_anthropic_content(FinalResponse),
                                         Parent ! {agent_response, SessionId, {ok, FinalContent}};
                                     {error, FinalError} ->
-                                        Parent ! {agent_error, SessionId, FinalError}
+                                        Parent ! {agent_error, SessionId, {anthropic_error, FinalError}}
                                 end;
                             {error, ToolError} ->
                                 Parent ! {agent_error, SessionId, {tool_execution_error, ToolError}}
                         end
                 end;
             {error, Error} ->
-                Parent ! {agent_error, SessionId, Error}
+                Parent ! {agent_error, SessionId, {anthropic_error, Error}}
         end
     catch
         E:R:S ->
@@ -320,11 +333,12 @@ execute_mcp_tool_calls(ToolCalls) ->
                         content => [#{type => <<"text">>, text => Result}]
                     };
                 {error, Error} ->
+                    HumanError = human_error_formatter:format_tool_error(Error),
                     #{
                         type => <<"mcp_tool_result">>,
                         tool_use_id => ToolUseId,
                         is_error => true,
-                        content => [#{type => <<"text">>, text => io_lib:format("Error: ~p", [Error])}]
+                        content => [#{type => <<"text">>, text => HumanError}]
                     }
             end
         end, ToolCalls),
@@ -424,6 +438,76 @@ init([]) ->
             shutdown => 5000,
             type => worker,
             modules => [agent_collaboration]
+        },
+        
+        % Knowledge base retrieval system
+        #{
+            id => knowledge_base_retrieval,
+            start => {knowledge_base_retrieval, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [knowledge_base_retrieval]
+        },
+        
+        % Model Selection Strategy - Dynamic model assignment and load balancing
+        #{
+            id => model_selection_strategy,
+            start => {model_selection_strategy, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [model_selection_strategy]
+        },
+        
+        % Specialized Agent Factory - Creates domain-specific agents
+        #{
+            id => specialized_agent_factory,
+            start => {specialized_agent_factory, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [specialized_agent_factory]
+        },
+        
+        % Meta-System Supervisor - Top-level abstraction layer
+        #{
+            id => meta_system_sup,
+            start => {meta_system_sup, start_link, []},
+            restart => permanent,
+            shutdown => infinity,
+            type => supervisor,
+            modules => [meta_system_sup]
+        },
+        
+        % Pipedream Tool Integration - Integrates Pipedream MCP tools with agent system
+        #{
+            id => pipedream_tool_integration,
+            start => {pipedream_tool_integration, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [pipedream_tool_integration]
+        },
+        
+        % Dynamic Supervisor Manager - Manages dynamic supervisor creation
+        #{
+            id => dynamic_supervisor_manager,
+            start => {dynamic_supervisor_manager, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [dynamic_supervisor_manager]
+        },
+        
+        % System Introspection - Provides system-wide introspection capabilities
+        #{
+            id => system_introspection,
+            start => {system_introspection, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [system_introspection]
         }
     ],
     
@@ -480,7 +564,7 @@ agent_process(Parent, SessionId, Prompt, ToolNames, Options) ->
             {ok, FinalResponse} ->
                 Parent ! {agent_response, SessionId, FinalResponse};
             {error, Error} ->
-                Parent ! {agent_error, SessionId, Error}
+                Parent ! {agent_error, SessionId, {anthropic_error, Error}}
         end
     catch
         E:R:S ->
@@ -489,7 +573,7 @@ agent_process(Parent, SessionId, Prompt, ToolNames, Options) ->
 
 %% Get tool schemas for the specified tool names
 get_tool_schemas(ToolNames) ->
-    agent_tools:get_tools(ToolNames).
+    agent_tools:get_enhanced_tools(ToolNames).
 
 %% Extract tool calls from the response
 extract_tool_calls(Response) ->
@@ -624,33 +708,12 @@ stream_chat(Pid, Message) when is_pid(Pid) ->
 
 %% Stream chat with an agent, sending updates to a specific subscriber
 stream_chat(Pid, Message, SubscriberPid) when is_pid(Pid), is_pid(SubscriberPid) ->
-    case catch agent_instance:execute(Pid, #{
+    % Use the new streaming execute function
+    agent_instance:stream_execute(Pid, #{
         action => <<"chat">>,
         message => ensure_binary(Message)
-    }) of
-        {ok, Response} ->
-            % Send stream start notification
-            SubscriberPid ! {stream_start, #{agent_id => Pid}},
-            % Stream the response in chunks
-            case Response of
-                #{message := Msg} ->
-                    Chunks = split_into_chunks(ensure_string(Msg), 20),
-                    lists:foreach(fun(Chunk) ->
-                        % Send stream tokens to subscriber
-                        SubscriberPid ! {stream_token, list_to_binary(Chunk)},
-                        timer:sleep(50)  % Simulate streaming delay for better UX
-                    end, Chunks),
-                    SubscriberPid ! {stream_complete, Response},
-                    ok;
-                _ ->
-                    % If no message field, send the whole response
-                    SubscriberPid ! {stream_complete, Response},
-                    ok
-            end;
-        Error ->
-            SubscriberPid ! {stream_error, Error},
-            {error, Error}
-    end.
+    }, SubscriberPid),
+    ok.
 
 %% Subscribe to agent events
 subscribe(Pid, SubscriberPid) when is_pid(Pid), is_pid(SubscriberPid) ->
@@ -678,18 +741,192 @@ ensure_binary(Value) when is_list(Value) -> list_to_binary(Value);
 ensure_binary(Value) when is_atom(Value) -> atom_to_binary(Value, utf8);
 ensure_binary(Value) -> list_to_binary(io_lib:format("~p", [Value])).
 
-ensure_string(Value) when is_list(Value) -> Value;
-ensure_string(Value) when is_binary(Value) -> binary_to_list(Value);
-ensure_string(Value) when is_atom(Value) -> atom_to_list(Value);
-ensure_string(Value) -> io_lib:format("~p", [Value]).
 
-split_into_chunks(Text, ChunkSize) ->
-    split_into_chunks(Text, ChunkSize, []).
+%%%===================================================================
+%%% Dynamic System Augmentation Functions
+%%%===================================================================
 
-split_into_chunks([], _ChunkSize, Acc) ->
-    lists:reverse(Acc);
-split_into_chunks(Text, ChunkSize, Acc) when length(Text) =< ChunkSize ->
-    lists:reverse([Text | Acc]);
-split_into_chunks(Text, ChunkSize, Acc) ->
-    {Chunk, Rest} = lists:split(ChunkSize, Text),
-    split_into_chunks(Rest, ChunkSize, [Chunk | Acc]).
+%% @doc Create a new supervisor with default strategy
+create_supervisor(Name, Children) ->
+    create_supervisor(Name, one_for_one, Children).
+
+%% @doc Create a new supervisor with specified strategy
+create_supervisor(Name, Strategy, Children) when is_atom(Name), is_atom(Strategy) ->
+    case agent_dynamic_system:create_supervisor(Name, Strategy, Children) of
+        {ok, Pid} ->
+            colored_logger:quantum(superposition, io_lib:format("🎆 [AGENT] Created supervisor ~p with PID ~p", [Name, Pid])),
+            {ok, Pid};
+        Error ->
+            colored_logger:fire(inferno, io_lib:format("☠️ [AGENT] Failed to create supervisor ~p: ~p", [Name, Error])),
+            Error
+    end.
+
+%% @doc Add a subsystem (supervisor + children) to the system
+add_subsystem(Name, Components, Options) ->
+    Strategy = maps:get(strategy, Options, one_for_one),
+    Children = build_child_specs(Components),
+    
+    case create_supervisor(Name, Strategy, Children) of
+        {ok, SupPid} ->
+            %% Register subsystem for agent access
+            register_subsystem(Name, SupPid, Components),
+            {ok, SupPid};
+        Error ->
+            Error
+    end.
+
+%% @doc General system augmentation function for agents
+augment_system(_AgentPid, Augmentation) ->
+    case Augmentation of
+        #{type := supervisor} = Spec ->
+            Name = maps:get(name, Spec, generate_supervisor_name()),
+            Strategy = maps:get(strategy, Spec, one_for_one),
+            Children = maps:get(children, Spec, []),
+            create_supervisor(Name, Strategy, Children);
+            
+        #{type := subsystem} = Spec ->
+            Name = maps:get(name, Spec, generate_subsystem_name()),
+            Components = maps:get(components, Spec, []),
+            Options = maps:get(options, Spec, #{}),
+            add_subsystem(Name, Components, Options);
+            
+        #{type := worker, supervisor := SupName} = Spec ->
+            WorkerSpec = build_worker_spec(Spec),
+            agent_dynamic_system:add_worker(SupName, maps:get(id, WorkerSpec), WorkerSpec);
+            
+        _ ->
+            {error, invalid_augmentation_spec}
+    end.
+
+%% @doc Get the current system supervision tree
+get_system_tree() ->
+    %% Get all supervisors
+    Supervisors = agent_dynamic_system:list_supervisors(),
+    
+    %% Build complete tree
+    Tree = lists:map(fun({Name, _Pid}) ->
+        case agent_dynamic_system:get_supervisor_tree(Name) of
+            {ok, Children} ->
+                #{name => Name, children => Children};
+            _ ->
+                #{name => Name, children => []}
+        end
+    end, Supervisors),
+    
+    %% Include the main application supervisors
+    MainSupervisors = [
+        agent_supervisor,
+        agent_web_sup,
+        openai_sup
+    ],
+    
+    AllTrees = Tree ++ lists:filtermap(fun(SupName) ->
+        case whereis(SupName) of
+            undefined -> false;
+            Pid ->
+                Children = supervisor:which_children(Pid),
+                {true, #{name => SupName, children => format_children(Children)}}
+        end
+    end, MainSupervisors),
+    
+    {ok, AllTrees}.
+
+%%%===================================================================
+%%% Internal functions for dynamic system augmentation
+%%%===================================================================
+
+build_child_specs(Components) ->
+    lists:map(fun(Component) ->
+        case Component of
+            #{type := worker} = W ->
+                #{
+                    id => maps:get(id, W),
+                    start => maps:get(start, W),
+                    restart => maps:get(restart, W, permanent),
+                    shutdown => maps:get(shutdown, W, 5000),
+                    type => worker
+                };
+            #{type := supervisor} = S ->
+                #{
+                    id => maps:get(id, S),
+                    start => {supervisor, start_link, [
+                        {local, maps:get(id, S)},
+                        ?MODULE,
+                        maps:get(children, S, [])
+                    ]},
+                    restart => permanent,
+                    shutdown => infinity,
+                    type => supervisor
+                }
+        end
+    end, Components).
+
+build_worker_spec(#{module := Module} = Spec) ->
+    #{
+        id => maps:get(id, Spec, Module),
+        start => {Module, maps:get(function, Spec, start_link), maps:get(args, Spec, [])},
+        restart => maps:get(restart, Spec, permanent),
+        shutdown => maps:get(shutdown, Spec, 5000),
+        type => worker
+    }.
+
+register_subsystem(Name, Pid, Components) ->
+    %% Could store in ETS or process dictionary for tracking
+    put({subsystem, Name}, {Pid, Components}).
+
+generate_supervisor_name() ->
+    list_to_atom("dynamic_sup_" ++ integer_to_list(erlang:unique_integer([positive]))).
+
+generate_subsystem_name() ->
+    list_to_atom("dynamic_subsystem_" ++ integer_to_list(erlang:unique_integer([positive]))).
+
+format_children(Children) ->
+    lists:map(fun({Id, Pid, Type, _Modules}) ->
+        #{id => Id, pid => Pid, type => Type}
+    end, Children).
+
+%%%===================================================================
+%%% Deep Reflection Functions
+%%%===================================================================
+
+%% @doc Create an agent with deep reflection capabilities
+create_reflective_agent(Config) ->
+    %% Start a reflective agent instance
+    ChildSpec = #{
+        id => make_ref(),
+        start => {reflective_agent_instance, start_link, [Config]},
+        restart => temporary,
+        shutdown => 5000,
+        type => worker,
+        modules => [reflective_agent_instance]
+    },
+    
+    case supervisor:start_child(agent_supervisor, ChildSpec) of
+        {ok, Pid} ->
+            colored_logger:cosmic(supernova, io_lib:format("✨ [AGENT] Created reflective agent ~p", [Pid])),
+            {ok, Pid};
+        Error ->
+            Error
+    end.
+
+%% @doc Enable deep reflection for an existing agent
+enable_deep_reflection(AgentPid) when is_pid(AgentPid) ->
+    %% Check if this is already a reflective agent
+    case erlang:function_exported(reflective_agent_instance, enable_deep_reflection, 1) of
+        true ->
+            reflective_agent_instance:enable_deep_reflection(AgentPid);
+        false ->
+            %% Regular agent - need to wrap it
+            {error, not_reflective_agent}
+    end.
+
+%% @doc Get reflection report from an agent
+get_reflection_report(AgentPid) when is_pid(AgentPid) ->
+    try
+        reflective_agent_instance:get_reflection_report(AgentPid)
+    catch
+        exit:{noproc, _} ->
+            {error, agent_not_found};
+        _:_ ->
+            {error, not_reflective_agent}
+    end.

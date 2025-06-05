@@ -1,0 +1,4 @@
+interaction_id,tool_calls,efficiency_score,completion_score,task_type
+31203e8e-03ea-4820-b614-85fa2851c099,0,1.0,1.0,factorization
+dea0dd1d-6ea0-44a5-888c-d954b08ddca9,2,0.8,1.0,general
+b81f0dab-a3f0-49e0-b685-8421a86200a5,2,0.8,1.0,coding

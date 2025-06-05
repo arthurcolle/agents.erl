@@ -36,13 +36,13 @@
 %%====================================================================
 
 start_link() ->
-    io:format("[MCP_LOG] Starting advanced MCP logger~n"),
+    colored_logger:startup("Starting advanced MCP logger", []),
     case gen_server:start_link({local, ?MODULE}, ?MODULE, [], []) of
         {ok, Pid} ->
-            io:format("[MCP_LOG] Advanced logger started successfully with PID ~p~n", [Pid]),
+            colored_logger:success("Advanced logger started successfully with PID ~p", [Pid]),
             {ok, Pid};
         {error, Reason} ->
-            io:format("[ERROR] Failed to start MCP advanced logger: ~p~n", [Reason]),
+            colored_logger:error("Failed to start MCP advanced logger: ~p", [Reason]),
             {error, Reason}
     end.
 
@@ -219,7 +219,7 @@ handle_info(_Info, State) ->
     {noreply, State}.
 
 terminate(_Reason, _State) ->
-    io:format("[MCP_LOG] Advanced logger shutting down~n"),
+    colored_logger:warning("Advanced logger shutting down", []),
     ok.
 
 code_change(_OldVsn, State, _Extra) ->
@@ -296,8 +296,14 @@ maybe_log_to_console(Event, State) ->
     
     case ShouldLog of
         true ->
-            FormattedEvent = format_event(Event),
-            io:format("[MCP_LOG] ~s~n", [FormattedEvent]);
+            % Use colored logging based on event level and type
+            LogLevel = determine_log_level(Event),
+            Details = format_details(Event#event.details),
+            ServerId = case Event#event.server_id of
+                undefined -> "SYSTEM";
+                Id -> binary_to_list(Id)
+            end,
+            colored_logger:log(LogLevel, "MCP_LOG", "~s: ~s", [ServerId, Details]);
         false -> ok
     end.
 
@@ -392,3 +398,23 @@ format_prometheus_performance_metrics(PerfStats) ->
 get_uptime_seconds() ->
     {UpTime, _} = erlang:statistics(wall_clock),
     UpTime div 1000.
+
+%% Determine appropriate log level based on event type and details
+determine_log_level(Event) ->
+    case Event#event.level of
+        error -> error;
+        warning -> warning;
+        _ ->
+            case Event#event.type of
+                connection ->
+                    case maps:get(event_type, Event#event.details, undefined) of
+                        connected -> success;
+                        disconnected -> warning;
+                        connection_failed -> error;
+                        _ -> info
+                    end;
+                discovery -> info;
+                performance -> debug;
+                _ -> info
+            end
+    end.

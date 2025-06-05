@@ -18,8 +18,8 @@ interface UserBehavior {
 interface AIPersonalization {
   uiDensity: 'minimal' | 'standard' | 'detailed';
   colorScheme: 'auto' | 'light' | 'dark' | 'high-contrast';
-  layoutStyle: 'traditional' | 'modern' | 'experimental';
-  interactionMode: 'novice' | 'intermediate' | 'expert';
+  layoutStyle: 'traditional' | 'modern' | 'experimental' | 'cards' | 'list' | 'grid';
+  interactionMode: 'novice' | 'intermediate' | 'expert' | 'click' | 'hover' | 'voice';
   assistanceLevel: 'none' | 'contextual' | 'proactive';
   cognitiveSupport: boolean;
 }
@@ -213,11 +213,11 @@ const AdaptiveAIInterface: React.FC = () => {
       const adaptationRate = 0.1; // Gradual adaptation
       return {
         ...prev,
-        uiDensity: Math.random() < adaptationRate ? newAdaptations.uiDensity : prev.uiDensity,
-        colorScheme: Math.random() < adaptationRate ? newAdaptations.colorScheme : prev.colorScheme,
-        layoutStyle: Math.random() < adaptationRate ? newAdaptations.layoutStyle : prev.layoutStyle,
-        interactionMode: Math.random() < adaptationRate ? newAdaptations.interactionMode : prev.interactionMode,
-        assistanceLevel: Math.random() < adaptationRate ? newAdaptations.assistanceLevel : prev.assistanceLevel,
+        uiDensity: (Math.random() < adaptationRate ? newAdaptations.uiDensity : prev.uiDensity) as "minimal" | "standard" | "detailed",
+        colorScheme: (Math.random() < adaptationRate ? newAdaptations.colorScheme : prev.colorScheme) as "light" | "dark" | "high-contrast",
+        layoutStyle: (Math.random() < adaptationRate ? newAdaptations.layoutStyle : prev.layoutStyle) as "cards" | "list" | "grid",
+        interactionMode: (Math.random() < adaptationRate ? newAdaptations.interactionMode : prev.interactionMode) as "click" | "hover" | "voice",
+        assistanceLevel: (Math.random() < adaptationRate ? newAdaptations.assistanceLevel : prev.assistanceLevel) as "none" | "contextual" | "proactive",
         cognitiveSupport: Math.random() < adaptationRate ? newAdaptations.cognitiveSupport : prev.cognitiveSupport
       };
     });
@@ -515,7 +515,7 @@ const AdaptiveAIInterface: React.FC = () => {
                   <div className="text-xs text-gray-600">
                     Confidence: {(need.confidence * 100).toFixed(1)}%
                   </div>
-                  <Badge size="sm" variant={need.urgency === 'high' ? 'destructive' : 'secondary'}>
+                  <Badge variant={need.urgency === 'high' ? 'destructive' : 'secondary'}>
                     {need.urgency}
                   </Badge>
                 </div>

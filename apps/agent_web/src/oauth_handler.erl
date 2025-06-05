@@ -8,7 +8,7 @@
 -module(oauth_handler).
 
 -export([init/2, handle_oauth_callback/3, 
-         store_token/3, get_token/2, revoke_token/2]).
+         store_token/3, get_token/2, revoke_token/2, init_oauth_system/0]).
 
 -include_lib("stdlib/include/qlc.hrl").
 
@@ -376,7 +376,7 @@ get_user_id_from_request(Req) ->
     case cowboy_req:header(<<"x-user-id">>, Req) of
         undefined -> 
             % Generate temporary user ID for demo purposes
-            list_to_binary(uuid:to_string(uuid:uuid4()));
+            list_to_binary(agent_uuid:to_string(agent_uuid:uuid4()));
         UserId -> UserId
     end.
 

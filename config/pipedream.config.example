@@ -1,0 +1,57 @@
+%% Pipedream MCP Configuration Example
+%% Copy this file to pipedream.config and update with your credentials
+
+[
+  {pipedream_config, [
+    %% Pipedream Connect OAuth Credentials
+    %% Get these from your Pipedream Connect dashboard
+    {client_id, "your_pipedream_client_id_here"},
+    {client_secret, "your_pipedream_client_secret_here"},
+    {project_id, "proj_xxxxxxxxxxxxxxxx"},
+    
+    %% Environment (development or production)
+    {environment, "development"},
+    
+    %% Remote MCP Server URL (default is Pipedream's hosted service)
+    {base_url, "https://remote.mcp.pipedream.net"},
+    
+    %% Tool Mode Configuration
+    %% "sub-agent" - Let Pipedream handle tool configuration with AI
+    %% "tools-only" - Handle all tool configuration yourself
+    {default_tool_mode, "tools-only"},
+    
+    %% Autodiscovery Settings
+    {autodiscovery_enabled, true},
+    {discovery_interval_minutes, 60},
+    
+    %% Popular apps to prioritize in autodiscovery
+    {priority_apps, [
+      "gmail", "slack", "notion", "google_sheets", "github",
+      "discord", "trello", "airtable", "linear", "asana",
+      "calendly", "dropbox", "hubspot", "salesforce", "stripe",
+      "mailchimp", "shopify", "zoom", "microsoft_teams", "jira"
+    ]},
+    
+    %% Rate limiting
+    {max_concurrent_requests, 10},
+    {request_timeout_ms, 30000},
+    
+    %% Caching
+    {cache_tool_definitions, true},
+    {cache_expiry_minutes, 30},
+    
+    %% Logging
+    {log_requests, true},
+    {log_responses, false}, % Set to true for debugging
+    {log_tool_executions, true}
+  ]}
+].
+
+%% Environment Variables (alternative to config file):
+%% 
+%% export PIPEDREAM_CLIENT_ID="your_client_id"
+%% export PIPEDREAM_CLIENT_SECRET="your_client_secret"  
+%% export PIPEDREAM_PROJECT_ID="proj_xxxxxxxxxxxxxxxx"
+%% export PIPEDREAM_ENVIRONMENT="development"
+%%
+%% The modules will check environment variables first, then fall back to config file.

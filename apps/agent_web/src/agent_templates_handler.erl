@@ -34,5 +34,5 @@ init(Req0 = #{method := <<"POST">>}, State) ->
     {ok, Req, State};
 
 init(Req0, State) ->
-    Req = cowboy_req:reply(405, #{}, Req0),
+    Req = cowboy_req:reply(405, #{}, <<>>, Req0),
     {ok, Req, State}.

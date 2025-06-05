@@ -44,7 +44,7 @@ export default function CreateAgentDialog({ onCreateAgent }: CreateAgentDialogPr
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size="sm">
+        <Button size="sm" data-create-agent>
           <Plus className="h-4 w-4 mr-1" />
           New Agent
         </Button>
@@ -67,20 +67,55 @@ export default function CreateAgentDialog({ onCreateAgent }: CreateAgentDialogPr
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="simple">Simple Agent</SelectItem>
-                <SelectItem value="ai">AI Agent (GPT-4)</SelectItem>
-                <SelectItem value="researcher">Research Assistant (GPT-4)</SelectItem>
-                <SelectItem value="coder">Code Assistant (GPT-4)</SelectItem>
-                <SelectItem value="analyst">Data Analyst (GPT-4)</SelectItem>
-                <SelectItem value="advanced_researcher">Advanced Research Agent (GPT-4.1)</SelectItem>
-                <SelectItem value="efficient_coder">Efficient Code Assistant (GPT-4.1-mini)</SelectItem>
-                <SelectItem value="lightweight_helper">Lightweight Assistant (GPT-4.1-nano)</SelectItem>
-                <SelectItem value="quantum_analyst">Quantum Data Analyst (GPT-4.1)</SelectItem>
-                <SelectItem value="micro_orchestrator">Micro Orchestrator (GPT-4.1-nano)</SelectItem>
-                <SelectItem value="orchestrator">Task Orchestrator (GPT-4)</SelectItem>
-                <SelectItem value="monitor">System Monitor (GPT-3.5-turbo)</SelectItem>
-                <SelectItem value="translator">Language Translator (GPT-4)</SelectItem>
-                <SelectItem value="teacher">Educational Assistant (GPT-4)</SelectItem>
-                <SelectItem value="debugger">Debug Assistant (GPT-4)</SelectItem>
+                
+                {/* Flagship Models */}
+                <SelectItem value="ai">AI Agent (GPT-4o)</SelectItem>
+                <SelectItem value="researcher">Research Assistant (GPT-4o)</SelectItem>
+                <SelectItem value="coder">Code Assistant (GPT-4o)</SelectItem>
+                <SelectItem value="analyst">Data Analyst (GPT-4o)</SelectItem>
+                <SelectItem value="orchestrator">Task Orchestrator (GPT-4o)</SelectItem>
+                <SelectItem value="translator">Language Translator (GPT-4o)</SelectItem>
+                <SelectItem value="teacher">Educational Assistant (GPT-4o)</SelectItem>
+                <SelectItem value="debugger">Debug Assistant (GPT-4o)</SelectItem>
+                
+                {/* Reasoning Models */}
+                <SelectItem value="reasoning_agent">Advanced Reasoning Agent (o3)</SelectItem>
+                <SelectItem value="problem_solver">Complex Problem Solver (o3)</SelectItem>
+                <SelectItem value="strategic_planner">Strategic Planning Agent (o3)</SelectItem>
+                <SelectItem value="fast_reasoning">Fast Reasoning Agent (o4-mini)</SelectItem>
+                <SelectItem value="logic_analyzer">Logic Analysis Agent (o3-mini)</SelectItem>
+                <SelectItem value="decision_maker">Decision Making Agent (o1)</SelectItem>
+                <SelectItem value="optimization_agent">Optimization Agent (o1-pro)</SelectItem>
+                
+                {/* Cost-Optimized Models */}
+                <SelectItem value="efficient_helper">Efficient Helper (GPT-4o-mini)</SelectItem>
+                <SelectItem value="lightweight_assistant">Lightweight Assistant (GPT-4o-mini)</SelectItem>
+                <SelectItem value="monitor">System Monitor (GPT-4o-mini)</SelectItem>
+                <SelectItem value="quick_support">Quick Support Agent (GPT-4o-mini)</SelectItem>
+                
+                {/* Specialized Agents */}
+                <SelectItem value="creative_writer">Creative Writing Agent (GPT-4o)</SelectItem>
+                <SelectItem value="technical_writer">Technical Documentation Agent (GPT-4o)</SelectItem>
+                <SelectItem value="security_analyst">Security Analysis Agent (GPT-4o)</SelectItem>
+                <SelectItem value="api_specialist">API Integration Specialist (GPT-4o)</SelectItem>
+                <SelectItem value="database_expert">Database Expert (GPT-4o)</SelectItem>
+                <SelectItem value="devops_engineer">DevOps Engineer (GPT-4o)</SelectItem>
+                <SelectItem value="ui_designer">UI/UX Design Assistant (GPT-4o)</SelectItem>
+                <SelectItem value="project_manager">Project Manager (GPT-4o)</SelectItem>
+                <SelectItem value="qa_tester">QA Testing Agent (GPT-4o)</SelectItem>
+                <SelectItem value="performance_optimizer">Performance Optimizer (o3)</SelectItem>
+                
+                {/* Industry-Specific Agents */}
+                <SelectItem value="finance_advisor">Financial Advisor (GPT-4o)</SelectItem>
+                <SelectItem value="legal_assistant">Legal Research Assistant (GPT-4o)</SelectItem>
+                <SelectItem value="medical_researcher">Medical Research Agent (GPT-4o)</SelectItem>
+                <SelectItem value="marketing_specialist">Marketing Specialist (GPT-4o)</SelectItem>
+                <SelectItem value="sales_assistant">Sales Assistant (GPT-4o)</SelectItem>
+                <SelectItem value="hr_specialist">HR Specialist (GPT-4o)</SelectItem>
+                <SelectItem value="content_moderator">Content Moderator (GPT-4o)</SelectItem>
+                
+                {/* Legacy Options */}
+                <SelectItem value="legacy_assistant">Legacy Assistant (GPT-3.5-turbo)</SelectItem>
               </SelectContent>
             </Select>
           </div>

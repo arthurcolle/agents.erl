@@ -1,6 +1,8 @@
 -module(mcp_cli).
 -export([main/1, start_stdio_server/0]).
 
+-include("../include/colored_logging.hrl").
+
 %% MCP CLI tool for starting stdio servers and managing MCP operations
 %% Usage: 
 %%   escript mcp_cli.erl server        - Start MCP server in stdio mode

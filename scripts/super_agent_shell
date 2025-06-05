@@ -1,0 +1,408 @@
+#!/usr/bin/env escript
+
+%% Super-Agent Interactive Shell
+%% Usage: ./super_agent_shell [options]
+%% Options:
+%%   --host HOST    Connect to specific host (default: localhost)
+%%   --port PORT    Connect to specific port (default: 8080)
+%%   --secure       Use HTTPS/WSS connection
+%%   --help         Show this help message
+
+-mode(compile).
+
+main(Args) ->
+    try
+        {Host, Port, Secure} = parse_args(Args),
+        io:format("🚀 Super-Agent Shell v1.0~n"),
+        io:format("================================================~n"),
+        io:format("Connecting to: ~s://~s:~p~n", [
+            case Secure of true -> "https"; false -> "http" end,
+            Host, Port
+        ]),
+        io:format("================================================~n"),
+        io:format("~n"),
+        
+        %% Initialize the connection
+        case init_connection(Host, Port, Secure) of
+            {ok, Connection} ->
+                print_welcome_message(),
+                interactive_shell(Connection);
+            {error, Reason} ->
+                io:format("❌ Failed to connect: ~p~n", [Reason]),
+                halt(1)
+        end
+    catch
+        _:Error ->
+            io:format("❌ Error: ~p~n", [Error]),
+            halt(1)
+    end.
+
+parse_args([]) ->
+    {"localhost", 8080, false};
+parse_args(["--help" | _]) ->
+    print_help(),
+    halt(0);
+parse_args(["--host", Host | Rest]) ->
+    {_, Port, Secure} = parse_args(Rest),
+    {Host, Port, Secure};
+parse_args(["--port", PortStr | Rest]) ->
+    {Host, _, Secure} = parse_args(Rest),
+    Port = list_to_integer(PortStr),
+    {Host, Port, Secure};
+parse_args(["--secure" | Rest]) ->
+    {Host, Port, _} = parse_args(Rest),
+    {Host, Port, true};
+parse_args([_ | Rest]) ->
+    parse_args(Rest).
+
+print_help() ->
+    io:format("Super-Agent Interactive Shell~n"),
+    io:format("~n"),
+    io:format("Usage: ./super_agent_shell [options]~n"),
+    io:format("~n"),
+    io:format("Options:~n"),
+    io:format("  --host HOST    Connect to specific host (default: localhost)~n"),
+    io:format("  --port PORT    Connect to specific port (default: 8080)~n"),
+    io:format("  --secure       Use HTTPS/WSS connection~n"),
+    io:format("  --help         Show this help message~n"),
+    io:format("~n"),
+    io:format("Commands in shell:~n"),
+    io:format("  /help          Show available commands~n"),
+    io:format("  /status        Get super-agent status~n"),
+    io:format("  /capabilities  List super-agent capabilities~n"),
+    io:format("  /system <cmd>  Execute system command~n"),
+    io:format("  /agents <cmd>  Agent management~n"),
+    io:format("  /exit          Exit the shell~n"),
+    io:format("  <message>      Chat with super-agent~n").
+
+init_connection(Host, Port, Secure) ->
+    %% Start required applications
+    application:start(ssl),
+    application:start(inets),
+    
+    %% Test basic HTTP connection first
+    Scheme = case Secure of true -> "https"; false -> "http" end,
+    TestUrl = lists:flatten(io_lib:format("~s://~s:~p/api/super-agent/capabilities", [Scheme, Host, Port])),
+    
+    case httpc:request(get, {TestUrl, []}, [{timeout, 5000}], []) of
+        {ok, {{_, 200, _}, _Headers, Body}} ->
+            io:format("✅ Connected successfully~n"),
+            Capabilities = jsx:decode(list_to_binary(Body), [return_maps]),
+            print_capabilities(Capabilities),
+            {ok, #{host => Host, port => Port, secure => Secure}};
+        {ok, {{_, StatusCode, Reason}, _Headers, _Body}} ->
+            {error, {http_error, StatusCode, Reason}};
+        {error, Reason} ->
+            {error, {connection_failed, Reason}}
+    end.
+
+print_welcome_message() ->
+    io:format("~n"),
+    io:format("🤖 Super-Agent Shell Active~n"),
+    io:format("Type '/help' for commands or start chatting with the super-agent~n"),
+    io:format("Type '/exit' to quit~n"),
+    io:format("~n").
+
+print_capabilities(Capabilities) ->
+    io:format("~n🔧 Super-Agent Capabilities:~n"),
+    lists:foreach(fun(Cap) ->
+        io:format("  • ~s~n", [Cap])
+    end, maps:keys(Capabilities)),
+    io:format("~n").
+
+interactive_shell(Connection) ->
+    Prompt = "super-agent> ",
+    case io:get_line(Prompt) of
+        eof ->
+            io:format("~nGoodbye!~n");
+        {error, _} ->
+            io:format("~nGoodbye!~n");
+        Line ->
+            CleanLine = string:trim(Line),
+            case handle_command(CleanLine, Connection) of
+                exit ->
+                    io:format("~nGoodbye!~n");
+                continue ->
+                    interactive_shell(Connection)
+            end
+    end.
+
+handle_command("/exit", _Connection) ->
+    exit;
+
+handle_command("/help", _Connection) ->
+    print_shell_help(),
+    continue;
+
+handle_command("/status", Connection) ->
+    case get_super_agent_status(Connection) of
+        {ok, Status} ->
+            print_status(Status);
+        {error, Reason} ->
+            io:format("❌ Failed to get status: ~p~n", [Reason])
+    end,
+    continue;
+
+handle_command("/capabilities", Connection) ->
+    case get_super_agent_capabilities(Connection) of
+        {ok, Capabilities} ->
+            print_capabilities(Capabilities);
+        {error, Reason} ->
+            io:format("❌ Failed to get capabilities: ~p~n", [Reason])
+    end,
+    continue;
+
+handle_command("/system " ++ SystemCmd, Connection) ->
+    Command = string:trim(SystemCmd),
+    case execute_system_command(Command, Connection) of
+        {ok, Result} ->
+            print_command_result(Result);
+        {error, Reason} ->
+            io:format("❌ System command failed: ~p~n", [Reason])
+    end,
+    continue;
+
+handle_command("/agents " ++ AgentCmd, Connection) ->
+    Command = string:trim(AgentCmd),
+    case execute_agent_command(Command, Connection) of
+        {ok, Result} ->
+            print_command_result(Result);
+        {error, Reason} ->
+            io:format("❌ Agent command failed: ~p~n", [Reason])
+    end,
+    continue;
+
+handle_command("/" ++ _, _Connection) ->
+    io:format("❌ Unknown command. Type '/help' for available commands.~n"),
+    continue;
+
+handle_command("", _Connection) ->
+    continue;
+
+handle_command(Message, Connection) ->
+    case chat_with_super_agent(Message, Connection) of
+        {ok, Response} ->
+            print_chat_response(Response);
+        {error, Reason} ->
+            io:format("❌ Chat failed: ~p~n", [Reason])
+    end,
+    continue.
+
+print_shell_help() ->
+    io:format("~n🔧 Super-Agent Shell Commands:~n"),
+    io:format("  /help              Show this help~n"),
+    io:format("  /status            Get super-agent status~n"),
+    io:format("  /capabilities      List available capabilities~n"),
+    io:format("  /system <command>  Execute system command~n"),
+    io:format("    Examples:~n"),
+    io:format("      /system introspect~n"),
+    io:format("      /system health~n"),
+    io:format("      /system topology~n"),
+    io:format("  /agents <command>  Agent management~n"),
+    io:format("    Examples:~n"),
+    io:format("      /agents list~n"),
+    io:format("      /agents create {...}~n"),
+    io:format("  /exit              Exit the shell~n"),
+    io:format("  <message>          Chat with super-agent~n"),
+    io:format("~n💡 Super-Agent Command Prefixes:~n"),
+    io:format("  /system <cmd>      - Direct system operations~n"),
+    io:format("  /agents <action>   - Agent management~n"),
+    io:format("  /supervisors <action> - Supervisor operations~n"),
+    io:format("  /env <var> <value> - Environment manipulation~n"),
+    io:format("  /code <module>     - Hot code loading~n"),
+    io:format("  /monitor <target>  - Real-time monitoring~n"),
+    io:format("  /emergency <action> - Emergency controls~n"),
+    io:format("~n").
+
+get_super_agent_status(#{host := Host, port := Port, secure := Secure}) ->
+    Scheme = case Secure of true -> "https"; false -> "http" end,
+    Url = lists:flatten(io_lib:format("~s://~s:~p/api/super-agent/system-status", [Scheme, Host, Port])),
+    
+    case httpc:request(get, {Url, []}, [{timeout, 10000}], []) of
+        {ok, {{_, 200, _}, _Headers, Body}} ->
+            Status = jsx:decode(list_to_binary(Body), [return_maps]),
+            {ok, Status};
+        {ok, {{_, StatusCode, Reason}, _Headers, _Body}} ->
+            {error, {http_error, StatusCode, Reason}};
+        {error, Reason} ->
+            {error, Reason}
+    end.
+
+get_super_agent_capabilities(#{host := Host, port := Port, secure := Secure}) ->
+    Scheme = case Secure of true -> "https"; false -> "http" end,
+    Url = lists:flatten(io_lib:format("~s://~s:~p/api/super-agent/capabilities", [Scheme, Host, Port])),
+    
+    case httpc:request(get, {Url, []}, [{timeout, 5000}], []) of
+        {ok, {{_, 200, _}, _Headers, Body}} ->
+            Capabilities = jsx:decode(list_to_binary(Body), [return_maps]),
+            {ok, Capabilities};
+        {ok, {{_, StatusCode, Reason}, _Headers, _Body}} ->
+            {error, {http_error, StatusCode, Reason}};
+        {error, Reason} ->
+            {error, Reason}
+    end.
+
+execute_system_command(Command, #{host := Host, port := Port, secure := Secure}) ->
+    Scheme = case Secure of true -> "https"; false -> "http" end,
+    Url = lists:flatten(io_lib:format("~s://~s:~p/api/super-agent/system-command", [Scheme, Host, Port])),
+    
+    Payload = jsx:encode(#{
+        <<"command">> => list_to_binary("/system " ++ Command),
+        <<"args">> => #{}
+    }),
+    
+    Headers = [{"Content-Type", "application/json"}],
+    
+    case httpc:request(post, {Url, Headers, "application/json", Payload}, [{timeout, 30000}], []) of
+        {ok, {{_, 200, _}, _Headers, Body}} ->
+            Result = jsx:decode(list_to_binary(Body), [return_maps]),
+            {ok, Result};
+        {ok, {{_, StatusCode, Reason}, _Headers, _Body}} ->
+            {error, {http_error, StatusCode, Reason}};
+        {error, Reason} ->
+            {error, Reason}
+    end.
+
+execute_agent_command(Command, #{host := Host, port := Port, secure := Secure}) ->
+    Scheme = case Secure of true -> "https"; false -> "http" end,
+    Url = lists:flatten(io_lib:format("~s://~s:~p/api/super-agent/system-command", [Scheme, Host, Port])),
+    
+    Payload = jsx:encode(#{
+        <<"command">> => list_to_binary("/agents " ++ Command),
+        <<"args">> => #{}
+    }),
+    
+    Headers = [{"Content-Type", "application/json"}],
+    
+    case httpc:request(post, {Url, Headers, "application/json", Payload}, [{timeout, 30000}], []) of
+        {ok, {{_, 200, _}, _Headers, Body}} ->
+            Result = jsx:decode(list_to_binary(Body), [return_maps]),
+            {ok, Result};
+        {ok, {{_, StatusCode, Reason}, _Headers, _Body}} ->
+            {error, {http_error, StatusCode, Reason}};
+        {error, Reason} ->
+            {error, Reason}
+    end.
+
+chat_with_super_agent(Message, #{host := Host, port := Port, secure := Secure}) ->
+    Scheme = case Secure of true -> "https"; false -> "http" end,
+    Url = lists:flatten(io_lib:format("~s://~s:~p/api/super-agent/chat", [Scheme, Host, Port])),
+    
+    Payload = jsx:encode(#{
+        <<"message">> => list_to_binary(Message)
+    }),
+    
+    Headers = [{"Content-Type", "application/json"}],
+    
+    case httpc:request(post, {Url, Headers, "application/json", Payload}, [{timeout, 60000}], []) of
+        {ok, {{_, 200, _}, _Headers, Body}} ->
+            Result = jsx:decode(list_to_binary(Body), [return_maps]),
+            {ok, Result};
+        {ok, {{_, StatusCode, Reason}, _Headers, _Body}} ->
+            {error, {http_error, StatusCode, Reason}};
+        {error, Reason} ->
+            {error, Reason}
+    end.
+
+print_status(Status) ->
+    io:format("~n📊 Super-Agent Status:~n"),
+    maps:fold(fun(Key, Value, _) ->
+        KeyStr = format_key(Key),
+        ValueStr = format_value(Value),
+        io:format("  ~s: ~s~n", [KeyStr, ValueStr])
+    end, ok, Status),
+    io:format("~n").
+
+print_command_result(#{<<"status">> := <<"success">>, <<"result">> := Result}) ->
+    io:format("~n✅ Command executed successfully:~n"),
+    print_formatted_result(Result),
+    io:format("~n");
+
+print_command_result(#{<<"status">> := <<"error">>, <<"reason">> := Reason}) ->
+    io:format("~n❌ Command failed: ~s~n~n", [Reason]);
+
+print_command_result(Result) ->
+    io:format("~n📄 Result:~n"),
+    print_formatted_result(Result),
+    io:format("~n").
+
+print_chat_response(#{<<"status">> := <<"success">>, <<"response">> := Response}) ->
+    io:format("~n🤖 Super-Agent: "),
+    case maps:get(<<"message">>, Response, undefined) of
+        undefined ->
+            print_formatted_result(Response);
+        Message ->
+            io:format("~s", [Message])
+    end,
+    io:format("~n");
+
+print_chat_response(#{<<"status">> := <<"error">>, <<"reason">> := Reason}) ->
+    io:format("~n❌ Chat failed: ~s~n", [Reason]);
+
+print_chat_response(Response) ->
+    io:format("~n🤖 Super-Agent: "),
+    print_formatted_result(Response),
+    io:format("~n").
+
+print_formatted_result(Result) when is_map(Result) ->
+    case maps:size(Result) of
+        0 ->
+            io:format("(empty result)");
+        _ ->
+            maps:fold(fun(Key, Value, _) ->
+                KeyStr = format_key(Key),
+                ValueStr = format_value(Value),
+                io:format("~n  ~s: ~s", [KeyStr, ValueStr])
+            end, ok, Result)
+    end;
+
+print_formatted_result(Result) when is_binary(Result) ->
+    io:format("~s", [Result]);
+
+print_formatted_result(Result) when is_list(Result) ->
+    case io_lib:printable_unicode_list(Result) of
+        true ->
+            io:format("~s", [Result]);
+        false ->
+            io:format("~p", [Result])
+    end;
+
+print_formatted_result(Result) ->
+    io:format("~p", [Result]).
+
+format_key(Key) when is_binary(Key) ->
+    binary_to_list(Key);
+format_key(Key) when is_atom(Key) ->
+    atom_to_list(Key);
+format_key(Key) ->
+    io_lib:format("~p", [Key]).
+
+format_value(Value) when is_binary(Value) ->
+    binary_to_list(Value);
+format_value(Value) when is_atom(Value) ->
+    atom_to_list(Value);
+format_value(Value) when is_integer(Value) ->
+    integer_to_list(Value);
+format_value(Value) when is_float(Value) ->
+    float_to_list(Value);
+format_value(Value) when is_list(Value) ->
+    case io_lib:printable_unicode_list(Value) of
+        true -> Value;
+        false -> io_lib:format("~p", [Value])
+    end;
+format_value(Value) when is_map(Value) ->
+    case maps:size(Value) of
+        0 -> "(empty map)";
+        Size when Size =< 3 ->
+            % Show small maps inline
+            KeyValuePairs = maps:fold(fun(K, V, Acc) ->
+                KStr = format_key(K),
+                VStr = format_value(V),
+                [io_lib:format("~s: ~s", [KStr, VStr]) | Acc]
+            end, [], Value),
+            "{" ++ string:join(lists:reverse(KeyValuePairs), ", ") ++ "}";
+        Size ->
+            io_lib:format("(map with ~p keys)", [Size])
+    end;
+format_value(Value) ->
+    io_lib:format("~p", [Value]).
