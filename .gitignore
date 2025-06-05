@@ -79,6 +79,9 @@ config/api_keys.config
 # Keep the example file
 !config/api_keys.config.example
 
+# Sensitive data files
+apps/agent_web/priv/data/embeddings.json
+
 # Environment files
 .env
 .env.local
