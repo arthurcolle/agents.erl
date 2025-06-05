@@ -189,6 +189,15 @@ init([]) ->
             {"/api/pipedream/stats", pipedream_api_handler, []},
             {"/api/mcp-registry/[...]", mcp_github_registry_handler, []},
             
+            %% Agent Scheduling & Timeline
+            {"/api/scheduling/tasks", agent_scheduling_handler, []},
+            {"/api/scheduling/tasks/:task_id", agent_scheduling_handler, []},
+            {"/api/scheduling/tasks/:task_id/execute", agent_scheduling_handler, []},
+            {"/api/scheduling/agents/:agent_id/tasks", agent_scheduling_handler, []},
+            {"/api/scheduling/agents/:agent_id/temporal", agent_scheduling_handler, []},
+            {"/api/scheduling/agents/:agent_id/temporal/enable", agent_scheduling_handler, []},
+            {"/api/scheduling/upcoming", agent_scheduling_handler, []},
+            
             %% Development & Utilities
             {"/api/reload", hot_reload_handler, []},
             {"/api/logs/interactions", logs_api_handler, []},
@@ -209,7 +218,8 @@ init([]) ->
             {"/ws/super-agent", super_agent_handler, []},
             {"/ws/system/metrics", system_metrics_handler, []},
             {"/ws/crashes", crash_report_ws_handler, []},
-            {"/ws/errors", error_ws_handler, []}
+            {"/ws/errors", error_ws_handler, []},
+            {"/ws/timeline", timeline_ws_handler, []}
         ]}
     ]),
     io:format("Compiled minimal Cowboy routes~n", []),

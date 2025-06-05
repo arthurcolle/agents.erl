@@ -508,6 +508,36 @@ init([]) ->
             shutdown => 5000,
             type => worker,
             modules => [system_introspection]
+        },
+        
+        % Agent Scheduler Engine - Manages scheduled tasks for agents
+        #{
+            id => agent_scheduler_engine,
+            start => {agent_scheduler_engine, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [agent_scheduler_engine]
+        },
+        
+        % Timeline Event Store - Stores and retrieves timeline events
+        #{
+            id => timeline_event_store,
+            start => {timeline_event_store, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [timeline_event_store]
+        },
+        
+        % Agent Temporal Awareness - Provides temporal context for agents
+        #{
+            id => agent_temporal_awareness,
+            start => {agent_temporal_awareness, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [agent_temporal_awareness]
         }
     ],
     

@@ -182,14 +182,14 @@ calculate_system_health(State) ->
                               element(3, S) =:= connected]),
     
     % Get system resources
-    {TotalMem, AllocatedMem, _} = memsup:get_memory_data(),
+    {TotalMem, AllocatedMem, _} = agent_memsup:get_memory_data(),
     MemoryUsage = case TotalMem of
         0 -> 0;
         _ -> (AllocatedMem / TotalMem) * 100
     end,
     
     % Get CPU usage
-    CpuUsage = case cpu_sup:util() of
+    CpuUsage = case agent_cpu_sup:util() of
         {ok, Busy, _, _} -> Busy;
         _ -> 0
     end,

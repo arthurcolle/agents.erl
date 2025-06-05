@@ -25,8 +25,8 @@ websocket_info(_Info, State) ->
     {ok, State}.
 
 get_system_metrics() ->
-    {TotalMem, AllocMem, _} = memsup:get_memory_data(),
-    CpuUtil = cpu_sup:avg1() / 256,
+    {TotalMem, AllocMem, _} = agent_memsup:get_memory_data(),
+    CpuUtil = agent_cpu_sup:avg1() / 256,
     ProcessCount = erlang:system_info(process_count),
     ProcessLimit = erlang:system_info(process_limit),
     ReductionCount = element(1, erlang:statistics(reductions)),

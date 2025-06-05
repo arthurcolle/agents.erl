@@ -1,4 +1,4 @@
--module(cpu_sup).
+-module(agent_cpu_sup).
 -export([util/0, util/1, avg1/0]).
 
 util() ->

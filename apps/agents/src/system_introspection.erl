@@ -518,7 +518,7 @@ collect_system_metrics() ->
         memory => erlang:memory(),
         io => erlang:statistics(io),
         garbage_collection => erlang:statistics(garbage_collection),
-        scheduler_usage => scheduler:utilization(1)
+        scheduler_usage => agent_scheduler:utilization(1)
     }.
 
 get_system_capabilities_internal() ->
@@ -678,7 +678,7 @@ collect_resource_usage() ->
     }.
 
 get_cpu_usage() ->
-    SchedulerUsage = scheduler:utilization(1),
+    SchedulerUsage = agent_scheduler:utilization(1),
     #{
         scheduler_usage => SchedulerUsage,
         run_queue => statistics(run_queue),
