@@ -26,7 +26,10 @@
     self_message/2,
     autonomous_execute/2,
     enable_autonomous_mode/1,
-    disable_autonomous_mode/1
+    disable_autonomous_mode/1,
+    execute_task/2,
+    schedule_task/3,
+    get_scheduled_tasks/1
 ]).
 
 %% gen_server callbacks
@@ -89,6 +92,18 @@ enable_autonomous_mode(Pid) ->
 %% Disable autonomous mode
 disable_autonomous_mode(Pid) ->
     gen_server:call(Pid, disable_autonomous_mode).
+
+%% Execute a scheduled task
+execute_task(Pid, Task) ->
+    gen_server:call(Pid, {execute_task, Task}, 120000). % 2 minute timeout
+
+%% Schedule a task for future execution
+schedule_task(Pid, Task, ScheduledTime) ->
+    gen_server:call(Pid, {schedule_task, Task, ScheduledTime}).
+
+%% Get all scheduled tasks for this agent
+get_scheduled_tasks(Pid) ->
+    gen_server:call(Pid, get_scheduled_tasks).
 
 %% gen_server callbacks
 
@@ -226,6 +241,69 @@ handle_call(disable_autonomous_mode, _From, State) ->
         }
     },
     {reply, ok, NewState};
+
+handle_call({execute_task, Task}, _From, State) ->
+    %% Execute a scheduled task
+    NewState = State#state{last_activity = erlang:timestamp()},
+    
+    %% Store the task execution in timeline
+    timeline_event_store:store(#{
+        type => task_executing,
+        agent_id => State#state.id,
+        task => Task,
+        timestamp => erlang:timestamp()
+    }),
+    
+    case process_task(Task, NewState) of
+        {ok, Result, UpdatedState} ->
+            %% Store completion event
+            timeline_event_store:store(#{
+                type => task_completed,
+                agent_id => State#state.id,
+                task => Task,
+                result => Result,
+                timestamp => erlang:timestamp()
+            }),
+            {reply, {ok, Result}, UpdatedState};
+        {error, Reason} ->
+            %% Store failure event
+            timeline_event_store:store(#{
+                type => task_failed,
+                agent_id => State#state.id,
+                task => Task,
+                error => Reason,
+                timestamp => erlang:timestamp()
+            }),
+            FailedState = update_metrics(NewState, failed_request),
+            {reply, {error, Reason}, FailedState}
+    end;
+
+handle_call({schedule_task, Task, ScheduledTime}, _From, State) ->
+    %% Schedule a task for future execution
+    case agent_scheduler_engine:schedule_task(State#state.id, Task, ScheduledTime, #{}) of
+        {ok, TaskId} ->
+            %% Store scheduling event
+            timeline_event_store:store(#{
+                type => task_scheduled,
+                agent_id => State#state.id,
+                task_id => TaskId,
+                task => Task,
+                scheduled_time => ScheduledTime,
+                timestamp => erlang:timestamp()
+            }),
+            {reply, {ok, TaskId}, State};
+        {error, Reason} ->
+            {reply, {error, Reason}, State}
+    end;
+
+handle_call(get_scheduled_tasks, _From, State) ->
+    %% Get all scheduled tasks for this agent
+    case agent_scheduler_engine:get_agent_schedule(State#state.id) of
+        {ok, Tasks} ->
+            {reply, {ok, Tasks}, State};
+        {error, Reason} ->
+            {reply, {error, Reason}, State}
+    end;
 
 handle_call(_Request, _From, State) ->
     {reply, {error, unknown_request}, State}.

@@ -13,7 +13,7 @@ export function useAgents() {
   const wsRef = useRef<WebSocket | null>(null);
   const lastSnapshotRef = useRef<Agent[]>([]);
   const reconnectAttemptsRef = useRef(0);
-  const pingIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const pingIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     loadInitialAgents();

@@ -414,8 +414,8 @@ update_system_metrics(Metric, CurrentMetrics) ->
 
 collect_current_system_metrics() ->
     %% Collect real-time system metrics
-    {TotalMemory, AllocatedMemory, _} = memsup:get_memory_data(),
-    CpuUtilization = case cpu_sup:util([per_cpu]) of
+    {TotalMemory, AllocatedMemory, _} = agent_memsup:get_memory_data(),
+    CpuUtilization = case agent_cpu_sup:util([per_cpu]) of
         {error, _} -> 0.0;
         CpuData -> lists:sum([Util || {_, Util, _, _} <- CpuData]) / length(CpuData)
     end,

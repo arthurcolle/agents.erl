@@ -23,6 +23,7 @@
     %% sqlite3,  % Commented due to build issues
     jesse,
     prometheus,
+    accept,              %% Required by prometheus_httpd
     prometheus_httpd,
     prometheus_cowboy,
     jwt,

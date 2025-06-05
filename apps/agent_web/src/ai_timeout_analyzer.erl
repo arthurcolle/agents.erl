@@ -443,7 +443,7 @@ gather_system_metrics() ->
         run_queue => erlang:statistics(run_queue),
         io => erlang:statistics(io),
         reductions => erlang:statistics(reductions),
-        scheduler_usage => scheduler:utilization(1)
+        scheduler_usage => agent_scheduler:utilization(1)
     }.
 
 gather_recent_issues(State) ->

@@ -305,8 +305,8 @@ function App() {
     }
   }, [])
 
-  const createAgent = async (type: string, name: string, tools?: string[]) => {
-    return await createAgentHook(type, name, tools)
+  const createAgent = async (type: string, name: string, tools?: string[]): Promise<void> => {
+    await createAgentHook(type, name, tools)
   }
 
   // Dense UI handlers

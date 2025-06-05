@@ -31,12 +31,37 @@ handle_get(Req, State) ->
     Method = cowboy_req:method(Req),
     case Method of
         <<"GET">> ->
-            % Get all timeline events
-            Events = get_all_events(),
-            Body = jsx:encode(#{<<"events">> => Events}),
-            Req2 = cowboy_req:set_resp_body(Body, Req),
-            Req3 = cowboy_req:set_resp_header(<<"content-type">>, <<"application/json">>, Req2),
-            {Body, Req3, State};
+            % Get query params for pagination
+            QsVals = cowboy_req:parse_qs(Req),
+            Limit = case lists:keyfind(<<"limit">>, 1, QsVals) of
+                {_, L} -> binary_to_integer(L);
+                false -> 100
+            end,
+            Offset = case lists:keyfind(<<"offset">>, 1, QsVals) of
+                {_, O} -> binary_to_integer(O);
+                false -> 0
+            end,
+            
+            % Get events from timeline_event_store
+            case timeline_event_store:retrieve(Limit, Offset) of
+                {ok, StoredEvents} ->
+                    % Convert stored events to handler format
+                    Events = [convert_stored_event(E) || E <- StoredEvents],
+                    Body = jsx:encode(#{
+                        <<"events">> => Events,
+                        <<"total">> => timeline_event_store:get_event_count()
+                    }),
+                    Req2 = cowboy_req:set_resp_body(Body, Req),
+                    Req3 = cowboy_req:set_resp_header(<<"content-type">>, <<"application/json">>, Req2),
+                    {Body, Req3, State};
+                _ ->
+                    % Fallback to old method if timeline_event_store is not available
+                    Events = get_all_events(),
+                    Body = jsx:encode(#{<<"events">> => Events}),
+                    Req2 = cowboy_req:set_resp_body(Body, Req),
+                    Req3 = cowboy_req:set_resp_header(<<"content-type">>, <<"application/json">>, Req2),
+                    {Body, Req3, State}
+            end;
         _ ->
             {false, Req, State}
     end.
@@ -45,21 +70,35 @@ handle_post(Req, State) ->
     {ok, Body, Req2} = cowboy_req:read_body(Req),
     try
         Data = jsx:decode(Body, [return_maps]),
-        Event = #timeline_event{
-            id = maps:get(<<"id">>, Data),
-            timestamp = maps:get(<<"timestamp">>, Data),
-            type = safe_to_atom(maps:get(<<"type">>, Data, <<"message">>), 
+        
+        % Convert to timeline_event_store format
+        EventData = #{
+            type => safe_to_atom(maps:get(<<"type">>, Data, <<"message">>), 
                               [message, system, agent_action, error, warning, success]),
-            source = safe_to_atom(maps:get(<<"source">>, Data, <<"system">>),
+            source => safe_to_atom(maps:get(<<"source">>, Data, <<"system">>),
                                 [user, agent, system]),
-            agent_id = maps:get(<<"agentId">>, Data, null),
-            agent_name = maps:get(<<"agentName">>, Data, null),
-            conversation_id = maps:get(<<"conversationId">>, Data, null),
-            content = maps:get(<<"content">>, Data),
-            metadata = maps:get(<<"metadata">>, Data, #{})
+            agent_id => maps:get(<<"agentId">>, Data, undefined),
+            agent_name => maps:get(<<"agentName">>, Data, undefined),
+            conversation_id => maps:get(<<"conversationId">>, Data, undefined),
+            content => maps:get(<<"content">>, Data),
+            metadata => maps:get(<<"metadata">>, Data, #{})
         },
         
-        % Store event
+        % Store in timeline_event_store
+        timeline_event_store:store(EventData),
+        
+        % Also store locally for backward compatibility
+        Event = #timeline_event{
+            id = maps:get(<<"id">>, Data, generate_id()),
+            timestamp = maps:get(<<"timestamp">>, Data),
+            type = maps:get(type, EventData),
+            source = maps:get(source, EventData),
+            agent_id = maps:get(agent_id, EventData),
+            agent_name = maps:get(agent_name, EventData),
+            conversation_id = maps:get(conversation_id, EventData),
+            content = maps:get(content, EventData),
+            metadata = maps:get(metadata, EventData)
+        },
         ok = store_event(Event),
         
         % Broadcast to connected clients
@@ -174,6 +213,34 @@ map_to_event(Map) ->
         metadata = maps:get(<<"metadata">>, Map, #{})
     }.
 
+% Convert stored event from timeline_event_store format
+convert_stored_event(StoredEvent) when is_map(StoredEvent) ->
+    % Extract data from the stored event
+    EventData = maps:get(data, StoredEvent, #{}),
+    
+    % Convert timestamp format
+    Timestamp = case maps:get(timestamp, StoredEvent, undefined) of
+        {Mega, Sec, Micro} ->
+            % Convert Erlang timestamp to ISO 8601
+            MilliSec = (Mega * 1000000 + Sec) * 1000 + Micro div 1000,
+            calendar:system_time_to_rfc3339(MilliSec, [{unit, millisecond}, {offset, "Z"}]);
+        Other ->
+            Other
+    end,
+    
+    % Build the event map for frontend
+    #{
+        <<"id">> => maps:get(id, StoredEvent, generate_id()),
+        <<"timestamp">> => Timestamp,
+        <<"type">> => atom_to_binary(maps:get(type, EventData, system), utf8),
+        <<"source">> => atom_to_binary(maps:get(source, EventData, system), utf8),
+        <<"agentId">> => maps:get(agent_id, StoredEvent, maps:get(agent_id, EventData, null)),
+        <<"agentName">> => maps:get(agent_name, EventData, null),
+        <<"conversationId">> => maps:get(conversation_id, EventData, null),
+        <<"content">> => maps:get(content, EventData, maps:get(message, EventData, <<"">>)),
+        <<"metadata">> => maps:get(metadata, EventData, #{})
+    }.
+
 % Safe atom conversion function
 safe_to_atom(Binary, AllowedAtoms) when is_binary(Binary) ->
     try
@@ -195,6 +262,10 @@ safe_to_atom(Binary, AllowedAtoms) when is_binary(Binary) ->
     end;
 safe_to_atom(_, AllowedAtoms) ->
     hd(AllowedAtoms).  % Default for non-binary input
+
+% Generate a unique ID for timeline events
+generate_id() ->
+    agent_uuid:generate().
 
 get_timeline_file_path() ->
     filename:join([code:priv_dir(agent_web), "data", "timeline_events.ndjson"]).

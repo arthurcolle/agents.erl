@@ -95,7 +95,7 @@ const QuantumConsciousnessInterface: React.FC = () => {
   const [isActive, setIsActive] = useState(false);
   const [evolutionMode, setEvolutionMode] = useState<'passive' | 'active' | 'transcendent'>('passive');
   const [quantumNoiseLevel, setQuantumNoiseLevel] = useState(0.1);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   // Real-time quantum consciousness simulation
