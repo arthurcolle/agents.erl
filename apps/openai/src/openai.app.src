@@ -14,7 +14,12 @@
         stdlib,
         inets,
         ssl,
-        jsx
+        crypto,
+        public_key,
+        jsx,
+        jiffy,
+        hackney,
+        gun
     ]},
     {mod, {openai_app, []}},
     {env, [

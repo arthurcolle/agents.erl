@@ -44,6 +44,49 @@ init([]) ->
         period => 60
     },
     
-    ChildSpecs = [],
+    %% Start the dynamic system manager
+    DynamicSystemSpec = #{
+        id => agent_dynamic_system,
+        start => {agent_dynamic_system, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [agent_dynamic_system]
+    },
+    
+    %% Deep reflection engines
+    CodeReflectionSpec = #{
+        id => deep_code_reflection_engine,
+        start => {deep_code_reflection_engine, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [deep_code_reflection_engine]
+    },
+    
+    MetacognitiveSpec = #{
+        id => metacognitive_code_analyzer,
+        start => {metacognitive_code_analyzer, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [metacognitive_code_analyzer]
+    },
+    
+    PhilosophicalSpec = #{
+        id => philosophical_code_evaluator,
+        start => {philosophical_code_evaluator, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [philosophical_code_evaluator]
+    },
+    
+    ChildSpecs = [
+        DynamicSystemSpec,
+        CodeReflectionSpec,
+        MetacognitiveSpec,
+        PhilosophicalSpec
+    ],
     
     {ok, {SupFlags, ChildSpecs}}.

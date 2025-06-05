@@ -11,7 +11,12 @@
     set_organization/1,
     get_config/1,
     get_all_config/0,
-    set_config/2
+    set_config/2,
+    get_available_models/0,
+    get_model_info/1,
+    validate_model/1,
+    get_models_by_category/1,
+    get_models_by_capability/1
 ]).
 
 -export([
@@ -68,6 +73,26 @@ get_all_config() ->
 %% Set a specific configuration value
 set_config(Key, Value) ->
     gen_server:call(?SERVER, {set_config, Key, Value}).
+
+%% Get available models
+get_available_models() ->
+    model_registry:get_all_models().
+
+%% Get information about a specific model
+get_model_info(ModelId) ->
+    model_registry:get_model_info(ModelId).
+
+%% Validate if a model exists
+validate_model(ModelId) ->
+    model_registry:validate_model(ModelId).
+
+%% Get models by category
+get_models_by_category(Category) ->
+    model_registry:get_models_by_category(Category).
+
+%% Get models by capability
+get_models_by_capability(Capability) ->
+    model_registry:get_models_by_capability(Capability).
 
 %% gen_server callbacks
 init(Options) ->

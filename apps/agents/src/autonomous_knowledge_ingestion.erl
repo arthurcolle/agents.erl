@@ -402,7 +402,8 @@ classify_by_keywords(Keywords) ->
     
     % Calculate overlap scores
     Scores = maps:map(fun(_Domain, DomainKeywords) ->
-        length(lists:intersection(Keywords, DomainKeywords))
+        % Count matching keywords
+        length([K || K <- Keywords, lists:member(K, DomainKeywords)])
     end, DomainKeywordSets),
     
     % Return domain with highest score

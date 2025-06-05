@@ -1,0 +1,39 @@
+diff --git a/src/jesse_validator_draft3.erl b/src/jesse_validator_draft3.erl
+index 1234567..2345678 100644
+--- a/src/jesse_validator_draft3.erl
++++ b/src/jesse_validator_draft3.erl
+@@ -862,7 +862,7 @@ check_minimum(Value, Minimum, ExclusiveMinimum, State) ->
+     false -> State
+   end;
+ check_minimum(Value, Minimum, ExclusiveMinimum, State) ->
+-  case Value == 0.0 of
++  case Value == +0.0 of
+     true ->
+       case ExclusiveMinimum of
+         true ->
+diff --git a/src/jesse_validator_draft4.erl b/src/jesse_validator_draft4.erl
+index 3456789..4567890 100644
+--- a/src/jesse_validator_draft4.erl
++++ b/src/jesse_validator_draft4.erl
+@@ -862,7 +862,7 @@ check_minimum(Value, Minimum, ExclusiveMinimum, State) ->
+     false -> State
+   end;
+ check_minimum(Value, Minimum, ExclusiveMinimum, State) ->
+-  case Value == 0.0 of
++  case Value == +0.0 of
+     true ->
+       case ExclusiveMinimum of
+         true ->
+diff --git a/src/jesse_validator_draft6.erl b/src/jesse_validator_draft6.erl
+index 5678901..6789012 100644
+--- a/src/jesse_validator_draft6.erl
++++ b/src/jesse_validator_draft6.erl
+@@ -994,7 +994,7 @@ check_minimum(Value, Minimum, ExclusiveMinimum, State) ->
+     false -> State
+   end;
+ check_minimum(Value, Minimum, ExclusiveMinimum, State) ->
+-  case Value == 0.0 of
++  case Value == +0.0 of
+     true ->
+       case ExclusiveMinimum of
+         true ->

@@ -408,12 +408,16 @@ export default function SimpleAdvancedChat({ selectedAgent, agents, ws }: ChatIn
   useEffect(() => {
     if (selectedAgent) {
       loadConversationForAgent(selectedAgent)
-      if (ws && ws.readyState === WebSocket.OPEN) {
-        ws.send(JSON.stringify({
-          type: 'create_stream',
-          agent_id: selectedAgent
-        }))
-      }
+    }
+  }, [selectedAgent])
+  
+  // Subscribe to agent stream when WebSocket is ready
+  useEffect(() => {
+    if (selectedAgent && ws && ws.readyState === WebSocket.OPEN) {
+      ws.send(JSON.stringify({
+        type: 'create_stream',
+        agent_id: selectedAgent
+      }))
     }
   }, [selectedAgent, ws])
 
@@ -486,7 +490,10 @@ export default function SimpleAdvancedChat({ selectedAgent, agents, ws }: ChatIn
       if (response.ok) {
         const result = await response.json()
         setCurrentConversationId(result.id)
-        setMessages([])
+        // Only clear messages if we don't have any existing messages
+        if (messages.length === 0) {
+          setMessages([])
+        }
       }
     } catch (error) {
       console.error('Failed to create conversation:', error)
@@ -513,67 +520,94 @@ export default function SimpleAdvancedChat({ selectedAgent, agents, ws }: ChatIn
     }
   }
 
+  // WebSocket streaming event handler
   useEffect(() => {
-    const handleStreamEvent = (event: CustomEvent) => {
-      const data = event.detail
-      switch (data.type) {
-        case 'stream_start':
-          // Initialize a new streaming message
-          const newMessageId = Date.now().toString()
-          setStreamingMessageId(newMessageId)
-          setCurrentStreamingMessage('')
-          setIsStreaming(true)
-          break
-        case 'stream_token':
-          // Append token to current streaming message
-          if (data.token) {
-            setCurrentStreamingMessage(prev => prev + data.token)
-          }
-          break
-        case 'stream_complete':
-          // Finalize the streaming message
-          if (streamingMessageId && (currentStreamingMessage || data.result)) {
-            const finalContent = currentStreamingMessage || data.result || ''
-            const messageFormat = detectContentFormat(finalContent)
-            const agentMessage: Message = {
-              id: streamingMessageId,
-              sender: 'agent',
-              content: finalContent,
-              timestamp: new Date(),
-              type: detectMessageType(finalContent),
-              format: messageFormat
+    if (!ws) return
+
+    const handleWebSocketMessage = (event: MessageEvent) => {
+      try {
+        const data = JSON.parse(event.data)
+        
+        switch (data.type) {
+          case 'chat_response_start':
+            setIsStreaming(true)
+            setCurrentStreamingMessage('')
+            setStreamingMessageId(Date.now().toString())
+            break
+            
+          case 'chat_response_token':
+            if (data.token) {
+              setCurrentStreamingMessage(prev => prev + data.token)
             }
-            setMessages(prev => [...prev, agentMessage])
+            break
             
-            // Send timeline event for agent response
-            sendTimelineEvent({
-              type: 'message',
-              source: 'agent',
-              content: finalContent,
-              agentId: selectedAgent,
-              agentName: agents.get(selectedAgent)?.name,
-              conversationId: currentConversationId,
-              metadata: {
-                format: messageFormat,
-                model: data.model,
-                tokens: data.tokens
+          case 'chat_response_complete':
+            if (currentStreamingMessage || data.content) {
+              const finalContent = currentStreamingMessage || data.content || ''
+              const agentMessage: Message = {
+                id: streamingMessageId || Date.now().toString(),
+                sender: 'agent',
+                content: finalContent,
+                timestamp: new Date(),
+                type: detectMessageType(finalContent),
+                format: detectContentFormat(finalContent)
               }
-            })
-            
+              setMessages(prev => [...prev, agentMessage])
+              
+              // Send to timeline
+              sendTimelineEvent({
+                type: 'message',
+                source: 'agent',
+                content: finalContent,
+                agentId: selectedAgent,
+                agentName: agents.get(selectedAgent)?.name,
+                conversationId: currentConversationId,
+                metadata: {
+                  format: agentMessage.format,
+                  model: data.model,
+                  tokens: data.tokens
+                }
+              })
+            }
+            setIsStreaming(false)
             setCurrentStreamingMessage('')
             setStreamingMessageId(null)
+            break
+            
+          case 'chat_error':
+            const errorMessage: Message = {
+              id: Date.now().toString(),
+              sender: 'agent',
+              content: `Error: ${data.error || 'Failed to get response'}`,
+              timestamp: new Date(),
+              type: 'text',
+              format: 'plain'
+            }
+            setMessages(prev => [...prev, errorMessage])
             setIsStreaming(false)
-          }
-          break
-        case 'agent_event':
-          console.log('Agent event:', data.event)
-          break
+            break
+            
+          default:
+            console.log('Unhandled WebSocket message:', data)
+        }
+      } catch (error) {
+        console.error('Failed to parse WebSocket message:', error)
       }
     }
 
-    window.addEventListener('agent_stream', handleStreamEvent as EventListener)
-    return () => window.removeEventListener('agent_stream', handleStreamEvent as EventListener)
-  }, [currentStreamingMessage, streamingMessageId])
+    const handleCustomStreamEvent = (event: CustomEvent) => {
+      const data = event.detail
+      handleWebSocketMessage({ data: JSON.stringify(data) } as MessageEvent)
+    }
+
+    ws.addEventListener('message', handleWebSocketMessage)
+    window.addEventListener('agent_stream', handleCustomStreamEvent as EventListener)
+    
+    return () => {
+      ws.removeEventListener('message', handleWebSocketMessage)
+      window.removeEventListener('agent_stream', handleCustomStreamEvent as EventListener)
+    }
+  }, [ws])
 
   const scrollToBottom = () => {
     if (chatContainerRef.current) {
@@ -587,35 +621,44 @@ export default function SimpleAdvancedChat({ selectedAgent, agents, ws }: ChatIn
     }
   }
 
-  // Image upload functions
-  const handleImageUpload = async (files: FileList) => {
+  // File and image upload functions
+  const handleFileUpload = async (files: FileList) => {
+    if (!files || files.length === 0) return []
+    
     setIsUploading(true)
-    const imageFiles = Array.from(files).filter(file => file.type.startsWith('image/'))
+    const allFiles = Array.from(files)
+    const imageFiles = allFiles.filter(file => file.type.startsWith('image/'))
+    const documentFiles = allFiles.filter(file => !file.type.startsWith('image/'))
     
     try {
-      const uploadPromises = imageFiles.map(async (file) => {
-        const formData = new FormData()
-        formData.append('image', file)
-        
-        const response = await fetch('/api/upload/image', {
-          method: 'POST',
-          body: formData
-        })
-        
-        if (!response.ok) throw new Error('Upload failed')
-        const result = await response.json()
-        return result.url
-      })
+      // Handle image files
+      const imageUrls: string[] = []
+      for (const file of imageFiles) {
+        // For now, create object URLs for preview (can be uploaded to server later)
+        const objectUrl = URL.createObjectURL(file)
+        imageUrls.push(objectUrl)
+      }
       
-      const uploadedUrls = await Promise.all(uploadPromises)
+      // Add images to state for preview
       setImages(prev => [...prev, ...imageFiles])
-      return uploadedUrls
+      
+      // Handle document files (if any)
+      if (documentFiles.length > 0) {
+        console.log('Document files detected:', documentFiles.map(f => f.name))
+        // Could implement document upload here
+      }
+      
+      return imageUrls
     } catch (error) {
-      console.error('Image upload failed:', error)
+      console.error('File upload failed:', error)
       return []
     } finally {
       setIsUploading(false)
     }
+  }
+
+  const handleImageUpload = async (files: FileList) => {
+    return handleFileUpload(files)
   }
 
   const removeImage = (index: number) => {
@@ -713,126 +756,116 @@ export default function SimpleAdvancedChat({ selectedAgent, agents, ws }: ChatIn
   }
 
   const sendMessage = async () => {
-    if (!input.trim() || !selectedAgent || !ws) return
+    if (!input.trim() || !selectedAgent) return
 
-    // Upload images if any are selected
-    let imageUrls: string[] = []
-    if (images.length > 0) {
-      const fileList = new DataTransfer()
-      images.forEach(file => fileList.items.add(file))
-      imageUrls = await handleImageUpload(fileList.files)
-    }
-
-    const userFormat = detectContentFormat(input)
+    // Create user message
     const userMessage: Message = {
       id: Date.now().toString(),
       sender: 'user',
       content: input,
       timestamp: new Date(),
       type: detectMessageType(input),
-      format: userFormat,
-      images: imageUrls.length > 0 ? imageUrls : undefined
+      format: detectContentFormat(input),
+      images: images.length > 0 ? images.map(img => URL.createObjectURL(img)) : undefined
     }
 
+    // Add user message to conversation
     setMessages(prev => [...prev, userMessage])
-    
-    // Send timeline event for user message
+    const messageContent = input
+    setInput('')
+    setImages([])
+
+    // Send to timeline
     sendTimelineEvent({
       type: 'message',
       source: 'user',
-      content: input,
+      content: messageContent,
       agentId: selectedAgent,
       agentName: agents.get(selectedAgent)?.name,
       conversationId: currentConversationId,
       metadata: {
-        format: userFormat,
-        images: imageUrls.length > 0 ? imageUrls : undefined
+        format: userMessage.format,
+        images: userMessage.images
       }
     })
-    
-    // 🧠 CHAIN OF THOUGHT: Start reasoning for complex queries
-    if (shouldStartReasoning(input) && !activeReasoningChain) {
-      try {
-        const chainId = await reasoningEngine.startReasoningChain(
-          `Respond to user query: ${input}`,
-          `User context: Agent conversation about ${input}`,
-          [`User asked: ${input}`, 'Need to provide helpful and accurate response']
-        )
-        setActiveReasoningChain(chainId)
-        setShowChainOfThought(true)
-        
-        // 📝 Add reasoning steps for response generation
-        await reasoningEngine.addThoughtStep(chainId, {
-          type: 'analysis',
-          content: `Analyzing user query for intent and complexity`,
-          reasoning: 'Understanding what the user needs helps generate better responses',
-          confidence: 0.8,
-          source: 'ai'
-        })
-      } catch (error) {
-        console.error('Failed to start reasoning chain:', error)
-      }
-    }
-    
-    setInput('')
-    setImages([])
 
-    const agent = agents.get(selectedAgent)
-    if (agent?.type === 'ai') {
-      // Trigger stream_start event
-      window.dispatchEvent(new CustomEvent('agent_stream', { 
-        detail: { type: 'stream_start' } 
-      }))
-      
-      ws.send(JSON.stringify({
-        type: 'stream_chat',
-        agent_id: selectedAgent,
-        message: input,
-        stream: true
-      }))
-    } else {
-      fetch(`/api/agents/${selectedAgent}/execute`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'chat', params: { message: input } })
-      })
-        .then(res => res.json())
-        .then(async data => {
-          const responseFormat = detectContentFormat(data.result)
+    try {
+      // Try WebSocket first for streaming
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        setIsStreaming(true)
+        setCurrentStreamingMessage('')
+        setStreamingMessageId(Date.now().toString())
+        
+        ws.send(JSON.stringify({
+          type: 'stream_chat',
+          message: messageContent,
+          conversation_id: currentConversationId
+        }))
+      } else {
+        // Fallback to HTTP API
+        setIsStreaming(true)
+        const response = await fetch(`/api/agents/${selectedAgent}/chat`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            message: messageContent,
+            conversation_id: currentConversationId,
+            images: userMessage.images 
+          })
+        })
+
+        if (response.ok) {
+          const data = await response.json()
           const agentMessage: Message = {
             id: Date.now().toString(),
             sender: 'agent',
-            content: data.result,
+            content: data.response || data.result || 'Agent response received',
             timestamp: new Date(),
-            type: detectMessageType(data.result),
-            format: responseFormat
+            type: detectMessageType(data.response || data.result || ''),
+            format: detectContentFormat(data.response || data.result || '')
           }
+          
           setMessages(prev => [...prev, agentMessage])
           
-          // Send timeline event for agent response
+          // Send to timeline
           sendTimelineEvent({
             type: 'message',
             source: 'agent',
-            content: data.result,
+            content: agentMessage.content,
             agentId: selectedAgent,
             agentName: agents.get(selectedAgent)?.name,
             conversationId: currentConversationId,
             metadata: {
-              format: responseFormat
+              format: agentMessage.format,
+              model: data.model
             }
           })
-          
-          // 🎯 ADD CONCLUSION TO REASONING CHAIN
-          if (activeReasoningChain) {
-            await reasoningEngine.addThoughtStep(activeReasoningChain, {
-              type: 'conclusion',
-              content: `Generated response: ${data.result.substring(0, 100)}...`,
-              reasoning: 'Completed analysis and provided response to user',
-              confidence: 0.9,
-              source: 'ai'
-            })
+        } else {
+          // Show error message
+          const errorMessage: Message = {
+            id: Date.now().toString(),
+            sender: 'agent',
+            content: `Error: Failed to get response from agent (${response.status})`,
+            timestamp: new Date(),
+            type: 'text',
+            format: 'plain'
           }
-        })
+          setMessages(prev => [...prev, errorMessage])
+        }
+        setIsStreaming(false)
+      }
+    } catch (error) {
+      console.error('Error sending message:', error)
+      const errorMessage: Message = {
+        id: Date.now().toString(),
+        sender: 'agent',
+        content: `Error: ${error.message || 'Failed to send message'}`,
+        timestamp: new Date(),
+        type: 'text',
+        format: 'plain'
+      }
+      setMessages(prev => [...prev, errorMessage])
+      setIsStreaming(false)
     }
   }
 
@@ -875,66 +908,70 @@ export default function SimpleAdvancedChat({ selectedAgent, agents, ws }: ChatIn
   const agent = agents.get(selectedAgent)
 
   return (
-    <div className="flex h-[600px]">
-      <Card className="flex-1 flex flex-col">
-        <CardHeader className="flex-row items-center justify-between">
-          <CardTitle className="flex items-center gap-2">
-            <Brain className="h-5 w-5" />
-            Chat with {agent?.type || 'Agent'}
-          </CardTitle>
-          <div className="flex gap-2">
+    <div className="flex h-full w-full">
+      <div className="flex-1 flex flex-col bg-white border rounded-lg shadow-sm">
+        <div className="flex items-center justify-between p-3 border-b bg-gray-50 rounded-t-lg">
+          <div className="flex items-center gap-2">
+            <Brain className="h-4 w-4" />
+            <h3 className="font-semibold text-sm">
+              Chat with {agent?.name || agent?.type || 'Agent'}
+            </h3>
+            {agent?.model && (
+              <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">
+                {agent.model}
+              </span>
+            )}
+          </div>
+          <div className="flex gap-1">
             <Button
-              variant="outline"
+              variant="ghost"
               size="sm"
               onClick={() => saveConversation()}
-              className="flex items-center gap-1"
+              className="h-7 w-7 p-0"
               title="Save conversation"
             >
               <Save className="h-3 w-3" />
             </Button>
             <Button
-              variant="outline"
+              variant="ghost"
               size="sm"
               onClick={() => setMessages([])}
-              className="flex items-center gap-1"
+              className="h-7 w-7 p-0"
               title="Clear conversation"
             >
               <Trash2 className="h-3 w-3" />
             </Button>
             <Button
-              variant={isAdvancedMode ? "default" : "outline"}
+              variant={isAdvancedMode ? "default" : "ghost"}
               size="sm"
               onClick={() => setIsAdvancedMode(!isAdvancedMode)}
-              className="flex items-center gap-1"
+              className="h-7 px-2"
             >
               <Zap className="h-3 w-3" />
-              Advanced
             </Button>
             <Button
-              variant="outline"
+              variant={showInteractivePanel ? "default" : "ghost"}
               size="sm"
               onClick={() => setShowInteractivePanel(!showInteractivePanel)}
-              className="flex items-center gap-1"
+              className="h-7 px-2"
             >
               <Terminal className="h-3 w-3" />
-              Tools
             </Button>
             <Button
-              variant={showChainOfThought ? "default" : "outline"}
+              variant={showChainOfThought ? "default" : "ghost"}
               size="sm"
               onClick={() => setShowChainOfThought(!showChainOfThought)}
-              className="flex items-center gap-1"
+              className="h-7 px-2"
             >
               <Eye className="h-3 w-3" />
-              Thinking
             </Button>
           </div>
-        </CardHeader>
-        <CardContent className="flex-1 flex flex-col" style={{ height: 'calc(100% - 80px)' }}>
+        </div>
+        <div className="flex-1 flex flex-col min-h-0">
           <div 
             ref={chatContainerRef}
-            className="flex-1 overflow-y-auto space-y-4 mb-4 scroll-smooth"
-            style={{ maxHeight: 'calc(100vh - 400px)' }}
+            className="flex-1 overflow-y-auto space-y-3 p-4 scroll-smooth"
+            style={{ minHeight: 0 }}
           >
             {messages.map(message => (
               <div
@@ -1041,22 +1078,22 @@ export default function SimpleAdvancedChat({ selectedAgent, agents, ws }: ChatIn
           
           {/* Image Preview Area */}
           {images.length > 0 && (
-            <div className="border-t pt-3 mb-3">
+            <div className="border-t pt-2 mb-2 mx-4">
               <div className="flex flex-wrap gap-2">
                 {images.map((image, index) => (
                   <div key={index} className="relative">
                     <img
                       src={URL.createObjectURL(image)}
                       alt={`Upload ${index + 1}`}
-                      className="w-16 h-16 object-cover rounded border"
+                      className="w-12 h-12 object-cover rounded border"
                     />
                     <Button
                       variant="destructive"
                       size="sm"
                       onClick={() => removeImage(index)}
-                      className="absolute -top-2 -right-2 w-6 h-6 p-0"
+                      className="absolute -top-1 -right-1 w-5 h-5 p-0"
                     >
-                      <X className="h-3 w-3" />
+                      <X className="h-2 w-2" />
                     </Button>
                   </div>
                 ))}
@@ -1064,25 +1101,35 @@ export default function SimpleAdvancedChat({ selectedAgent, agents, ws }: ChatIn
             </div>
           )}
 
-          <div className="flex gap-2">
+          <div 
+            className="flex gap-2 p-4 border-t bg-gray-50"
+            onDrop={(e) => {
+              e.preventDefault()
+              if (e.dataTransfer.files) {
+                handleFileUpload(e.dataTransfer.files)
+              }
+            }}
+            onDragOver={(e) => e.preventDefault()}
+            onDragEnter={(e) => e.preventDefault()}
+          >
             <input
               ref={fileInputRef}
               type="file"
               multiple
-              accept="image/*"
+              accept="image/*,application/pdf,.txt,.doc,.docx,.md"
               onChange={(e) => {
                 if (e.target.files) {
-                  setImages(prev => [...prev, ...Array.from(e.target.files!)])
+                  handleFileUpload(e.target.files)
                 }
               }}
               className="hidden"
             />
             <Button
-              variant="outline"
+              variant="ghost"
               size="sm"
               onClick={() => fileInputRef.current?.click()}
               disabled={isUploading}
-              className="flex items-center gap-1"
+              className="h-9 w-9 p-0"
             >
               <Paperclip className="h-4 w-4" />
             </Button>
@@ -1094,22 +1141,30 @@ export default function SimpleAdvancedChat({ selectedAgent, agents, ws }: ChatIn
               disabled={isStreaming}
               className="flex-1"
             />
-            <Button onClick={sendMessage} disabled={isStreaming || (!input.trim() && images.length === 0)}>
+            <Button 
+              onClick={sendMessage} 
+              disabled={isStreaming || (!input.trim() && images.length === 0)}
+              className="h-9"
+            >
               <Send className="h-4 w-4" />
             </Button>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
       
-      <InteractivePanel 
-        isVisible={showInteractivePanel}
-        onToggle={() => setShowInteractivePanel(!showInteractivePanel)}
-      />
+      {showInteractivePanel && (
+        <div className="w-80 bg-gray-50 border-l border-gray-200 p-3">
+          <InteractivePanel 
+            isVisible={showInteractivePanel}
+            onToggle={() => setShowInteractivePanel(!showInteractivePanel)}
+          />
+        </div>
+      )}
       
       {/* 🧠 CHAIN OF THOUGHT PANEL */}
       {showChainOfThought && (
-        <div className="w-96 bg-gray-50 dark:bg-gray-900 border-l border-gray-200 dark:border-gray-700 overflow-y-auto">
-          <div className="p-4 space-y-4">
+        <div className="w-80 bg-gray-50 border-l border-gray-200 overflow-y-auto">
+          <div className="p-3 space-y-3">
             <InteractiveReasoningControls
               engine={reasoningEngine}
               chainId={activeReasoningChain}

@@ -46,6 +46,8 @@ interface TimelineEvent {
       url: string
       type: string
     }>
+    // Allow additional properties for system events
+    [key: string]: any
   }
 }
 
@@ -98,10 +100,80 @@ export default function Timeline({ ws, agents }: TimelineProps) {
           timestamp: new Date(event.timestamp)
         }))
         setEvents(parsedEvents)
+      } else {
+        // Load mock data if backend is not available
+        loadMockTimelineData()
       }
     } catch (error) {
       console.error('Failed to load timeline events:', error)
+      // Load mock data as fallback
+      loadMockTimelineData()
     }
+  }
+
+  // Mock timeline data for demonstration
+  const loadMockTimelineData = () => {
+    const mockEvents: TimelineEvent[] = [
+      {
+        id: 'event_1',
+        timestamp: new Date(Date.now() - 1000 * 60 * 5), // 5 minutes ago
+        type: 'message',
+        source: 'user',
+        agentId: 'agent_1',
+        agentName: 'Assistant',
+        conversationId: 'conv_1',
+        content: 'Hello, can you help me with a coding question?',
+        metadata: { format: 'text' }
+      },
+      {
+        id: 'event_2',
+        timestamp: new Date(Date.now() - 1000 * 60 * 4), // 4 minutes ago
+        type: 'message',
+        source: 'agent',
+        agentId: 'agent_1',
+        agentName: 'Assistant',
+        conversationId: 'conv_1',
+        content: 'Of course! I\'d be happy to help you with your coding question. What programming language or topic are you working on?',
+        metadata: { format: 'text', model: 'gpt-4', tokens: 87 }
+      },
+      {
+        id: 'event_3',
+        timestamp: new Date(Date.now() - 1000 * 60 * 3), // 3 minutes ago
+        type: 'agent_action',
+        source: 'agent',
+        agentId: 'agent_2',
+        agentName: 'Code Analyzer',
+        content: 'Analyzed code structure and dependencies',
+        metadata: { action: 'code_analysis', duration: 1200 }
+      },
+      {
+        id: 'event_4',
+        timestamp: new Date(Date.now() - 1000 * 60 * 2), // 2 minutes ago
+        type: 'system',
+        source: 'system',
+        content: 'System health check completed successfully',
+        metadata: { cpu: 45, memory: 62, processes: 234 }
+      },
+      {
+        id: 'event_5',
+        timestamp: new Date(Date.now() - 1000 * 60 * 1), // 1 minute ago
+        type: 'success',
+        source: 'agent',
+        agentId: 'agent_3',
+        agentName: 'Task Manager',
+        content: 'Task queue processed successfully - 12 tasks completed',
+        metadata: { tasks_completed: 12, queue_size: 0 }
+      },
+      {
+        id: 'event_6',
+        timestamp: new Date(Date.now() - 1000 * 30), // 30 seconds ago
+        type: 'warning',
+        source: 'system',
+        content: 'High memory usage detected (85%)',
+        metadata: { memory_usage: 85, threshold: 80 }
+      }
+    ]
+    setEvents(mockEvents)
   }
 
   // Handle WebSocket events

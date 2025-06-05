@@ -90,10 +90,13 @@ get_alerts() ->
 init([]) ->
     process_flag(trap_exit, true),
     
-    % Create ETS tables
-    ets:new(?METRICS_TABLE, [named_table, set, public, {keypos, #metric.key}]),
-    ets:new(?EVENTS_TABLE, [named_table, ordered_set, public, {keypos, #event.id}]),
-    ets:new(?ALERTS_TABLE, [named_table, set, public, {keypos, #alert.id}]),
+    % Use persistent table manager to create tables
+    persistent_table_manager:ensure_ets_table(?METRICS_TABLE, 
+        [set, public, {keypos, #metric.key}], true),
+    persistent_table_manager:ensure_ets_table(?EVENTS_TABLE, 
+        [ordered_set, public, {keypos, #event.id}], true),
+    persistent_table_manager:ensure_ets_table(?ALERTS_TABLE, 
+        [set, public, {keypos, #alert.id}], true),
     
     % Start metrics collection timer
     Timer = erlang:send_after(?METRICS_INTERVAL, self(), collect_metrics),
@@ -180,7 +183,10 @@ calculate_system_health(State) ->
     
     % Get system resources
     {TotalMem, AllocatedMem, _} = memsup:get_memory_data(),
-    MemoryUsage = (AllocatedMem / TotalMem) * 100,
+    MemoryUsage = case TotalMem of
+        0 -> 0;
+        _ -> (AllocatedMem / TotalMem) * 100
+    end,
     
     % Get CPU usage
     CpuUsage = case cpu_sup:util() of
@@ -243,9 +249,16 @@ get_all_metrics_internal() ->
 
 collect_all_metrics() ->
     % Get all registered servers
-    Servers = mcp_registry:list_servers(),
+    Servers = try
+        mcp_registry:list_servers()
+    catch
+        _:_ ->
+            % Registry not available, return empty list
+            []
+    end,
     
-    lists:foreach(fun({ServerId, _, Status, Config}) ->
+    lists:foreach(fun(#{id := ServerId, status := StatusBin, config := Config}) ->
+        Status = binary_to_atom(StatusBin, utf8),
         % Basic connectivity metric
         record_metric(ServerId, connectivity, 
                      case Status of connected -> 1; _ -> 0 end),

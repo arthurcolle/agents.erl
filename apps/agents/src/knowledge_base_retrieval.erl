@@ -29,9 +29,9 @@
 start_link() ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 
-%% Async search across knowledge base for a specific domain
-search_knowledge_base(Domain, Query, Callback) ->
-    gen_server:cast(?MODULE, {search, Domain, Query, Callback}).
+%% Search across knowledge base for a specific domain
+search_knowledge_base(Domain, Query, _Callback) ->
+    gen_server:call(?MODULE, {search, Domain, Query}).
 
 %% Index a specific domain's knowledge base
 index_knowledge_base(Domain) ->
@@ -74,19 +74,16 @@ handle_call({get_knowledge, Domain, Topic}, _From, State) ->
             end
     end;
 
+handle_call({search, Domain, Query}, _From, State) ->
+    Result = perform_search(Domain, Query),
+    {reply, {ok, Result}, State};
+
 handle_call(list_domains, _From, State) ->
     Domains = list_knowledge_domains(),
     {reply, {ok, Domains}, State};
 
 handle_call(_Request, _From, State) ->
     {reply, {error, unknown_request}, State}.
-
-handle_cast({search, Domain, Query, Callback}, State) ->
-    spawn(fun() ->
-        Result = perform_search(Domain, Query),
-        Callback(Result)
-    end),
-    {noreply, State};
 
 handle_cast({index_domain, Domain}, State) ->
     spawn(fun() -> index_domain(Domain) end),

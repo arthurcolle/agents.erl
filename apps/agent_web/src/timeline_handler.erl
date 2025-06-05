@@ -1,6 +1,7 @@
 -module(timeline_handler).
 -export([init/2, allowed_methods/2, content_types_accepted/2, content_types_provided/2,
-         handle_get/2, handle_post/2, handle_delete/2, init_storage/0, safe_to_atom/2]).
+         handle_get/2, handle_post/2, handle_delete/2, init_storage/0, safe_to_atom/2,
+         get_all_events/0]).
 
 -record(timeline_event, {
     id,

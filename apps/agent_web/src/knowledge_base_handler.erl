@@ -187,7 +187,7 @@ handle_request(<<"POST">>, [<<"discover">>], Req0, State) ->
 
 %% Catch-all for unsupported methods/paths
 handle_request(_, _, Req0, State) ->
-    Req = cowboy_req:reply(404, #{}, Req0),
+    Req = cowboy_req:reply(404, #{}, <<>>, Req0),
     {ok, Req, State}.
 
 %% Helper functions

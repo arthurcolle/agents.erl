@@ -1,0 +1,206 @@
+-module(comprehensive_error_logger).
+-behaviour(gen_server).
+
+%% API
+-export([start_link/0, log_all_errors/1, log_websocket_error/2, log_resource_exhaustion/1]).
+
+%% gen_server callbacks  
+-export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
+
+-record(state, {
+    error_count = 0,
+    websocket_errors = 0,
+    resource_errors = 0,
+    ai_processor_available = false
+}).
+
+-define(LOG_INTERVAL, 10000). % Log statistics every 10 seconds
+
+%%====================================================================
+%% API
+%%====================================================================
+
+start_link() ->
+    gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
+
+log_all_errors(ErrorData) ->
+    gen_server:cast(?MODULE, {log_all_errors, ErrorData}).
+
+log_websocket_error(ErrorData, Context) ->
+    gen_server:cast(?MODULE, {log_websocket_error, ErrorData, Context}).
+
+log_resource_exhaustion(ErrorData) ->
+    gen_server:cast(?MODULE, {log_resource_exhaustion, ErrorData}).
+
+%%====================================================================
+%% gen_server callbacks
+%%====================================================================
+
+init([]) ->
+    colored_logger:data(processed, "[COMPREHENSIVE_ERROR_LOGGER] [STATS] Starting comprehensive error logging system"),
+    
+    % Schedule periodic statistics logging
+    erlang:send_after(?LOG_INTERVAL, self(), log_statistics),
+    
+    % Check if AI processor is available
+    AiAvailable = case whereis(ai_error_processor) of
+        undefined -> false;
+        _ -> true
+    end,
+    
+    {ok, #state{ai_processor_available = AiAvailable}}.
+
+handle_call(_Request, _From, State) ->
+    {reply, ok, State}.
+
+handle_cast({log_all_errors, ErrorData}, State = #state{error_count = Count, ai_processor_available = AiAvailable}) ->
+    % Log the error with enhanced formatting
+    log_formatted_error(ErrorData, <<"general">>),
+    
+    % Send to AI processor if available
+    case AiAvailable of
+        true ->
+            ai_error_processor:process_error(ErrorData);
+        false ->
+            colored_logger:fire(inferno, "[COMPREHENSIVE_ERROR_LOGGER] ⚠️  AI Error Processor not available")
+    end,
+    
+    {noreply, State#state{error_count = Count + 1}};
+
+handle_cast({log_websocket_error, ErrorData, Context}, State = #state{websocket_errors = WsCount, ai_processor_available = AiAvailable}) ->
+    % Enhanced WebSocket error logging
+    log_formatted_error(ErrorData, Context),
+    
+    % Log resource exhaustion patterns
+    check_resource_exhaustion_patterns(ErrorData, Context),
+    
+    % Send to AI processor if available
+    case AiAvailable of
+        true ->
+            ai_error_processor:process_websocket_error(ErrorData, Context);
+        false ->
+            colored_logger:fire(inferno, "[COMPREHENSIVE_ERROR_LOGGER] ⚠️  AI Error Processor not available for WebSocket error")
+    end,
+    
+    {noreply, State#state{websocket_errors = WsCount + 1}};
+
+handle_cast({log_resource_exhaustion, ErrorData}, State = #state{resource_errors = ResCount, ai_processor_available = AiAvailable}) ->
+    % Critical resource exhaustion logging
+    colored_logger:fire(inferno, "[COMPREHENSIVE_ERROR_LOGGER] 🚨 RESOURCE EXHAUSTION DETECTED"),
+    log_formatted_error(ErrorData, <<"resource_exhaustion">>),
+    
+    % Send to AI processor with high priority if available
+    case AiAvailable of
+        true ->
+            ai_error_processor:process_websocket_error(ErrorData, <<"resource_exhaustion">>);
+        false ->
+            colored_logger:fire(inferno, "[COMPREHENSIVE_ERROR_LOGGER] ⚠️  AI Error Processor not available for resource exhaustion")
+    end,
+    
+    {noreply, State#state{resource_errors = ResCount + 1}};
+
+handle_cast(_Msg, State) ->
+    {noreply, State}.
+
+handle_info(log_statistics, State = #state{error_count = Count, websocket_errors = WsCount, resource_errors = ResCount}) ->
+    % Log comprehensive statistics
+    colored_logger:data(processed, io_lib:format(
+        "[COMPREHENSIVE_ERROR_LOGGER] 📈 Error Statistics - Total: ~p, WebSocket: ~p, Resource: ~p", 
+        [Count, WsCount, ResCount]
+    )),
+    
+    % Schedule next statistics log
+    erlang:send_after(?LOG_INTERVAL, self(), log_statistics),
+    
+    {noreply, State};
+
+handle_info(_Info, State) ->
+    {noreply, State}.
+
+terminate(_Reason, _State) ->
+    ok.
+
+code_change(_OldVsn, State, _Extra) ->
+    {ok, State}.
+
+%%====================================================================
+%% Internal functions
+%%====================================================================
+
+log_formatted_error(ErrorData, Context) ->
+    Timestamp = format_timestamp(erlang:system_time(second)),
+    
+    % Enhanced error formatting with context
+    FormattedError = case is_map(ErrorData) of
+        true ->
+            ErrorType = maps:get(<<"type">>, ErrorData, <<"unknown">>),
+            ErrorMessage = maps:get(<<"message">>, ErrorData, <<"no message">>),
+            
+            io_lib:format(
+                "~s [~s] ERROR: ~s | TYPE: ~s | CONTEXT: ~s~n"
+                "   Full Data: ~p~n", 
+                [Timestamp, Context, ErrorMessage, ErrorType, Context, ErrorData]
+            );
+        false ->
+            io_lib:format(
+                "~s [~s] ERROR: ~p | CONTEXT: ~s~n", 
+                [Timestamp, Context, ErrorData, Context]
+            )
+    end,
+    
+    % Log to console and error_logger
+    io:format("~s", [FormattedError]),
+    error_logger:error_msg("~s", [FormattedError]),
+    
+    % Color-coded logging based on context
+    case Context of
+        <<"resource_exhaustion">> ->
+            colored_logger:fire(inferno, FormattedError);
+        <<"websocket", _/binary>> ->
+            colored_logger:ocean(surface, FormattedError);
+        <<"crash", _/binary>> ->
+            colored_logger:fire(inferno, FormattedError);
+        _ ->
+            colored_logger:data(processed, FormattedError)
+    end.
+
+check_resource_exhaustion_patterns(ErrorData, Context) ->
+    % Check for known resource exhaustion patterns
+    Patterns = [
+        <<"timeout">>,
+        <<"overload">>,
+        <<"exhausted">>,
+        <<"limit exceeded">>,
+        <<"resource unavailable">>,
+        <<"memory">>,
+        <<"too many">>
+    ],
+    
+    ErrorStr = case is_map(ErrorData) of
+        true -> 
+            Message = maps:get(<<"message">>, ErrorData, <<>>),
+            jsx:encode(ErrorData) ++ " " ++ binary_to_list(Message);
+        false -> 
+            io_lib:format("~p", [ErrorData])
+    end,
+    
+    MatchedPatterns = lists:filter(fun(Pattern) ->
+        string:str(string:to_lower(ErrorStr), string:to_lower(binary_to_list(Pattern))) > 0
+    end, Patterns),
+    
+    case MatchedPatterns of
+        [] -> ok;
+        Patterns ->
+            colored_logger:fire(inferno, io_lib:format(
+                "[COMPREHENSIVE_ERROR_LOGGER] 🚨 Resource exhaustion patterns detected: ~p in context ~s", 
+                [Patterns, Context]
+            )),
+            log_resource_exhaustion(ErrorData)
+    end.
+
+format_timestamp(EpochSeconds) ->
+    {{Year, Month, Day}, {Hour, Min, Sec}} = calendar:gregorian_seconds_to_datetime(
+        EpochSeconds + calendar:datetime_to_gregorian_seconds({{1970,1,1},{0,0,0}})
+    ),
+    io_lib:format("~4..0B-~2..0B-~2..0B ~2..0B:~2..0B:~2..0B", 
+                  [Year, Month, Day, Hour, Min, Sec]).

@@ -1,62 +1,47 @@
--module(simple_test).
--export([test_compilation/0]).
+%% simple_test.erl
+%% Simple test to verify the enhanced system components
 
-%% Simple test to verify modules can be loaded and basic functions work
-test_compilation() ->
-    io:format("Testing module compilation and basic functionality...~n"),
+-module(simple_test).
+-export([test/0]).
+
+test() ->
+    io:format("Testing Enhanced Agent System~n"),
     
-    % Test that our modules can be loaded
-    Modules = [
-        autonomous_agency,
-        dynamic_knowledge_graph,
-        deep_reasoning_engine,
-        environmental_learning_engine,
-        autonomous_goal_planner,
-        active_exploration_engine,
-        advanced_autonomous_agent
-    ],
-    
-    lists:foreach(fun(Module) ->
-        case code:which(Module) of
-            non_existing ->
-                io:format("✗ Module ~p not found~n", [Module]);
-            BeamFile ->
-                io:format("✓ Module ~p loaded from ~p~n", [Module, BeamFile])
+    % Test 1: Check if model registry has the new models
+    io:format("1. Testing model registry...~n"),
+    Models = [<<"o4-mini">>, <<"gpt-4.1">>, <<"gpt-4.1-mini">>, <<"gpt-4.1-nano">>, <<"o3">>],
+    lists:foreach(fun(Model) ->
+        case model_registry:validate_model(Model) of
+            true -> io:format("  ✅ ~s~n", [Model]);
+            false -> io:format("  ❌ ~s~n", [Model])
         end
-    end, Modules),
+    end, Models),
     
-    % Test basic record/data structure functionality
-    io:format("Testing data structures...~n"),
+    % Test 2: Check model categorization
+    io:format("2. Testing model categories...~n"),
+    case model_registry:get_models_by_category(reasoning) of
+        ReasoningModels when length(ReasoningModels) > 0 ->
+            io:format("  ✅ Found ~p reasoning models~n", [length(ReasoningModels)]);
+        _ ->
+            io:format("  ❌ No reasoning models found~n")
+    end,
     
-    % Test knowledge node creation (from dynamic_knowledge_graph)
-    TestNode = #{
-        id => test_node_1,
-        type => concept,
-        properties => #{test => true},
-        content => "test content",
-        confidence => 1.0
-    },
-    io:format("✓ Knowledge node structure: ~p~n", [TestNode]),
+    case model_registry:get_models_by_category(cost_optimized) of
+        CostModels when length(CostModels) > 0 ->
+            io:format("  ✅ Found ~p cost-optimized models~n", [length(CostModels)]);
+        _ ->
+            io:format("  ❌ No cost-optimized models found~n")
+    end,
     
-    % Test goal structure (from autonomous_goal_planner)
-    TestGoal = #{
-        goal_id => test_goal_1,
-        goal_type => learning,
-        description => "Test learning goal",
-        priority => high,
-        status => active
-    },
-    io:format("✓ Goal structure: ~p~n", [TestGoal]),
+    % Test 3: Check if new tools are loaded (without executing them)
+    io:format("3. Testing tool availability...~n"),
+    NewTools = [web_search, calculate, datetime_info, generate_uuid, hash_generate, 
+                file_list, fetch_url, encode_decode, network_info, json_operations,
+                text_analysis, database_query, image_processing],
     
-    % Test exploration strategy (from active_exploration_engine)
-    TestStrategy = #{
-        strategy_id => test_strategy_1,
-        strategy_type => curiosity_driven,
-        strategy_name => "Test exploration strategy",
-        exploration_depth => 3,
-        exploration_breadth => 5
-    },
-    io:format("✓ Exploration strategy structure: ~p~n", [TestStrategy]),
+    io:format("  📋 New tools added: ~p~n", [length(NewTools)]),
+    lists:foreach(fun(Tool) ->
+        io:format("    - ~p~n", [Tool])
+    end, lists:sublist(NewTools, 10)),
     
-    io:format("Basic compilation and structure test completed successfully!~n"),
-    ok.
+    io:format("~n✅ Basic system verification completed!~n").

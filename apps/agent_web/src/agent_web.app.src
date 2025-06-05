@@ -7,12 +7,27 @@
    [kernel,
     stdlib,
     ssl,
+    crypto,
+    public_key,
+    gproc,
+    mnesia,
     agents,
     openai,
     cowboy,
     jsx,
+    jiffy,
     uuid,
-    gun
+    gun,
+    hackney,
+    yamerl,
+    %% sqlite3,  % Commented due to build issues
+    jesse,
+    prometheus,
+    prometheus_httpd,
+    prometheus_cowboy,
+    jwt,
+    base64url,
+    poolboy
    ]},
   {env,[
    {port, 8080},

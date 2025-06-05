@@ -27,14 +27,16 @@ init(Req0, Opts) ->
             % Find the MCP server
             case find_mcp_server(ServerId) of
                 {ok, ServerPid} ->
-                    % Set SSE headers
+                    % Set SSE headers with proper CORS for authorization
                     Req1 = cowboy_req:stream_reply(200, #{
                         <<"content-type">> => <<"text/event-stream">>,
                         <<"cache-control">> => <<"no-cache">>,
                         <<"connection">> => <<"keep-alive">>,
                         <<"access-control-allow-origin">> => <<"*">>,
-                        <<"access-control-allow-headers">> => <<"Authorization, Content-Type">>,
-                        <<"access-control-allow-methods">> => <<"GET, POST, OPTIONS">>
+                        <<"access-control-allow-headers">> => <<"Authorization, Content-Type, X-Requested-With">>,
+                        <<"access-control-allow-methods">> => <<"GET, POST, OPTIONS">>,
+                        <<"access-control-expose-headers">> => <<"Authorization">>,
+                        <<"access-control-allow-credentials">> => <<"true">>
                     }, Req0),
                     
                     % Send initial connection event
@@ -83,11 +85,13 @@ process_mcp_requests(Req, State) ->
             % Handle MCP JSON-RPC request
             handle_mcp_request(Req, State);
         <<"OPTIONS">> ->
-            % Handle CORS preflight
+            % Handle CORS preflight with authorization support
             CorsReq = cowboy_req:reply(200, #{
                 <<"access-control-allow-origin">> => <<"*">>,
-                <<"access-control-allow-headers">> => <<"Authorization, Content-Type">>,
+                <<"access-control-allow-headers">> => <<"Authorization, Content-Type, X-Requested-With">>,
                 <<"access-control-allow-methods">> => <<"GET, POST, OPTIONS">>,
+                <<"access-control-expose-headers">> => <<"Authorization">>,
+                <<"access-control-allow-credentials">> => <<"true">>,
                 <<"access-control-max-age">> => <<"86400">>
             }, <<>>, Req),
             {ok, CorsReq, State}
@@ -146,7 +150,10 @@ handle_mcp_request(Req, State) ->
                         }),
                         ResponseReq = cowboy_req:reply(200, #{
                             <<"content-type">> => <<"application/json">>,
-                            <<"access-control-allow-origin">> => <<"*">>
+                            <<"access-control-allow-origin">> => <<"*">>,
+                            <<"access-control-allow-headers">> => <<"Authorization, Content-Type, X-Requested-With">>,
+                            <<"access-control-expose-headers">> => <<"Authorization">>,
+                            <<"access-control-allow-credentials">> => <<"true">>
                         }, Response, Req1),
                         {ok, ResponseReq, State};
                     {error, ErrorCode, ErrorMessage} ->
@@ -160,7 +167,10 @@ handle_mcp_request(Req, State) ->
                         }),
                         ErrorReq = cowboy_req:reply(200, #{
                             <<"content-type">> => <<"application/json">>,
-                            <<"access-control-allow-origin">> => <<"*">>
+                            <<"access-control-allow-origin">> => <<"*">>,
+                            <<"access-control-allow-headers">> => <<"Authorization, Content-Type, X-Requested-With">>,
+                            <<"access-control-expose-headers">> => <<"Authorization">>,
+                            <<"access-control-allow-credentials">> => <<"true">>
                         }, ErrorResponse, Req1),
                         {ok, ErrorReq, State}
                 end;
@@ -175,7 +185,10 @@ handle_mcp_request(Req, State) ->
                 }),
                 ErrorReq = cowboy_req:reply(400, #{
                     <<"content-type">> => <<"application/json">>,
-                    <<"access-control-allow-origin">> => <<"*">>
+                    <<"access-control-allow-origin">> => <<"*">>,
+                    <<"access-control-allow-headers">> => <<"Authorization, Content-Type, X-Requested-With">>,
+                    <<"access-control-expose-headers">> => <<"Authorization">>,
+                    <<"access-control-allow-credentials">> => <<"true">>
                 }, ErrorResponse, Req1),
                 {ok, ErrorReq, State}
         end
@@ -191,7 +204,10 @@ handle_mcp_request(Req, State) ->
             }),
             ParseErrorReq = cowboy_req:reply(400, #{
                 <<"content-type">> => <<"application/json">>,
-                <<"access-control-allow-origin">> => <<"*">>
+                <<"access-control-allow-origin">> => <<"*">>,
+                <<"access-control-allow-headers">> => <<"Authorization, Content-Type, X-Requested-With">>,
+                <<"access-control-expose-headers">> => <<"Authorization">>,
+                <<"access-control-allow-credentials">> => <<"true">>
             }, ParseErrorResponse, Req1),
             {ok, ParseErrorReq, State}
     end.

@@ -1,4 +1,17 @@
 -module(mcp_transport_stdio).
+
+%% Colorful logging macros
+-define(LOG_INFO(Msg), colored_logger:data(processed, Msg)).
+-define(LOG_INFO(Msg, Args), colored_logger:data(processed, io_lib:format(Msg, Args))).
+-define(LOG_ERROR(Msg), colored_logger:fire(inferno, Msg)).
+-define(LOG_ERROR(Msg, Args), colored_logger:fire(inferno, io_lib:format(Msg, Args))).
+-define(LOG_WARNING(Msg), colored_logger:alarm(medium, Msg)).
+-define(LOG_WARNING(Msg, Args), colored_logger:alarm(medium, io_lib:format(Msg, Args))).
+-define(LOG_SUCCESS(Msg), colored_logger:complete(success, Msg)).
+-define(LOG_SUCCESS(Msg, Args), colored_logger:complete(success, io_lib:format(Msg, Args))).
+-define(LOG_DEBUG(Msg), colored_logger:development(debugging, Msg)).
+-define(LOG_DEBUG(Msg, Args), colored_logger:development(debugging, io_lib:format(Msg, Args))).
+
 -behaviour(gen_server).
 
 %% API
@@ -50,11 +63,10 @@ init({Command, Args, ClientPid}) ->
         _ -> Executable ++ " " ++ string:join(ArgStrings, " ")
     end,
     
-    io:format("[STDIO] Starting command: ~s~n", [PortCommand]),
+    ?LOG_INFO("[STDIO] Starting command: ~s", [PortCommand]),
     
     % Open port with proper options
     PortOptions = [
-        {spawn, PortCommand},
         binary,
         use_stdio,
         exit_status,
@@ -74,7 +86,7 @@ init({Command, Args, ClientPid}) ->
         {ok, State}
     catch
         error:Reason ->
-            io:format("[STDIO] Failed to start command: ~p~n", [Reason]),
+            ?LOG_INFO("[STDIO] Failed to start command: ~p", [Reason]),
             {stop, {error, {spawn_failed, Reason}}}
     end.
 
@@ -107,12 +119,12 @@ handle_info({Port, {data, {noeol, Chunk}}}, State) when Port =:= State#state.por
     {noreply, State#state{buffer = NewBuffer}};
 
 handle_info({Port, {exit_status, Status}}, State) when Port =:= State#state.port ->
-    io:format("[STDIO] Process exited with status: ~p~n", [Status]),
+    ?LOG_INFO("[STDIO] Process exited with status: ~p", [Status]),
     State#state.client_pid ! {transport_closed, {exit_status, Status}},
     {stop, normal, State};
 
 handle_info({'EXIT', Port, Reason}, State) when Port =:= State#state.port ->
-    io:format("[STDIO] Port terminated: ~p~n", [Reason]),
+    ?LOG_INFO("[STDIO] Port terminated: ~p", [Reason]),
     State#state.client_pid ! {transport_closed, Reason},
     {stop, normal, State};
 
@@ -149,6 +161,6 @@ process_line(Line, State) ->
             end;
         false ->
             % Not valid JSON, might be stderr or other output
-            io:format("[STDIO] Non-JSON output: ~s~n", [Data]),
+            ?LOG_INFO("[STDIO] Non-JSON output: ~s", [Data]),
             State#state{buffer = <<>>}
     end.

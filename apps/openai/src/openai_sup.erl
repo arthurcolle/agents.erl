@@ -54,6 +54,36 @@ init(Options) ->
     
     % Define top-level children specs
     ChildSpecs = [
+        % Config manager process (start first)
+        #{
+            id => openai_config,
+            start => {openai_config, start_link, [Options]},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [openai_config]
+        },
+        
+        % Cost tracking service
+        #{
+            id => cost_tracker,
+            start => {cost_tracker, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [cost_tracker]
+        },
+        
+        % Request rate limiter service
+        #{
+            id => openai_rate_limiter,
+            start => {openai_rate_limiter, start_link, [Options]},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [openai_rate_limiter]
+        },
+        
         % API generator supervisor
         #{
             id => openai_generator_sup,
@@ -72,26 +102,6 @@ init(Options) ->
             shutdown => 5000,
             type => supervisor,
             modules => [openai_clients_sup]
-        },
-        
-        % Request rate limiter service
-        #{
-            id => openai_rate_limiter,
-            start => {openai_rate_limiter, start_link, [Options]},
-            restart => permanent,
-            shutdown => 5000,
-            type => worker,
-            modules => [openai_rate_limiter]
-        },
-        
-        % Config manager process
-        #{
-            id => openai_config,
-            start => {openai_config, start_link, [Options]},
-            restart => permanent,
-            shutdown => 5000,
-            type => worker,
-            modules => [openai_config]
         }
     ],
     

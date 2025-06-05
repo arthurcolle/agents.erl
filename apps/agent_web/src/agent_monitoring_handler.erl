@@ -77,7 +77,7 @@ handle_request(<<"GET">>, [<<"analytics">>], Req0, State) ->
     {ok, Req, State};
 
 handle_request(_, _, Req0, State) ->
-    Req = cowboy_req:reply(404, #{}, Req0),
+    Req = cowboy_req:reply(404, #{}, <<>>, Req0),
     {ok, Req, State}.
 
 %% Internal functions

@@ -19,8 +19,15 @@
         stdlib,
         inets,
         ssl,
+        crypto,
+        public_key,
         jsx,
-        openai
+        jiffy,
+        gproc,
+        mnesia,
+        openai,
+        poolboy,
+        uuid
     ]},
     {mod, {agent, []}},
     {env, [

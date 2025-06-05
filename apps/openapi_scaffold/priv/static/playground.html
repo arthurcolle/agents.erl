@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAPI Playground - Advanced API Testing</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <style>
+        .split-pane {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            height: 100vh;
+        }
+        .sidebar {
+            background: #1e1e1e;
+            color: #fff;
+            overflow-y: auto;
+        }
+        .main-content {
+            display: flex;
+            flex-direction: column;
+        }
+        .request-editor {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            padding: 1rem;
+        }
+        .response-viewer {
+            flex: 1;
+            padding: 1rem;
+            background: #f5f5f5;
+            overflow-y: auto;
+        }
+        .monaco-editor {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .tab-active {
+            background-color: #4f46e5;
+            color: white;
+        }
+        .loading {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef, useCallback } = React;
+
+        const API_BASE = '/api/playground';
+
+        const OpenAPIPlayground = () => {
+            const [specs, setSpecs] = useState({});
+            const [selectedSpec, setSelectedSpec] = useState(null);
+            const [selectedOperation, setSelectedOperation] = useState(null);
+            const [request, setRequest] = useState({
+                method: 'GET',
+                path: '',
+                headers: {},
+                queryParams: {},
+                body: ''
+            });
+            const [response, setResponse] = useState(null);
+            const [loading, setLoading] = useState(false);
+            const [tab, setTab] = useState('request');
+            const [history, setHistory] = useState([]);
+            const [environment, setEnvironment] = useState({
+                baseUrl: 'http://localhost:8080',
+                variables: {}
+            });
+            const [websocket, setWebsocket] = useState(null);
+
+            // Initialize WebSocket connection
+            useEffect(() => {
+                const ws = new WebSocket(`ws://${window.location.host}/api/playground/ws`);
+                
+                ws.onopen = () => {
+                    console.log('WebSocket connected');
+                    setWebsocket(ws);
+                };
+
+                ws.onmessage = (event) => {
+                    const data = JSON.parse(event.data);
+                    handleWebSocketMessage(data);
+                };
+
+                ws.onerror = (error) => {
+                    console.error('WebSocket error:', error);
+                };
+
+                return () => {
+                    ws.close();
+                };
+            }, []);
+
+            // Load available specs
+            useEffect(() => {
+                loadSpecs();
+            }, []);
+
+            const loadSpecs = async () => {
+                try {
+                    const response = await axios.get(`${API_BASE}/specs`);
+                    setSpecs(response.data);
+                    
+                    // Select first spec by default
+                    const specNames = Object.keys(response.data);
+                    if (specNames.length > 0) {
+                        setSelectedSpec(specNames[0]);
+                    }
+                } catch (error) {
+                    console.error('Failed to load specs:', error);
+                }
+            };
+
+            const handleWebSocketMessage = (data) => {
+                switch (data.type) {
+                    case 'response':
+                        setResponse(data.result);
+                        setLoading(false);
+                        break;
+                    case 'error':
+                        setResponse({ error: data.message });
+                        setLoading(false);
+                        break;
+                    case 'codeGenerated':
+                        // Handle code generation response
+                        break;
+                }
+            };
+
+            const executeRequest = async () => {
+                setLoading(true);
+                setResponse(null);
+
+                const requestData = {
+                    ...request,
+                    baseUrl: environment.baseUrl,
+                    useMock: tab === 'mock'
+                };
+
+                if (websocket && websocket.readyState === WebSocket.OPEN) {
+                    websocket.send(JSON.stringify({
+                        type: 'execute',
+                        request: requestData
+                    }));
+                } else {
+                    // Fallback to HTTP
+                    try {
+                        const response = await axios.post(`${API_BASE}/execute/${selectedSpec}`, requestData);
+                        setResponse(response.data);
+                        addToHistory(requestData, response.data);
+                    } catch (error) {
+                        setResponse({ error: error.message });
+                    }
+                    setLoading(false);
+                }
+            };
+
+            const addToHistory = (request, response) => {
+                const entry = {
+                    id: Date.now(),
+                    timestamp: new Date().toISOString(),
+                    request,
+                    response
+                };
+                setHistory(prev => [entry, ...prev.slice(0, 99)]);
+            };
+
+            const selectOperation = (operation) => {
+                setSelectedOperation(operation);
+                
+                // Update request with operation details
+                setRequest({
+                    method: operation.method,
+                    path: operation.path,
+                    headers: operation.defaultHeaders || {},
+                    queryParams: {},
+                    body: operation.defaultBody || ''
+                });
+            };
+
+            const generateCode = (language) => {
+                if (websocket && websocket.readyState === WebSocket.OPEN) {
+                    websocket.send(JSON.stringify({
+                        type: 'generateCode',
+                        language,
+                        request
+                    }));
+                }
+            };
+
+            return (
+                <div className="split-pane">
+                    <Sidebar
+                        specs={specs}
+                        selectedSpec={selectedSpec}
+                        onSelectSpec={setSelectedSpec}
+                        onSelectOperation={selectOperation}
+                    />
+                    
+                    <div className="main-content">
+                        <Header
+                            onExecute={executeRequest}
+                            loading={loading}
+                            environment={environment}
+                            onEnvironmentChange={setEnvironment}
+                        />
+                        
+                        <Tabs
+                            activeTab={tab}
+                            onTabChange={setTab}
+                            tabs={['request', 'mock', 'test', 'code', 'history']}
+                        />
+                        
+                        <div className="request-editor">
+                            {tab === 'request' && (
+                                <RequestEditor
+                                    request={request}
+                                    onChange={setRequest}
+                                    operation={selectedOperation}
+                                />
+                            )}
+                            
+                            {tab === 'mock' && (
+                                <MockConfiguration
+                                    operation={selectedOperation}
+                                />
+                            )}
+                            
+                            {tab === 'test' && (
+                                <TestRunner
+                                    operation={selectedOperation}
+                                    request={request}
+                                />
+                            )}
+                            
+                            {tab === 'code' && (
+                                <CodeGenerator
+                                    request={request}
+                                    onGenerate={generateCode}
+                                />
+                            )}
+                            
+                            {tab === 'history' && (
+                                <RequestHistory
+                                    history={history}
+                                    onSelectHistory={(entry) => {
+                                        setRequest(entry.request);
+                                        setResponse(entry.response);
+                                    }}
+                                />
+                            )}
+                        </div>
+                        
+                        <ResponseViewer
+                            response={response}
+                            loading={loading}
+                        />
+                    </div>
+                </div>
+            );
+        };
+
+        const Sidebar = ({ specs, selectedSpec, onSelectSpec, onSelectOperation }) => {
+            const spec = specs[selectedSpec];
+            
+            if (!spec) return <div className="sidebar p-4">Loading...</div>;
+            
+            return (
+                <div className="sidebar p-4">
+                    <h2 className="text-xl font-bold mb-4">API Explorer</h2>
+                    
+                    <select
+                        className="w-full p-2 mb-4 bg-gray-800 text-white rounded"
+                        value={selectedSpec}
+                        onChange={(e) => onSelectSpec(e.target.value)}
+                    >
+                        {Object.keys(specs).map(name => (
+                            <option key={name} value={name}>{name}</option>
+                        ))}
+                    </select>
+                    
+                    <div className="space-y-2">
+                        {spec.navigation && spec.navigation.map(tag => (
+                            <div key={tag.name} className="mb-4">
+                                <h3 className="font-semibold mb-2">{tag.name}</h3>
+                                <div className="space-y-1">
+                                    {tag.operations.map(op => (
+                                        <div
+                                            key={op.operationId}
+                                            className="cursor-pointer p-2 hover:bg-gray-700 rounded flex items-center gap-2"
+                                            onClick={() => onSelectOperation(op)}
+                                        >
+                                            <span className={`text-xs font-bold ${getMethodColor(op.method)}`}>
+                                                {op.method}
+                                            </span>
+                                            <span className="text-sm truncate">{op.path}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const Header = ({ onExecute, loading, environment, onEnvironmentChange }) => {
+            return (
+                <div className="bg-white border-b p-4 flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                        <input
+                            type="text"
+                            className="px-4 py-2 border rounded w-96"
+                            placeholder="Base URL"
+                            value={environment.baseUrl}
+                            onChange={(e) => onEnvironmentChange({
+                                ...environment,
+                                baseUrl: e.target.value
+                            })}
+                        />
+                        
+                        <button
+                            onClick={onExecute}
+                            disabled={loading}
+                            className={`px-6 py-2 rounded font-semibold text-white ${
+                                loading ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-700'
+                            }`}
+                        >
+                            {loading ? 'Executing...' : 'Send Request'}
+                        </button>
+                    </div>
+                    
+                    <div className="flex items-center gap-2">
+                        <button className="p-2 hover:bg-gray-100 rounded">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        const Tabs = ({ activeTab, onTabChange, tabs }) => {
+            return (
+                <div className="bg-gray-100 border-b">
+                    <div className="flex">
+                        {tabs.map(tab => (
+                            <button
+                                key={tab}
+                                className={`px-4 py-2 font-medium capitalize ${
+                                    activeTab === tab ? 'tab-active' : 'text-gray-600 hover:text-gray-900'
+                                }`}
+                                onClick={() => onTabChange(tab)}
+                            >
+                                {tab}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const RequestEditor = ({ request, onChange, operation }) => {
+            return (
+                <>
+                    <div className="space-y-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Headers
+                            </label>
+                            <KeyValueEditor
+                                data={request.headers}
+                                onChange={(headers) => onChange({ ...request, headers })}
+                            />
+                        </div>
+                        
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">
+                                Query Parameters
+                            </label>
+                            <KeyValueEditor
+                                data={request.queryParams}
+                                onChange={(queryParams) => onChange({ ...request, queryParams })}
+                            />
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Request Body
+                        </label>
+                        <textarea
+                            className="w-full h-64 p-4 font-mono text-sm border rounded"
+                            value={request.body}
+                            onChange={(e) => onChange({ ...request, body: e.target.value })}
+                            placeholder="Enter request body (JSON)"
+                        />
+                    </div>
+                </>
+            );
+        };
+
+        const KeyValueEditor = ({ data, onChange }) => {
+            const entries = Object.entries(data || {});
+            
+            const updateEntry = (index, key, value) => {
+                const newData = { ...data };
+                const oldKey = entries[index][0];
+                
+                if (oldKey !== key) {
+                    delete newData[oldKey];
+                }
+                
+                if (key) {
+                    newData[key] = value;
+                }
+                
+                onChange(newData);
+            };
+            
+            const addEntry = () => {
+                onChange({ ...data, '': '' });
+            };
+            
+            const removeEntry = (key) => {
+                const newData = { ...data };
+                delete newData[key];
+                onChange(newData);
+            };
+            
+            return (
+                <div className="space-y-2">
+                    {entries.map(([key, value], index) => (
+                        <div key={index} className="flex gap-2">
+                            <input
+                                type="text"
+                                className="flex-1 px-3 py-2 border rounded"
+                                placeholder="Key"
+                                value={key}
+                                onChange={(e) => updateEntry(index, e.target.value, value)}
+                            />
+                            <input
+                                type="text"
+                                className="flex-1 px-3 py-2 border rounded"
+                                placeholder="Value"
+                                value={value}
+                                onChange={(e) => updateEntry(index, key, e.target.value)}
+                            />
+                            <button
+                                onClick={() => removeEntry(key)}
+                                className="px-3 py-2 text-red-600 hover:bg-red-50 rounded"
+                            >
+                                ×
+                            </button>
+                        </div>
+                    ))}
+                    <button
+                        onClick={addEntry}
+                        className="text-blue-600 hover:text-blue-700 text-sm"
+                    >
+                        + Add Header
+                    </button>
+                </div>
+            );
+        };
+
+        const ResponseViewer = ({ response, loading }) => {
+            if (loading) {
+                return (
+                    <div className="response-viewer flex items-center justify-center">
+                        <div className="loading text-gray-500">Loading...</div>
+                    </div>
+                );
+            }
+            
+            if (!response) {
+                return (
+                    <div className="response-viewer flex items-center justify-center text-gray-500">
+                        Send a request to see the response
+                    </div>
+                );
+            }
+            
+            if (response.error) {
+                return (
+                    <div className="response-viewer">
+                        <div className="bg-red-50 border border-red-200 rounded p-4">
+                            <h3 className="font-semibold text-red-800 mb-2">Error</h3>
+                            <pre className="text-sm text-red-700">{JSON.stringify(response.error, null, 2)}</pre>
+                        </div>
+                    </div>
+                );
+            }
+            
+            return (
+                <div className="response-viewer">
+                    <div className="mb-4">
+                        <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-800">
+                            {response.status} {getStatusText(response.status)}
+                        </span>
+                        {response.metrics && (
+                            <span className="ml-2 text-sm text-gray-600">
+                                {response.metrics.duration}ms
+                            </span>
+                        )}
+                    </div>
+                    
+                    <div className="space-y-4">
+                        <div>
+                            <h3 className="font-semibold mb-2">Headers</h3>
+                            <div className="bg-gray-50 p-3 rounded">
+                                <pre className="text-sm">{JSON.stringify(response.headers, null, 2)}</pre>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 className="font-semibold mb-2">Body</h3>
+                            <div className="bg-gray-50 p-3 rounded">
+                                <pre className="text-sm">{JSON.stringify(response.body, null, 2)}</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        const MockConfiguration = ({ operation }) => {
+            const [config, setConfig] = useState({
+                scenario: 'normal',
+                delay: 0,
+                statusCode: 200,
+                customResponse: ''
+            });
+            
+            return (
+                <div className="space-y-4">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Mock Scenario
+                        </label>
+                        <select
+                            className="w-full p-2 border rounded"
+                            value={config.scenario}
+                            onChange={(e) => setConfig({ ...config, scenario: e.target.value })}
+                        >
+                            <option value="normal">Normal</option>
+                            <option value="slow">Slow Response</option>
+                            <option value="error">Error Response</option>
+                            <option value="flaky">Flaky (Random Errors)</option>
+                            <option value="rate_limited">Rate Limited</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Response Delay (ms)
+                        </label>
+                        <input
+                            type="number"
+                            className="w-full p-2 border rounded"
+                            value={config.delay}
+                            onChange={(e) => setConfig({ ...config, delay: parseInt(e.target.value) })}
+                        />
+                    </div>
+                    
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Status Code
+                        </label>
+                        <input
+                            type="number"
+                            className="w-full p-2 border rounded"
+                            value={config.statusCode}
+                            onChange={(e) => setConfig({ ...config, statusCode: parseInt(e.target.value) })}
+                        />
+                    </div>
+                    
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Custom Response Body
+                        </label>
+                        <textarea
+                            className="w-full h-48 p-2 font-mono text-sm border rounded"
+                            value={config.customResponse}
+                            onChange={(e) => setConfig({ ...config, customResponse: e.target.value })}
+                            placeholder="Leave empty to use auto-generated response"
+                        />
+                    </div>
+                </div>
+            );
+        };
+
+        const TestRunner = ({ operation, request }) => {
+            const [tests, setTests] = useState([]);
+            const [running, setRunning] = useState(false);
+            const [results, setResults] = useState([]);
+            
+            const runTests = async () => {
+                setRunning(true);
+                setResults([]);
+                
+                // Run predefined tests
+                const testResults = [];
+                
+                // Add test results as they complete
+                setResults(testResults);
+                setRunning(false);
+            };
+            
+            return (
+                <div className="space-y-4">
+                    <div className="flex justify-between items-center">
+                        <h3 className="font-semibold">Automated Tests</h3>
+                        <button
+                            onClick={runTests}
+                            disabled={running}
+                            className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:bg-gray-400"
+                        >
+                            {running ? 'Running...' : 'Run Tests'}
+                        </button>
+                    </div>
+                    
+                    <div className="space-y-2">
+                        {operation && operation['x-playground'] && operation['x-playground'].testCases && 
+                         operation['x-playground'].testCases.map((test, index) => (
+                            <div key={index} className="p-3 border rounded">
+                                <div className="flex items-center justify-between">
+                                    <span className="font-medium">{test.name}</span>
+                                    {results[index] && (
+                                        <span className={`text-sm ${results[index].passed ? 'text-green-600' : 'text-red-600'}`}>
+                                            {results[index].passed ? '✓ Passed' : '✗ Failed'}
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        };
+
+        const CodeGenerator = ({ request, onGenerate }) => {
+            const [language, setLanguage] = useState('curl');
+            const [code, setCode] = useState('');
+            
+            useEffect(() => {
+                generateCodeSnippet();
+            }, [language, request]);
+            
+            const generateCodeSnippet = () => {
+                // Simple code generation - would be enhanced by server
+                let snippet = '';
+                
+                switch (language) {
+                    case 'curl':
+                        snippet = `curl -X ${request.method} '${request.path}' \\
+${Object.entries(request.headers).map(([k, v]) => `  -H '${k}: ${v}'`).join(' \\\n')}
+${request.body ? `  -d '${request.body}'` : ''}`;
+                        break;
+                    
+                    case 'javascript':
+                        snippet = `const response = await fetch('${request.path}', {
+  method: '${request.method}',
+  headers: ${JSON.stringify(request.headers, null, 2)},
+  ${request.body ? `body: JSON.stringify(${request.body})` : ''}
+});
+
+const data = await response.json();
+console.log(data);`;
+                        break;
+                    
+                    case 'python':
+                        snippet = `import requests
+
+response = requests.${request.method.toLowerCase()}(
+    '${request.path}',
+    headers=${JSON.stringify(request.headers, null, 2).replace(/"/g, "'")},
+    ${request.body ? `json=${request.body}` : ''}
+)
+
+print(response.json())`;
+                        break;
+                }
+                
+                setCode(snippet);
+            };
+            
+            return (
+                <div className="space-y-4">
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                            Language
+                        </label>
+                        <select
+                            className="w-full p-2 border rounded"
+                            value={language}
+                            onChange={(e) => setLanguage(e.target.value)}
+                        >
+                            <option value="curl">cURL</option>
+                            <option value="javascript">JavaScript</option>
+                            <option value="python">Python</option>
+                            <option value="go">Go</option>
+                            <option value="rust">Rust</option>
+                            <option value="erlang">Erlang</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <div className="flex justify-between items-center mb-2">
+                            <label className="text-sm font-medium text-gray-700">
+                                Generated Code
+                            </label>
+                            <button
+                                onClick={() => navigator.clipboard.writeText(code)}
+                                className="text-sm text-blue-600 hover:text-blue-700"
+                            >
+                                Copy
+                            </button>
+                        </div>
+                        <pre className="p-4 bg-gray-900 text-gray-100 rounded overflow-x-auto">
+                            <code>{code}</code>
+                        </pre>
+                    </div>
+                </div>
+            );
+        };
+
+        const RequestHistory = ({ history, onSelectHistory }) => {
+            return (
+                <div className="space-y-2">
+                    {history.length === 0 ? (
+                        <div className="text-center text-gray-500 py-8">
+                            No requests in history
+                        </div>
+                    ) : (
+                        history.map(entry => (
+                            <div
+                                key={entry.id}
+                                className="p-3 border rounded hover:bg-gray-50 cursor-pointer"
+                                onClick={() => onSelectHistory(entry)}
+                            >
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-2">
+                                        <span className={`text-xs font-bold ${getMethodColor(entry.request.method)}`}>
+                                            {entry.request.method}
+                                        </span>
+                                        <span className="text-sm">{entry.request.path}</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-sm text-gray-600">
+                                        <span className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${
+                                            entry.response.status < 400 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                                        }`}>
+                                            {entry.response.status}
+                                        </span>
+                                        <span>{new Date(entry.timestamp).toLocaleTimeString()}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    )}
+                </div>
+            );
+        };
+
+        // Utility functions
+        const getMethodColor = (method) => {
+            const colors = {
+                GET: 'text-green-600',
+                POST: 'text-blue-600',
+                PUT: 'text-yellow-600',
+                PATCH: 'text-orange-600',
+                DELETE: 'text-red-600'
+            };
+            return colors[method] || 'text-gray-600';
+        };
+
+        const getStatusText = (status) => {
+            const statusTexts = {
+                200: 'OK',
+                201: 'Created',
+                204: 'No Content',
+                400: 'Bad Request',
+                401: 'Unauthorized',
+                403: 'Forbidden',
+                404: 'Not Found',
+                429: 'Too Many Requests',
+                500: 'Internal Server Error',
+                503: 'Service Unavailable'
+            };
+            return statusTexts[status] || '';
+        };
+
+        // Render the app
+        ReactDOM.render(<OpenAPIPlayground />, document.getElementById('root'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,843 @@
+-module(auto_error_fixer).
+-behaviour(gen_server).
+
+%% API
+-export([
+    start_link/0,
+    report_error/3,
+    get_fix_stats/0,
+    apply_learned_fix/2,
+    get_error_patterns/0
+]).
+
+%% gen_server callbacks
+-export([init/1, handle_call/3, handle_cast/2, handle_info/2,
+         terminate/2, code_change/3]).
+
+-define(SERVER, ?MODULE).
+-define(PATTERN_THRESHOLD, 3).  % Minimum occurrences to create a pattern
+-define(ML_CONFIDENCE_THRESHOLD, 0.85).
+
+-record(state, {
+    error_patterns = #{} :: map(),
+    fix_database = #{} :: map(),
+    ml_model = undefined :: undefined | pid(),
+    fix_stats = #{success => 0, failed => 0, total => 0} :: map(),
+    learning_mode = true :: boolean()
+}).
+
+-record(error_pattern, {
+    type :: atom(),
+    module :: atom(),
+    function :: atom(),
+    arity :: integer(),
+    error_type :: atom(),
+    error_detail :: term(),
+    occurrences = 0 :: integer(),
+    successful_fixes = [] :: list(),
+    context = #{} :: map()
+}).
+
+-record(fix_strategy, {
+    pattern_hash :: binary(),
+    fix_type :: atom(),
+    fix_code :: term(),
+    success_rate = 0.0 :: float(),
+    applications = 0 :: integer()
+}).
+
+%%%===================================================================
+%%% API
+%%%===================================================================
+
+start_link() ->
+    gen_server:start_link({local, ?SERVER}, ?MODULE, [], []).
+
+report_error(Module, Function, Error) ->
+    gen_server:cast(?SERVER, {report_error, Module, Function, Error}).
+
+get_fix_stats() ->
+    gen_server:call(?SERVER, get_fix_stats).
+
+apply_learned_fix(Module, Function) ->
+    gen_server:call(?SERVER, {apply_learned_fix, Module, Function}).
+
+get_error_patterns() ->
+    gen_server:call(?SERVER, get_error_patterns).
+
+%%%===================================================================
+%%% gen_server callbacks
+%%%===================================================================
+
+init([]) ->
+    error_logger:info_msg("🔧 Auto Error Fixer starting up...~n"),
+    
+    %% Start ML model for pattern recognition
+    self() ! start_ml_model,
+    
+    %% Schedule periodic pattern analysis
+    erlang:send_after(60000, self(), analyze_patterns),
+    
+    %% Load historical patterns if available
+    State = load_historical_patterns(#state{}),
+    
+    {ok, State}.
+
+handle_call(get_fix_stats, _From, State) ->
+    {reply, State#state.fix_stats, State};
+
+handle_call(get_error_patterns, _From, State) ->
+    Patterns = maps:values(State#state.error_patterns),
+    {reply, Patterns, State};
+
+handle_call({apply_learned_fix, Module, Function}, _From, State) ->
+    Result = attempt_automatic_fix(Module, Function, State),
+    NewState = update_fix_stats(Result, State),
+    {reply, Result, NewState};
+
+handle_call(_Request, _From, State) ->
+    {reply, ok, State}.
+
+handle_cast({report_error, Module, Function, Error}, State) ->
+    Pattern = create_error_pattern(Module, Function, Error),
+    NewState = learn_from_error(Pattern, State),
+    
+    %% Attempt automatic fix if confidence is high
+    case should_auto_fix(Pattern, NewState) of
+        true ->
+            spawn(fun() -> 
+                Result = attempt_automatic_fix(Module, Function, NewState),
+                report_fix_result(Pattern, Result)
+            end);
+        false ->
+            ok
+    end,
+    
+    {noreply, NewState};
+
+handle_cast(_Msg, State) ->
+    {noreply, State}.
+
+handle_info(start_ml_model, State) ->
+    %% Initialize ML model for pattern recognition
+    MLModel = spawn_link(fun() -> ml_pattern_engine() end),
+    {noreply, State#state{ml_model = MLModel}};
+
+handle_info(analyze_patterns, State) ->
+    %% Analyze patterns and generate new fixes
+    NewState = analyze_and_generate_fixes(State),
+    
+    %% Schedule next analysis
+    erlang:send_after(60000, self(), analyze_patterns),
+    
+    {noreply, NewState};
+
+handle_info({fix_result, PatternHash, Result}, State) ->
+    NewState = update_fix_database(PatternHash, Result, State),
+    {noreply, NewState};
+
+handle_info(_Info, State) ->
+    {noreply, State}.
+
+terminate(_Reason, _State) ->
+    ok.
+
+code_change(_OldVsn, State, _Extra) ->
+    {ok, State}.
+
+%%%===================================================================
+%%% Internal functions
+%%%===================================================================
+
+create_error_pattern(Module, Function, {Type, Reason} = Error) ->
+    {Arity, Context} = extract_error_context(Error),
+    PatternHash = generate_pattern_hash(Module, Function, Type, Reason),
+    
+    #error_pattern{
+        type = Type,
+        module = Module,
+        function = Function,
+        arity = Arity,
+        error_type = Type,
+        error_detail = Reason,
+        occurrences = 1,
+        context = Context#{
+            timestamp => erlang:timestamp(),
+            stack_trace => get_stacktrace()
+        }
+    }.
+
+learn_from_error(Pattern, State) ->
+    PatternHash = generate_pattern_hash(
+        Pattern#error_pattern.module,
+        Pattern#error_pattern.function,
+        Pattern#error_pattern.error_type,
+        Pattern#error_pattern.error_detail
+    ),
+    
+    UpdatedPatterns = case maps:find(PatternHash, State#state.error_patterns) of
+        {ok, ExistingPattern} ->
+            Updated = ExistingPattern#error_pattern{
+                occurrences = ExistingPattern#error_pattern.occurrences + 1,
+                context = merge_contexts(
+                    ExistingPattern#error_pattern.context,
+                    Pattern#error_pattern.context
+                )
+            },
+            maps:put(PatternHash, Updated, State#state.error_patterns);
+        error ->
+            maps:put(PatternHash, Pattern, State#state.error_patterns)
+    end,
+    
+    %% Send pattern to ML model for analysis
+    case State#state.ml_model of
+        undefined -> ok;
+        Pid -> Pid ! {analyze_pattern, Pattern}
+    end,
+    
+    State#state{error_patterns = UpdatedPatterns}.
+
+should_auto_fix(Pattern, State) ->
+    case State#state.learning_mode of
+        false -> false;
+        true ->
+            PatternHash = generate_pattern_hash(
+                Pattern#error_pattern.module,
+                Pattern#error_pattern.function,
+                Pattern#error_pattern.error_type,
+                Pattern#error_pattern.error_detail
+            ),
+            
+            case maps:find(PatternHash, State#state.fix_database) of
+                {ok, Fix} when Fix#fix_strategy.success_rate > 0.8 ->
+                    true;
+                _ ->
+                    Pattern#error_pattern.occurrences >= ?PATTERN_THRESHOLD
+            end
+    end.
+
+attempt_automatic_fix(Module, Function, State) ->
+    try
+        %% Generate fix strategies based on error patterns
+        Strategies = generate_fix_strategies(Module, Function, State),
+        
+        %% Apply strategies in order of confidence
+        apply_fix_strategies(Strategies, Module, Function)
+    catch
+        Type:Reason ->
+            error_logger:warning_msg("Auto-fix failed for ~p:~p - ~p:~p~n",
+                                   [Module, Function, Type, Reason]),
+            {error, {fix_failed, Type, Reason}}
+    end.
+
+generate_fix_strategies(Module, Function, State) ->
+    %% Collect all relevant patterns
+    RelevantPatterns = find_relevant_patterns(Module, Function, State#state.error_patterns),
+    
+    %% Generate strategies based on patterns
+    Strategies = lists:flatmap(fun(Pattern) ->
+        [
+            %% Strategy 1: Add error handling wrapper
+            #{
+                type => error_wrapper,
+                confidence => calculate_wrapper_confidence(Pattern),
+                generator => fun() -> generate_wrapper_fix(Module, Function, Pattern) end
+            },
+            
+            %% Strategy 2: Add input validation
+            #{
+                type => input_validation,
+                confidence => calculate_validation_confidence(Pattern),
+                generator => fun() -> generate_validation_fix(Module, Function, Pattern) end
+            },
+            
+            %% Strategy 3: Add retry logic
+            #{
+                type => retry_logic,
+                confidence => calculate_retry_confidence(Pattern),
+                generator => fun() -> generate_retry_fix(Module, Function, Pattern) end
+            },
+            
+            %% Strategy 4: Add circuit breaker
+            #{
+                type => circuit_breaker,
+                confidence => calculate_circuit_confidence(Pattern),
+                generator => fun() -> generate_circuit_fix(Module, Function, Pattern) end
+            },
+            
+            %% Strategy 5: ML-suggested fix
+            case State#state.ml_model of
+                undefined -> [];
+                MLPid ->
+                    MLPid ! {suggest_fix, Pattern, self()},
+                    receive
+                        {ml_fix_suggestion, Suggestion} -> [Suggestion]
+                    after 1000 -> []
+                    end
+            end
+        ]
+    end, RelevantPatterns),
+    
+    %% Sort by confidence
+    lists:sort(fun(A, B) -> 
+        maps:get(confidence, A, 0) > maps:get(confidence, B, 0)
+    end, Strategies).
+
+apply_fix_strategies([], _Module, _Function) ->
+    {error, no_applicable_fix};
+apply_fix_strategies([Strategy | Rest], Module, Function) ->
+    case maps:get(confidence, Strategy, 0) >= ?ML_CONFIDENCE_THRESHOLD of
+        true ->
+            Generator = maps:get(generator, Strategy),
+            case apply_generated_fix(Generator(), Module, Function) of
+                ok -> 
+                    {ok, maps:get(type, Strategy)};
+                {error, _} ->
+                    apply_fix_strategies(Rest, Module, Function)
+            end;
+        false ->
+            apply_fix_strategies(Rest, Module, Function)
+    end.
+
+apply_generated_fix(FixCode, Module, Function) ->
+    try
+        %% Use hot code loading to apply the fix
+        case compile:forms(FixCode, [return_errors, return_warnings]) of
+            {ok, Module, Binary, _Warnings} ->
+                code:purge(Module),
+                case code:load_binary(Module, atom_to_list(Module) ++ "_autofixed.beam", Binary) of
+                    {module, Module} ->
+                        error_logger:info_msg("✅ Successfully applied auto-fix to ~p:~p~n",
+                                            [Module, Function]),
+                        ok;
+                    {error, Reason} ->
+                        {error, {load_failed, Reason}}
+                end;
+            {error, Errors, _Warnings} ->
+                {error, {compile_failed, Errors}}
+        end
+    catch
+        Type:Reason ->
+            {error, {apply_fix_failed, Type, Reason}}
+    end.
+
+%% Generate fix functions
+generate_wrapper_fix(Module, Function, Pattern) ->
+    generate_error_wrapper(Module, Function, Pattern).
+
+generate_validation_fix(Module, Function, Pattern) ->
+    generate_input_validation(Module, Function, Pattern).
+
+generate_retry_fix(Module, Function, Pattern) ->
+    generate_retry_logic(Module, Function, Pattern).
+
+generate_circuit_fix(Module, Function, Pattern) ->
+    generate_circuit_breaker(Module, Function, Pattern).
+
+generate_error_wrapper(Module, Function, Pattern) ->
+    %% Generate AST for error handling wrapper
+    Arity = Pattern#error_pattern.arity,
+    Args = generate_var_names(Arity),
+    
+    WrapperName = list_to_atom(atom_to_list(Function) ++ "_wrapped"),
+    
+    %% Create wrapper function that calls original with error handling
+    [{attribute, 1, module, Module},
+     {attribute, 2, export, [{Function, Arity}]},
+     {function, 3, Function, Arity,
+      [{clause, 3, Args, [],
+        [{'try', 4,
+          [{call, 5, {atom, 5, WrapperName}, Args}],
+          [],
+          [{clause, 6, [{var, 6, 'Result'}], [], [{var, 6, 'Result'}]}],
+          [{clause, 7,
+            [{tuple, 7, [{var, 7, '_Type'}, {var, 7, '_Reason'}]}],
+            [],
+            [{atom, 8, todo}]}]
+        }]
+      }]},
+     %% Keep original function renamed
+     {function, 10, WrapperName, Arity,
+      [{clause, 10, Args, [], 
+        %% Original function body would go here
+        [{atom, 10, todo}]
+      }]}
+    ].
+
+generate_input_validation(Module, Function, Pattern) ->
+    %% Generate input validation based on error patterns
+    Arity = Pattern#error_pattern.arity,
+    Args = generate_var_names(Arity),
+    
+    %% Analyze error to determine validation rules
+    ValidationClauses = generate_validation_clauses(Pattern),
+    
+    [{attribute, 1, module, Module},
+     {attribute, 2, export, [{Function, Arity}]},
+     {function, 3, Function, Arity,
+      ValidationClauses ++ 
+      [{clause, 99, Args, [], 
+        [{call, 100, {atom, 100, list_to_atom(atom_to_list(Function) ++ "_impl")}, Args}]
+      }]}
+    ].
+
+generate_retry_logic(Module, Function, Pattern) ->
+    %% Generate retry wrapper with exponential backoff
+    Arity = Pattern#error_pattern.arity,
+    Args = generate_var_names(Arity),
+    
+    [{attribute, 1, module, Module},
+     {attribute, 2, export, [{Function, Arity}]},
+     {function, 3, Function, Arity,
+      [{clause, 3, Args, [],
+        [{call, 4, {remote, 4, {atom, 4, error_resilience}, {atom, 4, with_retry}},
+          [{'fun', 5, {clauses,
+            [{clause, 5, [], [],
+              [{call, 6, {atom, 6, list_to_atom(atom_to_list(Function) ++ "_impl")}, Args}]
+            }]}},
+           {integer, 7, 3},  % Max retries
+           {integer, 8, 1000}  % Base delay
+          ]}]
+      }]}
+    ].
+
+generate_circuit_breaker(Module, Function, Pattern) ->
+    %% Generate circuit breaker wrapper
+    Arity = Pattern#error_pattern.arity,
+    Args = generate_var_names(Arity),
+    
+    [{attribute, 1, module, Module},
+     {attribute, 2, export, [{Function, Arity}]},
+     {function, 3, Function, Arity,
+      [{clause, 3, Args, [],
+        [{call, 4, {remote, 4, {atom, 4, error_resilience}, {atom, 4, with_circuit_breaker}},
+          [{atom, 5, list_to_atom(atom_to_list(Module) ++ "_" ++ atom_to_list(Function))},
+           {fun, 6, {clauses,
+            [{clause, 6, [], [],
+              [{call, 7, {atom, 7, Function ++ "_impl"}, Args}]
+            }]}},
+           {cons, 8, 
+            {tuple, 8, [{atom, 8, max_failures}, {integer, 8, 5}]},
+            {nil, 8}}
+          ]}]
+      }]}
+    ].
+
+ml_pattern_engine() ->
+    %% Simple ML engine for pattern recognition and fix suggestion
+    PatternDB = #{},
+    ml_pattern_loop(PatternDB).
+
+ml_pattern_loop(PatternDB) ->
+    receive
+        {analyze_pattern, Pattern} ->
+            %% Analyze pattern and update DB
+            NewDB = analyze_pattern_ml(Pattern, PatternDB),
+            ml_pattern_loop(NewDB);
+            
+        {suggest_fix, Pattern, From} ->
+            %% Generate fix suggestion based on learned patterns
+            Suggestion = generate_ml_suggestion(Pattern, PatternDB),
+            From ! {ml_fix_suggestion, Suggestion},
+            ml_pattern_loop(PatternDB);
+            
+        stop ->
+            ok
+    end.
+
+analyze_pattern_ml(Pattern, PatternDB) ->
+    %% Extract features from pattern
+    Features = extract_pattern_features(Pattern),
+    
+    %% Find similar patterns
+    SimilarPatterns = find_similar_patterns(Features, PatternDB),
+    
+    %% Update pattern database
+    maps:put(Features, {Pattern, SimilarPatterns}, PatternDB).
+
+generate_ml_suggestion(Pattern, PatternDB) ->
+    Features = extract_pattern_features(Pattern),
+    
+    case find_best_matching_fix(Features, PatternDB) of
+        {ok, FixType, Confidence} ->
+            #{
+                type => ml_suggested,
+                confidence => Confidence,
+                generator => fun() -> 
+                    generate_ml_based_fix(Pattern, FixType)
+                end
+            };
+        error ->
+            #{
+                type => ml_suggested,
+                confidence => 0.0,
+                generator => fun() -> {error, no_ml_suggestion} end
+            }
+    end.
+
+%% Helper functions
+
+generate_pattern_hash(Module, Function, Type, Reason) ->
+    crypto:hash(sha256, 
+        term_to_binary({Module, Function, Type, simplify_reason(Reason)})).
+
+simplify_reason(Reason) when is_tuple(Reason) ->
+    element(1, Reason);
+simplify_reason(Reason) when is_atom(Reason) ->
+    Reason;
+simplify_reason(_) ->
+    unknown.
+
+extract_error_context({_Type, {Arity, _}}) when is_integer(Arity) ->
+    {Arity, #{}};
+extract_error_context({_Type, {{_M, _F, Arity}, _}}) when is_integer(Arity) ->
+    {Arity, #{}};
+extract_error_context(_) ->
+    {0, #{}}.
+
+get_stacktrace() ->
+    try throw(get_stack) 
+    catch 
+        _:_:Stacktrace -> Stacktrace 
+    end.
+
+generate_var_names(0) -> [];
+generate_var_names(N) ->
+    [{var, 1, list_to_atom("Arg" ++ integer_to_list(I))} || 
+     I <- lists:seq(1, N)].
+
+generate_fallback_response(Pattern) ->
+    case Pattern#error_pattern.error_type of
+        noproc -> {tuple, 1, [{atom, 1, error}, {atom, 1, service_unavailable}]};
+        timeout -> {tuple, 1, [{atom, 1, error}, {atom, 1, timeout}]};
+        badarith -> {tuple, 1, [{atom, 1, ok}, {integer, 1, 0}]};
+        badmatch -> {tuple, 1, [{atom, 1, error}, {atom, 1, invalid_input}]};
+        _ -> {tuple, 1, [{atom, 1, error}, {atom, 1, unknown_error}]}
+    end.
+
+calculate_wrapper_confidence(Pattern) ->
+    Base = 0.7,
+    OccurrenceBonus = min(0.2, Pattern#error_pattern.occurrences * 0.02),
+    Base + OccurrenceBonus.
+
+calculate_validation_confidence(Pattern) ->
+    case Pattern#error_pattern.error_type of
+        badarg -> 0.9;
+        badmatch -> 0.85;
+        function_clause -> 0.8;
+        _ -> 0.5
+    end.
+
+calculate_retry_confidence(Pattern) ->
+    case Pattern#error_pattern.error_type of
+        timeout -> 0.9;
+        noproc -> 0.85;
+        connection_closed -> 0.9;
+        _ -> 0.3
+    end.
+
+calculate_circuit_confidence(Pattern) ->
+    case Pattern#error_pattern.occurrences > 10 of
+        true -> 0.8;
+        false -> 0.4
+    end.
+
+find_relevant_patterns(Module, Function, Patterns) ->
+    lists:filter(fun({_Hash, Pattern}) ->
+        Pattern#error_pattern.module =:= Module andalso
+        Pattern#error_pattern.function =:= Function
+    end, maps:to_list(Patterns)).
+
+merge_contexts(Old, New) ->
+    maps:merge(Old, New).
+
+update_fix_stats(Result, State) ->
+    Stats = State#state.fix_stats,
+    NewStats = case Result of
+        {ok, _} ->
+            Stats#{
+                success => maps:get(success, Stats) + 1,
+                total => maps:get(total, Stats) + 1
+            };
+        {error, _} ->
+            Stats#{
+                failed => maps:get(failed, Stats) + 1,
+                total => maps:get(total, Stats) + 1
+            }
+    end,
+    State#state{fix_stats = NewStats}.
+
+update_fix_database(PatternHash, Result, State) ->
+    FixDB = State#state.fix_database,
+    NewDB = case maps:find(PatternHash, FixDB) of
+        {ok, Fix} ->
+            UpdatedFix = update_fix_strategy(Fix, Result),
+            maps:put(PatternHash, UpdatedFix, FixDB);
+        error ->
+            FixDB
+    end,
+    State#state{fix_database = NewDB}.
+
+update_fix_strategy(Fix, {ok, _}) ->
+    Apps = Fix#fix_strategy.applications + 1,
+    SuccessRate = (Fix#fix_strategy.success_rate * Fix#fix_strategy.applications + 1) / Apps,
+    Fix#fix_strategy{
+        applications = Apps,
+        success_rate = SuccessRate
+    };
+update_fix_strategy(Fix, {error, _}) ->
+    Apps = Fix#fix_strategy.applications + 1,
+    SuccessRate = (Fix#fix_strategy.success_rate * Fix#fix_strategy.applications) / Apps,
+    Fix#fix_strategy{
+        applications = Apps,
+        success_rate = SuccessRate
+    }.
+
+report_fix_result(Pattern, Result) ->
+    gen_server:cast(?SERVER, {fix_result, 
+        generate_pattern_hash(
+            Pattern#error_pattern.module,
+            Pattern#error_pattern.function,
+            Pattern#error_pattern.error_type,
+            Pattern#error_pattern.error_detail
+        ), 
+        Result}).
+
+analyze_and_generate_fixes(State) ->
+    %% Analyze patterns and generate new fix strategies
+    HighFreqPatterns = find_high_frequency_patterns(State#state.error_patterns),
+    
+    %% Generate new fixes for patterns without solutions
+    NewFixes = lists:foldl(fun({Hash, Pattern}, Acc) ->
+        case maps:is_key(Hash, State#state.fix_database) of
+            false ->
+                Fix = create_fix_strategy(Pattern),
+                maps:put(Hash, Fix, Acc);
+            true ->
+                Acc
+        end
+    end, State#state.fix_database, HighFreqPatterns),
+    
+    State#state{fix_database = NewFixes}.
+
+find_high_frequency_patterns(Patterns) ->
+    lists:filter(fun({_Hash, Pattern}) ->
+        Pattern#error_pattern.occurrences >= ?PATTERN_THRESHOLD
+    end, maps:to_list(Patterns)).
+
+create_fix_strategy(Pattern) ->
+    #fix_strategy{
+        pattern_hash = generate_pattern_hash(
+            Pattern#error_pattern.module,
+            Pattern#error_pattern.function,
+            Pattern#error_pattern.error_type,
+            Pattern#error_pattern.error_detail
+        ),
+        fix_type = determine_fix_type(Pattern),
+        fix_code = generate_fix_code(Pattern),
+        success_rate = 0.0,
+        applications = 0
+    }.
+
+determine_fix_type(Pattern) ->
+    case Pattern#error_pattern.error_type of
+        timeout -> retry_logic;
+        noproc -> circuit_breaker;
+        badarg -> input_validation;
+        _ -> error_wrapper
+    end.
+
+generate_fix_code(Pattern) ->
+    FixType = determine_fix_type(Pattern),
+    case FixType of
+        retry_logic -> generate_retry_logic(
+            Pattern#error_pattern.module,
+            Pattern#error_pattern.function,
+            Pattern
+        );
+        circuit_breaker -> generate_circuit_breaker(
+            Pattern#error_pattern.module,
+            Pattern#error_pattern.function,
+            Pattern
+        );
+        input_validation -> generate_input_validation(
+            Pattern#error_pattern.module,
+            Pattern#error_pattern.function,
+            Pattern
+        );
+        error_wrapper -> generate_error_wrapper(
+            Pattern#error_pattern.module,
+            Pattern#error_pattern.function,
+            Pattern
+        )
+    end.
+
+generate_validation_clauses(Pattern) ->
+    %% Generate validation clauses based on error type
+    case Pattern#error_pattern.error_type of
+        badarg ->
+            %% Add type checking clauses
+            [{clause, 1, [{var, 1, 'X'}], 
+              [[{call, 2, {atom, 2, is_integer}, [{var, 2, 'X'}]}]],
+              [{tuple, 3, [{atom, 3, error}, {atom, 3, invalid_argument}]}]}];
+        function_clause ->
+            %% Add pattern matching clauses
+            [{clause, 1, [{atom, 1, undefined}], [],
+              [{tuple, 2, [{atom, 2, error}, {atom, 2, undefined_not_allowed}]}]}];
+        _ ->
+            []
+    end.
+
+extract_pattern_features(Pattern) ->
+    #{
+        module => Pattern#error_pattern.module,
+        function => Pattern#error_pattern.function,
+        error_type => Pattern#error_pattern.error_type,
+        occurrences => Pattern#error_pattern.occurrences,
+        context_keys => maps:keys(Pattern#error_pattern.context)
+    }.
+
+find_similar_patterns(Features, PatternDB) ->
+    Threshold = 0.7,
+    lists:filter(fun({StoredFeatures, _}) ->
+        similarity_score(Features, StoredFeatures) > Threshold
+    end, maps:to_list(PatternDB)).
+
+similarity_score(Features1, Features2) ->
+    %% Simple similarity scoring
+    Score = 0.0,
+    Score1 = case maps:get(module, Features1) =:= maps:get(module, Features2) of
+        true -> Score + 0.3;
+        false -> Score
+    end,
+    Score2 = case maps:get(function, Features1) =:= maps:get(function, Features2) of
+        true -> Score1 + 0.3;
+        false -> Score1
+    end,
+    Score3 = case maps:get(error_type, Features1) =:= maps:get(error_type, Features2) of
+        true -> Score2 + 0.4;
+        false -> Score2
+    end,
+    Score3.
+
+find_best_matching_fix(Features, PatternDB) ->
+    Similar = find_similar_patterns(Features, PatternDB),
+    case Similar of
+        [] -> error;
+        Matches ->
+            %% Find the best matching fix
+            {_BestFeatures, {_Pattern, Fixes}} = lists:max(Matches),
+            case Fixes of
+                [] -> error;
+                [Fix | _] -> {ok, Fix, 0.8}
+            end
+    end.
+
+generate_ml_based_fix(Pattern, FixType) ->
+    %% Generate fix based on ML suggestion
+    case FixType of
+        defensive_programming ->
+            generate_defensive_wrapper(Pattern);
+        type_conversion ->
+            generate_type_converter(Pattern);
+        resource_management ->
+            generate_resource_manager(Pattern);
+        _ ->
+            generate_error_wrapper(
+                Pattern#error_pattern.module,
+                Pattern#error_pattern.function,
+                Pattern
+            )
+    end.
+
+generate_defensive_wrapper(Pattern) ->
+    %% Generate defensive programming wrapper
+    Module = Pattern#error_pattern.module,
+    Function = Pattern#error_pattern.function,
+    Arity = Pattern#error_pattern.arity,
+    Args = generate_var_names(Arity),
+    
+    [{attribute, 1, module, Module},
+     {attribute, 2, export, [{Function, Arity}]},
+     {function, 3, Function, Arity,
+      [{clause, 3, Args, [],
+        [{case, 4, {call, 4, {atom, 4, validate_args}, [Args]},
+          [{clause, 5, {atom, 5, ok}, [],
+            [{call, 6, {atom, 6, Function ++ "_impl"}, Args}]},
+           {clause, 7, {tuple, 7, [{atom, 7, error}, {var, 7, 'Reason'}]}, [],
+            [{tuple, 8, [{atom, 8, error}, {var, 8, 'Reason'}]}]}
+          ]}]
+      }]}
+    ].
+
+generate_type_converter(Pattern) ->
+    %% Generate automatic type conversion
+    Module = Pattern#error_pattern.module,
+    Function = Pattern#error_pattern.function,
+    Arity = Pattern#error_pattern.arity,
+    Args = generate_var_names(Arity),
+    
+    [{attribute, 1, module, Module},
+     {attribute, 2, export, [{Function, Arity}]},
+     {function, 3, Function, Arity,
+      [{clause, 3, Args, [],
+        [{call, 4, {atom, 4, Function ++ "_impl"},
+          [{call, 5, {atom, 5, convert_types}, [Args]}]
+        }]
+      }]}
+    ].
+
+generate_resource_manager(Pattern) ->
+    %% Generate resource management wrapper
+    Module = Pattern#error_pattern.module,
+    Function = Pattern#error_pattern.function,
+    Arity = Pattern#error_pattern.arity,
+    Args = generate_var_names(Arity),
+    
+    [{attribute, 1, module, Module},
+     {attribute, 2, export, [{Function, Arity}]},
+     {function, 3, Function, Arity,
+      [{clause, 3, Args, [],
+        [{try, 4,
+          [{call, 5, {atom, 5, acquire_resources}, []}],
+          [],
+          [{clause, 6, [{var, 6, 'Resources'}], [],
+            [{try, 7,
+              [{call, 8, {atom, 8, Function ++ "_impl"}, 
+                [{cons, 8, {var, 8, 'Resources'}, Args}]}],
+              [],
+              [{clause, 9, [{var, 9, 'Result'}], [],
+                [{call, 10, {atom, 10, release_resources}, [{var, 10, 'Resources'}]},
+                 {var, 11, 'Result'}]}],
+              [{clause, 12,
+                [{tuple, 12, [{var, 12, 'Type'}, {var, 12, 'Reason'}]}],
+                [],
+                [{call, 13, {atom, 13, release_resources}, [{var, 13, 'Resources'}]},
+                 {call, 14, {atom, 14, erlang}, {atom, 14, raise},
+                  [{var, 14, 'Type'}, {var, 14, 'Reason'}, {nil, 14}]}]}]
+            }]}],
+          [{clause, 15,
+            [{tuple, 15, [{var, 15, '_'}, {var, 15, '_'}]}],
+            [],
+            [{tuple, 16, [{atom, 16, error}, {atom, 16, resource_unavailable}]}]}]
+        }]
+      }]}
+    ].
+
+load_historical_patterns(State) ->
+    %% Load patterns from persistent storage if available
+    case file:read_file("error_patterns.dat") of
+        {ok, Binary} ->
+            try
+                Patterns = binary_to_term(Binary),
+                State#state{error_patterns = Patterns}
+            catch
+                _:_ -> State
+            end;
+        _ -> State
+    end.
+
+save_patterns(State) ->
+    %% Save patterns to persistent storage
+    Binary = term_to_binary(State#state.error_patterns),
+    file:write_file("error_patterns.dat", Binary).

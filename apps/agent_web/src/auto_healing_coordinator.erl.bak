@@ -1,0 +1,326 @@
+-module(auto_healing_coordinator).
+-behaviour(gen_server).
+
+-export([start_link/0]).
+-export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
+-export([trigger_healing/2, get_healing_status/0, enable_auto_healing/0, disable_auto_healing/0]).
+
+-define(SERVER, ?MODULE).
+
+-record(state, {
+    auto_healing_enabled = true,
+    healing_history = [],
+    active_healings = #{},
+    stats = #{attempts => 0, successes => 0, failures => 0}
+}).
+
+start_link() ->
+    colored_logger:ocean(deep, "[AUTO_HEAL] 🔧 Starting Auto-Healing Coordinator"),
+    gen_server:start_link({local, ?SERVER}, ?MODULE, [], []).
+
+init([]) ->
+    colored_logger:success("[AUTO_HEAL] ✅ Auto-Healing Coordinator initialized"),
+    {ok, #state{}}.
+
+handle_call(get_healing_status, _From, State) ->
+    Status = #{
+        enabled => State#state.auto_healing_enabled,
+        active_healings => maps:size(State#state.active_healings),
+        stats => State#state.stats,
+        recent_healings => lists:sublist(State#state.healing_history, 10)
+    },
+    {reply, Status, State};
+
+handle_call(enable_auto_healing, _From, State) ->
+    colored_logger:success("[AUTO_HEAL] ✅ Auto-healing enabled"),
+    {reply, ok, State#state{auto_healing_enabled = true}};
+
+handle_call(disable_auto_healing, _From, State) ->
+    colored_logger:warning("[AUTO_HEAL] ⚠️ Auto-healing disabled"),
+    {reply, ok, State#state{auto_healing_enabled = false}};
+
+handle_call(_Request, _From, State) ->
+    {reply, ok, State}.
+
+handle_cast({trigger_healing, Problem, Context}, State) ->
+    NewState = case State#state.auto_healing_enabled of
+        true ->
+            process_healing_request(Problem, Context, State);
+        false ->
+            colored_logger:warning("[AUTO_HEAL] ⚠️ Healing request ignored (auto-healing disabled): ~p", [Problem]),
+            State
+    end,
+    {noreply, NewState};
+
+handle_cast(_Msg, State) ->
+    {noreply, State}.
+
+handle_info({healing_complete, HealingId, Result}, State) ->
+    NewState = handle_healing_completion(HealingId, Result, State),
+    {noreply, NewState};
+
+handle_info(_Info, State) ->
+    {noreply, State}.
+
+terminate(_Reason, _State) ->
+    colored_logger:warning("[AUTO_HEAL] ⚠️ Auto-Healing Coordinator terminating"),
+    ok.
+
+code_change(_OldVsn, State, _Extra) ->
+    {ok, State}.
+
+%% Public API
+trigger_healing(Problem, Context) ->
+    gen_server:cast(?SERVER, {trigger_healing, Problem, Context}).
+
+get_healing_status() ->
+    gen_server:call(?SERVER, get_healing_status).
+
+enable_auto_healing() ->
+    gen_server:call(?SERVER, enable_auto_healing).
+
+disable_auto_healing() ->
+    gen_server:call(?SERVER, disable_auto_healing).
+
+%% Process healing request
+process_healing_request(Problem, Context, State) ->
+    HealingId = generate_healing_id(),
+    Timestamp = erlang:system_time(millisecond),
+    
+    colored_logger:ocean(deep, "[AUTO_HEAL] 🩺 Processing healing request ~s for problem: ~p", 
+                        [HealingId, Problem]),
+    
+    %% Determine healing strategy
+    HealingStrategy = determine_healing_strategy(Problem, Context),
+    
+    %% Start healing process
+    HealingPid = spawn_link(fun() ->
+        execute_healing_strategy(HealingId, HealingStrategy, Problem, Context)
+    end),
+    
+    %% Track active healing
+    HealingInfo = #{
+        id => HealingId,
+        problem => Problem,
+        context => Context,
+        strategy => HealingStrategy,
+        pid => HealingPid,
+        started_at => Timestamp
+    },
+    
+    NewActiveHealings = maps:put(HealingId, HealingInfo, State#state.active_healings),
+    NewStats = update_stats(State#state.stats, attempt),
+    
+    State#state{
+        active_healings = NewActiveHealings,
+        stats = NewStats
+    }.
+
+%% Determine appropriate healing strategy
+determine_healing_strategy(Problem, Context) ->
+    case Problem of
+        supervisor_down ->
+            restart_supervisor;
+        agent_crashed ->
+            restart_agent;
+        memory_leak ->
+            garbage_collect;
+        high_memory_usage ->
+            scale_down;
+        connection_failure ->
+            reconnect;
+        api_rate_limit ->
+            backoff_and_retry;
+        database_connection_lost ->
+            reconnect_database;
+        websocket_disconnected ->
+            reconnect_websocket;
+        _ ->
+            colored_logger:warning("[AUTO_HEAL] ⚠️ Unknown problem type: ~p, using generic strategy", [Problem]),
+            generic_recovery
+    end.
+
+%% Execute healing strategy
+execute_healing_strategy(HealingId, Strategy, Problem, Context) ->
+    colored_logger:info("[AUTO_HEAL] 🔧 Executing healing strategy ~p for ~s", [Strategy, HealingId]),
+    
+    Result = try
+        case Strategy of
+            restart_supervisor ->
+                heal_supervisor_restart(Context);
+            restart_agent ->
+                heal_agent_restart(Context);
+            garbage_collect ->
+                heal_garbage_collect(Context);
+            scale_down ->
+                heal_scale_down(Context);
+            reconnect ->
+                heal_reconnect(Context);
+            backoff_and_retry ->
+                heal_backoff_retry(Context);
+            reconnect_database ->
+                heal_database_reconnect(Context);
+            reconnect_websocket ->
+                heal_websocket_reconnect(Context);
+            generic_recovery ->
+                heal_generic_recovery(Context);
+            _ ->
+                {error, unknown_strategy}
+        end
+    catch
+        _:Error ->
+            colored_logger:fire(bright, "[AUTO_HEAL] ❌ Healing strategy ~p failed: ~p", [Strategy, Error]),
+            {error, Error}
+    end,
+    
+    %% Report completion
+    ?SERVER ! {healing_complete, HealingId, Result}.
+
+%% Healing strategy implementations
+heal_supervisor_restart(Context) ->
+    SupervisorName = maps:get(supervisor, Context, unknown),
+    colored_logger:info("[AUTO_HEAL] 🔄 Attempting to restart supervisor ~p", [SupervisorName]),
+    
+    case SupervisorName of
+        agent_web_sup ->
+            case agent_web_sup:start_link() of
+                {ok, _Pid} ->
+                    colored_logger:success("[AUTO_HEAL] ✅ Successfully restarted agent_web_sup"),
+                    {ok, restarted};
+                {error, Reason} ->
+                    colored_logger:fire(bright, "[AUTO_HEAL] ❌ Failed to restart agent_web_sup: ~p", [Reason]),
+                    {error, Reason}
+            end;
+        _ ->
+            colored_logger:warning("[AUTO_HEAL] ⚠️ Don't know how to restart supervisor ~p", [SupervisorName]),
+            {error, unknown_supervisor}
+    end.
+
+heal_agent_restart(Context) ->
+    AgentId = maps:get(agent_id, Context, unknown),
+    colored_logger:info("[AUTO_HEAL] 🔄 Attempting to restart agent ~p", [AgentId]),
+    
+    %% Try to restart agent through supervisor
+    case agent_supervisor:restart_child(AgentId) of
+        {ok, _Pid} ->
+            colored_logger:success("[AUTO_HEAL] ✅ Successfully restarted agent ~p", [AgentId]),
+            {ok, restarted};
+        {error, Reason} ->
+            colored_logger:fire(bright, "[AUTO_HEAL] ❌ Failed to restart agent ~p: ~p", [AgentId, Reason]),
+            {error, Reason}
+    end.
+
+heal_garbage_collect(Context) ->
+    Pid = maps:get(pid, Context, self()),
+    colored_logger:info("[AUTO_HEAL] 🗑️ Running garbage collection on ~p", [Pid]),
+    
+    MemoryBefore = case process_info(Pid, memory) of
+        {memory, MemBefore} -> MemBefore;
+        undefined -> 0
+    end,
+    
+    erlang:garbage_collect(Pid),
+    
+    MemoryAfter = case process_info(Pid, memory) of
+        {memory, MemAfter} -> MemAfter;
+        undefined -> 0
+    end,
+    
+    FreedMemory = MemoryBefore - MemoryAfter,
+    colored_logger:success("[AUTO_HEAL] ✅ Garbage collection freed ~p bytes", [FreedMemory]),
+    {ok, {freed_memory, FreedMemory}}.
+
+heal_scale_down(_Context) ->
+    colored_logger:info("[AUTO_HEAL] 📉 Attempting to scale down system load"),
+    %% Could implement process termination, request throttling, etc.
+    {ok, scaled_down}.
+
+heal_reconnect(Context) ->
+    Target = maps:get(target, Context, unknown),
+    colored_logger:info("[AUTO_HEAL] 🔗 Attempting to reconnect to ~p", [Target]),
+    %% Implementation depends on what we're reconnecting to
+    {ok, reconnected}.
+
+heal_backoff_retry(Context) ->
+    RetryCount = maps:get(retry_count, Context, 0),
+    BackoffTime = min(1000 * (2 bsl RetryCount), 30000), % Exponential backoff, max 30s
+    
+    colored_logger:info("[AUTO_HEAL] ⏰ Backing off for ~pms before retry ~p", [BackoffTime, RetryCount + 1]),
+    timer:sleep(BackoffTime),
+    {ok, {backed_off, BackoffTime}}.
+
+heal_database_reconnect(_Context) ->
+    colored_logger:info("[AUTO_HEAL] 🗄️ Attempting database reconnection"),
+    %% Would implement database reconnection logic
+    {ok, database_reconnected}.
+
+heal_websocket_reconnect(_Context) ->
+    colored_logger:info("[AUTO_HEAL] 🔌 Attempting WebSocket reconnection"),
+    %% Would implement WebSocket reconnection logic
+    {ok, websocket_reconnected}.
+
+heal_generic_recovery(_Context) ->
+    colored_logger:info("[AUTO_HEAL] 🔧 Applying generic recovery measures"),
+    %% Generic recovery: clear caches, restart workers, etc.
+    {ok, generic_recovery_applied}.
+
+%% Handle healing completion
+handle_healing_completion(HealingId, Result, State) ->
+    case maps:get(HealingId, State#state.active_healings, undefined) of
+        undefined ->
+            colored_logger:warning("[AUTO_HEAL] ⚠️ Received completion for unknown healing ~s", [HealingId]),
+            State;
+        HealingInfo ->
+            CompletedAt = erlang:system_time(millisecond),
+            StartedAt = maps:get(started_at, HealingInfo),
+            Duration = CompletedAt - StartedAt,
+            
+            %% Log result
+            case Result of
+                {ok, Details} ->
+                    colored_logger:success("[AUTO_HEAL] ✅ Healing ~s completed successfully in ~pms: ~p", 
+                                         [HealingId, Duration, Details]);
+                {error, Reason} ->
+                    colored_logger:fire(bright, "[AUTO_HEAL] ❌ Healing ~s failed after ~pms: ~p", 
+                                      [HealingId, Duration, Reason])
+            end,
+            
+            %% Update state
+            NewActiveHealings = maps:remove(HealingId, State#state.active_healings),
+            
+            %% Add to history
+            HistoryEntry = HealingInfo#{
+                completed_at => CompletedAt,
+                duration => Duration,
+                result => Result
+            },
+            NewHistory = [HistoryEntry | State#state.healing_history],
+            
+            %% Update stats
+            StatType = case Result of
+                {ok, _} -> success;
+                {error, _} -> failure
+            end,
+            NewStats = update_stats(State#state.stats, StatType),
+            
+            State#state{
+                active_healings = NewActiveHealings,
+                healing_history = lists:sublist(NewHistory, 100), % Keep last 100
+                stats = NewStats
+            }
+    end.
+
+%% Generate unique healing ID
+generate_healing_id() ->
+    base64:encode(crypto:strong_rand_bytes(6)).
+
+%% Update statistics
+update_stats(Stats, Type) ->
+    case Type of
+        attempt ->
+            Stats#{attempts => maps:get(attempts, Stats, 0) + 1};
+        success ->
+            Stats#{successes => maps:get(successes, Stats, 0) + 1};
+        failure ->
+            Stats#{failures => maps:get(failures, Stats, 0) + 1}
+    end.

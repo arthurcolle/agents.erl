@@ -1,4 +1,17 @@
 -module(mcp_manager).
+
+%% Colorful logging macros
+-define(LOG_INFO(Msg), colored_logger:data(processed, Msg)).
+-define(LOG_INFO(Msg, Args), colored_logger:data(processed, io_lib:format(Msg, Args))).
+-define(LOG_ERROR(Msg), colored_logger:fire(inferno, Msg)).
+-define(LOG_ERROR(Msg, Args), colored_logger:fire(inferno, io_lib:format(Msg, Args))).
+-define(LOG_WARNING(Msg), colored_logger:alarm(medium, Msg)).
+-define(LOG_WARNING(Msg, Args), colored_logger:alarm(medium, io_lib:format(Msg, Args))).
+-define(LOG_SUCCESS(Msg), colored_logger:complete(success, Msg)).
+-define(LOG_SUCCESS(Msg, Args), colored_logger:complete(success, io_lib:format(Msg, Args))).
+-define(LOG_DEBUG(Msg), colored_logger:development(debugging, Msg)).
+-define(LOG_DEBUG(Msg, Args), colored_logger:development(debugging, io_lib:format(Msg, Args))).
+
 -behaviour(gen_server).
 
 %% Comprehensive MCP manager handling both local servers and remote clients
@@ -56,13 +69,13 @@
 %%====================================================================
 
 start_link() ->
-    io:format("[MCP_MGR] Starting MCP manager~n"),
+    ?LOG_INFO("[MCP_MGR] Starting MCP manager"),
     case gen_server:start_link({local, ?MODULE}, ?MODULE, [], []) of
         {ok, Pid} ->
-            io:format("[MCP_MGR] Manager started successfully with PID ~p~n", [Pid]),
+            ?LOG_INFO("[MCP_MGR] Manager started successfully with PID ~p", [Pid]),
             {ok, Pid};
         {error, Reason} ->
-            io:format("[ERROR] Failed to start MCP manager: ~p~n", [Reason]),
+            ?LOG_INFO("[ERROR] Failed to start MCP manager: ~p", [Reason]),
             {error, Reason}
     end.
 
@@ -162,17 +175,7 @@ init([]) ->
     % Start discovery timer - much longer interval to reduce spam
     Timer = erlang:send_after(60000, self(), discovery_tick), % Start after 1 minute
     
-    % Start advanced configuration manager
-    case mcp_advanced_config:start_link() of
-        {ok, _} -> ok;
-        {error, {already_started, _}} -> ok
-    end,
-    
-    % Start OAuth manager
-    case oauth_manager:start_link() of
-        {ok, _} -> ok;
-        {error, {already_started, _}} -> ok
-    end,
+    % Advanced configuration manager and OAuth manager should be started by supervisor
     
     % Get dynamic port allocation
     DefaultConfig = #{
@@ -187,11 +190,11 @@ init([]) ->
     LocalPid = case mcp_server:start_link(ConfigWithPort) of
         {ok, Pid} ->
             register(agents_main_mcp_server, Pid),
-            io:format("[MCP_MGR] Started default server on port ~p~n", 
+            ?LOG_SUCCESS("[MCP_MGR] Started default server on port ~p", 
                      [maps:get(port, ConfigWithPort)]),
             Pid;
         {error, StartError} ->
-            io:format("[MCP_MGR] Failed to start default server: ~p~n", [StartError]),
+            ?LOG_INFO("[MCP_MGR] Failed to start default server: ~p", [StartError]),
             throw({error, {failed_to_start_default_server, StartError}})
     end,
     
@@ -228,7 +231,7 @@ init([]) ->
         {ok, GraphlitPid} ->
             #{<<"graphlit">> => {GraphlitPid, GraphlitConfig}};
         {error, ConnectError} ->
-            io:format("[WARNING] Failed to auto-connect Graphlit server: ~p~n", [ConnectError]),
+            ?LOG_INFO("[WARNING] Failed to auto-connect Graphlit server: ~p", [ConnectError]),
             #{}
     end,
     
@@ -465,7 +468,7 @@ handle_cast(_Msg, State) ->
 
 handle_info(auto_connect_configured_servers, State) ->
     % Connect to all configured MCP servers from mcp_server_config
-    io:format("[MCP_MGR] Auto-connecting to configured MCP servers~n"),
+    ?LOG_INFO("[MCP_MGR] Auto-connecting to configured MCP servers"),
     connect_all_configured_servers(),
     {noreply, State};
 
@@ -528,16 +531,16 @@ connect_all_configured_servers() ->
     try
         case mcp_server_config:get_all_servers() of
             {ok, ConfiguredServers} ->
-                io:format("[MCP_MGR] Found ~p configured servers to connect~n", [length(ConfiguredServers)]),
+                ?LOG_INFO("[MCP_MGR] Found ~p configured servers to connect", [length(ConfiguredServers)]),
                 lists:foreach(fun(ServerConfig) ->
                     connect_configured_server(ServerConfig)
                 end, ConfiguredServers);
             {error, Reason} ->
-                io:format("[MCP_MGR] Failed to get configured servers: ~p~n", [Reason])
+                ?LOG_INFO("[MCP_MGR] Failed to get configured servers: ~p", [Reason])
         end
     catch
         Class:Error:Stack ->
-            io:format("[MCP_MGR] Error connecting configured servers: ~p:~p~n~p~n", [Class, Error, Stack])
+            ?LOG_INFO("[MCP_MGR] Error connecting configured servers: ~p:~p~n~p", [Class, Error, Stack])
     end.
 
 connect_configured_server(ServerRecord) ->
@@ -551,9 +554,9 @@ connect_configured_server(ServerRecord) ->
         ServerUrl = element(5, ServerRecord),   % url field
         
         if ServerId =:= undefined orelse ServerUrl =:= undefined ->
-            io:format("[MCP_MGR] Skipping server with missing id or url: ~p~n", [ServerRecord]);
+            ?LOG_INFO("[MCP_MGR] Skipping server with missing id or url: ~p", [ServerRecord]);
         true ->
-            io:format("[MCP_MGR] Connecting to configured server: ~s (~s)~n", [ServerName, ServerId]),
+            ?LOG_INFO("[MCP_MGR] Connecting to configured server: ~s (~s)", [ServerName, ServerId]),
             
             % Convert record to map for registry config
             ServerConfig = #{
@@ -574,21 +577,21 @@ connect_configured_server(ServerRecord) ->
                     % Now try to connect using the registry ID with extended timeout
                     case catch gen_server:call(mcp_connection_manager, {connect_server, RegistryId}, 15000) of
                         {ok, _Pid} ->
-                            io:format("[MCP_MGR] Successfully connected to server: ~s~n", [ServerName]);
+                            ?LOG_INFO("[MCP_MGR] Successfully connected to server: ~s", [ServerName]);
                         {error, Reason} ->
-                            io:format("[MCP_MGR] Failed to connect to server ~s: ~p~n", [ServerName, Reason]);
+                            ?LOG_INFO("[MCP_MGR] Failed to connect to server ~s: ~p", [ServerName, Reason]);
                         {'EXIT', {timeout, _}} ->
-                            io:format("[MCP_MGR] Connection to server ~s timed out, will retry in background~n", [ServerName]);
+                            ?LOG_WARNING("[MCP_MGR] Connection to server ~s timed out, will retry in background", [ServerName]);
                         Other ->
-                            io:format("[MCP_MGR] Unexpected response connecting to server ~s: ~p~n", [ServerName, Other])
+                            ?LOG_INFO("[MCP_MGR] Unexpected response connecting to server ~s: ~p", [ServerName, Other])
                     end;
                 {error, Reason} ->
-                    io:format("[MCP_MGR] Failed to register server ~s: ~p~n", [ServerName, Reason])
+                    ?LOG_INFO("[MCP_MGR] Failed to register server ~s: ~p", [ServerName, Reason])
             end
         end
     catch
         Class:Error:Stack ->
-            io:format("[MCP_MGR] Error processing server record ~p: ~p:~p~n~p~n", [ServerRecord, Class, Error, Stack])
+            ?LOG_INFO("[MCP_MGR] Error processing server record ~p: ~p:~p~n~p", [ServerRecord, Class, Error, Stack])
     end.
 
 find_local_server(ServerId, State) ->
@@ -1009,22 +1012,22 @@ auto_connect_graphlit(Config) ->
             % Try to connect via MCP client
             case mcp_connection_manager:connect_server(<<"graphlit">>) of
                 {ok, Pid} ->
-                    io:format("[MCP_MGR] Successfully connected to Graphlit MCP server~n"),
+                    ?LOG_INFO("[MCP_MGR] Successfully connected to Graphlit MCP server"),
                     {ok, Pid};
                 {error, Reason} ->
-                    io:format("[WARNING] Failed to connect to Graphlit MCP server: ~p~n", [Reason]),
+                    ?LOG_INFO("[WARNING] Failed to connect to Graphlit MCP server: ~p", [Reason]),
                     {error, Reason}
             end;
         {error, {aborted, {already_exists, _}}} ->
             % Server already exists, try to connect
             case mcp_connection_manager:connect_server(<<"graphlit">>) of
                 {ok, Pid} ->
-                    io:format("[MCP_MGR] Connected to existing Graphlit MCP server~n"),
+                    ?LOG_INFO("[MCP_MGR] Connected to existing Graphlit MCP server"),
                     {ok, Pid};
                 {error, Reason} ->
                     {error, Reason}
             end;
         {error, Reason} ->
-            io:format("[ERROR] Failed to register Graphlit server: ~p~n", [Reason]),
+            ?LOG_INFO("[ERROR] Failed to register Graphlit server: ~p", [Reason]),
             {error, Reason}
     end.

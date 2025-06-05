@@ -1,0 +1,133 @@
+-module(meta_supervision_manager).
+-behaviour(supervisor).
+
+-export([start_link/0, init/1]).
+-export([enable_meta_supervision/0, disable_meta_supervision/0, get_supervision_status/0]).
+
+-define(SERVER, ?MODULE).
+
+start_link() ->
+    colored_logger:ocean(deep, "[META_SUP] Starting Meta Supervision Manager"),
+    supervisor:start_link({local, ?SERVER}, ?MODULE, []).
+
+init([]) ->
+    colored_logger:ocean(deep, "[META_SUP] ⚙️ Initializing Meta Supervision Tree"),
+    
+    %% Meta supervision strategy - monitor all other supervisors
+    SupFlags = #{
+        strategy => one_for_one,
+        intensity => 5,
+        period => 10
+    },
+    
+    %% Child specifications for meta supervisors
+    ChildSpecs = [
+        %% Core supervision monitor
+        #{
+            id => supervision_monitor,
+            start => {supervision_monitor, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [supervision_monitor]
+        },
+        
+        %% Error correlation engine
+        #{
+            id => error_correlation_engine,
+            start => {error_correlation_engine, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [error_correlation_engine]
+        },
+        
+        %% Auto-healing coordinator
+        #{
+            id => auto_healing_coordinator,
+            start => {auto_healing_coordinator, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [auto_healing_coordinator]
+        },
+        
+        %% System health analyzer
+        #{
+            id => system_health_analyzer,
+            start => {system_health_analyzer, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [system_health_analyzer]
+        },
+        
+        %% Performance optimizer
+        #{
+            id => performance_optimizer,
+            start => {performance_optimizer, start_link, []},
+            restart => permanent,
+            shutdown => 5000,
+            type => worker,
+            modules => [performance_optimizer]
+        }
+    ],
+    
+    colored_logger:success("[META_SUP] Meta Supervision Tree initialized with ~p children", [length(ChildSpecs)]),
+    {ok, {SupFlags, ChildSpecs}}.
+
+%% Enable meta supervision
+enable_meta_supervision() ->
+    case whereis(?SERVER) of
+        undefined ->
+            colored_logger:fire(bright, "[META_SUP] ❌ Meta supervision not running - starting it"),
+            start_link();
+        Pid when is_pid(Pid) ->
+            colored_logger:success("[META_SUP] ✅ Meta supervision already running"),
+            ok
+    end.
+
+%% Disable meta supervision
+disable_meta_supervision() ->
+    case whereis(?SERVER) of
+        undefined ->
+            colored_logger:notice("[META_SUP] ℹ️ Meta supervision already stopped"),
+            ok;
+        Pid when is_pid(Pid) ->
+            colored_logger:warning("[META_SUP] ⚠️ Stopping meta supervision"),
+            supervisor:terminate_child(?SERVER, Pid),
+            ok
+    end.
+
+%% Get supervision status
+get_supervision_status() ->
+    case whereis(?SERVER) of
+        undefined ->
+            #{
+                status => stopped,
+                children => [],
+                uptime => 0
+            };
+        Pid when is_pid(Pid) ->
+            Children = supervisor:which_children(?SERVER),
+            #{
+                status => running,
+                pid => Pid,
+                children => Children,
+                uptime => get_uptime(Pid)
+            }
+    end.
+
+%% Get process uptime
+get_uptime(Pid) ->
+    case process_info(Pid, dictionary) of
+        {dictionary, Dict} ->
+            case lists:keyfind(start_time, 1, Dict) of
+                {start_time, StartTime} ->
+                    erlang:system_time(millisecond) - StartTime;
+                false ->
+                    0
+            end;
+        undefined ->
+            0
+    end.

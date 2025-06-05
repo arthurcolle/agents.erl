@@ -11,7 +11,8 @@
     optimize_cluster_topology/1,
     coordinate_inter_cluster/2,
     deploy_emergent_behaviors/2,
-    adaptive_load_balancing/1
+    adaptive_load_balancing/1,
+    register_agent_cluster/2
 ]).
 
 %% gen_server callbacks
@@ -95,6 +96,10 @@ deploy_emergent_behaviors(ClusterId, BehaviorPatterns) ->
 adaptive_load_balancing(Strategy) ->
     gen_server:call(?MODULE, {adaptive_load_balancing, Strategy}).
 
+%% Register agent cluster in the orchestrator
+register_agent_cluster(ClusterId, ClusterConfig) ->
+    gen_server:call(?MODULE, {register_agent_cluster, ClusterId, ClusterConfig}).
+
 %% ============================================================================
 %% gen_server callbacks
 %% ============================================================================
@@ -159,6 +164,25 @@ handle_call({adaptive_load_balancing, Strategy}, _From, State) ->
     %% Adaptive load balancing
     BalancingResult = execute_adaptive_load_balancing(Strategy, State),
     {reply, BalancingResult, State};
+
+handle_call({register_agent_cluster, ClusterId, ClusterConfig}, _From, State) ->
+    %% Register agent cluster
+    try
+        %% Store cluster information
+        ets:insert(?CLUSTER_TABLE, {ClusterId, ClusterConfig}),
+        
+        %% Update active clusters map
+        NewActiveClusters = maps:put(ClusterId, ClusterConfig, State#state.active_clusters),
+        NewState = State#state{active_clusters = NewActiveClusters},
+        
+        %% Initialize cluster monitoring
+        monitor_cluster(ClusterId),
+        
+        {reply, {ok, registered}, NewState}
+    catch
+        Error:Reason ->
+            {reply, {error, {Error, Reason}}, State}
+    end;
 
 handle_call(_Request, _From, State) ->
     {reply, {error, unknown_request}, State}.
@@ -789,3 +813,4 @@ pso_optimization(_, _) -> ok.
 aco_optimization(_, _) -> ok.
 de_optimization(_, _) -> ok.
 neural_evolution_optimization(_, _) -> ok.
+monitor_cluster(_) -> ok.

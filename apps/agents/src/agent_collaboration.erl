@@ -6,13 +6,17 @@
 %% API
 -export([
     start_link/0,
+    create_collaboration/2,
     create_collaboration/3,
     send_message/3,
     broadcast_to_group/2,
     join_group/2,
     leave_group/2,
     get_collaborations/1,
-    get_group_members/1
+    get_group_members/1,
+    list_collaborations/0,
+    join_collaboration/2,
+    leave_collaboration/2
 ]).
 
 %% gen_server callbacks
@@ -38,6 +42,9 @@
 start_link() ->
     gen_server:start_link({local, ?SERVER}, ?MODULE, [], []).
 
+create_collaboration(AgentId, Purpose) ->
+    gen_server:call(?SERVER, {create_collaboration, AgentId, Purpose}).
+
 create_collaboration(AgentId1, AgentId2, Purpose) ->
     gen_server:call(?SERVER, {create_collaboration, AgentId1, AgentId2, Purpose}).
 
@@ -59,10 +66,37 @@ get_collaborations(AgentId) ->
 get_group_members(GroupId) ->
     gen_server:call(?SERVER, {get_group_members, GroupId}).
 
+list_collaborations() ->
+    gen_server:call(?SERVER, list_collaborations).
+
+join_collaboration(AgentId, CollaborationId) ->
+    gen_server:call(?SERVER, {join_collaboration, AgentId, CollaborationId}).
+
+leave_collaboration(AgentId, CollaborationId) ->
+    gen_server:call(?SERVER, {leave_collaboration, AgentId, CollaborationId}).
+
 %% gen_server callbacks
 
 init([]) ->
     {ok, #state{}}.
+
+handle_call({create_collaboration, AgentId, Purpose}, _From, State) ->
+    CollabId = generate_collaboration_id(),
+    Collaboration = #{
+        id => CollabId,
+        agents => [AgentId],
+        purpose => Purpose,
+        messages => [],
+        created_at => erlang:timestamp(),
+        status => active
+    },
+    
+    NewCollaborations = maps:put(CollabId, Collaboration, State#state.collaborations),
+    
+    % Notify agent
+    notify_agents([AgentId], {collaboration_created, CollabId, Purpose}),
+    
+    {reply, {ok, CollabId}, State#state{collaborations = NewCollaborations}};
 
 handle_call({create_collaboration, AgentId1, AgentId2, Purpose}, _From, State) ->
     CollabId = generate_collaboration_id(),
@@ -176,6 +210,52 @@ handle_call({get_group_members, GroupId}, _From, State) ->
     Members = maps:get(GroupId, State#state.groups, []),
     {reply, Members, State};
 
+handle_call(list_collaborations, _From, State) ->
+    CollabList = maps:values(State#state.collaborations),
+    {reply, CollabList, State};
+
+handle_call({join_collaboration, AgentId, CollaborationId}, _From, State) ->
+    case maps:get(CollaborationId, State#state.collaborations, undefined) of
+        undefined ->
+            {reply, {error, collaboration_not_found}, State};
+        Collaboration ->
+            CurrentAgents = maps:get(agents, Collaboration),
+            case lists:member(AgentId, CurrentAgents) of
+                true ->
+                    {reply, {error, already_member}, State};
+                false ->
+                    UpdatedAgents = [AgentId | CurrentAgents],
+                    UpdatedCollab = maps:put(agents, UpdatedAgents, Collaboration),
+                    NewCollaborations = maps:put(CollaborationId, UpdatedCollab, State#state.collaborations),
+                    
+                    % Notify all agents
+                    notify_agents(UpdatedAgents, {agent_joined_collaboration, CollaborationId, AgentId}),
+                    
+                    {reply, ok, State#state{collaborations = NewCollaborations}}
+            end
+    end;
+
+handle_call({leave_collaboration, AgentId, CollaborationId}, _From, State) ->
+    case maps:get(CollaborationId, State#state.collaborations, undefined) of
+        undefined ->
+            {reply, {error, collaboration_not_found}, State};
+        Collaboration ->
+            CurrentAgents = maps:get(agents, Collaboration),
+            case lists:member(AgentId, CurrentAgents) of
+                false ->
+                    {reply, {error, not_member}, State};
+                true ->
+                    UpdatedAgents = lists:delete(AgentId, CurrentAgents),
+                    UpdatedCollab = maps:put(agents, UpdatedAgents, Collaboration),
+                    NewCollaborations = maps:put(CollaborationId, UpdatedCollab, State#state.collaborations),
+                    
+                    % Notify remaining agents
+                    notify_agents(UpdatedAgents, {agent_left_collaboration, CollaborationId, AgentId}),
+                    
+                    {reply, ok, State#state{collaborations = NewCollaborations}}
+            end
+    end;
+
 handle_call(_Request, _From, State) ->
     {reply, {error, unknown_request}, State}.
 
@@ -209,7 +289,7 @@ code_change(_OldVsn, State, _Extra) ->
 %% Internal functions
 
 generate_collaboration_id() ->
-    list_to_binary(uuid:uuid_to_string(uuid:get_v4())).
+    list_to_binary("collab_" ++ integer_to_list(erlang:unique_integer([positive]))).
 
 notify_agents(AgentIds, Message) ->
     lists:foreach(fun(AgentId) ->

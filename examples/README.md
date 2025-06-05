@@ -1,6 +1,6 @@
-# Advanced Erlang Agent Examples
+# Advanced Distributed Systems Examples
 
-This directory contains advanced examples demonstrating the full capabilities of the Erlang Agent system.
+This directory contains advanced examples demonstrating the full capabilities of the Distributed Systems framework.
 
 ## Overview
 

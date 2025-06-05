@@ -24,8 +24,8 @@ generate_module(GroupName, OutputDir) ->
     % Write the module source to file
     case file:write_file(Filename, Source) of
         ok ->
-            % Compile the module
-            case compile:file(Filename, [return_errors, {outdir, OutputDir}]) of
+            % Compile the module using standard compile:file
+            case compile:file(Filename, [return_errors, binary]) of
                 {ok, Module, Bin} -> 
                     % Load the binary
                     case code:load_binary(Module, atom_to_list(Module) ++ ".erl", Bin) of
