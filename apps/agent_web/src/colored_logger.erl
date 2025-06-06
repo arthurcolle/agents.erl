@@ -325,12 +325,22 @@ format_colored(Level, Message, Args) ->
     FlatTimestamp = lists:flatten(TimestampColored),
     FlatLevel = lists:flatten(LevelColored),
     FlatMessage = lists:flatten(MessageColored),
-    io_lib:format("~s ~s  ~s~n", [FlatTimestamp, FlatLevel, FlatMessage]).
+    io_lib:format("~ts ~ts  ~ts~n", [FlatTimestamp, FlatLevel, FlatMessage]).
 
 %% Generic log function
 log(Level, Message, Args) ->
-    FormattedMsg = format_colored(Level, Message, Args),
-    io:format("~s", [FormattedMsg]).
+    try
+        FormattedMsg = format_colored(Level, Message, Args),
+        io:format("~ts", [FormattedMsg])
+    catch
+        error:badarg ->
+            %% Fallback for unicode/emoji characters
+            SafeMessage = case Args of
+                [] -> unicode:characters_to_list(Message);
+                _ -> unicode:characters_to_list(io_lib:format(Message, Args))
+            end,
+            io:format("~ts ~ts  ~ts~n", [format_timestamp_short(), format_level_string(Level), SafeMessage])
+    end.
 
 log(Level, Tag, Message, Args) ->
     ColorLevel = get_color_code(Level),
@@ -355,7 +365,7 @@ log(Level, Tag, Message, Args) ->
     FlatLevel = lists:flatten(LevelColored),
     FlatTag = lists:flatten(TagColored),
     FlatMessage = lists:flatten(MessageColored),
-    io:format("~s ~s ~s  ~s~n", [FlatTimestamp, FlatLevel, FlatTag, FlatMessage]).
+    io:format("~ts ~ts ~ts  ~ts~n", [FlatTimestamp, FlatLevel, FlatTag, FlatMessage]).
 
 %% Specific log level functions
 error(Message, Args) ->

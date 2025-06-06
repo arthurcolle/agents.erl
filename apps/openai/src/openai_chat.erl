@@ -194,8 +194,15 @@ do_create_chat_completion(Model, Messages, Options, #state{api_key = ApiKey, bas
         ToolChoice -> Body4#{<<"tool_choice">> => ToolChoice}
     end,
     
-    % Encode body to JSON
-    JsonBody = jsx:encode(Body5),
+    % Sanitize and encode body to JSON
+    SanitizedBody = sanitize_for_json(Body5),
+    JsonBody = try jsx:encode(SanitizedBody) of
+        EncodedJson -> EncodedJson
+    catch
+        error:badarg ->
+            ?LOG_ERROR("[CHAT_API] 💥 JSON encoding failed. Original Body5: ~p, Sanitized: ~p", [Body5, SanitizedBody]),
+            error({json_encoding_failed, Body5, SanitizedBody})
+    end,
     ?LOG_DEBUG("[CHAT_API] Request body size: ~p bytes", [byte_size(JsonBody)]),
     
     % Log if tools are being used
@@ -311,8 +318,25 @@ do_create_streaming_completion(Model, Messages, Options, CallerPid, #state{api_k
         ToolChoice -> Body3#{<<"tool_choice">> => ToolChoice}
     end,
     
-    % Encode body to JSON
-    JsonBody = jsx:encode(Body4),
+    % Sanitize and encode body to JSON
+    SanitizedBody = sanitize_for_json(Body4),
+    
+    % CRITICAL FIX: Deduplicate messages to prevent JSON encoding failures
+    DeduplicatedBody = case SanitizedBody of
+        #{<<"messages">> := MsgList} when is_list(MsgList) ->
+            UniqueMessages = deduplicate_messages(MsgList),
+            ?LOG_INFO("[CHAT_STREAM] 🔧 Deduplicated ~p messages to ~p", [length(MsgList), length(UniqueMessages)]),
+            SanitizedBody#{<<"messages">> => UniqueMessages};
+        _ -> SanitizedBody
+    end,
+    
+    JsonBody = try jsx:encode(DeduplicatedBody) of
+        EncodedJson -> EncodedJson
+    catch
+        error:badarg ->
+            ?LOG_ERROR("[CHAT_STREAM] 💥 JSON encoding failed. Original Body4: ~p, Sanitized: ~p, Deduplicated: ~p", [Body4, SanitizedBody, DeduplicatedBody]),
+            error({json_encoding_failed, Body4, SanitizedBody, DeduplicatedBody})
+    end,
     ?LOG_DEBUG("[CHAT_STREAM] Request body size: ~p bytes", [byte_size(JsonBody)]),
     
     % Build headers
@@ -490,6 +514,52 @@ extract_stream_content(Data) ->
                     end
             end
     end.
+
+%% Helper function to sanitize values for JSON encoding
+sanitize_for_json(undefined) -> null;
+sanitize_for_json(Value) when is_atom(Value) ->
+    case Value of
+        true -> true;
+        false -> false;
+        null -> null;
+        _ -> atom_to_binary(Value, utf8)
+    end;
+sanitize_for_json(Value) when is_list(Value) ->
+    try
+        unicode:characters_to_binary(Value)
+    catch
+        _:_ -> 
+            [sanitize_for_json(Item) || Item <- Value]
+    end;
+sanitize_for_json(Value) when is_map(Value) ->
+    % Filter out undefined values and sanitize the rest
+    FilteredMap = maps:filter(fun(_, V) -> V =/= undefined end, Value),
+    maps:map(fun(_, V) -> sanitize_for_json(V) end, FilteredMap);
+sanitize_for_json(Value) when is_tuple(Value) ->
+    list_to_tuple([sanitize_for_json(Item) || Item <- tuple_to_list(Value)]);
+sanitize_for_json(Value) -> Value.
+
+%% Deduplicate messages to prevent JSON encoding failures from circular refs
+deduplicate_messages(Messages) when is_list(Messages) ->
+    % Create a hash-based deduplication using content and role
+    UniqueMessages = lists:foldl(fun(Msg, Acc) ->
+        case Msg of
+            #{<<"role">> := Role, <<"content">> := Content} ->
+                % Create a simple hash key from role and content
+                Key = {Role, Content},
+                case lists:keyfind(Key, 1, Acc) of
+                    false -> [{Key, Msg} | Acc];
+                    _ -> Acc % Skip duplicate
+                end;
+            _ -> 
+                % For messages without standard structure, include them
+                [{erlang:phash2(Msg), Msg} | Acc]
+        end
+    end, [], Messages),
+    
+    % Extract just the messages, preserving order
+    [Msg || {_, Msg} <- lists:reverse(UniqueMessages)];
+deduplicate_messages(Messages) -> Messages.
 
 %% Helper function to detect models with parameter restrictions
 is_o_series_model(Model) when is_binary(Model) ->

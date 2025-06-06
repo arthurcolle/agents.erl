@@ -139,8 +139,16 @@ websocket_handle({text, Msg}, State) ->
             
             {ok, State};
             
-        _ ->
-            {reply, {text, jsx:encode(#{error => <<"Unknown message type">>})}, State}
+        #{<<"type">> := <<"ping">>} = PingData ->
+            % Handle ping messages from frontend
+            {reply, {text, jsx:encode(#{type => <<"pong">>, timestamp => os:system_time(millisecond)})}, State};
+            
+        Other ->
+            % ENHANCED LOGGING: Log the exact unhandled message type and structure
+            MsgType = maps:get(<<"type">>, Other, "no_type_field"),
+            error_logger:warning_msg("[WS_UNHANDLED] Unhandled websocket message - Type: ~p, Full message: ~p~n", [MsgType, Other]),
+            io:format("🔴 UNHANDLED WEBSOCKET MESSAGE:\n  Type: ~p\n  Full: ~p\n", [MsgType, Other]),
+            {ok, State}
     catch
         _:DecodeError ->
             error_logger:error_msg("WebSocket decode error: ~p for message: ~p~n", [DecodeError, Msg]),
@@ -182,6 +190,8 @@ websocket_info({stream_token, Token}, State) ->
         type => <<"chat_response_token">>,
         token => ProcessedToken
     }),
+    % Log the actual JSON being sent
+    io:format("[WS_STREAM] Sending JSON: ~s~n", [Response]),
     {reply, {text, Response}, State};
 
 websocket_info({stream_complete, Result}, State) ->
@@ -260,6 +270,15 @@ websocket_info({system_error, ErrorData}, State) ->
     }),
     {reply, {text, Response}, State};
 
+websocket_info({learning_event, Event}, State) ->
+    % Forward learning protocol events to the UI
+    SafeEvent = ensure_json_safe(Event),
+    Response = jsx:encode(#{
+        type => <<"learning_event">>,
+        event => SafeEvent
+    }),
+    {reply, {text, Response}, State};
+
 websocket_info(send_system_metrics, State) ->
     Metrics = get_system_metrics(),
     Response = jsx:encode(#{
@@ -270,7 +289,10 @@ websocket_info(send_system_metrics, State) ->
     erlang:send_after(10000, self(), send_system_metrics),
     {reply, {text, Response}, State};
 
-websocket_info(_Info, State) ->
+websocket_info(Info, State) ->
+    % ENHANCED LOGGING: Log all unhandled websocket_info messages
+    error_logger:warning_msg("[WS_INFO_UNHANDLED] Unhandled websocket_info message: ~p~n", [Info]),
+    io:format("🔴 UNHANDLED WEBSOCKET INFO MESSAGE: ~p\n", [Info]),
     {ok, State}.
 
 run_streaming_example(<<"streaming">>, <<"pipeline">>, WsPid) ->
@@ -526,7 +548,16 @@ ensure_json_safe(_Data) ->
 %% Broadcast function for notifying all connected websocket clients
 broadcast(Message) ->
     colored_logger:ocean(surface, io_lib:format("[BROADCAST] WS Broadcasting message: ~p", [Message])),
-    %% For now, just log the broadcast - in a full implementation,
-    %% this would maintain a registry of connected websocket processes
-    %% and send the message to all of them
+    % Try to get websocket connections from ranch
+    try
+        Connections = ranch:procs(agent_web_listener, connections),
+        lists:foreach(fun(ConnPid) ->
+            % Send to all websocket connections
+            ConnPid ! {learning_event, Message}
+        end, Connections),
+        colored_logger:complete(success, io_lib:format("[BROADCAST] Sent to ~p connections", [length(Connections)]))
+    catch
+        Type:Error ->
+            colored_logger:alarm(medium, io_lib:format("[BROADCAST] Failed to broadcast: ~p:~p", [Type, Error]))
+    end,
     ok.

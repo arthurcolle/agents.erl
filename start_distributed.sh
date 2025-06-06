@@ -1,7 +1,7 @@
 #!/bin/bash
 
-echo "🚀 Starting Agents.erl System"
-echo "============================="
+echo "🚀 Starting Agents.erl System in Distributed Mode"
+echo "================================================="
 echo ""
 
 # Check if already running
@@ -11,23 +11,32 @@ if pgrep -f "beam.*agents" > /dev/null; then
     exit 1
 fi
 
-echo "📋 Pre-flight checks..."
-echo "   Config: $([ -f config/sys.config ] && echo '✅' || echo '❌') sys.config"
-echo "   Build:  $([ -d _build/default ] && echo '✅' || echo '❌') compiled code"
-echo ""
-
-# Get local network IP for distributed mode
+# Get local network IP
 LOCAL_IP=$(ifconfig | grep inet | grep -v 127.0.0.1 | grep -v ::1 | head -1 | awk '{print $2}')
 NODE_NAME="agents@${LOCAL_IP}"
 
-echo "🔧 Starting system with distributed configuration..."
+echo "📋 Pre-flight checks..."
+echo "   Config: $([ -f config/sys.config ] && echo '✅' || echo '❌') sys.config"
+echo "   Build:  $([ -d _build/default ] && echo '✅' || echo '❌') compiled code"
+echo "   Network: ${LOCAL_IP}"
+echo "   Node:    ${NODE_NAME}"
+echo ""
+
+echo "🔧 Starting distributed system..."
 echo "   Web interface will be available at: http://localhost:8080"
 echo "   Node name: ${NODE_NAME}"
-echo "   Auto-discovery: Enabled for local network"
+echo "   Auto-discovery: Enabled for 192.168.1.x network"
 echo "   Press Ctrl+C to stop the system"
 echo ""
 
-# Start the system with distributed mode
+# Ensure directories exist
+mkdir -p logs crash_dumps
+
+# Set environment variables for clustering
+export ERL_EPMD_PORT=4369
+export ERLANG_COOKIE=agents_cluster_cookie
+
+# Start the system with distributed configuration
 exec erl \
   -name "$NODE_NAME" \
   -setcookie agents_cluster_cookie \
@@ -38,7 +47,7 @@ exec erl \
   -pa _build/default/lib/*/ebin \
   -config config/sys \
   -eval "
-    io:format('🔧 Initializing applications...~n'),
+    io:format('🔧 Initializing applications in distributed mode...~n'),
     
     % Start applications in order
     {ok, _} = application:ensure_all_started(openai),
@@ -58,7 +67,9 @@ exec erl \
         case Connected of
             [] -> io:format('🌐 No other agent nodes found on network~n');
             _ -> io:format('✅ Connected to nodes: ~p~n', [Connected])
-        end
+        end,
+        % Repeat discovery every 30 seconds
+        timer:apply_after(30000, fun() -> AutoDiscover() end, [])
     end,
     
     % Start auto-discovery
@@ -79,7 +90,7 @@ exec erl \
     io:format('   • Web interface available on all nodes~n'),
     io:format('~n'),
     io:format('Press Ctrl+C to stop the system~n').
-" \
+  " \
   +JMsingle true \
   +MBas aobf \
   +MHas aobf \

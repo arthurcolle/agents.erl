@@ -57,7 +57,7 @@ handle_info(_Info, State) ->
     {noreply, State}.
 
 terminate(_Reason, _State) ->
-    colored_logger:warning("[HEALTH] ⚠️ System Health Analyzer terminating"),
+    colored_logger:warning("[HEALTH] System Health Analyzer terminating"),
     ok.
 
 code_change(_OldVsn, State, _Extra) ->
@@ -115,7 +115,9 @@ perform_comprehensive_health_check(State) ->
 %% Check system-level health
 check_system_health() ->
     try
-        {TotalMem, _} = erlang:memory([total, system]),
+        MemoryInfo = erlang:memory([total, system]),
+        TotalMem = proplists:get_value(total, MemoryInfo),
+        SystemMem = proplists:get_value(system, MemoryInfo),
         ProcessCount = erlang:system_info(process_count),
         ProcessLimit = erlang:system_info(process_limit),
         RunQueue = erlang:statistics(run_queue),

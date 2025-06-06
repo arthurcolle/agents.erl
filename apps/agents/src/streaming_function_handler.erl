@@ -43,7 +43,7 @@ process_stream_event(Event, Accumulator, StreamPid) ->
         {content_delta, Delta} ->
             NewContent = <<(Accumulator#accumulator.content)/binary, Delta/binary>>,
             ProcessedDelta = process_token_for_display(Delta),
-            ?LOG_DEBUG("[STREAM_FUNC] 🔤 Processed token: ~p -> ~p", [Delta, ProcessedDelta]),
+            ?LOG_INFO("[STREAM_FUNC] 🔤 Sending token to ~p: ~p -> ~p", [StreamPid, Delta, ProcessedDelta]),
             StreamPid ! {stream_token, ProcessedDelta},
             {continue, Accumulator#accumulator{content = NewContent}};
             
@@ -358,12 +358,14 @@ collect_results([Worker | Rest], Results) ->
 
 %% High-level handler for Responses API streaming
 handle_responses_api_stream(StreamPid, Input, State) ->
+    ?LOG_INFO("[STREAM_HANDLER] Starting Responses API stream for PID: ~p", [StreamPid]),
     Accumulator = init_accumulator(),
     handle_responses_stream_loop(StreamPid, Input, State, Accumulator).
 
 handle_responses_stream_loop(StreamPid, Input, State, Accumulator) ->
     receive
         {stream_event, Event} ->
+            ?LOG_INFO("[STREAM_HANDLER] Received stream_event: ~p", [Event]),
             case process_stream_event(Event, Accumulator, StreamPid) of
                 {continue, NewAcc} ->
                     handle_responses_stream_loop(StreamPid, Input, State, NewAcc);
@@ -373,11 +375,17 @@ handle_responses_stream_loop(StreamPid, Input, State, Accumulator) ->
                     {error, Reason}
             end;
         {stream_error, Reason} ->
+            ?LOG_ERROR("[STREAM_HANDLER] Received stream_error: ~p", [Reason]),
             StreamPid ! {stream_error, Reason},
             {error, Reason};
         stream_complete ->
-            finalize_stream(Accumulator, StreamPid, State)
+            ?LOG_INFO("[STREAM_HANDLER] Received stream_complete"),
+            finalize_stream(Accumulator, StreamPid, State);
+        Other ->
+            ?LOG_WARNING("[STREAM_HANDLER] Unexpected message: ~p", [Other]),
+            handle_responses_stream_loop(StreamPid, Input, State, Accumulator)
     after 60000 ->
+        ?LOG_ERROR("[STREAM_HANDLER] Timeout waiting for stream events"),
         StreamPid ! {stream_error, timeout},
         {error, timeout}
     end.
