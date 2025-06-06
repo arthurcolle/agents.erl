@@ -67,8 +67,8 @@
     evolutionary_progress = #{}, % Evolution tracking
     
     %% Meta-replication
-    meta_replication_level = 1,  % Level of meta-replication
-    self_awareness_level = 0.0,  % Self-awareness measure
+    meta_replication_level = 1.02,  % Level of meta-replication
+    self_awareness_level = 0.16,  % Self-awareness measure
     recursive_depth = 0          % Current recursion depth
 }).
 

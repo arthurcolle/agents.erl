@@ -42,6 +42,14 @@
     code_change/3
 ]).
 
+%% Learning protocol exports
+-export([
+    enable_learning_mode/1,
+    disable_learning_mode/1,
+    query_system/2,
+    share_knowledge/2
+]).
+
 -record(state, {
     id :: binary(),
     name :: binary(),
@@ -57,7 +65,9 @@
     autonomous_mode :: boolean(), % Enable autonomous multi-turn function calling
     pending_function_calls :: [map()], % Function calls waiting to be processed
     autonomous_context :: map(), % Context for autonomous operations
-    max_autonomous_turns :: integer() % Maximum autonomous turns before requiring human input
+    max_autonomous_turns :: integer(), % Maximum autonomous turns before requiring human input
+    learning_mode :: boolean(), % Enable learning protocol participation
+    system_knowledge :: map() % Knowledge about the system acquired through learning
 }).
 
 %% API Functions
@@ -105,6 +115,22 @@ schedule_task(Pid, Task, ScheduledTime) ->
 get_scheduled_tasks(Pid) ->
     gen_server:call(Pid, get_scheduled_tasks).
 
+%% Enable learning mode for the agent
+enable_learning_mode(Pid) ->
+    gen_server:call(Pid, enable_learning_mode).
+
+%% Disable learning mode for the agent
+disable_learning_mode(Pid) ->
+    gen_server:call(Pid, disable_learning_mode).
+
+%% Query the system about something
+query_system(Pid, Query) ->
+    gen_server:call(Pid, {query_system, Query}).
+
+%% Share knowledge with other agents
+share_knowledge(Pid, Knowledge) ->
+    gen_server:cast(Pid, {share_knowledge, Knowledge}).
+
 %% gen_server callbacks
 
 init(Config) ->
@@ -133,7 +159,7 @@ init(Config) ->
         },
         created_at = erlang:timestamp(),
         last_activity = erlang:timestamp(),
-        api_preference = maps:get(api_preference, Config, responses),  % Default to Responses API
+        api_preference = maps:get(api_preference, Config, chat),  % Default to Chat API
         autonomous_mode = maps:get(autonomous_mode, Config, false),
         pending_function_calls = [],
         autonomous_context = #{
@@ -141,7 +167,9 @@ init(Config) ->
             original_message => <<>>,
             function_call_chain => []
         },
-        max_autonomous_turns = maps:get(max_autonomous_turns, Config, 10)
+        max_autonomous_turns = maps:get(max_autonomous_turns, Config, 10),
+        learning_mode = maps:get(learning_mode, Config, false),
+        system_knowledge = #{}
     },
     
     % Register model usage with the strategy
@@ -305,6 +333,30 @@ handle_call(get_scheduled_tasks, _From, State) ->
             {reply, {error, Reason}, State}
     end;
 
+handle_call(enable_learning_mode, _From, State) ->
+    ?LOG_INFO("[LEARNING] Enabling learning mode for agent ~p", [State#state.id]),
+    % Register with learning protocol
+    agent_learning_protocol:register_agent(State#state.id, #{
+        model => State#state.model,
+        tools => State#state.tools,
+        type => State#state.type
+    }),
+    % Initiate system discovery
+    spawn(fun() ->
+        timer:sleep(1000), % Small delay to ensure registration is complete
+        agent_learning_protocol:initiate_discovery(State#state.id)
+    end),
+    {reply, ok, State#state{learning_mode = true}};
+
+handle_call(disable_learning_mode, _From, State) ->
+    ?LOG_INFO("[LEARNING] Disabling learning mode for agent ~p", [State#state.id]),
+    {reply, ok, State#state{learning_mode = false}};
+
+handle_call({query_system, Query}, _From, State) ->
+    ?LOG_INFO("[LEARNING] Agent ~p querying system: ~p", [State#state.id, Query]),
+    agent_learning_protocol:broadcast_query(State#state.id, Query),
+    {reply, ok, State};
+
 handle_call(_Request, _From, State) ->
     {reply, {error, unknown_request}, State}.
 
@@ -365,8 +417,45 @@ handle_cast({stream_execute, #{action := <<"chat">>, message := Message}, Stream
     end),
     {noreply, NewState};
 
+handle_cast({share_knowledge, Knowledge}, State) ->
+    ?LOG_INFO("[LEARNING] Agent ~p sharing knowledge: ~p", [State#state.id, Knowledge]),
+    % Update local knowledge
+    NewKnowledge = maps:merge(State#state.system_knowledge, Knowledge),
+    {noreply, State#state{system_knowledge = NewKnowledge}};
+
 handle_cast(_Msg, State) ->
     {noreply, State}.
+
+handle_info({agent_query, Query}, State) when State#state.learning_mode ->
+    % Handle incoming query from learning protocol
+    ?LOG_INFO("[LEARNING] Agent ~p received learning query: ~p", [State#state.id, Query]),
+    
+    % Generate response based on agent's knowledge and capabilities
+    Response = generate_learning_response(Query, State),
+    
+    % Send response back through learning protocol
+    agent_learning_protocol:respond_to_query(
+        maps:get(id, Query, <<>>),
+        State#state.id,
+        Response
+    ),
+    
+    {noreply, State};
+
+handle_info({learning_protocol_event, Event}, State) ->
+    % Handle learning protocol events
+    case Event of
+        {agent_joined, AgentId, Capabilities} ->
+            ?LOG_INFO("[LEARNING] Agent ~p learned about new agent: ~p with capabilities: ~p", 
+                     [State#state.id, AgentId, Capabilities]),
+            % Update system knowledge
+            CurrentAgents = maps:get(known_agents, State#state.system_knowledge, #{}),
+            NewAgents = maps:put(AgentId, Capabilities, CurrentAgents),
+            NewKnowledge = maps:put(known_agents, NewAgents, State#state.system_knowledge),
+            {noreply, State#state{system_knowledge = NewKnowledge}};
+        _ ->
+            {noreply, State}
+    end;
 
 handle_info(_Info, State) ->
     {noreply, State}.
@@ -674,8 +763,8 @@ process_streaming_chat(Message, StreamPid, #state{type = ai} = State) ->
         chat ->
             process_streaming_chat_with_chat_api(Message, StreamPid, State);
         _ ->
-            % Default to responses API for better features
-            process_streaming_chat_with_responses_api(Message, StreamPid, State)
+            % Default to chat API as it's the standard OpenAI API
+            process_streaming_chat_with_chat_api(Message, StreamPid, State)
     end;
 
 process_streaming_chat(Message, StreamPid, #state{type = simple} = State) ->
@@ -694,7 +783,7 @@ process_streaming_chat(Message, StreamPid, #state{type = simple} = State) ->
         message => ResponseText,
         timestamp => erlang:timestamp()
     },
-    StreamPid ! {stream_complete, Response},
+    StreamPid ! {stream_complete, ResponseText},  % Send just the text content
     UpdatedState = update_metrics(State, successful_request),
     {ok, Response, UpdatedState}.
 
@@ -742,15 +831,42 @@ process_streaming_chat_with_responses_api(Message, StreamPid, State) ->
                 stream => true
             },
             
+            % Call create_streaming_response directly - it will send events to us
+            HandlerPid = self(),
+            ?LOG_INFO("[AGENT_STREAM] Starting streaming response, handler: ~p", [HandlerPid]),
             case openai_responses:create_streaming_response(Input, State#state.model, Options) of
                 ok ->
-                    % Handle streaming events
-                    handle_streaming_response_events(StreamPid, Input, State);
+                    ?LOG_INFO("[AGENT_STREAM] Streaming response started successfully");
                 {error, Reason} ->
-                    {error, Reason}
-            end;
+                    ?LOG_ERROR("[AGENT_STREAM] Failed to start streaming: ~p", [Reason]),
+                    StreamPid ! {stream_error, Reason}
+            end,
+            
+            % Handle streaming events
+            handle_streaming_response_events(StreamPid, Input, State);
         Error ->
             {error, Error}
+    end.
+
+%% Forward streaming events from the HTTP process to our handler
+streaming_response_forwarder(TargetPid) ->
+    receive
+        {stream_event, Event} ->
+            ?LOG_INFO("[STREAM_FORWARDER] Forwarding event to ~p: ~p", [TargetPid, Event]),
+            TargetPid ! {stream_event, Event},
+            streaming_response_forwarder(TargetPid);
+        {stream_error, Reason} ->
+            ?LOG_ERROR("[STREAM_FORWARDER] Forwarding error to ~p: ~p", [TargetPid, Reason]),
+            TargetPid ! {stream_error, Reason};
+        stream_complete ->
+            ?LOG_INFO("[STREAM_FORWARDER] Stream complete, notifying ~p", [TargetPid]),
+            TargetPid ! stream_complete;
+        Other ->
+            ?LOG_WARNING("[STREAM_FORWARDER] Unexpected message: ~p", [Other]),
+            streaming_response_forwarder(TargetPid)
+    after 60000 ->
+        ?LOG_ERROR("[STREAM_FORWARDER] Timeout waiting for stream events"),
+        TargetPid ! {stream_error, timeout}
     end.
 
 %% Helper functions for Responses API
@@ -1729,22 +1845,37 @@ update_metrics_map(Metrics, Response) ->
 
 %% Handle streaming response from OpenAI Chat API
 handle_streaming_response(StreamPid, Messages, State) ->
-    % Use the new streaming function handler
-    case streaming_function_handler:handle_chat_api_stream(StreamPid, Messages, State) of
-        {ok, Response, UpdatedState} ->
-            % Handle the response with tool results if any
-            case maps:get(tool_results, Response, []) of
-                [] ->
-                    % No tool calls executed
-                    FinalState = update_metrics(UpdatedState, successful_request),
-                    {ok, Response, FinalState};
-                ToolResults ->
-                    % Tool calls were executed, need to get final response
-                    ToolCalls = maps:get(tool_calls, Response, []),
-                    handle_tool_results_streaming(ToolCalls, ToolResults, Messages, StreamPid, UpdatedState)
+    ?LOG_INFO("[AGENT_STREAM] 🔄 Starting streaming response handler"),
+    % Initialize accumulator for streaming content
+    Accumulator = streaming_function_handler:init_accumulator(),
+    handle_stream_chunks(StreamPid, Messages, State, Accumulator).
+
+%% Handle individual stream chunks
+handle_stream_chunks(StreamPid, Messages, State, Accumulator) ->
+    receive
+        {stream_chunk, Event} ->
+            ?LOG_DEBUG("[AGENT_STREAM] 📦 Received stream chunk: ~p", [Event]),
+            case streaming_function_handler:process_stream_event(Event, Accumulator, StreamPid) of
+                {continue, NewAccumulator} ->
+                    handle_stream_chunks(StreamPid, Messages, State, NewAccumulator);
+                {done, FinalAccumulator} ->
+                    streaming_function_handler:finalize_stream(FinalAccumulator, StreamPid, State);
+                {error, Reason} ->
+                    ?LOG_ERROR("[AGENT_STREAM] 💥 Stream processing error: ~p", [Reason]),
+                    StreamPid ! {stream_error, Reason},
+                    {error, Reason}
             end;
-        {error, Reason} ->
+        stream_complete ->
+            ?LOG_INFO("[AGENT_STREAM] ✅ Stream complete received"),
+            streaming_function_handler:finalize_stream(Accumulator, StreamPid, State);
+        {stream_error, Reason} ->
+            ?LOG_ERROR("[AGENT_STREAM] ❌ Stream error: ~p", [Reason]),
+            StreamPid ! {stream_error, Reason},
             {error, Reason}
+    after 30000 ->
+        ?LOG_ERROR("[AGENT_STREAM] ⏱️ Stream timeout after 30 seconds"),
+        StreamPid ! {stream_error, timeout},
+        {error, timeout}
     end.
 
 %% Handle tool results and continue streaming
@@ -1826,6 +1957,7 @@ track_cost(State, Response) ->
 %% Handle streaming events from Responses API
 handle_streaming_response_events(StreamPid, Input, State) ->
     % Use the new streaming function handler for Responses API
+    ?LOG_INFO("[AGENT_STREAM] Handling streaming response events for StreamPid: ~p", [StreamPid]),
     case streaming_function_handler:handle_responses_api_stream(StreamPid, Input, State) of
         {ok, Response, UpdatedState} ->
             % Handle the response with tool results if any
@@ -1915,5 +2047,60 @@ parse_responses_streaming_event(Event) ->
     catch
         _:_ ->
             continue
+    end.
+
+%% Generate response for learning protocol queries
+generate_learning_response(Query, State) ->
+    QueryType = maps:get(type, Query, unknown),
+    QueryContent = maps:get(content, Query, <<>>),
+    
+    case QueryType of
+        system_architecture ->
+            #{
+                type => system_architecture,
+                content => iolist_to_binary(io_lib:format("Agent ~s: I am a ~p agent with model ~s", 
+                                           [State#state.id, State#state.type, State#state.model])),
+                capabilities => #{
+                    tools => State#state.tools,
+                    api_preference => State#state.api_preference,
+                    autonomous_mode => State#state.autonomous_mode
+                },
+                confidence => 1.0
+            };
+        agent_capabilities ->
+            #{
+                type => agent_capabilities,
+                content => iolist_to_binary(io_lib:format("I have access to tools: ~p", [State#state.tools])),
+                my_capabilities => #{
+                    id => State#state.id,
+                    name => State#state.name,
+                    type => State#state.type,
+                    tools => State#state.tools,
+                    model => State#state.model
+                },
+                confidence => 1.0
+            };
+        system_state ->
+            #{
+                type => system_state,
+                content => <<"I am currently active and processing requests">>,
+                my_state => #{
+                    total_requests => maps:get(total_requests, State#state.metrics, 0),
+                    successful_requests => maps:get(successful_requests, State#state.metrics, 0),
+                    conversation_length => length(State#state.conversation_history),
+                    learning_mode => State#state.learning_mode,
+                    known_agents => maps:size(maps:get(known_agents, State#state.system_knowledge, #{}))
+                },
+                confidence => 1.0
+            };
+        _ ->
+            % For unknown queries, share what we know
+            #{
+                type => QueryType,
+                content => <<"I am still learning about this aspect of the system">>,
+                query_received => QueryContent,
+                my_knowledge => maps:size(State#state.system_knowledge),
+                confidence => 0.5
+            }
     end.
 

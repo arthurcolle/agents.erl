@@ -58,7 +58,7 @@ handle_info(_Info, State) ->
     {noreply, State}.
 
 terminate(_Reason, _State) ->
-    colored_logger:warning("[PERF_OPT] ⚠️ Performance Optimizer terminating"),
+    colored_logger:warning("[PERF_OPT] Performance Optimizer terminating"),
     ok.
 
 code_change(_OldVsn, State, _Extra) ->
@@ -78,7 +78,7 @@ force_optimization() ->
 perform_optimization(State) ->
     Timestamp = erlang:system_time(millisecond),
     
-    colored_logger:data(processed, "[PERF_OPT] 🔧 Running performance optimization"),
+    colored_logger:data(processed, "[PERF_OPT] Running performance optimization"),
     
     %% Collect performance metrics
     Metrics = collect_performance_metrics(),
@@ -142,7 +142,7 @@ collect_performance_metrics() ->
         }
     catch
         _:Error ->
-            colored_logger:fire(bright, "[PERF_OPT] ❌ Failed to collect metrics: ~p", [Error]),
+            colored_logger:fire(bright, "[PERF_OPT] Failed to collect metrics: ~p", [Error]),
             #{}
     end.
 
@@ -178,7 +178,7 @@ optimize_memory(Metrics) ->
     
     case MemoryRatio of
         Ratio when Ratio > 80 ->
-            colored_logger:warning("[PERF_OPT] ⚠️ High memory usage (~.1f%), triggering optimizations", [Ratio]),
+            colored_logger:warning("[PERF_OPT] High memory usage (~.1f%), triggering optimizations", [Ratio]),
             
             %% Force garbage collection on all processes
             GCCount = force_global_gc(),
@@ -192,7 +192,7 @@ optimize_memory(Metrics) ->
                 ets_tables_cleared => ETSCleared
             };
         Ratio when Ratio > 60 ->
-            colored_logger:info("[PERF_OPT] ℹ️ Moderate memory usage (~.1f%), applying light optimizations", [Ratio]),
+            colored_logger:info("[PERF_OPT] Moderate memory usage (~.1f%), applying light optimizations", [Ratio]),
             
             %% Selective garbage collection
             GCCount = selective_gc(),
@@ -216,7 +216,7 @@ optimize_processes(Metrics) ->
     
     case ProcessUtilization of
         Util when Util > 80 ->
-            colored_logger:warning("[PERF_OPT] ⚠️ High process utilization (~.1f%), monitoring for cleanup", [Util]),
+            colored_logger:warning("[PERF_OPT] High process utilization (~.1f%), monitoring for cleanup", [Util]),
             
             %% Find and terminate idle processes
             IdleProcesses = find_idle_processes(),
@@ -242,7 +242,7 @@ optimize_schedulers(Metrics) ->
     
     case SchedulerLoad of
         Load when Load > 2.0 ->
-            colored_logger:warning("[PERF_OPT] ⚠️ High scheduler load (~.2f), checking for bottlenecks", [Load]),
+            colored_logger:warning("[PERF_OPT] High scheduler load (~.2f), checking for bottlenecks", [Load]),
             
             %% Check for scheduler imbalance
             SchedulerStats = get_scheduler_utilization(),
@@ -267,7 +267,7 @@ optimize_garbage_collection(Metrics) ->
     %% Check if GC frequency is reasonable
     case GCCount > 1000 of  % Arbitrary threshold
         true ->
-            colored_logger:info("[PERF_OPT] ℹ️ High GC frequency (~p), optimizing heap sizes", [GCCount]),
+            colored_logger:info("[PERF_OPT] High GC frequency (~p), optimizing heap sizes", [GCCount]),
             
             %% Tune garbage collection parameters
             OptimizedProcesses = tune_gc_parameters(),

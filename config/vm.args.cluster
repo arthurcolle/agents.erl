@@ -41,12 +41,16 @@
 +K true
 
 ## Node name and networking - enable clustering
--name agents@127.0.0.1
+-name agents@192.168.1.177
 -setcookie agents_cluster_cookie
 
 ## Enable distributed Erlang
 -proto_dist inet_tcp
 -erl_epmd_port 4369
+
+## Network discovery and clustering
+-kernel inet_dist_listen_min 9100
+-kernel inet_dist_listen_max 9200
 
 ## Keep shell for development
 +Bd

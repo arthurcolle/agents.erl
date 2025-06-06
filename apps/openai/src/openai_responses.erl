@@ -554,8 +554,12 @@ handle_stream_response(RequestId, CallerPid, Buffer) ->
             NewBuffer = <<Buffer/binary, BinBodyPart/binary>>,
             {ProcessedBuffer, Events} = process_sse_events(NewBuffer),
             
+            % Log streaming events
+            ?LOG_INFO("[RESPONSES_STREAM] Processing ~p events for ~p", [length(Events), CallerPid]),
+            
             % Send events to caller
             lists:foreach(fun(Event) ->
+                ?LOG_DEBUG("[RESPONSES_STREAM] Sending event to ~p: ~p", [CallerPid, Event]),
                 CallerPid ! {stream_event, Event}
             end, Events),
             
@@ -599,6 +603,8 @@ process_sse_lines([Line | Rest], Acc, Events) ->
                             % Incomplete JSON, keep accumulating
                             process_sse_lines(Rest, [Line, <<"\n">> | Acc], Events);
                         Decoded ->
+                            % Log the decoded event for debugging
+                            ?LOG_DEBUG("[SSE] Decoded event: ~p", [Decoded]),
                             % Process semantic event and add timestamp
                             ProcessedEvent = process_semantic_event(Decoded),
                             process_sse_lines(Rest, [], [ProcessedEvent | Events])

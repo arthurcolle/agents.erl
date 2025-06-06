@@ -536,42 +536,55 @@ export default function SimpleAdvancedChat({ selectedAgent, agents, ws }: ChatIn
             break
             
           case 'chat_response_token':
-            if (data.token) {
-              setCurrentStreamingMessage(prev => prev + data.token)
+            if (data.token !== undefined && data.token !== null) {
+              console.log('[STREAMING] Received token:', data.token)
+              setCurrentStreamingMessage(prev => {
+                const updated = prev + String(data.token)
+                console.log('[STREAMING] Current message length:', updated.length)
+                return updated
+              })
             }
             break
             
           case 'chat_response_complete':
-            if (currentStreamingMessage || data.content) {
-              const finalContent = currentStreamingMessage || data.content || ''
-              const agentMessage: Message = {
-                id: streamingMessageId || Date.now().toString(),
-                sender: 'agent',
-                content: finalContent,
-                timestamp: new Date(),
-                type: detectMessageType(finalContent),
-                format: detectContentFormat(finalContent)
-              }
-              setMessages(prev => [...prev, agentMessage])
-              
-              // Send to timeline
-              sendTimelineEvent({
-                type: 'message',
-                source: 'agent',
-                content: finalContent,
-                agentId: selectedAgent,
-                agentName: agents.get(selectedAgent)?.name,
-                conversationId: currentConversationId,
-                metadata: {
-                  format: agentMessage.format,
-                  model: data.model,
-                  tokens: data.tokens
+            console.log('[STREAMING] Complete event received, data:', data)
+            // Use a callback to get the current streaming message value
+            setCurrentStreamingMessage(currentMsg => {
+              console.log('[STREAMING] Current streaming message on complete:', currentMsg)
+              setStreamingMessageId(currentMsgId => {
+                const finalContent = currentMsg || data.content || ''
+                console.log('[STREAMING] Final content:', finalContent)
+                if (finalContent) {
+                  const agentMessage: Message = {
+                    id: currentMsgId || Date.now().toString(),
+                    sender: 'agent',
+                    content: finalContent,
+                    timestamp: new Date(),
+                    type: detectMessageType(finalContent),
+                    format: detectContentFormat(finalContent)
+                  }
+                  setMessages(prev => [...prev, agentMessage])
+                  
+                  // Send to timeline
+                  sendTimelineEvent({
+                    type: 'message',
+                    source: 'agent',
+                    content: finalContent,
+                    agentId: selectedAgent,
+                    agentName: agents.get(selectedAgent)?.name,
+                    conversationId: currentConversationId,
+                    metadata: {
+                      format: agentMessage.format,
+                      model: data.model,
+                      tokens: data.tokens
+                    }
+                  })
                 }
+                return null
               })
-            }
+              return ''
+            })
             setIsStreaming(false)
-            setCurrentStreamingMessage('')
-            setStreamingMessageId(null)
             break
             
           case 'chat_error':
@@ -587,8 +600,29 @@ export default function SimpleAdvancedChat({ selectedAgent, agents, ws }: ChatIn
             setIsStreaming(false)
             break
             
+          case 'learning_event':
+            // Handle learning protocol events
+            console.log('[LEARNING] Received learning event:', data.event)
+            handleLearningEvent(data.event)
+            break
+            
           default:
-            console.log('Unhandled WebSocket message:', data)
+            console.error('🔴 UNHANDLED WEBSOCKET MESSAGE:', {
+              type: data.type,
+              fullMessage: data,
+              timestamp: new Date().toISOString()
+            })
+            // Send error details to server for logging
+            if (ws && ws.readyState === WebSocket.OPEN) {
+              ws.send(JSON.stringify({
+                type: 'client_log',
+                level: 'error',
+                message: `Unhandled WebSocket message type: ${data.type}`,
+                timestamp: new Date().toISOString(),
+                user_agent: navigator.userAgent,
+                context: { originalMessage: data }
+              }))
+            }
         }
       } catch (error) {
         console.error('Failed to parse WebSocket message:', error)
@@ -607,7 +641,7 @@ export default function SimpleAdvancedChat({ selectedAgent, agents, ws }: ChatIn
       ws.removeEventListener('message', handleWebSocketMessage)
       window.removeEventListener('agent_stream', handleCustomStreamEvent as EventListener)
     }
-  }, [ws])
+  }, [ws, selectedAgent, agents, currentConversationId])
 
   const scrollToBottom = () => {
     if (chatContainerRef.current) {
