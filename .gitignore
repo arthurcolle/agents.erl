@@ -92,3 +92,8 @@ apps/agent_web/priv/data/embeddings.json
 # Mnesia database files
 Mnesia.*/
 **/Mnesia.*
+# generated artifacts — never track
+erl_crash.dump
+*.crashdump
+.tool_embeddings_cache.json
+embeddings.json
