@@ -40,7 +40,7 @@
 -define(SERVER, ?MODULE).
 
 -record(state, {
-    supervisors = #{} :: #{atom() => pid()},
+    supervisors = #{} :: #{term() => pid()},
     augmentations = [] :: [map()]
 }).
 
@@ -52,8 +52,13 @@ start_link() ->
     gen_server:start_link({local, ?SERVER}, ?MODULE, [], []).
 
 %% @doc Create a new supervisor dynamically
-create_supervisor(Name, Strategy, Children) when is_atom(Name) ->
-    gen_server:call(?SERVER, {create_supervisor, Name, Strategy, Children}).
+create_supervisor(Name, Strategy, Children) ->
+    case {valid_name(Name), normalize_strategy(Strategy)} of
+        {true, {ok, SafeStrategy}} ->
+            gen_server:call(?SERVER, {create_supervisor, Name, SafeStrategy, Children}, 10000);
+        _ ->
+            {error, invalid_supervisor_configuration}
+    end.
 
 %% @doc Add a worker process to an existing supervisor
 add_worker(SupervisorName, ChildId, ChildSpec) ->
@@ -111,7 +116,9 @@ handle_call({create_supervisor, Name, Strategy, Children}, _From, State) ->
         },
         
         %% Start the supervisor
-        case supervisor:start_link({local, Name}, dynamic_supervisor_wrapper, {SupFlags, Children}) of
+        %% The manager owns the PID; the user-facing name is metadata only.
+        %% This avoids creating a process-registration atom for every request.
+        case supervisor:start_link(dynamic_supervisor_wrapper, {SupFlags, Children}) of
             {ok, Pid} ->
                 NewState = State#state{
                     supervisors = maps:put(Name, Pid, State#state.supervisors)
@@ -131,7 +138,7 @@ handle_call({add_worker, SupervisorName, ChildId, ChildSpec}, _From, State) ->
     case maps:get(SupervisorName, State#state.supervisors, undefined) of
         undefined ->
             %% Try to find the supervisor by registered name
-            case whereis(SupervisorName) of
+            case whereis_legacy_supervisor(SupervisorName) of
                 undefined ->
                     {reply, {error, supervisor_not_found}, State};
                 Pid ->
@@ -150,7 +157,6 @@ handle_call({add_supervisor, ParentName, ChildName, Strategy}, _From, State) ->
             ChildSupSpec = #{
                 id => ChildName,
                 start => {supervisor, start_link, [
-                    {local, ChildName},
                     dynamic_supervisor_wrapper,
                     {#{strategy => Strategy, intensity => 5, period => 60}, []}
                 ]},
@@ -219,7 +225,7 @@ handle_call({agent_augment, AgentPid, Augmentation}, _From, State) ->
                     {reply, Error, State}
             end;
         #{type := worker, supervisor := SupName, spec := Spec} ->
-            case add_worker_for_agent(SupName, Spec) of
+            case add_worker_for_agent(SupName, Spec, State) of
                 ok ->
                     NewAugmentation = Augmentation#{
                         agent => AgentPid,
@@ -275,15 +281,40 @@ create_supervisor_for_agent(Name, Strategy) ->
         intensity => 5,
         period => 60
     },
-    supervisor:start_link({local, Name}, dynamic_supervisor_wrapper, {SupFlags, []}).
+    supervisor:start_link(dynamic_supervisor_wrapper, {SupFlags, []}).
 
-add_worker_for_agent(SupName, Spec) ->
-    case whereis(SupName) of
+add_worker_for_agent(SupName, Spec, #state{supervisors = Supervisors}) ->
+    case maps:get(SupName, Supervisors, undefined) of
         undefined ->
-            {error, supervisor_not_found};
+            case whereis_legacy_supervisor(SupName) of
+                undefined -> {error, supervisor_not_found};
+                Pid -> start_child_for_agent(Pid, Spec)
+            end;
         Pid ->
-            case supervisor:start_child(Pid, Spec) of
-                {ok, _} -> ok;
-                Error -> Error
-            end
+            start_child_for_agent(Pid, Spec)
     end.
+
+start_child_for_agent(Pid, Spec) ->
+    case supervisor:start_child(Pid, Spec) of
+        {ok, _} -> ok;
+        Error -> Error
+    end.
+
+whereis_legacy_supervisor(Name) when is_atom(Name) ->
+    whereis(Name);
+whereis_legacy_supervisor(_) ->
+    undefined.
+
+valid_name(Name) when is_atom(Name) -> true;
+valid_name(Name) when is_binary(Name) -> byte_size(Name) > 0 andalso byte_size(Name) =< 128;
+valid_name(_) -> false.
+
+normalize_strategy(one_for_one) -> {ok, one_for_one};
+normalize_strategy(one_for_all) -> {ok, one_for_all};
+normalize_strategy(rest_for_one) -> {ok, rest_for_one};
+normalize_strategy(simple_one_for_one) -> {ok, simple_one_for_one};
+normalize_strategy(<<"one_for_one">>) -> {ok, one_for_one};
+normalize_strategy(<<"one_for_all">>) -> {ok, one_for_all};
+normalize_strategy(<<"rest_for_one">>) -> {ok, rest_for_one};
+normalize_strategy(<<"simple_one_for_one">>) -> {ok, simple_one_for_one};
+normalize_strategy(_) -> error.

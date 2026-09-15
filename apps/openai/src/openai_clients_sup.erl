@@ -20,22 +20,24 @@ start_link(Options) ->
 
 %% Start a specific API client
 start_client(ApiGroup, Options) ->
-    ModuleName = list_to_atom("openai_" ++ atom_to_list(ApiGroup)),
-    ChildSpec = #{
-        id => ModuleName,
-        start => {ModuleName, start_link, [Options]},
-        restart => permanent,
-        shutdown => 5000,
-        type => worker,
-        modules => [ModuleName]
-    },
-    supervisor:start_child(?SERVER, ChildSpec).
+    case openai_sup:resolve_client_module(ApiGroup) of
+        {ok, ModuleName} ->
+            start_client_module(ModuleName, Options);
+        Error ->
+            Error
+    end.
 
 %% Stop a specific API client
 stop_client(ApiGroup) ->
-    ModuleName = list_to_atom("openai_" ++ atom_to_list(ApiGroup)),
-    supervisor:terminate_child(?SERVER, ModuleName),
-    supervisor:delete_child(?SERVER, ModuleName).
+    case openai_sup:resolve_client_module(ApiGroup) of
+        {ok, ModuleName} ->
+            case supervisor:terminate_child(?SERVER, ModuleName) of
+                ok -> supervisor:delete_child(?SERVER, ModuleName);
+                {error, _} = Error -> Error
+            end;
+        Error ->
+            Error
+    end.
 
 %% Start all API clients
 start_all_clients(Options) ->
@@ -63,19 +65,34 @@ init(Options) ->
     
     % Optionally start predefined clients
     AutoStartGroups = maps:get(auto_start_groups, Options, []),
-    ChildSpecs = lists:map(
+    ChildSpecs = lists:filtermap(
         fun(ApiGroup) ->
-            ModuleName = list_to_atom("openai_" ++ atom_to_list(ApiGroup)),
-            #{
-                id => ModuleName,
-                start => {ModuleName, start_link, [Options]},
-                restart => permanent,
-                shutdown => 5000,
-                type => worker,
-                modules => [ModuleName]
-            }
+            case openai_sup:resolve_client_module(ApiGroup) of
+                {ok, ModuleName} ->
+                    {true, client_spec(ModuleName, Options)};
+                {error, _} ->
+                    false
+            end
         end,
         AutoStartGroups
     ),
     
     {ok, {SupFlags, ChildSpecs}}.
+
+start_client_module(ModuleName, Options) ->
+    case code:ensure_loaded(ModuleName) of
+        {module, _} ->
+            supervisor:start_child(?SERVER, client_spec(ModuleName, Options));
+        {error, Reason} ->
+            {error, {client_module_not_loaded, ModuleName, Reason}}
+    end.
+
+client_spec(ModuleName, Options) ->
+    #{
+        id => ModuleName,
+        start => {ModuleName, start_link, [Options]},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [ModuleName]
+    }.

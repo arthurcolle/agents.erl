@@ -70,7 +70,15 @@ get_agents_health(Req0, State) ->
         }
     end, Agents),
     
-    Response = jsx:encode(#{agents_health => HealthData}),
+    TimeAuthority = try
+        case agent_time_authority:health() of
+            {ok, TimeHealth} -> TimeHealth;
+            {error, Reason} -> #{status => unavailable, reason => io_lib:format("~p", [Reason])}
+        end
+    catch
+        _:_ -> #{status => unavailable}
+    end,
+    Response = jsx:encode(#{agents_health => HealthData, time_authority => TimeAuthority}),
     Req = cowboy_req:reply(200, #{
         <<"content-type">> => <<"application/json">>
     }, Response, Req0),
@@ -222,32 +230,41 @@ create_agent(Req0, State) ->
         DecodedBody ->
             case DecodedBody of
                 #{<<"type">> := Type, <<"name">> := Name} = RequestData ->
-                    AgentType = binary_to_atom(Type, utf8),
-                    AgentName = Name,
                     Tools = maps:get(<<"tools">>, RequestData, []),
-                    
-                    case create_agent_by_type(AgentType, AgentName, Tools) of
-                        {ok, AgentId, Pid} ->
-                            Response = jsx:encode(#{
-                                success => true,
-                                agent => #{
-                                    id => AgentId,
-                                    pid => list_to_binary(pid_to_list(Pid)),
-                                    type => Type,
-                                    name => Name
-                                }
-                            }),
-                            Req = cowboy_req:reply(201, #{
-                                <<"content-type">> => <<"application/json">>
-                            }, Response, Req1);
+                    case validate_create_request(Type, Name, Tools) of
+                        {ok, AgentType, AgentName, NormalizedTools} ->
+                            case create_agent_by_type(AgentType, AgentName, NormalizedTools) of
+                                {ok, AgentId, Pid} ->
+                                    Response = jsx:encode(#{
+                                        success => true,
+                                        agent => #{
+                                            id => AgentId,
+                                            pid => list_to_binary(pid_to_list(Pid)),
+                                            type => Type,
+                                            name => Name
+                                        }
+                                    }),
+                                    Req = cowboy_req:reply(201, #{
+                                        <<"content-type">> => <<"application/json">>
+                                    }, Response, Req1);
+                                {error, Reason} ->
+                                    Req = cowboy_req:reply(400, #{
+                                        <<"content-type">> => <<"application/json">>
+                                    }, jsx:encode(#{
+                                        success => false,
+                                        error => creation_error_message(Reason),
+                                        error_type => <<"agent_creation_failed">>,
+                                        suggestion => <<"Please check the agent type and configuration parameters.">>
+                                    }), Req1)
+                            end;
                         {error, Reason} ->
                             Req = cowboy_req:reply(400, #{
                                 <<"content-type">> => <<"application/json">>
                             }, jsx:encode(#{
                                 success => false,
-                                error => iolist_to_binary(["Failed to create agent: ", Reason]),
-                                error_type => <<"agent_creation_failed">>,
-                                suggestion => <<"Please check the agent type and configuration parameters.">>
+                                error => Reason,
+                                error_type => <<"invalid_request">>,
+                                suggestion => <<"Use a supported agent type, a non-empty name, and at most 32 registered tools.">>
                             }), Req1)
                     end;
                 _ ->
@@ -295,7 +312,7 @@ create_agent_by_type(simple, Name, Tools) ->
         tools => Tools,
         system_prompt => <<"You are a simple agent that can help with basic tasks.">>
     },
-    case catch agent_instance:start_link(Config) of
+    case catch agent_supervisor:start_agent(Config) of
         {ok, Pid} ->
             Meta = #{
                 type => simple,
@@ -316,14 +333,7 @@ create_agent_by_type(simple, Name, Tools) ->
 
 create_agent_by_type(ai, Name, Tools) ->
     AgentId = generate_uuid(),
-    ToolList = lists:map(fun(T) -> 
-        case T of
-            B when is_binary(B) -> binary_to_atom(B, utf8);
-            A when is_atom(A) -> A;
-            L when is_list(L) -> list_to_atom(L);
-            _ -> T
-        end
-    end, Tools),
+    ToolList = Tools,
     
     % Define capabilities based on tools
     Capabilities = [<<"conversation">>, <<"multi_turn_chat">>] ++ 
@@ -339,7 +349,7 @@ create_agent_by_type(ai, Name, Tools) ->
         system_prompt => <<"You are a helpful AI assistant with advanced capabilities. You can engage in multi-turn conversations and use various tools to help users.">>
     },
     
-    case catch agent_instance:start_link(Config) of
+    case catch agent_supervisor:start_agent(Config) of
         {ok, Pid} ->
             Meta = #{
                 type => ai,
@@ -415,6 +425,74 @@ create_agent_by_type(micro_orchestrator, Name, _Tools) ->
 
 create_agent_by_type(_, _, _) ->
     {error, <<"Unknown agent type">>}.
+
+validate_create_request(Type, Name, Tools) when is_binary(Type), is_binary(Name) ->
+    case {normalize_agent_type(Type), valid_agent_name(Name), normalize_tools(Tools)} of
+        {{ok, AgentType}, true, {ok, NormalizedTools}} ->
+            {ok, AgentType, Name, NormalizedTools};
+        {{error, _}, _, _} ->
+            {error, <<"Unsupported agent type">>};
+        {_, false, _} ->
+            {error, <<"Agent name must be 1-256 bytes">>};
+        {_, _, {error, _}} ->
+            {error, <<"Tools must be a list of known tool names (maximum 32)">>}
+    end;
+validate_create_request(_, _, _) ->
+    {error, <<"'type' and 'name' must be strings">>}.
+
+normalize_agent_type(<<"simple">>) -> {ok, simple};
+normalize_agent_type(<<"ai">>) -> {ok, ai};
+normalize_agent_type(<<"template">>) -> {ok, template};
+normalize_agent_type(<<"researcher">>) -> {ok, researcher};
+normalize_agent_type(<<"coder">>) -> {ok, coder};
+normalize_agent_type(<<"analyst">>) -> {ok, analyst};
+normalize_agent_type(<<"orchestrator">>) -> {ok, orchestrator};
+normalize_agent_type(<<"monitor">>) -> {ok, monitor};
+normalize_agent_type(<<"translator">>) -> {ok, translator};
+normalize_agent_type(<<"teacher">>) -> {ok, teacher};
+normalize_agent_type(<<"debugger">>) -> {ok, debugger};
+normalize_agent_type(<<"advanced_researcher">>) -> {ok, advanced_researcher};
+normalize_agent_type(<<"efficient_coder">>) -> {ok, efficient_coder};
+normalize_agent_type(<<"lightweight_helper">>) -> {ok, lightweight_helper};
+normalize_agent_type(<<"quantum_analyst">>) -> {ok, quantum_analyst};
+normalize_agent_type(<<"micro_orchestrator">>) -> {ok, micro_orchestrator};
+normalize_agent_type(_) -> {error, unsupported_agent_type}.
+
+valid_agent_name(Name) -> byte_size(Name) > 0 andalso byte_size(Name) =< 256.
+
+normalize_tools(Tools) when is_list(Tools), length(Tools) =< 32 ->
+    normalize_tool_names(Tools, []);
+normalize_tools(_) -> {error, invalid_tools}.
+
+normalize_tool_names([], Acc) -> {ok, lists:reverse(Acc)};
+normalize_tool_names([Tool | Rest], Acc) when is_binary(Tool) ->
+    case safe_existing_tool(Tool) of
+        {ok, Atom} -> normalize_tool_names(Rest, [Atom | Acc]);
+        error -> {error, unknown_tool}
+    end;
+normalize_tool_names(_, _Acc) -> {error, invalid_tool_name}.
+
+safe_existing_tool(Name) ->
+    try
+        Atom = binary_to_existing_atom(Name, utf8),
+        case lists:member(Atom, available_tools()) of
+            true -> {ok, Atom};
+            false -> error
+        end
+    catch
+        error:badarg -> error
+    end.
+
+available_tools() ->
+    case catch agent_tools:list_tools() of
+        Tools when is_list(Tools) -> Tools;
+        _ -> []
+    end.
+
+creation_error_message(Reason) when is_binary(Reason) ->
+    <<"Failed to create agent: ", Reason/binary>>;
+creation_error_message(Reason) ->
+    iolist_to_binary(io_lib:format("Failed to create agent: ~p", [Reason])).
 
 %% Helper functions
 generate_uuid() ->

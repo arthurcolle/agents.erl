@@ -135,7 +135,6 @@ get_detailed_summary(Period) ->
         Summary ->
             %% Enhance with additional calculations
             TotalCost = maps:get(total_cost, Summary, 0.0),
-            TotalCalls = maps:get(total_calls, Summary, 0),
             AvgCost = maps:get(average_cost_per_call, Summary, 0.0),
             
             %% Calculate cost projections
@@ -290,16 +289,15 @@ calculate_cost_trends(_Summary) ->
     }.
 
 generate_cost_recommendations(Summary) ->
-    TotalCost = maps:get(total_cost, Summary, 0.0),
     ModelBreakdown = maps:get(model_breakdown, Summary, #{}),
     
     Recommendations = [],
     
     %% Check if using expensive models for simple tasks
-    R1 = case maps:is_key(<<"gpt-4.1">>, ModelBreakdown) andalso 
-              maps:is_key(<<"gpt-4.1-mini">>, ModelBreakdown) of
+    R1 = case maps:is_key(<<"gpt-5.6-sol">>, ModelBreakdown) andalso
+              maps:is_key(<<"gpt-5.6-terra">>, ModelBreakdown) of
         true ->
-            Gpt41Calls = maps:get(calls, maps:get(<<"gpt-4.1">>, ModelBreakdown, #{}), 0),
+            Gpt41Calls = maps:get(calls, maps:get(<<"gpt-5.6-sol">>, ModelBreakdown, #{}), 0),
             case Gpt41Calls > 100 of
                 true -> [<<"Consider using gpt-4.1-mini for simpler tasks to reduce costs">> | Recommendations];
                 false -> Recommendations
@@ -308,7 +306,7 @@ generate_cost_recommendations(Summary) ->
     end,
     
     %% Check for high reasoning model usage
-    R2 = case maps:is_key(<<"o3">>, ModelBreakdown) orelse 
+    R2 = case maps:is_key(<<"gpt-5.6-sol">>, ModelBreakdown) orelse
               maps:is_key(<<"o1-pro">>, ModelBreakdown) of
         true ->
             [<<"High-cost reasoning models detected. Use only for complex reasoning tasks">> | R1];

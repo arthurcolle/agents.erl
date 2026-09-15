@@ -28,6 +28,7 @@
          terminate/2, code_change/3]).
 
 -define(SERVER, ?MODULE).
+-define(CALL_TIMEOUT, 60000).
 
 -record(state, {
     agent_sessions = #{} :: #{pid() => session()},
@@ -96,7 +97,7 @@ evaluate_confidence(AgentPid, CodeContext) ->
 
 %% @doc Reflect on the code generation process
 reflect_on_process(AgentPid, GeneratedCode) ->
-    gen_server:call(?SERVER, {reflect_on_process, AgentPid, GeneratedCode}, infinity).
+    gen_server:call(?SERVER, {reflect_on_process, AgentPid, GeneratedCode}, ?CALL_TIMEOUT).
 
 %% @doc Get a comprehensive metacognitive report for an agent
 get_metacognitive_report(AgentPid) ->

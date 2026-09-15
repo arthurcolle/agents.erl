@@ -129,7 +129,7 @@ execute_proxy_request(#proxy_config{base_url = BaseUrl,
     TargetUrl = build_target_url(BaseUrl, Path, QueryString),
     
     %% Get request method
-    Method = binary_to_atom(string:lowercase(cowboy_req:method(Req)), utf8),
+    Method = proxy_method_atom(cowboy_req:method(Req)),
     
     %% Get headers
     Headers = prepare_headers(cowboy_req:headers(Req), ExtraHeaders),
@@ -160,6 +160,15 @@ execute_proxy_request(#proxy_config{base_url = BaseUrl,
         {error, Reason} ->
             {error, {proxy_failed, Reason}}
     end.
+
+proxy_method_atom(<<"GET">>) -> get;
+proxy_method_atom(<<"POST">>) -> post;
+proxy_method_atom(<<"PUT">>) -> put;
+proxy_method_atom(<<"PATCH">>) -> patch;
+proxy_method_atom(<<"DELETE">>) -> delete;
+proxy_method_atom(<<"HEAD">>) -> head;
+proxy_method_atom(<<"OPTIONS">>) -> options;
+proxy_method_atom(_) -> get.
 
 build_target_url(BaseUrl, Path, QueryString) ->
     %% Remove trailing slash from base URL

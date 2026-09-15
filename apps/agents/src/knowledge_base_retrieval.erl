@@ -15,7 +15,6 @@
 
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
 
--define(KB_BASE_PATH, "/Users/agent/agents.erl/knowledge_bases").
 -define(INDEX_TABLE, knowledge_base_index).
 
 -record(state, {
@@ -55,8 +54,10 @@ init([]) ->
     % Create ETS table for indexing
     ets:new(?INDEX_TABLE, [named_table, public, {keypos, 1}]),
     
-    % Start indexing all available domains
-    spawn(fun() -> index_all_domains() end),
+    % Queue indexing on the supervised server instead of creating an
+    % unowned background process.
+    self() ! index_all_domains,
+    schedule_cache_cleanup(),
     
     {ok, #state{}}.
 
@@ -86,16 +87,22 @@ handle_call(_Request, _From, State) ->
     {reply, {error, unknown_request}, State}.
 
 handle_cast({index_domain, Domain}, State) ->
-    spawn(fun() -> index_domain(Domain) end),
+    self() ! {index_domain, Domain},
     {noreply, State};
 
 handle_cast({update_knowledge, Domain, Content}, State) ->
-    spawn(fun() -> update_domain_knowledge(Domain, Content) end),
+    update_domain_knowledge(Domain, Content),
     {noreply, State};
 
 handle_cast(_Msg, State) ->
     {noreply, State}.
 
+handle_info(index_all_domains, State) ->
+    index_all_domains(),
+    {noreply, State};
+handle_info({index_domain, Domain}, State) ->
+    index_domain(Domain),
+    {noreply, State};
 handle_info({cache_cleanup}, State) ->
     NewState = cleanup_cache(State),
     schedule_cache_cleanup(),
@@ -113,16 +120,35 @@ code_change(_OldVsn, State, _Extra) ->
 %% Internal functions
 
 index_all_domains() ->
-    case file:list_dir(?KB_BASE_PATH) of
-        {ok, Dirs} ->
-            Domains = [D || D <- Dirs, filelib:is_dir(filename:join(?KB_BASE_PATH, D))],
-            lists:foreach(fun index_domain/1, Domains);
+    BasePath = kb_base_path(),
+    case file:list_dir(BasePath) of
+        {ok, Entries} ->
+            lists:foreach(fun(Entry) ->
+                Path = filename:join(BasePath, Entry),
+                case filelib:is_dir(Path) of
+                    true ->
+                        index_domain(Entry);
+                    false ->
+                        case is_knowledge_file(Entry) of
+                            true ->
+                                Domain = filename:basename(
+                                    Entry,
+                                    filename:extension(Entry)
+                                ),
+                                index_knowledge_file(Domain, Path);
+                            false ->
+                                ok
+                        end
+                end
+            end, Entries);
         {error, _Reason} ->
-            error_logger:warning_msg("Knowledge base directory not found: ~s~n", [?KB_BASE_PATH])
+            logger:warning("Knowledge base directory not found: ~s", [BasePath])
     end.
 
 index_domain(Domain) ->
-    DomainPath = filename:join(?KB_BASE_PATH, Domain),
+    BasePath = kb_base_path(),
+    DomainName = normalize_path_component(Domain),
+    DomainPath = filename:join(BasePath, DomainName),
     case file:list_dir(DomainPath) of
         {ok, Files} ->
             KnowledgeFiles = [F || F <- Files, filename:extension(F) =:= ".md" 
@@ -132,7 +158,7 @@ index_domain(Domain) ->
                 index_knowledge_file(Domain, filename:join(DomainPath, File))
             end, KnowledgeFiles);
         {error, _Reason} ->
-            error_logger:warning_msg("Cannot index domain: ~s~n", [Domain])
+            index_flat_domain(BasePath, DomainName)
     end.
 
 index_knowledge_file(Domain, FilePath) ->
@@ -216,18 +242,21 @@ extract_preview(Content, QueryTerms) ->
     string:join(PreviewLines, "\n").
 
 load_domain_knowledge(Domain, Topic) ->
-    FilePath = filename:join([?KB_BASE_PATH, Domain, Topic ++ ".md"]),
+    BasePath = kb_base_path(),
+    DomainName = normalize_path_component(Domain),
+    TopicName = normalize_path_component(Topic),
+    FilePath = filename:join([BasePath, DomainName, TopicName ++ ".md"]),
     case file:read_file(FilePath) of
         {ok, Content} ->
             {ok, binary_to_list(Content)};
         {error, enoent} ->
             % Try .txt extension
-            TxtPath = filename:join([?KB_BASE_PATH, Domain, Topic ++ ".txt"]),
+            TxtPath = filename:join([BasePath, DomainName, TopicName ++ ".txt"]),
             case file:read_file(TxtPath) of
                 {ok, Content} ->
                     {ok, binary_to_list(Content)};
                 {error, _} ->
-                    {error, topic_not_found}
+                    load_flat_domain(BasePath, DomainName)
             end;
         {error, Reason} ->
             {error, Reason}
@@ -239,9 +268,14 @@ update_domain_knowledge(Domain, Content) ->
     error_logger:info_msg("Knowledge update for domain ~s: ~p~n", [Domain, Content]).
 
 list_knowledge_domains() ->
-    case file:list_dir(?KB_BASE_PATH) of
-        {ok, Dirs} ->
-            [D || D <- Dirs, filelib:is_dir(filename:join(?KB_BASE_PATH, D))];
+    BasePath = kb_base_path(),
+    case file:list_dir(BasePath) of
+        {ok, Entries} ->
+            [
+                domain_name(BasePath, Entry)
+                || Entry <- Entries,
+                   is_domain_entry(BasePath, Entry)
+            ];
         {error, _} ->
             []
     end.
@@ -275,3 +309,60 @@ cleanup_cache(#state{cache = Cache, cache_ttl = TTL} = State) ->
 
 schedule_cache_cleanup() ->
     erlang:send_after(300000, self(), {cache_cleanup}).  % Every 5 minutes
+
+kb_base_path() ->
+    ConfiguredPath = application:get_env(
+        agents,
+        knowledge_base_dir,
+        "knowledge_bases"
+    ),
+    filename:absname(ConfiguredPath).
+
+is_knowledge_file(FileName) ->
+    lists:member(filename:extension(FileName), [".md", ".txt", ".json"]).
+
+is_domain_entry(BasePath, Entry) ->
+    filelib:is_dir(filename:join(BasePath, Entry)) orelse
+        is_knowledge_file(Entry).
+
+domain_name(BasePath, Entry) ->
+    case filelib:is_dir(filename:join(BasePath, Entry)) of
+        true -> Entry;
+        false -> filename:basename(Entry, filename:extension(Entry))
+    end.
+
+index_flat_domain(BasePath, DomainName) ->
+    case find_flat_domain_file(BasePath, DomainName) of
+        {ok, FilePath} ->
+            index_knowledge_file(DomainName, FilePath);
+        error ->
+            logger:warning("Cannot index knowledge domain: ~s", [DomainName])
+    end.
+
+load_flat_domain(BasePath, DomainName) ->
+    case find_flat_domain_file(BasePath, DomainName) of
+        {ok, FilePath} ->
+            case file:read_file(FilePath) of
+                {ok, Content} -> {ok, binary_to_list(Content)};
+                {error, Reason} -> {error, Reason}
+            end;
+        error ->
+            {error, topic_not_found}
+    end.
+
+find_flat_domain_file(BasePath, DomainName) ->
+    Candidates = [
+        filename:join(BasePath, DomainName ++ Extension)
+        || Extension <- [".json", ".md", ".txt"]
+    ],
+    case lists:dropwhile(fun(Path) -> not filelib:is_regular(Path) end, Candidates) of
+        [FilePath | _] -> {ok, FilePath};
+        [] -> error
+    end.
+
+normalize_path_component(Value) when is_binary(Value) ->
+    binary_to_list(Value);
+normalize_path_component(Value) when is_atom(Value) ->
+    atom_to_list(Value);
+normalize_path_component(Value) when is_list(Value) ->
+    Value.

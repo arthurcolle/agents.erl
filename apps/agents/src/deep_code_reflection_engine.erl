@@ -29,6 +29,7 @@
          terminate/2, code_change/3]).
 
 -define(SERVER, ?MODULE).
+-define(CALL_TIMEOUT, 60000).
 
 -record(state, {
     reflections = #{} :: #{pid() => [map()]},
@@ -58,19 +59,19 @@ start_link() ->
 
 %% @doc Deeply reflect on a piece of code
 reflect_on_code(AgentPid, Code) ->
-    gen_server:call(?SERVER, {reflect_on_code, AgentPid, Code}, infinity).
+    gen_server:call(?SERVER, {reflect_on_code, AgentPid, Code}, ?CALL_TIMEOUT).
 
 %% @doc Reflect on a single line of code
 reflect_on_line(AgentPid, Line) ->
-    gen_server:call(?SERVER, {reflect_on_line, AgentPid, Line}, infinity).
+    gen_server:call(?SERVER, {reflect_on_line, AgentPid, Line}, ?CALL_TIMEOUT).
 
 %% @doc Reflect on an entire function
 reflect_on_function(AgentPid, Function) ->
-    gen_server:call(?SERVER, {reflect_on_function, AgentPid, Function}, infinity).
+    gen_server:call(?SERVER, {reflect_on_function, AgentPid, Function}, ?CALL_TIMEOUT).
 
 %% @doc Reflect on an entire module
 reflect_on_module(AgentPid, Module) ->
-    gen_server:call(?SERVER, {reflect_on_module, AgentPid, Module}, infinity).
+    gen_server:call(?SERVER, {reflect_on_module, AgentPid, Module}, ?CALL_TIMEOUT).
 
 %% @doc Get reflection history for an agent
 get_reflection_history(AgentPid) ->

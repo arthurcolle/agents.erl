@@ -23,6 +23,7 @@
          terminate/2, code_change/3]).
 
 -define(SERVER, ?MODULE).
+-define(CALL_TIMEOUT, 60000).
 
 -record(state, {
     evaluations = #{} :: #{pid() => [evaluation()]},
@@ -50,7 +51,7 @@ start_link() ->
 
 %% @doc Perform complete philosophical evaluation of code
 evaluate_code_philosophy(AgentPid, Code) ->
-    gen_server:call(?SERVER, {evaluate_philosophy, AgentPid, Code}, infinity).
+    gen_server:call(?SERVER, {evaluate_philosophy, AgentPid, Code}, ?CALL_TIMEOUT).
 
 %% @doc Contemplate the existence and being of code
 contemplate_existence(AgentPid, Code) ->

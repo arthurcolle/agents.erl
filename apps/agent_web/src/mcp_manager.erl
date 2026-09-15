@@ -198,20 +198,6 @@ init([]) ->
             throw({error, {failed_to_start_default_server, StartError}})
     end,
     
-    % Initialize Graphlit MCP server
-    GraphlitConfig = #{
-        server_id => <<"graphlit">>,
-        command => <<"npx">>,
-        args => [<<"-y">>, <<"graphlit-mcp-server">>],
-        env => #{
-            <<"GRAPHLIT_ORGANIZATION_ID">> => <<"1b591b0d-eb12-4f6d-be5a-ceb95b40e716">>,
-            <<"GRAPHLIT_ENVIRONMENT_ID">> => <<"42d0e0ef-8eeb-463d-921c-ef5119541eb9">>,
-            <<"GRAPHLIT_JWT_SECRET">> => <<"REDACTED">>
-        },
-        transport => stdio,
-        auto_start => true
-    },
-    
     % Initialize default discovery filters
     DefaultFilters = [
         fun(#{url := Url}) ->
@@ -226,12 +212,19 @@ init([]) ->
         fun(#{type := Type}) -> Type =:= network end % Only network discovery
     ],
     
-    % Try to auto-connect Graphlit server
-    GraphlitServers = case auto_connect_graphlit(GraphlitConfig) of
-        {ok, GraphlitPid} ->
-            #{<<"graphlit">> => {GraphlitPid, GraphlitConfig}};
-        {error, ConnectError} ->
-            ?LOG_INFO("[WARNING] Failed to auto-connect Graphlit server: ~p", [ConnectError]),
+    % Try to auto-connect Graphlit only when all credentials are supplied by
+    % the deployment environment.  Never ship or persist a fallback secret.
+    GraphlitServers = case graphlit_config() of
+        {ok, GraphlitConfig} ->
+            case auto_connect_graphlit(GraphlitConfig) of
+                {ok, GraphlitPid} ->
+                    #{<<"graphlit">> => {GraphlitPid, GraphlitConfig}};
+                {error, ConnectError} ->
+                    ?LOG_INFO("[WARNING] Failed to auto-connect Graphlit server: ~p", [ConnectError]),
+                    #{}
+            end;
+        {error, missing_credentials} ->
+            ?LOG_INFO("[MCP_MGR] Graphlit auto-connect disabled: credentials are not configured", []),
             #{}
     end,
     
@@ -245,6 +238,33 @@ init([]) ->
     erlang:send_after(5000, self(), auto_connect_configured_servers),
     
     {ok, State}.
+
+graphlit_config() ->
+    case {required_env_binary("GRAPHLIT_ORGANIZATION_ID"),
+          required_env_binary("GRAPHLIT_ENVIRONMENT_ID"),
+          required_env_binary("GRAPHLIT_JWT_SECRET")} of
+        {{ok, OrganizationId}, {ok, EnvironmentId}, {ok, JwtSecret}} ->
+            {ok, #{
+                server_id => <<"graphlit">>,
+                command => <<"npx">>,
+                args => [<<"-y">>, <<"graphlit-mcp-server">>],
+                env => #{
+                    <<"GRAPHLIT_ORGANIZATION_ID">> => OrganizationId,
+                    <<"GRAPHLIT_ENVIRONMENT_ID">> => EnvironmentId,
+                    <<"GRAPHLIT_JWT_SECRET">> => JwtSecret
+                },
+                transport => stdio,
+                auto_start => true
+            }};
+        _ ->
+            {error, missing_credentials}
+    end.
+
+required_env_binary(Name) ->
+    case os:getenv(Name) of
+        Value when is_list(Value), Value =/= [] -> {ok, list_to_binary(Value)};
+        _ -> {error, missing}
+    end.
 
 handle_call({start_local_server, Config}, _From, State) ->
     ServerId = maps:get(server_id, Config, generate_server_id()),

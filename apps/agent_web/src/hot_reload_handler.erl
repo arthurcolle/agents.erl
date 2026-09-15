@@ -5,8 +5,17 @@
 -export([init/2]).
 
 init(Req0, State) ->
-    Method = cowboy_req:method(Req0),
-    handle_request(Method, Req0, State).
+    case application:get_env(agent_web, hot_reload_enabled, false) of
+        true ->
+            Method = cowboy_req:method(Req0),
+            handle_request(Method, Req0, State);
+        _ ->
+            Req = cowboy_req:reply(404,
+                #{},
+                <<"Not Found">>,
+                Req0),
+            {ok, Req, State}
+    end.
 
 handle_request(<<"GET">>, Req0, State) ->
     % Get list of loaded modules
@@ -52,10 +61,14 @@ handle_request(_, Req0, State) ->
     {ok, Req, State}.
 
 handle_reload_action(<<"reload_module">>, #{<<"module">> := ModuleBin}) ->
-    Module = binary_to_atom(ModuleBin, utf8),
-    case hot_code_reloader:reload_module(Module) of
-        {ok, Result} -> Result;
-        {error, Reason} -> #{error => Reason}
+    case loaded_module(ModuleBin) of
+        {ok, Module} ->
+            case hot_code_reloader:reload_module(Module) of
+                {ok, Result} -> Result;
+                {error, Reason} -> #{error => Reason}
+            end;
+        error ->
+            #{error => <<"Module must name an already loaded module">>}
     end;
 
 handle_reload_action(<<"reload_all">>, _Params) ->
@@ -65,16 +78,25 @@ handle_reload_action(<<"reload_all">>, _Params) ->
     end;
 
 handle_reload_action(<<"compile_and_reload">>, #{<<"source_file">> := SourceFile}) ->
-    case hot_code_reloader:compile_and_reload(binary_to_list(SourceFile)) of
-        {ok, Result} -> Result;
-        {error, Reason} -> #{error => Reason}
+    case safe_source_file(SourceFile) of
+        {ok, SourcePath} ->
+            case hot_code_reloader:compile_and_reload(SourcePath) of
+                {ok, Result} -> Result;
+                {error, Reason} -> #{error => Reason}
+            end;
+        error ->
+            #{error => <<"source_file must be an existing Erlang source file">>}
     end;
 
 handle_reload_action(<<"watch_files">>, #{<<"files">> := Files}) ->
-    FileList = [binary_to_list(F) || F <- Files],
-    case hot_code_reloader:watch_files(FileList) of
-        ok -> #{status => <<"watching">>, files => Files};
-        {error, Reason} -> #{error => Reason}
+    case safe_source_files(Files) of
+        {ok, FileList} ->
+            case hot_code_reloader:watch_files(FileList) of
+                ok -> #{status => <<"watching">>, files => Files};
+                {error, Reason} -> #{error => Reason}
+            end;
+        error ->
+            #{error => <<"files must be a list of existing Erlang source files">>}
     end;
 
 handle_reload_action(<<"stop_watch">>, _Params) ->
@@ -84,11 +106,54 @@ handle_reload_action(<<"stop_watch">>, _Params) ->
     end;
 
 handle_reload_action(<<"get_module_info">>, #{<<"module">> := ModuleBin}) ->
-    Module = binary_to_atom(ModuleBin, utf8),
-    case hot_code_reloader:get_module_info(Module) of
-        {ok, Result} -> Result;
-        {error, Reason} -> #{error => Reason}
+    case loaded_module(ModuleBin) of
+        {ok, Module} ->
+            case hot_code_reloader:get_module_info(Module) of
+                {ok, Result} -> Result;
+                {error, Reason} -> #{error => Reason}
+            end;
+        error ->
+            #{error => <<"Module must name an already loaded module">>}
     end;
 
 handle_reload_action(Action, _Params) ->
     #{error => <<"Unknown action">>, action => Action}.
+
+loaded_module(ModuleBin) when is_binary(ModuleBin), byte_size(ModuleBin) > 0,
+                              byte_size(ModuleBin) =< 255 ->
+    try
+        Module = binary_to_existing_atom(ModuleBin, utf8),
+        case code:is_loaded(Module) of
+            {file, _} -> {ok, Module};
+            _ -> error
+        end
+    catch
+        error:badarg -> error
+    end;
+loaded_module(_) -> error.
+
+safe_source_file(SourceFile) when is_binary(SourceFile), byte_size(SourceFile) > 0,
+                                  byte_size(SourceFile) =< 4096 ->
+    Path = binary_to_list(SourceFile),
+    case filename:extension(Path) =:= ".erl" andalso filelib:is_regular(Path) of
+        true -> {ok, Path};
+        false -> error
+    end;
+safe_source_file(_) -> error.
+
+safe_source_files(Files) when is_list(Files), length(Files) =< 32 ->
+    case lists:foldl(
+        fun(File, {ok, Acc}) ->
+            case safe_source_file(File) of
+                {ok, Path} -> {ok, [Path | Acc]};
+                error -> error
+            end;
+           (_File, error) -> error
+        end,
+        {ok, []},
+        Files
+    ) of
+        {ok, Paths} -> {ok, lists:reverse(Paths)};
+        error -> error
+    end;
+safe_source_files(_) -> error.

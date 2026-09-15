@@ -12,25 +12,32 @@
 %% Generate and compile a module for the given endpoint group
 -spec generate_module(atom(), string()) -> {ok, module()} | {error, term()}.
 generate_module(GroupName, OutputDir) ->
-    ModuleName = list_to_atom("openai_" ++ atom_to_list(GroupName)),
+    case openai_sup:resolve_client_module(GroupName) of
+        {ok, ModuleName} ->
+            generate_module_for_module(GroupName, ModuleName, OutputDir);
+        Error ->
+            Error
+    end.
+
+generate_module_for_module(GroupName, ModuleName, OutputDir) ->
     Source = generate_module_source(GroupName, ModuleName),
     Filename = OutputDir ++ "/" ++ atom_to_list(ModuleName) ++ ".erl",
-    
+
     % Ensure directory exists
     filelib:ensure_dir(Filename),
-    
+
     % Write the module source to file
     case file:write_file(Filename, Source) of
         ok ->
             % Compile the module
             case compile:file(Filename, [return_errors, {outdir, OutputDir}]) of
-                {ok, Module, Bin} -> 
+                {ok, Module, Bin} ->
                     % Load the binary
                     case code:load_binary(Module, atom_to_list(Module) ++ ".erl", Bin) of
                         {module, _} -> {ok, Module};
                         Error -> {error, {load_error, Error}}
                     end;
-                {error, Errors, _Warnings} -> 
+                {error, Errors, _Warnings} ->
                     {error, {compile_errors, Errors}}
             end;
         {error, Reason} ->

@@ -275,15 +275,15 @@ unsubscribe_from_topic(Topic, State) ->
     %% Remove subscription and cleanup
     case Topic of
         <<"timeline_events">> ->
-            %% TODO: Implement unsubscribe from timeline_event_store
-            ok;
+            safe_unsubscribe();
         <<"scheduled_tasks">> ->
-            catch gproc:unreg({p, l, scheduled_task_updates});
+            safe_gproc_unreg({p, l, scheduled_task_updates});
         _ ->
             ok
     end,
     
-    NewSubscriptions = maps:remove(Topic, State#state.subscriptions),
+    NewSubscriptions = maps:remove(subscription_key(Topic),
+        maps:remove(Topic, State#state.subscriptions)),
     State#state{subscriptions = NewSubscriptions}.
 
 create_filter_function(Options) ->
@@ -356,20 +356,29 @@ cleanup_subscriptions(State) ->
         fun(Key, _Value) ->
             case Key of
                 timeline_events ->
-                    %% TODO: Implement cleanup for timeline_event_store
-                    ok;
+                    safe_unsubscribe();
                 scheduled_tasks ->
-                    catch gproc:unreg({p, l, scheduled_task_updates});
+                    safe_gproc_unreg({p, l, scheduled_task_updates});
                 {agent_events, AgentId} ->
-                    catch gproc:unreg({p, l, {agent_events, AgentId}});
+                    safe_gproc_unreg({p, l, {agent_events, AgentId}});
                 {temporal, AgentId} ->
-                    catch gproc:unreg({p, l, {temporal_updates, AgentId}});
+                    safe_gproc_unreg({p, l, {temporal_updates, AgentId}});
                 _ ->
                     ok
             end
         end,
         State#state.subscriptions
     ).
+
+safe_unsubscribe() ->
+    try timeline_event_store:unsubscribe(self()) catch _:_ -> ok end.
+
+safe_gproc_unreg(Key) ->
+    try gproc:unreg(Key) catch _:_ -> ok end.
+
+subscription_key(<<"timeline_events">>) -> timeline_events;
+subscription_key(<<"scheduled_tasks">>) -> scheduled_tasks;
+subscription_key(Topic) -> Topic.
 
 generate_client_id() ->
     agent_uuid:generate().

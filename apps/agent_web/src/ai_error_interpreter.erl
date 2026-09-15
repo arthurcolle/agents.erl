@@ -171,7 +171,7 @@ process_error_interpretation(ErrorData, OpenAIClient) ->
     
     try
         {ok, Response} = openai_chat:create_completion(OpenAIClient, #{
-            model => <<"gpt-4o">>,
+            model => <<"gpt-5.6-sol">>,
             messages => Messages,
             temperature => 0.3,
             response_format => #{type => json_object}
@@ -209,7 +209,7 @@ process_with_ai(LogLine, OpenAIClient) ->
     
     try
         {ok, Response} = openai_chat:create_completion(OpenAIClient, #{
-            model => <<"gpt-4o">>,
+            model => <<"gpt-5.6-sol">>,
             messages => Messages,
             temperature => 0.3,
             response_format => #{type => json_object}
@@ -296,7 +296,7 @@ parse_ai_interpretation(Response, ErrorData) ->
         error_type = extract_error_type(ErrorData),
         original_text = format_error_for_ai(ErrorData),
         interpretation = maps:get(<<"interpretation">>, JsonData),
-        severity = binary_to_atom(maps:get(<<"severity">>, JsonData, <<"medium">>)),
+        severity = normalize_severity(maps:get(<<"severity">>, JsonData, <<"medium">>)),
         category = maps:get(<<"category">>, JsonData, <<"unknown">>),
         tags = maps:get(<<"tags">>, JsonData, []),
         suggestions = maps:get(<<"suggestions">>, JsonData, []),
@@ -322,7 +322,7 @@ parse_log_interpretation(Response, LogLine) ->
         end,
         original_text = LogLine,
         interpretation = maps:get(<<"interpretation">>, JsonData),
-        severity = binary_to_atom(maps:get(<<"severity">>, JsonData, <<"low">>)),
+        severity = normalize_severity(maps:get(<<"severity">>, JsonData, <<"low">>)),
         category = maps:get(<<"category">>, JsonData, <<"log">>),
         tags = maps:get(<<"tags">>, JsonData, []),
         suggestions = maps:get(<<"suggestions">>, JsonData, []),
@@ -431,3 +431,13 @@ generate_interpretation_id() ->
 
 notify_subscribers(Event, #state{subscribers = Subs}) ->
     [Pid ! {error_interpretation_event, Event} || Pid <- Subs].
+
+normalize_severity(<<"low">>) -> low;
+normalize_severity(<<"medium">>) -> medium;
+normalize_severity(<<"high">>) -> high;
+normalize_severity(<<"critical">>) -> critical;
+normalize_severity(low) -> low;
+normalize_severity(medium) -> medium;
+normalize_severity(high) -> high;
+normalize_severity(critical) -> critical;
+normalize_severity(_) -> medium.

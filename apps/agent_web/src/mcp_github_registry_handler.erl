@@ -47,7 +47,7 @@ handle_get(Req, State) ->
             handle_get_categories();
         [<<"search">>] ->
             % GET /api/mcp-registry/search?q=term - Search servers
-            Query = cowboy_req:qs_val(<<"q">>, Req, <<"">>),
+            Query = proplists:get_value(<<"q">>, cowboy_req:parse_qs(Req), <<"">>),
             handle_search_servers(Query);
         [Category] ->
             % GET /api/mcp-registry/{category} - Get servers by category
@@ -213,13 +213,10 @@ handle_get_by_category(CategoryBin) ->
     case mcp_github_registry_updater:get_registry_stats() of
         #{registry_data := RegistryData} when is_map(RegistryData) ->
             try
-                % Create atom if it doesn't exist
-                Category = try
-                    binary_to_existing_atom(CategoryBin, utf8)
-                catch
-                    error:badarg ->
-                        binary_to_atom(CategoryBin, utf8)
-                end,
+                %% Categories are internal atoms. Never allocate an atom from
+                %% a request; an unknown category simply yields a 400-style
+                %% invalid_category result below.
+                Category = binary_to_existing_atom(CategoryBin, utf8),
                 
                 CategoryServers = lists:filtermap(fun({_Id, Server}) ->
                     case maps:get(category, Server, unknown) of

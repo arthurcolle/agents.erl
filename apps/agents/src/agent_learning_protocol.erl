@@ -347,15 +347,18 @@ update_knowledge_graph(#response{content = Content}, KnowledgeGraph) ->
     case maps:get(type, Content, undefined) of
         undefined -> KnowledgeGraph;
         Type ->
-            TypeAtom = if
-                is_binary(Type) -> binary_to_atom(Type, utf8);
-                is_atom(Type) -> Type;
-                true -> unknown
+            %% Preserve wire-defined types as binaries. They are map keys, not
+            %% code dispatch values, so converting model output to atoms only
+            %% creates avoidable atom-table exhaustion risk.
+            TypeKey = case Type of
+                TypeBinary when is_binary(TypeBinary) -> TypeBinary;
+                TypeAtom when is_atom(TypeAtom) -> TypeAtom;
+                _ -> unknown
             end,
             
-            CurrentKnowledge = maps:get(TypeAtom, KnowledgeGraph, #{}),
+            CurrentKnowledge = maps:get(TypeKey, KnowledgeGraph, #{}),
             UpdatedKnowledge = maps:merge(CurrentKnowledge, Content),
-            maps:put(TypeAtom, UpdatedKnowledge, KnowledgeGraph)
+            maps:put(TypeKey, UpdatedKnowledge, KnowledgeGraph)
     end.
 
 consolidate_responses(ResponsesMap, KnowledgeGraph) ->

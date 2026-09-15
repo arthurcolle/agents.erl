@@ -191,11 +191,12 @@ handle_call({set_keys, Service, KeyMap}, _From, State) ->
     {reply, ok, NewState};
 
 handle_call({save_key, Service, KeyData}, _From, State) ->
-    NewState = case save_service_config(Service, KeyData, State) of
-        {ok, UpdatedState} -> UpdatedState;
-        {error, _} -> State
-    end,
-    {reply, ok, NewState};
+    case save_service_config(Service, KeyData, State) of
+        {ok, NewState} ->
+            {reply, ok, NewState};
+        {error, Reason} ->
+            {reply, {error, Reason}, State}
+    end;
 
 handle_call(get_all_keys, _From, State) ->
     %% Return sanitized keys (mask sensitive data)
@@ -279,22 +280,26 @@ load_env_vars(State) ->
     end, State, ?API_REQUIREMENTS).
 
 save_config_file(State) ->
-    Config = maps:fold(fun(Service, ServiceKeys, Acc) ->
-        Fields = maps:fold(fun(Key, Value, FAcc) ->
-            [{Key, binary_to_list(Value)} | FAcc]
-        end, [], ServiceKeys),
-        [{Service, Fields} | Acc]
-    end, [], State#state.keys),
-    
-    ConfigStr = io_lib:format("%% API Keys Configuration File~n"
-                             "%% This file contains sensitive API keys and credentials~n"
-                             "%% DO NOT COMMIT THIS FILE TO VERSION CONTROL~n~n"
-                             "~p.", [Config]),
-    
-    case file:write_file(State#state.config_file, ConfigStr) of
-        ok -> ok;
-        {error, Reason} ->
-            colored_logger:error("Failed to save API config: ~p", [Reason])
+    try
+        Config = maps:fold(fun(Service, ServiceKeys, Acc) ->
+            Fields = maps:fold(fun(Key, Value, FAcc) ->
+                [{Key, config_value_to_list(Value)} | FAcc]
+            end, [], ServiceKeys),
+            [{Service, Fields} | Acc]
+        end, [], State#state.keys),
+
+        ConfigStr = io_lib:format("%% API Keys Configuration File~n"
+                                 "%% This file contains sensitive API keys and credentials~n"
+                                 "%% DO NOT COMMIT THIS FILE TO VERSION CONTROL~n~n"
+                                 "~p.", [Config]),
+        Path = State#state.config_file,
+        case filelib:ensure_dir(Path) of
+            ok -> write_config_atomically(Path, ConfigStr);
+            {error, EnsureReason} -> {error, {ensure_dir_failed, EnsureReason}}
+        end
+    catch
+        Class:SerializationReason ->
+            {error, {config_serialization_failed, Class, SerializationReason}}
     end.
 
 save_service_config(Service, KeyData, State) ->
@@ -304,14 +309,19 @@ save_service_config(Service, KeyData, State) ->
         UpdatedServiceKeys = maps:merge(ServiceKeys, ValidatedData),
         NewKeys = maps:put(Service, UpdatedServiceKeys, State#state.keys),
         NewState = State#state{keys = NewKeys},
-        save_config_file(NewState),
-        {ok, NewState}
+        case save_config_file(NewState) of
+            ok -> {ok, NewState};
+            {error, SaveReason} -> {error, SaveReason}
+        end
     catch
-        error:Reason ->
-            {error, Reason}
+        throw:ThrowReason ->
+            {error, ThrowReason};
+        error:ErrorReason ->
+            {error, ErrorReason}
     end.
 
 validate_service_data(Service, KeyData) ->
+    true = is_map(KeyData),
     case maps:get(Service, ?API_REQUIREMENTS, undefined) of
         undefined -> throw({unknown_service, Service});
         Requirements ->
@@ -320,10 +330,12 @@ validate_service_data(Service, KeyData) ->
             %% Validate required fields
             lists:foreach(fun(FieldSpec) ->
                 FieldKey = maps:get(key, FieldSpec),
-                case maps:get(atom_to_binary(FieldKey, utf8), KeyData, undefined) of
+                Value = maps:get(atom_to_binary(FieldKey, utf8), KeyData, undefined),
+                case Value of
                     undefined -> throw({missing_required_field, FieldKey});
                     <<>> -> throw({empty_required_field, FieldKey});
-                    Value ->
+                    _ when not is_binary(Value) -> throw({invalid_value, FieldKey});
+                    _ ->
                         case maps:get(pattern, FieldSpec, undefined) of
                             undefined -> ok;
                             Pattern ->
@@ -375,3 +387,44 @@ to_binary(Value) when is_binary(Value) -> Value;
 to_binary(Value) when is_list(Value) -> list_to_binary(Value);
 to_binary(Value) when is_atom(Value) -> atom_to_binary(Value, utf8);
 to_binary(_) -> <<>>.
+
+config_value_to_list(Value) when is_binary(Value) -> binary_to_list(Value);
+config_value_to_list(Value) when is_list(Value) -> Value;
+config_value_to_list(Value) when is_atom(Value) -> atom_to_list(Value);
+config_value_to_list(Value) when is_integer(Value) -> integer_to_list(Value);
+config_value_to_list(Value) when is_float(Value) -> float_to_list(Value);
+config_value_to_list(_) -> [].
+
+write_config_atomically(Path, ConfigStr) ->
+    TempPath = Path ++ ".tmp." ++ integer_to_list(erlang:unique_integer([positive])),
+    case file:open(TempPath, [write, binary]) of
+        {ok, File} ->
+            Result = case file:write(File, ConfigStr) of
+                ok -> file:sync(File);
+                {error, WriteReason} -> {error, {write_failed, WriteReason}}
+            end,
+            CloseResult = file:close(File),
+            case {Result, CloseResult} of
+                {ok, ok} ->
+                    case file:change_mode(TempPath, 384) of
+                        ok ->
+                            case file:rename(TempPath, Path) of
+                                ok -> ok;
+                                {error, RenameReason} ->
+                                    _ = file:delete(TempPath),
+                                    {error, {rename_failed, RenameReason}}
+                            end;
+                        {error, ChmodReason} ->
+                            _ = file:delete(TempPath),
+                            {error, {chmod_failed, ChmodReason}}
+                    end;
+                {{error, _} = Error, _} ->
+                    _ = file:delete(TempPath),
+                    Error;
+                {ok, {error, CloseReason}} ->
+                    _ = file:delete(TempPath),
+                    {error, {close_failed, CloseReason}}
+            end;
+        {error, OpenReason} ->
+            {error, {open_failed, OpenReason}}
+    end.

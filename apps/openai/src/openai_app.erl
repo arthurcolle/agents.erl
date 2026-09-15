@@ -10,19 +10,11 @@
 
 %% Application callbacks
 start(_StartType, _StartArgs) ->
-    % Get application environment
+    % Child clients are declared by openai_clients_sup from
+    % auto_start_groups; the application callback owns only the root.
     EnvConfig = application:get_all_env(openai),
     ConfigMap = maps:from_list(EnvConfig),
-    
-    % Start the supervisor tree
-    case openai_sup:start_link(ConfigMap) of
-        {ok, Pid} ->
-            % Start the chat client
-            openai_clients_sup:start_client(chat, ConfigMap),
-            {ok, Pid};
-        Error ->
-            Error
-    end.
+    openai_sup:start_link(ConfigMap).
 
 stop(_State) ->
     ok.

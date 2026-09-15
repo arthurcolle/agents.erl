@@ -9,8 +9,10 @@
 -export([start_link/0, generate_from_spec/2, get_generated_modules/1]).
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
 
+-define(CALL_TIMEOUT, 5000).
+
 -record(state, {
-    generated_modules = #{} :: #{binary() => [atom()]}
+    generated_modules = #{} :: #{binary() => [binary()]}
 }).
 
 %%====================================================================
@@ -20,13 +22,13 @@
 start_link() ->
     gen_server:start_link({local, ?MODULE}, ?MODULE, [], []).
 
--spec generate_from_spec(binary(), map()) -> {ok, [atom()]} | {error, term()}.
+-spec generate_from_spec(binary(), map()) -> {ok, [binary()]} | {error, term()}.
 generate_from_spec(SpecId, Spec) ->
     gen_server:call(?MODULE, {generate, SpecId, Spec}, 60000).
 
--spec get_generated_modules(binary()) -> {ok, [atom()]} | {error, not_found}.
+-spec get_generated_modules(binary()) -> {ok, [binary()]} | {error, not_found}.
 get_generated_modules(SpecId) ->
-    gen_server:call(?MODULE, {get_modules, SpecId}).
+    gen_server:call(?MODULE, {get_modules, SpecId}, ?CALL_TIMEOUT).
 
 %%====================================================================
 %% gen_server callbacks
@@ -34,13 +36,12 @@ get_generated_modules(SpecId) ->
 
 init([]) ->
     %% Ensure generated directory exists
-    case application:get_env(openapi_scaffold, generated_dir) of
-        {ok, Dir} ->
-            file:make_dir(Dir);
-        _ ->
-            ok
-    end,
-    {ok, #state{}}.
+    case ensure_generated_dir() of
+        ok ->
+            {ok, #state{}};
+        {error, Reason} ->
+            {stop, {generated_dir_unavailable, Reason}}
+    end.
 
 handle_call({generate, SpecId, Spec}, _From, State) ->
     case do_generate(SpecId, Spec) of
@@ -110,11 +111,11 @@ generate_schema_modules(SpecId, Spec) ->
 
 generate_schema_module(ModuleName, SchemaName, Schema) ->
     %% Generate record definition
-    RecordName = binary_to_atom(string:lowercase(SchemaName), utf8),
+    RecordName = erlang_identifier(SchemaName),
     Fields = extract_fields(Schema),
     
     ModuleCode = [
-        "-module(", atom_to_list(ModuleName), ").\n",
+        "-module(", module_name_text(ModuleName), ").\n",
         "-export([new/0, new/1, to_map/1, from_map/1, validate/1]).\n\n",
         generate_record_definition(RecordName, Fields),
         "\n",
@@ -143,7 +144,7 @@ generate_handler_modules(SpecId, Spec) ->
 
 generate_handler_module(ModuleName, Path, Operations, Spec) ->
     ModuleCode = [
-        "-module(", atom_to_list(ModuleName), ").\n",
+        "-module(", module_name_text(ModuleName), ").\n",
         "-behaviour(cowboy_handler).\n\n",
         "-export([init/2]).\n\n",
         "init(Req, State) ->\n",
@@ -155,12 +156,12 @@ generate_handler_module(ModuleName, Path, Operations, Spec) ->
     write_module(ModuleName, ModuleCode).
 
 generate_client_module(SpecId, Spec) ->
-    ModuleName = binary_to_atom(<<(SpecId)/binary, "_client">>, utf8),
+    ModuleName = generated_module_name(<<(SpecId)/binary, "_client">>),
     Servers = maps:get(<<"servers">>, Spec, []),
     Paths = maps:get(<<"paths">>, Spec, #{}),
     
     ModuleCode = [
-        "-module(", atom_to_list(ModuleName), ").\n",
+        "-module(", module_name_text(ModuleName), ").\n",
         "-export([new/0, new/1]).\n",
         generate_api_exports(Paths),
         "\n\n",
@@ -200,27 +201,27 @@ extract_operations(PathItem) ->
 
 generate_record_definition(RecordName, Fields) ->
     FieldDefs = lists:map(fun({FieldName, Type, _Required}) ->
-        FieldAtom = binary_to_atom(FieldName, utf8),
+        FieldIdentifier = erlang_identifier(FieldName),
         TypeSpec = type_to_spec(Type),
-        io_lib:format("    ~p :: ~s", [FieldAtom, TypeSpec])
+        io_lib:format("    ~s :: ~s", [FieldIdentifier, TypeSpec])
     end, Fields),
     
     [
-        "-record(", atom_to_list(RecordName), ", {\n",
+        "-record(", RecordName, ", {\n",
         string:join(FieldDefs, ",\n"),
         "\n})."
     ].
 
 generate_new_functions(RecordName, Fields) ->
     DefaultValues = lists:map(fun({FieldName, Type, Required}) ->
-        FieldAtom = binary_to_atom(FieldName, utf8),
+        FieldIdentifier = erlang_identifier(FieldName),
         Default = default_value(Type, Required),
-        io_lib:format("        ~p = ~p", [FieldAtom, Default])
+        io_lib:format("        ~s = ~p", [FieldIdentifier, Default])
     end, Fields),
     
     [
         "new() ->\n",
-        "    #", atom_to_list(RecordName), "{\n",
+        "    #", RecordName, "{\n",
         string:join(DefaultValues, ",\n"),
         "\n    }.\n\n",
         "new(Props) when is_list(Props) ->\n",
@@ -230,18 +231,18 @@ generate_new_functions(RecordName, Fields) ->
     ].
 
 generate_conversion_functions(RecordName, Fields) ->
-    RecordVar = "#" ++ atom_to_list(RecordName),
+    RecordVar = ["#", RecordName],
     
     %% to_map function
     ToMapFields = lists:map(fun({FieldName, _, _}) ->
-        FieldAtom = binary_to_atom(FieldName, utf8),
-        io_lib:format("        <<\"~s\">> => Record~p", [FieldName, FieldAtom])
+        FieldIdentifier = erlang_identifier(FieldName),
+        io_lib:format("        ~p => Record#~s.~s", [FieldName, RecordName, FieldIdentifier])
     end, Fields),
     
     %% from_map function
     FromMapFields = lists:map(fun({FieldName, _, _}) ->
-        FieldAtom = binary_to_atom(FieldName, utf8),
-        io_lib:format("        ~p = maps:get(<<\"~s\">>, Map, undefined)", [FieldAtom, FieldName])
+        FieldIdentifier = erlang_identifier(FieldName),
+        io_lib:format("        ~s = maps:get(~p, Map, undefined)", [FieldIdentifier, FieldName])
     end, Fields),
     
     [
@@ -250,17 +251,17 @@ generate_conversion_functions(RecordName, Fields) ->
         string:join(ToMapFields, ",\n"),
         "\n    }.\n\n",
         "from_map(Map) when is_map(Map) ->\n",
-        "    #", atom_to_list(RecordName), "{\n",
+        "    #", RecordName, "{\n",
         string:join(FromMapFields, ",\n"),
         "\n    }."
     ].
 
 generate_validation_function(RecordName, Fields, Schema) ->
-    RecordVar = "#" ++ atom_to_list(RecordName),
+    RecordVar = ["#", RecordName],
     
     ValidationChecks = lists:map(fun({FieldName, Type, Required}) ->
-        FieldAtom = binary_to_atom(FieldName, utf8),
-        generate_field_validation(FieldAtom, Type, Required)
+        FieldIdentifier = erlang_identifier(FieldName),
+        generate_field_validation(RecordName, FieldIdentifier, Type, Required)
     end, Fields),
     
     [
@@ -274,12 +275,12 @@ generate_validation_function(RecordName, Fields, Schema) ->
         "    end."
     ].
 
-generate_field_validation(FieldAtom, Type, Required) ->
-    FieldVar = "Record#" ++ atom_to_list(FieldAtom),
+generate_field_validation(RecordName, FieldIdentifier, _Type, Required) ->
+    FieldVar = ["Record#", RecordName, ".", FieldIdentifier],
     RequiredCheck = case Required of
         true ->
-            io_lib:format("        case ~s of undefined -> {~p, required}; _ -> [] end", 
-                         [FieldVar, FieldAtom]);
+            io_lib:format("        case ~s of undefined -> {~s, required}; _ -> [] end",
+                         [FieldVar, FieldIdentifier]);
         false ->
             "        []"
     end,
@@ -303,7 +304,7 @@ generate_method_handler(Method, Operation, Spec) ->
     
     [
         "handle_method(<<\"", Method, "\">>, Req0, State) ->\n",
-        "    %% Operation: ", binary_to_list(OperationId), "\n",
+        "    %% Operation: ", io_lib:format("~p", [OperationId]), "\n",
         "    case openapi_validator:validate_request(Req0, ", 
             io_lib:format("~p", [Operation]), ") of\n",
         "        {ok, ValidatedReq} ->\n",
@@ -341,13 +342,13 @@ generate_api_exports(Paths) ->
 
 generate_constructor_functions(Servers) ->
     BaseUrl = case Servers of
-        [#{<<"url">> := Url} | _] -> Url;
+        [#{<<"url">> := Url} | _] when is_binary(Url) -> Url;
         _ -> <<"http://localhost">>
     end,
     
     [
         "new() ->\n",
-        "    new(<<\"", binary_to_list(BaseUrl), "\">>).\n\n",
+        "    new(", io_lib:format("~p", [BaseUrl]), ").\n\n",
         "new(BaseUrl) ->\n",
         "    #client{\n",
         "        base_url = BaseUrl,\n",
@@ -378,10 +379,10 @@ generate_api_function(Path, Method, Operation, Spec) ->
     
     %% Generate function signature
     ParamNames = lists:map(fun(P) ->
-        binary_to_atom(maps:get(<<"name">>, P), utf8)
+        erlang_identifier(maps:get(<<"name">>, P, <<"param">>))
     end, Parameters),
     
-    Args = ["Client" | lists:map(fun(P) -> atom_to_list(P) end, ParamNames)],
+    Args = ["Client" | ParamNames],
     
     [
         FuncName, "(", string:join(Args, ", "), ") ->\n",
@@ -392,19 +393,21 @@ generate_api_function(Path, Method, Operation, Spec) ->
 %% Helper functions
 
 schema_to_module_name(SpecId, SchemaName) ->
-    ModuleName = <<SpecId/binary, "_schema_", (string:lowercase(SchemaName))/binary>>,
-    binary_to_atom(ModuleName, utf8).
+    generated_module_name(iolist_to_binary([
+        SpecId,
+        <<"_schema_">>,
+        erlang_identifier(SchemaName)
+    ])).
 
 path_to_handler_name(SpecId, Path) ->
     %% Convert path to valid module name
     CleanPath = binary:replace(Path, [<<"/">>, <<"{">>, <<"}">>, <<"-">>], <<"_">>, [global]),
     ModuleName = <<SpecId/binary, "_handler", CleanPath/binary>>,
-    binary_to_atom(ModuleName, utf8).
+    generated_module_name(ModuleName).
 
 operation_id_to_function(OpId) ->
-    %% Convert operationId to valid Erlang function name
-    FuncName = binary:replace(OpId, [<<"-">>, <<" ">>], <<"_">>, [global]),
-    string:lowercase(binary_to_list(FuncName)).
+    %% Convert operationId to a bounded, syntactically valid function name.
+    erlang_identifier(OpId).
 
 type_to_spec(<<"string">>) -> "binary()";
 type_to_spec(<<"integer">>) -> "integer()";
@@ -429,19 +432,83 @@ default_value(<<"object">>, false) -> undefined;
 default_value(_, _) -> undefined.
 
 write_module(ModuleName, Code) ->
-    {ok, GenDir} = application:get_env(openapi_scaffold, generated_dir, "src/generated"),
-    file:make_dir(GenDir),
-    
-    FileName = filename:join(GenDir, atom_to_list(ModuleName) ++ ".erl"),
-    file:write_file(FileName, Code).
+    GenDir = generated_dir(),
+    FileName = filename:join(GenDir, module_name_text(ModuleName) ++ ".erl"),
+    case file:write_file(FileName, Code) of
+        ok ->
+            ok;
+        {error, Reason} ->
+            error({write_failed, FileName, Reason})
+    end.
 
 compile_module(ModuleName) ->
-    {ok, GenDir} = application:get_env(openapi_scaffold, generated_dir, "src/generated"),
-    FileName = filename:join(GenDir, atom_to_list(ModuleName) ++ ".erl"),
+    GenDir = generated_dir(),
+    FileName = filename:join(GenDir, module_name_text(ModuleName) ++ ".erl"),
     
     case compile:file(FileName, [binary, return_errors]) of
-        {ok, ModuleName, Binary} ->
-            code:load_binary(ModuleName, FileName, Binary);
+        {ok, CompiledModule, Binary} ->
+            case code:load_binary(CompiledModule, FileName, Binary) of
+                {module, _} ->
+                    ok;
+                {error, Reason} ->
+                    error({load_failed, ModuleName, Reason})
+            end;
         {error, Errors, _} ->
             error({compilation_failed, ModuleName, Errors})
     end.
+
+generated_dir() ->
+    case application:get_env(openapi_scaffold, generated_dir, "src/generated") of
+        Dir when is_binary(Dir) -> binary_to_list(Dir);
+        Dir when is_list(Dir) -> Dir;
+        _ -> "src/generated"
+    end.
+
+ensure_generated_dir() ->
+    GenDir = generated_dir(),
+    filelib:ensure_dir(filename:join(GenDir, ".keep")).
+
+generated_module_name(Value) ->
+    %% Keep generated identifiers bounded and syntactically valid. The Erlang
+    %% compiler allocates the module atom only after this validation, avoiding
+    %% atom allocation for malformed or unbounded specification input.
+    Name = erlang_identifier(Value),
+    case Name of
+        [First | _] when First >= $a, First =< $z -> list_to_binary(Name);
+        _ -> list_to_binary("generated_" ++ Name)
+    end.
+
+module_name_text(Value) when is_binary(Value) -> binary_to_list(Value);
+module_name_text(Value) when is_list(Value) -> Value;
+module_name_text(Value) when is_atom(Value) -> atom_to_list(Value).
+
+erlang_identifier(Value) when is_binary(Value) ->
+    erlang_identifier(binary_to_list(Value));
+erlang_identifier(Value) when is_list(Value) ->
+    Lower = string:lowercase(Value),
+    Sanitized = [case C of
+        Ch when (Ch >= $a andalso Ch =< $z) orelse
+                (Ch >= $A andalso Ch =< $Z) orelse
+                (Ch >= $0 andalso Ch =< $9) orelse Ch =:= $_ -> Ch;
+        _ -> $_
+    end || C <- Lower],
+    Bounded = lists:sublist(Sanitized, 120),
+    case Bounded of
+        [] -> "field";
+        [First | _] when First >= $a, First =< $z ->
+            case is_reserved_identifier(Bounded) of
+                true -> "field_" ++ Bounded;
+                false -> Bounded
+            end;
+        _ -> "field_" ++ Bounded
+    end;
+erlang_identifier(Value) when is_atom(Value) -> erlang_identifier(atom_to_list(Value));
+erlang_identifier(_) -> "field".
+
+is_reserved_identifier(Name) ->
+    lists:member(Name, [
+        "after", "and", "andalso", "band", "begin", "bnot", "bor", "bsl",
+        "bsr", "bxor", "case", "catch", "cond", "div", "end", "fun", "if",
+        "let", "maybe", "not", "of", "or", "orelse", "receive", "rem", "try",
+        "when", "xor"
+    ]).

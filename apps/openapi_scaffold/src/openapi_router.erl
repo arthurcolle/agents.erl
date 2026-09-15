@@ -11,6 +11,8 @@
 -export([start_link/0, load_spec/2, reload_spec/2, get_routes/1, match_route/2]).
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
 
+-define(CALL_TIMEOUT, 65000).
+
 -record(state, {
     routes = [] :: [#route{}],
     specs = #{} :: #{binary() => map()},
@@ -26,19 +28,19 @@ start_link() ->
 
 -spec load_spec(binary(), map()) -> ok | {error, term()}.
 load_spec(SpecId, Spec) ->
-    gen_server:call(?MODULE, {load_spec, SpecId, Spec}).
+    gen_server:call(?MODULE, {load_spec, SpecId, Spec}, ?CALL_TIMEOUT).
 
 -spec reload_spec(binary(), map()) -> ok | {error, term()}.
 reload_spec(SpecId, Spec) ->
-    gen_server:call(?MODULE, {reload_spec, SpecId, Spec}).
+    gen_server:call(?MODULE, {reload_spec, SpecId, Spec}, ?CALL_TIMEOUT).
 
 -spec get_routes(binary()) -> {ok, [#route{}]} | {error, not_found}.
 get_routes(SpecId) ->
-    gen_server:call(?MODULE, {get_routes, SpecId}).
+    gen_server:call(?MODULE, {get_routes, SpecId}, 5000).
 
 -spec match_route(binary(), binary()) -> {ok, #route{}, [{binary(), binary()}]} | {error, not_found}.
 match_route(Path, Method) ->
-    gen_server:call(?MODULE, {match_route, Path, Method}).
+    gen_server:call(?MODULE, {match_route, Path, Method}, 5000).
 
 %%====================================================================
 %% gen_server callbacks
@@ -50,29 +52,29 @@ init([]) ->
 handle_call({load_spec, SpecId, Spec}, _From, State) ->
     case extract_routes(SpecId, Spec) of
         {ok, NewRoutes} ->
-            %% Generate code for the spec
-            spawn(fun() ->
-                openapi_codegen:generate_from_spec(SpecId, Spec)
-            end),
-            
-            UpdatedState = add_routes(SpecId, Spec, NewRoutes, State),
-            {reply, ok, UpdatedState};
+            case generate_spec(SpecId, Spec) of
+                {ok, _Modules} ->
+                    UpdatedState = add_routes(SpecId, Spec, NewRoutes, State),
+                    {reply, ok, UpdatedState};
+                {error, Reason} ->
+                    {reply, {error, Reason}, State}
+            end;
         Error ->
             {reply, Error, State}
     end;
 
 handle_call({reload_spec, SpecId, Spec}, _From, State) ->
-    %% Remove old routes and add new ones
-    State1 = remove_routes(SpecId, State),
     case extract_routes(SpecId, Spec) of
         {ok, NewRoutes} ->
-            %% Regenerate code for the spec
-            spawn(fun() ->
-                openapi_codegen:generate_from_spec(SpecId, Spec)
-            end),
-            
-            UpdatedState = add_routes(SpecId, Spec, NewRoutes, State1),
-            {reply, ok, UpdatedState};
+            %% Keep the old route set if regeneration fails.
+            case generate_spec(SpecId, Spec) of
+                {ok, _Modules} ->
+                    State1 = remove_routes(SpecId, State),
+                    UpdatedState = add_routes(SpecId, Spec, NewRoutes, State1),
+                    {reply, ok, UpdatedState};
+                {error, Reason} ->
+                    {reply, {error, Reason}, State}
+            end;
         Error ->
             {reply, Error, State}
     end;
@@ -107,7 +109,21 @@ code_change(_OldVsn, State, _Extra) ->
 %% Internal functions
 %%====================================================================
 
+generate_spec(SpecId, Spec) ->
+    try openapi_codegen:generate_from_spec(SpecId, Spec) of
+        Result -> Result
+    catch
+        exit:Reason -> {error, {codegen_unavailable, Reason}};
+        Class:Reason -> {error, {codegen_failed, Class, Reason}}
+    end.
+
 extract_routes(SpecId, Spec) ->
+    case valid_spec_input(SpecId, Spec) of
+        true -> extract_routes_validated(SpecId, Spec);
+        false -> {error, invalid_spec}
+    end.
+
+extract_routes_validated(SpecId, Spec) ->
     try
         Paths = maps:get(<<"paths">>, Spec, #{}),
         BasePath = extract_base_path(Spec),
@@ -130,6 +146,11 @@ extract_routes(SpecId, Spec) ->
         error:Reason ->
             {error, {route_extraction_failed, Reason}}
     end.
+
+valid_spec_input(SpecId, Spec) when is_binary(SpecId), is_map(Spec) ->
+    byte_size(SpecId) > 0 andalso byte_size(SpecId) =< 256;
+valid_spec_input(_, _) ->
+    false.
 
 extract_base_path(Spec) ->
     case maps:get(<<"servers">>, Spec, []) of

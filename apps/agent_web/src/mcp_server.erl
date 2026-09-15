@@ -24,6 +24,7 @@
     clients = #{}, % ClientId -> {TransportPid, ClientInfo}
     transport_type = websocket, % websocket | stdio
     transport_pid,
+    listener_ref = undefined,
     port = 8765,
     initialized = false
 }).
@@ -93,7 +94,7 @@ init(Config) ->
     
     ServerId = maps:get(server_id, Config, generate_server_id()),
     TransportType = maps:get(transport, Config, websocket),
-    Port = maps:get(port, Config, 8765),
+    Port = configured_port(maps:get(port, Config, 8765)),
     
     % Initialize with default capabilities
     Capabilities = #{
@@ -123,8 +124,8 @@ init(Config) ->
     
     % Start transport
     case start_server_transport(NewState) of
-        {ok, TransportPid} ->
-            {ok, NewState#state{transport_pid = TransportPid}};
+        {ok, ListenerRef} ->
+            {ok, NewState#state{transport_pid = self(), listener_ref = ListenerRef}};
         {error, Reason} ->
             {stop, Reason}
     end.
@@ -228,7 +229,8 @@ code_change(_OldVsn, State, _Extra) ->
 generate_server_id() ->
     iolist_to_binary(io_lib:format("mcp_server_~p", [erlang:system_time(microsecond)])).
 
-start_server_transport(#state{transport_type = websocket, port = Port} = State) ->
+start_server_transport(#state{transport_type = websocket, port = Port,
+                              config = Config} = State) ->
     % Start WebSocket server using cowboy
     Dispatch = cowboy_router:compile([
         {'_', [
@@ -236,24 +238,29 @@ start_server_transport(#state{transport_type = websocket, port = Port} = State) 
         ]}
     ]),
     
+    %% Ranch refs accept arbitrary terms; using a reference prevents atom-table
+    %% growth when MCP servers are created and destroyed over time.
+    ListenerRef = {mcp_server, State#state.server_id, make_ref()},
+    BindAddress = configured_bind_address(Config),
     case cowboy:start_clear(
-        list_to_atom("mcp_server_" ++ binary_to_list(State#state.server_id)),
-        [{port, Port}],
+        ListenerRef,
+        [{ip, BindAddress}, {port, Port}],
         #{env => #{dispatch => Dispatch}}
     ) of
         {ok, _} ->
-            io:format("[MCP_SRV] Successfully started MCP server on port ~p~n", [Port]);
+            io:format("[MCP_SRV] Successfully started MCP server on port ~p~n", [Port]),
+            {ok, ListenerRef};
         {error, eaddrinuse} ->
-            io:format("[MCP_SRV] WARNING: Port ~p already in use, MCP server not started~n", [Port]);
+            io:format("[MCP_SRV] WARNING: Port ~p already in use, MCP server not started~n", [Port]),
+            {error, eaddrinuse};
         {error, Reason} ->
-            io:format("[MCP_SRV] ERROR: Failed to start MCP server on port ~p: ~p~n", [Port, Reason])
-    end,
-    
-    {ok, self()};
+            io:format("[MCP_SRV] ERROR: Failed to start MCP server on port ~p: ~p~n", [Port, Reason]),
+            {error, {listener_start_failed, Reason}}
+    end;
 
 start_server_transport(#state{transport_type = stdio}) ->
     % For stdio, we're already connected via stdin/stdout
-    {ok, self()}.
+    {ok, undefined}.
 
 create_tool_record(Name, #{description := Description, input_schema := Schema, handler := Handler}) ->
     #mcp_tool{
@@ -471,7 +478,12 @@ get_jina_tools() ->
 
 register_default_tools_and_resources(State) ->
     % Register built-in tools
-    Tools = #{
+    AllowShell = maps:get(
+        allow_shell,
+        State#state.config,
+        application:get_env(agent_web, mcp_shell_enabled, false)
+    ) =:= true,
+    BaseTools = #{
         <<"get_system_info">> => #mcp_tool{
             name = <<"get_system_info">>,
             description = <<"Get system information and metrics">>,
@@ -539,30 +551,16 @@ register_default_tools_and_resources(State) ->
                 <<"required">> => [<<"command">>]
             },
             handler_fun = fun(#{<<"command">> := Command}) ->
-                try
-                    Port = open_port({spawn, binary_to_list(Command)}, 
-                                   [exit_status, stderr_to_stdout, {line, 1000}]),
-                    Result = collect_shell_output(Port, []),
-                    {ok, #{
-                        <<"content">> => [#{
-                            <<"type">> => <<"text">>,
-                            <<"text">> => Result
-                        }]
-                    }}
-                catch
-                    _:Error ->
-                        {error, #{
-                            <<"content">> => [#{
-                                <<"type">> => <<"text">>,
-                                <<"text">> => iolist_to_binary(io_lib:format("Error: ~p", [Error]))
-                            }],
-                            <<"isError">> => true
-                        }}
-                end
+                execute_shell_command(Command, AllowShell)
             end
         }
     },
     
+    Tools = case AllowShell of
+        true -> BaseTools;
+        false -> maps:remove(<<"execute_shell_command">>, BaseTools)
+    end,
+
     % Register Jina AI tools
     JinaTools = get_jina_tools(),
     AllTools = maps:merge(Tools, JinaTools),
@@ -905,6 +903,35 @@ broadcast_notification(Method, Params, State) ->
         mcp_transport:send_message(TransportPid, Notification)
     end, ok, State#state.clients).
 
+execute_shell_command(_Command, false) ->
+    shell_error(<<"Shell execution is disabled; enable mcp_shell_enabled explicitly for a trusted local deployment">>);
+execute_shell_command(Command, true) when is_binary(Command), byte_size(Command) =< 4096 ->
+    try
+        Port = open_port({spawn, binary_to_list(Command)},
+                         [exit_status, stderr_to_stdout, {line, 1000}]),
+        Result = collect_shell_output(Port, []),
+        {ok, #{
+            <<"content">> => [#{
+                <<"type">> => <<"text">>,
+                <<"text">> => Result
+            }]
+        }}
+    catch
+        Class:Reason ->
+            shell_error(iolist_to_binary(io_lib:format("~p:~p", [Class, Reason])))
+    end;
+execute_shell_command(_Command, true) ->
+    shell_error(<<"Shell command must be a binary of at most 4096 bytes">>).
+
+shell_error(Message) ->
+    {error, #{
+        <<"content">> => [#{
+            <<"type">> => <<"text">>,
+            <<"text">> => Message
+        }],
+        <<"isError">> => true
+    }}.
+
 collect_shell_output(Port, Acc) ->
     receive
         {Port, {data, {eol, Line}}} ->
@@ -917,11 +944,38 @@ collect_shell_output(Port, Acc) ->
             Result = lists:reverse(Acc),
             iolist_to_binary([Result, "\nExit status: ", integer_to_list(Status)])
     after 5000 ->
+        try port_close(Port) of
+            _ -> ok
+        catch
+            _:_ -> ok
+        end,
         list_to_binary(lists:reverse(["Command timeout" | Acc]))
     end.
 
-cleanup_transport(#state{transport_type = websocket}) ->
-    % Cowboy will handle cleanup
+configured_port(Port) when is_integer(Port), Port > 0, Port =< 65535 ->
+    Port;
+configured_port(_) ->
+    8765.
+
+configured_bind_address(Config) ->
+    Default = application:get_env(agent_web, mcp_host, "127.0.0.1"),
+    case maps:get(host, Config, Default) of
+        Ip when is_tuple(Ip) -> Ip;
+        Ip when is_binary(Ip) -> parse_bind_address(binary_to_list(Ip));
+        Ip when is_list(Ip) -> parse_bind_address(Ip);
+        _ -> {127, 0, 0, 1}
+    end.
+
+parse_bind_address(Ip) ->
+    case inet:parse_address(Ip) of
+        {ok, Parsed} -> Parsed;
+        {error, _} -> {127, 0, 0, 1}
+    end.
+
+cleanup_transport(#state{transport_type = websocket, listener_ref = undefined}) ->
+    ok;
+cleanup_transport(#state{transport_type = websocket, listener_ref = ListenerRef}) ->
+    _ = cowboy:stop_listener(ListenerRef),
     ok;
 cleanup_transport(_State) ->
     ok.

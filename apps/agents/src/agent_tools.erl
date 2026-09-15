@@ -15,6 +15,7 @@
     get_enhanced_tools/1,
     execute_tool/2,
     list_tools/0,
+    get_all_tools/0,
     create_or_update_borrowed_tool/3,
     fork_tool/3,
     get_tool_versions/1
@@ -30,6 +31,7 @@
 ]).
 
 -define(SERVER, ?MODULE).
+-define(EXECUTE_TIMEOUT, 60000).
 
 %% Logging macros
 -define(LOG_INFO(Msg), colored_logger:data(processed, Msg)).
@@ -84,9 +86,9 @@ get_enhanced_tools(ToolNames) ->
 execute_tool(Name, Arguments) ->
     StartTime = erlang:monotonic_time(millisecond),
     ?LOG_INFO("[TOOLS] 🔧 Execute tool request: ~p", [Name]),
-    ?LOG_DEBUG("[TOOLS] Arguments: ~p", [Arguments]),
+    ?LOG_DEBUG("[TOOLS] Argument keys: ~p", [argument_keys(Arguments)]),
     
-    Result = gen_server:call(?SERVER, {execute_tool, Name, Arguments}, infinity),
+    Result = gen_server:call(?SERVER, {execute_tool, Name, Arguments}, ?EXECUTE_TIMEOUT),
     
     Duration = erlang:monotonic_time(millisecond) - StartTime,
     case Result of
@@ -100,6 +102,10 @@ execute_tool(Name, Arguments) ->
 %% List all registered tools
 list_tools() ->
     gen_server:call(?SERVER, list_tools).
+
+%% Return complete tool schemas, including currently discovered MCP tools.
+get_all_tools() ->
+    gen_server:call(?SERVER, get_all_tools).
 
 %% gen_server callbacks
 init(Options) ->
@@ -174,11 +180,12 @@ handle_call({get_tools, ToolNames}, _From, State) ->
     {reply, SelectedTools, State};
 
 handle_call({execute_tool, Name, Arguments}, _From, State) ->
+    ResolvedName = resolve_tool_name(Name, State),
     % Look up the executor for this tool
-    Result = case maps:find(Name, State#state.executors) of
+    Result = case maps:find(ResolvedName, State#state.executors) of
         {ok, ExecutorFn} ->
             try
-                ExecutorFn(Name, Arguments)
+                ExecutorFn(ResolvedName, Arguments)
             catch
                 E:R:S ->
                     {error, {tool_execution_failed, E, R, S}}
@@ -186,15 +193,15 @@ handle_call({execute_tool, Name, Arguments}, _From, State) ->
         error ->
             % Check if it's an MCP tool
             try
-                case mcp_agent_integration:handle_llm_tool_call(Name, Arguments) of
+                case mcp_agent_integration:handle_llm_tool_call(ResolvedName, Arguments) of
                     {error, not_mcp_tool} ->
-                        {error, {unknown_tool, Name}};
+                        {error, {unknown_tool, ResolvedName}};
                     McpResult ->
                         McpResult
                 end
             catch
                 _:_ ->
-                    {error, {unknown_tool, Name}}
+                    {error, {unknown_tool, ResolvedName}}
             end
     end,
     {reply, Result, State};
@@ -325,6 +332,36 @@ code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
 
 %% Internal Functions
+
+%% Resolve the names emitted by model/tool protocols without creating atoms
+%% from untrusted input.  Local predefined tools are stored under atoms, while
+%% MCP tools are intentionally kept as binaries and handled by the MCP bridge.
+resolve_tool_name(Name, #state{tools = Tools}) when is_binary(Name) ->
+    case binary_to_existing_atom_safe(Name) of
+        {ok, Atom} ->
+            case maps:is_key(Atom, Tools) of
+                true -> Atom;
+                false -> Name
+            end;
+        error ->
+            Name
+    end;
+resolve_tool_name(Name, _State) when is_atom(Name) ->
+    Name;
+resolve_tool_name(Name, _State) ->
+    Name.
+
+binary_to_existing_atom_safe(Name) when is_binary(Name) ->
+    try
+        {ok, binary_to_existing_atom(Name, utf8)}
+    catch
+        error:badarg -> error
+    end.
+
+argument_keys(Arguments) when is_map(Arguments) ->
+    maps:keys(Arguments);
+argument_keys(_) ->
+    [].
 
 %% Basic schema validation
 validate_tool_schema(Schema) ->
@@ -1312,8 +1349,50 @@ predefined_tools() ->
             }
         }
     },
-    % Merge Jina tools with base tools
-    maps:merge(BaseTools, JinaTools).
+    % Merge Jina tools with base tools and trusted time primitives.
+    maps:merge(maps:merge(BaseTools, JinaTools), time_authority_tools()).
+
+time_authority_tools() ->
+    #{
+        time_now => #{
+            <<"name">> => <<"time_now">>,
+            <<"description">> => <<"Get a UTC time snapshot with Chrony health, uncertainty, monotonic ordering, and an attestation chain value. Use this instead of inferring the current time.">>,
+            <<"parameters">> => #{
+                <<"type">> => <<"object">>,
+                <<"properties">> => #{},
+                <<"additionalProperties">> => false
+            }
+        },
+        time_gate => #{
+            <<"name">> => <<"time_gate">>,
+            <<"description">> => <<"Authorize or deny a time-sensitive operation using the synchronized clock and a maximum uncertainty policy. Denials must stop the operation.">>,
+            <<"parameters">> => #{
+                <<"type">> => <<"object">>,
+                <<"properties">> => #{
+                    <<"operation">> => #{
+                        <<"type">> => <<"string">>,
+                        <<"description">> => <<"The action requiring verified time">>
+                    },
+                    <<"agent_id">> => #{
+                        <<"type">> => <<"string">>,
+                        <<"description">> => <<"The requesting agent identifier">>
+                    },
+                    <<"max_uncertainty_us">> => #{
+                        <<"type">> => <<"integer">>,
+                        <<"description">> => <<"Maximum acceptable clock uncertainty in microseconds">>,
+                        <<"default">> => 10000
+                    },
+                    <<"max_age_ms">> => #{
+                        <<"type">> => <<"integer">>,
+                        <<"description">> => <<"Maximum age of the latest clock-health evidence in milliseconds">>,
+                        <<"default">> => 60000
+                    }
+                },
+                <<"required">> => [<<"operation">>],
+                <<"additionalProperties">> => false
+            }
+        }
+    }.
 
 %% Executor for predefined tools
 predefined_executor(ToolName, Arguments) ->
@@ -1356,6 +1435,22 @@ predefined_executor(ToolName, Arguments) ->
             Query = maps:get(<<"query">>, Arguments, <<"">>),
             MaxResults = maps:get(<<"max_results">>, Arguments, 5),
             knowledge_base_search(Domain, Query, MaxResults);
+
+        time_now ->
+            try agent_time_authority:now() of
+                {ok, Snapshot} -> {ok, jsx:encode(Snapshot)};
+                {error, Reason} -> {error, Reason}
+            catch
+                _:Reason -> {error, {time_authority_unavailable, Reason}}
+            end;
+
+        time_gate ->
+            try agent_time_authority:authorize(Arguments) of
+                {ok, Decision} -> {ok, jsx:encode(Decision)};
+                {error, Decision} -> {error, jsx:encode(Decision)}
+            catch
+                _:Reason -> {error, {time_authority_unavailable, Reason}}
+            end;
         
         % Jina AI tools
         jina_search ->
@@ -1383,29 +1478,35 @@ predefined_executor(ToolName, Arguments) ->
         
         % Supervisor management tools
         create_supervisor ->
-            Name = binary_to_atom(maps:get(<<"name">>, Arguments), utf8),
-            Strategy = binary_to_atom(maps:get(<<"strategy">>, Arguments), utf8),
-            MaxRestarts = maps:get(<<"max_restarts">>, Arguments, 10),
-            MaxTime = maps:get(<<"max_time">>, Arguments, 60),
-            SupFlags = #{
-                strategy => Strategy,
-                intensity => MaxRestarts,
-                period => MaxTime
-            },
-            case dynamic_supervisor_manager:create_supervisor(Name, SupFlags) of
-                {ok, Pid} ->
-                    {ok, iolist_to_binary(io_lib:format("Supervisor ~p created with PID ~p", [Name, Pid]))};
-                {error, Reason} ->
-                    {error, Reason}
+            case {
+                normalize_dynamic_name(maps:get(<<"name">>, Arguments, undefined)),
+                normalize_supervisor_strategy(maps:get(<<"strategy">>, Arguments, undefined)),
+                bounded_integer(maps:get(<<"max_restarts">>, Arguments, 10), 0, 1000),
+                bounded_integer(maps:get(<<"max_time">>, Arguments, 60), 1, 86400)
+            } of
+                {{ok, Name}, {ok, Strategy}, {ok, MaxRestarts}, {ok, MaxTime}} ->
+                    SupFlags = #{strategy => Strategy, intensity => MaxRestarts, period => MaxTime},
+                    case dynamic_supervisor_manager:create_supervisor(Name, SupFlags) of
+                        {ok, Pid} ->
+                            {ok, iolist_to_binary(io_lib:format("Supervisor ~p created with PID ~p", [Name, Pid]))};
+                        {error, Reason} ->
+                            {error, Reason}
+                    end;
+                _ ->
+                    {error, invalid_supervisor_configuration}
             end;
         
         stop_supervisor ->
-            Name = binary_to_atom(maps:get(<<"name">>, Arguments), utf8),
-            case dynamic_supervisor_manager:stop_supervisor(Name) of
-                ok ->
-                    {ok, iolist_to_binary(io_lib:format("Supervisor ~p stopped", [Name]))};
-                {error, Reason} ->
-                    {error, Reason}
+            case normalize_dynamic_name(maps:get(<<"name">>, Arguments, undefined)) of
+                {ok, Name} ->
+                    case dynamic_supervisor_manager:stop_supervisor(Name) of
+                        ok ->
+                            {ok, iolist_to_binary(io_lib:format("Supervisor ~p stopped", [Name]))};
+                        {error, Reason} ->
+                            {error, Reason}
+                    end;
+                error ->
+                    {error, invalid_supervisor_name}
             end;
         
         list_supervisors ->
@@ -1417,29 +1518,39 @@ predefined_executor(ToolName, Arguments) ->
             end;
         
         add_child_to_supervisor ->
-            SupName = binary_to_atom(maps:get(<<"supervisor_name">>, Arguments), utf8),
-            ChildId = binary_to_atom(maps:get(<<"child_id">>, Arguments), utf8),
-            Module = binary_to_atom(maps:get(<<"module">>, Arguments), utf8),
-            Function = binary_to_atom(maps:get(<<"function">>, Arguments, <<"start_link">>), utf8),
-            Args = maps:get(<<"args">>, Arguments, []),
-            Restart = binary_to_atom(maps:get(<<"restart">>, Arguments, <<"permanent">>), utf8),
-            Shutdown = maps:get(<<"shutdown">>, Arguments, 5000),
-            Type = binary_to_atom(maps:get(<<"type">>, Arguments, <<"worker">>), utf8),
-            
-            ChildSpec = #{
-                id => ChildId,
-                start => {Module, Function, Args},
-                restart => Restart,
-                shutdown => Shutdown,
-                type => Type,
-                modules => [Module]
-            },
-            
-            case dynamic_supervisor_manager:add_child_to_supervisor(SupName, ChildId, ChildSpec) of
-                {ok, Pid} ->
-                    {ok, iolist_to_binary(io_lib:format("Child ~p added to supervisor ~p with PID ~p", [ChildId, SupName, Pid]))};
-                {error, Reason} ->
-                    {error, Reason}
+            case {
+                normalize_dynamic_name(maps:get(<<"supervisor_name">>, Arguments, undefined)),
+                normalize_dynamic_name(maps:get(<<"child_id">>, Arguments, undefined)),
+                existing_atom_value(maps:get(<<"module">>, Arguments, undefined)),
+                existing_atom_value(maps:get(<<"function">>, Arguments, <<"start_link">>)),
+                normalize_restart(maps:get(<<"restart">>, Arguments, <<"permanent">>)),
+                normalize_shutdown(maps:get(<<"shutdown">>, Arguments, 5000)),
+                normalize_child_type(maps:get(<<"type">>, Arguments, <<"worker">>)),
+                normalize_child_args(maps:get(<<"args">>, Arguments, []))
+            } of
+                {{ok, SupName}, {ok, ChildId}, {ok, Module}, {ok, Function},
+                 {ok, Restart}, {ok, Shutdown}, {ok, Type}, {ok, Args}} ->
+                    case code:ensure_loaded(Module) of
+                        {module, Module} ->
+                            ChildSpec = #{
+                                id => ChildId,
+                                start => {Module, Function, Args},
+                                restart => Restart,
+                                shutdown => Shutdown,
+                                type => Type,
+                                modules => [Module]
+                            },
+                            case dynamic_supervisor_manager:add_child_to_supervisor(SupName, ChildId, ChildSpec) of
+                                {ok, Pid} ->
+                                    {ok, iolist_to_binary(io_lib:format("Child ~p added to supervisor ~p with PID ~p", [ChildId, SupName, Pid]))};
+                                {error, Reason} ->
+                                    {error, Reason}
+                            end;
+                        {error, Reason} ->
+                            {error, {module_unavailable, Reason}}
+                    end;
+                _ ->
+                    {error, invalid_child_spec}
             end;
         
         get_supervision_tree ->
@@ -1496,12 +1607,16 @@ predefined_executor(ToolName, Arguments) ->
         % Hot code reloading executors
         reload_module ->
             ModuleName = maps:get(<<"module">>, Arguments, <<"">>),
-            Module = binary_to_atom(ModuleName, utf8),
-            case hot_code_reloader:reload_module(Module) of
-                {ok, Result} ->
-                    {ok, jsx:encode(Result)};
-                {error, Reason} ->
-                    {error, Reason}
+            case existing_atom_value(ModuleName) of
+                {ok, Module} ->
+                    case hot_code_reloader:reload_module(Module) of
+                        {ok, Result} ->
+                            {ok, jsx:encode(Result)};
+                        {error, Reason} ->
+                            {error, Reason}
+                    end;
+                error ->
+                    {error, invalid_module_name}
             end;
         
         reload_all_modules ->
@@ -1533,12 +1648,16 @@ predefined_executor(ToolName, Arguments) ->
         
         get_module_info ->
             ModuleName = maps:get(<<"module">>, Arguments, <<"">>),
-            Module = binary_to_atom(ModuleName, utf8),
-            case hot_code_reloader:get_module_info(Module) of
-                {ok, Result} ->
-                    {ok, jsx:encode(Result)};
-                {error, Reason} ->
-                    {error, Reason}
+            case existing_atom_value(ModuleName) of
+                {ok, Module} ->
+                    case hot_code_reloader:get_module_info(Module) of
+                        {ok, Result} ->
+                            {ok, jsx:encode(Result)};
+                        {error, Reason} ->
+                            {error, Reason}
+                    end;
+                error ->
+                    {error, invalid_module_name}
             end;
         
         get_loaded_modules ->
@@ -1758,11 +1877,14 @@ write_file(Path, Content) ->
 
 %% Make an HTTP request
 http_request(Method, Url, Headers, Body) ->
-    % Convert method to atom
-    MethodAtom = case is_binary(Method) of
-        true -> binary_to_atom(string:lowercase(Method), utf8);
-        false -> Method
-    end,
+    case normalize_http_method(Method) of
+        {ok, MethodAtom} ->
+            do_http_request(MethodAtom, Url, Headers, Body);
+        error ->
+            {error, invalid_http_method}
+    end.
+
+do_http_request(MethodAtom, Url, Headers, Body) ->
     
     % Convert URL to string
     UrlStr = case is_binary(Url) of
@@ -2875,10 +2997,14 @@ execute_generate_training_data(Arguments) ->
         % Export if requested
         ExportResult = case Export of
             true ->
-                FormatAtom = binary_to_atom(Format, utf8),
-                case training_data_generator:export_training_data(FormatAtom) of
-                    {ok, FilePath} -> #{<<"exported_to">> => list_to_binary(FilePath)};
-                    {error, Reason} -> #{<<"export_error">> => iolist_to_binary(io_lib:format("~p", [Reason]))}
+                case normalize_export_format(Format) of
+                    {ok, FormatAtom} ->
+                        case training_data_generator:export_training_data(FormatAtom) of
+                            {ok, FilePath} -> #{<<"exported_to">> => list_to_binary(FilePath)};
+                            {error, Reason} -> #{<<"export_error">> => iolist_to_binary(io_lib:format("~p", [Reason]))}
+                        end;
+                    error ->
+                        #{<<"export_error">> => <<"unsupported_format">>}
                 end;
             false ->
                 #{}
@@ -3562,13 +3688,17 @@ execute_database_query(Database, Operation, Table, _Query, Limit) ->
                 Tables = ets:all(),
                 {ok, jsx:encode(#{<<"tables">> => [list_to_binary(atom_to_list(T)) || T <- Tables]})};
             {<<"ets">>, <<"select">>} when Table =/= undefined ->
-                try
-                    TableAtom = binary_to_atom(Table, utf8),
-                    Objects = ets:tab2list(TableAtom),
-                    LimitedObjects = lists:sublist(Objects, Limit),
-                    {ok, jsx:encode(#{<<"rows">> => [list_to_binary(io_lib:format("~p", [Obj])) || Obj <- LimitedObjects]})}
-                catch
-                    _:_ -> {error, table_not_found}
+                case existing_atom_value(Table) of
+                    {ok, TableAtom} ->
+                        try
+                            Objects = ets:tab2list(TableAtom),
+                            LimitedObjects = lists:sublist(Objects, Limit),
+                            {ok, jsx:encode(#{<<"rows">> => [list_to_binary(io_lib:format("~p", [Obj])) || Obj <- LimitedObjects]})}
+                        catch
+                            _:_ -> {error, table_not_found}
+                        end;
+                    error ->
+                        {error, table_not_found}
                 end;
             _ ->
                 {ok, jsx:encode(#{<<"message">> => <<"Database operation completed">>})}
@@ -3629,6 +3759,85 @@ execute_image_processing(Operation, ImagePath, _OutputPath, _Width, _Height, _Fo
         _:Error ->
             {error, {image_processing_error, Error}}
     end.
+
+normalize_dynamic_name(Name) when is_binary(Name), byte_size(Name) > 0, byte_size(Name) =< 128 ->
+    {ok, Name};
+normalize_dynamic_name(Name) when is_atom(Name) ->
+    {ok, Name};
+normalize_dynamic_name(_) ->
+    error.
+
+normalize_supervisor_strategy(<<"one_for_one">>) -> {ok, one_for_one};
+normalize_supervisor_strategy(<<"one_for_all">>) -> {ok, one_for_all};
+normalize_supervisor_strategy(<<"rest_for_one">>) -> {ok, rest_for_one};
+normalize_supervisor_strategy(<<"simple_one_for_one">>) -> {ok, simple_one_for_one};
+normalize_supervisor_strategy(Value) when is_atom(Value) ->
+    normalize_supervisor_strategy(atom_to_binary(Value, utf8));
+normalize_supervisor_strategy(_) ->
+    error.
+
+normalize_restart(<<"permanent">>) -> {ok, permanent};
+normalize_restart(<<"transient">>) -> {ok, transient};
+normalize_restart(<<"temporary">>) -> {ok, temporary};
+normalize_restart(Value) when is_atom(Value) ->
+    normalize_restart(atom_to_binary(Value, utf8));
+normalize_restart(_) ->
+    error.
+
+normalize_child_type(<<"worker">>) -> {ok, worker};
+normalize_child_type(<<"supervisor">>) -> {ok, supervisor};
+normalize_child_type(Value) when is_atom(Value) ->
+    normalize_child_type(atom_to_binary(Value, utf8));
+normalize_child_type(_) ->
+    error.
+
+normalize_shutdown(Value) when is_integer(Value), Value >= 0, Value =< 600000 ->
+    {ok, Value};
+normalize_shutdown(infinity) ->
+    {ok, infinity};
+normalize_shutdown(_) ->
+    error.
+
+normalize_child_args(Value) when is_list(Value), length(Value) =< 32 ->
+    {ok, Value};
+normalize_child_args(_) ->
+    error.
+
+bounded_integer(Value, Min, Max) when is_integer(Value), Value >= Min, Value =< Max ->
+    {ok, Value};
+bounded_integer(_, _, _) ->
+    error.
+
+existing_atom_value(Value) when is_atom(Value) ->
+    {ok, Value};
+existing_atom_value(Value) when is_binary(Value) ->
+    binary_to_existing_atom_safe(Value);
+existing_atom_value(_) ->
+    error.
+
+normalize_http_method(Value) when is_binary(Value) ->
+    case string:lowercase(Value) of
+        <<"get">> -> {ok, get};
+        <<"post">> -> {ok, post};
+        <<"put">> -> {ok, put};
+        <<"patch">> -> {ok, patch};
+        <<"delete">> -> {ok, delete};
+        <<"head">> -> {ok, head};
+        <<"options">> -> {ok, options};
+        _ -> error
+    end;
+normalize_http_method(Value) when is_atom(Value) ->
+    normalize_http_method(atom_to_binary(Value, utf8));
+normalize_http_method(_) ->
+    error.
+
+normalize_export_format(<<"openai">>) -> {ok, openai};
+normalize_export_format(<<"huggingface">>) -> {ok, huggingface};
+normalize_export_format(<<"jsonl">>) -> {ok, jsonl};
+normalize_export_format(Value) when is_atom(Value) ->
+    normalize_export_format(atom_to_binary(Value, utf8));
+normalize_export_format(_) ->
+    error.
 
 %% Helper to determine element type for logging
 element_type(Value) when is_atom(Value) -> atom;

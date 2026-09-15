@@ -373,21 +373,22 @@ format_tool_descriptions(Descriptions) ->
 
 create_workflow_agent(AgentConfig) ->
     AgentId = maps:get(name, AgentConfig, generate_agent_id()),
+    SupervisedConfig = AgentConfig#{id => AgentId},
     Result = try
         % Use existing agent creation infrastructure
         agent_templates:create_from_template(
-            maps:get(template_id, AgentConfig, <<"researcher">>),
-            AgentConfig
+            maps:get(template_id, SupervisedConfig, <<"researcher">>),
+            SupervisedConfig
         )
     catch
         _:_ ->
             % Fallback to simpler agent creation
-            agent_instance:start_link(AgentConfig)
+            agent_supervisor:start_agent(SupervisedConfig)
     end,
     
     case Result of
         {ok, Pid} ->
-            agent_registry:register_agent(AgentId, Pid, AgentConfig),
+            agent_registry:register_agent(AgentId, Pid, SupervisedConfig),
             {ok, AgentId};
         Error ->
             Error

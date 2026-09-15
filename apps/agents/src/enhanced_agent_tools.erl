@@ -25,6 +25,7 @@
 ]).
 
 -define(SERVER, ?MODULE).
+-define(EXECUTE_TIMEOUT, 60000).
 
 % Tool entry record definition (from universal_tool_registry)
 -record(tool_entry, {
@@ -60,7 +61,7 @@ get_tools_for_agent(AgentId) when is_binary(AgentId) ->
 
 %% Execute a tool with enhanced routing and error handling
 execute_tool(AgentId, ToolName, Arguments) when is_binary(AgentId), is_binary(ToolName) ->
-    gen_server:call(?SERVER, {execute_tool, AgentId, ToolName, Arguments}, infinity).
+    gen_server:call(?SERVER, {execute_tool, AgentId, ToolName, Arguments}, ?EXECUTE_TIMEOUT).
 
 %% Register a new tool for an agent
 register_agent_tool(AgentId, ToolName, ToolDefinition) ->
@@ -395,8 +396,10 @@ execute_agent_tool(ToolEntry, AgentId, Arguments) ->
 execute_legacy_tool(ToolName, Arguments) ->
     % Fallback to existing agent_tools
     try
-        ToolNameAtom = binary_to_atom(ToolName, utf8),
-        agent_tools:execute_tool(ToolNameAtom, Arguments)
+        % Keep externally supplied names as binaries. The central tool
+        % registry resolves local names safely and routes MCP names without
+        % allocating atoms from untrusted input.
+        agent_tools:execute_tool(ToolName, Arguments)
     catch
         E:R -> {error, {legacy_execution_failed, E, R}}
     end.

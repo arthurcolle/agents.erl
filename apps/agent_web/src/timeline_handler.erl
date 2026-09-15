@@ -70,9 +70,11 @@ handle_post(Req, State) ->
     {ok, Body, Req2} = cowboy_req:read_body(Req),
     try
         Data = jsx:decode(Body, [return_maps]),
-        
+        Timestamp = maps:get(<<"timestamp">>, Data, timeline_timestamp(erlang:timestamp())),
+
         % Convert to timeline_event_store format
         EventData = #{
+            id => maps:get(<<"id">>, Data, generate_id()),
             type => safe_to_atom(maps:get(<<"type">>, Data, <<"message">>), 
                               [message, system, agent_action, error, warning, success]),
             source => safe_to_atom(maps:get(<<"source">>, Data, <<"system">>),
@@ -83,14 +85,13 @@ handle_post(Req, State) ->
             content => maps:get(<<"content">>, Data),
             metadata => maps:get(<<"metadata">>, Data, #{})
         },
-        
-        % Store in timeline_event_store
-        timeline_event_store:store(EventData),
-        
-        % Also store locally for backward compatibility
+
+        % timeline_event_store owns the shared ETS table and the durable NDJSON
+        % log.  Keep this record only for the websocket notification; writing
+        % it here as well used a second, incompatible table layout.
         Event = #timeline_event{
-            id = maps:get(<<"id">>, Data, generate_id()),
-            timestamp = maps:get(<<"timestamp">>, Data),
+            id = maps:get(id, EventData),
+            timestamp = Timestamp,
             type = maps:get(type, EventData),
             source = maps:get(source, EventData),
             agent_id = maps:get(agent_id, EventData),
@@ -99,20 +100,35 @@ handle_post(Req, State) ->
             content = maps:get(content, EventData),
             metadata = maps:get(metadata, EventData)
         },
-        ok = store_event(Event),
-        
-        % Broadcast to connected clients
-        broadcast_event(Event),
-        
-        Response = #{
-            <<"status">> => <<"saved">>,
-            <<"id">> => Event#timeline_event.id
-        },
-        
-        Body2 = jsx:encode(Response),
-        Req3 = cowboy_req:set_resp_body(Body2, Req2),
-        Req4 = cowboy_req:set_resp_header(<<"content-type">>, <<"application/json">>, Req3),
-        {true, Req4, State}
+        % Validate and construct the whole event before publishing it. This
+        % prevents a malformed HTTP request from leaving a durable event after
+        % the handler has returned a 400 response.
+        case timeline_event_store:store_sync(EventData) of
+            {ok, StoredId} ->
+                %% Broadcast only after the durable write succeeds.
+                try broadcast_event(Event) of
+                    _ -> ok
+                catch
+                    _:_ -> ok
+                end,
+                Response = #{
+                    <<"status">> => <<"saved">>,
+                    <<"id">> => StoredId
+                },
+                Body2 = jsx:encode(Response),
+                Req3 = cowboy_req:set_resp_body(Body2, Req2),
+                Req4 = cowboy_req:set_resp_header(<<"content-type">>, <<"application/json">>, Req3),
+                {true, Req4, State};
+            {error, Reason} ->
+                logger:error("Timeline persistence failed: ~p", [Reason]),
+                Req3 = cowboy_req:reply(
+                    503,
+                    #{<<"content-type">> => <<"application/json">>},
+                    jsx:encode(#{<<"error">> => <<"Timeline storage unavailable">>}),
+                    Req2
+                ),
+                {false, Req3, State}
+        end
     catch
         _:Error ->
             logger:error("Error saving timeline event: ~p", [Error]),
@@ -129,17 +145,6 @@ handle_delete(Req, State) ->
     Req2 = cowboy_req:set_resp_body(Body, Req),
     Req3 = cowboy_req:set_resp_header(<<"content-type">>, <<"application/json">>, Req2),
     {true, Req3, State}.
-
-% Storage functions
-store_event(Event) ->
-    % Ensure storage is initialized before accessing
-    init_storage(),
-    % Store in ETS
-    ets:insert(timeline_events, {Event#timeline_event.id, Event}),
-    
-    % Also persist to disk for recovery
-    persist_event_to_disk(Event),
-    ok.
 
 get_all_events() ->
     % Ensure storage is initialized before accessing
@@ -172,13 +177,6 @@ event_to_map(#timeline_event{id = Id, timestamp = Timestamp, type = Type,
         <<"content">> => Content,
         <<"metadata">> => Metadata
     }.
-
-% Disk persistence
-persist_event_to_disk(Event) ->
-    FilePath = get_timeline_file_path(),
-    EventMap = event_to_map(Event),
-    EventJson = jsx:encode(EventMap),
-    file:write_file(FilePath, [EventJson, "\n"], [append]).
 
 load_events_from_disk() ->
     FilePath = get_timeline_file_path(),
@@ -217,29 +215,68 @@ map_to_event(Map) ->
 convert_stored_event(StoredEvent) when is_map(StoredEvent) ->
     % Extract data from the stored event
     EventData = maps:get(data, StoredEvent, #{}),
-    
-    % Convert timestamp format
-    Timestamp = case maps:get(timestamp, StoredEvent, undefined) of
-        {Mega, Sec, Micro} ->
-            % Convert Erlang timestamp to ISO 8601
-            MilliSec = (Mega * 1000000 + Sec) * 1000 + Micro div 1000,
-            calendar:system_time_to_rfc3339(MilliSec, [{unit, millisecond}, {offset, "Z"}]);
-        Other ->
-            Other
-    end,
-    
+
     % Build the event map for frontend
     #{
-        <<"id">> => maps:get(id, StoredEvent, generate_id()),
-        <<"timestamp">> => Timestamp,
-        <<"type">> => atom_to_binary(maps:get(type, EventData, system), utf8),
-        <<"source">> => atom_to_binary(maps:get(source, EventData, system), utf8),
-        <<"agentId">> => maps:get(agent_id, StoredEvent, maps:get(agent_id, EventData, null)),
-        <<"agentName">> => maps:get(agent_name, EventData, null),
-        <<"conversationId">> => maps:get(conversation_id, EventData, null),
-        <<"content">> => maps:get(content, EventData, maps:get(message, EventData, <<"">>)),
-        <<"metadata">> => maps:get(metadata, EventData, #{})
+        <<"id">> => timeline_id(maps:get(id, StoredEvent, generate_id())),
+        <<"timestamp">> => timeline_timestamp(maps:get(timestamp, StoredEvent, undefined)),
+        <<"type">> => timeline_text(event_value(type, EventData, maps:get(type, StoredEvent, system))),
+        <<"source">> => timeline_text(event_value(source, EventData, system)),
+        <<"agentId">> => timeline_optional(maps:get(agent_id, StoredEvent, event_value(agent_id, EventData, null))),
+        <<"agentName">> => timeline_optional(event_value(agent_name, EventData, null)),
+        <<"conversationId">> => timeline_optional(event_value(conversation_id, EventData, null)),
+        <<"content">> => event_value(content, EventData, event_value(message, EventData, <<"">>)),
+        <<"metadata">> => event_value(metadata, EventData, #{})
     }.
+
+event_value(Key, EventData, Default) ->
+    maps:get(Key, EventData, maps:get(atom_to_binary(Key, utf8), EventData, Default)).
+
+timeline_timestamp({Mega, Sec, Micro}) ->
+    %% Convert Erlang timestamps to a JSON string rather than a JSON byte list.
+    MilliSec = (Mega * 1000000 + Sec) * 1000 + Micro div 1000,
+    unicode:characters_to_binary(
+        calendar:system_time_to_rfc3339(MilliSec, [{unit, millisecond}, {offset, "Z"}])
+    );
+timeline_timestamp(Value) when is_binary(Value) ->
+    timeline_text(Value);
+timeline_timestamp(Value) when is_list(Value) ->
+    timeline_text(Value);
+timeline_timestamp(undefined) ->
+    null;
+timeline_timestamp(Value) ->
+    timeline_text(Value).
+
+timeline_id(Id) when is_binary(Id), byte_size(Id) =:= 16 ->
+    list_to_binary(agent_uuid:to_string(Id));
+timeline_id(Id) ->
+    timeline_text(Id).
+
+timeline_optional(undefined) ->
+    null;
+timeline_optional(<<"undefined">>) ->
+    null;
+timeline_optional(Value) ->
+    Value.
+
+timeline_text(Value) when is_atom(Value) ->
+    atom_to_binary(Value, utf8);
+timeline_text(Value) when is_binary(Value) ->
+    case unicode:characters_to_binary(Value, utf8, utf8) of
+        Text when is_binary(Text) -> Text;
+        _ -> base64:encode(Value)
+    end;
+timeline_text(Value) when is_list(Value) ->
+    case unicode:characters_to_binary(Value) of
+        Text when is_binary(Text) -> Text;
+        _ -> base64:encode(iolist_to_binary(Value))
+    end;
+timeline_text(undefined) ->
+    null;
+timeline_text(null) ->
+    null;
+timeline_text(Value) ->
+    iolist_to_binary(io_lib:format("~p", [Value])).
 
 % Safe atom conversion function
 safe_to_atom(Binary, AllowedAtoms) when is_binary(Binary) ->
@@ -265,7 +302,7 @@ safe_to_atom(_, AllowedAtoms) ->
 
 % Generate a unique ID for timeline events
 generate_id() ->
-    agent_uuid:generate().
+    list_to_binary(agent_uuid:to_string(agent_uuid:generate())).
 
 get_timeline_file_path() ->
     filename:join([code:priv_dir(agent_web), "data", "timeline_events.ndjson"]).

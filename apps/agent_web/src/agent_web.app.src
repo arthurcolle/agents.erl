@@ -1,7 +1,13 @@
 {application, agent_web,
  [{description, "Agent System Web Interface"},
   {vsn, "0.2.0"},
-  {registered, []},
+  {registered, [
+    agent_web_sup,
+    agent_web_services_sup,
+    agent_web_storage_sup,
+    agent_web_observability_sup,
+    agent_web_bootstrap
+  ]},
   {mod, {agent_web_app, []}},
   {applications,
    [kernel,
@@ -32,6 +38,10 @@
    ]},
   {env,[
    {port, 8080},
+   {api_auth_enabled, true},
+   {secure_cookies, true},
+   {session_max_age, 28800},
+   {mcp_shell_enabled, false},
    {static_dir, "priv/static"},
    {templates_dir, "priv/templates"}
   ]},

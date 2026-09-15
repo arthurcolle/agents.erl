@@ -81,11 +81,9 @@ balance_model_load() ->
 init([]) ->
     % Initialize with preferred models from the user's request
     PreferredModels = [
-        <<"o4-mini">>,
-        <<"gpt-4.1">>,
-        <<"gpt-4.1-mini">>,
-        <<"gpt-4.1-nano">>,
-        <<"o3">>
+        <<"gpt-5.6-sol">>,
+        <<"gpt-5.6-terra">>,
+        <<"gpt-5.6-luna">>
     ],
     
     % Initialize stats for preferred models
@@ -95,12 +93,12 @@ init([]) ->
     
     % Set up task patterns based on model capabilities
     TaskPatterns = #{
-        <<"reasoning">> => [<<"o3">>, <<"o4-mini">>, <<"gpt-4.1">>],
-        <<"chat">> => [<<"gpt-4.1">>, <<"gpt-4.1-mini">>, <<"o4-mini">>],
-        <<"cost_optimized">> => [<<"gpt-4.1-nano">>, <<"gpt-4.1-mini">>, <<"o4-mini">>],
-        <<"complex_tasks">> => [<<"o3">>, <<"gpt-4.1">>, <<"o4-mini">>],
-        <<"fast_response">> => [<<"gpt-4.1-nano">>, <<"gpt-4.1-mini">>, <<"o4-mini">>],
-        <<"general">> => [<<"gpt-4.1">>, <<"o4-mini">>, <<"gpt-4.1-mini">>]
+        <<"reasoning">> => [<<"gpt-5.6-sol">>, <<"gpt-5.6-terra">>],
+        <<"chat">> => [<<"gpt-5.6-sol">>, <<"gpt-5.6-terra">>],
+        <<"cost_optimized">> => [<<"gpt-5.6-luna">>, <<"gpt-5.6-terra">>],
+        <<"complex_tasks">> => [<<"gpt-5.6-sol">>, <<"gpt-5.6-terra">>],
+        <<"fast_response">> => [<<"gpt-5.6-luna">>, <<"gpt-5.6-terra">>],
+        <<"general">> => [<<"gpt-5.6-sol">>, <<"gpt-5.6-terra">>]
     },
     
     State = #state{
@@ -270,12 +268,12 @@ select_balanced_model(TaskType, State) ->
         
         % Task suitability (higher is better)
         SuitabilityFactor = case TaskType of
-            <<"reasoning">> when Model =:= <<"o3">> -> 1.0;
-            <<"reasoning">> when Model =:= <<"o4-mini">> -> 0.8;
-            <<"cost_optimized">> when Model =:= <<"gpt-4.1-nano">> -> 1.0;
-            <<"cost_optimized">> when Model =:= <<"gpt-4.1-mini">> -> 0.9;
-            <<"fast_response">> when Model =:= <<"gpt-4.1-nano">> -> 1.0;
-            <<"fast_response">> when Model =:= <<"gpt-4.1-mini">> -> 0.9;
+            <<"reasoning">> when Model =:= <<"gpt-5.6-sol">> -> 1.0;
+            <<"reasoning">> when Model =:= <<"gpt-5.6-terra">> -> 0.8;
+            <<"cost_optimized">> when Model =:= <<"gpt-5.6-luna">> -> 1.0;
+            <<"cost_optimized">> when Model =:= <<"gpt-5.6-terra">> -> 0.9;
+            <<"fast_response">> when Model =:= <<"gpt-5.6-luna">> -> 1.0;
+            <<"fast_response">> when Model =:= <<"gpt-5.6-terra">> -> 0.9;
             _ -> 0.7 % Default suitability
         end,
         
@@ -314,7 +312,7 @@ select_performance_model(TaskType, State) ->
 %% Select cost-optimized model
 select_cost_optimized_model(_TaskType, State) ->
     % Prefer nano and mini variants for cost optimization
-    CostOptimizedModels = [<<"gpt-4.1-nano">>, <<"gpt-4.1-mini">>, <<"o4-mini">>],
+    CostOptimizedModels = [<<"gpt-5.6-luna">>, <<"gpt-5.6-terra">>, <<"gpt-5.6-terra">>],
     AvailableModels = [M || M <- CostOptimizedModels, 
                            lists:member(M, State#state.preferred_models)],
     
@@ -341,13 +339,13 @@ calculate_performance_score(AvgResponseTime, SuccessRate) ->
 get_recommendations_for_use_case(UseCase, State) ->
     case UseCase of
         <<"complex_reasoning">> ->
-            [<<"o3">>, <<"gpt-4.1">>, <<"o4-mini">>];
+            [<<"gpt-5.6-sol">>, <<"gpt-5.6-sol">>, <<"gpt-5.6-terra">>];
         <<"fast_response">> ->
-            [<<"gpt-4.1-nano">>, <<"gpt-4.1-mini">>];
+            [<<"gpt-5.6-luna">>, <<"gpt-5.6-terra">>];
         <<"cost_effective">> ->
-            [<<"gpt-4.1-nano">>, <<"gpt-4.1-mini">>, <<"o4-mini">>];
+            [<<"gpt-5.6-luna">>, <<"gpt-5.6-terra">>, <<"gpt-5.6-terra">>];
         <<"balanced">> ->
-            [<<"gpt-4.1">>, <<"o4-mini">>, <<"gpt-4.1-mini">>];
+            [<<"gpt-5.6-sol">>, <<"gpt-5.6-terra">>, <<"gpt-5.6-terra">>];
         _ ->
             State#state.preferred_models
     end.

@@ -235,11 +235,19 @@ parse_path_operations(Path, PathItem) when is_map(PathItem) ->
                     responses => maps:get(<<"responses">>, OpData, #{}),
                     security => maps:get(<<"security">>, OpData, [])
                 },
-                [{binary_to_atom(Method, utf8), ParsedOp} | Acc];
+                [{openapi_method_atom(Method), ParsedOp} | Acc];
             _ -> Acc
         end
     end, [], Operations);
 parse_path_operations(_, _) -> [].
+
+openapi_method_atom(<<"get">>) -> get;
+openapi_method_atom(<<"post">>) -> post;
+openapi_method_atom(<<"put">>) -> put;
+openapi_method_atom(<<"delete">>) -> delete;
+openapi_method_atom(<<"patch">>) -> patch;
+openapi_method_atom(<<"options">>) -> options;
+openapi_method_atom(<<"head">>) -> head.
 
 parse_parameters(Params) when is_list(Params) ->
     lists:map(fun(Param) when is_map(Param) ->

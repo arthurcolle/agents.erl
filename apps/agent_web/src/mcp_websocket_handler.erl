@@ -104,9 +104,22 @@ generate_client_id() ->
 find_mcp_server(ServerId) ->
     % This would typically look up the server in a registry
     % For now, we'll use a simple approach
-    case whereis(list_to_atom("mcp_server_" ++ binary_to_list(ServerId))) of
-        undefined ->
-            {error, not_found};
-        Pid when is_pid(Pid) ->
-            {ok, Pid}
+    case existing_server_name(ServerId) of
+        {ok, ServerName} ->
+            case whereis(ServerName) of
+                undefined -> {error, not_found};
+                Pid when is_pid(Pid) -> {ok, Pid}
+            end;
+        error ->
+            {error, not_found}
     end.
+
+existing_server_name(ServerId) when is_binary(ServerId), byte_size(ServerId) > 0,
+                                    byte_size(ServerId) =< 255 ->
+    try
+        Name = iolist_to_binary([<<"mcp_server_">>, ServerId]),
+        {ok, binary_to_existing_atom(Name, utf8)}
+    catch
+        error:badarg -> error
+    end;
+existing_server_name(_) -> error.

@@ -330,15 +330,10 @@ execute_single_tool_call(ToolCall) ->
             _:_ -> #{}
         end,
         
-        % Convert tool name to atom
-        ToolNameAtom = try
-            binary_to_existing_atom(ToolName, utf8)
-        catch
-            _:_ -> binary_to_atom(ToolName, utf8)
-        end,
-        
         % Execute the tool
-        agent_tools:execute_tool(ToolNameAtom, Args)
+        % Keep the wire name as a binary. agent_tools performs the bounded
+        % local-tool resolution and preserves MCP names as binaries.
+        agent_tools:execute_tool(ToolName, Args)
     catch
         Type:Error ->
             ?LOG_ERROR("[STREAM_FUNC] Tool execution failed: ~p:~p", [Type, Error]),

@@ -49,7 +49,51 @@
 
 %% Model pricing per 1M tokens (in USD)
 -define(MODEL_PRICING, #{
-    %% GPT-4.1 Series
+    %% GPT-5.6 Series (current)
+    <<"gpt-5.6-sol">> => #{
+        input => 5.00,
+        cached_input => 0.50,
+        output => 30.00
+    },
+    <<"gpt-5.6-terra">> => #{
+        input => 2.50,
+        cached_input => 0.25,
+        output => 15.00
+    },
+    <<"gpt-5.6-luna">> => #{
+        input => 1.00,
+        cached_input => 0.10,
+        output => 6.00
+    },
+
+    %% Anthropic Claude (current)
+    <<"claude-fable-5">> => #{
+        input => 10.00,
+        cached_input => 1.00,
+        output => 50.00
+    },
+    <<"claude-opus-4-8">> => #{
+        input => 5.00,
+        cached_input => 0.50,
+        output => 25.00
+    },
+    <<"claude-sonnet-5">> => #{
+        input => 3.00,
+        cached_input => 0.30,
+        output => 15.00
+    },
+    <<"claude-sonnet-4-6">> => #{
+        input => 3.00,
+        cached_input => 0.30,
+        output => 15.00
+    },
+    <<"claude-haiku-4-5">> => #{
+        input => 1.00,
+        cached_input => 0.10,
+        output => 5.00
+    },
+
+    %% GPT-4.1 Series (legacy)
     <<"gpt-4.1">> => #{
         input => 2.00,
         cached_input => 0.50,

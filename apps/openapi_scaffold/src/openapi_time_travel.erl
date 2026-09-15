@@ -341,7 +341,7 @@ execute_replay(Recording, Options) ->
     %% Reconstruct and execute the request
     Request = Recording#recording.request,
     
-    Method = binary_to_atom(maps:get(method, Request), utf8),
+    Method = replay_method_atom(maps:get(method, Request, <<"GET">>)),
     Path = maps:get(path, Request),
     Headers = maps:get(headers, Request),
     Body = maps:get(body, Request),
@@ -375,6 +375,22 @@ execute_replay(Recording, Options) ->
                 error => Reason
             }}
     end.
+
+replay_method_atom(<<"GET">>) -> get;
+replay_method_atom(<<"POST">>) -> post;
+replay_method_atom(<<"PUT">>) -> put;
+replay_method_atom(<<"PATCH">>) -> patch;
+replay_method_atom(<<"DELETE">>) -> delete;
+replay_method_atom(<<"HEAD">>) -> head;
+replay_method_atom(<<"OPTIONS">>) -> options;
+replay_method_atom(<<"get">>) -> get;
+replay_method_atom(<<"post">>) -> post;
+replay_method_atom(<<"put">>) -> put;
+replay_method_atom(<<"patch">>) -> patch;
+replay_method_atom(<<"delete">>) -> delete;
+replay_method_atom(<<"head">>) -> head;
+replay_method_atom(<<"options">>) -> options;
+replay_method_atom(_) -> get.
 
 build_replay_url(Path, Options) ->
     BaseUrl = maps:get(base_url, Options, <<"http://localhost:8080">>),

@@ -17,6 +17,7 @@
     analyze_system_topology/0,
     get_resource_usage/0,
     get_system_history/0,
+    get_supervisor_tree/0,
     register_system_event/2
 ]).
 
@@ -95,6 +96,10 @@ get_resource_usage() ->
 get_system_history() ->
     gen_server:call(?MODULE, get_system_history).
 
+%% Get the current OTP supervision hierarchy.
+get_supervisor_tree() ->
+    gen_server:call(?MODULE, get_supervisor_tree).
+
 %% Register a system event
 register_system_event(EventType, EventData) ->
     gen_server:cast(?MODULE, {register_event, EventType, EventData}).
@@ -122,6 +127,9 @@ handle_call(get_system_state, _From, State) ->
         capabilities => get_system_capabilities_internal()
     },
     {reply, {ok, SystemState}, State};
+
+handle_call(get_supervisor_tree, _From, State) ->
+    {reply, {ok, get_full_supervision_tree()}, State};
 
 handle_call({get_agent_context, AgentPid}, _From, State) ->
     Context = build_agent_context(AgentPid),
@@ -210,7 +218,7 @@ calculate_uptime(StartTime) ->
     timer:now_diff(Now, StartTime) div 1000000. % Convert to seconds
 
 get_full_supervision_tree() ->
-    RootSupervisors = [agent_web_sup, openai_sup],
+    RootSupervisors = [agents_sup, openai_sup, agent_web_sup],
     Trees = lists:map(fun(Sup) ->
         case whereis(Sup) of
             undefined -> {Sup, not_running};
@@ -266,11 +274,11 @@ get_process_info(_) ->
     #{error => not_a_pid}.
 
 get_all_agents() ->
-    % Get agents from the agent registry
-    case whereis(agent) of
+    % Agent lifecycle is owned by the dynamic agent supervisor.
+    case whereis(agent_supervisor) of
         undefined -> [];
-        AgentPid ->
-            case catch gen_server:call(AgentPid, list_agents) of
+        _Pid ->
+            case agent_supervisor:get_all_agents() of
                 {ok, Agents} -> Agents;
                 _ -> []
             end
@@ -565,7 +573,7 @@ get_mcp_servers() ->
     end.
 
 get_supervisor_list() ->
-    RootSups = [agent_web_sup, openai_sup],
+    RootSups = [agents_sup, openai_sup, agent_web_sup],
     DynamicSups = case dynamic_supervisor_manager:list_supervisors() of
         {ok, List} -> [maps:get(name, S) || S <- List];
         _ -> []

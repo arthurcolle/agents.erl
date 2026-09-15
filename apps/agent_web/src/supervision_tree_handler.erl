@@ -11,16 +11,17 @@ init(Req, State) ->
 
 get_supervision_tree() ->
     RootSups = [
+        {agents_sup, agents_sup},
+        {openai_sup, openai_sup},
         {agent_web_sup, agent_web_sup},
-        {agent_supervisor, agent_supervisor},
-        {openai_sup, openai_sup}
+        {agent_supervisor, agent_supervisor}
     ],
     
     Tree = lists:map(fun({Name, Sup}) ->
         try
             Children = get_supervisor_children(Sup),
             #{
-                name => atom_to_binary(Name),
+                name => to_binary(Name),
                 type => <<"supervisor">>,
                 pid => list_to_binary(pid_to_list(whereis(Sup))),
                 status => get_process_status(whereis(Sup)),
@@ -29,7 +30,7 @@ get_supervision_tree() ->
         catch
             _:_ ->
                 #{
-                    name => atom_to_binary(Name),
+                    name => to_binary(Name),
                     type => <<"supervisor">>,
                     pid => <<"undefined">>,
                     status => <<"not_running">>,
@@ -55,7 +56,7 @@ get_supervisor_children(Sup) when is_pid(Sup) ->
             #{
                 id => format_child_id(Id),
                 pid => format_pid(ChildPid),
-                type => atom_to_binary(Type),
+                type => to_binary(Type),
                 modules => format_modules(Modules),
                 status => get_process_status(ChildPid),
                 children => case Type of
@@ -69,7 +70,7 @@ get_supervisor_children(Sup) when is_pid(Sup) ->
         _:_ -> []
     end.
 
-format_child_id(Id) when is_atom(Id) -> atom_to_binary(Id);
+format_child_id(Id) when is_atom(Id) -> to_binary(Id);
 format_child_id(Id) when is_binary(Id) -> Id;
 format_child_id(Id) -> list_to_binary(io_lib:format("~p", [Id])).
 
@@ -81,16 +82,16 @@ format_pid(Other) -> list_to_binary(io_lib:format("~p", [Other])).
 format_modules([]) -> [];
 format_modules(dynamic) -> [<<"dynamic">>];
 format_modules(Modules) when is_list(Modules) ->
-    [atom_to_binary(M) || M <- Modules];
+    [to_binary(M) || M <- Modules];
 format_modules(Module) when is_atom(Module) ->
-    [atom_to_binary(Module)].
+    [to_binary(Module)].
 
 get_process_status(undefined) -> <<"undefined">>;
 get_process_status(restarting) -> <<"restarting">>;
 get_process_status(Pid) when is_pid(Pid) ->
     try
         case erlang:process_info(Pid, status) of
-            {status, Status} -> atom_to_binary(Status);
+            {status, Status} -> to_binary(Status);
             undefined -> <<"terminated">>
         end
     catch
@@ -98,7 +99,7 @@ get_process_status(Pid) when is_pid(Pid) ->
     end;
 get_process_status(_) -> <<"unknown">>.
 
-atom_to_binary(Atom) when is_atom(Atom) ->
+to_binary(Atom) when is_atom(Atom) ->
     erlang:atom_to_binary(Atom, utf8);
-atom_to_binary(Other) ->
+to_binary(Other) ->
     list_to_binary(io_lib:format("~p", [Other])).

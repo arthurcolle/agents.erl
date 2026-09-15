@@ -33,7 +33,7 @@ start_link(AgentId) ->
     agent:start_link(AgentId, #{
         name => "Simple Agent",
         description => "A basic agent for simple conversations",
-        model => <<"gpt-4o-mini">>,
+        model => <<"gpt-5.6-terra">>,
         system_message => <<"You are a helpful assistant.">>
     }).
 
@@ -46,7 +46,7 @@ chat(Message) ->
 -spec chat(binary(), map()) -> binary() | {error, term()}.
 chat(Message, Options) ->
     % Get model and system message from options
-    Model = maps:get(model, Options, <<"gpt-4o-mini">>),
+    Model = maps:get(model, Options, <<"gpt-5.6-terra">>),
     SystemMsg = maps:get(system_message, Options, 
         <<"You are a helpful assistant.">>),
     
@@ -73,7 +73,7 @@ chat_stream(Message) ->
 -spec chat_stream(binary(), map()) -> ok.
 chat_stream(Message, Options) ->
     % Get model and system message from options
-    Model = maps:get(model, Options, <<"gpt-4o-mini">>),
+    Model = maps:get(model, Options, <<"gpt-5.6-terra">>),
     SystemMsg = maps:get(system_message, Options, 
         <<"You are a helpful assistant.">>),
     

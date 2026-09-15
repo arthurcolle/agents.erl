@@ -93,26 +93,30 @@ handle_post(Req, [<<"create">>], _State) ->
     try
         Params = jsx:decode(Body, [return_maps]),
         NetworkId = maps:get(<<"network_id">>, Params),
-        Topology = binary_to_atom(maps:get(<<"topology">>, Params, <<"dynamic">>), utf8),
-        
-        Options = #{
-            node_count => maps:get(<<"node_count">>, Params, 50),
-            learning_rate => maps:get(<<"learning_rate">>, Params, 0.01),
-            emergence_threshold => maps:get(<<"emergence_threshold">>, Params, 0.7)
-        },
-        
-        case neural_swarm_coordinator:create_neural_network(NetworkId, Topology, Options) of
-            {ok, CreatedNetworkId} ->
-                Response = jsx:encode(#{
-                    success => true,
-                    network_id => CreatedNetworkId,
-                    topology => Topology,
-                    options => Options
-                }),
-                cowboy_req:reply(201, #{<<"content-type">> => <<"application/json">>}, Response, Req1);
-            {error, Reason} ->
+        case topology_atom(maps:get(<<"topology">>, Params, <<"dynamic">>)) of
+            {ok, Topology} ->
+                Options = #{
+                    node_count => maps:get(<<"node_count">>, Params, 50),
+                    learning_rate => maps:get(<<"learning_rate">>, Params, 0.01),
+                    emergence_threshold => maps:get(<<"emergence_threshold">>, Params, 0.7)
+                },
+
+                case neural_swarm_coordinator:create_neural_network(NetworkId, Topology, Options) of
+                    {ok, CreatedNetworkId} ->
+                        Response = jsx:encode(#{
+                            success => true,
+                            network_id => CreatedNetworkId,
+                            topology => Topology,
+                            options => Options
+                        }),
+                        cowboy_req:reply(201, #{<<"content-type">> => <<"application/json">>}, Response, Req1);
+                    {error, Reason} ->
+                        cowboy_req:reply(400, #{<<"content-type">> => <<"application/json">>},
+                                       jsx:encode(#{error => Reason}), Req1)
+                end;
+            error ->
                 cowboy_req:reply(400, #{<<"content-type">> => <<"application/json">>}, 
-                               jsx:encode(#{error => Reason}), Req1)
+                               jsx:encode(#{error => <<"Unsupported topology">>}), Req1)
         end
     catch
         _:DecodeError ->
@@ -301,3 +305,9 @@ get_consciousness_metrics() ->
             adaptive_capacity => 0.67
         }
     }.
+
+topology_atom(<<"dynamic">>) -> {ok, dynamic};
+topology_atom(<<"hierarchical">>) -> {ok, hierarchical};
+topology_atom(<<"mesh">>) -> {ok, mesh};
+topology_atom(<<"quantum_entangled">>) -> {ok, quantum_entangled};
+topology_atom(_) -> error.

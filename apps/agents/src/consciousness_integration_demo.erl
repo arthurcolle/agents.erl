@@ -468,7 +468,7 @@ start_consciousness_systems() ->
 
 create_consciousness_enhanced_agents(Count) ->
     %% Create multiple consciousness-enhanced agents
-    AgentIds = [list_to_atom("demo_agent_" ++ integer_to_list(I)) || I <- lists:seq(1, Count)],
+    AgentIds = [iolist_to_binary(io_lib:format("demo_agent_~p", [I])) || I <- lists:seq(1, Count)],
     
     lists:foreach(fun(AgentId) ->
         Configuration = #{
@@ -685,7 +685,7 @@ add_agent_to_swarm(AgentId, SwarmType) ->
 
 get_or_create_swarm(SwarmType) ->
     %% Get existing swarm or create new one
-    SwarmId = list_to_atom(atom_to_list(SwarmType) ++ "_swarm"),
+    SwarmId = iolist_to_binary(io_lib:format("~p_swarm", [SwarmType])),
     
     %% Try to get swarm state, create if doesn't exist
     case emergent_swarm_intelligence:get_swarm_state(SwarmId) of

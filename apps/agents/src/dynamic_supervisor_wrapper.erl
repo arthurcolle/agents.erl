@@ -11,8 +11,11 @@
 %% API functions
 %%====================================================================
 
-start_link(Name, SupFlags, InitialChildren) ->
-    supervisor:start_link({local, Name}, ?MODULE, {SupFlags, InitialChildren}).
+%% Dynamic supervisor names are metadata, not process-registration names.
+%% Keeping the supervisor anonymous avoids turning untrusted/user-generated
+%% names into atoms and still lets the manager address it through its child id.
+start_link(_Name, SupFlags, InitialChildren) ->
+    supervisor:start_link(?MODULE, {SupFlags, InitialChildren}).
 
 %%====================================================================
 %% Supervisor callbacks
@@ -62,16 +65,6 @@ normalize_child_spec({Id, StartFunc, Restart, Shutdown, Type, Modules}) ->
     #{
         id => Id,
         start => StartFunc,
-        restart => Restart,
-        shutdown => Shutdown,
-        type => Type,
-        modules => Modules
-    };
-normalize_child_spec({Id, {M, F, A}, Restart, Shutdown, Type, Modules}) ->
-    % Old tuple format with MFA
-    #{
-        id => Id,
-        start => {M, F, A},
         restart => Restart,
         shutdown => Shutdown,
         type => Type,

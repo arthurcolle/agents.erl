@@ -258,7 +258,10 @@ collect_all_metrics() ->
     end,
     
     lists:foreach(fun(#{id := ServerId, status := StatusBin, config := Config}) ->
-        Status = binary_to_atom(StatusBin, utf8),
+        Status = case safe_existing_status(StatusBin) of
+            {ok, ExistingStatus} -> ExistingStatus;
+            error -> unknown
+        end,
         % Basic connectivity metric
         record_metric(ServerId, connectivity, 
                      case Status of connected -> 1; _ -> 0 end),
@@ -271,6 +274,17 @@ collect_all_metrics() ->
                 ok
         end
     end, Servers).
+
+safe_existing_status(Status) when is_atom(Status) ->
+    {ok, Status};
+safe_existing_status(Status) when is_binary(Status) ->
+    try
+        {ok, binary_to_existing_atom(Status, utf8)}
+    catch
+        error:badarg -> error
+    end;
+safe_existing_status(_) ->
+    error.
 
 collect_server_metrics(ServerId, _Config) ->
     % Get metrics from MCP client if available

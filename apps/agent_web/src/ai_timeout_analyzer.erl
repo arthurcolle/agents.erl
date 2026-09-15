@@ -268,7 +268,7 @@ process_timeout_analysis(TimeoutInfo, Context, OpenAIClient) ->
     
     try
         {ok, Response} = openai_chat:create_completion(OpenAIClient, #{
-            model => <<"gpt-4o">>,
+            model => <<"gpt-5.6-sol">>,
             messages => Messages,
             temperature => 0.3,
             response_format => #{type => json_object}
@@ -399,7 +399,7 @@ parse_timeout_analysis(Response, TimeoutInfo, Context) ->
         process_info = extract_process_info(Context),
         stack_trace = extract_stack_trace(TimeoutInfo),
         ai_interpretation = maps:get(<<"interpretation">>, JsonData),
-        severity = binary_to_atom(maps:get(<<"severity">>, JsonData, <<"medium">>)),
+        severity = normalize_severity(maps:get(<<"severity">>, JsonData, <<"medium">>)),
         root_cause = maps:get(<<"root_cause">>, JsonData),
         prevention_tips = maps:get(<<"prevention_tips">>, JsonData, []),
         related_timeouts = []
@@ -422,7 +422,7 @@ perform_periodic_analysis(State) ->
     
     try
         {ok, Response} = openai_chat:create_completion(State#state.openai_client, #{
-            model => <<"gpt-4o">>,
+            model => <<"gpt-5.6-sol">>,
             messages => Messages,
             temperature => 0.3,
             max_tokens => 1000
@@ -504,7 +504,7 @@ analyze_error_buffer(Buffer, OpenAIClient) when length(Buffer) > 0 ->
     
     try
         {ok, Response} = openai_chat:create_completion(OpenAIClient, #{
-            model => <<"gpt-4o">>,
+            model => <<"gpt-5.6-sol">>,
             messages => Messages,
             temperature => 0.3,
             response_format => #{type => json_object}
@@ -673,6 +673,16 @@ generate_analysis_id() ->
 
 notify_subscribers(Event, #state{subscribers = Subs}) ->
     [Pid ! {timeout_analysis_event, Event} || Pid <- Subs].
+
+normalize_severity(<<"low">>) -> low;
+normalize_severity(<<"medium">>) -> medium;
+normalize_severity(<<"high">>) -> high;
+normalize_severity(<<"critical">>) -> critical;
+normalize_severity(low) -> low;
+normalize_severity(medium) -> medium;
+normalize_severity(high) -> high;
+normalize_severity(critical) -> critical;
+normalize_severity(_) -> medium.
 
 extract_periodic_analysis(Response) ->
     Content = maps:get(content, hd(maps:get(choices, Response))),

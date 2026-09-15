@@ -89,14 +89,14 @@ agent:execute(AgentId, #{
 ### Supervision Tree Structure
 
 ```
-agent_web_sup
-├─ dynamic_supervisor_manager
-├─ [dynamic supervisors]
-│  ├─ supervisor_1
-│  │  └─ [children]
-│  └─ supervisor_2
-│     └─ [children]
-└─ [other services]
+agents_sup
+└─ dynamic_runtime_sup (rest_for_one)
+   ├─ dynamic_supervisors_sup
+   │  ├─ supervisor_1
+   │  │  └─ [children]
+   │  └─ supervisor_2
+   │     └─ [children]
+   └─ dynamic_supervisor_manager
 ```
 
 ## Examples

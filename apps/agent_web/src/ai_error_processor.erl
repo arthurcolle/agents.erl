@@ -163,7 +163,7 @@ analyze_error_with_ai(#{id := ErrorId, data := ErrorData, context := Context}, C
         
         % Use streaming for real-time updates
         case openai_chat:stream_chat(Client, Messages, #{
-            <<"model">> => <<"gpt-4o-mini">>,
+            <<"model">> => <<"gpt-5.6-terra">>,
             <<"temperature">> => 0.1,
             <<"max_tokens">> => 1000,
             <<"stream">> => true
@@ -259,7 +259,7 @@ enhance_analysis(Analysis, ErrorData, Context) ->
         <<"timestamp">> => erlang:system_time(second),
         <<"error_data">> => format_error_for_analysis(ErrorData),
         <<"context">> => Context,
-        <<"processor">> => <<"gpt-4o-mini">>,
+        <<"processor">> => <<"gpt-5.6-terra">>,
         <<"version">> => <<"1.0">>
     }.
 
@@ -275,7 +275,7 @@ create_fallback_analysis(RawResponse, ErrorData, Context) ->
         <<"timestamp">> => erlang:system_time(second),
         <<"error_data">> => format_error_for_analysis(ErrorData),
         <<"context">> => Context,
-        <<"processor">> => <<"gpt-4o-mini">>,
+        <<"processor">> => <<"gpt-5.6-terra">>,
         <<"version">> => <<"1.0">>,
         <<"raw_response">> => RawResponse
     }.

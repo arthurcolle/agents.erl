@@ -140,7 +140,7 @@ init(Config) ->
     AgentType = maps:get(type, Config, ai),
     SelectedModel = case model_selection_strategy:select_model_for_agent(AgentType, Config) of
         {ok, Model} -> Model;
-        _ -> maps:get(model, Config, <<"gpt-4.1">>)  % Fallback to specified or default
+        _ -> maps:get(model, Config, <<"gpt-5.6-sol">>)  % Fallback to specified or default
     end,
     
     State = #state{
@@ -174,6 +174,7 @@ init(Config) ->
     
     % Register model usage with the strategy
     model_selection_strategy:register_model_usage(self(), SelectedModel),
+    register_instance(State),
     
     {ok, State}.
 
@@ -467,6 +468,22 @@ code_change(_OldVsn, State, _Extra) ->
     {ok, State}.
 
 %% Internal functions
+
+register_instance(#state{id = AgentId} = State) ->
+    case whereis(agent_registry) of
+        undefined ->
+            ok;
+        _Pid ->
+            Meta = #{
+                name => State#state.name,
+                type => State#state.type,
+                model => State#state.model,
+                tools => State#state.tools,
+                created_at => erlang:system_time(millisecond),
+                status => active
+            },
+            agent_registry:register_agent(AgentId, self(), Meta)
+    end.
 
 generate_id() ->
     %% Generate a simple UUID-like identifier using crypto:strong_rand_bytes
@@ -1521,15 +1538,11 @@ execute_single_tool_call(ToolCall) ->
                     #{}
             end,
             
-            % Convert tool name to atom safely
-            ToolNameAtom = try
-                binary_to_existing_atom(ToolName, utf8)
-            catch
-                _:_ -> binary_to_atom(ToolName, utf8)
-            end,
-            
-            ?LOG_INFO("[TOOL_EXEC] Calling agent_tools:execute_tool(~p, ~p)", [ToolNameAtom, Args]),
-            Result = agent_tools:execute_tool(ToolNameAtom, Args),
+            % Keep protocol tool names as binaries. agent_tools resolves local
+            % predefined names without creating atoms and passes MCP names
+            % through to the MCP bridge.
+            ?LOG_INFO("[TOOL_EXEC] Calling agent_tools:execute_tool(~p, ~p)", [ToolName, Args]),
+            Result = agent_tools:execute_tool(ToolName, Args),
             ?LOG_INFO("[TOOL_EXEC] Tool ~s returned: ~p", [ToolName, case Result of
                 {ok, Data} when is_binary(Data) andalso byte_size(Data) > 100 ->
                     {ok, <<(binary:part(Data, 0, 100))/binary, "...">>};
@@ -1556,14 +1569,9 @@ execute_single_tool_call(ToolCall) ->
                     #{}
             end,
             
-            % Convert tool name to atom safely
-            ToolNameAtom = try
-                binary_to_existing_atom(ToolName, utf8)
-            catch
-                _:_ -> binary_to_atom(ToolName, utf8)
-            end,
-            
-            Result = agent_tools:execute_tool(ToolNameAtom, Args),
+            % Keep protocol tool names as binaries; see the Chat API path
+            % above for the centralized, atom-safe resolution.
+            Result = agent_tools:execute_tool(ToolName, Args),
             {ToolId, Result};
         _ ->
             % Unknown format - log and return error
@@ -2103,4 +2111,3 @@ generate_learning_response(Query, State) ->
                 confidence => 0.5
             }
     end.
-

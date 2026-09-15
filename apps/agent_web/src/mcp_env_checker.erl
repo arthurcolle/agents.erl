@@ -16,77 +16,83 @@
     metadata :: map()
 }).
 
-%% Check all registered MCP servers and fix missing environment variables
+%% Check all registered MCP servers.
+%%
+%% This module is deliberately read-mostly.  Missing credentials are a normal
+%% deployment state for optional integrations and must never be replaced with
+%% synthetic values or written to the VM environment.
 check_and_fix_servers() ->
-    %% First try to load from API key manager
+    %% First try to load real values from the API key manager.  The manager is
+    %% allowed to be unavailable during a partial application start.
     try
         api_key_manager:load_from_env()
     catch
         _:_ -> ok
     end,
-    
-    Servers = mcp_server_config:get_all_servers(),
-    Results = lists:map(fun(Server) ->
-        {Server#mcp_server.id, check_server_requirements(Server)}
-    end, Servers),
-    
-    %% Log results
-    lists:foreach(fun({Id, Result}) ->
-        case Result of
-            {ok, _} -> 
-                colored_logger:success("MCP Server ~s: All requirements met", [Id]);
-            {missing_env, Vars} ->
-                colored_logger:warning("MCP Server ~s: Missing environment variables: ~p", [Id, Vars]),
-                %% Try to load from API key manager first
-                case load_from_api_manager(Id, Vars) of
-                    ok -> 
-                        colored_logger:info("Loaded keys from API manager for ~s", [Id]);
-                    {error, _} ->
-                        %% Fall back to dummy values
-                        set_dummy_env_vars(Id, Vars)
-                end;
-            {error, Reason} ->
-                colored_logger:error("MCP Server ~s: Error - ~p", [Id, Reason])
-        end
-    end, Results),
-    
-    Results.
+
+    case mcp_server_config:get_all_servers() of
+        {ok, Servers} when is_list(Servers) ->
+            Results = lists:map(fun(Server) ->
+                Id = Server#mcp_server.id,
+                Result = check_server_requirements(Server),
+                FinalResult = case Result of
+                    {missing_env, Vars} ->
+                        %% Existing, user-supplied values may live in the
+                        %% manager's encrypted/configured store.  Copy only
+                        %% real values, then verify; never invent a value.
+                        _ = load_from_api_manager(Id, Vars),
+                        check_server_requirements(Server);
+                    _ ->
+                        Result
+                end,
+                {Id, FinalResult}
+            end, Servers),
+            log_results(Results),
+            {ok, Results};
+        {error, Reason} ->
+            colored_logger:error("Unable to inspect MCP server configuration: ~p", [Reason]),
+            {error, {server_config_unavailable, Reason}};
+        Other ->
+            colored_logger:error("Invalid MCP server configuration response: ~p", [Other]),
+            {error, {invalid_server_config_response, Other}}
+    end.
 
 %% Check specific server requirements
 check_server_requirements(#mcp_server{id = <<"slack_mcp">>, auth_type = oauth2}) ->
-    Required = [{"SLACK_BOT_TOKEN", "xoxb-dummy-token"}, 
-                {"SLACK_TEAM_ID", "T00000000"}],
+    Required = ["SLACK_BOT_TOKEN", "SLACK_TEAM_ID"],
     check_env_vars(Required);
 
 check_server_requirements(#mcp_server{id = <<"linear">>, auth_type = oauth2}) ->
-    Required = [{"LINEAR_API_KEY", "lin_api_dummy_key"}],
+    Required = ["LINEAR_API_KEY"],
     check_env_vars(Required);
 
 check_server_requirements(#mcp_server{id = <<"plaid">>, auth_type = api_key}) ->
-    Required = [{"PLAID_CLIENT_ID", "dummy_client_id"},
-                {"PLAID_SECRET", "dummy_secret"},
-                {"PLAID_ENV", "sandbox"}],
-    check_env_vars(Required);
-
-check_server_requirements(#mcp_server{id = <<"graphlit">>, auth_type = api_key}) ->
-    Required = [{"GRAPHLIT_API_KEY", "dummy_graphlit_key"}],
-    check_env_vars(Required);
-
-check_server_requirements(#mcp_server{id = <<"github_mcp">>, auth_type = api_key}) ->
-    Required = [{"GITHUB_TOKEN", "ghp_dummy_token"}],
+    Required = ["PLAID_CLIENT_ID", "PLAID_SECRET"],
     check_env_vars(Required);
 
 check_server_requirements(#mcp_server{auth_type = open}) ->
     {ok, no_requirements};
 
-check_server_requirements(_) ->
-    {ok, unknown_requirements}.
+check_server_requirements(#mcp_server{metadata = Metadata}) when is_map(Metadata) ->
+    Required = maps:get(<<"required_env">>, Metadata,
+        maps:get(required_env, Metadata, [])),
+    case normalize_env_names(Required) of
+        [] -> {ok, unknown_requirements};
+        Names -> check_env_vars(Names)
+    end;
+
+check_server_requirements(_) -> {ok, unknown_requirements}.
 
 %% Check if environment variables exist
 check_env_vars(VarPairs) ->
-    Missing = lists:filtermap(fun({Var, _Default}) ->
+    Missing = lists:filtermap(fun(VarPair) ->
+        Var = case VarPair of
+            {Name, _Default} -> Name;
+            Name -> Name
+        end,
         case os:getenv(Var) of
             false -> {true, Var};
+            [] -> {true, Var};
             _ -> false
         end
     end, VarPairs),
@@ -95,43 +101,6 @@ check_env_vars(VarPairs) ->
         [] -> {ok, all_present};
         _ -> {missing_env, Missing}
     end.
-
-%% Set dummy environment variables for development/testing
-set_dummy_env_vars(ServerId, MissingVars) ->
-    %% Get the default values for this server
-    Defaults = get_server_defaults(ServerId),
-    
-    lists:foreach(fun(Var) ->
-        case lists:keyfind(Var, 1, Defaults) of
-            {Var, Default} ->
-                os:putenv(Var, Default),
-                colored_logger:info("Set dummy value for ~s: ~s", [Var, Default]);
-            false ->
-                colored_logger:warning("No default value for ~s", [Var])
-        end
-    end, MissingVars).
-
-%% Get default values for each server
-get_server_defaults(<<"slack_mcp">>) ->
-    [{"SLACK_BOT_TOKEN", "xoxb-dummy-token"},
-     {"SLACK_TEAM_ID", "T00000000"}];
-
-get_server_defaults(<<"linear">>) ->
-    [{"LINEAR_API_KEY", "lin_api_dummy_key"}];
-
-get_server_defaults(<<"plaid">>) ->
-    [{"PLAID_CLIENT_ID", "dummy_client_id"},
-     {"PLAID_SECRET", "dummy_secret"},
-     {"PLAID_ENV", "sandbox"}];
-
-get_server_defaults(<<"graphlit">>) ->
-    [{"GRAPHLIT_API_KEY", "dummy_graphlit_key"}];
-
-get_server_defaults(<<"github_mcp">>) ->
-    [{"GITHUB_TOKEN", "ghp_dummy_token"}];
-
-get_server_defaults(_) ->
-    [].
 
 %% Load keys from API manager
 load_from_api_manager(ServerId, MissingVars) ->
@@ -143,8 +112,19 @@ load_from_api_manager(ServerId, MissingVars) ->
             <<"plaid">> -> plaid;
             <<"graphlit">> -> graphlit;
             <<"github_mcp">> -> github;
-            _ -> binary_to_atom(ServerId, utf8)
+            _ -> undefined
         end,
+
+        case ServiceAtom of
+            undefined -> {error, unsupported_service};
+            _ -> load_from_api_manager_values(ServiceAtom, MissingVars)
+        end
+    catch
+        _:_ -> {error, failed}
+    end.
+
+load_from_api_manager_values(ServiceAtom, MissingVars) ->
+    try
         
         %% Get field mappings
         FieldMappings = get_field_mappings(ServiceAtom),
@@ -166,6 +146,31 @@ load_from_api_manager(ServerId, MissingVars) ->
     catch
         _:_ -> {error, failed}
     end.
+
+normalize_env_names(Names) when is_list(Names) ->
+    [Name || Name <- [normalize_env_name(Value) || Value <- Names], Name =/= undefined];
+normalize_env_names(_) -> [].
+
+normalize_env_name(Name) when is_binary(Name) -> binary_to_list(Name);
+normalize_env_name(Name) when is_list(Name) -> Name;
+normalize_env_name(_) -> undefined.
+
+log_results(Results) ->
+    lists:foreach(fun({Id, Result}) ->
+        case Result of
+            {ok, _} ->
+                colored_logger:success("MCP Server ~s: requirements met", [Id]);
+            {missing_env, Vars} ->
+                %% Names are safe to report; values are intentionally never
+                %% logged or synthesized.
+                colored_logger:warning(
+                    "MCP Server ~s: credentials unavailable for ~p",
+                    [Id, Vars]
+                );
+            {error, Reason} ->
+                colored_logger:error("MCP Server ~s: Error - ~p", [Id, Reason])
+        end
+    end, Results).
 
 %% Map environment variables to API manager fields
 get_field_mappings(slack) ->

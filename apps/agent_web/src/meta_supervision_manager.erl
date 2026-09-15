@@ -80,8 +80,8 @@ init([]) ->
 enable_meta_supervision() ->
     case whereis(?SERVER) of
         undefined ->
-            colored_logger:fire(bright, "[META_SUP] ✗ Meta supervision not running - starting it"),
-            start_link();
+            colored_logger:fire(bright, "[META_SUP] ✗ Meta supervision not running - restarting supervised child"),
+            supervisor:restart_child(agent_web_observability_sup, ?SERVER);
         Pid when is_pid(Pid) ->
             colored_logger:success("[META_SUP] Meta supervision already running", []),
             ok
@@ -93,10 +93,9 @@ disable_meta_supervision() ->
         undefined ->
             colored_logger:notice("[META_SUP] ℹ️ Meta supervision already stopped"),
             ok;
-        Pid when is_pid(Pid) ->
+        _Pid ->
             colored_logger:warning("[META_SUP] WARNING Stopping meta supervision"),
-            supervisor:terminate_child(?SERVER, Pid),
-            ok
+            supervisor:terminate_child(agent_web_observability_sup, ?SERVER)
     end.
 
 %% Get supervision status

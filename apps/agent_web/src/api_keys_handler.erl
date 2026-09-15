@@ -106,28 +106,32 @@ handle_get_service_keys(Req, Service) ->
                 jsx:encode(#{error => <<"API key manager not ready yet">>}),
                 Req);
         true ->
-            ServiceAtom = binary_to_atom(Service, utf8),
-            {ok, AllKeys} = api_key_manager:get_all_keys(),
-            
-            case maps:get(ServiceAtom, AllKeys, undefined) of
-                undefined ->
+            case service_atom(Service) of
+                error ->
                     cowboy_req:reply(404,
                         #{<<"content-type">> => <<"application/json">>},
                         jsx:encode(#{error => <<"Service not found">>}),
                         Req);
-                ServiceKeys ->
-                    Requirements = maps:get(ServiceAtom, api_key_manager:get_api_requirements(), #{}),
-                    
-                    Response = #{
-                        service => Service,
-                        keys => ServiceKeys,
-                        requirements => Requirements
-                    },
-                    
-                    cowboy_req:reply(200,
-                        #{<<"content-type">> => <<"application/json">>},
-                        jsx:encode(Response),
-                        Req)
+                {ok, ServiceAtom} ->
+                    {ok, AllKeys} = api_key_manager:get_all_keys(),
+                    case maps:get(ServiceAtom, AllKeys, undefined) of
+                        undefined ->
+                            cowboy_req:reply(404,
+                                #{<<"content-type">> => <<"application/json">>},
+                                jsx:encode(#{error => <<"Service not found">>}),
+                                Req);
+                        ServiceKeys ->
+                            Requirements = maps:get(ServiceAtom, api_key_manager:get_api_requirements(), #{}),
+                            Response = #{
+                                service => Service,
+                                keys => ServiceKeys,
+                                requirements => Requirements
+                            },
+                            cowboy_req:reply(200,
+                                #{<<"content-type">> => <<"application/json">>},
+                                jsx:encode(Response),
+                                Req)
+                    end
             end
     end.
 
@@ -136,29 +140,35 @@ handle_save_service_keys(Req0, Service) ->
     
     try
         KeyData = jsx:decode(Body, [return_maps]),
-        ServiceAtom = binary_to_atom(Service, utf8),
         
-        case is_api_key_manager_available() of
-            false ->
-                cowboy_req:reply(503,
+        case service_atom(Service) of
+            error ->
+                cowboy_req:reply(404,
                     #{<<"content-type">> => <<"application/json">>},
-                    jsx:encode(#{error => <<"API key manager not ready yet">>}),
+                    jsx:encode(#{error => <<"Service not found">>}),
                     Req);
-            true ->
-                case api_key_manager:save_key(ServiceAtom, KeyData) of
-                    ok ->
-                        %% Also update environment variables
-                        update_env_vars(ServiceAtom, KeyData),
-                        
-                        cowboy_req:reply(200,
+            {ok, ServiceAtom} ->
+                case is_api_key_manager_available() of
+                    false ->
+                        cowboy_req:reply(503,
                             #{<<"content-type">> => <<"application/json">>},
-                            jsx:encode(#{status => <<"saved">>, service => Service}),
+                            jsx:encode(#{error => <<"API key manager not ready yet">>}),
                             Req);
-                    {error, Reason} ->
-                        cowboy_req:reply(400,
-                            #{<<"content-type">> => <<"application/json">>},
-                            jsx:encode(#{error => format_error(Reason)}),
-                            Req)
+                    true ->
+                        case api_key_manager:save_key(ServiceAtom, KeyData) of
+                            ok ->
+                                %% Also update environment variables
+                                update_env_vars(ServiceAtom, KeyData),
+                                cowboy_req:reply(200,
+                                    #{<<"content-type">> => <<"application/json">>},
+                                    jsx:encode(#{status => <<"saved">>, service => Service}),
+                                    Req);
+                            {error, Reason} ->
+                                cowboy_req:reply(400,
+                                    #{<<"content-type">> => <<"application/json">>},
+                                    jsx:encode(#{error => format_error(Reason)}),
+                                    Req)
+                        end
                 end
         end
     catch
@@ -231,6 +241,16 @@ get_detailed_status() ->
             documentation_url => maps:get(documentation_url, ServiceReqs, <<>>)
         }
     end, Requirements).
+
+service_atom(<<"openai">>) -> {ok, openai};
+service_atom(<<"anthropic">>) -> {ok, anthropic};
+service_atom(<<"slack">>) -> {ok, slack};
+service_atom(<<"linear">>) -> {ok, linear};
+service_atom(<<"plaid">>) -> {ok, plaid};
+service_atom(<<"graphlit">>) -> {ok, graphlit};
+service_atom(<<"github">>) -> {ok, github};
+service_atom(<<"jina">>) -> {ok, jina};
+service_atom(_) -> error.
 
 update_env_vars(Service, KeyData) ->
     Requirements = maps:get(Service, api_key_manager:get_api_requirements(), #{}),

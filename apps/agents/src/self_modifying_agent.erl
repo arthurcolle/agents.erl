@@ -37,7 +37,7 @@
 -record(state, {
     %% Agent identity
     agent_id :: term(),
-    agent_name :: atom(),
+    agent_name :: term(),
     generation = 1 :: integer(),
     parent_id :: term() | undefined,
     
@@ -182,12 +182,16 @@ rollback_modification(AgentPid, ModificationId) ->
 
 init([AgentId, AgentConfig]) ->
     %% Initialize agent
-    AgentName = maps:get(name, AgentConfig, list_to_atom("agent_" ++ integer_to_list(erlang:unique_integer([positive])))),
+    %% Names are metadata. Keep the default anonymous and never allocate an
+    %% atom from a configuration value.
+    AgentName = maps:get(name, AgentConfig, make_ref()),
     
     %% Register agent name
     case maps:get(register_name, AgentConfig, false) of
-        true ->
+        true when is_atom(AgentName) ->
             register(AgentName, self());
+        true ->
+            ok;
         false ->
             ok
     end,
@@ -767,7 +771,12 @@ identify_optimization_targets(_Gap) -> [].
 apply_performance_optimizations(_Targets, State) -> State.
 
 apply_genome_modifications(_Modifications, Genome) -> Genome.
-generate_clone_name(BaseName) -> list_to_atom(atom_to_list(BaseName) ++ "_clone").
+generate_clone_name(BaseName) when is_atom(BaseName) ->
+    iolist_to_binary(io_lib:format("~p_clone", [BaseName]));
+generate_clone_name(BaseName) when is_binary(BaseName) ->
+    <<BaseName/binary, "_clone">>;
+generate_clone_name(_) ->
+    iolist_to_binary(io_lib:format("agent_clone_~p", [erlang:unique_integer([positive])])).
 compare_genomes(_Genome1, _Genome2) -> #{}.
 
 find_modification_in_history(_ModificationId, _History) -> not_found.

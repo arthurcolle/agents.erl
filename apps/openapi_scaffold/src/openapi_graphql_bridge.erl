@@ -659,7 +659,7 @@ execute_rest_mutation(Path, Method, Operation, Args, Context) ->
     Body = maps:get(<<"input">>, Args, #{}),
     
     %% Make HTTP request
-    MethodAtom = binary_to_atom(Method, utf8),
+    MethodAtom = graphql_method_atom(Method),
     JsonBody = jsx:encode(Body),
     
     case hackney:request(MethodAtom, Url, Headers, JsonBody, []) of
@@ -678,6 +678,22 @@ execute_rest_mutation(Path, Method, Operation, Args, Context) ->
         {error, Reason} ->
             {error, Reason}
     end.
+
+graphql_method_atom(<<"GET">>) -> get;
+graphql_method_atom(<<"POST">>) -> post;
+graphql_method_atom(<<"PUT">>) -> put;
+graphql_method_atom(<<"PATCH">>) -> patch;
+graphql_method_atom(<<"DELETE">>) -> delete;
+graphql_method_atom(<<"HEAD">>) -> head;
+graphql_method_atom(<<"OPTIONS">>) -> options;
+graphql_method_atom(<<"get">>) -> get;
+graphql_method_atom(<<"post">>) -> post;
+graphql_method_atom(<<"put">>) -> put;
+graphql_method_atom(<<"patch">>) -> patch;
+graphql_method_atom(<<"delete">>) -> delete;
+graphql_method_atom(<<"head">>) -> head;
+graphql_method_atom(<<"options">>) -> options;
+graphql_method_atom(_) -> get.
 
 build_rest_url(PathTemplate, Args) ->
     %% Build URL from path template and arguments

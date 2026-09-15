@@ -69,12 +69,7 @@ init([]) ->
     erlang:send_after(?MONITOR_INTERVAL, self(), monitor_supervisors),
     
     %% Monitor key supervisors
-    Supervisors = [
-        agent_web_sup,
-        agent_supervisor,
-        openai_sup,
-        agents_sup
-    ],
+    Supervisors = supervisor_names(),
     
     %% Start monitoring each supervisor
     MonitoredPids = lists:foldl(fun(SupName, Acc) ->
@@ -115,14 +110,14 @@ handle_info(monitor_supervisors, State) ->
     safe_log(data, "[SUP_MON] Running supervisor health check", []),
     
     %% Check health of all monitored supervisors
-    NewState = check_supervisor_health(State),
+    NewState = ensure_supervisor_monitors(check_supervisor_health(State)),
     
     %% Schedule next check
     erlang:send_after(?MONITOR_INTERVAL, self(), monitor_supervisors),
     
     {noreply, NewState#state{last_check = erlang:system_time(millisecond)}};
 
-handle_info({'DOWN', MonitorRef, process, Pid, Reason}, State) ->
+handle_info({'DOWN', _MonitorRef, process, Pid, Reason}, State) ->
     case maps:get(Pid, State#state.supervised_pids, undefined) of
         undefined ->
             safe_log(warning, "[SUP_MON] Unknown process died: ~p", [Pid]),
@@ -133,9 +128,6 @@ handle_info({'DOWN', MonitorRef, process, Pid, Reason}, State) ->
             
             %% Remove from monitoring
             NewSupervised = maps:remove(Pid, State#state.supervised_pids),
-            
-            %% Try to restart supervision
-            spawn(fun() -> attempt_supervisor_restart(SupName, Reason) end),
             
             %% Update error count
             NewErrorCount = State#state.error_count + 1,
@@ -196,28 +188,25 @@ assess_supervisor_health(Memory, MessageQueueLen) ->
         true -> healthy
     end.
 
-%% Attempt to restart a failed supervisor
-attempt_supervisor_restart(SupName, Reason) ->
-    safe_log(warning, "[SUP_MON] Attempting to restart supervisor ~p", [SupName]),
-    
-    timer:sleep(1000), % Wait a bit before restart
-    
-    %% Try to start the supervisor again
-    case SupName of
-        agent_web_sup ->
-            case agent_web_sup:start_link() of
-                {ok, Pid} ->
-                    safe_log(success, "[SUP_MON] Successfully restarted ~p (~p)", [SupName, Pid]);
-                {error, Error} ->
-                    safe_log(fire, "[SUP_MON] Failed to restart ~p: ~p", [SupName, Error])
-            end;
-        agent_supervisor ->
-            case agent_supervisor:start_link() of
-                {ok, Pid} ->
-                    safe_log(success, "[SUP_MON] Successfully restarted ~p (~p)", [SupName, Pid]);
-                {error, Error} ->
-                    safe_log(fire, "[SUP_MON] Failed to restart ~p: ~p", [SupName, Error])
-            end;
-        _ ->
-            safe_log(warning, "[SUP_MON] Don't know how to restart ~p", [SupName])
-    end.
+supervisor_names() ->
+    [agents_sup, agent_supervisor, openai_sup, agent_web_sup].
+
+ensure_supervisor_monitors(State) ->
+    Monitored = State#state.supervised_pids,
+    Updated = lists:foldl(fun(SupName, Acc) ->
+        AlreadyMonitored = lists:any(fun(Info) ->
+            maps:get(name, Info) =:= SupName
+        end, maps:values(Acc)),
+        case {AlreadyMonitored, whereis(SupName)} of
+            {false, Pid} when is_pid(Pid) ->
+                MonitorRef = monitor(process, Pid),
+                Acc#{Pid => #{
+                    name => SupName,
+                    monitor_ref => MonitorRef,
+                    status => running
+                }};
+            _ ->
+                Acc
+        end
+    end, Monitored, supervisor_names()),
+    State#state{supervised_pids = Updated}.

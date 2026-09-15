@@ -343,38 +343,50 @@ create_agent_from_config(Config) ->
         Type = maps:get(<<"type">>, Config, <<"ai">>),
         Name = maps:get(<<"name">>, Config, <<"Unnamed Fleet Agent">>),
         Tools = maps:get(<<"tools">>, Config, []),
+        AgentId = maps:get(<<"id">>, Config, generate_fleet_agent_id(1)),
         
-        % Convert to internal format
-        InternalConfig = #{
-            type => binary_to_atom(Type, utf8),
-            name => Name,
-            tools => Tools,
-            system_prompt => maps:get(<<"system_prompt">>, Config, <<"You are a fleet agent capable of autonomous operation.">>),
-            autonomous_mode => maps:get(<<"autonomous_mode">>, Config, false),
-            max_autonomous_turns => maps:get(<<"max_autonomous_turns">>, Config, 10)
-        },
-        
-        case agent_instance:start_link(InternalConfig) of
-            {ok, AgentPid} ->
-                AgentId = maps:get(id, InternalConfig, generate_fleet_agent_id(1)),
-                
-                % Register the agent
-                Metadata = #{
-                    type => Type,
+        case fleet_agent_type(Type) of
+            {ok, AgentType} ->
+                % Convert to internal format
+                InternalConfig = #{
+                    id => AgentId,
+                    type => AgentType,
                     name => Name,
-                    created_via => fleet_management,
-                    created_at => erlang:system_time(millisecond)
+                    tools => Tools,
+                    system_prompt => maps:get(<<"system_prompt">>, Config, <<"You are a fleet agent capable of autonomous operation.">>),
+                    autonomous_mode => maps:get(<<"autonomous_mode">>, Config, false),
+                    max_autonomous_turns => maps:get(<<"max_autonomous_turns">>, Config, 10)
                 },
-                agent_registry:register_agent(AgentId, AgentPid, Metadata),
                 
-                {ok, AgentId, AgentPid};
-            {error, Reason} ->
-                {error, Reason}
+                case agent_supervisor:start_agent(InternalConfig) of
+                    {ok, AgentPid} ->
+                        % Register the agent
+                        Metadata = #{
+                            type => Type,
+                            name => Name,
+                            created_via => fleet_management,
+                            created_at => erlang:system_time(millisecond)
+                        },
+                        agent_registry:register_agent(AgentId, AgentPid, Metadata),
+
+                        {ok, AgentId, AgentPid};
+                    {error, Reason} ->
+                        {error, Reason}
+                end;
+            error ->
+                {error, invalid_agent_type}
         end
     catch
         E:R ->
             {error, iolist_to_binary(io_lib:format("~p:~p", [E, R]))}
     end.
+
+fleet_agent_type(<<"ai">>) -> {ok, ai};
+fleet_agent_type(<<"simple">>) -> {ok, simple};
+fleet_agent_type(<<"autonomous">>) -> {ok, autonomous};
+fleet_agent_type(<<"specialized">>) -> {ok, specialized};
+fleet_agent_type(Type) when is_atom(Type) -> fleet_agent_type(atom_to_binary(Type, utf8));
+fleet_agent_type(_) -> error.
 
 collect_autonomous_results([], Results) ->
     lists:reverse(Results);

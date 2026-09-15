@@ -348,7 +348,7 @@ detect_active_consensus_operations() ->
     end, lists:seq(1, NumOperations)).
 
 generate_participants(Count) ->
-    [list_to_atom("node_" ++ integer_to_list(I)) || I <- lists:seq(1, Count)].
+    [iolist_to_binary(io_lib:format("node_~p", [I])) || I <- lists:seq(1, Count)].
 
 update_consensus_performance_metrics(ConsensusOps, CurrentMetrics) ->
     case ConsensusOps of

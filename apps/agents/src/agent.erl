@@ -1,19 +1,6 @@
 %% agent.erl
-%% Advanced Erlang agent with distributed architecture and supervision trees
+%% Public API for the agent runtime
 -module(agent).
--behaviour(application).
--behaviour(supervisor).
-
-%% Application callbacks
--export([
-    start/2,
-    stop/1
-]).
-
-%% Supervisor callbacks
--export([
-    init/1
-]).
 
 %% API
 -export([
@@ -23,6 +10,7 @@
     start_link/2,
     stop/0,
     stop_agent/1,
+    list_agents/0,
     get_info/1,
     chat/2,
     stream_chat/2,
@@ -60,38 +48,22 @@
     tool_executor/5
 ]).
 
--define(DEFAULT_MODEL, <<"gpt-4.1-mini">>).
+-define(DEFAULT_MODEL, <<"gpt-5.6-terra">>).
 -define(DEFAULT_TIMEOUT, 60000).
-
-%% Application callback
-start(_StartType, _StartArgs) ->
-    % Ensure openai application is started
-    case application:start(openai) of
-        ok -> ok;
-        {error, {already_started, _}} -> ok;
-        {error, _Reason} -> ok
-    end,
-    
-    % Start the agent supervisor
-    start_link().
-
-stop(_State) ->
-    ok.
 
 %% API Functions
 
 %% Start the application
 start() ->
-    application:ensure_all_started(agent).
+    application:ensure_all_started(agents).
 
-%% Start the agent supervisor
+%% Compatibility entry point for callers that previously started the
+%% application supervisor through this API.
 start_link() ->
-    supervisor:start_link({local, ?MODULE}, ?MODULE, []).
+    agents_sup:start_link().
 
-%% Start the agent supervisor with options or create an agent instance
-start_link(Options) ->
-    % This is for supervisor initialization
-    supervisor:start_link({local, ?MODULE}, ?MODULE, [Options]).
+start_link(_Options) ->
+    agents_sup:start_link().
 
 %% Start an agent with ID and options
 start_link(AgentId, Options) when is_map(Options) ->
@@ -101,12 +73,15 @@ start_link(AgentId, Options) when is_map(Options) ->
 
 %% Stop the agent application
 stop() ->
-    application:stop(agent).
+    application:stop(agents).
 
 %% Stop a specific agent process
 stop_agent(Pid) when is_pid(Pid) ->
-    exit(Pid, normal),
-    ok.
+    agent_supervisor:stop_agent(Pid).
+
+%% List supervised agent instances.
+list_agents() ->
+    agent_supervisor:get_all_agents().
 
 %% Get information about an agent process
 get_info(Pid) when is_pid(Pid) ->
@@ -389,160 +364,6 @@ ensure_api_client(ApiGroup) ->
         Error -> Error
     end.
 
-%% Supervisor callback
-init([]) ->
-    % Supervisor flags
-    SupFlags = #{
-        strategy => one_for_one,
-        intensity => 10,
-        period => 60
-    },
-    
-    % Define child specifications
-    ChildSpecs = [
-        % Tools registry
-        #{
-            id => agent_tools,
-            start => {agent_tools, start_link, [#{}]},
-            restart => permanent,
-            shutdown => 5000,
-            type => worker,
-            modules => [agent_tools]
-        },
-        
-        % Agent registry
-        #{
-            id => agent_registry,
-            start => {agent_registry, start_link, [#{}]},
-            restart => permanent,
-            shutdown => 5000,
-            type => worker,
-            modules => [agent_registry]
-        },
-        
-        % Agent supervisor for managing agent instances
-        #{
-            id => agent_supervisor,
-            start => {agent_supervisor, start_link, []},
-            restart => permanent,
-            shutdown => infinity,
-            type => supervisor,
-            modules => [agent_supervisor]
-        },
-        
-        % Agent collaboration manager
-        #{
-            id => agent_collaboration,
-            start => {agent_collaboration, start_link, []},
-            restart => permanent,
-            shutdown => 5000,
-            type => worker,
-            modules => [agent_collaboration]
-        },
-        
-        % Knowledge base retrieval system
-        #{
-            id => knowledge_base_retrieval,
-            start => {knowledge_base_retrieval, start_link, []},
-            restart => permanent,
-            shutdown => 5000,
-            type => worker,
-            modules => [knowledge_base_retrieval]
-        },
-        
-        % Model Selection Strategy - Dynamic model assignment and load balancing
-        #{
-            id => model_selection_strategy,
-            start => {model_selection_strategy, start_link, []},
-            restart => permanent,
-            shutdown => 5000,
-            type => worker,
-            modules => [model_selection_strategy]
-        },
-        
-        % Specialized Agent Factory - Creates domain-specific agents
-        #{
-            id => specialized_agent_factory,
-            start => {specialized_agent_factory, start_link, []},
-            restart => permanent,
-            shutdown => 5000,
-            type => worker,
-            modules => [specialized_agent_factory]
-        },
-        
-        % Meta-System Supervisor - Top-level abstraction layer
-        #{
-            id => meta_system_sup,
-            start => {meta_system_sup, start_link, []},
-            restart => permanent,
-            shutdown => infinity,
-            type => supervisor,
-            modules => [meta_system_sup]
-        },
-        
-        % Pipedream Tool Integration - Integrates Pipedream MCP tools with agent system
-        #{
-            id => pipedream_tool_integration,
-            start => {pipedream_tool_integration, start_link, []},
-            restart => permanent,
-            shutdown => 5000,
-            type => worker,
-            modules => [pipedream_tool_integration]
-        },
-        
-        % Dynamic Supervisor Manager - Manages dynamic supervisor creation
-        #{
-            id => dynamic_supervisor_manager,
-            start => {dynamic_supervisor_manager, start_link, []},
-            restart => permanent,
-            shutdown => 5000,
-            type => worker,
-            modules => [dynamic_supervisor_manager]
-        },
-        
-        % System Introspection - Provides system-wide introspection capabilities
-        #{
-            id => system_introspection,
-            start => {system_introspection, start_link, []},
-            restart => permanent,
-            shutdown => 5000,
-            type => worker,
-            modules => [system_introspection]
-        },
-        
-        % Agent Scheduler Engine - Manages scheduled tasks for agents
-        #{
-            id => agent_scheduler_engine,
-            start => {agent_scheduler_engine, start_link, []},
-            restart => permanent,
-            shutdown => 5000,
-            type => worker,
-            modules => [agent_scheduler_engine]
-        },
-        
-        % Timeline Event Store - Stores and retrieves timeline events
-        #{
-            id => timeline_event_store,
-            start => {timeline_event_store, start_link, []},
-            restart => permanent,
-            shutdown => 5000,
-            type => worker,
-            modules => [timeline_event_store]
-        },
-        
-        % Agent Temporal Awareness - Provides temporal context for agents
-        #{
-            id => agent_temporal_awareness,
-            start => {agent_temporal_awareness, start_link, []},
-            restart => permanent,
-            shutdown => 5000,
-            type => worker,
-            modules => [agent_temporal_awareness]
-        }
-    ],
-    
-    {ok, {SupFlags, ChildSpecs}}.
-
 %% Internal Functions
 
 %% Process that runs a single agent session
@@ -643,7 +464,7 @@ execute_tool_calls(ToolCalls, SessionId) ->
     ToolResults = lists:map(
         fun(ToolCall) ->
             ToolId = maps:get(<<"id">>, ToolCall, <<"">>),
-            ToolName = binary_to_atom(maps:get(<<"name">>, ToolCall, <<"">>), utf8),
+            ToolName = maps:get(<<"name">>, ToolCall, <<>>),
             ArgumentsJson = maps:get(<<"arguments">>, ToolCall, <<"{}">>),
             
             % Decode arguments
@@ -781,7 +602,7 @@ create_supervisor(Name, Children) ->
     create_supervisor(Name, one_for_one, Children).
 
 %% @doc Create a new supervisor with specified strategy
-create_supervisor(Name, Strategy, Children) when is_atom(Name), is_atom(Strategy) ->
+create_supervisor(Name, Strategy, Children) ->
     case agent_dynamic_system:create_supervisor(Name, Strategy, Children) of
         {ok, Pid} ->
             colored_logger:quantum(superposition, io_lib:format("🎆 [AGENT] Created supervisor ~p with PID ~p", [Name, Pid])),
@@ -845,6 +666,7 @@ get_system_tree() ->
     
     %% Include the main application supervisors
     MainSupervisors = [
+        agents_sup,
         agent_supervisor,
         agent_web_sup,
         openai_sup
@@ -905,10 +727,10 @@ register_subsystem(Name, Pid, Components) ->
     put({subsystem, Name}, {Pid, Components}).
 
 generate_supervisor_name() ->
-    list_to_atom("dynamic_sup_" ++ integer_to_list(erlang:unique_integer([positive]))).
+    iolist_to_binary(io_lib:format("dynamic_sup_~p", [erlang:unique_integer([positive])])).
 
 generate_subsystem_name() ->
-    list_to_atom("dynamic_subsystem_" ++ integer_to_list(erlang:unique_integer([positive]))).
+    iolist_to_binary(io_lib:format("dynamic_subsystem_~p", [erlang:unique_integer([positive])])).
 
 format_children(Children) ->
     lists:map(fun({Id, Pid, Type, _Modules}) ->

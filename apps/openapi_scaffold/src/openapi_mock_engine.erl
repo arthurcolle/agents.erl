@@ -695,7 +695,9 @@ generate_request_id() ->
 
 extract_type_name(Ref) ->
     Parts = binary:split(Ref, <<"/">>, [global]),
-    list_to_atom(binary_to_list(lists:last(Parts))).
+    %% Type names are data keys; retaining the wire binary avoids atom-table
+    %% growth when a remote schema contains arbitrary component names.
+    lists:last(Parts).
 
 floor(X) ->
     T = erlang:trunc(X),

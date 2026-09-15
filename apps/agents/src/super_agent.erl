@@ -2,6 +2,7 @@
 -behaviour(gen_server).
 
 -export([
+    start_link/1,
     create/1,
     get_instance/0,
     execute_command/3,
@@ -22,19 +23,27 @@
     created_at,
     last_activity,
     system_access = full,
-    security_clearance = maximum
+    security_clearance = maximum,
+    agent_config = #{},
+    agent_monitor_ref = undefined
 }).
 
 -define(SERVER, ?MODULE).
 
 %% API Functions
 
+start_link(Config) ->
+    gen_server:start_link({local, ?SERVER}, ?MODULE, Config, []).
+
 create(Config) ->
     case whereis(?SERVER) of
         undefined ->
-            gen_server:start_link({local, ?SERVER}, ?MODULE, Config, []);
+            case super_agent_sup:start_super_agent(Config) of
+                {ok, Pid} -> get_agent_id(Pid);
+                Error -> Error
+            end;
         Pid ->
-            {ok, get_agent_id(Pid)}
+            get_agent_id(Pid)
     end.
 
 get_instance() ->
@@ -58,15 +67,20 @@ get_status() ->
     gen_server:call(?SERVER, get_status).
 
 stop() ->
-    gen_server:call(?SERVER, stop).
+    super_agent_sup:stop_super_agent().
 
 %% gen_server callbacks
 
 init(Config) ->
+    %% Required so OTP shutdown reaches terminate/2 and the controller can
+    %% release its separately supervised agent instance.
     process_flag(trap_exit, true),
-    
+
     % Create super-agent with enhanced privileges
+    AgentId = maps:get(id, Config, maps:get(agent_id, Config, <<"super-agent">>)),
     SuperAgentConfig = Config#{
+        id => AgentId,
+        agent_id => AgentId,
         name => <<"Super-Agent">>,
         type => super_agent,
         tools => get_super_agent_tools(),
@@ -76,10 +90,9 @@ init(Config) ->
         access_level => unrestricted
     },
     
-    case agent_instance:start_link(SuperAgentConfig) of
+    case ensure_agent_instance(AgentId, SuperAgentConfig) of
         {ok, AgentPid} ->
-            AgentId = get_agent_id_from_pid(AgentPid),
-            link(AgentPid),
+            MonitorRef = erlang:monitor(process, AgentPid),
             
             % Initialize system-wide monitoring
             initialize_system_monitoring(),
@@ -88,7 +101,9 @@ init(Config) ->
                 agent_id = AgentId,
                 agent_pid = AgentPid,
                 created_at = erlang:timestamp(),
-                last_activity = erlang:timestamp()
+                last_activity = erlang:timestamp(),
+                agent_config = SuperAgentConfig,
+                agent_monitor_ref = MonitorRef
             },
             
             {ok, State};
@@ -165,25 +180,43 @@ handle_call(_Request, _From, State) ->
 handle_cast(_Msg, State) ->
     {noreply, State}.
 
-handle_info({'EXIT', Pid, Reason}, State) when Pid =:= State#state.agent_pid ->
-    % Super-agent died, restart it
-    io:format("Super-agent died with reason ~p, restarting...~n", [Reason]),
-    case restart_super_agent(State) of
-        {ok, NewState} ->
-            {noreply, NewState};
-        {error, _} ->
-            {stop, {agent_restart_failed, Reason}, State}
+handle_info(
+    {'DOWN', MonitorRef, process, Pid, _Reason},
+    State = #state{agent_monitor_ref = MonitorRef, agent_pid = Pid}
+) ->
+    erlang:send_after(50, self(), refresh_agent),
+    {noreply, State#state{agent_pid = undefined, agent_monitor_ref = undefined}};
+
+handle_info(refresh_agent, State) ->
+    case ensure_agent_instance(State#state.agent_id, State#state.agent_config) of
+        {ok, AgentPid} ->
+            MonitorRef = erlang:monitor(process, AgentPid),
+            {noreply, State#state{
+                agent_pid = AgentPid,
+                agent_monitor_ref = MonitorRef
+            }};
+        {error, _Reason} ->
+            erlang:send_after(250, self(), refresh_agent),
+            {noreply, State}
     end;
+
+handle_info(system_health_check, State) ->
+    run_system_health_check(),
+    initialize_system_monitoring(),
+    {noreply, State};
 
 handle_info(_Info, State) ->
     {noreply, State}.
 
 terminate(_Reason, State) ->
-    case State#state.agent_pid of
+    case State#state.agent_monitor_ref of
         undefined -> ok;
-        Pid when is_pid(Pid) ->
-            catch agent_instance:stop(Pid)
+        MonitorRef -> erlang:demonitor(MonitorRef, [flush])
     end,
+    _ = try agent_supervisor:terminate_agent(State#state.agent_id)
+        catch
+            _:_ -> ok
+        end,
     ok.
 
 code_change(_OldVsn, State, _Extra) ->
@@ -508,40 +541,41 @@ get_current_system_context() ->
     }.
 
 initialize_system_monitoring() ->
-    % Start system monitoring processes
-    spawn(fun() -> system_monitor_loop() end).
+    erlang:send_after(30000, self(), system_health_check).
 
-system_monitor_loop() ->
-    timer:sleep(30000), % Monitor every 30 seconds
+run_system_health_check() ->
     case super_agent_tools:system_health_check() of
         {ok, _Health} -> ok;
         {error, Issues} ->
             colored_logger:warning("System health issues detected: ~p", [Issues])
-    end,
-    system_monitor_loop().
-
-restart_super_agent(State) ->
-    Config = #{
-        name => <<"Super-Agent">>,
-        type => super_agent,
-        tools => get_super_agent_tools(),
-        system_prompt => get_super_agent_system_prompt()
-    },
-    
-    case agent_instance:start_link(Config) of
-        {ok, NewAgentPid} ->
-            AgentId = get_agent_id_from_pid(NewAgentPid),
-            link(NewAgentPid),
-            
-            NewState = State#state{
-                agent_id = AgentId,
-                agent_pid = NewAgentPid,
-                last_activity = erlang:timestamp()
-            },
-            {ok, NewState};
-        {error, Reason} ->
-            {error, Reason}
     end.
+
+ensure_agent_instance(AgentId, Config) ->
+    case agent_registry:get_agent(AgentId) of
+        {ok, Pid} when is_pid(Pid) ->
+            {ok, Pid};
+        _ ->
+            normalize_agent_start(
+                AgentId,
+                Config,
+                agent_supervisor:start_agent(AgentId, Config)
+            )
+    end.
+
+normalize_agent_start(_AgentId, _Config, {ok, Pid}) ->
+    {ok, Pid};
+normalize_agent_start(_AgentId, _Config, {ok, Pid, _Info}) ->
+    {ok, Pid};
+normalize_agent_start(_AgentId, _Config, {error, {already_started, Pid}}) ->
+    {ok, Pid};
+normalize_agent_start(AgentId, _Config, {error, already_present}) ->
+    case agent_supervisor:restart_child(AgentId) of
+        {ok, Pid} -> {ok, Pid};
+        {ok, Pid, _Info} -> {ok, Pid};
+        Error -> Error
+    end;
+normalize_agent_start(_AgentId, _Config, Error) ->
+    Error.
 
 format_result_for_streaming(Result) when is_map(Result) ->
     jsx:encode(Result);
@@ -576,22 +610,6 @@ get_agent_id(Pid) when is_pid(Pid) ->
     catch
         _:_ -> <<"unknown">>
     end.
-
-get_agent_id_from_pid(Pid) ->
-    try
-        case agent_instance:get_state(Pid) of
-            #{id := Id} -> Id;
-            _ -> generate_agent_id()
-        end
-    catch
-        _:_ -> generate_agent_id()
-    end.
-
-generate_agent_id() ->
-    <<A:32, B:16, C:16, D:16, E:48>> = crypto:strong_rand_bytes(16),
-    ID = io_lib:format("super-~8.16.0b-~4.16.0b-~4.16.0b-~4.16.0b-~12.16.0b", 
-                       [A, B, C, D, E]),
-    list_to_binary(ID).
 
 calculate_uptime(StartTime) ->
     Now = erlang:timestamp(),

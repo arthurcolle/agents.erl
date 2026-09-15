@@ -135,16 +135,21 @@ handle_request(<<"POST">>, [<<"ingest">>], Req0, State) ->
     {ok, Body, Req1} = cowboy_req:read_body(Req0),
     case jsx:decode(Body, [return_maps]) of
         #{<<"sources">> := Sources} ->
-            % Convert JSON sources to Erlang records
-            ErlangSources = convert_sources_to_records(Sources),
-            ingest_from_sources(ErlangSources),
-            Response = jsx:encode(#{
-                status => <<"Ingestion started">>,
-                sources_count => length(ErlangSources)
-            }),
-            Req = cowboy_req:reply(202, #{
-                <<"content-type">> => <<"application/json">>
-            }, Response, Req1);
+            case convert_sources_to_records(Sources) of
+                {ok, ErlangSources} ->
+                    ingest_from_sources(ErlangSources),
+                    Response = jsx:encode(#{
+                        status => <<"Ingestion started">>,
+                        sources_count => length(ErlangSources)
+                    }),
+                    Req = cowboy_req:reply(202, #{
+                        <<"content-type">> => <<"application/json">>
+                    }, Response, Req1);
+                {error, Reason} ->
+                    Req = cowboy_req:reply(400, #{
+                        <<"content-type">> => <<"application/json">>
+                    }, jsx:encode(#{error => Reason}), Req1)
+            end;
         _ ->
             Req = cowboy_req:reply(400, #{
                 <<"content-type">> => <<"application/json">>
@@ -264,24 +269,55 @@ get_file_type(File) ->
         _ -> <<"unknown">>
     end.
 
-convert_sources_to_records(Sources) ->
-    lists:map(fun(Source) ->
-        Type = binary_to_atom(maps:get(<<"type">>, Source, <<"web">>), utf8),
-        Url = binary_to_list(maps:get(<<"url">>, Source, <<"">>)),
-        Domain = binary_to_atom(maps:get(<<"domain">>, Source, <<"general">>), utf8),
-        Priority = maps:get(<<"priority">>, Source, 5),
-        
-        % Create a simplified source record (matching the structure expected)
-        #{
-            type => Type,
-            url => Url,
-            domain => Domain,
-            priority => Priority,
-            frequency => daily,
-            last_update => undefined,
-            quality_score => 0.5
-        }
-    end, Sources).
+convert_sources_to_records(Sources) when is_list(Sources), length(Sources) =< 100 ->
+    try
+        {ok, [convert_source_to_record(Source) || Source <- Sources]}
+    catch
+        throw:Reason -> {error, Reason};
+        error:_ -> {error, invalid_sources}
+    end;
+convert_sources_to_records(_) ->
+    {error, invalid_sources}.
+
+convert_source_to_record(Source) when is_map(Source) ->
+    Type = source_type(maps:get(<<"type">>, Source, <<"web">>)),
+    Url = source_url(maps:get(<<"url">>, Source, <<>>)),
+    Domain = source_domain(maps:get(<<"domain">>, Source, <<"general">>)),
+    Priority = maps:get(<<"priority">>, Source, 5),
+    true = is_integer(Priority) andalso Priority >= 0 andalso Priority =< 10,
+    #{
+        type => Type,
+        url => Url,
+        domain => Domain,
+        priority => Priority,
+        frequency => daily,
+        last_update => undefined,
+        quality_score => 0.5
+    };
+convert_source_to_record(_) ->
+    throw(invalid_source).
+
+source_type(<<"web">>) -> web;
+source_type(<<"file">>) -> file;
+source_type(<<"api">>) -> api;
+source_type(<<"github">>) -> github;
+source_type(<<"slack">>) -> slack;
+source_type(Value) when is_atom(Value) -> source_type(atom_to_binary(Value, utf8));
+source_type(_) -> throw(invalid_source_type).
+
+source_url(Value) when is_binary(Value), byte_size(Value) =< 4096 ->
+    binary_to_list(Value);
+source_url(Value) when is_list(Value), length(Value) =< 4096 ->
+    Value;
+source_url(_) ->
+    throw(invalid_source_url).
+
+source_domain(Value) when is_binary(Value), byte_size(Value) > 0, byte_size(Value) =< 256 ->
+    Value;
+source_domain(Value) when is_list(Value), length(Value) > 0, length(Value) =< 256 ->
+    list_to_binary(Value);
+source_domain(_) ->
+    throw(invalid_source_domain).
 %% Simple stub implementations for knowledge base functions
 list_available_domains() ->
     case file:list_dir("knowledge_bases") of

@@ -14,30 +14,45 @@
 %% Generate and compile a module for the given endpoint group
 -spec generate_module(atom(), string()) -> {ok, module()} | {error, term()}.
 generate_module(GroupName, OutputDir) ->
-    ModuleName = list_to_atom("anthropic_" ++ atom_to_list(GroupName)),
+    case resolve_anthropic_module(GroupName) of
+        {ok, ModuleName} ->
+            generate_module_for_module(GroupName, ModuleName, OutputDir);
+        Error ->
+            Error
+    end.
+
+generate_module_for_module(GroupName, ModuleName, OutputDir) ->
     Source = generate_module_source(GroupName, ModuleName),
     Filename = OutputDir ++ "/" ++ atom_to_list(ModuleName) ++ ".erl",
-    
+
     % Ensure directory exists
     filelib:ensure_dir(Filename),
-    
+
     % Write the module source to file
     case file:write_file(Filename, Source) of
         ok ->
             % Compile the module using standard compile:file
             case compile:file(Filename, [return_errors, binary]) of
-                {ok, Module, Bin} -> 
+                {ok, Module, Bin} ->
                     % Load the binary
                     case code:load_binary(Module, atom_to_list(Module) ++ ".erl", Bin) of
                         {module, _} -> {ok, Module};
                         Error -> {error, {load_error, Error}}
                     end;
-                {error, Errors, _Warnings} -> 
+                {error, Errors, _Warnings} ->
                     {error, {compile_errors, Errors}}
             end;
         {error, Reason} ->
             {error, {file_write_error, Reason}}
     end.
+
+resolve_anthropic_module(models) -> {ok, anthropic_models};
+resolve_anthropic_module(messages) -> {ok, anthropic_messages};
+resolve_anthropic_module(mcp_connector) -> {ok, anthropic_mcp_connector};
+resolve_anthropic_module(<<"models">>) -> {ok, anthropic_models};
+resolve_anthropic_module(<<"messages">>) -> {ok, anthropic_messages};
+resolve_anthropic_module(<<"mcp_connector">>) -> {ok, anthropic_mcp_connector};
+resolve_anthropic_module(_) -> {error, invalid_api_group}.
 
 %% Generate the source code for a module
 -spec generate_module_source(atom(), atom()) -> binary().

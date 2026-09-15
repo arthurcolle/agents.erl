@@ -574,7 +574,7 @@ execute_real_request(_SpecName, Request, _State) ->
     Url = build_request_url(Request),
     Headers = maps:get(<<"headers">>, Request, #{}),
     Body = maps:get(<<"body">>, Request, <<>>),
-    Method = binary_to_atom(string:lowercase(maps:get(<<"method">>, Request)), utf8),
+    Method = playground_method_atom(maps:get(<<"method">>, Request, <<"GET">>)),
     
     %% Convert headers to list format
     HeadersList = maps:to_list(Headers),
@@ -757,7 +757,7 @@ generate_python_snippet(Request) ->
     ]).
 
 generate_erlang_snippet(Request) ->
-    Method = binary_to_atom(string:lowercase(maps:get(<<"method">>, Request)), utf8),
+    Method = playground_method_atom(maps:get(<<"method">>, Request, <<"GET">>)),
     Url = build_request_url(Request),
     Headers = maps:get(<<"headers">>, Request, #{}),
     Body = maps:get(<<"body">>, Request, <<>>),
@@ -1022,3 +1022,19 @@ generate_operation_id(Path, Method) ->
     MethodStr = binary_to_list(Method),
     PathStr = string:join([binary_to_list(P) || P <- CleanParts], "_"),
     iolist_to_binary([MethodStr, "_", PathStr]).
+
+playground_method_atom(<<"GET">>) -> get;
+playground_method_atom(<<"POST">>) -> post;
+playground_method_atom(<<"PUT">>) -> put;
+playground_method_atom(<<"PATCH">>) -> patch;
+playground_method_atom(<<"DELETE">>) -> delete;
+playground_method_atom(<<"HEAD">>) -> head;
+playground_method_atom(<<"OPTIONS">>) -> options;
+playground_method_atom(<<"get">>) -> get;
+playground_method_atom(<<"post">>) -> post;
+playground_method_atom(<<"put">>) -> put;
+playground_method_atom(<<"patch">>) -> patch;
+playground_method_atom(<<"delete">>) -> delete;
+playground_method_atom(<<"head">>) -> head;
+playground_method_atom(<<"options">>) -> options;
+playground_method_atom(_) -> get.

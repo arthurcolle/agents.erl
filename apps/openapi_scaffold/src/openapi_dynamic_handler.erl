@@ -17,10 +17,14 @@ init(Req0, State) ->
     %% Try to match the route
     case openapi_router:match_route(Path, Method) of
         {ok, Route, PathParams} ->
-            %% Add path parameters to request
-            Req1 = lists:foldl(fun({Name, Value}, ReqAcc) ->
-                cowboy_req:set_binding(Name, Value, ReqAcc)
-            end, Req0, PathParams),
+            %% Add path parameters to request bindings (Req is a map in cowboy 2.x)
+            Bindings = lists:foldl(fun({Name, Value}, Acc) ->
+                %% The router and validator use the wire name (binary). Keep
+                %% it as-is instead of allocating an atom from an OpenAPI
+                %% document or URL path.
+                Acc#{Name => Value}
+            end, maps:get(bindings, Req0, #{}), PathParams),
+            Req1 = Req0#{bindings => Bindings},
             
             %% Get the operation details
             Operation = maps:get(Method, Route#route.methods),

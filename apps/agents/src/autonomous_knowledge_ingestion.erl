@@ -577,7 +577,7 @@ analyze_existing_coverage() ->
                 case filelib:is_dir(DomainPath) of
                     true ->
                         FileCount = count_files_in_domain(DomainPath),
-                        maps:put(list_to_atom(Dir), FileCount, Acc);
+                        maps:put(list_to_binary(Dir), FileCount, Acc);
                     false ->
                         Acc
                 end

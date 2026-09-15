@@ -248,16 +248,16 @@ select_model_for_template(Template) ->
     ComplexityLevel = maps:get(complexity_level, Template, medium),
     case ComplexityLevel of
         expert -> 
-            Models = [<<"gpt-4o">>, <<"gpt-4.1">>, <<"o3">>, <<"gpt-4o-2024-08-06">>],
+            Models = [<<"gpt-5.6-sol">>, <<"gpt-5.6-sol">>, <<"gpt-5.6-sol">>, <<"gpt-4o-2024-08-06">>],
             lists:nth(rand:uniform(length(Models)), Models);
         high -> 
-            Models = [<<"gpt-4o">>, <<"gpt-4o-mini">>, <<"gpt-4.1-mini">>],
+            Models = [<<"gpt-5.6-sol">>, <<"gpt-5.6-terra">>, <<"gpt-5.6-terra">>],
             lists:nth(rand:uniform(length(Models)), Models);
         medium -> 
-            Models = [<<"gpt-4o-mini">>, <<"gpt-4.1-mini">>, <<"gpt-4.1-nano">>],
+            Models = [<<"gpt-5.6-terra">>, <<"gpt-5.6-terra">>, <<"gpt-5.6-luna">>],
             lists:nth(rand:uniform(length(Models)), Models);
         low -> 
-            Models = [<<"gpt-4o-mini">>, <<"gpt-4.1-nano">>, <<"gpt-3.5-turbo">>],
+            Models = [<<"gpt-5.6-terra">>, <<"gpt-5.6-luna">>, <<"gpt-3.5-turbo">>],
             lists:nth(rand:uniform(length(Models)), Models)
     end.
 

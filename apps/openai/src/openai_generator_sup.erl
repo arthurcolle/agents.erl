@@ -18,14 +18,18 @@ start_link(Options) ->
 %% Generate a client module and notify the clients supervisor to start it
 generate_client(ApiGroup, OutputDir) ->
     % First, check if the module already exists
-    ModuleName = list_to_atom("openai_" ++ atom_to_list(ApiGroup)),
-    case code:is_loaded(ModuleName) of
-        {file, _} ->
-            % Module is already loaded
-            {ok, already_loaded};
-        false ->
-            % Generate the module
-            gen_server:call(openai_generator, {generate_client, ApiGroup, OutputDir})
+    case openai_sup:resolve_client_module(ApiGroup) of
+        {ok, ModuleName} ->
+            case code:is_loaded(ModuleName) of
+                {file, _} ->
+                    % Module is already loaded
+                    {ok, already_loaded};
+                false ->
+                    % Generate the module
+                    gen_server:call(openai_generator, {generate_client, ApiGroup, OutputDir})
+            end;
+        Error ->
+            Error
     end.
 
 %% Supervisor callback

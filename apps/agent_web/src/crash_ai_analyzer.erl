@@ -100,7 +100,7 @@ perform_analysis(CrashReport, OpenAIClient) ->
     
     try
         {ok, Response} = openai_chat:create_completion(OpenAIClient, #{
-            model => <<"gpt-4o">>,
+            model => <<"gpt-5.6-sol">>,
             messages => Messages,
             temperature => 0.3,
             response_format => #{type => json_object}
@@ -169,7 +169,7 @@ generate_fix_proposals(CrashId, Analysis, OpenAIClient) ->
     
     try
         {ok, Response} = openai_chat:create_completion(OpenAIClient, #{
-            model => <<"gpt-4o">>,
+            model => <<"gpt-5.6-sol">>,
             messages => Messages,
             temperature => 0.2,
             response_format => #{type => json_object}
@@ -230,10 +230,18 @@ parse_fix_response(Response, CrashId) ->
         crash_id = CrashId,
         description = maps:get(<<"description">>, Fix),
         code_changes = maps:get(<<"code_changes">>, Fix, []),
-        risk_level = binary_to_atom(maps:get(<<"risk_level">>, Fix, <<"medium">>)),
+        risk_level = normalize_risk_level(maps:get(<<"risk_level">>, Fix, <<"medium">>)),
         estimated_effort = maps:get(<<"estimated_effort">>, Fix, <<"unknown">>),
         automated = maps:get(<<"automated">>, Fix, false)
     } || Fix <- Fixes].
 
 generate_fix_id() ->
     list_to_binary(io_lib:format("fix_~p", [erlang:system_time(microsecond)])).
+
+normalize_risk_level(<<"low">>) -> low;
+normalize_risk_level(<<"medium">>) -> medium;
+normalize_risk_level(<<"high">>) -> high;
+normalize_risk_level(low) -> low;
+normalize_risk_level(medium) -> medium;
+normalize_risk_level(high) -> high;
+normalize_risk_level(_) -> medium.

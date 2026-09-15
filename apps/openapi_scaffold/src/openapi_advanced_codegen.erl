@@ -1010,8 +1010,8 @@ generate_rust_method(Path, Method, Operation) ->
 generate_erlang_type(Name, Schema) ->
     Properties = maps:get(<<"properties">>, Schema, #{}),
     Fields = maps:fold(fun(PropName, _PropSchema, Acc) ->
-        FieldName = binary_to_atom(PropName, utf8),
-        [io_lib:format("    ~p :: term()", [FieldName]) | Acc]
+        FieldName = safe_erlang_identifier(PropName),
+        [io_lib:format("    ~s :: term()", [FieldName]) | Acc]
     end, [], Properties),
     
     RecordName = to_snake_case(Name),
@@ -1020,3 +1020,21 @@ generate_erlang_type(Name, Schema) ->
         string:join(lists:reverse(Fields), ",\n"),
         "\n})."
     ].
+
+safe_erlang_identifier(Value) when is_binary(Value) ->
+    safe_erlang_identifier(binary_to_list(Value));
+safe_erlang_identifier(Value) when is_list(Value) ->
+    Lower = string:lowercase(Value),
+    Sanitized = [case C of
+        Ch when (Ch >= $a andalso Ch =< $z) orelse
+                (Ch >= $A andalso Ch =< $Z) orelse
+                (Ch >= $0 andalso Ch =< $9) orelse Ch =:= $_ -> Ch;
+        _ -> $_
+    end || C <- Lower],
+    Bounded = lists:sublist(Sanitized, 120),
+    case Bounded of
+        [] -> "field";
+        [First | _] when First >= $a, First =< $z -> Bounded;
+        _ -> "field_" ++ Bounded
+    end;
+safe_erlang_identifier(_) -> "field".

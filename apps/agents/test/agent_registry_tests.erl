@@ -7,7 +7,7 @@ agent_registry_test_() ->
          {ok, _} = agent_registry:start_link([]),
          ok
      end,
-     fun(_) -> ok end,
+     fun(_) -> gen_server:stop(agent_registry) end,
      fun(_) ->
         [
           ?_test(begin
@@ -17,7 +17,6 @@ agent_registry_test_() ->
             
             % Register agent
             agent_registry:register_agent(SessionId, Self),
-            timer:sleep(100), % Give time for registration
             
             % List agents should include our session
             Agents = agent_registry:list_agents(),
@@ -37,7 +36,6 @@ agent_registry_test_() ->
             
             % Unregister agent
             ok = agent_registry:unregister_agent(SessionId),
-            timer:sleep(100),
             Agents2 = agent_registry:list_agents(),
             SessionIds2 = [Id || {Id, _Pid, _Meta} <- Agents2],
             ?assertNot(lists:member(SessionId, SessionIds2)),
@@ -51,6 +49,19 @@ agent_registry_test_() ->
             % Query another missing
             ?assertMatch({error, agent_not_found}, agent_registry:get_agent(<<"missing">>)),
             ok
+          end),
+          ?_test(begin
+            P1 = spawn(fun() -> receive stop -> ok end end),
+            P2 = spawn(fun() -> receive stop -> ok end end),
+            SessionId = <<"replacement_session">>,
+            ok = agent_registry:register_agent(SessionId, P1, #{}),
+            ok = agent_registry:register_agent(SessionId, P2, #{}),
+            exit(P1, kill),
+            timer:sleep(25),
+            ?assertEqual({ok, P2}, agent_registry:get_agent(SessionId)),
+            exit(P2, kill),
+            timer:sleep(25),
+            ?assertMatch({error, agent_not_found}, agent_registry:get_agent(SessionId))
           end)
         ]
      end

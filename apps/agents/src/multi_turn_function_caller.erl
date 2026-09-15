@@ -52,7 +52,7 @@
 %%%===================================================================
 
 start_link(AgentId) ->
-    gen_server:start_link({local, process_name(AgentId)}, ?MODULE, [AgentId], []).
+    gen_server:start_link({via, gproc, process_name(AgentId)}, ?MODULE, [AgentId], []).
 
 %% @doc Handle a multi-turn conversation with function calling
 -spec handle_multi_turn_conversation(binary(), binary(), map()) -> {ok, map()} | {error, term()}.
@@ -365,7 +365,7 @@ generate_ai_response(Message, Context, FunctionResults, State) ->
     
     %% Call AI model
     case openai_chat:chat_completion(#{
-        model => <<"gpt-4o">>,
+        model => <<"gpt-5.6-sol">>,
         messages => Messages,
         system => SystemPrompt,
         temperature => 0.7,
@@ -648,4 +648,4 @@ format_error(Error) ->
     iolist_to_binary(io_lib:format("~p", [Error])).
 
 process_name(AgentId) ->
-    binary_to_atom(<<"multi_turn_", AgentId/binary>>, utf8).
+    {n, l, {?MODULE, AgentId}}.

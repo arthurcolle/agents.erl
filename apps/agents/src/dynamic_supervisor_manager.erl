@@ -72,8 +72,8 @@ get_supervision_tree() ->
 %%====================================================================
 
 init([]) ->
-    process_flag(trap_exit, true),
-    {ok, #state{}}.
+    {Supervisors, Configs} = discover_supervisors(),
+    {ok, #state{supervisors = Supervisors, sup_configs = Configs}}.
 
 handle_call({create_supervisor, Name, SupFlags, InitialChildren}, _From, State) ->
     case maps:is_key(Name, State#state.supervisors) of
@@ -99,39 +99,56 @@ handle_call({create_supervisor, Name, SupFlags, InitialChildren}, _From, State) 
     end;
 
 handle_call({stop_supervisor, Name}, _From, State) ->
-    case maps:get(Name, State#state.supervisors, undefined) of
-        undefined ->
+    case maps:is_key(Name, State#state.supervisors) of
+        false ->
             {reply, {error, not_found}, State};
-        Pid ->
-            ok = supervisor:terminate_child(agent_web_sup, {dynamic_sup, Name}),
-            ok = supervisor:delete_child(agent_web_sup, {dynamic_sup, Name}),
-            NewSupervisors = maps:remove(Name, State#state.supervisors),
-            NewConfigs = maps:remove(Name, State#state.sup_configs),
-            NewState = State#state{
-                supervisors = NewSupervisors,
-                sup_configs = NewConfigs
-            },
-            {reply, ok, NewState}
+        true ->
+            case remove_dynamic_supervisor(Name) of
+                ok ->
+                    NewSupervisors = maps:remove(Name, State#state.supervisors),
+                    NewConfigs = maps:remove(Name, State#state.sup_configs),
+                    NewState = State#state{
+                        supervisors = NewSupervisors,
+                        sup_configs = NewConfigs
+                    },
+                    {reply, ok, NewState};
+                {error, Reason} ->
+                    {reply, {error, Reason}, State}
+            end
     end;
 
 handle_call(list_supervisors, _From, State) ->
-    SupervisorList = maps:fold(fun(Name, Pid, Acc) ->
+    SupervisorList = maps:fold(fun(Name, _StoredPid, Acc) ->
         Config = maps:get(Name, State#state.sup_configs, #{}),
-        Info = #{
-            name => Name,
-            pid => Pid,
-            config => Config,
-            children => get_children_info(Pid)
-        },
+        Info = case lookup_supervisor(Name) of
+            {ok, Pid} ->
+                #{
+                    name => Name,
+                    pid => Pid,
+                    status => running,
+                    config => Config,
+                    children => get_children_info(Pid)
+                };
+            {error, Reason} ->
+                #{
+                    name => Name,
+                    pid => undefined,
+                    status => Reason,
+                    config => Config,
+                    children => []
+                }
+        end,
         [Info | Acc]
     end, [], State#state.supervisors),
     {reply, {ok, SupervisorList}, State};
 
 handle_call({add_child, SupName, ChildId, ChildSpec}, _From, State) ->
-    case maps:get(SupName, State#state.supervisors, undefined) of
-        undefined ->
+    case lookup_managed_supervisor(SupName, State) of
+        {error, not_found} ->
             {reply, {error, supervisor_not_found}, State};
-        Pid ->
+        {error, Reason} ->
+            {reply, {error, Reason}, State};
+        {ok, Pid} ->
             case supervisor:start_child(Pid, ChildSpec) of
                 {ok, ChildPid} ->
                     {reply, {ok, ChildPid}, State};
@@ -143,10 +160,12 @@ handle_call({add_child, SupName, ChildId, ChildSpec}, _From, State) ->
     end;
 
 handle_call({remove_child, SupName, ChildId}, _From, State) ->
-    case maps:get(SupName, State#state.supervisors, undefined) of
-        undefined ->
+    case lookup_managed_supervisor(SupName, State) of
+        {error, not_found} ->
             {reply, {error, supervisor_not_found}, State};
-        Pid ->
+        {error, Reason} ->
+            {reply, {error, Reason}, State};
+        {ok, Pid} ->
             case supervisor:terminate_child(Pid, ChildId) of
                 ok ->
                     case supervisor:delete_child(Pid, ChildId) of
@@ -161,10 +180,12 @@ handle_call({remove_child, SupName, ChildId}, _From, State) ->
     end;
 
 handle_call({get_supervisor_info, Name}, _From, State) ->
-    case maps:get(Name, State#state.supervisors, undefined) of
-        undefined ->
+    case lookup_managed_supervisor(Name, State) of
+        {error, not_found} ->
             {reply, {error, not_found}, State};
-        Pid ->
+        {error, Reason} ->
+            {reply, {error, Reason}, State};
+        {ok, Pid} ->
             Config = maps:get(Name, State#state.sup_configs, #{}),
             Children = supervisor:which_children(Pid),
             Count = supervisor:count_children(Pid),
@@ -187,23 +208,6 @@ handle_call(_Request, _From, State) ->
 
 handle_cast(_Msg, State) ->
     {noreply, State}.
-
-handle_info({'EXIT', Pid, Reason}, State) ->
-    % Handle supervisor crashes
-    case find_supervisor_by_pid(Pid, State#state.supervisors) of
-        {ok, Name} ->
-            io:format("Dynamic supervisor ~p (PID: ~p) exited with reason: ~p~n", 
-                     [Name, Pid, Reason]),
-            NewSupervisors = maps:remove(Name, State#state.supervisors),
-            NewConfigs = maps:remove(Name, State#state.sup_configs),
-            NewState = State#state{
-                supervisors = NewSupervisors,
-                sup_configs = NewConfigs
-            },
-            {noreply, NewState};
-        error ->
-            {noreply, State}
-    end;
 
 handle_info(_Info, State) ->
     {noreply, State}.
@@ -229,8 +233,9 @@ start_dynamic_supervisor(Name, SupFlags, InitialChildren) ->
         modules => [dynamic_supervisor_wrapper]
     },
     
-    % Add to the main supervisor
-    case supervisor:start_child(agent_web_sup, ChildSpec) of
+    % Runtime-created supervisors belong to the core runtime, never the web
+    % application's root supervisor.
+    case supervisor:start_child(dynamic_supervisors_sup, ChildSpec) of
         {ok, Pid} ->
             {ok, Pid};
         {ok, Pid, _Info} ->
@@ -239,15 +244,65 @@ start_dynamic_supervisor(Name, SupFlags, InitialChildren) ->
             {error, Reason}
     end.
 
-find_supervisor_by_pid(Pid, Supervisors) ->
-    case maps:fold(fun(Name, SupPid, Acc) ->
-        case SupPid of
-            Pid -> {ok, Name};
-            _ -> Acc
-        end
-    end, error, Supervisors) of
-        {ok, Name} -> {ok, Name};
-        error -> error
+remove_dynamic_supervisor(Name) ->
+    ChildId = {dynamic_sup, Name},
+    case supervisor:terminate_child(dynamic_supervisors_sup, ChildId) of
+        ok ->
+            case supervisor:delete_child(dynamic_supervisors_sup, ChildId) of
+                ok -> ok;
+                {error, not_found} -> ok;
+                Error -> Error
+            end;
+        {error, not_found} ->
+            {error, not_found};
+        Error ->
+            Error
+    end.
+
+lookup_managed_supervisor(Name, State) ->
+    case maps:is_key(Name, State#state.supervisors) of
+        true -> lookup_supervisor(Name);
+        false -> {error, not_found}
+    end.
+
+lookup_supervisor(Name) ->
+    try supervisor:which_children(dynamic_supervisors_sup) of
+        Children ->
+            case lists:keyfind({dynamic_sup, Name}, 1, Children) of
+                {{dynamic_sup, Name}, Pid, supervisor, _Modules}
+                        when is_pid(Pid) ->
+                    {ok, Pid};
+                {{dynamic_sup, Name}, restarting, supervisor, _Modules} ->
+                    {error, restarting};
+                {{dynamic_sup, Name}, undefined, supervisor, _Modules} ->
+                    {error, stopped};
+                false ->
+                    {error, not_found}
+            end
+    catch
+        exit:{noproc, _} -> {error, host_not_running};
+        _:_ -> {error, unavailable}
+    end.
+
+discover_supervisors() ->
+    try supervisor:which_children(dynamic_supervisors_sup) of
+        Children ->
+            lists:foldl(
+                fun
+                    ({{dynamic_sup, Name}, Pid, supervisor, _Modules},
+                     {Supervisors, Configs}) ->
+                        {
+                            maps:put(Name, Pid, Supervisors),
+                            maps:put(Name, #{recovered => true}, Configs)
+                        };
+                    (_, Acc) ->
+                        Acc
+                end,
+                {#{}, #{}},
+                Children
+            )
+    catch
+        _:_ -> {#{}, #{}}
     end.
 
 get_children_info(SupPid) ->
@@ -277,9 +332,9 @@ build_supervision_tree(State) ->
     }.
 
 get_main_supervision_tree() ->
-    case whereis(agent_web_sup) of
+    case whereis(agents_sup) of
         undefined -> #{error => main_supervisor_not_found};
-        Pid -> build_supervisor_subtree(agent_web_sup, Pid)
+        Pid -> build_supervisor_subtree(agents_sup, Pid)
     end.
 
 build_supervisor_subtree(Name, Pid) ->

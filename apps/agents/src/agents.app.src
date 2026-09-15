@@ -5,10 +5,15 @@
     {links, [{"GitHub", "https://github.com/arthurcolle/agents.erl"}]},
     {maintainers, ["Arthur M. Collé"]},
     {registered, [
-        agent,
+        agents_sup,
+        agent_time_authority,
         agent_tools,
         agent_registry,
         agent_supervisor,
+        super_agent_sup,
+        dynamic_runtime_sup,
+        dynamic_supervisors_sup,
+        dynamic_supervisor_manager,
         quantum_runtime,
         quantum_protocol,
         cluster_orchestrator,
@@ -29,7 +34,7 @@
         poolboy,
         uuid
     ]},
-    {mod, {agent, []}},
+    {mod, {agents_app, []}},
     {env, [
         {auto_start_groups, [chat, completions, embeddings]},
         {output_dir, "/tmp/openai-erlang"},

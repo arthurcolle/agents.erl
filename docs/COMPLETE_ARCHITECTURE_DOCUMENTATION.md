@@ -1,5 +1,10 @@
 # Complete Architecture Documentation: agents.erl
 
+> **Current runtime architecture:** See
+> [ARCHITECTURE.md](ARCHITECTURE.md). This document is a broader feature
+> inventory and contains historical topology examples that are not the
+> authoritative process-ownership model.
+
 ## 🏗️ System Overview
 
 **agents.erl** is a sophisticated distributed multi-agent system built on Erlang/OTP that combines traditional fault-tolerant distributed computing with cutting-edge AI capabilities. The system features quantum-inspired coordination, real-time web interfaces, and advanced error handling with self-healing capabilities.

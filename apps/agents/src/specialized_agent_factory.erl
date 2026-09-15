@@ -194,9 +194,12 @@ register_type_internal(TypeName, TypeSpec, Tools, State) ->
 create_agent_internal(#agent_type{name = TypeName, tools = Tools, default_config = DefaultConfig}, UserConfig) ->
     % Merge configurations
     FinalConfig = maps:merge(DefaultConfig, UserConfig),
+    AgentId = generate_agent_id(TypeName),
     
     % Create agent with specialized tools
     AgentConfig = #{
+        id => AgentId,
+        type => TypeName,
         agent_type => TypeName,
         tools => Tools,
         config => FinalConfig
@@ -204,7 +207,7 @@ create_agent_internal(#agent_type{name = TypeName, tools = Tools, default_config
     
     try
         % Start the agent instance
-        {ok, AgentPid} = agent_instance:start_link(AgentConfig),
+        {ok, AgentPid} = agent_supervisor:start_agent(AgentConfig),
         
         % Register specialized tools for this agent
         register_agent_tools(AgentPid, Tools),
@@ -212,7 +215,7 @@ create_agent_internal(#agent_type{name = TypeName, tools = Tools, default_config
         % Register with dynamic router
         Capabilities = get_capabilities_from_tools(Tools),
         dynamic_agent_router:register_agent(
-            generate_agent_id(TypeName), 
+            AgentId,
             AgentPid, 
             Capabilities
         ),
@@ -267,7 +270,7 @@ get_predefined_agent_types() ->
             capabilities => [<<"complex_reasoning">>, <<"mathematical_analysis">>, <<"logical_deduction">>, <<"strategic_planning">>],
             specialization => #{
                 domain => <<"reasoning">>,
-                preferred_models => [<<"o3">>, <<"o4-mini">>, <<"gpt-4.1">>],
+                preferred_models => [<<"gpt-5.6-sol">>, <<"gpt-5.6-terra">>, <<"gpt-5.6-sol">>],
                 task_complexity => <<"high">>,
                 reasoning_depth => <<"comprehensive">>
             },
@@ -277,7 +280,7 @@ get_predefined_agent_types() ->
                 priority => <<"high">>
             },
             default_config => #{
-                model => <<"o3">>,
+                model => <<"gpt-5.6-sol">>,
                 max_tokens => 8000,
                 temperature => 0.1
             }
@@ -289,7 +292,7 @@ get_predefined_agent_types() ->
             capabilities => [<<"real_time_chat">>, <<"quick_queries">>, <<"instant_help">>, <<"basic_tasks">>],
             specialization => #{
                 domain => <<"real_time">>,
-                preferred_models => [<<"gpt-4.1-nano">>, <<"gpt-4.1-mini">>, <<"o4-mini">>],
+                preferred_models => [<<"gpt-5.6-luna">>, <<"gpt-5.6-terra">>, <<"gpt-5.6-terra">>],
                 response_time => <<"minimal">>,
                 optimization_target => <<"speed">>
             },
@@ -299,7 +302,7 @@ get_predefined_agent_types() ->
                 priority => <<"normal">>
             },
             default_config => #{
-                model => <<"gpt-4.1-nano">>,
+                model => <<"gpt-5.6-luna">>,
                 max_tokens => 2000,
                 temperature => 0.3
             }
@@ -311,7 +314,7 @@ get_predefined_agent_types() ->
             capabilities => [<<"data_analysis">>, <<"visualization">>, <<"statistics">>, <<"reporting">>],
             specialization => #{
                 domain => <<"data_science">>,
-                preferred_models => [<<"gpt-4.1">>, <<"o4-mini">>, <<"gpt-4.1-mini">>],
+                preferred_models => [<<"gpt-5.6-sol">>, <<"gpt-5.6-terra">>, <<"gpt-5.6-terra">>],
                 analysis_depth => <<"detailed">>,
                 memory_type => <<"analytical">>
             },
@@ -321,7 +324,7 @@ get_predefined_agent_types() ->
                 priority => <<"normal">>
             },
             default_config => #{
-                model => <<"gpt-4.1">>,
+                model => <<"gpt-5.6-sol">>,
                 max_tokens => 4000,
                 temperature => 0.2
             }
@@ -333,7 +336,7 @@ get_predefined_agent_types() ->
             capabilities => [<<"code_analysis">>, <<"debugging">>, <<"refactoring">>, <<"testing">>, <<"documentation">>],
             specialization => #{
                 domain => <<"software_engineering">>,
-                preferred_models => [<<"o4-mini">>, <<"gpt-4.1">>, <<"o3">>],
+                preferred_models => [<<"gpt-5.6-terra">>, <<"gpt-5.6-sol">>, <<"gpt-5.6-sol">>],
                 languages => [<<"erlang">>, <<"python">>, <<"javascript">>, <<"rust">>, <<"go">>],
                 frameworks => [<<"otp">>, <<"react">>, <<"fastapi">>]
             },
@@ -343,7 +346,7 @@ get_predefined_agent_types() ->
                 priority => <<"high">>
             },
             default_config => #{
-                model => <<"o4-mini">>,
+                model => <<"gpt-5.6-terra">>,
                 max_tokens => 6000,
                 temperature => 0.15
             }
@@ -355,7 +358,7 @@ get_predefined_agent_types() ->
             capabilities => [<<"web_research">>, <<"fact_checking">>, <<"knowledge_synthesis">>, <<"citation_management">>],
             specialization => #{
                 domain => <<"research">>,
-                preferred_models => [<<"o3">>, <<"gpt-4.1">>, <<"o4-mini">>],
+                preferred_models => [<<"gpt-5.6-sol">>, <<"gpt-5.6-sol">>, <<"gpt-5.6-terra">>],
                 search_depth => <<"comprehensive">>,
                 fact_check_rigor => <<"high">>
             },
@@ -365,7 +368,7 @@ get_predefined_agent_types() ->
                 priority => <<"normal">>
             },
             default_config => #{
-                model => <<"gpt-4.1">>,
+                model => <<"gpt-5.6-sol">>,
                 max_tokens => 5000,
                 temperature => 0.25
             }
@@ -377,7 +380,7 @@ get_predefined_agent_types() ->
             capabilities => [<<"email_management">>, <<"document_generation">>, <<"translation">>, <<"summarization">>],
             specialization => #{
                 domain => <<"communication">>,
-                preferred_models => [<<"gpt-4.1-mini">>, <<"gpt-4.1-nano">>, <<"o4-mini">>],
+                preferred_models => [<<"gpt-5.6-terra">>, <<"gpt-5.6-luna">>, <<"gpt-5.6-terra">>],
                 languages => [<<"english">>, <<"spanish">>, <<"french">>, <<"german">>, <<"chinese">>],
                 optimization_target => <<"cost">>
             },
@@ -387,7 +390,7 @@ get_predefined_agent_types() ->
                 priority => <<"low">>
             },
             default_config => #{
-                model => <<"gpt-4.1-mini">>,
+                model => <<"gpt-5.6-terra">>,
                 max_tokens => 3000,
                 temperature => 0.4
             }
@@ -399,7 +402,7 @@ get_predefined_agent_types() ->
             capabilities => [<<"system_monitoring">>, <<"log_analysis">>, <<"automation">>, <<"security">>],
             specialization => #{
                 domain => <<"infrastructure">>,
-                preferred_models => [<<"gpt-4.1-mini">>, <<"o4-mini">>, <<"gpt-4.1">>],
+                preferred_models => [<<"gpt-5.6-terra">>, <<"gpt-5.6-terra">>, <<"gpt-5.6-sol">>],
                 platforms => [<<"linux">>, <<"docker">>, <<"kubernetes">>, <<"aws">>],
                 response_priority => <<"high">>
             },
@@ -409,7 +412,7 @@ get_predefined_agent_types() ->
                 priority => <<"high">>
             },
             default_config => #{
-                model => <<"gpt-4.1-mini">>,
+                model => <<"gpt-5.6-terra">>,
                 max_tokens => 3000,
                 temperature => 0.2
             }
@@ -421,7 +424,7 @@ get_predefined_agent_types() ->
             capabilities => [<<"financial_modeling">>, <<"market_analysis">>, <<"risk_assessment">>, <<"portfolio_management">>],
             specialization => #{
                 domain => <<"finance">>,
-                preferred_models => [<<"o3">>, <<"gpt-4.1">>, <<"o4-mini">>],
+                preferred_models => [<<"gpt-5.6-sol">>, <<"gpt-5.6-sol">>, <<"gpt-5.6-terra">>],
                 markets => [<<"stocks">>, <<"crypto">>, <<"bonds">>, <<"forex">>],
                 analysis_complexity => <<"high">>
             },
@@ -431,7 +434,7 @@ get_predefined_agent_types() ->
                 priority => <<"high">>
             },
             default_config => #{
-                model => <<"o3">>,
+                model => <<"gpt-5.6-sol">>,
                 max_tokens => 6000,
                 temperature => 0.1
             }
@@ -443,7 +446,7 @@ get_predefined_agent_types() ->
             capabilities => [<<"content_creation">>, <<"image_generation">>, <<"design">>, <<"copywriting">>],
             specialization => #{
                 domain => <<"creative">>,
-                preferred_models => [<<"gpt-4.1">>, <<"o4-mini">>, <<"gpt-4.1-mini">>],
+                preferred_models => [<<"gpt-5.6-sol">>, <<"gpt-5.6-terra">>, <<"gpt-5.6-terra">>],
                 content_types => [<<"blog">>, <<"social_media">>, <<"marketing">>, <<"technical_writing">>],
                 creativity_level => <<"high">>
             },
@@ -453,7 +456,7 @@ get_predefined_agent_types() ->
                 priority => <<"normal">>
             },
             default_config => #{
-                model => <<"gpt-4.1">>,
+                model => <<"gpt-5.6-sol">>,
                 max_tokens => 4000,
                 temperature => 0.7
             }
@@ -465,7 +468,7 @@ get_predefined_agent_types() ->
             capabilities => [<<"threat_detection">>, <<"vulnerability_scanning">>, <<"incident_response">>, <<"compliance_checking">>],
             specialization => #{
                 domain => <<"cybersecurity">>,
-                preferred_models => [<<"o4-mini">>, <<"gpt-4.1">>, <<"o3">>],
+                preferred_models => [<<"gpt-5.6-terra">>, <<"gpt-5.6-sol">>, <<"gpt-5.6-sol">>],
                 frameworks => [<<"nist">>, <<"iso27001">>, <<"owasp">>],
                 analysis_depth => <<"comprehensive">>
             },
@@ -475,7 +478,7 @@ get_predefined_agent_types() ->
                 priority => <<"high">>
             },
             default_config => #{
-                model => <<"o4-mini">>,
+                model => <<"gpt-5.6-terra">>,
                 max_tokens => 5000,
                 temperature => 0.1
             }

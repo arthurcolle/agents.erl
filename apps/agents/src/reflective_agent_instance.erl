@@ -18,6 +18,7 @@
 -export([init/1, handle_call/3, handle_cast/2, handle_info/2, terminate/2, code_change/3]).
 
 -define(REFLECTION_INTERVAL, 30000). % 30 seconds
+-define(REFLECTION_REGISTRY, reflective_agent_registry).
 
 -record(state, {
     agent_id :: binary(),
@@ -45,32 +46,32 @@
 %% ============================================================================
 
 start_link(AgentId) ->
-    gen_server:start_link({local, list_to_atom("reflective_" ++ binary_to_list(AgentId))}, 
-                          ?MODULE, [AgentId], []).
+    ensure_registry(),
+    case gen_server:start_link(?MODULE, [AgentId], []) of
+        {ok, Pid} = Result ->
+            ets:insert(?REFLECTION_REGISTRY, {AgentId, Pid}),
+            Result;
+        Error ->
+            Error
+    end.
 
-enable_deep_reflection(AgentId) ->
-    ServerName = list_to_atom("reflective_" ++ binary_to_list(AgentId)),
-    gen_server:call(ServerName, enable_deep_reflection).
+enable_deep_reflection(Target) ->
+    call_target(Target, enable_deep_reflection).
 
-get_reflection_report(AgentId) ->
-    ServerName = list_to_atom("reflective_" ++ binary_to_list(AgentId)),
-    gen_server:call(ServerName, get_reflection_report).
+get_reflection_report(Target) ->
+    call_target(Target, get_reflection_report).
 
-perform_self_analysis(AgentId) ->
-    ServerName = list_to_atom("reflective_" ++ binary_to_list(AgentId)),
-    gen_server:call(ServerName, perform_self_analysis).
+perform_self_analysis(Target) ->
+    call_target(Target, perform_self_analysis).
 
-analyze_performance_patterns(AgentId) ->
-    ServerName = list_to_atom("reflective_" ++ binary_to_list(AgentId)),
-    gen_server:call(ServerName, analyze_performance_patterns).
+analyze_performance_patterns(Target) ->
+    call_target(Target, analyze_performance_patterns).
 
-generate_self_improvement_plan(AgentId) ->
-    ServerName = list_to_atom("reflective_" ++ binary_to_list(AgentId)),
-    gen_server:call(ServerName, generate_self_improvement_plan).
+generate_self_improvement_plan(Target) ->
+    call_target(Target, generate_self_improvement_plan).
 
-update_reflection_settings(AgentId, Settings) ->
-    ServerName = list_to_atom("reflective_" ++ binary_to_list(AgentId)),
-    gen_server:call(ServerName, {update_reflection_settings, Settings}).
+update_reflection_settings(Target, Settings) ->
+    call_target(Target, {update_reflection_settings, Settings}).
 
 %% ============================================================================
 %% gen_server callbacks
@@ -145,7 +146,12 @@ handle_info(perform_reflection, State) ->
 handle_info(_Info, State) ->
     {noreply, State}.
 
-terminate(_Reason, _State) ->
+terminate(_Reason, #state{agent_id = AgentId}) ->
+    ensure_registry(),
+    case ets:lookup(?REFLECTION_REGISTRY, AgentId) of
+        [{AgentId, Pid}] when Pid =:= self() -> ets:delete(?REFLECTION_REGISTRY, AgentId);
+        _ -> ok
+    end,
     ok.
 
 code_change(_OldVsn, State, _Extra) ->
@@ -349,6 +355,48 @@ calculate_reflection_confidence(State) ->
 %% ============================================================================
 %% Utility Functions
 %% ============================================================================
+
+ensure_registry() ->
+    case ets:info(?REFLECTION_REGISTRY) of
+        undefined ->
+            try ets:new(?REFLECTION_REGISTRY, [named_table, public, set]) of
+                _ -> ok
+            catch
+                error:badarg -> ok
+            end;
+        _ ->
+            ok
+    end.
+
+call_target(Target, Request) ->
+    case resolve_target(Target) of
+        {ok, Pid} ->
+            try gen_server:call(Pid, Request, 5000) of
+                Result -> Result
+            catch
+                exit:{noproc, _} -> {error, not_found};
+                exit:timeout -> {error, timeout}
+            end;
+        error ->
+            {error, not_found}
+    end.
+
+resolve_target(Pid) when is_pid(Pid) ->
+    case is_process_alive(Pid) of
+        true -> {ok, Pid};
+        false -> error
+    end;
+resolve_target(AgentId) ->
+    ensure_registry(),
+    case ets:lookup(?REFLECTION_REGISTRY, AgentId) of
+        [{AgentId, Pid}] when is_pid(Pid) ->
+            case is_process_alive(Pid) of
+                true -> {ok, Pid};
+                false -> ets:delete(?REFLECTION_REGISTRY, AgentId), error
+            end;
+        _ ->
+            error
+    end.
 
 default_reflection_settings() ->
     #{

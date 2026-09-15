@@ -60,8 +60,15 @@ init() ->
             ?LOG_DEBUG("MCP server configuration already initialized", []),
             ok;
         _ ->
-            put({?INIT_FLAG}, true),
-            do_init()
+            %% Only mark the process as initialized after all setup has
+            %% completed.  A failed initialization must remain retryable.
+            case do_init() of
+                ok ->
+                    put({?INIT_FLAG}, true),
+                    ok;
+                Result ->
+                    Result
+            end
     end.
 
 do_init() ->
@@ -80,7 +87,13 @@ do_init() ->
     
     % Wait for Mnesia tables to be ready
     ?LOG_DEBUG("Waiting for Mnesia schema tables", []),
-    mnesia:wait_for_tables([schema], 5000),
+    case mnesia:wait_for_tables([schema], 5000) of
+        ok -> ok;
+        {timeout, MissingTables} ->
+            error({mnesia_tables_timeout, MissingTables});
+        {error, WaitReason} ->
+            error({mnesia_tables_unavailable, WaitReason})
+    end,
     
     % Ensure we have a disc schema if using disc_copies
     TableType = case node() of
@@ -105,33 +118,29 @@ do_init() ->
     end,
     ?LOG_INFO("Using table type: ~p for node: ~p", [TableType, node()]),
     
-    case mnesia:create_table(mcp_server, 
-        [{attributes, record_info(fields, mcp_server)},
-         {TableType, [node()]}]) of
-        {atomic, ok} -> 
-            ?LOG_INFO("Created mcp_server table", []);
-        {aborted, {already_exists, mcp_server}} -> 
-            ?LOG_INFO("mcp_server table already exists", []);
-        {aborted, Reason3} ->
-            ?LOG_ERROR("Failed to create mcp_server table: ~p", [Reason3])
-    end,
-    
-    case mnesia:create_table(agent_mcp_mapping,
-        [{attributes, record_info(fields, agent_mcp_mapping)},
-         {TableType, [node()]}]) of
-        {atomic, ok} -> 
-            ?LOG_INFO("Created agent_mcp_mapping table", []);
-        {aborted, {already_exists, agent_mcp_mapping}} -> 
-            ?LOG_INFO("agent_mcp_mapping table already exists", []);
-        {aborted, Reason4} ->
-            ?LOG_ERROR("Failed to create agent_mcp_mapping table: ~p", [Reason4])
-    end,
-    
-    % Load seed servers
-    ?LOG_INFO("Loading seed servers", []),
-    load_seed_servers(),
-    ?LOG_INFO("MCP server configuration initialization complete", []),
-    ok.
+    McpTableResult = ensure_mnesia_table(
+        mcp_server,
+        record_info(fields, mcp_server),
+        TableType
+    ),
+    MappingTableResult = ensure_mnesia_table(
+        agent_mcp_mapping,
+        record_info(fields, agent_mcp_mapping),
+        TableType
+    ),
+
+    case {McpTableResult, MappingTableResult} of
+        {ok, ok} ->
+            % Load seed servers
+            ?LOG_INFO("Loading seed servers", []),
+            load_seed_servers(),
+            ?LOG_INFO("MCP server configuration initialization complete", []),
+            ok;
+        {{error, Reason}, _} ->
+            {error, {mcp_server_table_unavailable, Reason}};
+        {_, {error, Reason}} ->
+            {error, {agent_mcp_mapping_table_unavailable, Reason}}
+    end.
 
 get_seed_servers() ->
     [
@@ -470,46 +479,30 @@ get_all_servers() ->
         {aborted, Reason} -> {error, Reason}
     end.
 
-add_server(ServerMap) ->
+add_server(ServerMap) when is_map(ServerMap) ->
+    RequiredFields = [id, name, category, url, maintainer],
+    case validate_required_fields(ServerMap, RequiredFields) of
+        {missing, Fields} ->
+            ?LOG_ERROR("Missing required fields: ~p", [Fields]),
+            {error, {missing_fields, Fields}};
+        ok ->
+            case normalize_server_map(ServerMap) of
+                {ok, NormalizedMap} -> add_validated_server(NormalizedMap);
+                {error, _} = Error -> Error
+            end
+    end;
+add_server(_) ->
+    {error, invalid_server_map}.
+
+add_validated_server(ServerMap) ->
     ServerId = maps:get(id, ServerMap, <<"unknown">>),
     ServerName = maps:get(name, ServerMap, <<"Unnamed Server">>),
     ?LOG_INFO("Adding server: ~s (~s)", [ServerName, ServerId]),
     ?LOG_DEBUG("Server map keys: ~p", [maps:keys(ServerMap)]),
-    
-    % Convert auth_type from binary to atom if needed
-    RawAuthType = maps:get(auth_type, ServerMap, open),
-    AuthType = case RawAuthType of
-        <<"oauth2">> -> oauth2;
-        <<"api_key">> -> api_key;
-        <<"open">> -> open;
-        Type when is_atom(Type) -> Type;
-        Type when is_binary(Type) -> 
-            try binary_to_atom(Type) catch _:_ -> open end;
-        _ -> open  % default
-    end,
-    ?LOG_DEBUG("Converted auth_type ~p -> ~p", [RawAuthType, AuthType]),
-    
-    % Convert status from binary to atom if needed
-    RawStatus = maps:get(status, ServerMap, active),
-    Status = case RawStatus of
-        <<"active">> -> active;
-        <<"inactive">> -> inactive;
-        StatusAtom when is_atom(StatusAtom) -> StatusAtom;
-        StatusBin when is_binary(StatusBin) -> 
-            try binary_to_atom(StatusBin) catch _:_ -> active end;
-        _ -> active  % default
-    end,
-    ?LOG_DEBUG("Converted status ~p -> ~p", [RawStatus, Status]),
-    
-    % Validate required fields
-    RequiredFields = [id, name, category, url, maintainer],
-    case validate_required_fields(ServerMap, RequiredFields) of
-        ok ->
-            ?LOG_DEBUG("All required fields present", []);
-        {missing, Fields} ->
-            ?LOG_ERROR("Missing required fields: ~p", [Fields]),
-            {error, {missing_fields, Fields}}
-    end,
+    ?LOG_DEBUG("Validated server configuration", []),
+
+    AuthType = maps:get(auth_type, ServerMap, open),
+    Status = maps:get(status, ServerMap, active),
     
     Server = #mcp_server{
         id = ServerId,
@@ -537,19 +530,36 @@ add_server(ServerMap) ->
             {ok, Server};
         {aborted, Reason} -> 
             ?LOG_ERROR("Failed to add server ~s to database: ~p", [ServerId, Reason]),
-            % Return ok to continue startup even if database fails
-            case Reason of
-                {node_not_running, _} ->
-                    ?LOG_WARN("Database not available, continuing without persistence", []),
-                    {ok, Server};
-                {no_exists, mcp_server} ->
-                    ?LOG_WARN("Table mcp_server does not exist, server will not be persisted", []),
-                    {ok, Server};  % Continue without persistence
-                _ ->
-                    ?LOG_WARN("Database error, continuing without persistence: ~p", [Reason]),
-                    {ok, Server}  % Continue startup anyway
-            end
+            %% Do not report a server as configured when the durable write
+            %% failed.  Callers can choose whether an optional integration
+            %% should degrade, but the data layer must expose the failure.
+            {error, {database_write_failed, Reason}}
     end.
+
+normalize_server_map(ServerMap) ->
+    case {normalize_auth_type(maps:get(auth_type, ServerMap, open)),
+          normalize_status(maps:get(status, ServerMap, active))} of
+        {{ok, AuthType}, {ok, Status}} ->
+            {ok, ServerMap#{auth_type => AuthType, status => Status}};
+        {{error, Reason}, _} ->
+            {error, Reason};
+        {_, {error, Reason}} ->
+            {error, Reason}
+    end.
+
+normalize_auth_type(oauth2) -> {ok, oauth2};
+normalize_auth_type(api_key) -> {ok, api_key};
+normalize_auth_type(open) -> {ok, open};
+normalize_auth_type(<<"oauth2">>) -> {ok, oauth2};
+normalize_auth_type(<<"api_key">>) -> {ok, api_key};
+normalize_auth_type(<<"open">>) -> {ok, open};
+normalize_auth_type(_) -> {error, invalid_auth_type}.
+
+normalize_status(active) -> {ok, active};
+normalize_status(inactive) -> {ok, inactive};
+normalize_status(<<"active">>) -> {ok, active};
+normalize_status(<<"inactive">>) -> {ok, inactive};
+normalize_status(_) -> {error, invalid_status}.
 
 update_server(ServerId, Updates) ->
     F = fun() ->
@@ -635,6 +645,20 @@ get_agent_servers(AgentId) ->
 %%%===================================================================
 %%% Internal functions
 %%%===================================================================
+
+ensure_mnesia_table(Name, Attributes, TableType) ->
+    case mnesia:create_table(Name,
+        [{attributes, Attributes}, {TableType, [node()]}]) of
+        {atomic, ok} ->
+            ?LOG_INFO("Created ~p table", [Name]),
+            ok;
+        {aborted, {already_exists, Name}} ->
+            ?LOG_INFO("~p table already exists", [Name]),
+            ok;
+        {aborted, Reason} ->
+            ?LOG_ERROR("Failed to create ~p table: ~p", [Name, Reason]),
+            {error, Reason}
+    end.
 
 load_seed_servers() ->
     % Wait for tables to be available before loading seed servers

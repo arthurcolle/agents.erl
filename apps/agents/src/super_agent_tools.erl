@@ -365,19 +365,27 @@ create_dynamic_supervisor(Config) ->
         Strategy = maps:get(<<"strategy">>, Config, <<"one_for_one">>),
         MaxRestarts = maps:get(<<"max_restarts">>, Config, 10),
         MaxTime = maps:get(<<"max_time">>, Config, 60),
-        
-        SupFlags = #{
-            strategy => binary_to_atom(Strategy, utf8),
-            intensity => MaxRestarts,
-            period => MaxTime
-        },
-        
-        case dynamic_supervisor_manager:create_supervisor(binary_to_atom(Name, utf8), SupFlags) of
-            {ok, Pid} ->
-                register_supervisor_for_monitoring(Pid, Config),
-                {ok, Pid};
-            {error, Reason} ->
-                {error, Reason}
+        case {
+            normalize_dynamic_name(Name),
+            normalize_supervisor_strategy(Strategy),
+            bounded_integer(MaxRestarts, 0, 1000),
+            bounded_integer(MaxTime, 1, 86400)
+        } of
+            {{ok, SafeName}, {ok, SafeStrategy}, {ok, SafeMaxRestarts}, {ok, SafeMaxTime}} ->
+                SupFlags = #{
+                    strategy => SafeStrategy,
+                    intensity => SafeMaxRestarts,
+                    period => SafeMaxTime
+                },
+                case dynamic_supervisor_manager:create_supervisor(SafeName, SupFlags) of
+                    {ok, Pid} ->
+                        register_supervisor_for_monitoring(Pid, Config),
+                        {ok, Pid};
+                    {error, Reason} ->
+                        {error, Reason}
+                end;
+            _ ->
+                {error, invalid_supervisor_configuration}
         end
     catch
         E:R:S ->
@@ -404,7 +412,10 @@ hot_reload_code(Args) ->
     hot_reload_code(maps:get(<<"module">>, Args), Args).
 
 hot_reload_code(Module, Args) when is_binary(Module) ->
-    hot_reload_code(binary_to_atom(Module, utf8), Args);
+    case existing_atom_value(Module) of
+        {ok, ExistingModule} -> hot_reload_code(ExistingModule, Args);
+        error -> {error, invalid_module_name}
+    end;
 hot_reload_code(Module, Args) when is_atom(Module) ->
     try
         Action = maps:get(<<"action">>, Args, <<"reload">>),
@@ -636,19 +647,27 @@ system_health_check() ->
     end.
 
 restart_supervisor(Name) when is_binary(Name) ->
-    restart_supervisor(binary_to_atom(Name, utf8));
+    try restart_supervisor(binary_to_existing_atom(Name, utf8))
+    catch
+        error:badarg -> {error, supervisor_not_found}
+    end;
 restart_supervisor(Name) when is_atom(Name) ->
     case whereis(Name) of
         undefined ->
             {error, supervisor_not_found};
         Pid ->
-            try
-                supervisor:terminate_child(Pid, Name),
-                supervisor:restart_child(Pid, Name),
-                {ok, restarted}
-            catch
-                _:Reason ->
-                    {error, Reason}
+            case find_supervisor_owner(Pid) of
+                {ok, ParentPid, ChildId} ->
+                    case supervisor:terminate_child(ParentPid, ChildId) of
+                        ok ->
+                            normalize_supervisor_restart(
+                                supervisor:restart_child(ParentPid, ChildId)
+                            );
+                        Error ->
+                            Error
+                    end;
+                error ->
+                    {error, root_supervisor_managed_by_application}
             end
     end.
 
@@ -753,18 +772,82 @@ get_active_agent_count() ->
 
 get_all_supervisors() ->
     RegisteredNames = registered(),
-    lists:filter(fun(Name) ->
-        case whereis(Name) of
-            undefined -> false;
-            Pid ->
-                case process_info(Pid, [initial_call]) of
-                    [{initial_call, {supervisor, _, _}}] -> true;
-                    _ -> false
-                end
-        end
-    end, RegisteredNames),
-    % Return name-pid pairs
-    [{Name, whereis(Name)} || Name <- RegisteredNames].
+    [
+        {Name, Pid}
+        || Name <- RegisteredNames,
+           Pid <- [whereis(Name)],
+           is_pid(Pid),
+           is_supervisor_process(Pid)
+    ].
+
+is_supervisor_process(Pid) ->
+    try proc_lib:translate_initial_call(Pid) of
+        {supervisor, _Module, _Arity} -> true;
+        _ -> false
+    catch
+        _:_ -> false
+    end.
+
+find_supervisor_owner(TargetPid) ->
+    find_supervisor_owner(TargetPid, get_all_supervisors()).
+
+find_supervisor_owner(_TargetPid, []) ->
+    error;
+find_supervisor_owner(TargetPid, [{_Name, ParentPid} | Rest]) ->
+    case find_child_id(ParentPid, TargetPid) of
+        {ok, ChildId} -> {ok, ParentPid, ChildId};
+        error -> find_supervisor_owner(TargetPid, Rest)
+    end.
+
+find_child_id(ParentPid, TargetPid) ->
+    try supervisor:which_children(ParentPid) of
+        Children ->
+            case lists:keyfind(TargetPid, 2, Children) of
+                {ChildId, TargetPid, _Type, _Modules} -> {ok, ChildId};
+                false -> error
+            end
+    catch
+        _:_ -> error
+    end.
+
+normalize_supervisor_restart({ok, Pid}) ->
+    {ok, #{status => restarted, pid => Pid}};
+normalize_supervisor_restart({ok, Pid, _Info}) ->
+    {ok, #{status => restarted, pid => Pid}};
+normalize_supervisor_restart(Error) ->
+    Error.
+
+normalize_dynamic_name(Name) when is_binary(Name), byte_size(Name) > 0, byte_size(Name) =< 128 ->
+    {ok, Name};
+normalize_dynamic_name(Name) when is_atom(Name) ->
+    {ok, Name};
+normalize_dynamic_name(_) ->
+    error.
+
+normalize_supervisor_strategy(<<"one_for_one">>) -> {ok, one_for_one};
+normalize_supervisor_strategy(<<"one_for_all">>) -> {ok, one_for_all};
+normalize_supervisor_strategy(<<"rest_for_one">>) -> {ok, rest_for_one};
+normalize_supervisor_strategy(<<"simple_one_for_one">>) -> {ok, simple_one_for_one};
+normalize_supervisor_strategy(Value) when is_atom(Value) ->
+    normalize_supervisor_strategy(atom_to_binary(Value, utf8));
+normalize_supervisor_strategy(_) ->
+    error.
+
+bounded_integer(Value, Min, Max) when is_integer(Value), Value >= Min, Value =< Max ->
+    {ok, Value};
+bounded_integer(_, _, _) ->
+    error.
+
+existing_atom_value(Value) when is_atom(Value) ->
+    {ok, Value};
+existing_atom_value(Value) when is_binary(Value) ->
+    try
+        {ok, binary_to_existing_atom(Value, utf8)}
+    catch
+        error:badarg -> error
+    end;
+existing_atom_value(_) ->
+    error.
 
 get_supervisor_children(Pid) ->
     try

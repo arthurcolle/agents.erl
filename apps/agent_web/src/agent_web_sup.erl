@@ -7,24 +7,16 @@
 -define(SERVER, ?MODULE).
 
 start_link() ->
-    io:format("Starting minimal agent_web supervisor~n", []),
-    case supervisor:start_link({local, ?SERVER}, ?MODULE, []) of
-        {ok, Pid} ->
-            io:format("Supervisor started successfully with PID ~p~n", [Pid]),
-            {ok, Pid};
-        {error, Reason} ->
-            io:format("Failed to start supervisor: ~p~n", [Reason]),
-            {error, Reason}
-    end.
+    supervisor:start_link({local, ?SERVER}, ?MODULE, []).
 
 init([]) ->
-    io:format("Initializing minimal supervisor~n", []),
-    SupFlags = #{strategy => one_for_one,
-                 intensity => 2,  % Reduced restart intensity
+    %% Services start before the listener, and bootstrap starts only
+    %% after both are available.
+    SupFlags = #{strategy => rest_for_one,
+                 intensity => 5,
                  period => 30},
     
     Port = application:get_env(agent_web, port, 8080),
-    io:format("Using port ~p for HTTP web server~n", [Port]),
     
     %% Comprehensive routes with all handlers
     Dispatch = cowboy_router:compile([
@@ -43,17 +35,15 @@ init([]) ->
             
             %% Core Agent Management
             {"/api/agents", agent_api_handler, []},
-            {"/api/agents/:id", agent_api_handler, []},
-            {"/api/agents/:id/chat", agent_chat_handler, []},
-            {"/api/agents/:id/execute", agent_execute_handler, []},
             {"/api/agents/health", agent_api_handler, []},
-            
-            %% Agent Communication & Collaboration
             {"/api/agents/communicate", agent_communication_handler, []},
             {"/api/agents/broadcast", agent_communication_handler, []},
-            {"/api/agents/messages/:id", agent_communication_handler, []},
             {"/api/agents/collaborations", agent_communication_handler, []},
+            {"/api/agents/messages/:id", agent_communication_handler, []},
             {"/api/agents/quorum/[...]", agent_quorum_handler, []},
+            {"/api/agents/:id/chat", agent_chat_handler, []},
+            {"/api/agents/:id/execute", agent_execute_handler, []},
+            {"/api/agents/:id", agent_api_handler, []},
             
             %% Fleet Management
             {"/api/fleet/agents", fleet_management_handler, []},
@@ -97,6 +87,7 @@ init([]) ->
             
             %% System Health & Monitoring
             {"/api/system/health", system_health_handler, []},
+            {"/api/system/session", agent_web_session_handler, []},
             {"/api/system/metrics", system_health_handler, []},
             {"/api/system/supervision-tree", supervision_tree_handler, []},
             {"/api/monitoring/[...]", agent_monitoring_handler, []},
@@ -114,9 +105,9 @@ init([]) ->
             {"/api/errors/trends", error_api_handler, []},
             {"/api/errors/clear", error_api_handler, []},
             {"/api/interpretations", error_interpretation_api_handler, []},
-            {"/api/interpretations/:id", error_interpretation_api_handler, []},
             {"/api/interpretations/interpret", error_interpretation_api_handler, []},
             {"/api/interpretations/subscribe", error_interpretation_api_handler, []},
+            {"/api/interpretations/:id", error_interpretation_api_handler, []},
             
             %% Authentication & API Keys
             {"/api/keys", api_keys_handler, []},
@@ -222,15 +213,21 @@ init([]) ->
             {"/ws/timeline", timeline_ws_handler, []}
         ]}
     ]),
-    io:format("Compiled minimal Cowboy routes~n", []),
-    
     %% HTTP configuration
-    HttpTransportOpts = [{port, Port}],
+    %% Do not inherit Cowboy's all-interface default accidentally.  A
+    %% deployment that intentionally serves a network interface can set the
+    %% existing `host` application environment value explicitly.
+    HttpTransportOpts = [{ip, bind_address()}, {port, Port}],
+    RequestTimeout = positive_timeout(request_timeout, 60000),
+    %% An infinite connection idle timeout lets abandoned clients retain
+    %% Cowboy/ranch resources forever.  Keep the deployment override explicit
+    %% but use a bounded default.
+    IdleTimeout = positive_timeout(idle_timeout, 120000),
     ProtocolOpts = #{
         env => #{dispatch => Dispatch},
-        middlewares => [cowboy_router, cowboy_handler],
-        request_timeout => 60000,
-        idle_timeout => infinity
+        middlewares => [agent_web_auth_middleware, cowboy_router, cowboy_handler],
+        request_timeout => RequestTimeout,
+        idle_timeout => IdleTimeout
     },
     
     HttpCowboySpec = #{
@@ -246,74 +243,52 @@ init([]) ->
         modules => [cowboy]
     },
     
-    %% Essential services only
-    PersistentTableManagerSpec = #{
-        id => persistent_table_manager,
-        start => {persistent_table_manager, start_link, []},
+    ServicesSpec = #{
+        id => agent_web_services_sup,
+        start => {agent_web_services_sup, start_link, []},
         restart => permanent,
-        shutdown => 5000,
-        type => worker,
-        modules => [persistent_table_manager]
-    },
-    
-    ConversationInitializerSpec = #{
-        id => conversation_initializer,
-        start => {conversation_initializer, start_link, []},
-        restart => permanent,
-        shutdown => 5000,
-        type => worker,
-        modules => [conversation_initializer]
-    },
-    
-    %% AI Error Processor for dynamic error analysis using GPT-4o-mini
-    AiErrorProcessorSpec = #{
-        id => ai_error_processor,
-        start => {ai_error_processor, start_link, []},
-        restart => permanent,
-        shutdown => 5000,
-        type => worker,
-        modules => [ai_error_processor]
-    },
-    
-    %% Comprehensive Error Logger for all error tracking
-    ComprehensiveErrorLoggerSpec = #{
-        id => comprehensive_error_logger,
-        start => {comprehensive_error_logger, start_link, []},
-        restart => permanent,
-        shutdown => 5000,
-        type => worker,
-        modules => [comprehensive_error_logger]
-    },
-    
-    %% Meta Supervision Manager for enhanced monitoring
-    MetaSupervisionSpec = #{
-        id => meta_supervision_manager,
-        start => {meta_supervision_manager, start_link, []},
-        restart => permanent,
-        shutdown => 5000,
+        shutdown => infinity,
         type => supervisor,
-        modules => [meta_supervision_manager]
+        modules => [agent_web_services_sup]
     },
-    
-    %% Enhanced child specs with meta supervision 
+
+    BootstrapSpec = #{
+        id => agent_web_bootstrap,
+        start => {agent_web_bootstrap, start_link, []},
+        restart => permanent,
+        shutdown => 5000,
+        type => worker,
+        modules => [agent_web_bootstrap]
+    },
+
     ChildSpecs = [
+        ServicesSpec,
         HttpCowboySpec,
-        PersistentTableManagerSpec,
-        ConversationInitializerSpec,
-        AiErrorProcessorSpec,
-        ComprehensiveErrorLoggerSpec,
-        MetaSupervisionSpec
+        BootstrapSpec
     ],
-    
-    io:format("Starting ~p child processes~n", [length(ChildSpecs)]),
-    lists:foreach(fun(ChildSpec) ->
-        case ChildSpec of
-            #{id := Id} ->
-                io:format("Will start child: ~p~n", [Id]);
-            _ ->
-                io:format("Will start child: ~p~n", [element(1, ChildSpec)])
-        end
-    end, ChildSpecs),
-    
-    io:format("Minimal supervisor initialization complete~n", []),
+
     {ok, {SupFlags, ChildSpecs}}.
+
+positive_timeout(Key, Default) ->
+    case application:get_env(agent_web, Key, Default) of
+        Value when is_integer(Value), Value > 0 -> Value;
+        _ -> Default
+    end.
+
+bind_address() ->
+    case application:get_env(agent_web, host, "127.0.0.1") of
+        Address when is_tuple(Address) ->
+            Address;
+        Address when is_binary(Address) ->
+            parse_bind_address(binary_to_list(Address));
+        Address when is_list(Address) ->
+            parse_bind_address(Address);
+        _ ->
+            {127, 0, 0, 1}
+    end.
+
+parse_bind_address(Address) ->
+    case inet:parse_address(Address) of
+        {ok, Parsed} -> Parsed;
+        {error, _} -> {127, 0, 0, 1}
+    end.

@@ -556,7 +556,8 @@ calculate_complexity_penalty(_Results) -> 0.1.
 select_crossover_strategy(_P1, _P2) -> uniform.
 pair_parents(Parents) -> [{P1, P2} || P1 <- Parents, P2 <- Parents, P1 =/= P2].
 select_random_genes(Gene1, Gene2) -> case rand:uniform() > 0.5 of true -> Gene1; false -> Gene2 end.
-generate_genome_id() -> list_to_atom("genome_" ++ integer_to_list(rand:uniform(1000000))).
+generate_genome_id() ->
+    iolist_to_binary(io_lib:format("genome_~p", [erlang:unique_integer([positive])])).
 create_complementary_child(_Child1, Parent1, _Parent2) -> Parent1.
 select_mutation_type(_Genome) -> strategy_mutation.
 mutate_supervision_strategy(Genome) -> Genome.

@@ -16,11 +16,11 @@
     get_model_capabilities/0
 ]).
 
--type model_category() :: flagship_chat | reasoning | cost_optimized | realtime | 
-                         image_generation | text_to_speech | transcription | 
+-type model_category() :: flagship_chat | reasoning | cost_optimized | realtime |
+                         image_generation | text_to_speech | transcription |
                          tool_specific | embeddings | moderation | legacy | base.
 
--type model_capability() :: chat | reasoning | audio_input | audio_output | 
+-type model_capability() :: chat | reasoning | audio_input | audio_output |
                            image_generation | image_input | realtime | web_search |
                            computer_use | code_optimization | embeddings | moderation.
 
@@ -42,209 +42,87 @@
 get_all_models() ->
     [
         %% Flagship Chat Models
-        #{id => <<"gpt-4.1">>, 
-          name => <<"GPT-4.1">>,
+        #{id => <<"gpt-5.6-sol">>,
+          name => <<"GPT-5.6 Sol">>,
           category => flagship_chat,
-          capabilities => [chat],
-          description => <<"Flagship GPT model for complex tasks">>,
+          capabilities => [chat, reasoning, image_input],
+          description => <<"Latest frontier model for the most complex tasks">>,
           provider => openai,
           deprecated => false,
           cost_tier => high,
           speed_tier => medium,
           intelligence_tier => expert},
-          
-        #{id => <<"gpt-4.1-2025-04-14">>, 
-          name => <<"GPT-4.1">>,
+
+        #{id => <<"gpt-5.6-terra">>,
+          name => <<"GPT-5.6 Terra">>,
           category => flagship_chat,
-          capabilities => [chat],
-          description => <<"Flagship GPT model for complex tasks (2025-04-14)">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => high,
-          speed_tier => medium,
-          intelligence_tier => expert},
-          
-        #{id => <<"gpt-4.5-preview">>, 
-          name => <<"GPT-4.5 Preview">>,
-          category => flagship_chat,
-          capabilities => [chat],
-          description => <<"Next-generation preview model with enhanced capabilities">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => very_high,
-          speed_tier => medium,
-          intelligence_tier => expert},
-          
-        #{id => <<"gpt-4.5-preview-2025-02-27">>, 
-          name => <<"GPT-4.5 Preview">>,
-          category => flagship_chat,
-          capabilities => [chat],
-          description => <<"Next-generation preview model (2025-02-27)">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => very_high,
-          speed_tier => medium,
-          intelligence_tier => expert},
-          
-        #{id => <<"gpt-4o">>,
-          name => <<"GPT-4o">>,
-          category => flagship_chat,
-          capabilities => [chat],
-          description => <<"Fast, intelligent, flexible GPT model">>,
+          capabilities => [chat, reasoning, image_input],
+          description => <<"Balanced model for everyday work">>,
           provider => openai,
           deprecated => false,
           cost_tier => medium,
           speed_tier => fast,
           intelligence_tier => advanced},
-          
-        #{id => <<"gpt-4o-audio-preview">>,
-          name => <<"GPT-4o Audio">>,
+
+        #{id => <<"gpt-5.5">>,
+          name => <<"GPT-5.5">>,
           category => flagship_chat,
-          capabilities => [chat, audio_input, audio_output],
-          description => <<"GPT-4o models capable of audio inputs and outputs">>,
+          capabilities => [chat, reasoning, image_input],
+          description => <<"Frontier model for complex coding, research, and real-world tasks">>,
           provider => openai,
           deprecated => false,
           cost_tier => high,
           speed_tier => medium,
-          intelligence_tier => advanced},
-          
-        #{id => <<"chatgpt-4o-latest">>,
-          name => <<"ChatGPT-4o">>,
+          intelligence_tier => expert},
+
+        #{id => <<"gpt-5.2">>,
+          name => <<"GPT-5.2">>,
           category => flagship_chat,
-          capabilities => [chat],
-          description => <<"GPT-4o model used in ChatGPT">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => medium,
-          speed_tier => fast,
-          intelligence_tier => advanced},
-          
-        %% Reasoning Models
-        #{id => <<"o4-mini">>,
-          name => <<"o4-mini">>,
-          category => reasoning,
-          capabilities => [reasoning, chat],
-          description => <<"Faster, more affordable reasoning model">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => medium,
-          speed_tier => fast,
-          intelligence_tier => advanced},
-          
-        #{id => <<"o3">>,
-          name => <<"o3">>,
-          category => reasoning,
-          capabilities => [reasoning, chat],
-          description => <<"Our most powerful reasoning model">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => very_high,
-          speed_tier => slow,
-          intelligence_tier => expert},
-          
-        #{id => <<"o3-mini">>,
-          name => <<"o3-mini">>,
-          category => reasoning,
-          capabilities => [reasoning, chat],
-          description => <<"A small model alternative to o3">>,
+          capabilities => [chat, reasoning, image_input],
+          description => <<"Optimized for professional work and long-running agents">>,
           provider => openai,
           deprecated => false,
           cost_tier => medium,
           speed_tier => medium,
           intelligence_tier => advanced},
-          
-        #{id => <<"o1">>,
-          name => <<"o1">>,
-          category => reasoning,
-          capabilities => [reasoning, chat],
-          description => <<"Previous full o-series reasoning model">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => high,
-          speed_tier => slow,
-          intelligence_tier => expert},
-          
-        #{id => <<"o1-mini">>,
-          name => <<"o1-mini">>,
-          category => reasoning,
-          capabilities => [reasoning, chat],
-          description => <<"A small model alternative to o1">>,
-          provider => openai,
-          deprecated => true,
-          cost_tier => medium,
-          speed_tier => medium,
-          intelligence_tier => standard},
-          
-        #{id => <<"o1-pro">>,
-          name => <<"o1-pro">>,
-          category => reasoning,
-          capabilities => [reasoning, chat],
-          description => <<"Version of o1 with more compute for better responses">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => very_high,
-          speed_tier => slow,
-          intelligence_tier => expert},
-          
+
         %% Cost-optimized Models
-        #{id => <<"gpt-4.1-mini">>,
-          name => <<"GPT-4.1 mini">>,
+        #{id => <<"gpt-5.6-luna">>,
+          name => <<"GPT-5.6 Luna">>,
           category => cost_optimized,
-          capabilities => [chat],
-          description => <<"Balanced for intelligence, speed, and cost">>,
+          capabilities => [chat, reasoning, image_input],
+          description => <<"Fast and affordable model for high-volume workloads">>,
           provider => openai,
           deprecated => false,
           cost_tier => low,
           speed_tier => very_fast,
           intelligence_tier => standard},
-          
-        #{id => <<"gpt-4.1-nano">>,
-          name => <<"GPT-4.1 nano">>,
+
+        #{id => <<"gpt-5.4-mini">>,
+          name => <<"GPT-5.4 Mini">>,
           category => cost_optimized,
-          capabilities => [chat],
-          description => <<"Fastest, most cost-effective GPT-4.1 model">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => low,
-          speed_tier => very_fast,
-          intelligence_tier => basic},
-          
-        #{id => <<"gpt-4o-mini">>,
-          name => <<"GPT-4o mini">>,
-          category => cost_optimized,
-          capabilities => [chat],
-          description => <<"Fast, affordable small model for focused tasks">>,
+          capabilities => [chat, reasoning],
+          description => <<"Small, fast, and cost-efficient model for simpler tasks">>,
           provider => openai,
           deprecated => false,
           cost_tier => low,
           speed_tier => very_fast,
           intelligence_tier => standard},
-          
-        #{id => <<"gpt-4o-mini-audio-preview">>,
-          name => <<"GPT-4o mini Audio">>,
-          category => cost_optimized,
-          capabilities => [chat, audio_input, audio_output],
-          description => <<"Smaller model capable of audio inputs and outputs">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => medium,
-          speed_tier => fast,
-          intelligence_tier => standard},
-          
+
         %% Realtime Models
-        #{id => <<"gpt-4o-realtime-preview">>,
-          name => <<"GPT-4o Realtime">>,
+        #{id => <<"gpt-realtime">>,
+          name => <<"GPT Realtime">>,
           category => realtime,
           capabilities => [realtime, chat, audio_input, audio_output],
-          description => <<"Model capable of realtime text and audio inputs and outputs">>,
+          description => <<"Model for realtime text and audio inputs and outputs">>,
           provider => openai,
           deprecated => false,
           cost_tier => high,
           speed_tier => very_fast,
           intelligence_tier => advanced},
-          
-        #{id => <<"gpt-4o-mini-realtime-preview">>,
-          name => <<"GPT-4o mini Realtime">>,
+
+        #{id => <<"gpt-realtime-mini">>,
+          name => <<"GPT Realtime Mini">>,
           category => realtime,
           capabilities => [realtime, chat, audio_input, audio_output],
           description => <<"Smaller realtime model for text and audio inputs and outputs">>,
@@ -253,7 +131,7 @@ get_all_models() ->
           cost_tier => medium,
           speed_tier => very_fast,
           intelligence_tier => standard},
-          
+
         %% Image Generation Models
         #{id => <<"gpt-image-1">>,
           name => <<"GPT Image 1">>,
@@ -265,7 +143,18 @@ get_all_models() ->
           cost_tier => high,
           speed_tier => medium,
           intelligence_tier => expert},
-          
+
+        #{id => <<"gpt-image-1-mini">>,
+          name => <<"GPT Image 1 Mini">>,
+          category => image_generation,
+          capabilities => [image_generation],
+          description => <<"Cost-efficient image generation model">>,
+          provider => openai,
+          deprecated => false,
+          cost_tier => medium,
+          speed_tier => fast,
+          intelligence_tier => advanced},
+
         #{id => <<"dall-e-3">>,
           name => <<"DALL·E 3">>,
           category => image_generation,
@@ -276,18 +165,7 @@ get_all_models() ->
           cost_tier => medium,
           speed_tier => medium,
           intelligence_tier => advanced},
-          
-        #{id => <<"dall-e-2">>,
-          name => <<"DALL·E 2">>,
-          category => image_generation,
-          capabilities => [image_generation],
-          description => <<"Our first image generation model">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => low,
-          speed_tier => fast,
-          intelligence_tier => standard},
-          
+
         %% Text-to-Speech Models
         #{id => <<"gpt-4o-mini-tts">>,
           name => <<"GPT-4o mini TTS">>,
@@ -299,7 +177,7 @@ get_all_models() ->
           cost_tier => low,
           speed_tier => very_fast,
           intelligence_tier => standard},
-          
+
         #{id => <<"tts-1">>,
           name => <<"TTS-1">>,
           category => text_to_speech,
@@ -310,7 +188,7 @@ get_all_models() ->
           cost_tier => low,
           speed_tier => very_fast,
           intelligence_tier => standard},
-          
+
         #{id => <<"tts-1-hd">>,
           name => <<"TTS-1 HD">>,
           category => text_to_speech,
@@ -321,7 +199,7 @@ get_all_models() ->
           cost_tier => medium,
           speed_tier => medium,
           intelligence_tier => advanced},
-          
+
         %% Transcription Models
         #{id => <<"gpt-4o-transcribe">>,
           name => <<"GPT-4o Transcribe">>,
@@ -333,7 +211,7 @@ get_all_models() ->
           cost_tier => medium,
           speed_tier => fast,
           intelligence_tier => advanced},
-          
+
         #{id => <<"gpt-4o-mini-transcribe">>,
           name => <<"GPT-4o mini Transcribe">>,
           category => transcription,
@@ -344,7 +222,7 @@ get_all_models() ->
           cost_tier => low,
           speed_tier => very_fast,
           intelligence_tier => standard},
-          
+
         #{id => <<"whisper-1">>,
           name => <<"Whisper">>,
           category => transcription,
@@ -355,30 +233,8 @@ get_all_models() ->
           cost_tier => low,
           speed_tier => fast,
           intelligence_tier => standard},
-          
+
         %% Tool-specific Models
-        #{id => <<"gpt-4o-search-preview">>,
-          name => <<"GPT-4o Search Preview">>,
-          category => tool_specific,
-          capabilities => [chat, web_search],
-          description => <<"GPT model for web search in Chat Completions">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => medium,
-          speed_tier => medium,
-          intelligence_tier => advanced},
-          
-        #{id => <<"gpt-4o-mini-search-preview">>,
-          name => <<"GPT-4o mini Search Preview">>,
-          category => tool_specific,
-          capabilities => [chat, web_search],
-          description => <<"Fast, affordable small model for web search">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => low,
-          speed_tier => fast,
-          intelligence_tier => standard},
-          
         #{id => <<"computer-use-preview">>,
           name => <<"computer-use-preview">>,
           category => tool_specific,
@@ -389,18 +245,7 @@ get_all_models() ->
           cost_tier => high,
           speed_tier => medium,
           intelligence_tier => advanced},
-          
-        #{id => <<"codex-mini-latest">>,
-          name => <<"codex-mini-latest">>,
-          category => tool_specific,
-          capabilities => [reasoning, code_optimization],
-          description => <<"Fast reasoning model optimized for the Codex CLI">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => medium,
-          speed_tier => fast,
-          intelligence_tier => advanced},
-          
+
         %% Embeddings Models
         #{id => <<"text-embedding-3-small">>,
           name => <<"text-embedding-3-small">>,
@@ -412,7 +257,7 @@ get_all_models() ->
           cost_tier => low,
           speed_tier => very_fast,
           intelligence_tier => standard},
-          
+
         #{id => <<"text-embedding-3-large">>,
           name => <<"text-embedding-3-large">>,
           category => embeddings,
@@ -423,18 +268,7 @@ get_all_models() ->
           cost_tier => medium,
           speed_tier => fast,
           intelligence_tier => advanced},
-          
-        #{id => <<"text-embedding-ada-002">>,
-          name => <<"text-embedding-ada-002">>,
-          category => embeddings,
-          capabilities => [embeddings],
-          description => <<"Older embedding model">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => low,
-          speed_tier => very_fast,
-          intelligence_tier => basic},
-          
+
         %% Moderation Models
         #{id => <<"omni-moderation-latest">>,
           name => <<"omni-moderation">>,
@@ -446,103 +280,124 @@ get_all_models() ->
           cost_tier => low,
           speed_tier => very_fast,
           intelligence_tier => standard},
-          
-        #{id => <<"text-moderation-latest">>,
-          name => <<"text-moderation">>,
-          category => moderation,
-          capabilities => [moderation],
-          description => <<"Previous generation text-only moderation model">>,
-          provider => openai,
-          deprecated => true,
-          cost_tier => low,
-          speed_tier => very_fast,
-          intelligence_tier => basic},
-          
-        %% Legacy Models
-        #{id => <<"gpt-4-turbo">>,
-          name => <<"GPT-4 Turbo">>,
+
+        %% Legacy Models (superseded generations, still served)
+        #{id => <<"gpt-5.1">>,
+          name => <<"GPT-5.1">>,
           category => legacy,
-          capabilities => [chat],
-          description => <<"An older high-intelligence GPT model">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => high,
-          speed_tier => medium,
-          intelligence_tier => advanced},
-          
-        #{id => <<"gpt-4">>,
-          name => <<"GPT-4">>,
-          category => legacy,
-          capabilities => [chat],
-          description => <<"An older high-intelligence GPT model">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => high,
-          speed_tier => slow,
-          intelligence_tier => advanced},
-          
-        #{id => <<"gpt-3.5-turbo">>,
-          name => <<"GPT-3.5 Turbo">>,
-          category => legacy,
-          capabilities => [chat],
-          description => <<"Legacy GPT model for cheaper chat and non-chat tasks">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => low,
-          speed_tier => very_fast,
-          intelligence_tier => standard},
-          
-        %% Base Models
-        #{id => <<"babbage-002">>,
-          name => <<"babbage-002">>,
-          category => base,
-          capabilities => [chat],
-          description => <<"Replacement for the GPT-3 ada and babbage base models">>,
-          provider => openai,
-          deprecated => false,
-          cost_tier => low,
-          speed_tier => very_fast,
-          intelligence_tier => basic},
-          
-        #{id => <<"davinci-002">>,
-          name => <<"davinci-002">>,
-          category => base,
-          capabilities => [chat],
-          description => <<"Replacement for the GPT-3 curie and davinci base models">>,
+          capabilities => [chat, reasoning],
+          description => <<"Previous generation flagship model">>,
           provider => openai,
           deprecated => false,
           cost_tier => medium,
-          speed_tier => fast,
-          intelligence_tier => standard},
-          
-        %% Anthropic Models (for compatibility)
-        #{id => <<"claude-3-opus-20240229">>,
-          name => <<"Claude 3 Opus">>,
-          category => flagship_chat,
+          speed_tier => medium,
+          intelligence_tier => advanced},
+
+        #{id => <<"gpt-5">>,
+          name => <<"GPT-5">>,
+          category => legacy,
+          capabilities => [chat, reasoning],
+          description => <<"Older flagship model">>,
+          provider => openai,
+          deprecated => false,
+          cost_tier => medium,
+          speed_tier => medium,
+          intelligence_tier => advanced},
+
+        #{id => <<"gpt-4.1">>,
+          name => <<"GPT-4.1">>,
+          category => legacy,
           capabilities => [chat],
-          description => <<"Most capable Claude model for complex tasks">>,
+          description => <<"Legacy GPT-4 generation model">>,
+          provider => openai,
+          deprecated => true,
+          cost_tier => high,
+          speed_tier => medium,
+          intelligence_tier => advanced},
+
+        #{id => <<"gpt-4o">>,
+          name => <<"GPT-4o">>,
+          category => legacy,
+          capabilities => [chat],
+          description => <<"Legacy GPT-4 generation model">>,
+          provider => openai,
+          deprecated => true,
+          cost_tier => medium,
+          speed_tier => fast,
+          intelligence_tier => advanced},
+
+        #{id => <<"o3">>,
+          name => <<"o3">>,
+          category => legacy,
+          capabilities => [reasoning, chat],
+          description => <<"Legacy o-series reasoning model">>,
+          provider => openai,
+          deprecated => true,
+          cost_tier => very_high,
+          speed_tier => slow,
+          intelligence_tier => expert},
+
+        #{id => <<"o4-mini">>,
+          name => <<"o4-mini">>,
+          category => legacy,
+          capabilities => [reasoning, chat],
+          description => <<"Legacy small reasoning model">>,
+          provider => openai,
+          deprecated => true,
+          cost_tier => medium,
+          speed_tier => fast,
+          intelligence_tier => advanced},
+
+        %% Anthropic Models
+        #{id => <<"claude-fable-5">>,
+          name => <<"Claude Fable 5">>,
+          category => flagship_chat,
+          capabilities => [chat, reasoning, image_input],
+          description => <<"Anthropic's most capable model for demanding reasoning and long-horizon agentic work">>,
+          provider => anthropic,
+          deprecated => false,
+          cost_tier => very_high,
+          speed_tier => medium,
+          intelligence_tier => expert},
+
+        #{id => <<"claude-opus-4-8">>,
+          name => <<"Claude Opus 4.8">>,
+          category => flagship_chat,
+          capabilities => [chat, reasoning, image_input],
+          description => <<"Most capable Opus-tier Claude model for long-horizon agentic work">>,
           provider => anthropic,
           deprecated => false,
           cost_tier => high,
           speed_tier => medium,
           intelligence_tier => expert},
-          
-        #{id => <<"claude-3-sonnet-20240229">>,
-          name => <<"Claude 3 Sonnet">>,
+
+        #{id => <<"claude-sonnet-5">>,
+          name => <<"Claude Sonnet 5">>,
           category => flagship_chat,
-          capabilities => [chat],
-          description => <<"Balanced Claude model for most tasks">>,
+          capabilities => [chat, reasoning, image_input],
+          description => <<"Best combination of speed and intelligence in the Sonnet tier">>,
           provider => anthropic,
           deprecated => false,
           cost_tier => medium,
           speed_tier => fast,
           intelligence_tier => advanced},
-          
-        #{id => <<"claude-3-haiku-20240307">>,
-          name => <<"Claude 3 Haiku">>,
+
+        #{id => <<"claude-sonnet-4-6">>,
+          name => <<"Claude Sonnet 4.6">>,
+          category => flagship_chat,
+          capabilities => [chat, reasoning, image_input],
+          description => <<"Previous generation Sonnet-tier Claude model">>,
+          provider => anthropic,
+          deprecated => false,
+          cost_tier => medium,
+          speed_tier => fast,
+          intelligence_tier => advanced},
+
+        #{id => <<"claude-haiku-4-5">>,
+          name => <<"Claude Haiku 4.5">>,
           category => cost_optimized,
-          capabilities => [chat],
-          description => <<"Fast, cost-effective Claude model">>,
+          capabilities => [chat, image_input],
+          description => <<"Fastest and most cost-effective Claude model">>,
           provider => anthropic,
           deprecated => false,
           cost_tier => low,
@@ -553,8 +408,8 @@ get_all_models() ->
 %% @doc Get information about a specific model
 -spec get_model_info(binary()) -> {ok, model_info()} | {error, model_not_found}.
 get_model_info(ModelId) ->
-    case lists:filter(fun(Model) -> 
-        maps:get(id, Model) =:= ModelId 
+    case lists:filter(fun(Model) ->
+        maps:get(id, Model) =:= ModelId
     end, get_all_models()) of
         [] -> {error, model_not_found};
         [Model | _] -> {ok, Model}
@@ -563,7 +418,7 @@ get_model_info(ModelId) ->
 %% @doc Get models by category
 -spec get_models_by_category(model_category()) -> [model_info()].
 get_models_by_category(Category) ->
-    [Model || Model <- get_all_models(), 
+    [Model || Model <- get_all_models(),
               maps:get(category, Model) =:= Category].
 
 %% @doc Get models by capability
@@ -583,7 +438,7 @@ validate_model(ModelId) ->
 %% @doc Get the default model
 -spec get_default_model() -> binary().
 get_default_model() ->
-    <<"gpt-4.1">>.
+    <<"gpt-5.6-sol">>.
 
 %% @doc Get all model categories
 -spec get_model_categories() -> [model_category()].

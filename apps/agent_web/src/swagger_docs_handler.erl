@@ -218,10 +218,19 @@ get_supported_methods_for_handler(Handler) ->
 generate_path_spec_for_handler(Path, Handler, Methods) ->
     lists:foldl(fun(Method, MethodsAcc) ->
         MethodLower = string:lowercase(binary_to_list(Method)),
-        MethodAtom = list_to_atom(MethodLower),
+        MethodAtom = swagger_method_atom(MethodLower),
         MethodSpec = generate_method_spec(Path, Handler, MethodAtom),
         maps:put(list_to_binary(MethodLower), MethodSpec, MethodsAcc)
     end, #{}, Methods).
+
+swagger_method_atom("get") -> get;
+swagger_method_atom("post") -> post;
+swagger_method_atom("put") -> put;
+swagger_method_atom("delete") -> delete;
+swagger_method_atom("patch") -> patch;
+swagger_method_atom("options") -> options;
+swagger_method_atom("head") -> head;
+swagger_method_atom(_) -> get.
 
 %% Generate method specification based on path and handler
 generate_method_spec(Path, Handler, Method) ->

@@ -179,22 +179,11 @@ execute_healing_strategy(HealingId, Strategy, Problem, Context) ->
 %% Healing strategy implementations
 heal_supervisor_restart(Context) ->
     SupervisorName = maps:get(supervisor, Context, unknown),
-    colored_logger:info("[AUTO_HEAL] 🔄 Attempting to restart supervisor ~p", [SupervisorName]),
-    
-    case SupervisorName of
-        agent_web_sup ->
-            case agent_web_sup:start_link() of
-                {ok, _Pid} ->
-                    colored_logger:success("[AUTO_HEAL] Successfully restarted agent_web_sup", []),
-                    {ok, restarted};
-                {error, Reason} ->
-                    colored_logger:fire(bright, "[AUTO_HEAL] ✗ Failed to restart agent_web_sup: ~p", [Reason]),
-                    {error, Reason}
-            end;
-        _ ->
-            colored_logger:warning("[AUTO_HEAL] WARNING Don't know how to restart supervisor ~p", [SupervisorName]),
-            {error, unknown_supervisor}
-    end.
+    colored_logger:warning(
+        "[AUTO_HEAL] Supervisor ~p is owned and restarted by OTP",
+        [SupervisorName]
+    ),
+    {error, managed_by_otp}.
 
 heal_agent_restart(Context) ->
     AgentId = maps:get(agent_id, Context, unknown),

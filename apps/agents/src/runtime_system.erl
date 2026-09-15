@@ -43,23 +43,34 @@ create_sup(Name, Strategy) ->
     create_sup(Name, Strategy, []).
 
 %% Create a supervisor with optional initial children
-create_sup(Name, Strategy, Children) when is_atom(Name), is_atom(Strategy) ->
-    SupFlags = #{
-        strategy => Strategy,
-        intensity => 10,
-        period => 60
-    },
-    case dynamic_supervisor_manager:create_supervisor(Name, SupFlags, Children) of
-        {ok, Pid} ->
-            io:format("✓ Created supervisor ~p with PID ~p~n", [Name, Pid]),
-            {ok, Pid};
-        {error, Reason} ->
-            io:format("✗ Failed to create supervisor: ~p~n", [Reason]),
-            {error, Reason}
+create_sup(Name, Strategy, Children) ->
+    case {valid_name(Name), normalize_strategy(Strategy)} of
+        {true, {ok, SafeStrategy}} ->
+            SupFlags = #{
+                strategy => SafeStrategy,
+                intensity => 10,
+                period => 60
+            },
+            case dynamic_supervisor_manager:create_supervisor(Name, SupFlags, Children) of
+                {ok, Pid} ->
+                    io:format("✓ Created supervisor ~p with PID ~p~n", [Name, Pid]),
+                    {ok, Pid};
+                {error, Reason} ->
+                    io:format("✗ Failed to create supervisor: ~p~n", [Reason]),
+                    {error, Reason}
+            end;
+        _ ->
+            {error, invalid_supervisor_configuration}
     end.
 
 %% Stop a supervisor
-stop_sup(Name) when is_atom(Name) ->
+stop_sup(Name) ->
+    case valid_name(Name) of
+        false -> {error, invalid_supervisor_name};
+        true -> stop_supervisor(Name)
+    end.
+
+stop_supervisor(Name) ->
     case dynamic_supervisor_manager:stop_supervisor(Name) of
         ok ->
             io:format("✓ Stopped supervisor ~p~n", [Name]),
@@ -88,7 +99,13 @@ list_sups() ->
 add_child(SupName, ChildId, Module) ->
     add_child(SupName, ChildId, Module, []).
 
-add_child(SupName, ChildId, Module, Args) when is_atom(SupName), is_atom(ChildId), is_atom(Module) ->
+add_child(SupName, ChildId, Module, Args) when is_atom(Module) ->
+    case valid_name(SupName) of
+        false -> {error, invalid_supervisor_name};
+        true -> add_child_to_supervisor(SupName, ChildId, Module, Args)
+    end.
+
+add_child_to_supervisor(SupName, ChildId, Module, Args) ->
     ChildSpec = #{
         id => ChildId,
         start => {Module, start_link, Args},
@@ -107,7 +124,13 @@ add_child(SupName, ChildId, Module, Args) when is_atom(SupName), is_atom(ChildId
     end.
 
 %% Remove a child from a supervisor
-remove_child(SupName, ChildId) when is_atom(SupName), is_atom(ChildId) ->
+remove_child(SupName, ChildId) ->
+    case {valid_name(SupName), valid_name(ChildId)} of
+        {true, true} -> remove_child_from_supervisor(SupName, ChildId);
+        _ -> {error, invalid_child_reference}
+    end.
+
+remove_child_from_supervisor(SupName, ChildId) ->
     case dynamic_supervisor_manager:remove_child_from_supervisor(SupName, ChildId) of
         ok ->
             io:format("✓ Removed child ~p from supervisor ~p~n", [ChildId, SupName]),
@@ -118,7 +141,13 @@ remove_child(SupName, ChildId) when is_atom(SupName), is_atom(ChildId) ->
     end.
 
 %% Get supervisor info
-sup_info(Name) when is_atom(Name) ->
+sup_info(Name) ->
+    case valid_name(Name) of
+        false -> {error, invalid_supervisor_name};
+        true -> supervisor_info(Name)
+    end.
+
+supervisor_info(Name) ->
     case dynamic_supervisor_manager:get_supervisor_info(Name) of
         {ok, Info} ->
             #{name := Name, pid := Pid, children := Children, child_count := Count} = Info,
@@ -156,7 +185,7 @@ tree() ->
 spawn_agent_under(SupName, AgentConfig) ->
     spawn_agent_under(SupName, make_ref(), AgentConfig).
 
-spawn_agent_under(SupName, AgentId, AgentConfig) when is_atom(SupName), is_atom(AgentId) ->
+spawn_agent_under(SupName, AgentId, AgentConfig) ->
     ChildSpec = #{
         id => AgentId,
         start => {agent_instance, start_link, [AgentConfig]},
@@ -181,8 +210,8 @@ spawn_agent_group(GroupName, NumAgents, AgentConfigTemplate) when is_atom(GroupN
         {ok, _SupPid} ->
             % Spawn agents under the supervisor
             Results = lists:map(fun(N) ->
-                AgentId = list_to_atom(atom_to_list(GroupName) ++ "_agent_" ++ integer_to_list(N)),
-                AgentConfig = maps:put(id, atom_to_binary(AgentId, utf8), AgentConfigTemplate),
+                AgentId = iolist_to_binary(io_lib:format("~p_agent_~p", [GroupName, N])),
+                AgentConfig = maps:put(id, AgentId, AgentConfigTemplate),
                 spawn_agent_under(GroupName, AgentId, AgentConfig)
             end, lists:seq(1, NumAgents)),
             
@@ -203,7 +232,7 @@ augment(ServiceName, ServiceModule) ->
 
 augment(ServiceName, ServiceModule, Args) when is_atom(ServiceName), is_atom(ServiceModule) ->
     % Create a supervisor for the service
-    SupName = list_to_atom(atom_to_list(ServiceName) ++ "_sup"),
+    SupName = iolist_to_binary(io_lib:format("~p_sup", [ServiceName])),
     case create_sup(SupName, one_for_one) of
         {ok, _} ->
             % Add the service as a child
@@ -327,6 +356,21 @@ reload_all() ->
 %%====================================================================
 %% Internal Functions
 %%====================================================================
+
+valid_name(Name) when is_atom(Name) -> true;
+valid_name(Name) when is_binary(Name) -> byte_size(Name) > 0 andalso byte_size(Name) =< 128;
+valid_name(Name) when is_reference(Name) -> true;
+valid_name(_) -> false.
+
+normalize_strategy(one_for_one) -> {ok, one_for_one};
+normalize_strategy(one_for_all) -> {ok, one_for_all};
+normalize_strategy(rest_for_one) -> {ok, rest_for_one};
+normalize_strategy(simple_one_for_one) -> {ok, simple_one_for_one};
+normalize_strategy(<<"one_for_one">>) -> {ok, one_for_one};
+normalize_strategy(<<"one_for_all">>) -> {ok, one_for_all};
+normalize_strategy(<<"rest_for_one">>) -> {ok, rest_for_one};
+normalize_strategy(<<"simple_one_for_one">>) -> {ok, simple_one_for_one};
+normalize_strategy(_) -> error.
 
 print_tree(#{main := Main, dynamic := Dynamic}, Indent) ->
     print_supervisor_node(Main, Indent),

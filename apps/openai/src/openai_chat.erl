@@ -566,14 +566,14 @@ is_o_series_model(Model) when is_binary(Model) ->
     ModelStr = binary_to_list(Model),
     lists:any(fun(Pattern) -> 
         string:str(ModelStr, Pattern) > 0 
-    end, ["o1", "o3", "o4-mini", "gpt-4.1"]);
+    end, ["o1", "o3", "o4-mini", "gpt-4.1", "gpt-5"]);
 is_o_series_model(_) -> false.
 
 %% Legacy API compatibility functions
 
 %% Simple chat completion with default options
 chat_completion(Messages) ->
-    create_chat_completion(<<"gpt-4o-mini">>, Messages, #{}).
+    create_chat_completion(<<"gpt-5.6-terra">>, Messages, #{}).
 
 %% Create completion (non-streaming)
 create_completion(Model, Messages) ->

@@ -32,18 +32,21 @@ handle_get(Req0, State) ->
 handle_get_path([], Req, _State) ->
     %% GET /api/crashes - List all crash reports
     QsVals = cowboy_req:parse_qs(Req),
-    Filter = build_filter(QsVals),
-    
-    case crash_report_processor:get_crash_reports(Filter) of
-        {ok, Reports} ->
-            FormattedReports = [format_crash_report(R) || R <- Reports],
-            respond_json(Req, 200, #{
-                status => success,
-                reports => FormattedReports,
-                total => length(FormattedReports)
-            });
+    case build_filter(QsVals) of
+        {ok, Filter} ->
+            case crash_report_processor:get_crash_reports(Filter) of
+                {ok, Reports} ->
+                    FormattedReports = [format_crash_report(R) || R <- Reports],
+                    respond_json(Req, 200, #{
+                        status => success,
+                        reports => FormattedReports,
+                        total => length(FormattedReports)
+                    });
+                {error, Reason} ->
+                    respond_json(Req, 500, #{error => Reason})
+            end;
         {error, Reason} ->
-            respond_json(Req, 500, #{error => Reason})
+            respond_json(Req, 400, #{error => Reason})
     end;
 
 handle_get_path([<<"stats">>], Req, _State) ->
@@ -174,15 +177,51 @@ handle_delete_path(_, Req, _State) ->
 %%====================================================================
 
 build_filter(QsVals) ->
-    lists:foldl(fun({Key, Value}, Acc) ->
-        case Key of
-            <<"severity">> -> Acc#{severity => binary_to_atom(Value)};
-            <<"status">> -> Acc#{status => binary_to_atom(Value)};
-            <<"module">> -> Acc#{module => binary_to_atom(Value)};
-            <<"since">> -> Acc#{since => binary_to_integer(Value)};
-            _ -> Acc
-        end
-    end, #{}, QsVals).
+    lists:foldl(fun
+        ({Key, Value}, {ok, Acc}) ->
+            case Key of
+                <<"severity">> -> put_filter_value(severity, Value, Acc);
+                <<"status">> -> put_filter_value(status, Value, Acc);
+                <<"module">> -> put_filter_value(module, Value, Acc);
+                <<"since">> -> put_since_filter(Value, Acc);
+                _ -> {ok, Acc}
+            end;
+        (_, Error) ->
+            Error
+    end, {ok, #{}}, QsVals).
+
+put_filter_value(Key, Value, Acc) ->
+    case filter_atom(Key, Value) of
+        {ok, Atom} -> {ok, Acc#{Key => Atom}};
+        error -> {error, {invalid_query_parameter, Key}}
+    end.
+
+filter_atom(severity, <<"low">>) -> {ok, low};
+filter_atom(severity, <<"medium">>) -> {ok, medium};
+filter_atom(severity, <<"high">>) -> {ok, high};
+filter_atom(severity, <<"critical">>) -> {ok, critical};
+filter_atom(status, <<"new">>) -> {ok, new};
+filter_atom(status, <<"analyzing">>) -> {ok, analyzing};
+filter_atom(status, <<"analyzed">>) -> {ok, analyzed};
+filter_atom(status, <<"resolved">>) -> {ok, resolved};
+filter_atom(status, <<"ignored">>) -> {ok, ignored};
+filter_atom(module, Value) when is_binary(Value) ->
+    try
+        {ok, binary_to_existing_atom(Value, utf8)}
+    catch
+        error:badarg -> error
+    end;
+filter_atom(_, _) ->
+    error.
+
+put_since_filter(Value, Acc) when is_binary(Value) ->
+    try
+        {ok, Acc#{since => binary_to_integer(Value)}}
+    catch
+        error:badarg -> {error, {invalid_query_parameter, since}}
+    end;
+put_since_filter(_, _) ->
+    {error, {invalid_query_parameter, since}}.
 
 format_crash_report({crash_report, Id, Timestamp, ProcessName, Pid, ErrorType, 
                     Reason, Module, Function, Line, Stacktrace, _State, 
