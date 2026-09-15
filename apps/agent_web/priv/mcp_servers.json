@@ -9,7 +9,7 @@
       "env": {
         "GRAPHLIT_ORGANIZATION_ID": "1b591b0d-eb12-4f6d-be5a-ceb95b40e716",
         "GRAPHLIT_ENVIRONMENT_ID": "42d0e0ef-8eeb-463d-921c-ef5119541eb9",
-        "GRAPHLIT_JWT_SECRET": "REDACTED"
+        "GRAPHLIT_JWT_SECRET": ""
       }
     },
     "github": {
