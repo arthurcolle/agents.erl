@@ -20,7 +20,7 @@ This is a modern React-based frontend for the Distributed Systems framework, bui
 1. Install dependencies:
 ```bash
 cd apps/agent_web/frontend
-npm install
+npm ci
 ```
 
 2. Start the development server:
@@ -35,18 +35,37 @@ npm run build
 
 The built files will be placed in `../priv/static/dist/`
 
+## Production authentication
+
+The React bundle is served by `agent_web` from `priv/static/dist` and the API
+is authenticated by default. Set a random bearer token of at least 16 bytes in
+the runtime environment:
+
+```bash
+export AGENTS_WEB_API_TOKEN='use-a-secret-from-your-secret-manager'
+```
+
+The dashboard presents a token gate and exchanges the token for an HttpOnly,
+SameSite=Strict session cookie. The token is not stored in localStorage and is
+removed from the address bar when supplied through a one-time `#token=...`
+fragment. Direct clients can continue using `Authorization: Bearer ...` or
+`X-API-Key`.
+
+For a network deployment, terminate TLS before the web application and keep
+`api_auth_enabled = true` and `secure_cookies = true` in the deployment
+configuration. The checked-in local configuration intentionally uses loopback
+HTTP with `secure_cookies = false` for local development only.
+
 ## Switching to the New UI
 
-To use the new React UI instead of the vanilla JS interface:
+The React UI is the served UI. Rebuild it after frontend source changes:
 
 1. Build the frontend:
 ```bash
 npm run build
 ```
 
-2. Edit `apps/agent_web/src/agent_web_handler.erl` and uncomment the React UI lines while commenting out the old UI lines.
-
-3. Restart the Erlang application.
+2. Restart the Erlang application.
 
 ## Technology Stack
 

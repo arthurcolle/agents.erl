@@ -109,7 +109,8 @@ const CrashMonitorDashboard: React.FC = () => {
   }, []);
 
   const connectWebSocket = () => {
-    const websocket = new WebSocket(`ws://localhost:8080/ws/crashes`);
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const websocket = new WebSocket(`${protocol}//${window.location.host}/ws/crashes`);
     
     websocket.onopen = () => {
       console.log('Connected to crash monitoring WebSocket');

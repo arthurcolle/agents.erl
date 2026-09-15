@@ -166,7 +166,8 @@ export default function InternalsPanel() {
   }
   
   const connectMetricsWebSocket = () => {
-    const websocket = new WebSocket(`ws://${window.location.host}/ws/system/metrics`)
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+    const websocket = new WebSocket(`${protocol}//${window.location.host}/ws/system/metrics`)
     
     websocket.onopen = () => {
       console.log('Metrics WebSocket connected')

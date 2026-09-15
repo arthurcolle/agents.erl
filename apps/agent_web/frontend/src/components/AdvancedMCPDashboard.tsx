@@ -190,7 +190,8 @@ export default function AdvancedMCPDashboard() {
   }, [autoRefresh, refreshInterval]);
 
   const connectWebSocket = () => {
-    const websocket = new WebSocket(`ws://${window.location.host}/ws/mcp`);
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const websocket = new WebSocket(`${protocol}//${window.location.host}/ws/mcp`);
     
     websocket.onmessage = (event) => {
       const data = JSON.parse(event.data);

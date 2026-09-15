@@ -72,7 +72,8 @@ export default function DenseApp() {
   }
 
   const connectWebSocket = () => {
-    const websocket = new WebSocket(`ws://${window.location.host}/ws`)
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
+    const websocket = new WebSocket(`${protocol}//${window.location.host}/ws`)
     
     websocket.onopen = () => console.log('WebSocket connected')
     websocket.onmessage = (event) => {

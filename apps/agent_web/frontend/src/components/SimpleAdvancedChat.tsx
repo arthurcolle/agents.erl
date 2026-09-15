@@ -400,6 +400,18 @@ export default function SimpleAdvancedChat({ selectedAgent, agents, ws }: ChatIn
   const fileInputRef = useRef<HTMLInputElement>(null)
   const chatContainerRef = useRef<HTMLDivElement>(null)
 
+  // Learning events are control-plane telemetry, not chat content.  Keep the
+  // currently active chain synchronized when the backend includes one and do
+  // not render opaque protocol payloads as user-visible assistant messages.
+  const handleLearningEvent = (event: unknown) => {
+    if (!event || typeof event !== 'object') return
+    const payload = event as Record<string, unknown>
+    const chainId = payload.chain_id ?? payload.chainId
+    if (typeof chainId === 'string' && chainId.length > 0) {
+      setActiveReasoningChain(chainId)
+    }
+  }
+
   useEffect(() => {
     scrollToBottom()
   }, [messages, currentStreamingMessage])
